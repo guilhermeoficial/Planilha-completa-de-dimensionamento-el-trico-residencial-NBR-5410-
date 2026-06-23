@@ -1,11 +1,29 @@
 "use client";
 
 import * as XLSX from "xlsx";
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
 import { FileSpreadsheet, FileText } from "lucide-react";
 import type { CircuitoCalculado, ResumoDemanda } from "@/lib/nbr5410";
 import type { ItemOrcamento } from "@/lib/comercial";
 import type { AmbienteRow, ProjectRow, CircuitoRow, MotorRow } from "@/lib/types";
 import type { BalancoFases } from "@/lib/nbr5410";
+
+const tableStyle = {
+  styles: { fontSize: 8, cellPadding: 4 },
+  headStyles: { fillColor: [242, 163, 61] as [number, number, number], textColor: 20, fontStyle: "bold" as const },
+  alternateRowStyles: { fillColor: [247, 247, 247] as [number, number, number] },
+};
+
+function secao(doc: jsPDF, titulo: string, y: number, margem: number): number {
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(11);
+  doc.setTextColor(0);
+  doc.text(titulo, margem, y);
+  doc.setDrawColor(20);
+  doc.line(margem, y + 4, 555, y + 4);
+  return y + 18;
+}
 
 interface Props {
   project: ProjectRow;
@@ -96,12 +114,134 @@ export default function ExportButtons({
   }
 
   function exportarPDF() {
-    const janela = window.open("", "_blank");
-    if (!janela) return;
-    janela.document.write(montarHtmlRelatorio({ project, ambientes, circuitosCalculados, circuitosOriginais, orcamentoItens, orcamentoTotal, motores, balanco, resumoDemanda }));
-    janela.document.close();
-    janela.focus();
-    setTimeout(() => janela.print(), 400);
+    const doc = new jsPDF({ unit: "pt", format: "a4" });
+    const margem = 40;
+    let y = 50;
+    const dataHoje = new Date().toLocaleDateString("pt-BR");
+
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(16);
+    doc.text("Memorial Descritivo — Instalação Elétrica Residencial", margem, y);
+    y += 22;
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(9);
+    doc.setTextColor(90);
+    doc.text(
+      `Projeto: ${project.nome}${project.cliente ? `  ·  Cliente: ${project.cliente}` : ""}  ·  Tensão: ${project.tensao_v}V  ·  Entrada: ${project.tipo_entrada}  ·  Emitido em ${dataHoje}`,
+      margem,
+      y
+    );
+    y += 14;
+    if (project.responsavel_tecnico || project.numero_art) {
+      doc.text(
+        `Responsável técnico: ${project.responsavel_tecnico ?? "—"}${project.registro_profissional ? `  ·  ${project.registro_profissional}` : ""}${project.numero_art ? `  ·  ART/RRT nº ${project.numero_art}` : ""}`,
+        margem,
+        y
+      );
+      y += 14;
+    }
+    doc.setTextColor(0);
+    y += 6;
+
+    y = secao(doc, "0. Resumo de demanda geral", y, margem);
+    autoTable(doc, {
+      startY: y,
+      margin: { left: margem, right: margem },
+      head: [["Carga instalada total", "Corrente de entrada estimada", "Disjuntor geral recomendado"]],
+      body: [[
+        `${Math.round(resumoDemanda.cargaInstaladaW).toLocaleString("pt-BR")} W`,
+        `${resumoDemanda.correnteEntradaA.toFixed(1)} A`,
+        `${resumoDemanda.disjuntorGeralA} A`,
+      ]],
+      ...tableStyle,
+    });
+    y = (doc as unknown as { lastAutoTable: { finalY: number } }).lastAutoTable.finalY + 22;
+
+    y = secao(doc, "1. Ambientes e previsão de carga", y, margem);
+    autoTable(doc, {
+      startY: y,
+      margin: { left: margem, right: margem },
+      head: [["Ambiente", "Tipo", "Área (m²)", "Perímetro (m)"]],
+      body: ambientes.map((a) => [a.nome, a.tipo, Number(a.area_m2).toFixed(1), Number(a.perimetro_m).toFixed(1)]),
+      ...tableStyle,
+    });
+    y = (doc as unknown as { lastAutoTable: { finalY: number } }).lastAutoTable.finalY + 22;
+
+    y = secao(doc, "2. Memorial de circuitos", y, margem);
+    autoTable(doc, {
+      startY: y,
+      margin: { left: margem, right: margem },
+      head: [["Nº", "Descrição", "Tipo", "Pontos", "Fase", "VA", "Comp.(m)", "Isol.", "Ib(A)", "Cabo(mm²)", "Queda(%)", "Disj.(A)"]],
+      body: circuitosCalculados.map((c) => {
+        const original = circuitosOriginais.find((o) => o.id === c.id);
+        return [
+          c.numero, c.descricao, c.tipo, original?.qtd_pontos ?? 1, c.fase, c.potenciaVA, c.comprimentoM, c.isolacao,
+          c.ibA.toFixed(2), c.secaoFinalMm2, c.quedaPercent.toFixed(2), c.disjuntorA,
+        ];
+      }),
+      styles: { ...tableStyle.styles, fontSize: 7.5 },
+      headStyles: tableStyle.headStyles,
+    });
+    y = (doc as unknown as { lastAutoTable: { finalY: number } }).lastAutoTable.finalY + 22;
+
+    if (y > 680) { doc.addPage(); y = 50; }
+    y = secao(doc, "3. Balanceamento de fases", y, margem);
+    autoTable(doc, {
+      startY: y,
+      margin: { left: margem, right: margem },
+      head: [["Fase", "Potência total (W)"]],
+      body: [
+        ["R", Math.round(balanco.R).toLocaleString("pt-BR")],
+        ["S", Math.round(balanco.S).toLocaleString("pt-BR")],
+        ["T", Math.round(balanco.T).toLocaleString("pt-BR")],
+        ["Desbalanceamento", `${balanco.desbalanceamentoPercent.toFixed(1)}%`],
+      ],
+      ...tableStyle,
+    });
+    y = (doc as unknown as { lastAutoTable: { finalY: number } }).lastAutoTable.finalY + 22;
+
+    if (y > 650) { doc.addPage(); y = 50; }
+    y = secao(doc, "4. Orçamento estimado de materiais", y, margem);
+    autoTable(doc, {
+      startY: y,
+      margin: { left: margem, right: margem },
+      head: [["Item", "Qtd.", "Unid.", "R$ unit.", "R$ total"]],
+      body: [
+        ...orcamentoItens.map((i) => [i.descricao, i.quantidade, i.unidade, moeda(i.precoUnitario), moeda(i.precoTotal)]),
+        ["TOTAL ESTIMADO", "", "", "", moeda(orcamentoTotal)],
+      ],
+      ...tableStyle,
+    });
+    y = (doc as unknown as { lastAutoTable: { finalY: number } }).lastAutoTable.finalY + 22;
+
+    if (motores.length > 0) {
+      if (y > 650) { doc.addPage(); y = 50; }
+      y = secao(doc, "5. Instalação industrial / extra — correção de fator de potência", y, margem);
+      autoTable(doc, {
+        startY: y,
+        margin: { left: margem, right: margem },
+        head: [["Motor", "Tipo", "Potência (CV)", "Qtd.", "FP atual", "FP desejado"]],
+        body: motores.map((m) => [
+          m.nome, m.tipo, Number(m.potencia_cv).toFixed(1), m.quantidade, Number(m.fp_atual).toFixed(2), Number(m.fp_desejado).toFixed(2),
+        ]),
+        ...tableStyle,
+      });
+      y = (doc as unknown as { lastAutoTable: { finalY: number } }).lastAutoTable.finalY + 16;
+    }
+
+    doc.setFontSize(7.5);
+    doc.setTextColor(140);
+    doc.text(
+      "Memorial gerado automaticamente pelo sistema Voltis a partir do motor de cálculo NBR 5410. Os preços de\n" +
+        "materiais são estimativas de referência editáveis — confira valores atualizados com seu fornecedor antes\n" +
+        "de fechar o orçamento com o cliente. Este documento não substitui a responsabilidade técnica do\n" +
+        "profissional habilitado (ART/RRT).",
+      margem,
+      Math.min(y + 10, 800)
+    );
+
+    doc.save(`${slug(project.nome)}-memorial-eletrico.pdf`);
   }
 
   return (
@@ -130,120 +270,3 @@ function moeda(v: number): string {
   return v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 }
 
-function montarHtmlRelatorio(d: Props): string {
-  const dataHoje = new Date().toLocaleDateString("pt-BR");
-  return `<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8" />
-<title>Memorial Elétrico — ${d.project.nome}</title>
-<style>
-  * { box-sizing: border-box; }
-  body { font-family: Arial, Helvetica, sans-serif; color: #111; padding: 32px; font-size: 12px; }
-  h1 { font-size: 20px; margin-bottom: 2px; }
-  h2 { font-size: 14px; margin-top: 28px; margin-bottom: 8px; border-bottom: 2px solid #111; padding-bottom: 4px; }
-  p.sub { color: #555; margin-top: 0; }
-  table { width: 100%; border-collapse: collapse; margin-bottom: 8px; }
-  th, td { border: 1px solid #ccc; padding: 5px 7px; text-align: left; }
-  th { background: #f0f0f0; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.03em; }
-  td { font-size: 11px; }
-  .num { text-align: right; font-family: "Courier New", monospace; }
-  .total-row td { font-weight: bold; background: #f7f7f7; }
-  .fase-R { color: #c0392b; } .fase-S { color: #b8860b; } .fase-T { color: #2462a8; }
-  .footer { margin-top: 30px; font-size: 10px; color: #888; }
-  @media print { body { padding: 12px; } }
-</style>
-</head>
-<body>
-  <h1>Memorial Descritivo — Instalação Elétrica Residencial</h1>
-  <p class="sub">Projeto: <strong>${d.project.nome}</strong> ${d.project.cliente ? `· Cliente: ${d.project.cliente}` : ""} · Tensão: ${d.project.tensao_v}V · Entrada: ${d.project.tipo_entrada} · Emitido em ${dataHoje}</p>
-  ${
-    d.project.responsavel_tecnico || d.project.numero_art
-      ? `<p class="sub">Responsável técnico: <strong>${d.project.responsavel_tecnico ?? "—"}</strong>${d.project.registro_profissional ? ` · ${d.project.registro_profissional}` : ""}${d.project.numero_art ? ` · ART/RRT nº ${d.project.numero_art}` : ""}</p>`
-      : ""
-  }
-
-  <h2>0. Resumo de demanda geral</h2>
-  <table>
-    <thead><tr><th>Carga instalada total</th><th>Corrente de entrada estimada</th><th>Disjuntor geral recomendado</th></tr></thead>
-    <tbody>
-      <tr>
-        <td class="num">${Math.round(d.resumoDemanda.cargaInstaladaW).toLocaleString("pt-BR")} W</td>
-        <td class="num">${d.resumoDemanda.correnteEntradaA.toFixed(1)} A</td>
-        <td class="num"><strong>${d.resumoDemanda.disjuntorGeralA} A</strong></td>
-      </tr>
-    </tbody>
-  </table>
-  <p class="footer" style="margin-top:0">Estimativa simplificada (carga ativa total + margem de 15%), sem fatores de demanda da NBR 14039 — confirme o padrão de entrada com a concessionária local.</p>
-
-  <h2>1. Ambientes e previsão de carga</h2>
-  <table>
-    <thead><tr><th>Ambiente</th><th>Tipo</th><th>Área (m²)</th><th>Perímetro (m)</th></tr></thead>
-    <tbody>
-      ${d.ambientes.map((a) => `<tr><td>${a.nome}</td><td>${a.tipo}</td><td class="num">${Number(a.area_m2).toFixed(1)}</td><td class="num">${Number(a.perimetro_m).toFixed(1)}</td></tr>`).join("")}
-    </tbody>
-  </table>
-
-  <h2>2. Memorial de circuitos</h2>
-  <table>
-    <thead>
-      <tr><th>Nº</th><th>Descrição</th><th>Tipo</th><th>Qtd. pontos</th><th>Fase</th><th>VA</th><th>Comp. (m)</th><th>Isolação</th><th>Ib (A)</th><th>Cabo (mm²)</th><th>Queda (%)</th><th>Disjuntor (A)</th></tr>
-    </thead>
-    <tbody>
-      ${d.circuitosCalculados
-        .map((c) => {
-          const original = d.circuitosOriginais.find((o) => o.id === c.id);
-          return `<tr>
-            <td>${c.numero}</td><td>${c.descricao}</td><td>${c.tipo}</td>
-            <td class="num">${original?.qtd_pontos ?? 1}</td>
-            <td class="fase-${c.fase}"><strong>${c.fase}</strong></td>
-            <td class="num">${c.potenciaVA}</td><td class="num">${c.comprimentoM}</td><td>${c.isolacao}</td>
-            <td class="num">${c.ibA.toFixed(2)}</td><td class="num">${c.secaoFinalMm2}</td>
-            <td class="num">${c.quedaPercent.toFixed(2)}</td><td class="num">${c.disjuntorA}</td>
-          </tr>`;
-        })
-        .join("")}
-    </tbody>
-  </table>
-
-  <h2>3. Balanceamento de fases</h2>
-  <table>
-    <thead><tr><th>Fase</th><th>Potência total (W)</th></tr></thead>
-    <tbody>
-      <tr><td class="fase-R"><strong>R</strong></td><td class="num">${Math.round(d.balanco.R).toLocaleString("pt-BR")}</td></tr>
-      <tr><td class="fase-S"><strong>S</strong></td><td class="num">${Math.round(d.balanco.S).toLocaleString("pt-BR")}</td></tr>
-      <tr><td class="fase-T"><strong>T</strong></td><td class="num">${Math.round(d.balanco.T).toLocaleString("pt-BR")}</td></tr>
-      <tr class="total-row"><td>Desbalanceamento</td><td class="num">${d.balanco.desbalanceamentoPercent.toFixed(1)}%</td></tr>
-    </tbody>
-  </table>
-
-  <h2>4. Orçamento estimado de materiais</h2>
-  <table>
-    <thead><tr><th>Item</th><th>Qtd.</th><th>Unid.</th><th>R$ unit.</th><th>R$ total</th></tr></thead>
-    <tbody>
-      ${d.orcamentoItens.map((i) => `<tr><td>${i.descricao}</td><td class="num">${i.quantidade}</td><td>${i.unidade}</td><td class="num">${moeda(i.precoUnitario)}</td><td class="num">${moeda(i.precoTotal)}</td></tr>`).join("")}
-      <tr class="total-row"><td colspan="4">Total estimado</td><td class="num">${moeda(d.orcamentoTotal)}</td></tr>
-    </tbody>
-  </table>
-
-  ${
-    d.motores.length > 0
-      ? `<h2>5. Instalação industrial / extra — correção de fator de potência</h2>
-  <table>
-    <thead><tr><th>Motor</th><th>Tipo</th><th>Potência (CV)</th><th>Qtd.</th><th>FP atual</th><th>FP desejado</th></tr></thead>
-    <tbody>
-      ${d.motores.map((m) => `<tr><td>${m.nome}</td><td>${m.tipo}</td><td class="num">${Number(m.potencia_cv).toFixed(1)}</td><td class="num">${m.quantidade}</td><td class="num">${Number(m.fp_atual).toFixed(2)}</td><td class="num">${Number(m.fp_desejado).toFixed(2)}</td></tr>`).join("")}
-    </tbody>
-  </table>`
-      : ""
-  }
-
-  <p class="footer">
-    Memorial gerado automaticamente pelo sistema Voltis a partir do motor de cálculo NBR 5410.
-    Os preços de materiais são estimativas de referência editáveis — confira valores atualizados
-    com seu fornecedor antes de fechar o orçamento com o cliente. Este documento não substitui a
-    responsabilidade técnica do profissional habilitado (ART/RRT).
-  </p>
-</body>
-</html>`;
-}

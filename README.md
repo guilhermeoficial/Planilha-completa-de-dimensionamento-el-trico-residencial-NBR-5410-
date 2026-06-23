@@ -80,6 +80,70 @@ npm run dev
 
 Abra [http://localhost:3000](http://localhost:3000). Crie uma conta na tela de login (o Supabase, por padrão, envia um e-mail de confirmação — você pode desativar isso em **Authentication → Providers → Email → Confirm email** durante o desenvolvimento).
 
+## Configurar a assinatura mensal (Stripe)
+
+O sistema cobra **R$ 19,90/mês** por usuário, sem período de teste, via Stripe.
+Quem não tiver assinatura ativa é redirecionado para a tela `/assinar` ao tentar
+entrar no painel.
+
+### 1. Criar o produto no Stripe
+
+1. Crie uma conta em [dashboard.stripe.com](https://dashboard.stripe.com) (comece em modo **Test**, depois ative o modo **Live** quando for cobrar de verdade).
+2. Vá em **Product catalog → Add product**. Nome: "Voltis — Assinatura mensal".
+3. Em **Pricing**, defina **Recurring**, valor **R$ 19,90**, intervalo **Monthly**.
+4. Salve e copie o **Price ID** (começa com `price_...`) — vai no `STRIPE_PRICE_ID`.
+
+### 2. Pegar as chaves de API
+
+Em **Developers → API keys**:
+- **Secret key** (`sk_test_...` ou `sk_live_...`) → `STRIPE_SECRET_KEY`
+
+### 3. Configurar o webhook
+
+O webhook é o que avisa o seu sistema quando alguém paga, cancela ou tem o
+cartão recusado — sem ele, a assinatura nunca fica "ativa" no banco.
+
+**Em produção (depois do deploy na Vercel):**
+1. Em **Developers → Webhooks → Add endpoint**.
+2. URL: `https://SEU-DOMINIO.vercel.app/api/stripe/webhook`
+3. Eventos para escutar: `checkout.session.completed`, `customer.subscription.created`, `customer.subscription.updated`, `customer.subscription.deleted`.
+4. Copie o **Signing secret** (`whsec_...`) → `STRIPE_WEBHOOK_SECRET`.
+
+**Para testar localmente** (antes do deploy), use a [Stripe CLI](https://docs.stripe.com/stripe-cli):
+```bash
+stripe listen --forward-to localhost:3000/api/stripe/webhook
+```
+Ela imprime um `whsec_...` temporário — use esse no `.env.local` enquanto testa local.
+
+### 4. Pegar a service role key do Supabase
+
+Em **Project Settings → API Keys → Secret keys** do Supabase, copie a chave
+secreta (não é a publishable) → `SUPABASE_SERVICE_ROLE_KEY`. Ela é usada **só**
+no webhook, no servidor, pra atualizar o status da assinatura ignorando o RLS.
+
+### 5. Rodar a migração do banco
+
+No SQL Editor do Supabase, rode [`supabase/migration_004.sql`](./supabase/migration_004.sql).
+
+### 6. Preencher o `.env.local` (e as variáveis na Vercel)
+
+```
+SUPABASE_SERVICE_ROLE_KEY=...
+STRIPE_SECRET_KEY=...
+STRIPE_WEBHOOK_SECRET=...
+STRIPE_PRICE_ID=...
+```
+
+Lembre de adicionar essas mesmas variáveis nas **Environment Variables** do
+projeto na Vercel (Settings → Environment Variables) antes do deploy — e usar
+as chaves `sk_live_...`/`whsec_...` de produção lá (não as de teste).
+
+> 💡 **Pra testar sem pagar de verdade**: no modo Test do Stripe, use o cartão
+> `4242 4242 4242 4242`, qualquer data futura e qualquer CVC — ele simula um
+> pagamento aprovado sem cobrar nada. Outra opção: no Supabase, vá em **Table
+> editor → profiles**, ache sua linha e mude `subscription_status` para
+> `active` manualmente, só pra liberar seu próprio acesso sem passar pelo Stripe.
+
 ## Deploy
 
 O caminho mais simples é a [Vercel](https://vercel.com):

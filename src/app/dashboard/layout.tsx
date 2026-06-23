@@ -1,10 +1,24 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import LogoutButton from "./logout-button";
+import ManageSubscriptionButton from "./manage-subscription-button";
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
   const supabase = await createClient();
   const { data } = await supabase.auth.getUser();
+
+  if (data.user) {
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("subscription_status")
+      .eq("id", data.user.id)
+      .single();
+
+    if (!profile || profile.subscription_status !== "active") {
+      redirect("/assinar");
+    }
+  }
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -15,6 +29,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
         </Link>
         <div className="flex items-center gap-4 text-sm text-muted">
           <span className="hidden sm:inline">{data.user?.email}</span>
+          <ManageSubscriptionButton />
           <LogoutButton />
         </div>
       </header>
