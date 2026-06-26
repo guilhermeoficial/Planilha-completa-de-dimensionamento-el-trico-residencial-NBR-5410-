@@ -31,9 +31,14 @@ export default function AssinarPage() {
         </Link>
 
         <div className="rounded-xl border border-panel-border bg-panel p-7 shadow-2xl shadow-black/40">
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent">Plano único</p>
-          <p className="mt-2 font-display text-3xl font-bold">
-            R$ 19,90<span className="text-base font-normal text-muted">/mês</span>
+          <span className="inline-block rounded-full bg-accent/15 px-3 py-1 font-mono text-xs font-semibold uppercase tracking-wide text-accent">
+            Oferta de lançamento
+          </span>
+          <p className="mt-4 font-mono text-xs uppercase tracking-[0.2em] text-muted">Plano único</p>
+          <p className="mt-2 flex items-baseline gap-2">
+            <span className="text-base text-muted line-through">R$ 39,90</span>
+            <span className="font-display text-3xl font-bold">R$ 19,90</span>
+            <span className="text-base font-normal text-muted">/mês</span>
           </p>
           <p className="mt-1 text-sm text-muted">Cancele quando quiser, sem multa.</p>
 
@@ -63,7 +68,7 @@ export default function AssinarPage() {
           {erro && <p className="mt-3 text-sm text-danger">{erro}</p>}
 
           <p className="mt-4 text-center text-xs text-muted">
-            Pagamento processado de forma segura pelo Stripe.
+            Pagamento processado de forma segura pelo Stripe. Aceita cartão de crédito e Pix.
           </p>
         </div>
       </div>

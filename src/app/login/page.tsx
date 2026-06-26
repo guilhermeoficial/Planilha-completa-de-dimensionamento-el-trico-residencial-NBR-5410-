@@ -8,7 +8,7 @@ import { createClient } from "@/lib/supabase/client";
 export default function LoginPage() {
   const router = useRouter();
   const supabase = createClient();
-  const [mode, setMode] = useState<"login" | "signup">("login");
+  const [mode, setMode] = useState<"login" | "signup" | "esqueci">("login");
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
@@ -26,7 +26,7 @@ export default function LoginPage() {
       const { error } = await supabase.auth.signInWithPassword({ email, password: senha });
       if (error) setErro(traduzErro(error.message));
       else router.push("/dashboard");
-    } else {
+    } else if (mode === "signup") {
       const { error } = await supabase.auth.signUp({
         email,
         password: senha,
@@ -37,6 +37,12 @@ export default function LoginPage() {
         setAviso("Conta criada! Verifique seu e-mail para confirmar o acesso, depois entre normalmente.");
         setMode("login");
       }
+    } else {
+      const { error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: `${window.location.origin}/redefinir-senha`,
+      });
+      if (error) setErro(traduzErro(error.message));
+      else setAviso("Enviamos um link para o seu e-mail. Clique nele para criar uma nova senha.");
     }
     setCarregando(false);
   }
@@ -49,22 +55,30 @@ export default function LoginPage() {
           Voltis
         </Link>
 
-        <div className="mb-6 flex rounded-md border border-panel-border p-1 text-sm">
-          <button
-            type="button"
-            onClick={() => setMode("login")}
-            className={`flex-1 rounded-sm py-1.5 transition-colors ${mode === "login" ? "bg-accent text-bg font-medium" : "text-muted"}`}
-          >
-            Entrar
-          </button>
-          <button
-            type="button"
-            onClick={() => setMode("signup")}
-            className={`flex-1 rounded-sm py-1.5 transition-colors ${mode === "signup" ? "bg-accent text-bg font-medium" : "text-muted"}`}
-          >
-            Criar conta
-          </button>
-        </div>
+        {mode !== "esqueci" && (
+          <div className="mb-6 flex rounded-md border border-panel-border p-1 text-sm">
+            <button
+              type="button"
+              onClick={() => setMode("login")}
+              className={`flex-1 rounded-sm py-1.5 transition-colors ${mode === "login" ? "bg-accent text-bg font-medium" : "text-muted"}`}
+            >
+              Entrar
+            </button>
+            <button
+              type="button"
+              onClick={() => setMode("signup")}
+              className={`flex-1 rounded-sm py-1.5 transition-colors ${mode === "signup" ? "bg-accent text-bg font-medium" : "text-muted"}`}
+            >
+              Criar conta
+            </button>
+          </div>
+        )}
+
+        {mode === "esqueci" && (
+          <p className="mb-5 text-sm text-muted">
+            Digite seu e-mail e enviaremos um link para você criar uma nova senha.
+          </p>
+        )}
 
         <form onSubmit={handleSubmit} className="space-y-3">
           {mode === "signup" && (
@@ -88,17 +102,33 @@ export default function LoginPage() {
               placeholder="voce@exemplo.com"
             />
           </Field>
-          <Field label="Senha">
-            <input
-              type="password"
-              value={senha}
-              onChange={(e) => setSenha(e.target.value)}
-              required
-              minLength={6}
-              className="input"
-              placeholder="••••••••"
-            />
-          </Field>
+          {mode !== "esqueci" && (
+            <Field label="Senha">
+              <input
+                type="password"
+                value={senha}
+                onChange={(e) => setSenha(e.target.value)}
+                required
+                minLength={6}
+                className="input"
+                placeholder="••••••••"
+              />
+            </Field>
+          )}
+
+          {mode === "login" && (
+            <button
+              type="button"
+              onClick={() => {
+                setMode("esqueci");
+                setErro(null);
+                setAviso(null);
+              }}
+              className="text-xs text-muted hover:text-accent"
+            >
+              Esqueci minha senha
+            </button>
+          )}
 
           {erro && <p className="text-sm text-danger">{erro}</p>}
           {aviso && <p className="text-sm text-ok">{aviso}</p>}
@@ -108,8 +138,28 @@ export default function LoginPage() {
             disabled={carregando}
             className="mt-2 w-full rounded-md bg-accent py-2.5 font-medium text-bg transition-opacity hover:opacity-90 disabled:opacity-50"
           >
-            {carregando ? "Aguarde..." : mode === "login" ? "Entrar" : "Criar conta"}
+            {carregando
+              ? "Aguarde..."
+              : mode === "login"
+              ? "Entrar"
+              : mode === "signup"
+              ? "Criar conta"
+              : "Enviar link de redefinição"}
           </button>
+
+          {mode === "esqueci" && (
+            <button
+              type="button"
+              onClick={() => {
+                setMode("login");
+                setErro(null);
+                setAviso(null);
+              }}
+              className="w-full text-center text-xs text-muted hover:text-text"
+            >
+              Voltar para o login
+            </button>
+          )}
         </form>
       </div>
 

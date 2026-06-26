@@ -18,7 +18,7 @@ export async function POST(request: Request) {
 
   const origin = new URL(request.url).origin;
 
-  const session = await stripe.checkout.sessions.create({
+  const baseParams: Parameters<typeof stripe.checkout.sessions.create>[0] = {
     mode: "subscription",
     customer: profile?.stripe_customer_id ?? undefined,
     customer_email: profile?.stripe_customer_id ? undefined : user.email,
@@ -29,7 +29,25 @@ export async function POST(request: Request) {
     allow_promotion_codes: true,
     metadata: { supabase_user_id: user.id },
     subscription_data: { metadata: { supabase_user_id: user.id } },
-  });
+  };
+
+  let session;
+  try {
+    // tenta com cartão + Pix (Pix Automático exige liberação prévia na conta Stripe)
+    session = await stripe.checkout.sessions.create({
+      ...baseParams,
+      payment_method_types: ["card", "pix"],
+      payment_method_options: {
+        pix: { mandate_options: { amount: 1990, payment_schedule: "monthly" } },
+      },
+    });
+  } catch {
+    // Pix ainda não habilitado nesta conta — cai para cartão normal sem travar o checkout
+    session = await stripe.checkout.sessions.create({
+      ...baseParams,
+      payment_method_types: ["card"],
+    });
+  }
 
   return NextResponse.json({ url: session.url });
 }
