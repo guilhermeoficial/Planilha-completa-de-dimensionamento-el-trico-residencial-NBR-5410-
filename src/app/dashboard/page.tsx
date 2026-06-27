@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import type { ProjectRow, AmbienteRow, AmbienteTueRow, CircuitoRow, MotorRow } from "@/lib/types";
-import { Plus, FolderOpen, Copy } from "lucide-react";
+import { Plus, FolderOpen, Copy, Wrench } from "lucide-react";
 
 export default function DashboardPage() {
   const supabase = createClient();
@@ -155,12 +155,20 @@ export default function DashboardPage() {
           <h1 className="font-display text-2xl font-bold">Seus projetos</h1>
           <p className="mt-1 text-sm text-muted">Cada projeto reúne ambientes, equipamentos e o memorial de circuitos.</p>
         </div>
-        <button
-          onClick={() => setMostrarForm((v) => !v)}
-          className="flex items-center gap-1.5 rounded-md bg-accent px-4 py-2 text-sm font-medium text-bg hover:opacity-90 transition-opacity"
-        >
-          <Plus size={16} /> Novo projeto
-        </button>
+        <div className="flex items-center gap-2">
+          <Link
+            href="/dashboard/ferramentas"
+            className="flex items-center gap-1.5 rounded-md border border-panel-border px-4 py-2 text-sm transition-colors hover:border-accent"
+          >
+            <Wrench size={16} /> Calculadoras & Conversores
+          </Link>
+          <button
+            onClick={() => setMostrarForm((v) => !v)}
+            className="flex items-center gap-1.5 rounded-md bg-accent px-4 py-2 text-sm font-medium text-bg hover:opacity-90 transition-opacity"
+          >
+            <Plus size={16} /> Novo projeto
+          </button>
+        </div>
       </div>
 
       {mostrarForm && (
