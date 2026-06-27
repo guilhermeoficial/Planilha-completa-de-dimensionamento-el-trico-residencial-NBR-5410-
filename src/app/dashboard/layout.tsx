@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import LogoutButton from "./logout-button";
 import ManageSubscriptionButton from "./manage-subscription-button";
@@ -10,7 +9,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
   let ehAdmin = false;
 
   if (data.user) {
-    const { data: profile } = await supabase
+    const { data: profile, error: erroProfile } = await supabase
       .from("profiles")
       .select("subscription_status, is_admin")
       .eq("id", data.user.id)
@@ -19,7 +18,15 @@ export default async function DashboardLayout({ children }: { children: React.Re
     ehAdmin = profile?.is_admin === true;
 
     if (!ehAdmin && (!profile || profile.subscription_status !== "active")) {
-      redirect("/assinar");
+      return (
+        <pre style={{ padding: 24, color: "#fff", background: "#111", fontSize: 12, whiteSpace: "pre-wrap" }}>
+          DEBUG{"\n"}
+          user.id: {data.user.id}{"\n"}
+          user.email: {data.user.email}{"\n"}
+          profile: {JSON.stringify(profile)}{"\n"}
+          erroProfile: {JSON.stringify(erroProfile)}
+        </pre>
+      );
     }
   }
 
