@@ -7,15 +7,18 @@ import ManageSubscriptionButton from "./manage-subscription-button";
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
   const supabase = await createClient();
   const { data } = await supabase.auth.getUser();
+  let ehAdmin = false;
 
   if (data.user) {
     const { data: profile } = await supabase
       .from("profiles")
-      .select("subscription_status")
+      .select("subscription_status, is_admin")
       .eq("id", data.user.id)
       .single();
 
-    if (!profile || profile.subscription_status !== "active") {
+    ehAdmin = profile?.is_admin === true;
+
+    if (!ehAdmin && (!profile || profile.subscription_status !== "active")) {
       redirect("/assinar");
     }
   }
@@ -28,8 +31,13 @@ export default async function DashboardLayout({ children }: { children: React.Re
           Voltis
         </Link>
         <div className="flex items-center gap-4 text-sm text-muted">
+          {ehAdmin && (
+            <span className="rounded-full bg-accent/15 px-2.5 py-1 font-mono text-xs font-semibold uppercase tracking-wide text-accent">
+              Conta mestre
+            </span>
+          )}
           <span className="hidden sm:inline">{data.user?.email}</span>
-          <ManageSubscriptionButton />
+          {!ehAdmin && <ManageSubscriptionButton />}
           <LogoutButton />
         </div>
       </header>

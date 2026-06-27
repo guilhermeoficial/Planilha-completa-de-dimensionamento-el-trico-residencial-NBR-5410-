@@ -12,6 +12,7 @@ create table if not exists public.profiles (
   id uuid primary key references auth.users (id) on delete cascade,
   nome text,
   empresa text,
+  is_admin boolean not null default false,
   stripe_customer_id text,
   stripe_subscription_id text,
   subscription_status text not null default 'inactive'
