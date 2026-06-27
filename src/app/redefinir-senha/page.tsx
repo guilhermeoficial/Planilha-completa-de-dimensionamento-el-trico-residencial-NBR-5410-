@@ -16,25 +16,38 @@ export default function RedefinirSenhaPage() {
   const [sessaoValida, setSessaoValida] = useState<boolean | null>(null);
 
   useEffect(() => {
-    // o Supabase processa o token de recuperação que vem no link do e-mail
-    // automaticamente a partir da URL; escutamos tanto a sessão já existente
-    // quanto o evento PASSWORD_RECOVERY disparado após esse processamento.
-    supabase.auth.getSession().then(({ data }) => {
-      if (data.session) setSessaoValida(true);
-    });
+    async function processarLink() {
+      // Fluxo PKCE (padrão do @supabase/ssr): o link de recuperação chega com
+      // ?code=... na URL. Precisamos troca-lo manualmente por uma sessão.
+      const params = new URLSearchParams(window.location.search);
+      const code = params.get("code");
+
+      if (code) {
+        const { data, error } = await supabase.auth.exchangeCodeForSession(code);
+        if (data.session && !error) {
+          setSessaoValida(true);
+          window.history.replaceState({}, "", window.location.pathname);
+          return;
+        }
+      }
+
+      // Fallback: fluxo antigo com #access_token no hash, ou sessão já existente.
+      const { data } = await supabase.auth.getSession();
+      if (data.session) {
+        setSessaoValida(true);
+        return;
+      }
+
+      setSessaoValida(false);
+    }
+
+    processarLink();
 
     const { data: listener } = supabase.auth.onAuthStateChange((event, session) => {
       if (event === "PASSWORD_RECOVERY" || session) setSessaoValida(true);
     });
 
-    const timeout = setTimeout(() => {
-      setSessaoValida((atual) => (atual === null ? false : atual));
-    }, 2500);
-
-    return () => {
-      listener.subscription.unsubscribe();
-      clearTimeout(timeout);
-    };
+    return () => listener.subscription.unsubscribe();
   }, [supabase]);
 
   async function handleSubmit(e: React.FormEvent) {
