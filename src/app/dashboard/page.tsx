@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import type { ProjectRow, AmbienteRow, AmbienteTueRow, CircuitoRow, MotorRow } from "@/lib/types";
-import { Plus, FolderOpen, Copy, Wrench } from "lucide-react";
+import { Plus, FolderOpen, Copy, Wrench, GraduationCap } from "lucide-react";
 
 export default function DashboardPage() {
   const supabase = createClient();
@@ -156,6 +156,12 @@ export default function DashboardPage() {
           <p className="mt-1 text-sm text-muted">Cada projeto reúne ambientes, equipamentos e o memorial de circuitos.</p>
         </div>
         <div className="flex items-center gap-2">
+          <Link
+            href="/dashboard/cursos"
+            className="flex items-center gap-1.5 rounded-md border border-panel-border px-4 py-2 text-sm transition-colors hover:border-accent"
+          >
+            <GraduationCap size={16} /> Cursos
+          </Link>
           <Link
             href="/dashboard/ferramentas"
             className="flex items-center gap-1.5 rounded-md border border-panel-border px-4 py-2 text-sm transition-colors hover:border-accent"

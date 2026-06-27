@@ -1,6 +1,6 @@
 import Link from "next/link";
 import {
-  Zap, GitMerge, Calculator, Ruler, Gauge, Palette, ArrowLeft, GraduationCap, Lock,
+  Zap, GitMerge, Calculator, Ruler, Gauge, Palette, ArrowLeft, GraduationCap,
   Thermometer, Layers, Sparkles, AlertTriangle, Boxes, ListTree, Lightbulb, Sun, BatteryCharging,
   Activity, Cable, Shapes,
 } from "lucide-react";
@@ -90,12 +90,14 @@ export default function FerramentasPage() {
 
       <div className="mt-8">
         <h2 className="mb-3 font-display text-sm font-semibold uppercase tracking-wide text-muted">Próximo módulo</h2>
-        <div className="relative max-w-sm rounded-lg border border-dashed border-panel-border bg-bg-elevated/40 p-5 opacity-70">
-          <Lock size={14} className="absolute right-4 top-4 text-muted" />
-          <GraduationCap size={20} className="text-muted" />
-          <h3 className="mt-3 font-display font-semibold text-muted">Módulo de Cursos</h3>
-          <p className="mt-1.5 text-sm text-muted">Treinamentos por área — Potência, Eletrônica, Computação, Telecom. Em breve.</p>
-        </div>
+        <Link
+          href="/dashboard/cursos"
+          className="block max-w-sm rounded-lg border border-panel-border bg-panel p-5 transition-colors hover:border-accent"
+        >
+          <GraduationCap size={20} className="text-accent" />
+          <h3 className="mt-3 font-display font-semibold">Módulo de Cursos</h3>
+          <p className="mt-1.5 text-sm text-muted">Treinamentos por área — Eletrotécnica, Eletrônica e mais. Já disponível!</p>
+        </Link>
       </div>
     </div>
   );
