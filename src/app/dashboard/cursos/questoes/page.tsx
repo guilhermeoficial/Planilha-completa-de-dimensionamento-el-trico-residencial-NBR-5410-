@@ -7,6 +7,20 @@ import {
   QUESTOES, AREAS_GRANDES, DIFICULDADES, bancasDisponiveis, anosDisponiveis, assuntosDisponiveis,
   type AreaGrande, type Dificuldade,
 } from "@/lib/questoes-data";
+import {
+  DiagramaResistoresSerie, DiagramaResistoresParalelo, DiagramaDivisorTensao,
+  DiagramaTransformador, DiagramaWattimetros, DiagramaEstrelaTriangulo, DiagramaCurvaDisjuntor,
+} from "./diagramas";
+
+const COMPONENTES_DIAGRAMA = {
+  "resistores-serie": DiagramaResistoresSerie,
+  "resistores-paralelo": DiagramaResistoresParalelo,
+  "divisor-tensao": DiagramaDivisorTensao,
+  "transformador": DiagramaTransformador,
+  "wattimetros": DiagramaWattimetros,
+  "estrela-triangulo": DiagramaEstrelaTriangulo,
+  "curva-disjuntor": DiagramaCurvaDisjuntor,
+} as const;
 
 export default function QuestoesPage() {
   const [respostas, setRespostas] = useState<Record<string, number>>({});
@@ -119,6 +133,14 @@ export default function QuestoesPage() {
                 </span>
               </div>
               <p className="mt-2 text-sm font-medium">{q.enunciado}</p>
+              {q.diagrama && (
+                <div className="mt-3 flex justify-center rounded-md border border-panel-border bg-bg p-4">
+                  {(() => {
+                    const Diagrama = COMPONENTES_DIAGRAMA[q.diagrama];
+                    return <Diagrama />;
+                  })()}
+                </div>
+              )}
               <div className="mt-3 space-y-1.5">
                 {q.alternativas.map((alt, i) => {
                   const selecionada = respondida === i;
