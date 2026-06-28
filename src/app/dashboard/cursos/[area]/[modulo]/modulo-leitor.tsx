@@ -4,6 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight, ArrowLeft, Video } from "lucide-react";
 import type { Modulo } from "@/lib/cursos-data";
+import Formula from "../../formula";
+import AnimacaoLeiDeOhm from "./animacao-lei-de-ohm";
 
 export default function ModuloLeitor({ areaSlug, areaNome, modulo }: { areaSlug: string; areaNome: string; modulo: Modulo }) {
   const [pagina, setPagina] = useState(0);
@@ -20,21 +22,50 @@ export default function ModuloLeitor({ areaSlug, areaNome, modulo }: { areaSlug:
       <div className="mt-4 rounded-lg border border-panel-border bg-panel p-6">
         <h1 className="font-display text-xl font-bold">{atual.titulo}</h1>
 
-        {atual.videoUrl ? (
+        {atual.videoUrl && (
           <div className="mt-4 aspect-video overflow-hidden rounded-md border border-panel-border">
             <iframe src={atual.videoUrl} className="h-full w-full" allowFullScreen />
           </div>
-        ) : (
-          <div className="mt-4 flex items-center gap-2 rounded-md border border-dashed border-panel-border bg-bg-elevated/50 px-3 py-2 text-xs text-muted">
-            <Video size={14} /> Vídeo desta página ainda não disponível — conteúdo em texto abaixo.
+        )}
+
+        {atual.conteudo.length > 0 && (
+          <div className="mt-4 space-y-3 text-sm leading-relaxed text-text">
+            {atual.conteudo.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
           </div>
         )}
 
-        <div className="mt-4 space-y-3 text-sm leading-relaxed text-text">
-          {atual.conteudo.map((p, i) => (
-            <p key={i}>{p}</p>
-          ))}
-        </div>
+        {atual.equacoes && atual.equacoes.length > 0 && (
+          <div className="mt-4 space-y-3">
+            {atual.equacoes.map((eq, i) => (
+              <div key={i}>
+                <Formula latex={eq.latex} block />
+                {eq.legenda && <p className="mt-1 text-center text-xs text-muted">{eq.legenda}</p>}
+              </div>
+            ))}
+          </div>
+        )}
+
+        {atual.conteudo2 && atual.conteudo2.length > 0 && (
+          <div className="mt-4 space-y-3 text-sm leading-relaxed text-text">
+            {atual.conteudo2.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
+          </div>
+        )}
+
+        {atual.animacao === "lei-de-ohm" && (
+          <div className="mt-5">
+            <AnimacaoLeiDeOhm />
+          </div>
+        )}
+
+        {!atual.videoUrl && (
+          <div className="mt-4 flex items-center gap-2 rounded-md border border-dashed border-panel-border bg-bg-elevated/50 px-3 py-2 text-xs text-muted">
+            <Video size={14} /> Vídeo desta página ainda não disponível.
+          </div>
+        )}
       </div>
 
       <div className="mt-4 flex items-center justify-between">

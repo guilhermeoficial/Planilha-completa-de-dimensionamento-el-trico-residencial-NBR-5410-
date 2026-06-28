@@ -68,6 +68,11 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
+.katex {
+  color: var(--text);
+  font-size: 1.05em;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
