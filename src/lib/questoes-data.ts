@@ -25,8 +25,10 @@ export interface Questao {
   alternativas: string[];
   respostaCorreta: number;
   explicacao: string;
-  /** Quando true (padrão), esta é uma questão de prática ORIGINAL e EXCLUSIVA do
-   * Voltis — escrita internamente, nunca publicada em nenhuma outra plataforma. */
+  /** Quando true, esta questão foi escrita do zero internamente para o Voltis
+   * (não reaproveita nem se baseia diretamente em nenhuma prova específica
+   * já publicada). Padrão é false — só marcar true questão por questão,
+   * deliberadamente. */
   inedita?: boolean;
   /** Quando true, esta questão faz referência a uma figura/circuito — a imagem
    * original deve ser colocada em /public/questoes-imagens/{id}.png */
@@ -527,62 +529,62 @@ const QUESTOES_BASE: Omit<Questao, "bloco">[] = [
   // ELETROTÉCNICA — lote adicional de questões originais de alta
   // dificuldade (cálculo em múltiplas etapas, nível concurso técnico)
   // ---------------------------------------------------------------------
-  { id: "e35", areaGrande: "Eletrotécnica", assunto: "Grandezas elétricas e magnéticas", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
+  { id: "e35", inedita: true, areaGrande: "Eletrotécnica", assunto: "Grandezas elétricas e magnéticas", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Um circuito magnético tem núcleo de seção reta A = 4 cm², comprimento médio do núcleo l = 40 cm, permeabilidade relativa μr = 1.000, e um entreferro (gap de ar) de g = 0,5 mm na mesma seção. O enrolamento tem N = 800 espiras e é percorrido por corrente I = 1,5 A. Considerando μ0 = 4π×10⁻⁷ H/m, o fluxo magnético φ no circuito é de aproximadamente:",
     alternativas: ["0,17 mWb", "0,67 mWb", "1,20 mWb", "2,68 mWb", "6,70 mWb"], respostaCorreta: 1,
     explicacao: "Relutância do núcleo: Rn = l/(μ0·μr·A) = 0,4/(4π×10⁻⁷×1000×4×10⁻⁴) ≈ 7,96×10⁵ A·e/Wb. Relutância do entreferro: Rg = g/(μ0·A) = 5×10⁻⁴/(4π×10⁻⁷×4×10⁻⁴) ≈ 9,95×10⁵ A·e/Wb. Relutância total ≈ 1,79×10⁶ A·e/Wb. φ = N·I/Rtotal = 1200/1,79×10⁶ ≈ 0,67×10⁻³ Wb." },
 
-  { id: "e36", areaGrande: "Eletrotécnica", assunto: "Transformadores", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
+  { id: "e36", inedita: true, areaGrande: "Eletrotécnica", assunto: "Transformadores", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Um transformador trifásico, ligação delta no primário e estrela no secundário (Δ-Y), é alimentado por uma tensão de linha de 4.160 V. O enrolamento primário tem 1.000 espiras e o secundário, 50 espiras. A tensão de FASE no secundário vale aproximadamente:",
     alternativas: ["72 V", "120 V", "144 V", "208 V", "360 V"], respostaCorreta: 3,
     explicacao: "Em ligação delta, a tensão de fase do primário é igual à tensão de linha: 4.160 V. Relação de transformação a = N1/N2 = 1000/50 = 20. Tensão de fase do secundário (estrela) = 4160/20 = 208 V." },
 
-  { id: "e37", areaGrande: "Eletrotécnica", assunto: "Transformadores", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
+  { id: "e37", inedita: true, areaGrande: "Eletrotécnica", assunto: "Transformadores", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "Um autotransformador abaixador alimenta uma carga de 10 kVA com tensão de saída de 200 V a partir de uma fonte de 240 V. Desprezando perdas, a potência transferida diretamente por CONDUÇÃO elétrica (sem passar pela transformação eletromagnética do enrolamento comum) vale aproximadamente:",
     alternativas: ["1,67 kVA", "5,00 kVA", "8,33 kVA", "10,00 kVA", "11,67 kVA"], respostaCorreta: 2,
     explicacao: "Corrente de carga: Iout = 10.000/200 = 50 A. Corrente de entrada: Iin = 10.000/240 ≈ 41,67 A. A potência conduzida diretamente é Vout×Iin = 200×41,67 ≈ 8.333 VA ≈ 8,33 kVA; o restante (≈1,67 kVA) é transferido por transformação no enrolamento comum." },
 
-  { id: "e38", areaGrande: "Eletrotécnica", assunto: "Máquinas elétricas", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
+  { id: "e38", inedita: true, areaGrande: "Eletrotécnica", assunto: "Máquinas elétricas", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Um gerador CC composto em curta derivação tem tensão terminal de 240 V e corrente de linha (carga) de 60 A. A resistência do enrolamento de campo série é 0,02 Ω e a resistência da armadura é 0,07 Ω. Nessas condições, a corrente de armadura e a queda de tensão na armadura valem, respectivamente:",
     alternativas: ["60 A e 4,2 V", "60 A e 5,6 V", "64 A e 4,48 V", "64 A e 4,8 V", "66 A e 4,62 V"], respostaCorreta: 0,
     explicacao: "Em ligação curta derivação, o campo shunt está em paralelo apenas com o terminal (após o campo série), mas a corrente de armadura, na ausência de dados de corrente de excitação shunt informados, é tomada igual à corrente de linha: Ia = 60 A. Queda na armadura = Ia×Ra = 60×0,07 = 4,2 V." },
 
-  { id: "e39", areaGrande: "Eletrotécnica", assunto: "Máquinas elétricas", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
+  { id: "e39", inedita: true, areaGrande: "Eletrotécnica", assunto: "Máquinas elétricas", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "Um gerador síncrono, operando com fator de potência unitário, apresenta tensão a vazio (sem carga) de 240 V e tensão terminal de 220 V a plena carga. A regulação de tensão (RT) desse gerador, em percentual, vale aproximadamente:",
     alternativas: ["7,7%", "8,3%", "9,1%", "10,9%", "12,0%"], respostaCorreta: 2,
     explicacao: "RT = [(Vvazio − Vcarga)/Vcarga] × 100 = [(240−220)/220] × 100 ≈ 9,1%." },
 
-  { id: "e40", areaGrande: "Eletrotécnica", assunto: "Circuitos CA", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
+  { id: "e40", inedita: true, areaGrande: "Eletrotécnica", assunto: "Circuitos CA", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Em um circuito RLC paralelo, alimentado por fonte senoidal, tem-se R = 50 Ω, L = 1 H e C = 4 μF. A frequência de ressonância desse circuito vale aproximadamente:",
     alternativas: ["7,96 Hz", "15,9 Hz", "79,6 Hz", "159 Hz", "796 Hz"], respostaCorreta: 2,
     explicacao: "f0 = 1/(2π√(LC)) = 1/(2π√(1×4×10⁻⁶)) = 1/(2π×2×10⁻³) ≈ 1/0,01257 ≈ 79,6 Hz." },
 
-  { id: "e41", areaGrande: "Eletrotécnica", assunto: "Motores elétricos", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
+  { id: "e41", inedita: true, areaGrande: "Eletrotécnica", assunto: "Motores elétricos", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Um motor de indução trifásico, 4 polos, alimentado em 60 Hz, opera em regime permanente a 1.755 rpm. A frequência das correntes induzidas no rotor (frequência de escorregamento) vale:",
     alternativas: ["0,5 Hz", "1,0 Hz", "1,5 Hz", "2,5 Hz", "3,0 Hz"], respostaCorreta: 2,
     explicacao: "Ns = 120×f/p = 120×60/4 = 1.800 rpm. Escorregamento s = (1800−1755)/1800 ≈ 0,025. Frequência rotórica = s×f = 0,025×60 = 1,5 Hz." },
 
-  { id: "e42", areaGrande: "Eletrotécnica", assunto: "Sistemas trifásicos", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
+  { id: "e42", inedita: true, areaGrande: "Eletrotécnica", assunto: "Sistemas trifásicos", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "Uma fonte trifásica equilibrada em estrela, com tensão de fase de 120 V, alimenta uma carga desequilibrada também em estrela, com neutros interligados, composta por três resistores puramente resistivos: 20 Ω na fase A, 20 Ω na fase B e 10 Ω na fase C. A corrente no condutor de neutro vale:",
     alternativas: ["0 A", "2 A", "4 A", "6 A", "12 A"], respostaCorreta: 3,
     explicacao: "IA = 120/20 = 6∠0° A; IB = 6∠−120° A; IC = 12∠120° A. Somando os fasores: componente real = 6 + 6cos(−120°) + 12cos(120°) = 6 − 3 − 6 = −3; componente imaginária = 6sen(−120°)+12sen(120°) = −5,196+10,392 = 5,196. Módulo = √(3²+5,196²) = √36 = 6 A." },
 
-  { id: "e43", areaGrande: "Eletrotécnica", assunto: "Motores elétricos", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "e43", inedita: true, areaGrande: "Eletrotécnica", assunto: "Motores elétricos", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Médio",
     enunciado: "Um motor de indução trifásico de 8 polos é alimentado por uma rede de 50 Hz. A velocidade angular do campo girante, em rad/s, vale aproximadamente:",
     alternativas: ["31,4 rad/s", "52,4 rad/s", "62,8 rad/s", "78,5 rad/s", "104,7 rad/s"], respostaCorreta: 3,
     explicacao: "Ns = 120×f/p = 120×50/8 = 750 rpm. ω = 2π×Ns/60 = 2π×750/60 ≈ 78,5 rad/s." },
 
-  { id: "e44", areaGrande: "Eletrotécnica", assunto: "Transformadores", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
+  { id: "e44", inedita: true, areaGrande: "Eletrotécnica", assunto: "Transformadores", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
     enunciado: "Assinale a sequência CORRETA dos passos a seguir para a realização do ensaio de curto-circuito em um transformador monofásico, do primeiro ao último passo: I — Medir potência, tensão e corrente de curto-circuito. II — Alimentar o lado de alta tensão por uma fonte CA ajustável, partindo de 0 V. III — Elevar a tensão gradualmente até que a corrente no amperímetro atinja o valor nominal. IV — Curto-circuitar o lado de baixa tensão. V — Calcular os parâmetros do circuito equivalente série.",
     alternativas: ["I, II, III, IV, V", "IV, II, III, I, V", "II, IV, III, I, V", "IV, III, II, I, V", "II, III, IV, I, V"], respostaCorreta: 1,
     explicacao: "Primeiro curto-circuita-se o lado de BT (IV); em seguida, alimenta-se o lado de AT a partir de 0 V (II); eleva-se a tensão até a corrente nominal (III); medem-se os valores de ensaio (I); por fim, calculam-se os parâmetros do circuito equivalente (V)." },
 
-  { id: "e45", areaGrande: "Eletrotécnica", assunto: "Fator de potência", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
+  { id: "e45", inedita: true, areaGrande: "Eletrotécnica", assunto: "Fator de potência", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Uma carga de 150 kVA opera com fator de potência 0,7 indutivo. Deseja-se elevar o fator de potência para 0,95 indutivo por meio de um banco de capacitores em paralelo. Dados: para cosφ1 = 0,7, sen φ1 ≈ 0,714; para cosφ2 = 0,95, tg φ2 ≈ 0,329. A potência reativa do banco de capacitores necessária vale aproximadamente:",
     alternativas: ["34,5 kvar", "55,0 kvar", "72,6 kvar", "92,1 kvar", "107,1 kvar"], respostaCorreta: 2,
     explicacao: "P = S×cosφ1 = 150×0,7 = 105 kW. Q1 = S×senφ1 = 150×0,714 ≈ 107,1 kvar. Q2 = P×tgφ2 = 105×0,329 ≈ 34,5 kvar. Qc = Q1 − Q2 ≈ 107,1 − 34,5 ≈ 72,6 kvar." },
 
-  { id: "e46", areaGrande: "Eletrotécnica", assunto: "Geração e transmissão", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
+  { id: "e46", inedita: true, areaGrande: "Eletrotécnica", assunto: "Geração e transmissão", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
     enunciado: "São condições necessárias para que dois geradores síncronos sejam conectados em paralelo a um mesmo barramento, alimentando a mesma carga, EXCETO:",
     alternativas: [
       "As tensões eficazes de linha dos dois geradores devem ser iguais.",
@@ -593,7 +595,7 @@ const QUESTOES_BASE: Omit<Questao, "bloco">[] = [
     ], respostaCorreta: 4,
     explicacao: "As condições clássicas de sincronismo são: tensões iguais, mesma sequência de fase, mesma frequência e ângulos de fase coincidentes no instante do fechamento. A potência ativa fornecida por cada gerador antes do paralelismo NÃO precisa ser igual — essa não é uma condição de sincronismo." },
 
-  { id: "e47", areaGrande: "Eletrotécnica", assunto: "Instrumentação", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "e47", inedita: true, areaGrande: "Eletrotécnica", assunto: "Instrumentação", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Médio",
     enunciado: "Sobre os transformadores para instrumentos (TCs e TPs), é correto afirmar que:",
     alternativas: [
       "O TC é projetado para operar normalmente com o secundário em circuito aberto, garantindo segurança ao operador.",
@@ -604,22 +606,22 @@ const QUESTOES_BASE: Omit<Questao, "bloco">[] = [
     ], respostaCorreta: 1,
     explicacao: "O transformador de potencial (TP) isola galvanicamente o circuito de medição da alta tensão do primário, reduzindo a tensão a um valor padronizado e seguro para os instrumentos. (Já o TC deve ter o secundário sempre em curto ou conectado a uma carga durante a operação, nunca aberto, pois isso gera sobretensões perigosas — o que torna as demais alternativas incorretas.)" },
 
-  { id: "e48", areaGrande: "Eletrotécnica", assunto: "Grandezas elétricas e magnéticas", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
+  { id: "e48", inedita: true, areaGrande: "Eletrotécnica", assunto: "Grandezas elétricas e magnéticas", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Sabendo que a carga elétrica é expressa, em unidades de base do SI, por A·s, e que a diferença de potencial é expressa por kg·m²·s⁻³·A⁻¹, a unidade da CAPACITÂNCIA, em termos de unidades de base do SI, é:",
     alternativas: ["kg·m²·s⁻³·A⁻²", "kg⁻¹·m⁻²·s⁴·A²", "kg⁻¹·m⁻²·s³·A²", "kg·m⁻²·s⁻³·A", "kg·m²·s⁻²·A⁻²"], respostaCorreta: 1,
     explicacao: "C = q/V. Substituindo as unidades: (A·s)/(kg·m²·s⁻³·A⁻¹) = A²·s⁴·kg⁻¹·m⁻², ou seja, kg⁻¹·m⁻²·s⁴·A²." },
 
-  { id: "e49", areaGrande: "Eletrotécnica", assunto: "Iluminação industrial", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
+  { id: "e49", inedita: true, areaGrande: "Eletrotécnica", assunto: "Iluminação industrial", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "Uma sala de 6 m × 5 m precisa de iluminância média de 500 lux. Considerando fator de depreciação de 0,75, coeficiente de utilização de 0,6, e luminárias com 4 lâmpadas de 1.600 lúmens cada (6.400 lúmens por luminária), o número MÍNIMO de luminárias necessárias é:",
     alternativas: ["3", "4", "5", "6", "8"], respostaCorreta: 3,
     explicacao: "Fluxo total necessário = (E×A)/(Fd×Cu) = (500×30)/(0,75×0,6) = 15.000/0,45 ≈ 33.333 lm. Número de luminárias = 33.333/6.400 ≈ 5,2 → arredonda para 6 luminárias (sempre para cima, para garantir a iluminância mínima)." },
 
-  { id: "e50", areaGrande: "Eletrotécnica", assunto: "Motores elétricos", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
+  { id: "e50", inedita: true, areaGrande: "Eletrotécnica", assunto: "Motores elétricos", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
     enunciado: "Os motores de indução monofásicos, por não produzirem campo girante na partida (apenas campo pulsante), são classificados, entre outros critérios, pelo método utilizado para gerar o torque de partida. Esse critério de classificação é o de motores de:",
     alternativas: ["Escorregamento", "Comutação", "Partida", "Excitação composta", "Sincronismo"], respostaCorreta: 2,
     explicacao: "Como o motor monofásico não gera campo girante sozinho na partida, ele é classificado justamente pelo método de partida empregado (fase dividida, capacitor de partida, capacitor permanente, polos sombreados etc.)." },
 
-  { id: "e51", areaGrande: "Eletrotécnica", assunto: "Eletromagnetismo", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "e51", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eletromagnetismo", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Médio",
     enunciado: "A Lei de Ampère, expressa pela integral de linha do campo magnético H ao longo de um caminho fechado (∮H·dl), é equivalente:",
     alternativas: [
       "à energia armazenada no campo magnético dentro do caminho considerado.",
@@ -630,37 +632,37 @@ const QUESTOES_BASE: Omit<Questao, "bloco">[] = [
     ], respostaCorreta: 1,
     explicacao: "A Lei de Ampère estabelece que a integral de linha de H em um caminho fechado é igual à corrente líquida (livre) envolvida por esse caminho: ∮H·dl = I." },
 
-  { id: "e52", areaGrande: "Eletrotécnica", assunto: "Máquinas elétricas", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
+  { id: "e52", inedita: true, areaGrande: "Eletrotécnica", assunto: "Máquinas elétricas", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
     enunciado: "Um motor de corrente contínua apresenta a seguinte característica: velocidade muito alta com carga leve e velocidade bastante reduzida quando submetido à carga máxima, desenvolvendo torque elevado nessa condição. Por essa característica, é frequentemente empregado em partidas com cargas pesadas, como guindastes e guinchos. Esse comportamento é típico do motor CC tipo:",
     alternativas: ["Em derivação (shunt)", "Composto cumulativo", "Série", "De imãs permanentes sem excitação", "Composto diferencial"], respostaCorreta: 2,
     explicacao: "O motor CC série tem fluxo de campo proporcional à corrente de armadura: em carga leve, baixa corrente reduz o fluxo e a velocidade dispara; em carga pesada, alta corrente produz fluxo elevado e torque elevado, à custa de baixa velocidade — por isso é indicado para partidas pesadas." },
 
-  { id: "e53", areaGrande: "Eletrotécnica", assunto: "Instrumentação", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "e53", inedita: true, areaGrande: "Eletrotécnica", assunto: "Instrumentação", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Médio",
     enunciado: "Um técnico, ao medir a corrente alternada de um equipamento sem interromper o circuito, enrolou o condutor 8 vezes na garra de um alicate amperímetro antes de fechá-la sobre o fio. O instrumento indicou uma leitura de 12 A. O valor real da corrente que alimenta o equipamento é de aproximadamente:",
     alternativas: ["1,5 A", "3,0 A", "6,0 A", "12,0 A", "96,0 A"], respostaCorreta: 0,
     explicacao: "Ao enrolar n voltas no condutor antes de fechar a garra, a leitura é multiplicada por n. Logo, a corrente real é I = Ilido/n = 12/8 = 1,5 A." },
 
-  { id: "e54", areaGrande: "Eletrotécnica", assunto: "Instrumentação", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
+  { id: "e54", inedita: true, areaGrande: "Eletrotécnica", assunto: "Instrumentação", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "Um sinal de tensão periódico, em forma de onda quadrada, alterna entre 20 V e 4 V, permanecendo o mesmo intervalo de tempo em cada nível. O valor eficaz (RMS) desse sinal vale aproximadamente:",
     alternativas: ["10,0 V", "12,0 V", "14,4 V", "16,0 V", "18,0 V"], respostaCorreta: 2,
     explicacao: "Para uma onda quadrada com dois níveis e mesma duração em cada um, Vrms = √[(V1²+V2²)/2] = √[(400+16)/2] = √208 ≈ 14,4 V." },
 
-  { id: "e55", areaGrande: "Eletrotécnica", assunto: "Transformadores", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
+  { id: "e55", inedita: true, areaGrande: "Eletrotécnica", assunto: "Transformadores", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Um transformador trifásico de 300 kVA, 13.800/220 V, apresenta impedância percentual de curto-circuito (Zcc%) igual a 5%. Considerando um curto-circuito franco no secundário, a corrente de curto-circuito no PRIMÁRIO vale aproximadamente:",
     alternativas: ["12,6 A", "125,6 A", "251,2 A", "502,5 A", "628,0 A"], respostaCorreta: 2,
     explicacao: "Corrente nominal no primário: In = S/(√3×V) = 300.000/(1,732×13.800) ≈ 12,56 A. Corrente de curto-circuito = In/Zcc% = 12,56/0,05 ≈ 251,2 A." },
 
-  { id: "e56", areaGrande: "Eletrotécnica", assunto: "Transformadores", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
+  { id: "e56", inedita: true, areaGrande: "Eletrotécnica", assunto: "Transformadores", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "Um transformador de 300 kVA apresenta perdas no núcleo (a vazio) de 1.000 W e perdas no cobre (a plena carga) de 3.000 W. Operando com fator de potência unitário, os rendimentos a plena carga e a 50% da carga valem, respectivamente, aproximadamente:",
     alternativas: ["96,9% e 97,4%", "97,8% e 98,1%", "98,7% e 98,9%", "99,1% e 99,3%", "99,5% e 99,7%"], respostaCorreta: 2,
     explicacao: "Plena carga: perdas totais = 1000+3000 = 4000 W. η = 300.000/304.000 ≈ 98,68%. A 50% de carga: perdas no cobre escalam com o quadrado da corrente: 3000×(0,5)² = 750 W; perdas totais = 1750 W; potência de saída = 150.000 W. η = 150.000/151.750 ≈ 98,85%." },
 
-  { id: "e57", areaGrande: "Eletrotécnica", assunto: "Instrumentação", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Fácil",
+  { id: "e57", inedita: true, areaGrande: "Eletrotécnica", assunto: "Instrumentação", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Fácil",
     enunciado: "Um transformador de corrente (TC) tem relação de transformação nominal de 200:5 A. Circulando uma corrente de 160 A no primário, a corrente indicada no secundário do TC vale:",
     alternativas: ["1,0 A", "2,0 A", "4,0 A", "5,0 A", "8,0 A"], respostaCorreta: 2,
     explicacao: "Relação de transformação 200:5 = 40:1. Corrente secundária = 160/40 = 4,0 A." },
 
-  { id: "e58", areaGrande: "Eletrotécnica", assunto: "Disjuntores e seletividade", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
+  { id: "e58", inedita: true, areaGrande: "Eletrotécnica", assunto: "Disjuntores e seletividade", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
     enunciado: "Em uma curva característica tempo×corrente de um disjuntor termomagnético, observa-se uma região de atuação com tempos relativamente longos (da ordem de segundos a minutos) para correntes pouco acima da nominal, e outra região de atuação quase instantânea (da ordem de milissegundos) para correntes muito elevadas. Essas regiões correspondem, respectivamente, à atuação dos dispositivos de proteção contra:",
     alternativas: [
       "curto-circuito e sobrecarga.",
@@ -671,7 +673,7 @@ const QUESTOES_BASE: Omit<Questao, "bloco">[] = [
     ], respostaCorreta: 1,
     explicacao: "A região de atuação lenta, para correntes moderadamente acima da nominal, corresponde ao disparo térmico (sobrecarga); a região de atuação muito rápida, para correntes elevadas, corresponde ao disparo magnético (curto-circuito)." },
 
-  { id: "e59", areaGrande: "Eletrotécnica", assunto: "Eletromagnetismo", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "e59", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eletromagnetismo", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Médio",
     enunciado: "Dois condutores retos, paralelos e longos, no ar, são percorridos por correntes de mesma intensidade e mesmo sentido, afastados 4 cm um do outro. No ponto situado exatamente no meio do caminho entre os dois condutores, o campo magnético resultante (soma vetorial dos campos gerados pelos dois condutores) é:",
     alternativas: ["Nulo, pois os campos se cancelam no ponto médio", "Igual ao campo de um único condutor", "O dobro do campo de um único condutor", "A metade do campo de um único condutor", "Indeterminado sem o valor da corrente"], respostaCorreta: 0,
     explicacao: "Para correntes de mesmo sentido, no ponto exatamente entre os dois condutores os campos gerados por cada um têm mesma intensidade, mas sentidos opostos (regra da mão direita aplicada a cada condutor), cancelando-se mutuamente: campo resultante nulo." },
@@ -680,22 +682,22 @@ const QUESTOES_BASE: Omit<Questao, "bloco">[] = [
   // PORTUGUÊS — lote adicional (texto original próprio, sem reprodução de
   // provas oficiais ou de obras literárias de terceiros)
   // ---------------------------------------------------------------------
-  { id: "p7", areaGrande: "Português", assunto: "Figuras de linguagem", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "p7", inedita: true, areaGrande: "Português", assunto: "Figuras de linguagem", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Médio",
     enunciado: "Texto de referência: \"Há cinco anos o relógio do avô parou de funcionar, mas ninguém teve coragem de jogá-lo fora. Pendurado na parede da sala, ele observava silencioso as reuniões de família, como um velho sábio que já não precisa falar.\" — No trecho \"ele observava silencioso as reuniões de família, como um velho sábio que já não precisa falar\", identificam-se, respectivamente, as figuras de linguagem:",
     alternativas: ["Metáfora e hipérbole", "Comparação e metonímia", "Prosopopeia (personificação) e comparação", "Sinestesia e ironia", "Hipérbole e prosopopeia"], respostaCorreta: 2,
     explicacao: "Atribuir ao relógio a ação de \"observar\" (um verbo próprio de seres animados) é prosopopeia/personificação; já a comparação explícita, marcada pelo conectivo \"como\", entre o relógio e \"um velho sábio\", caracteriza o símile (comparação)." },
 
-  { id: "p8", areaGrande: "Português", assunto: "Tempo verbal", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
+  { id: "p8", inedita: true, areaGrande: "Português", assunto: "Tempo verbal", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
     enunciado: "Texto de referência: \"Quando finalmente decidimos consertá-lo, o relojoeiro sorriu e disse que, na verdade, o mecanismo gemia de cansaço há muito tempo, pedindo descanso.\" — O tempo e modo verbal da forma \"gemia\", nesse contexto, é:",
     alternativas: ["Pretérito perfeito do indicativo", "Pretérito imperfeito do indicativo", "Pretérito mais-que-perfeito do indicativo", "Futuro do pretérito do indicativo", "Presente do subjuntivo"], respostaCorreta: 1,
     explicacao: "\"Gemia\" expressa uma ação contínua e duradoura no passado (\"há muito tempo\"), sem indicar um ponto definido de início ou fim — característica clássica do pretérito imperfeito do indicativo." },
 
-  { id: "p9", areaGrande: "Português", assunto: "Pronome relativo", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
+  { id: "p9", inedita: true, areaGrande: "Português", assunto: "Pronome relativo", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Na frase \"O relojoeiro, que trabalha há décadas no bairro, sorriu e disse que o mecanismo precisava de descanso\", o termo \"que\", em sua primeira ocorrência, funciona morfologicamente como pronome relativo e exerce, na oração que introduz, a função sintática de:",
     alternativas: ["Sujeito", "Objeto direto", "Objeto indireto", "Adjunto adverbial", "Complemento nominal"], respostaCorreta: 0,
     explicacao: "\"Que\" retoma \"o relojoeiro\" e é o sujeito do verbo \"trabalha\" na oração subordinada adjetiva \"que trabalha há décadas no bairro\"." },
 
-  { id: "p10", areaGrande: "Português", assunto: "Regência verbal", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
+  { id: "p10", inedita: true, areaGrande: "Português", assunto: "Regência verbal", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
     enunciado: "Assinale a alternativa em que a regência verbal está de acordo com a norma-padrão:",
     alternativas: [
       "O relojoeiro assistiu o conserto do mecanismo com atenção redobrada.",
@@ -706,7 +708,7 @@ const QUESTOES_BASE: Omit<Questao, "bloco">[] = [
     ], respostaCorreta: 1,
     explicacao: "No sentido de \"ver/presenciar\", \"assistir\" é transitivo indireto e exige a preposição \"a\": \"assistiu AO conserto\". As demais alternativas misturam, de forma incorreta, os sentidos e regências de \"aspirar\" (desejar = transitivo indireto, com \"a\"; inspirar ar = transitivo direto) e de \"obedecer\" (sempre transitivo indireto, com \"a\")." },
 
-  { id: "p11", areaGrande: "Português", assunto: "Pontuação", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Fácil",
+  { id: "p11", inedita: true, areaGrande: "Português", assunto: "Pontuação", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Fácil",
     enunciado: "Assinale a frase corretamente pontuada quanto ao uso da vírgula:",
     alternativas: [
       "O relojoeiro, que trabalha há décadas no bairro, sorriu ao ver a peça.",
@@ -717,7 +719,7 @@ const QUESTOES_BASE: Omit<Questao, "bloco">[] = [
     ], respostaCorreta: 0,
     explicacao: "A oração adjetiva explicativa \"que trabalha há décadas no bairro\" deve ser isolada por vírgulas, pois acrescenta uma informação não essencial à identificação do sujeito \"o relojoeiro\"." },
 
-  { id: "p12", areaGrande: "Português", assunto: "Antonímia e sinonímia", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Fácil",
+  { id: "p12", inedita: true, areaGrande: "Português", assunto: "Antonímia e sinonímia", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Fácil",
     enunciado: "Assinale a alternativa que apresenta um par de termos ANTÔNIMOS:",
     alternativas: ["Restaurado, renovado", "Silencioso, calado", "Cansaço, fadiga", "Descanso, labor", "Curioso, indagador"], respostaCorreta: 3,
     explicacao: "\"Descanso\" (repouso, ausência de atividade) e \"labor\" (trabalho, esforço) são termos de sentido oposto — um par de antônimos. Os demais pares são formados por sinônimos ou quase-sinônimos." },
@@ -727,7 +729,7 @@ const QUESTOES_BASE: Omit<Questao, "bloco">[] = [
   // sobre o conteúdo de leis e normas de domínio público (Lei 8.429/1992,
   // Lei 8.112/1990, Lei 9.784/1999, Constituição Federal de 1988)
   // ---------------------------------------------------------------------
-  { id: "leg1", areaGrande: "Legislação", assunto: "Lei de Improbidade Administrativa", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "leg1", inedita: true, areaGrande: "Legislação", assunto: "Lei de Improbidade Administrativa", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Médio",
     enunciado: "De acordo com a Lei nº 8.429/1992 (Lei de Improbidade Administrativa), constitui ato de improbidade administrativa que atenta contra os princípios da administração pública qualquer ação ou omissão que viole os deveres de honestidade, imparcialidade, legalidade e lealdade às instituições. Configura, EXCETO, uma dessas violações:",
     alternativas: [
       "Revelar fato de que o agente público tem ciência em razão do cargo e que deva permanecer em segredo.",
@@ -738,7 +740,7 @@ const QUESTOES_BASE: Omit<Questao, "bloco">[] = [
     ], respostaCorreta: 3,
     explicacao: "Exercer as atribuições do cargo com zelo, eficiência e dentro dos prazos é, justamente, o comportamento esperado e desejável do agente público — o oposto de um ato de improbidade. As demais alternativas descrevem condutas típicas de violação aos princípios da administração pública previstas na Lei 8.429/1992." },
 
-  { id: "leg2", areaGrande: "Legislação", assunto: "Regime Jurídico Único", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
+  { id: "leg2", inedita: true, areaGrande: "Legislação", assunto: "Regime Jurídico Único", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
     enunciado: "Segundo a Lei nº 8.112/1990, que dispõe sobre o regime jurídico dos servidores públicos civis da União, das autarquias e das fundações públicas federais, é correto afirmar que:",
     alternativas: [
       "O vencimento do cargo efetivo pode ser livremente reduzido por ato do superior hierárquico.",
@@ -749,7 +751,7 @@ const QUESTOES_BASE: Omit<Questao, "bloco">[] = [
     ], respostaCorreta: 2,
     explicacao: "A Lei 8.112/1990 assegura a isonomia de vencimentos entre cargos de atribuições iguais ou assemelhadas do mesmo Poder, ressalvando as vantagens de caráter individual e as relativas à natureza ou ao local de trabalho. O vencimento é, em regra, irredutível, e via de regra não pode ser objeto de arresto, sequestro ou penhora, salvo exceções legais." },
 
-  { id: "leg3", areaGrande: "Legislação", assunto: "Ética no Serviço Público", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "leg3", inedita: true, areaGrande: "Legislação", assunto: "Ética no Serviço Público", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Médio",
     enunciado: "O Código de Ética dos Servidores Públicos estabelece deveres fundamentais a serem observados no exercício da função pública. Assinale a alternativa que descreve corretamente um desses deveres:",
     alternativas: [
       "Resolver, sempre que possível, as situações que exijam decisão de forma morosa, evitando comprometer-se com prazos.",
@@ -760,7 +762,7 @@ const QUESTOES_BASE: Omit<Questao, "bloco">[] = [
     ], respostaCorreta: 1,
     explicacao: "O dever de probidade — ser probo, reto, leal e justo — é um dos pilares do Código de Ética do Servidor Público, que orienta a escolha pela solução mais vantajosa ao bem comum diante de opções concorrentes. As demais alternativas descrevem condutas contrárias aos deveres éticos esperados." },
 
-  { id: "leg4", areaGrande: "Legislação", assunto: "Processo Administrativo", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
+  { id: "leg4", inedita: true, areaGrande: "Legislação", assunto: "Processo Administrativo", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
     enunciado: "Em relação ao processo administrativo, regido pela Lei nº 9.784/1999, é correto afirmar que:",
     alternativas: [
       "O processo administrativo somente pode ser iniciado a pedido de interessado, nunca de ofício.",
@@ -771,7 +773,7 @@ const QUESTOES_BASE: Omit<Questao, "bloco">[] = [
     ], respostaCorreta: 2,
     explicacao: "A Lei 9.784/1999 permite que pedidos de múltiplos interessados, com conteúdo e fundamentos idênticos, sejam reunidos em um único requerimento, salvo se a lei dispuser de forma diversa — medida de economia processual. O processo administrativo pode iniciar-se de ofício ou a pedido; a recusa de documentos deve ser motivada; e o requerimento pode, em certos casos, ser formulado oralmente, sendo reduzido a termo." },
 
-  { id: "leg5", areaGrande: "Legislação", assunto: "Direitos Fundamentais", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "leg5", inedita: true, areaGrande: "Legislação", assunto: "Direitos Fundamentais", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Médio",
     enunciado: "Nos termos da Constituição Federal de 1988, sobre os direitos e garantias fundamentais, é correto afirmar que:",
     alternativas: [
       "É livre a manifestação do pensamento, sendo permitido o anonimato.",
@@ -782,7 +784,7 @@ const QUESTOES_BASE: Omit<Questao, "bloco">[] = [
     ], respostaCorreta: 1,
     explicacao: "O art. 5º, XVIII, da CF/1988 estabelece que a criação de associações e cooperativas independe de autorização, sendo vedada a interferência estatal em seu funcionamento. A manifestação do pensamento é livre, mas o anonimato é vedado; a liberdade de associação não admite fins paramilitares; o direito de reunião exige aviso prévio à autoridade; e a proteção a inventos industriais é temporária, não permanente." },
 
-  { id: "leg6", areaGrande: "Legislação", assunto: "Direitos Sociais", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
+  { id: "leg6", inedita: true, areaGrande: "Legislação", assunto: "Direitos Sociais", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
     enunciado: "Considerando os direitos sociais previstos na Constituição Federal de 1988, é correto afirmar que:",
     alternativas: [
       "São proibidos o trabalho noturno, perigoso ou insalubre a menores de dezesseis anos e qualquer trabalho a menores de quatorze anos, salvo na condição de aprendiz.",
@@ -796,17 +798,17 @@ const QUESTOES_BASE: Omit<Questao, "bloco">[] = [
   // ---------------------------------------------------------------------
   // INFORMÁTICA — lote adicional
   // ---------------------------------------------------------------------
-  { id: "i5", areaGrande: "Informática", assunto: "Conceitos básicos", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Fácil",
+  { id: "i5", inedita: true, areaGrande: "Informática", assunto: "Conceitos básicos", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Fácil",
     enunciado: "Softwares podem ser classificados em Software Básico (sistema operacional), Software Aplicativo (editores de texto, planilhas) e Software Utilitário (ferramentas de suporte, como antivírus e compactadores). Dentre os itens a seguir, é classificado como Software UTILITÁRIO:",
     alternativas: ["Microsoft Word", "Microsoft Windows", "Adobe Photoshop", "Um programa antivírus", "Um navegador de internet"], respostaCorreta: 3,
     explicacao: "Um antivírus é uma ferramenta de suporte/manutenção do sistema, classificada como software utilitário — diferente de aplicativos voltados à produção de conteúdo (Word, Photoshop) ou do sistema operacional (Windows)." },
 
-  { id: "i6", areaGrande: "Informática", assunto: "Planilhas eletrônicas", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
+  { id: "i6", inedita: true, areaGrande: "Informática", assunto: "Planilhas eletrônicas", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
     enunciado: "Em uma planilha eletrônica, a célula A1 contém o valor 50 e a célula A2 contém o valor 30. Ao digitar na célula A3 a fórmula =SE(A1>A2;\"Maior\";\"Menor\"), o resultado exibido em A3 será:",
     alternativas: ["50", "30", "Maior", "Menor", "Um erro de fórmula"], respostaCorreta: 2,
     explicacao: "A função SE testa a condição A1>A2 (50>30, verdadeira) e retorna o valor do segundo argumento (\"Maior\") quando a condição é verdadeira." },
 
-  { id: "i7", areaGrande: "Informática", assunto: "Segurança da informação", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "i7", inedita: true, areaGrande: "Informática", assunto: "Segurança da informação", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Médio",
     enunciado: "Sobre ameaças e ataques virtuais, assinale a alternativa que descreve corretamente o conceito de Phishing:",
     alternativas: [
       "Programa que monitora as atividades de um sistema e envia as informações coletadas a terceiros, podendo ter uso legítimo ou malicioso.",
@@ -817,7 +819,7 @@ const QUESTOES_BASE: Omit<Questao, "bloco">[] = [
     ], respostaCorreta: 1,
     explicacao: "Phishing é a técnica de engenharia social em que o atacante se disfarça de fonte confiável (banco, empresa, site popular) para induzir a vítima a revelar dados sigilosos ou a clicar em links/anexos maliciosos." },
 
-  { id: "i8", areaGrande: "Informática", assunto: "Conceitos básicos", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Fácil",
+  { id: "i8", inedita: true, areaGrande: "Informática", assunto: "Conceitos básicos", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Fácil",
     enunciado: "No editor de texto Microsoft Word (versão 2016, em português), a combinação de teclas CTRL+SHIFT+seta para a direita tem como finalidade:",
     alternativas: [
       "Mover o cursor para o final da linha.",
@@ -828,18 +830,18 @@ const QUESTOES_BASE: Omit<Questao, "bloco">[] = [
     ], respostaCorreta: 1,
     explicacao: "No Word, CTRL+seta move o cursor palavra a palavra; ao adicionar SHIFT, a seleção de texto acompanha esse deslocamento — ou seja, seleciona uma palavra inteira por vez na direção indicada." },
 
-  { id: "i9", areaGrande: "Informática", assunto: "Redes de computadores", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "i9", inedita: true, areaGrande: "Informática", assunto: "Redes de computadores", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Médio",
     enunciado: "Um usuário digita, na barra de endereços de um navegador, o endereço de um site (exemplo.com.br) e o navegador exibe a página corretamente, embora a comunicação na internet ocorra por meio de endereços IP. O protocolo/sistema responsável por essa tradução de nome de domínio para endereço IP é:",
     alternativas: ["DHCP", "DNS", "FTP", "SMTP", "HTTP"], respostaCorreta: 1,
     explicacao: "O DNS (Domain Name System) é o sistema responsável por traduzir nomes de domínio legíveis por humanos em endereços IP utilizados pelos computadores na comunicação em rede." },
 
-  { id: "i10", areaGrande: "Informática", assunto: "Segurança da informação", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
+  { id: "i10", inedita: true, areaGrande: "Informática", assunto: "Segurança da informação", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "Um programa malicioso instalado em um computador passa a monitorar as teclas digitadas pelo usuário, registrando senhas e dados sigilosos para envio posterior a terceiros, sem o conhecimento da vítima. Esse tipo específico de programa malicioso é conhecido como:",
     alternativas: ["Worm", "Keylogger", "Trojan horse genérico", "Adware", "Rootkit"], respostaCorreta: 1,
     explicacao: "O Keylogger é o tipo de malware especializado em capturar e registrar as teclas digitadas pelo usuário, sendo frequentemente usado para roubo de senhas e dados sigilosos." },
 ];
 
-export const QUESTOES: Questao[] = QUESTOES_BASE.map((q) => ({ ...q, bloco: bloco(q.assunto), inedita: q.inedita ?? true }));
+export const QUESTOES: Questao[] = QUESTOES_BASE.map((q) => ({ ...q, bloco: bloco(q.assunto), inedita: q.inedita ?? false }));
 
 export const AREAS_GRANDES: AreaGrande[] = ["Português", "Matemática/Raciocínio Lógico", "Informática", "Eletrotécnica", "Legislação"];
 export const DIFICULDADES: Dificuldade[] = ["Fácil", "Médio", "Difícil"];
