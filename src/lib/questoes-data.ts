@@ -11,10 +11,13 @@
 export type AreaGrande = "Português" | "Matemática/Raciocínio Lógico" | "Informática" | "Eletrotécnica";
 export type Dificuldade = "Fácil" | "Médio" | "Difícil";
 
+export type Bloco = "Básicos" | "Bloco I" | "Bloco II" | "Bloco III";
+
 export interface Questao {
   id: string;
   areaGrande: AreaGrande;
   assunto: string;
+  bloco: Bloco;
   banca: string;
   ano: number;
   dificuldade: Dificuldade;
@@ -22,10 +25,49 @@ export interface Questao {
   alternativas: string[];
   respostaCorreta: number;
   explicacao: string;
-  diagrama?: "resistores-serie" | "resistores-paralelo" | "divisor-tensao" | "transformador" | "wattimetros" | "estrela-triangulo" | "curva-disjuntor";
+  /** Quando true, esta questão faz referência a uma figura/circuito — a imagem
+   * original deve ser colocada em /public/questoes-imagens/{id}.png */
+  temImagem?: boolean;
 }
 
-export const QUESTOES: Questao[] = [
+export const BLOCOS: Bloco[] = ["Básicos", "Bloco I", "Bloco II", "Bloco III"];
+
+/** Mapa de assunto → bloco, seguindo o edital verticalizado real da Petrobras
+ * (Aprova Concursos) para Manutenção Elétrica:
+ * Bloco I — circuitos, máquinas, proteção BT, comandos, segurança, projetos
+ * Bloco II — medidas, instrumentos, retificadores/baterias, instalações BT e MT
+ * Bloco III — grandezas/SI, aterramento, SPDA, NBR5410, manutenção, eletrônica,
+ *             diagramas lógicos, automação industrial, materiais/ferramentas, NR10 */
+const MAPA_BLOCO: Record<string, Bloco> = {
+  "Interpretação de texto": "Básicos", "Concordância verbal": "Básicos", "Crase": "Básicos",
+  "Regência verbal": "Básicos", "Pontuação": "Básicos", "Tipologia textual": "Básicos",
+  "Porcentagem": "Básicos", "Regra de três": "Básicos", "Análise combinatória": "Básicos",
+  "Lógica proposicional": "Básicos", "Juros simples": "Básicos", "Conversão de unidades": "Básicos",
+  "Conceitos básicos": "Básicos", "Planilhas eletrônicas": "Básicos", "Segurança da informação": "Básicos",
+  "Redes de computadores": "Básicos",
+  "Lei de Ohm": "Bloco I", "Associação de resistores": "Bloco I", "Potência elétrica": "Bloco I",
+  "Energia elétrica": "Bloco I", "Leis de Kirchhoff": "Bloco I", "Corrente alternada": "Bloco I",
+  "Fator de potência": "Bloco I", "Potência em CA": "Bloco I", "Sistemas trifásicos": "Bloco I",
+  "Eletromagnetismo": "Bloco I", "Indução eletromagnética": "Bloco I", "Motores elétricos": "Bloco I",
+  "Transformadores": "Bloco I", "Comandos elétricos": "Bloco I", "Eletrônica básica": "Bloco I",
+  "Proteção de circuitos": "Bloco I", "Circuitos CC": "Bloco I", "Circuitos CA": "Bloco I",
+  "Thévenin e Norton (CA)": "Bloco I", "Partida estrela-triângulo": "Bloco I",
+  "Máquinas elétricas": "Bloco I", "Geração e transmissão": "Bloco I", "Qualidade de energia": "Bloco I",
+  "Instrumentação": "Bloco II", "Método dos dois wattímetros": "Bloco II",
+  "Nobreaks e baterias": "Bloco II",
+  "Grandezas elétricas e magnéticas": "Bloco III", "Aterramento": "Bloco III", "SPDA": "Bloco III",
+  "NBR 5410": "Bloco III", "NBR 14039 (média tensão)": "Bloco III", "Manutenção elétrica": "Bloco III",
+  "Eletrônica digital": "Bloco III", "Eletrônica de potência": "Bloco III",
+  "Comandos elétricos / CLP": "Bloco III", "NR10": "Bloco III",
+  "Disjuntores e seletividade": "Bloco III", "Seletividade": "Bloco III",
+  "Iluminação industrial": "Bloco III",
+};
+
+function bloco(assunto: string): Bloco {
+  return MAPA_BLOCO[assunto] ?? "Bloco I";
+}
+
+const QUESTOES_BASE: Omit<Questao, "bloco">[] = [
   // ---------------------------------------------------------------------
   // PORTUGUÊS
   // ---------------------------------------------------------------------
@@ -112,7 +154,7 @@ export const QUESTOES: Questao[] = [
   { id: "e2", areaGrande: "Eletrotécnica", assunto: "Associação de resistores", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
     enunciado: "Dois resistores de 8Ω e 12Ω são associados em paralelo. A resistência equivalente é, aproximadamente:",
     alternativas: ["4,8 Ω", "10 Ω", "20 Ω", "6 Ω"], respostaCorreta: 0,
-    explicacao: "Req = (8×12)/(8+12) = 96/20 = 4,8 Ω." , diagrama: "resistores-paralelo" },
+    explicacao: "Req = (8×12)/(8+12) = 96/20 = 4,8 Ω." , temImagem: true },
   { id: "e3", areaGrande: "Eletrotécnica", assunto: "Potência elétrica", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Fácil",
     enunciado: "Um chuveiro elétrico de 5500 W opera em uma rede de 220 V. A corrente elétrica consumida é, aproximadamente:",
     alternativas: ["25 A", "12,5 A", "50 A", "2,5 A"], respostaCorreta: 0,
@@ -172,7 +214,7 @@ export const QUESTOES: Questao[] = [
   { id: "e14", areaGrande: "Eletrotécnica", assunto: "Transformadores", banca: "CESGRANRIO (estilo)", ano: 2022, dificuldade: "Médio",
     enunciado: "Um transformador ideal tem relação de transformação 10:1 (primário:secundário). Se a tensão no primário é 2200V, a tensão no secundário é:",
     alternativas: ["220 V", "2200 V", "22000 V", "110 V"], respostaCorreta: 0,
-    explicacao: "Relação 10:1 significa que o secundário tem 1/10 da tensão do primário: 2200/10 = 220 V." , diagrama: "transformador" },
+    explicacao: "Relação 10:1 significa que o secundário tem 1/10 da tensão do primário: 2200/10 = 220 V." , temImagem: true },
   { id: "e15", areaGrande: "Eletrotécnica", assunto: "Transformadores", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "As perdas em um transformador que ocorrem no núcleo, independentemente da carga, são chamadas de:",
     alternativas: ["Perdas no ferro (ou perdas em vazio)", "Perdas no cobre", "Perdas por efeito Joule no enrolamento", "Perdas por atrito"], respostaCorreta: 0,
@@ -294,7 +336,7 @@ export const QUESTOES: Questao[] = [
   { id: "ce3", areaGrande: "Eletrotécnica", assunto: "Circuitos CC", banca: "CESGRANRIO (estilo, Certo/Errado)", ano: 2023, dificuldade: "Médio",
     enunciado: "Em um divisor de tensão com dois resistores em série, se R2 é o triplo de R1, a queda de tensão sobre R2 corresponde a 3/4 da tensão total da fonte.",
     alternativas: ["Certo", "Errado"], respostaCorreta: 0,
-    explicacao: "V_R2 = R2/(R1+R2) × V = 3R1/(R1+3R1) × V = 3/4 × V — afirmativa correta." , diagrama: "divisor-tensao" },
+    explicacao: "V_R2 = R2/(R1+R2) × V = 3R1/(R1+3R1) × V = 3/4 × V — afirmativa correta." , temImagem: true },
   { id: "ce4", areaGrande: "Eletrotécnica", assunto: "Leis de Kirchhoff", banca: "CESGRANRIO (estilo, Certo/Errado)", ano: 2023, dificuldade: "Médio",
     enunciado: "Em um circuito com dois resistores em paralelo alimentados pela mesma fonte, a corrente total fornecida pela fonte é igual à soma das correntes em cada ramo, conforme a Lei dos Nós de Kirchhoff.",
     alternativas: ["Certo", "Errado"], respostaCorreta: 0,
@@ -314,7 +356,7 @@ export const QUESTOES: Questao[] = [
   { id: "ce8", areaGrande: "Eletrotécnica", assunto: "Sistemas trifásicos", banca: "CESGRANRIO (estilo, Certo/Errado)", ano: 2023, dificuldade: "Médio",
     enunciado: "Para cargas trifásicas conectadas em estrela, a corrente de linha é igual à corrente de fase.",
     alternativas: ["Certo", "Errado"], respostaCorreta: 0,
-    explicacao: "Na ligação estrela, a corrente de linha é igual à corrente de fase (diferente da ligação triângulo, onde a tensão de linha é igual à de fase)." , diagrama: "estrela-triangulo" },
+    explicacao: "Na ligação estrela, a corrente de linha é igual à corrente de fase (diferente da ligação triângulo, onde a tensão de linha é igual à de fase)." , temImagem: true },
   { id: "ce9", areaGrande: "Eletrotécnica", assunto: "Instrumentação", banca: "CESGRANRIO (estilo, Certo/Errado)", ano: 2024, dificuldade: "Médio",
     enunciado: "O amperímetro alicate realiza uma medição não invasiva de corrente, sem necessidade de interromper o circuito.",
     alternativas: ["Certo", "Errado"], respostaCorreta: 0,
@@ -354,7 +396,7 @@ export const QUESTOES: Questao[] = [
   { id: "ce18", areaGrande: "Eletrotécnica", assunto: "Transformadores", banca: "CESGRANRIO (estilo, Certo/Errado)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Um transformador ideal monofásico tem 400 espiras no primário e 100 no secundário. Alimentado com tensão de 440 V no primário e corrente de 3 A no secundário, a corrente no primário é de 0,75 A.",
     alternativas: ["Certo", "Errado"], respostaCorreta: 0,
-    explicacao: "Relação de espiras 400:100 = 4:1. A corrente se relaciona de forma inversa à tensão: I1/I2 = N2/N1 = 1/4. Logo I1 = I2/4 = 3/4 = 0,75 A — afirmativa CORRETA." , diagrama: "transformador" },
+    explicacao: "Relação de espiras 400:100 = 4:1. A corrente se relaciona de forma inversa à tensão: I1/I2 = N2/N1 = 1/4. Logo I1 = I2/4 = 3/4 = 0,75 A — afirmativa CORRETA." , temImagem: true },
   { id: "ce19", areaGrande: "Eletrotécnica", assunto: "Transformadores", banca: "CESGRANRIO (estilo, Certo/Errado)", ano: 2023, dificuldade: "Médio",
     enunciado: "As perdas no cobre de um transformador variam com o quadrado da corrente de carga, sendo praticamente nulas em vazio.",
     alternativas: ["Certo", "Errado"], respostaCorreta: 0,
@@ -395,7 +437,7 @@ export const QUESTOES: Questao[] = [
   { id: "n1", areaGrande: "Eletrotécnica", assunto: "Método dos dois wattímetros", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "No método dos dois wattímetros para medição de potência em carga trifásica, os instrumentos indicam 900 W e 500 W. A potência ativa total da carga é igual a 1.400 W.",
     alternativas: ["Certo", "Errado"], respostaCorreta: 0,
-    explicacao: "A potência ativa total é a soma das duas leituras (independente do sinal de cada uma): 900 + 500 = 1.400 W — afirmativa correta." , diagrama: "wattimetros" },
+    explicacao: "A potência ativa total é a soma das duas leituras (independente do sinal de cada uma): 900 + 500 = 1.400 W — afirmativa correta." , temImagem: true },
   { id: "n2", areaGrande: "Eletrotécnica", assunto: "Método dos dois wattímetros", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "No método dos dois wattímetros, quando o fator de potência da carga trifásica é exatamente 0,5, uma das duas leituras é igual a zero.",
     alternativas: ["Certo", "Errado"], respostaCorreta: 0,
@@ -407,11 +449,11 @@ export const QUESTOES: Questao[] = [
   { id: "n4", areaGrande: "Eletrotécnica", assunto: "Partida estrela-triângulo", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Um motor trifásico tem corrente nominal de 120 A e razão entre corrente de partida e nominal igual a 6. Na partida direta, a corrente de partida seria de 720 A; já na partida estrela-triângulo, essa corrente cai para aproximadamente 240 A.",
     alternativas: ["Certo", "Errado"], respostaCorreta: 0,
-    explicacao: "Partida direta: 120×6 = 720 A. Estrela-triângulo: a corrente de linha em estrela é 1/3 da corrente em triângulo: 720/3 = 240 A — afirmativa correta." , diagrama: "estrela-triangulo" },
+    explicacao: "Partida direta: 120×6 = 720 A. Estrela-triângulo: a corrente de linha em estrela é 1/3 da corrente em triângulo: 720/3 = 240 A — afirmativa correta." , temImagem: true },
   { id: "n5", areaGrande: "Eletrotécnica", assunto: "Transformadores", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "Um transformador ideal com relação de espiras 20:1 tem, no primário, tensão de 4.400 V e corrente de 8 A. A potência aparente desse transformador é igual a 35,2 kVA, e a corrente no secundário é de 160 A.",
     alternativas: ["Certo", "Errado"], respostaCorreta: 0,
-    explicacao: "S = V1×I1 = 4400×8 = 35.200 VA = 35,2 kVA. Pela relação de transformação, I2 = I1×(N1/N2) = 8×20 = 160 A — afirmativa correta." , diagrama: "transformador" },
+    explicacao: "S = V1×I1 = 4400×8 = 35.200 VA = 35,2 kVA. Pela relação de transformação, I2 = I1×(N1/N2) = 8×20 = 160 A — afirmativa correta." , temImagem: true },
   { id: "n6", areaGrande: "Eletrotécnica", assunto: "Luminotécnica", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Uma sala de 12 m × 8 m precisa de iluminância de 1.000 lux. Considerando fator de depreciação de 0,8, coeficiente de utilização de 0,5 e luminárias com 4 lâmpadas de 2.000 lúmens cada (8.000 lúmens por luminária), são necessárias menos de 30 luminárias.",
     alternativas: ["Certo", "Errado"], respostaCorreta: 1,
@@ -447,7 +489,7 @@ export const QUESTOES: Questao[] = [
   { id: "n14", areaGrande: "Eletrotécnica", assunto: "Disjuntores e seletividade", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Analisando curvas de atuação tempo×corrente, um disjuntor de ramal sempre atua mais rapidamente que o disjuntor geral para uma mesma corrente de curto-circuito, garantindo seletividade total entre os dois.",
     alternativas: ["Certo", "Errado"], respostaCorreta: 1,
-    explicacao: "A seletividade depende da relação específica entre as curvas dos dois disjuntores em cada faixa de corrente — não é uma garantia automática e universal; em algumas faixas de corrente elevada, as curvas podem se sobrepor, comprometendo a seletividade. Afirmativa ERRADA (generalização indevida)." , diagrama: "curva-disjuntor" },
+    explicacao: "A seletividade depende da relação específica entre as curvas dos dois disjuntores em cada faixa de corrente — não é uma garantia automática e universal; em algumas faixas de corrente elevada, as curvas podem se sobrepor, comprometendo a seletividade. Afirmativa ERRADA (generalização indevida)." , temImagem: true },
   { id: "n15", areaGrande: "Eletrotécnica", assunto: "Manutenção elétrica", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
     enunciado: "O monitoramento periódico de pontos de conexão elétrica por câmera termográfica, sem interromper a operação do equipamento, é um exemplo característico de manutenção preditiva.",
     alternativas: ["Certo", "Errado"], respostaCorreta: 0,
@@ -473,6 +515,8 @@ export const QUESTOES: Questao[] = [
     alternativas: ["Certo", "Errado"], respostaCorreta: 0,
     explicacao: "Lâmpadas de vapor de sódio têm eficiência luminosa bem mais alta (até ~150 lm/W) que halógenas (~20 lm/W), justificando seu uso amplo em áreas extensas — afirmativa correta." },
 ];
+
+export const QUESTOES: Questao[] = QUESTOES_BASE.map((q) => ({ ...q, bloco: bloco(q.assunto) }));
 
 export const AREAS_GRANDES: AreaGrande[] = ["Português", "Matemática/Raciocínio Lógico", "Informática", "Eletrotécnica"];
 export const DIFICULDADES: Dificuldade[] = ["Fácil", "Médio", "Difícil"];

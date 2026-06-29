@@ -187,3 +187,24 @@ create policy "motores_via_project_owner" on public.motores
   );
 
 create index if not exists idx_motores_project on public.motores (project_id);
+
+-- -----------------------------------------------------------------------------
+-- Respostas de questões (banco de questões — índice de acertos e confiança)
+-- -----------------------------------------------------------------------------
+create table if not exists public.respostas_questoes (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid not null references auth.users (id) on delete cascade,
+  questao_id text not null,
+  alternativa_index integer not null,
+  correta boolean not null,
+  confianca text not null default 'media' check (confianca in ('alta', 'media', 'baixa', 'chute')),
+  created_at timestamptz not null default now(),
+  unique (user_id, questao_id)
+);
+
+alter table public.respostas_questoes enable row level security;
+
+create policy "respostas_questoes_owner_all" on public.respostas_questoes
+  for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
+
+create index if not exists idx_respostas_questoes_user on public.respostas_questoes (user_id);
