@@ -4,6 +4,7 @@
 // tabela no banco com painel de edição.
 
 export type Nivel = "Técnico" | "Superior";
+export type BlocoEdital = "Conhecimentos Básicos" | "Bloco I" | "Bloco II" | "Bloco III";
 
 export interface Pagina {
   titulo: string;
@@ -18,6 +19,7 @@ export interface Modulo {
   slug: string;
   titulo: string;
   descricao: string;
+  bloco: BlocoEdital;
   paginas: Pagina[];
 }
 
@@ -40,6 +42,7 @@ export const AREAS: Area[] = [
         slug: "fundamentos-eletricidade",
         titulo: "Módulo 1 — Fundamentos de Eletricidade",
         descricao: "Grandezas elétricas básicas: tensão, corrente, resistência e potência — com fórmulas e simulação interativa.",
+        bloco: "Bloco I",
         paginas: [
           {
             titulo: "1.1 — O que é corrente elétrica",
@@ -133,6 +136,85 @@ export const AREAS: Area[] = [
             ],
             conteudo2: [
               "Pegadinha comum de prova: associar incorretamente as fórmulas — lembre-se que em paralelo a resistência equivalente é sempre MENOR que a menor resistência individual do circuito.",
+            ],
+          },
+        ],
+      },
+      {
+        slug: "diagramas-e-ca",
+        titulo: "Módulo 2 — Diagramas, Corrente Alternada e Trifásico",
+        descricao: "Simbologia, diagramas unifilares/trifilares, circuitos CA, potência e sistemas trifásicos.",
+        bloco: "Bloco I",
+        paginas: [
+          {
+            titulo: "Conteúdo em produção",
+            conteudo: [
+              "Este módulo está sendo escrito e vai cobrir, conforme o edital verticalizado:",
+              "• Simbologia e diagramas elétricos (unifilares, trifilares, esquemas de acionamento e controle)",
+              "• Circuitos de corrente alternada: tensão/corrente senoidal, valor eficaz e de pico",
+              "• Potência ativa, reativa e aparente — fator de potência e correção",
+              "• Circuitos trifásicos: tensão de linha/fase, ligação estrela e triângulo",
+            ],
+          },
+        ],
+      },
+      {
+        slug: "maquinas-e-protecao",
+        titulo: "Módulo 3 — Máquinas Elétricas e Proteção",
+        descricao: "Eletromagnetismo, transformadores, motores, máquinas síncronas/CC, proteção de baixa tensão e comandos.",
+        bloco: "Bloco I",
+        paginas: [
+          {
+            titulo: "Conteúdo em produção",
+            conteudo: [
+              "Este módulo está sendo escrito e vai cobrir, conforme o edital verticalizado:",
+              "• Noções básicas de eletromagnetismo",
+              "• Transformadores, máquinas síncronas, máquinas de corrente contínua, motores de indução",
+              "• Dispositivos de proteção de baixa tensão",
+              "• Acionamentos e comando de motores elétricos",
+              "• Segurança e higiene do trabalho, EPI e EPC com ênfase em eletricidade",
+              "• Interpretação e análise de projetos elétricos",
+            ],
+          },
+        ],
+      },
+      {
+        slug: "medidas-e-instalacoes",
+        titulo: "Módulo 4 — Medidas Elétricas e Instalações",
+        descricao: "Instrumentos de medição, retificadores/baterias/no-breaks, instalações de baixa e média tensão.",
+        bloco: "Bloco II",
+        paginas: [
+          {
+            titulo: "Conteúdo em produção",
+            conteudo: [
+              "Este módulo está sendo escrito e vai cobrir, conforme o edital verticalizado:",
+              "• Fundamentos de medidas elétricas",
+              "• Instrumentos de medição e testes: corrente, tensão, potência e isolação",
+              "• Retificadores, baterias e no-breaks",
+              "• Instalações elétricas de baixa tensão",
+              "• Redes aéreas e instalações elétricas de 1,0 kV a 17,5 kV",
+            ],
+          },
+        ],
+      },
+      {
+        slug: "normas-e-automacao",
+        titulo: "Módulo 5 — Normas, Manutenção e Automação",
+        descricao: "NBR 5410, aterramento, SPDA, NR10, manutenção elétrica, eletrônica e automação industrial.",
+        bloco: "Bloco III",
+        paginas: [
+          {
+            titulo: "Conteúdo em produção",
+            conteudo: [
+              "Este módulo está sendo escrito e vai cobrir, conforme o edital verticalizado:",
+              "• Grandezas elétricas e magnéticas, Sistema Internacional de Unidades",
+              "• Aterramento de equipamentos e SPDA",
+              "• NBR 5410",
+              "• Conceitos básicos de manutenção elétrica",
+              "• Eletrônica analógica e digital, diagramas lógicos",
+              "• Automação industrial",
+              "• Materiais e ferramentas de instalações elétricas",
+              "• NR10 — Segurança em Eletricidade",
             ],
           },
         ],

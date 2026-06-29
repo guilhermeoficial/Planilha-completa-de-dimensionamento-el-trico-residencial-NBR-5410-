@@ -46,6 +46,8 @@ export default function QuestoesPage() {
   const [banca, setBanca] = useState<string>("Todas");
   const [ano, setAno] = useState<string>("Todos");
   const [dificuldade, setDificuldade] = useState<Dificuldade | "Todas">("Todas");
+  const [pagina, setPagina] = useState(1);
+  const PORPAGINA = 10;
 
   useEffect(() => {
     (async () => {
@@ -92,6 +94,14 @@ export default function QuestoesPage() {
     });
   }, [areaGrande, blocoSel, assunto, banca, ano, dificuldade, busca, filtroMinhas, respostas]);
 
+  useEffect(() => {
+    setPagina(1);
+  }, [areaGrande, blocoSel, assunto, banca, ano, dificuldade, busca, filtroMinhas]);
+
+  const totalPaginas = Math.max(1, Math.ceil(filtradas.length / PORPAGINA));
+  const paginaSegura = Math.min(pagina, totalPaginas);
+  const paginadas = filtradas.slice((paginaSegura - 1) * PORPAGINA, paginaSegura * PORPAGINA);
+
   function limparFiltros() {
     setAreaGrande("Todas");
     setBlocoSel("Todos");
@@ -100,6 +110,7 @@ export default function QuestoesPage() {
     setAno("Todos");
     setDificuldade("Todas");
     setBusca("");
+    setPagina(1);
   }
 
   function alternarEliminada(questaoId: string, idx: number) {
@@ -218,11 +229,15 @@ export default function QuestoesPage() {
             {DIFICULDADES.map((d) => <option key={d} value={d}>{d}</option>)}
           </select>
         </div>
-        <p className="mt-2 text-xs text-muted">{filtradas.length} questão(ões) encontrada(s)</p>
+        <p className="mt-2 text-xs text-muted">
+          {filtradas.length} questão(ões) encontrada(s)
+          {filtradas.length > 0 && ` — mostrando ${(paginaSegura - 1) * PORPAGINA + 1}-${Math.min(paginaSegura * PORPAGINA, filtradas.length)}`}
+        </p>
       </div>
 
       <div className="space-y-5">
-        {filtradas.map((q, idx) => {
+        {paginadas.map((q, idxPagina) => {
+          const idx = (paginaSegura - 1) * PORPAGINA + idxPagina;
           const resp = respostas[q.id];
           const selecaoPendente = selecaoAtual[q.id];
           const respondida = resp != null;
@@ -353,6 +368,40 @@ export default function QuestoesPage() {
           <p className="py-10 text-center text-sm text-muted">Nenhuma questão encontrada para esses filtros.</p>
         )}
       </div>
+
+      {filtradas.length > 0 && (
+        <div className="mt-6 flex items-center justify-center gap-2">
+          <button
+            onClick={() => setPagina((p) => Math.max(1, p - 1))}
+            disabled={paginaSegura === 1}
+            className="rounded-md border border-panel-border px-3 py-1.5 text-sm text-muted transition-colors hover:border-accent hover:text-text disabled:opacity-30"
+          >
+            ← Anterior
+          </button>
+          {Array.from({ length: totalPaginas }, (_, i) => i + 1)
+            .filter((p) => p === 1 || p === totalPaginas || Math.abs(p - paginaSegura) <= 1)
+            .map((p, i, arr) => (
+              <span key={p} className="flex items-center gap-1">
+                {i > 0 && arr[i - 1] !== p - 1 && <span className="text-muted">…</span>}
+                <button
+                  onClick={() => setPagina(p)}
+                  className={`rounded-md px-3 py-1.5 text-sm font-mono transition-colors ${
+                    p === paginaSegura ? "bg-accent text-bg" : "border border-panel-border text-muted hover:text-text"
+                  }`}
+                >
+                  {p}
+                </button>
+              </span>
+            ))}
+          <button
+            onClick={() => setPagina((p) => Math.min(totalPaginas, p + 1))}
+            disabled={paginaSegura === totalPaginas}
+            className="rounded-md border border-panel-border px-3 py-1.5 text-sm text-muted transition-colors hover:border-accent hover:text-text disabled:opacity-30"
+          >
+            Próxima →
+          </button>
+        </div>
+      )}
     </div>
   );
 }
