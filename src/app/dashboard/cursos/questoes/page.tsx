@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import {
   ArrowLeft, Check, X, Filter, RotateCcw, ImageOff, Scissors, Flag, BarChart3, Target,
+  GraduationCap, BookMarked, NotebookPen, Sparkles,
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import {
@@ -39,6 +40,7 @@ export default function QuestoesPage() {
   const [eliminadas, setEliminadas] = useState<Record<string, Set<number>>>({});
 
   const [filtroMinhas, setFiltroMinhas] = useState<FiltroMinhasQuestoes>("todas");
+  const [apenasIneditas, setApenasIneditas] = useState(false);
   const [busca, setBusca] = useState("");
   const [areaGrande, setAreaGrande] = useState<AreaGrande | "Todas">("Todas");
   const [blocoSel, setBlocoSel] = useState<Bloco | "Todos">("Todos");
@@ -48,6 +50,12 @@ export default function QuestoesPage() {
   const [dificuldade, setDificuldade] = useState<Dificuldade | "Todas">("Todas");
   const [pagina, setPagina] = useState(1);
   const PORPAGINA = 10;
+
+  const [gabaritoAberto, setGabaritoAberto] = useState<Record<string, boolean>>({});
+  const [estatisticasAbertas, setEstatisticasAbertas] = useState<Record<string, boolean>>({});
+  const [cadernos, setCadernos] = useState<Set<string>>(new Set());
+  const [anotacaoAberta, setAnotacaoAberta] = useState<Record<string, boolean>>({});
+  const [anotacoes, setAnotacoes] = useState<Record<string, string>>({});
 
   useEffect(() => {
     (async () => {
@@ -83,6 +91,7 @@ export default function QuestoesPage() {
       if (banca !== "Todas" && q.banca !== banca) return false;
       if (ano !== "Todos" && q.ano !== Number(ano)) return false;
       if (dificuldade !== "Todas" && q.dificuldade !== dificuldade) return false;
+      if (apenasIneditas && !q.inedita) return false;
       if (busca.trim() && !q.enunciado.toLowerCase().includes(busca.trim().toLowerCase())) return false;
 
       const resp = respostas[q.id];
@@ -92,11 +101,11 @@ export default function QuestoesPage() {
       if (filtroMinhas === "errei" && (!resp || resp.correta)) return false;
       return true;
     });
-  }, [areaGrande, blocoSel, assunto, banca, ano, dificuldade, busca, filtroMinhas, respostas]);
+  }, [areaGrande, blocoSel, assunto, banca, ano, dificuldade, apenasIneditas, busca, filtroMinhas, respostas]);
 
   useEffect(() => {
     setPagina(1);
-  }, [areaGrande, blocoSel, assunto, banca, ano, dificuldade, busca, filtroMinhas]);
+  }, [areaGrande, blocoSel, assunto, banca, ano, dificuldade, apenasIneditas, busca, filtroMinhas]);
 
   const totalPaginas = Math.max(1, Math.ceil(filtradas.length / PORPAGINA));
   const paginaSegura = Math.min(pagina, totalPaginas);
@@ -109,6 +118,7 @@ export default function QuestoesPage() {
     setBanca("Todas");
     setAno("Todos");
     setDificuldade("Todas");
+    setApenasIneditas(false);
     setBusca("");
     setPagina(1);
   }
@@ -120,6 +130,27 @@ export default function QuestoesPage() {
       else atual.add(idx);
       return { ...prev, [questaoId]: atual };
     });
+  }
+
+  function alternarGabarito(questaoId: string) {
+    setGabaritoAberto((s) => ({ ...s, [questaoId]: !s[questaoId] }));
+  }
+
+  function alternarEstatisticas(questaoId: string) {
+    setEstatisticasAbertas((s) => ({ ...s, [questaoId]: !s[questaoId] }));
+  }
+
+  function alternarCaderno(questaoId: string) {
+    setCadernos((prev) => {
+      const atual = new Set(prev);
+      if (atual.has(questaoId)) atual.delete(questaoId);
+      else atual.add(questaoId);
+      return atual;
+    });
+  }
+
+  function alternarAnotacao(questaoId: string) {
+    setAnotacaoAberta((s) => ({ ...s, [questaoId]: !s[questaoId] }));
   }
 
   async function confirmarResposta(questaoId: string) {
@@ -143,9 +174,10 @@ export default function QuestoesPage() {
   const totalRespondidas = Object.keys(respostas).length;
   const totalAcertos = Object.values(respostas).filter((r) => r.correta).length;
   const percentualAcerto = totalRespondidas > 0 ? (totalAcertos / totalRespondidas) * 100 : 0;
+  const totalIneditas = useMemo(() => QUESTOES.filter((q) => q.inedita).length, []);
 
   return (
-    <div className="mx-auto max-w-3xl px-6 py-10">
+    <div className="mx-auto max-w-5xl px-6 py-10">
       <Link href="/dashboard/cursos" className="mb-4 inline-flex items-center gap-1.5 text-sm text-muted hover:text-text">
         <ArrowLeft size={15} /> Cursos
       </Link>
@@ -186,7 +218,23 @@ export default function QuestoesPage() {
             {label}
           </button>
         ))}
+        <span className="mx-1 h-5 w-px self-center bg-panel-border" />
+        <button
+          onClick={() => setApenasIneditas((v) => !v)}
+          className={`flex items-center gap-1 rounded-full px-3 py-1.5 text-xs font-semibold transition-colors ${
+            apenasIneditas ? "bg-accent text-bg" : "border border-accent/40 text-accent hover:bg-accent/10"
+          }`}
+        >
+          <Sparkles size={13} /> Só inéditas ({totalIneditas})
+        </button>
       </div>
+
+      {totalIneditas > 0 && (
+        <p className="mb-4 flex items-center gap-1.5 text-xs text-muted">
+          <Sparkles size={13} className="text-accent" />
+          {totalIneditas} dessas questões são exclusivas do Voltis — escritas internamente, você não encontra em nenhuma outra plataforma.
+        </p>
+      )}
 
       <div className="mb-6 rounded-lg border border-panel-border bg-panel p-4">
         <div className="mb-3 flex items-center justify-between">
@@ -249,6 +297,11 @@ export default function QuestoesPage() {
                 <span className="rounded bg-panel px-1.5 py-0.5 font-semibold text-text">{idx + 1}</span>
                 <span className="rounded bg-panel px-1.5 py-0.5">{q.id.toUpperCase()}</span>
                 <span>{q.areaGrande} › {q.assunto}</span>
+                {q.inedita && (
+                  <span className="flex items-center gap-1 rounded-full border border-accent/40 bg-accent/15 px-2 py-0.5 font-sans font-semibold text-accent">
+                    <Sparkles size={11} /> Inédita
+                  </span>
+                )}
                 <span
                   className={`ml-auto rounded px-1.5 py-0.5 ${
                     q.dificuldade === "Fácil" ? "bg-ok/15 text-ok" : q.dificuldade === "Médio" ? "bg-warn/15 text-warn" : "bg-danger/15 text-danger"
@@ -345,13 +398,77 @@ export default function QuestoesPage() {
                     <strong className="text-text">Explicação: </strong>{q.explicacao}
                   </p>
                 )}
+
+                {!respondida && gabaritoAberto[q.id] && (
+                  <div className="mt-3 rounded-md border border-accent/30 bg-accent/5 p-3 text-xs">
+                    <p className="mb-1 flex items-center gap-1.5 font-semibold text-accent">
+                      <GraduationCap size={13} /> Gabarito comentado
+                    </p>
+                    <p className="text-muted">
+                      <strong className="text-text">Resposta: </strong>
+                      {q.alternativas[q.respostaCorreta]} — {q.explicacao}
+                    </p>
+                  </div>
+                )}
+
+                {estatisticasAbertas[q.id] && (
+                  <div className="mt-3 rounded-md border border-panel-border bg-bg-elevated p-3 text-xs text-muted">
+                    <p className="mb-1 flex items-center gap-1.5 font-semibold text-text">
+                      <BarChart3 size={13} /> Estatísticas da questão
+                    </p>
+                    <p>
+                      {respondida
+                        ? `Você ${resp.correta ? "acertou" : "errou"} esta questão · confiança registrada: ${CONFIANCAS.find((c) => c.valor === resp.confianca)?.label}`
+                        : "Você ainda não respondeu esta questão — estatísticas agregadas de outros usuários chegam em breve."}
+                    </p>
+                  </div>
+                )}
+
+                {anotacaoAberta[q.id] && (
+                  <div className="mt-3 rounded-md border border-panel-border bg-bg-elevated p-3">
+                    <p className="mb-1.5 flex items-center gap-1.5 text-xs font-semibold text-text">
+                      <NotebookPen size={13} /> Sua anotação
+                    </p>
+                    <textarea
+                      value={anotacoes[q.id] ?? ""}
+                      onChange={(e) => setAnotacoes((s) => ({ ...s, [q.id]: e.target.value }))}
+                      placeholder="Escreva aqui um lembrete, macete ou dúvida sobre essa questão..."
+                      rows={3}
+                      className="w-full rounded-md border border-panel-border bg-bg px-2.5 py-1.5 text-xs text-text"
+                    />
+                  </div>
+                )}
               </div>
 
-              <div className="flex items-center gap-4 border-t border-panel-border bg-bg-elevated px-4 py-2 text-xs text-muted">
+              <div className="flex flex-wrap items-center gap-3 border-t border-panel-border bg-bg-elevated px-4 py-2 text-xs text-muted">
+                <button
+                  onClick={() => alternarGabarito(q.id)}
+                  disabled={respondida}
+                  className={`flex items-center gap-1 hover:text-text disabled:opacity-30 ${gabaritoAberto[q.id] ? "text-accent" : ""}`}
+                >
+                  <GraduationCap size={13} /> Gabarito comentado
+                </button>
+                <button
+                  onClick={() => alternarEstatisticas(q.id)}
+                  className={`flex items-center gap-1 hover:text-text ${estatisticasAbertas[q.id] ? "text-accent" : ""}`}
+                >
+                  <BarChart3 size={13} /> Estatísticas
+                </button>
+                <button
+                  onClick={() => alternarCaderno(q.id)}
+                  className={`flex items-center gap-1 hover:text-text ${cadernos.has(q.id) ? "text-accent" : ""}`}
+                >
+                  <BookMarked size={13} /> {cadernos.has(q.id) ? "Salva no caderno" : "Salvar em caderno"}
+                </button>
+                <button
+                  onClick={() => alternarAnotacao(q.id)}
+                  className={`flex items-center gap-1 hover:text-text ${anotacaoAberta[q.id] ? "text-accent" : ""}`}
+                >
+                  <NotebookPen size={13} /> Criar anotação
+                </button>
                 {respondida && (
                   <span className="flex items-center gap-1">
-                    <BarChart3 size={13} />
-                    {resp.correta ? "Você acertou" : "Você errou"} · confiança: {CONFIANCAS.find((c) => c.valor === resp.confianca)?.label}
+                    {resp.correta ? "Você acertou" : "Você errou"}
                   </span>
                 )}
                 <button

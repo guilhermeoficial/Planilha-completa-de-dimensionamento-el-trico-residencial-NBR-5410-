@@ -10,7 +10,10 @@ export type TipoGrafico =
   | "triangulo-potencias"
   | "carga-capacitor"
   | "descarga-indutor"
-  | "comparacao-corrente";
+  | "comparacao-corrente"
+  | "curva-bh"
+  | "torque-velocidade-inducao"
+  | "curva-disjuntor";
 
 interface Props {
   gatilho: string; // texto curto clicável/hoverável
@@ -107,6 +110,72 @@ function GraficoMini({ tipo }: { tipo: TipoGrafico }) {
         <text x="45" y="68" fontSize="8" textAnchor="middle" fill="var(--muted)">Estrela</text>
         <rect x="120" y="-10" width="30" height="70" fill="var(--accent)" opacity={0.8} />
         <text x="135" y="68" fontSize="8" textAnchor="middle" fill="var(--muted)">Triângulo</text>
+      </svg>
+    );
+  }
+
+  if (tipo === "curva-bh") {
+    // Curva de magnetização: sobe rápido e depois satura (efeito de saturação do núcleo)
+    const curva = Array.from({ length: 41 }, (_, i) => {
+      const x = i * 9;
+      const h = i / 40;
+      const b = 60 * (1 - Math.exp(-h * 4)); // sobe e satura
+      const y = 65 - b;
+      return `${x},${y.toFixed(1)}`;
+    }).join(" ");
+    return (
+      <svg viewBox="0 0 360 70" className="w-full">
+        <line x1="0" y1="65" x2="360" y2="65" stroke="var(--panel-border)" strokeWidth={1} />
+        <line x1="0" y1="65" x2="0" y2="5" stroke="var(--panel-border)" strokeWidth={1} />
+        <polyline points={curva} fill="none" stroke="var(--accent)" strokeWidth={2} />
+        <text x="5" y="12" fontSize="9" fill="var(--accent)">B (T)</text>
+        <text x="320" y="63" fontSize="9" fill="var(--muted)">H (A/m)</text>
+        <line x1="180" y1="10" x2="350" y2="10" stroke="var(--phase-s)" strokeWidth={1} strokeDasharray="3 3" />
+        <text x="190" y="22" fontSize="8" fill="var(--phase-s)">região de saturação</text>
+      </svg>
+    );
+  }
+
+  if (tipo === "torque-velocidade-inducao") {
+    // Conjugado x velocidade de motor de indução: sobe do torque de partida,
+    // passa por um pico (torque máximo) e cai a zero na velocidade síncrona
+    const curva = Array.from({ length: 51 }, (_, i) => {
+      const s = 1 - i / 50; // velocidade relativa de 0 (parado) a 1 (síncrono)
+      const x = (1 - s) * 340 + 10;
+      const escorreg = 1 - s;
+      const torque = (2.2 * escorreg) / (0.25 + escorreg * escorreg) ; // curva tipo torque x escorregamento simplificada
+      const y = 65 - torque * 22;
+      return `${x},${Math.max(5, y).toFixed(1)}`;
+    }).join(" ");
+    return (
+      <svg viewBox="0 0 360 75" className="w-full">
+        <line x1="10" y1="65" x2="350" y2="65" stroke="var(--panel-border)" strokeWidth={1} />
+        <polyline points={curva} fill="none" stroke="var(--accent)" strokeWidth={2} />
+        <text x="12" y="74" fontSize="8" fill="var(--muted)">parado</text>
+        <text x="310" y="74" fontSize="8" fill="var(--muted)">síncrona</text>
+        <text x="5" y="15" fontSize="9" fill="var(--accent)">T</text>
+      </svg>
+    );
+  }
+
+  if (tipo === "curva-disjuntor") {
+    // Curva tempo x corrente: zona térmica (lenta) e zona magnética (rápida)
+    const curva = Array.from({ length: 51 }, (_, i) => {
+      const x = 10 + i * 6.8;
+      const t = i / 50;
+      const tempo = 60 * Math.exp(-t * 5.5) + 2; // cai rápido, simulando atuação térmica -> magnética
+      const y = 68 - Math.min(60, tempo);
+      return `${x},${y.toFixed(1)}`;
+    }).join(" ");
+    return (
+      <svg viewBox="0 0 360 75" className="w-full">
+        <line x1="10" y1="68" x2="350" y2="68" stroke="var(--panel-border)" strokeWidth={1} />
+        <line x1="10" y1="68" x2="10" y2="5" stroke="var(--panel-border)" strokeWidth={1} />
+        <polyline points={curva} fill="none" stroke="var(--accent)" strokeWidth={2} />
+        <text x="40" y="16" fontSize="8" fill="var(--phase-s)">zona térmica (sobrecarga)</text>
+        <text x="230" y="58" fontSize="8" fill="var(--phase-t)">zona magnética (curto)</text>
+        <text x="5" y="12" fontSize="9" fill="var(--accent)">t</text>
+        <text x="335" y="65" fontSize="9" fill="var(--muted)">I</text>
       </svg>
     );
   }
