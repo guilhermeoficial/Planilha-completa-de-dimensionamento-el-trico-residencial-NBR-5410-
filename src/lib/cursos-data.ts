@@ -6,6 +6,13 @@
 export type Nivel = "Técnico" | "Superior";
 export type BlocoEdital = "Conhecimentos Básicos" | "Bloco I" | "Bloco II" | "Bloco III";
 
+export interface Dica {
+  gatilho: string;
+  titulo: string;
+  explicacao: string;
+  tipo: "senoide-fase" | "atraso-indutivo" | "avanco-capacitivo" | "triangulo-potencias" | "carga-capacitor" | "descarga-indutor" | "comparacao-corrente";
+}
+
 export interface Pagina {
   titulo: string;
   conteudo: string[]; // parágrafos antes das equações
@@ -13,6 +20,7 @@ export interface Pagina {
   conteudo2?: string[]; // parágrafos depois das equações
   videoUrl?: string; // reservado para quando os vídeos (Manim/Python) existirem
   animacao?: "lei-de-ohm"; // animação interativa embutida nesta página
+  dicas?: Dica[]; // dicas interativas com gráfico ao passar o mouse — estratégia de ensino
 }
 
 export interface Modulo {
@@ -147,13 +155,203 @@ export const AREAS: Area[] = [
         bloco: "Bloco I",
         paginas: [
           {
-            titulo: "Conteúdo em produção",
+            titulo: "2.1 — Simbologia elétrica básica",
             conteudo: [
-              "Este módulo está sendo escrito e vai cobrir, conforme o edital verticalizado:",
-              "• Simbologia e diagramas elétricos (unifilares, trifilares, esquemas de acionamento e controle)",
-              "• Circuitos de corrente alternada: tensão/corrente senoidal, valor eficaz e de pico",
-              "• Potência ativa, reativa e aparente — fator de potência e correção",
-              "• Circuitos trifásicos: tensão de linha/fase, ligação estrela e triângulo",
+              "Antes de ler qualquer diagrama, é preciso reconhecer os símbolos padronizados dos principais componentes. Eles são definidos por normas de simbologia gráfica (no Brasil, a ABNT NBR 5444) e são praticamente universais entre fabricantes e projetistas.",
+              "Os principais símbolos que você vai encontrar constantemente em provas e em campo:",
+              "• Resistor: um retângulo (padrão IEC/ABNT) ou um zigue-zague (padrão americano, ainda comum em livros)",
+              "• Capacitor: duas linhas paralelas, com uma curva se for capacitor eletrolítico (polarizado)",
+              "• Indutor (bobina): uma série de semicírculos ou espiras desenhadas",
+              "• Fonte de tensão CC: símbolo com traço longo (+) e traço curto (−)",
+              "• Disjuntor: um interruptor com uma marcação diagonal de \"X\" ou um pequeno retângulo cruzado",
+              "• Contator e relé: um retângulo (bobina) e pares de linhas paralelas (contatos), que se abrem ou fecham",
+              "• Motor: um círculo com a letra M dentro; gerador: círculo com G",
+            ],
+          },
+          {
+            titulo: "2.2 — Diagrama unifilar, multifilar e trifilar",
+            conteudo: [
+              "Um mesmo circuito pode ser representado de formas diferentes, dependendo do nível de detalhe que se quer mostrar:",
+              "• Diagrama unifilar: representa todas as fases de um circuito trifásico com uma única linha, simplificando a visualização. É o mais usado em projetos de instalações e subestações, justamente porque dá uma visão geral sem poluir o desenho com repetições.",
+              "• Diagrama multifilar (ou trifilar, no caso de 3 fases): mostra cada condutor (cada fase, neutro e terra) com sua própria linha. É mais detalhado e usado quando se precisa mostrar exatamente como cada fio é conectado fisicamente — por exemplo, em diagramas de comando e force de quadros elétricos.",
+              "Dica de prova: se a questão mencionar \"visão geral da distribuição de energia de uma subestação\", pense em unifilar. Se mencionar \"ligação física, fio a fio, de um motor\", pense em multifilar/trifilar.",
+            ],
+          },
+          {
+            titulo: "2.3 — Esquemas de acionamento e comando",
+            conteudo: [
+              "Os diagramas de comando elétrico (também chamados de diagramas de força e comando) descrevem como um motor ou equipamento é ligado, desligado e protegido.",
+              "Componentes típicos de um esquema de comando:",
+              "• Botoeira (botão pulsador): aciona manualmente um circuito — geralmente \"liga\" (NA — normalmente aberto) e \"desliga\" (NF — normalmente fechado)",
+              "• Contator: uma \"chave\" eletromagnética que liga/desliga o circuito de força a partir de um sinal de comando de baixa potência",
+              "• Relé térmico: protege o motor contra sobrecarga, monitorando a corrente e desarmando o circuito se ela ficar alta por tempo prolongado",
+              "• Sinalizadores luminosos: indicam visualmente o estado do sistema (ligado, desligado, em falha) — cores padronizadas (vermelho geralmente indica alarme/parada, verde indica funcionamento normal)",
+              "Em provas, é comum pedir para identificar, num diagrama de comando real, qual elemento é o quê — então a prática de reconhecer esses símbolos vale muito.",
+            ],
+          },
+          {
+            titulo: "2.4 — O que é corrente alternada (CA)",
+            conteudo: [
+              "Diferente da corrente contínua (CC), que mantém sempre o mesmo sentido e valor, a corrente alternada varia ao longo do tempo seguindo uma forma de onda — na grande maioria dos sistemas de energia, essa forma é senoidal.",
+              "A tensão alternada senoidal é descrita matematicamente por:",
+            ],
+            equacoes: [
+              { latex: "v(t) = V_{m} \\sin(\\omega t + \\varphi)", legenda: "Vm = tensão de pico, ω = frequência angular, φ = ângulo de fase" },
+              { latex: "\\omega = 2\\pi f", legenda: "relação entre frequência angular (rad/s) e frequência (Hz)" },
+            ],
+            conteudo2: [
+              "No Brasil, a frequência da rede é de 60 Hz — ou seja, a tensão completa 60 ciclos por segundo. Em parte da Europa e outros países, é 50 Hz.",
+            ],
+            dicas: [
+              { gatilho: "ver a forma de onda senoidal", titulo: "Tensão senoidal", tipo: "senoide-fase",
+                explicacao: "A curva azul (V) mostra como a tensão sobe e desce ciclicamente. Em circuitos puramente resistivos, a corrente (vermelha) acompanha exatamente o mesmo formato, sem atraso." },
+            ],
+          },
+          {
+            titulo: "2.5 — Valor de pico e valor eficaz (RMS)",
+            conteudo: [
+              "O valor de pico (Vm) é o valor máximo que a onda atinge. Mas na prática, quando falamos da \"tensão da rede\" (127V, 220V, 380V), estamos falando do valor eficaz — também chamado de RMS (Root Mean Square).",
+              "O valor eficaz é o valor de uma tensão/corrente contínua equivalente que produziria o mesmo efeito de potência (mesmo aquecimento num resistor) que a onda alternada real.",
+            ],
+            equacoes: [
+              { latex: "V_{rms} = \\dfrac{V_m}{\\sqrt{2}} \\approx 0{,}707 \\, V_m" },
+            ],
+            conteudo2: [
+              "Exemplo de prova: uma tensão de pico de 311V corresponde a Vrms = 311/√2 ≈ 220V — exatamente a tensão de fase usual no Brasil. Esse cálculo (311V de pico ⇄ 220V eficaz) é extremamente recorrente em provas.",
+            ],
+          },
+          {
+            titulo: "2.6 — Defasagem: indutores atrasam a corrente",
+            conteudo: [
+              "Em circuitos puramente resistivos, tensão e corrente estão em fase (sobem e descem juntas). Mas quando há indutância no circuito (como em motores e transformadores), a corrente fica atrasada em relação à tensão.",
+              "Esse comportamento é descrito pela reatância indutiva:",
+            ],
+            equacoes: [
+              { latex: "X_L = \\omega L = 2\\pi f L", legenda: "XL em Ohms, L = indutância em Henry (H)" },
+            ],
+            conteudo2: [
+              "Quanto maior a indutância ou a frequência, maior a oposição à variação da corrente — e maior o atraso de fase. No caso ideal de um indutor puro, esse atraso é de 90°.",
+            ],
+            dicas: [
+              { gatilho: "ver o atraso da corrente", titulo: "Corrente atrasada (carga indutiva)", tipo: "atraso-indutivo",
+                explicacao: "A corrente (vermelha) atinge seu pico depois da tensão (azul) — esse atraso é típico de motores, transformadores e qualquer carga com bobinas." },
+            ],
+          },
+          {
+            titulo: "2.7 — Defasagem: capacitores avançam a corrente",
+            conteudo: [
+              "O comportamento oposto ocorre em circuitos capacitivos: a corrente fica adiantada em relação à tensão. A oposição oferecida por um capacitor à corrente alternada é a reatância capacitiva:",
+            ],
+            equacoes: [
+              { latex: "X_C = \\dfrac{1}{\\omega C} = \\dfrac{1}{2\\pi f C}", legenda: "XC em Ohms, C = capacitância em Farad (F)" },
+            ],
+            conteudo2: [
+              "Note que XC é inversamente proporcional à frequência — diferente de XL, que é diretamente proporcional. Essa relação inversa é frequentemente cobrada em forma de questão conceitual (\"o que acontece com a reatância capacitiva se a frequência dobrar?\" — resposta: ela cai à metade).",
+            ],
+            dicas: [
+              { gatilho: "ver o avanço da corrente", titulo: "Corrente adiantada (carga capacitiva)", tipo: "avanco-capacitivo",
+                explicacao: "A corrente (vermelha) atinge seu pico antes da tensão (azul) — efeito típico de bancos de capacitores e cargas capacitivas." },
+            ],
+          },
+          {
+            titulo: "2.8 — Potência ativa, reativa e aparente",
+            conteudo: [
+              "Em circuitos de corrente alternada com cargas reativas (indutivas ou capacitivas), surgem três tipos de potência:",
+              "• Potência ativa (P): a potência que realmente realiza trabalho útil (gira motores, gera luz, aquece resistências). Medida em Watts (W).",
+              "• Potência reativa (Q): associada à energia armazenada e devolvida pelos campos elétrico/magnético de capacitores e indutores — não realiza trabalho útil, mas é necessária para o funcionamento de motores e transformadores. Medida em Volt-Ampère-Reativo (VAr).",
+              "• Potência aparente (S): a potência total \"vista\" pela rede, resultado da combinação vetorial de P e Q. Medida em Volt-Ampère (VA).",
+            ],
+            equacoes: [
+              { latex: "P = V \\, I \\cos(\\varphi)", legenda: "potência ativa" },
+              { latex: "Q = V \\, I \\sin(\\varphi)", legenda: "potência reativa" },
+              { latex: "S = V \\, I", legenda: "potência aparente" },
+            ],
+          },
+          {
+            titulo: "2.9 — O triângulo de potências",
+            conteudo: [
+              "As três potências se relacionam geometricamente como um triângulo retângulo, onde P e Q são os catetos e S é a hipotenusa:",
+            ],
+            equacoes: [
+              { latex: "S^2 = P^2 + Q^2", legenda: "Teorema de Pitágoras aplicado às potências" },
+              { latex: "S = \\sqrt{P^2 + Q^2}" },
+            ],
+            dicas: [
+              { gatilho: "ver o triângulo de potências", titulo: "Triângulo de potências", tipo: "triangulo-potencias",
+                explicacao: "P (potência ativa) e Q (reativa) são os catetos; S (aparente) é a hipotenusa. O ângulo entre P e S é o mesmo ângulo de defasagem (φ) entre tensão e corrente." },
+            ],
+          },
+          {
+            titulo: "2.10 — Fator de potência",
+            conteudo: [
+              "O fator de potência (FP) é a relação entre a potência ativa e a potência aparente — indica o quão \"eficientemente\" a energia fornecida está sendo convertida em trabalho útil.",
+            ],
+            equacoes: [
+              { latex: "FP = \\cos(\\varphi) = \\dfrac{P}{S}" },
+            ],
+            conteudo2: [
+              "FP = 1 (cargas puramente resistivas, como chuveiros e lâmpadas incandescentes): toda a energia fornecida é convertida em trabalho útil.",
+              "FP < 1 (motores, transformadores — cargas indutivas): parte da energia fica \"circulando\" como potência reativa, sem realizar trabalho, mas ainda exigindo capacidade dos condutores e equipamentos.",
+              "No Brasil, as concessionárias de energia cobram penalidades de empresas com FP abaixo de 0,92 — por isso a correção de fator de potência é tão relevante na indústria.",
+            ],
+          },
+          {
+            titulo: "2.11 — Correção do fator de potência",
+            conteudo: [
+              "Como a maioria das cargas industriais (motores) é indutiva, a forma mais comum de corrigir o fator de potência é instalar um banco de capacitores em paralelo com a carga — os capacitores fornecem a potência reativa localmente, reduzindo a quantidade que precisa vir da rede.",
+              "A potência reativa do banco de capacitores necessária para elevar o FP de um valor atual para um valor desejado é:",
+            ],
+            equacoes: [
+              { latex: "Q_c = P \\times \\left[ \\tan(\\varphi_{atual}) - \\tan(\\varphi_{desejado}) \\right]" },
+            ],
+            conteudo2: [
+              "Esse é exatamente o cálculo que o módulo industrial do Voltis já automatiza pra você na aba de Ferramentas — vale revisitar aquela calculadora depois de entender a fórmula por trás dela.",
+            ],
+          },
+          {
+            titulo: "2.12 — Sistemas trifásicos: por que três fases?",
+            conteudo: [
+              "A energia elétrica é gerada, transmitida e distribuída majoritariamente em sistemas trifásicos — três tensões senoidais de mesma amplitude e frequência, mas defasadas entre si em 120°.",
+              "As vantagens da geração e transmissão trifásica em relação à monofásica incluem: melhor aproveitamento dos condutores (para a mesma potência, menos material condutor é necessário), potência instantânea total constante (sem as oscilações de uma única fase), e motores trifásicos mais simples e eficientes (sem necessidade de capacitor de partida, como em motores monofásicos).",
+            ],
+          },
+          {
+            titulo: "2.13 — Ligação estrela (Y)",
+            conteudo: [
+              "Na ligação estrela, as três fases têm uma extremidade conectada a um ponto comum (o neutro), e a outra extremidade disponível como fase.",
+              "Na ligação estrela, a tensão de linha (entre duas fases) é maior que a tensão de fase (entre fase e neutro):",
+            ],
+            equacoes: [
+              { latex: "V_L = \\sqrt{3} \\times V_F" },
+            ],
+            conteudo2: [
+              "Exemplo prático: numa rede trifásica de 220V de fase, a tensão de linha é 220×√3 ≈ 381V — valor próximo do padrão de 380V muito comum em instalações industriais brasileiras.",
+            ],
+          },
+          {
+            titulo: "2.14 — Ligação triângulo (Δ)",
+            conteudo: [
+              "Na ligação triângulo, as três fases são conectadas formando um laço fechado (cada bobina/enrolamento liga o final de uma fase ao início da próxima), sem ponto neutro.",
+              "Na ligação triângulo, a tensão de linha é igual à tensão de fase:",
+            ],
+            equacoes: [
+              { latex: "V_L = V_F" },
+            ],
+            conteudo2: [
+              "Já a corrente de linha é maior que a corrente de fase, na mesma proporção √3 — é o efeito inverso do que ocorre na estrela:",
+            ],
+          },
+          {
+            titulo: "2.15 — Resumo comparativo estrela × triângulo",
+            conteudo: [
+              "Esse quadro-resumo é um dos pontos mais cobrados em prova — vale memorizar:",
+              "• Estrela (Y): VL = √3 × VF · IL = IF · tem neutro disponível",
+              "• Triângulo (Δ): VL = VF · IL = √3 × IF · não tem neutro",
+              "Aplicação prática mais comum desse conceito: a partida estrela-triângulo de motores, onde o motor liga primeiro em estrela (menor corrente de partida) e depois comuta para triângulo (operação nominal) — você já viu essa simulação interativa no Módulo 1.",
+            ],
+            dicas: [
+              { gatilho: "comparar as correntes", titulo: "Corrente: estrela vs triângulo", tipo: "comparacao-corrente",
+                explicacao: "Para a mesma potência do motor, a corrente de linha em triângulo é 3× maior que em estrela — por isso a partida estrela-triângulo reduz o impacto na rede." },
             ],
           },
         ],

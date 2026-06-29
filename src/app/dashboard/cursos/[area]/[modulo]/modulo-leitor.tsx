@@ -6,6 +6,7 @@ import { ChevronLeft, ChevronRight, ArrowLeft, Video } from "lucide-react";
 import type { Modulo } from "@/lib/cursos-data";
 import Formula from "../../formula";
 import AnimacaoLeiDeOhm from "./animacao-lei-de-ohm";
+import DicaGrafico from "../../dica-grafico";
 
 export default function ModuloLeitor({ areaSlug, areaNome, modulo }: { areaSlug: string; areaNome: string; modulo: Modulo }) {
   const [pagina, setPagina] = useState(0);
@@ -58,6 +59,15 @@ export default function ModuloLeitor({ areaSlug, areaNome, modulo }: { areaSlug:
         {atual.animacao === "lei-de-ohm" && (
           <div className="mt-5">
             <AnimacaoLeiDeOhm />
+          </div>
+        )}
+
+        {atual.dicas && atual.dicas.length > 0 && (
+          <div className="mt-4 flex flex-wrap gap-2 border-t border-panel-border pt-3">
+            <span className="text-xs text-muted">Passe o mouse pra ver:</span>
+            {atual.dicas.map((d, i) => (
+              <DicaGrafico key={i} gatilho={d.gatilho} titulo={d.titulo} explicacao={d.explicacao} tipo={d.tipo} />
+            ))}
           </div>
         )}
 
