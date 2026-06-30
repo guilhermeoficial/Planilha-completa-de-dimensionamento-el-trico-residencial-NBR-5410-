@@ -1,124 +1,171 @@
-import Link from "next/link";
-import { calcularBalanco } from "@/lib/nbr5410";
+"use client";
 
-export default function Home() {
-  const demo = calcularBalanco([
-    { fase: "R", potenciaW: 15100 },
-    { fase: "S", potenciaW: 16900 },
-    { fase: "T", potenciaW: 4600 },
-  ]);
-  const demoBalanceado = calcularBalanco([
-    { fase: "R", potenciaW: 12200 },
-    { fase: "S", potenciaW: 12100 },
-    { fase: "T", potenciaW: 12300 },
-  ]);
+import { useState } from "react";
+import Link from "next/link";
+import { Check, Zap, BookOpen, Wrench, X } from "lucide-react";
+
+type Plano = "questoes" | "ensino" | "combo";
+
+const PLANOS = [
+  {
+    id: "questoes" as Plano,
+    nome: "Voltis Questões",
+    preco: "R$ 19,90",
+    periodo: "/mês",
+    descricao: "Para quem quer arrasar nas provas.",
+    icone: BookOpen,
+    destaque: false,
+    itens: [
+      "Questões ilimitadas por dia",
+      "Gabarito comentado em todas",
+      "Filtros por banca, ano e dificuldade",
+      "Questões inéditas exclusivas",
+      "Estatísticas e caderno de erros",
+      "Anotações por questão",
+    ],
+    nao: ["Módulos de ensino em vídeo", "Materiais didáticos"],
+  },
+  {
+    id: "combo" as Plano,
+    nome: "Voltis Combo",
+    preco: "R$ 39,90",
+    periodo: "/mês",
+    descricao: "Questões + Ensino. Questões entra de brinde.",
+    icone: Zap,
+    destaque: true,
+    badge: "Melhor custo-benefício",
+    itens: [
+      "Tudo do plano Questões",
+      "Todos os módulos de ensino",
+      "Videoaulas e materiais didáticos",
+      "Dicas interativas com gráficos",
+      "Navegação entre Questões e Ensino",
+      "Acesso aos dois sites com um login",
+    ],
+    nao: [],
+  },
+  {
+    id: "ensino" as Plano,
+    nome: "Voltis Ensino",
+    preco: "R$ 39,90",
+    periodo: "/mês",
+    descricao: "Para quem quer aprender do zero.",
+    icone: Wrench,
+    destaque: false,
+    itens: [
+      "Todos os módulos de ensino",
+      "Videoaulas e materiais didáticos",
+      "Dicas interativas com gráficos",
+      "Eletrotécnica, Eletrônica e mais",
+    ],
+    nao: ["Banco de questões", "Gabarito comentado"],
+  },
+];
+
+export default function AssinarPage() {
+  const [carregando, setCarregando] = useState<Plano | null>(null);
+  const [erro, setErro] = useState<string | null>(null);
+
+  async function assinar(plano: Plano) {
+    setCarregando(plano);
+    setErro(null);
+    try {
+      const resp = await fetch("/api/stripe/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ plano }),
+      });
+      const data = await resp.json();
+      if (data.url) window.location.href = data.url;
+      else setErro(data.error ?? "Não foi possível iniciar o pagamento.");
+    } catch {
+      setErro("Não foi possível conectar ao Stripe. Tente novamente.");
+    }
+    setCarregando(null);
+  }
 
   return (
-    <main className="flex-1 blueprint-grid">
-      <header className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
-        <div className="flex items-center gap-2 font-display text-lg font-bold tracking-tight">
+    <main className="min-h-screen blueprint-grid px-6 py-16">
+      <div className="mx-auto max-w-5xl">
+        <Link href="/" className="mb-10 flex items-center justify-center gap-2 font-display text-base font-bold">
           <span className="inline-block h-2 w-2 rounded-full bg-accent" />
           Voltis
-        </div>
-        <nav className="flex items-center gap-3 text-sm text-muted">
-          <Link href="/login" className="hover:text-text transition-colors">Entrar</Link>
-          <Link
-            href="/login"
-            className="rounded-md bg-accent px-4 py-2 font-medium text-bg hover:opacity-90 transition-opacity"
-          >
-            Criar conta
-          </Link>
-        </nav>
-      </header>
+        </Link>
 
-      <section className="mx-auto grid max-w-6xl gap-12 px-6 py-16 md:grid-cols-2 md:items-center">
-        <div>
-          <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-accent">NBR 5410 · circuitos residenciais</p>
-          <h1 className="font-display text-4xl font-bold leading-tight tracking-tight md:text-5xl">
-            Levante a carga.
-            <br />
-            Equilibre as fases.
-            <br />
-            <span className="text-accent">Em um clique.</span>
-          </h1>
-          <p className="mt-5 max-w-md text-muted">
-            Cadastre os ambientes do projeto, vincule os equipamentos e deixe o motor de cálculo
-            dimensionar cabos, disjuntores e redistribuir os circuitos entre as fases R, S e T —
-            seguindo a previsão de carga da NBR 5410, item 9.5.
+        <div className="mb-10 text-center">
+          <h1 className="font-display text-3xl font-bold">Escolha seu plano</h1>
+          <p className="mt-2 text-muted">
+            Comece grátis — 5 questões por dia e Módulo 1 de cada curso sem precisar de cartão.
           </p>
-          <div className="mt-8 flex gap-3">
-            <Link
-              href="/login"
-              className="rounded-md bg-accent px-5 py-3 font-medium text-bg hover:opacity-90 transition-opacity"
-            >
-              Começar um projeto
-            </Link>
-          </div>
         </div>
 
-        <div className="rounded-xl border border-panel-border bg-panel p-6 shadow-2xl shadow-black/40">
-          <p className="mb-4 font-display text-sm font-semibold text-muted">Balanceamento de fases</p>
-          <div className="space-y-3">
-            <PhaseDemo label="Antes" data={demo} />
-            <div className="flex items-center gap-2 py-1 text-xs text-muted">
-              <span>↓ botão "Balancear fases automaticamente" ↓</span>
-            </div>
-            <PhaseDemo label="Depois" data={demoBalanceado} />
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-6xl px-6 py-12">
-        <div className="grid gap-4 md:grid-cols-3">
-          {[
-            { title: "Previsão de carga", desc: "Iluminação e TUG calculados por ambiente conforme NBR 5410 9.5, a partir de área e perímetro." },
-            { title: "Memorial de circuitos", desc: "Corrente de projeto, seção do cabo, queda de tensão e disjuntor — calculados automaticamente." },
-            { title: "Balanceamento de fases", desc: "Algoritmo guloso redistribui os circuitos entre R, S e T para minimizar o desbalanceamento." },
-          ].map((f) => (
-            <div key={f.title} className="rounded-lg border border-panel-border bg-bg-elevated p-5">
-              <h3 className="font-display text-sm font-semibold">{f.title}</h3>
-              <p className="mt-2 text-sm text-muted">{f.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-    </main>
-  );
-}
-
-function PhaseDemo({ label, data }: { label: string; data: ReturnType<typeof calcularBalanco> }) {
-  const max = Math.max(data.R, data.S, data.T, 1);
-  const bars: { fase: "R" | "S" | "T"; valor: number; color: string }[] = [
-    { fase: "R", valor: data.R, color: "var(--phase-r)" },
-    { fase: "S", valor: data.S, color: "var(--phase-s)" },
-    { fase: "T", valor: data.T, color: "var(--phase-t)" },
-  ];
-  return (
-    <div className="rounded-md border border-panel-border bg-bg p-3">
-      <div className="mb-2 flex items-center justify-between">
-        <span className="text-xs text-muted">{label}</span>
-        <span
-          className={`tabular text-xs ${
-            data.status === "ok" ? "text-ok" : data.status === "atencao" ? "text-warn" : "text-danger"
-          }`}
-        >
-          {data.desbalanceamentoPercent.toFixed(1)}% desbalanço
-        </span>
-      </div>
-      <div className="space-y-1.5">
-        {bars.map((b) => (
-          <div key={b.fase} className="flex items-center gap-2">
-            <span className="w-3 font-mono text-xs text-muted">{b.fase}</span>
-            <div className="h-2 flex-1 overflow-hidden rounded-full bg-panel">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          {PLANOS.map((p) => {
+            const Icone = p.icone;
+            return (
               <div
-                className="h-full rounded-full transition-all"
-                style={{ width: `${(b.valor / max) * 100}%`, background: b.color }}
-              />
-            </div>
-            <span className="tabular w-16 text-right text-xs text-muted">{b.valor.toLocaleString("pt-BR")} W</span>
-          </div>
-        ))}
+                key={p.id}
+                className={`relative flex flex-col rounded-xl border p-7 shadow-2xl shadow-black/30 ${
+                  p.destaque
+                    ? "border-accent bg-panel ring-2 ring-accent/30"
+                    : "border-panel-border bg-panel"
+                }`}
+              >
+                {p.badge && (
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-accent px-3 py-1 font-mono text-xs font-bold uppercase tracking-wide text-bg">
+                    {p.badge}
+                  </span>
+                )}
+
+                <div className="mb-4 flex items-center gap-2">
+                  <Icone size={18} className={p.destaque ? "text-accent" : "text-muted"} />
+                  <span className="font-mono text-xs uppercase tracking-widest text-muted">{p.nome}</span>
+                </div>
+
+                <p className="flex items-baseline gap-1">
+                  <span className="font-display text-3xl font-bold">{p.preco}</span>
+                  <span className="text-sm text-muted">{p.periodo}</span>
+                </p>
+                <p className="mt-1 text-sm text-muted">{p.descricao}</p>
+
+                <ul className="mt-6 flex-1 space-y-2 text-sm">
+                  {p.itens.map((item) => (
+                    <li key={item} className="flex items-start gap-2">
+                      <Check size={15} className="mt-0.5 shrink-0 text-ok" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                  {p.nao.map((item) => (
+                    <li key={item} className="flex items-start gap-2 opacity-40">
+                      <X size={15} className="mt-0.5 shrink-0" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <button
+                  onClick={() => assinar(p.id)}
+                  disabled={carregando !== null}
+                  className={`mt-8 flex w-full items-center justify-center gap-1.5 rounded-md py-2.5 font-medium transition-opacity disabled:opacity-50 ${
+                    p.destaque
+                      ? "bg-accent text-bg hover:opacity-90"
+                      : "border border-panel-border bg-bg-elevated hover:bg-panel-border"
+                  }`}
+                >
+                  <Zap size={15} />
+                  {carregando === p.id ? "Abrindo pagamento..." : "Assinar agora"}
+                </button>
+              </div>
+            );
+          })}
+        </div>
+
+        {erro && <p className="mt-6 text-center text-sm text-danger">{erro}</p>}
+
+        <p className="mt-8 text-center text-xs text-muted">
+          Pagamento seguro via Stripe. Aceita cartão e Pix. Cancele quando quiser, sem multa.
+        </p>
       </div>
-    </div>
+    </main>
   );
 }

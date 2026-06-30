@@ -2,6 +2,12 @@ import { NextResponse } from "next/server";
 import { stripe } from "@/lib/stripe";
 import { createClient } from "@/lib/supabase/server";
 
+const PRICE_IDS: Record<string, string> = {
+  questoes: process.env.STRIPE_PRICE_QUESTOES!,
+  ensino:   process.env.STRIPE_PRICE_ENSINO!,
+  combo:    process.env.STRIPE_PRICE_COMBO!,
+};
+
 export async function POST(request: Request) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
@@ -9,6 +15,15 @@ export async function POST(request: Request) {
   if (!user) {
     return NextResponse.json({ error: "Não autenticado." }, { status: 401 });
   }
+
+  // plano vem no body: { plano: "questoes" | "ensino" | "combo" }
+  let plano = "questoes";
+  try {
+    const body = await request.json();
+    if (body?.plano && PRICE_IDS[body.plano]) plano = body.plano;
+  } catch { /* body vazio — usa questoes como padrão */ }
+
+  const priceId = PRICE_IDS[plano];
 
   const { data: profile } = await supabase
     .from("profiles")
@@ -23,26 +38,24 @@ export async function POST(request: Request) {
     customer: profile?.stripe_customer_id ?? undefined,
     customer_email: profile?.stripe_customer_id ? undefined : user.email,
     client_reference_id: user.id,
-    line_items: [{ price: process.env.STRIPE_PRICE_ID!, quantity: 1 }],
+    line_items: [{ price: priceId, quantity: 1 }],
     success_url: `${origin}/dashboard?assinatura=sucesso`,
     cancel_url: `${origin}/assinar?cancelado=1`,
     allow_promotion_codes: true,
-    metadata: { supabase_user_id: user.id },
-    subscription_data: { metadata: { supabase_user_id: user.id } },
+    metadata: { supabase_user_id: user.id, plano },
+    subscription_data: { metadata: { supabase_user_id: user.id, plano } },
   };
 
   let session;
   try {
-    // tenta com cartão + Pix (Pix Automático exige liberação prévia na conta Stripe)
     session = await stripe.checkout.sessions.create({
       ...baseParams,
       payment_method_types: ["card", "pix"],
       payment_method_options: {
-        pix: { mandate_options: { amount: 1990, payment_schedule: "monthly" } },
+        pix: { mandate_options: { amount: plano === "questoes" ? 1990 : 3990, payment_schedule: "monthly" } },
       },
     });
   } catch {
-    // Pix ainda não habilitado nesta conta — cai para cartão normal sem travar o checkout
     session = await stripe.checkout.sessions.create({
       ...baseParams,
       payment_method_types: ["card"],
