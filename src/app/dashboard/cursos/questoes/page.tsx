@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import {
-  ArrowLeft, Check, X, Filter, RotateCcw, ImageOff, Scissors, Flag, BarChart3, Target,
+  ArrowLeft, Check, X, Filter, RotateCcw, ImageOff, Hammer, Flag, BarChart3, Target,
   GraduationCap, BookMarked, NotebookPen, Sparkles,
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
@@ -342,23 +342,25 @@ export default function QuestoesPage() {
                         <button
                           onClick={() => !respondida && !eliminada && setSelecaoAtual((s) => ({ ...s, [q.id]: i }))}
                           disabled={respondida || eliminada}
-                          className={`flex flex-1 items-center gap-2 rounded-md border px-3 py-2 text-left text-sm transition-colors ${estilo} ${
-                            eliminada ? "opacity-40" : ""
+                          className={`flex flex-1 items-center gap-2 rounded-md border px-3 py-2 text-left text-sm transition-all duration-200 ${estilo} ${
+                            eliminada ? "alternativa-trincada" : ""
                           }`}
                         >
                           {respondida && correta && <Check size={14} className="shrink-0" />}
                           {respondida && estaSelecionada && !correta && <X size={14} className="shrink-0" />}
-                          <span className={eliminada ? "line-through" : ""}>{alt}</span>
+                          <span className={eliminada ? "line-through opacity-60" : ""}>{alt}</span>
                         </button>
                         {!respondida && (
                           <button
                             onClick={() => alternarEliminada(q.id, i)}
-                            title="Marcar como errada (eliminar alternativa)"
+                            title={eliminada ? "Restaurar alternativa" : "Eliminar alternativa (martelar)"}
                             className={`shrink-0 rounded-md border p-2 transition-colors ${
-                              eliminada ? "border-danger bg-danger/10 text-danger" : "border-panel-border text-muted hover:border-danger hover:text-danger"
+                              eliminada
+                                ? "border-danger bg-danger/10 text-danger hover:bg-danger/20"
+                                : "border-panel-border text-muted hover:border-danger hover:text-danger"
                             }`}
                           >
-                            <Scissors size={14} />
+                            <Hammer size={14} />
                           </button>
                         )}
                       </div>
