@@ -3,9 +3,10 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import {
-  ArrowLeft, Check, X, Filter, RotateCcw, ImageOff, Hammer, Flag, BarChart3, Target,
+  ArrowLeft, Check, X, Filter, RotateCcw, ImageOff, Bomb, Flag, BarChart3, Target,
   GraduationCap, BookMarked, NotebookPen, Sparkles,
 } from "lucide-react";
+import Explosao from "@/components/explosao";
 import { createClient } from "@/lib/supabase/client";
 import {
   QUESTOES, AREAS_GRANDES, DIFICULDADES, BLOCOS, bancasDisponiveis, anosDisponiveis, assuntosDisponiveis,
@@ -342,25 +343,26 @@ export default function QuestoesPage() {
                         <button
                           onClick={() => !respondida && !eliminada && setSelecaoAtual((s) => ({ ...s, [q.id]: i }))}
                           disabled={respondida || eliminada}
-                          className={`flex flex-1 items-center gap-2 rounded-md border px-3 py-2 text-left text-sm transition-all duration-200 ${estilo} ${
-                            eliminada ? "alternativa-trincada" : ""
+                          className={`relative flex flex-1 items-center gap-2 rounded-md border px-3 py-2 text-left text-sm transition-all duration-300 ${estilo} ${
+                            eliminada ? "opacity-60" : ""
                           }`}
                         >
-                          {respondida && correta && <Check size={14} className="shrink-0" />}
-                          {respondida && estaSelecionada && !correta && <X size={14} className="shrink-0" />}
-                          <span className={eliminada ? "line-through opacity-60" : ""}>{alt}</span>
+                          <Explosao visivel={eliminada} />
+                          {respondida && correta && <Check size={14} className="relative z-10 shrink-0" />}
+                          {respondida && estaSelecionada && !correta && <X size={14} className="relative z-10 shrink-0" />}
+                          <span className={`relative z-10 ${eliminada ? "line-through opacity-50" : ""}`}>{alt}</span>
                         </button>
                         {!respondida && (
                           <button
                             onClick={() => alternarEliminada(q.id, i)}
-                            title={eliminada ? "Restaurar alternativa" : "Eliminar alternativa (martelar)"}
+                            title={eliminada ? "Restaurar alternativa" : "Explodir alternativa"}
                             className={`shrink-0 rounded-md border p-2 transition-colors ${
                               eliminada
                                 ? "border-danger bg-danger/10 text-danger hover:bg-danger/20"
                                 : "border-panel-border text-muted hover:border-danger hover:text-danger"
                             }`}
                           >
-                            <Hammer size={14} />
+                            <Bomb size={14} />
                           </button>
                         )}
                       </div>
