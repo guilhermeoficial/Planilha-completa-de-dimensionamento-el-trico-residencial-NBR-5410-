@@ -103,45 +103,34 @@ body {
   font-size: 1.05em;
 }
 
-/* ── Efeito de vidro trincado ─────────────────────────────────── */
+/* ── Efeito de vidro trincado (via componente SVG) ───────────── */
 .alternativa-trincada {
   position: relative;
   overflow: hidden;
-  opacity: 0.45;
+  opacity: 0.5;
 }
 
-.alternativa-trincada::after {
-  content: "";
+.crack-overlay {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background-image:
-    /* rachaduras principais */
-    linear-gradient(127deg, transparent 35%, rgba(255,255,255,0.55) 35.5%, transparent 36%),
-    linear-gradient(43deg,  transparent 45%, rgba(255,255,255,0.40) 45.5%, transparent 46%),
-    linear-gradient(95deg,  transparent 60%, rgba(255,255,255,0.50) 60.5%, transparent 61%),
-    linear-gradient(160deg, transparent 25%, rgba(255,255,255,0.35) 25.5%, transparent 26%),
-    linear-gradient(70deg,  transparent 70%, rgba(255,255,255,0.45) 70.5%, transparent 71%),
-    /* fragmentos */
-    linear-gradient(110deg, transparent 50%, rgba(255,255,255,0.20) 50.5%, transparent 60%),
-    linear-gradient(30deg,  transparent 40%, rgba(255,255,255,0.15) 40.5%, transparent 55%);
-  mix-blend-mode: overlay;
   border-radius: inherit;
-  animation: crack-in 0.18s ease-out both;
+  animation: crack-aparecer 0.25s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
 
-@keyframes crack-in {
-  from { opacity: 0; transform: scale(1.04); }
-  to   { opacity: 1; transform: scale(1); }
+@keyframes crack-aparecer {
+  0%  { opacity: 0; transform: scale(1.08) rotate(-1deg); filter: blur(2px); }
+  50% { opacity: 1; transform: scale(0.98) rotate(0.3deg); filter: blur(0); }
+  100%{ opacity: 1; transform: scale(1) rotate(0deg); filter: blur(0); }
 }
 
-.alternativa-trincada-saindo::after {
-  animation: crack-out 0.15s ease-in both;
+.crack-overlay-saindo {
+  animation: crack-sumir 0.15s ease-in both !important;
 }
 
-@keyframes crack-out {
+@keyframes crack-sumir {
   from { opacity: 1; transform: scale(1); }
-  to   { opacity: 0; transform: scale(0.97); }
+  to   { opacity: 0; transform: scale(0.95); }
 }
 
 /* ── Scrollbar ────────────────────────────────────────────────── */
