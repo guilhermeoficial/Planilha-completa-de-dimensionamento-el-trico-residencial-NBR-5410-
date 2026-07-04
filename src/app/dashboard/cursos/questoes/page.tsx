@@ -190,18 +190,26 @@ export default function QuestoesPage() {
             Questões de prática originais, organizadas pelo edital verticalizado (Básicos, Bloco I, II e III).
           </p>
         </div>
-        {!carregandoRespostas && totalRespondidas > 0 && (
-          <div className="flex items-center gap-3 rounded-lg border border-panel-border bg-panel px-4 py-2.5">
-            <Target size={18} className="text-accent" />
-            <div>
-              <p className="font-mono text-xs text-muted">Índice de acertos</p>
-              <p className="font-display text-base font-bold">
-                {percentualAcerto.toFixed(0)}%{" "}
-                <span className="font-mono text-xs font-normal text-muted">({totalAcertos}/{totalRespondidas})</span>
-              </p>
+        <div className="flex items-center gap-3">
+          <Link
+            href="/dashboard/cursos/estatisticas"
+            className="flex items-center gap-1.5 rounded-md border border-panel-border px-3 py-2 text-xs text-muted transition-colors hover:border-accent hover:text-accent"
+          >
+            <BarChart3 size={13} /> Minhas estatísticas
+          </Link>
+          {!carregandoRespostas && totalRespondidas > 0 && (
+            <div className="flex items-center gap-3 rounded-lg border border-panel-border bg-panel px-4 py-2.5">
+              <Target size={18} className="text-accent" />
+              <div>
+                <p className="font-mono text-xs text-muted">Índice de acertos</p>
+                <p className="font-display text-base font-bold">
+                  {percentualAcerto.toFixed(0)}%{" "}
+                  <span className="font-mono text-xs font-normal text-muted">({totalAcertos}/{totalRespondidas})</span>
+                </p>
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
 
       <div className="mb-3 flex flex-wrap gap-1.5">
@@ -275,7 +283,7 @@ export default function QuestoesPage() {
           </select>
           <select value={dificuldade} onChange={(e) => setDificuldade(e.target.value as Dificuldade | "Todas")} className="rounded-md border border-panel-border bg-bg px-2.5 py-1.5 text-xs text-text">
             <option value="Todas">Dificuldade: Todas</option>
-            {DIFICULDADES.map((d) => <option key={d} value={d}>{d}</option>)}
+            {DIFICULDADES.map((d: string) => <option key={d} value={d}>{d}</option>)}
           </select>
         </div>
         <p className="mt-2 text-xs text-muted">

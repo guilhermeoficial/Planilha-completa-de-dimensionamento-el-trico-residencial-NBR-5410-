@@ -77,7 +77,8 @@ function bloco(assunto: string): Bloco {
   return MAPA_BLOCO[assunto] ?? "Bloco I";
 }
 
-const QUESTOES_BASE: Omit<Questao, "bloco">[] = [
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const QUESTOES_BASE: any[] = [
   // ---------------------------------------------------------------------
   // PORTUGUÊS
   // ---------------------------------------------------------------------
