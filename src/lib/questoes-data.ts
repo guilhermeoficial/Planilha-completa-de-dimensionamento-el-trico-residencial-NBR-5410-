@@ -2554,3 +2554,4 @@ export function assuntosDisponiveis(areaGrande?: AreaGrande): string[] {
   const filtradas = areaGrande ? QUESTOES.filter((q) => q.areaGrande === areaGrande) : QUESTOES;
   return Array.from(new Set(filtradas.map((q) => q.assunto)));
 }
+// fix
