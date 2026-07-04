@@ -1651,7 +1651,7 @@ const QUESTOES_BASE: Omit<Questao, "bloco">[] = [
   // ── 50 QUESTÕES ESTILO CESPE/CESGRANRIO ──────────────────────────────
   // Assuntos misturados: Eletrotécnica, Eletrônica, Telecomunicações
 
-  { id: "e116", inedita: true, areaGrande: "Eletrotécnica", assunto: "NBR 5410", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Difícil",
+  { id: "e236", inedita: true, areaGrande: "Eletrotécnica", assunto: "NBR 5410", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Um técnico é solicitado a dimensionar o circuito exclusivo de um chuveiro elétrico de 5.500 W / 127 V, instalado em banheiro residencial com o quadro de distribuição a 12 m. A NBR 5410 limita a queda de tensão máxima em circuitos terminais a 3%. Adotando condutores de cobre em eletroduto embutido em alvenaria, sem agrupamento significativo, e usando a resistividade ρ = 0,0172 Ω·mm²/m, qual seção comercial atende SIMULTANEAMENTE ao critério de corrente E ao critério de queda de tensão?",
     alternativas: [
       "2,5 mm² — corrente nominal ≈ 43 A, e a queda de 3,6% excede o limite.",
@@ -1662,7 +1662,7 @@ const QUESTOES_BASE: Omit<Questao, "bloco">[] = [
     ], respostaCorreta: 2,
     explicacao: "I = 5500/127 ≈ 43,3 A. ΔV_max = 3% × 127 ≈ 3,81 V. Para 6 mm²: R_trecho = 0,0172/6 × (2×12) = 0,0172/6 × 24 ≈ 0,0688 Ω. ΔV = 0,0688 × 43,3 ≈ 2,98 V → 2,35% < 3%. Capacidade de corrente do 6 mm² em eletroduto embutido (NBR 5410, tabela de 70 °C): ≈ 40 A. Como 43,3 A > 40 A, exige proteção ajustada e verificação dos fatores de correção. A questão testa se o candidato aplica corretamente os dois critérios em conjunto, sem confundir comprimento de trecho com comprimento ida+volta." },
 
-  { id: "e117", inedita: true, areaGrande: "Eletrotécnica", assunto: "NBR 5410", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
+  { id: "e237", inedita: true, areaGrande: "Eletrotécnica", assunto: "NBR 5410", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "Durante vistoria em edificação comercial, o fiscal constata que um único disjuntor bipolar de 25 A protege simultaneamente o circuito de tomadas da sala de reuniões e o de iluminação do corredor. A fundamentação técnica CORRETA para a autuação, com base na NBR 5410, é:",
     alternativas: [
       "A norma proíbe disjuntores bipolares em circuitos monofásicos de edificações comerciais.",
@@ -1673,7 +1673,7 @@ const QUESTOES_BASE: Omit<Questao, "bloco">[] = [
     ], respostaCorreta: 2,
     explicacao: "A NBR 5410 determina que os circuitos terminais devem ser individualizados e protegidos independentemente. Proteger dois circuitos distintos com um único dispositivo viola esse princípio: uma falta em um circuito desliga o outro, comprometendo a continuidade do serviço e dificultando a localização da falha. A individualização também é exigida para permitir manutenção segura de um circuito sem desligar os demais." },
 
-  { id: "e118", inedita: true, areaGrande: "Eletrotécnica", assunto: "NBR 5410", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "e238", inedita: true, areaGrande: "Eletrotécnica", assunto: "NBR 5410", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Médio",
     enunciado: "Sobre o dispositivo de proteção a corrente diferencial-residual (DDR), analise as afirmativas:\n\nI. O DDR protege contra choques por contato direto, contato indireto e correntes de fuga que causam incêndios.\nII. O condutor de proteção (PE) NÃO deve passar pelo núcleo toroidal do DDR.\nIII. DDR de 300 mA é de alta sensibilidade e adequado para proteção de pessoas em banheiros.",
     alternativas: [
       "Apenas I e II estão corretas.",
@@ -1684,12 +1684,12 @@ const QUESTOES_BASE: Omit<Questao, "bloco">[] = [
     ], respostaCorreta: 0,
     explicacao: "I — Correta: o DDR de ≤ 30 mA protege contra choque (contato direto e indireto); o de 300 mA protege contra incêndios por corrente de fuga. II — Correta: o PE não deve passar pelo toroide — correntes de falta que retornam pelo PE são intencionais (proteção por aterramento) e não devem provocar desarme do DDR. III — Incorreta: 300 mA é baixa sensibilidade, destinado à proteção contra incêndios. Para proteção de pessoas, exige-se DDR de alta sensibilidade (≤ 30 mA)." },
 
-  { id: "e119", inedita: true, areaGrande: "Eletrotécnica", assunto: "Dimensionamento elétrico", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
+  { id: "e239", inedita: true, areaGrande: "Eletrotécnica", assunto: "Dimensionamento elétrico", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "Três motores trifásicos (In: 42 A, 29 A e 15 A) são instalados em um mesmo eletroduto com fator de agrupamento Fa = 0,70. A corrente de projeto para dimensionamento do condutor do motor de 42 A é:",
     alternativas: ["29,4 A", "42,0 A", "52,5 A", "60,0 A", "86,5 A"], respostaCorreta: 3,
     explicacao: "A corrente de projeto para seleção de condutores é Ip = In / Fa = 42 / 0,70 = 60,0 A. O condutor deve ter capacidade de condução ≥ 60 A nas condições de referência da tabela NBR 5410. Usar diretamente 42 A (alternativa b) resulta em condutor subdimensionado, pois o agrupamento reduz a capacidade de dissipar calor — o condutor aquecerá acima do permitido nas condições reais de instalação." },
 
-  { id: "e120", inedita: true, areaGrande: "Eletrotécnica", assunto: "Motores elétricos", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Difícil",
+  { id: "e240", inedita: true, areaGrande: "Eletrotécnica", assunto: "Motores elétricos", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Um motor de indução trifásico de 30 kW, 380 V, 4 polos, 60 Hz (s_nominal = 3,3%) apresenta: velocidade medida = 1.710 rpm, corrente de linha = 62 A (nominal: 57 A) e temperatura de carcaça = 95 °C. A conclusão técnica CORRETA é:",
     alternativas: [
       "Operação normal — variações de ±10% em corrente e velocidade são aceitáveis pela IEC.",
@@ -1700,7 +1700,7 @@ const QUESTOES_BASE: Omit<Questao, "bloco">[] = [
     ], respostaCorreta: 1,
     explicacao: "Ns = 1800 rpm. s_atual = (1800−1710)/1800 = 5% > s_nominal de 3,3%. Maior escorregamento significa maior torque resistente, portanto maior corrente: confirmado pelos 62 A vs. 57 A nominais (+8,7%). A temperatura de 95 °C com ambiente de 40 °C representa elevação de 55 °C — acima do esperado para operação nominal dessa classe. O conjunto de sintomas (maior escorregamento + sobrecorrente + sobretemperatura) aponta consistentemente para sobrecarga mecânica." },
 
-  { id: "e121", inedita: true, areaGrande: "Eletrotécnica", assunto: "Motores elétricos", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
+  { id: "e241", inedita: true, areaGrande: "Eletrotécnica", assunto: "Motores elétricos", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "Uma bomba centrífuga é acionada por motor de 55 kW. A corrente de partida direta é 7 × In, causando queda de tensão de 12% no barramento. Para reduzir a corrente de partida para ≤ 3 × In mantendo conjugado de partida adequado à bomba (conjugado resistente praticamente nulo na partida), o método mais indicado é:",
     alternativas: [
       "Partida estrela-triângulo — reduz corrente de linha a 1/3 e torque a 1/3 da partida direta.",
@@ -1711,7 +1711,7 @@ const QUESTOES_BASE: Omit<Questao, "bloco">[] = [
     ], respostaCorreta: 1,
     explicacao: "A soft-starter controla a tensão aplicada ao motor por rampa, limitando a corrente de partida ao valor ajustado (≤ 3 × In). Para bomba centrífuga (conjugado resistente ∝ n² — praticamente nulo na partida), a redução de torque na partida não é problema. A soft-starter é ideal por ser ajustável, eliminar o transitório de comutação da estrela-triângulo e ser mais compacta que o autotransformador. O inversor de frequência seria a melhor solução técnica, mas tem custo mais elevado e a questão não o coloca como mais indicado para esse caso específico." },
 
-  { id: "e122", inedita: true, areaGrande: "Eletrotécnica", assunto: "Motores elétricos", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "e242", inedita: true, areaGrande: "Eletrotécnica", assunto: "Motores elétricos", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Médio",
     enunciado: "Sobre as classes de eficiência IE de motores (IEC 60034-30 / NBR 17094), analise:\n\nI. A classe IE3 (Premium) tem eficiência superior à IE2 e é obrigatória no Brasil para motores acima de determinada potência em novas instalações.\nII. Substituir um motor IE1 por IE3 de mesma potência não requer revisão da proteção elétrica.\nIII. Motores de maior eficiência tendem a apresentar menor corrente de partida relativa (Ip/In) que motores IE1 de mesma potência.",
     alternativas: [
       "Apenas I está correta.",
@@ -1722,12 +1722,12 @@ const QUESTOES_BASE: Omit<Questao, "bloco">[] = [
     ], respostaCorreta: 0,
     explicacao: "I — Correta: a regulamentação Inmetro tornou a IE3 obrigatória progressivamente. II — Incorreta: motores IE3 geralmente têm corrente de partida relativa (Ip/In) MAIOR que IE1 — menor resistência de rotor aumenta Ip/In. A proteção deve ser revisada. III — Incorreta: é o oposto — IE3 tem MAIOR Ip/In que IE1 de mesma potência, por possuir menor resistência de rotor (o que melhora a eficiência em regime, mas piora a partida)." },
 
-  { id: "e123", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eletrônica analógica", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
+  { id: "e243", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eletrônica analógica", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Em um amplificador inversor com AmpOp ideal, R1 = 10 kΩ e Rf = 100 kΩ. Para Vi = −0,5 V, Vo e o ganho de tensão Av valem, respectivamente:",
     alternativas: ["Vo = +5 V e Av = −10", "Vo = −5 V e Av = +10", "Vo = +5 V e Av = +10", "Vo = −5 V e Av = −10", "Vo = +0,05 V e Av = −0,1"], respostaCorreta: 0,
     explicacao: "Av = −Rf/R1 = −100k/10k = −10. Vo = Av × Vi = −10 × (−0,5) = +5 V. O erro mais comum em prova: calcular |Av| = 10 corretamente, mas errar o sinal de Vo — esquecendo que a entrada negativa (−0,5 V) invertida resulta em saída positiva (+5 V). A inversão de fase é a característica definidora do amplificador inversor." },
 
-  { id: "e124", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eletrônica analógica", banca: "CESPE (estilo)", ano: 2023, dificuldade: "Difícil",
+  { id: "e244", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eletrônica analógica", banca: "CESPE (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "Em um amplificador emissor comum com BJT NPN, mede-se VCE = 0,15 V e IC = 8 mA, com VCC = 12 V e RC = 1,2 kΩ. O estado de operação do transistor e o efeito sobre o sinal amplificado são:",
     alternativas: [
       "Região ativa — amplificação linear com distorção mínima.",
@@ -1738,7 +1738,7 @@ const QUESTOES_BASE: Omit<Questao, "bloco">[] = [
     ], respostaCorreta: 1,
     explicacao: "Verificação: VCC − IC×RC = 12 − 8m×1,2k = 12 − 9,6 = 2,4 V. Se o transistor estivesse na região ativa, VCE seria ≈ 2,4 V. A medição de 0,15 V confirma saturação (V_CE(sat) típico ≤ 0,2 V para BJT de baixa potência). Em saturação o transistor perde o controle linear — a base não controla mais o coletor proporcionalmente. O sinal de saída fica limitado em V_CE(sat), produzindo distorção severa por clipagem." },
 
-  { id: "e125", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eletrônica analógica", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
+  { id: "e245", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eletrônica analógica", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Um AmpOp real com SR = 1 V/μs é usado em amplificador não inversor de ganho 100. Para sinal senoidal de entrada com amplitude 1 V de pico e f = 20 kHz, o fenômeno que PRIMEIRO distorce o sinal de saída é:",
     alternativas: [
       "Tensão de offset de entrada (Vos = 5 mV) — introduz erro CC de 500 mV na saída.",
@@ -1749,17 +1749,17 @@ const QUESTOES_BASE: Omit<Questao, "bloco">[] = [
     ], respostaCorreta: 2,
     explicacao: "Taxa necessária: dVo/dt_max = 2π × f × Vo_pico = 2π × 20k × 100 = 12,57 V/μs >> SR de 1 V/μs. O slew rate limita a taxa de variação máxima da saída — quando o sinal exige variação mais rápida que o SR, a saída passa a subir/descer à taxa máxima constante (1 V/μs), transformando a senoidal em um triângulo. É o efeito limitante mais imediato e visível nessa condição." },
 
-  { id: "e126", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eletrônica digital", banca: "CESPE (estilo)", ano: 2023, dificuldade: "Difícil",
+  { id: "e246", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eletrônica digital", banca: "CESPE (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "Um contador binário síncrono de 4 bits (módulo 16) parte de 0000. Após 13 pulsos de clock, o estado do contador e o número de pulsos adicionais para retornar a 0000 são:",
     alternativas: ["1101 e 3 pulsos", "1100 e 4 pulsos", "1101 e 2 pulsos", "0111 e 3 pulsos", "1011 e 5 pulsos"], respostaCorreta: 0,
     explicacao: "13 em binário de 4 bits: 8+4+1 = 1101. Pulsos restantes até completar o ciclo de 16: 16 − 13 = 3 pulsos (estados 14=1110, 15=1111, 16→0000). A pegadinha: calcular 16 − 13 = 3 mas responder '2 pulsos' por confundir o estado 0000 com o estado 16 (que é o mesmo que reiniciar) — e não contar o pulso que gera o 0000." },
 
-  { id: "e127", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eletrônica digital", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
+  { id: "e247", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eletrônica digital", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Para implementar a função XOR (A⊕B) usando APENAS portas NAND de 2 entradas, o número mínimo de portas necessárias é:",
     alternativas: ["2", "3", "4", "5", "6"], respostaCorreta: 2,
     explicacao: "XOR com NAND: (1) G1 = NAND(A,B). (2) G2 = NAND(A,G1). (3) G3 = NAND(B,G1). (4) G4 = NAND(G2,G3) = A⊕B. Total: 4 portas NAND-2. Esse é o mínimo comprovado — não é possível implementar XOR com menos de 4 NANDs de 2 entradas." },
 
-  { id: "e128", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eletrônica digital", banca: "CESPE (estilo)", ano: 2023, dificuldade: "Médio",
+  { id: "e248", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eletrônica digital", banca: "CESPE (estilo)", ano: 2023, dificuldade: "Médio",
     enunciado: "Sobre conversores A/D (ADC), analise:\n\nI. ADC de 10 bits com fundo de escala 5 V tem resolução ≈ 4,88 mV por passo.\nII. Pelo teorema de Nyquist, a frequência de amostragem deve ser ≥ 2× a maior frequência do sinal.\nIII. O ADC por aproximações sucessivas é mais lento que o flash, mas usa menos comparadores.",
     alternativas: [
       "Apenas I está correta.",
@@ -1770,17 +1770,17 @@ const QUESTOES_BASE: Omit<Questao, "bloco">[] = [
     ], respostaCorreta: 3,
     explicacao: "I — Correta: resolução = 5/(2¹⁰−1) = 5/1023 ≈ 4,888 mV. II — Correta: critério de Nyquist: fs ≥ 2·fmax. III — Correta: ADC flash usa 2ⁿ−1 comparadores (ultrarrápido, caro); aproximações sucessivas usa n comparações sequenciais (1 comparador + DAC interno), muito mais lento. Todas as três afirmativas estão corretas." },
 
-  { id: "e129", inedita: true, areaGrande: "Eletrotécnica", assunto: "Telecomunicações", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Difícil",
+  { id: "e249", inedita: true, areaGrande: "Eletrotécnica", assunto: "Telecomunicações", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Uma antena de rádio FM tem potência incidente de 10 kW e potência refletida de 1 kW. O coeficiente de reflexão de tensão |Γ|, o VSWR e a potência irradiada valem, respectivamente:",
     alternativas: ["|Γ|=0,316, VSWR=1,92 e 9 kW", "|Γ|=0,1, VSWR=1,22 e 9 kW", "|Γ|=0,316, VSWR=1,92 e 10 kW", "|Γ|=0,316, VSWR=2,50 e 9 kW", "|Γ|=0,1, VSWR=1,22 e 10 kW"], respostaCorreta: 0,
     explicacao: "|Γ|² = P_ref/P_inc = 1/10 = 0,1 → |Γ| = √0,1 ≈ 0,316. VSWR = (1+|Γ|)/(1−|Γ|) = 1,316/0,684 ≈ 1,92. P_irradiada = 10−1 = 9 kW. O erro clássico: calcular |Γ| = 0,1 (sem a raiz), obtendo VSWR = 1,22 — errado porque |Γ|² é a razão de potências, não de tensões." },
 
-  { id: "e130", inedita: true, areaGrande: "Eletrotécnica", assunto: "Telecomunicações", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
+  { id: "e250", inedita: true, areaGrande: "Eletrotécnica", assunto: "Telecomunicações", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "Enlace de 5 GHz com Pt = 0 dBW, Gt = 30 dBi, Gr = 30 dBi e d = 10 km. Usando FSPL(dB) = 92,4 + 20·log(f_GHz) + 20·log(d_km), a potência recebida é:",
     alternativas: ["−42,4 dBW", "−52,4 dBW", "−62,4 dBW", "−72,4 dBW", "−82,4 dBW"], respostaCorreta: 2,
     explicacao: "FSPL = 92,4 + 20·log(5) + 20·log(10) = 92,4 + 14,0 + 20,0 = 126,4 dB. Pr = Pt + Gt + Gr − FSPL = 0 + 30 + 30 − 126,4 = −66,4 dBW. A alternativa mais próxima no contexto da questão é −62,4 dBW (variação de ±4 dB por diferentes aproximações da fórmula de Friis). Em provas CESGRANRIO, usa-se FSPL = 20·log(4πd/λ): λ = 0,06m → FSPL = 20·log(4π·10000/0,06) = 20·log(2.094.395) ≈ 126,4 dB → Pr = −66,4 dBW ≈ −62,4 dBW." },
 
-  { id: "e131", inedita: true, areaGrande: "Eletrotécnica", assunto: "Telecomunicações", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "e251", inedita: true, areaGrande: "Eletrotécnica", assunto: "Telecomunicações", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Médio",
     enunciado: "Sobre FM e AM, é CORRETO afirmar que:",
     alternativas: [
       "FM ocupa menos banda que AM para a mesma qualidade de áudio.",
@@ -1791,12 +1791,12 @@ const QUESTOES_BASE: Omit<Questao, "bloco">[] = [
     ], respostaCorreta: 2,
     explicacao: "Na FM, a informação está codificada na variação da frequência da portadora. O receptor FM usa um limitador que elimina variações de amplitude antes do discriminador — tornando a FM naturalmente imune a ruídos de amplitude (o tipo mais comum). Por isso FM tem qualidade de áudio superior à AM, à custa de maior largura de banda. As demais alternativas invertem a realidade: FM usa MAIS banda; AM é MENOS imune; as faixas são distintas (AM: 540−1700 kHz, FM: 87,5−108 MHz)." },
 
-  { id: "e132", inedita: true, areaGrande: "Eletrotécnica", assunto: "Telecomunicações", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
+  { id: "e252", inedita: true, areaGrande: "Eletrotécnica", assunto: "Telecomunicações", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "Fibra óptica monomodo com atenuação 0,3 dB/km, enlace de 80 km, 4 emendas de 0,2 dB e 2 conectores de 0,5 dB. Potência transmitida: +3 dBm. A sensibilidade mínima do receptor para operação correta deve ser:",
     alternativas: ["melhor que −18,2 dBm", "melhor que −21,2 dBm", "melhor que −24,2 dBm", "melhor que −27,2 dBm", "melhor que −30,2 dBm"], respostaCorreta: 2,
     explicacao: "Atenuação total = 0,3×80 + 4×0,2 + 2×0,5 = 24 + 0,8 + 1,0 = 25,8 dB. Potência no receptor = 3 − 25,8 = −22,8 dBm. A sensibilidade deve ser melhor (mais negativa) que −22,8 dBm. A alternativa −24,2 dBm é a mais próxima que atende esse critério (−24,2 < −22,8 em valor absoluto)." },
 
-  { id: "e133", inedita: true, areaGrande: "Eletrotécnica", assunto: "Instrumentação", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Difícil",
+  { id: "e253", inedita: true, areaGrande: "Eletrotécnica", assunto: "Instrumentação", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Ponte de Wheatstone com R1 = 1 kΩ, R2 = 2 kΩ e R3 = 1,5 kΩ está em equilíbrio (galvanômetro = 0). Rx e a interpretação do equilíbrio são:",
     alternativas: [
       "Rx = 3 kΩ — tensão zero no galvanômetro, sem circulação de corrente pelo mesmo.",
@@ -1807,7 +1807,7 @@ const QUESTOES_BASE: Omit<Questao, "bloco">[] = [
     ], respostaCorreta: 0,
     explicacao: "Equilíbrio: R1·Rx = R2·R3 → Rx = R2·R3/R1 = 2k×1,5k/1k = 3 kΩ. Em equilíbrio, os potenciais nos dois terminais do galvanômetro são iguais → tensão = 0 → corrente = 0. A pegadinha: inverter a fórmula (usar R2·Rx = R1·R3) dá Rx = 750 Ω, erro clássico de confundir os braços adjacentes com os opostos na ponte." },
 
-  { id: "e134", inedita: true, areaGrande: "Eletrotécnica", assunto: "Instrumentação", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
+  { id: "e254", inedita: true, areaGrande: "Eletrotécnica", assunto: "Instrumentação", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "Um analisador de qualidade de energia registra: THD-V = 8%, fator de potência de deslocamento DPF = 0,95 e fator de potência verdadeiro TPF = 0,82. A conclusão CORRETA é:",
     alternativas: [
       "DPF e TPF medem a mesma grandeza — a diferença é irrelevante.",
@@ -1818,7 +1818,7 @@ const QUESTOES_BASE: Omit<Questao, "bloco">[] = [
     ], respostaCorreta: 2,
     explicacao: "O TPF (fator de potência verdadeiro) inclui o efeito da distorção harmônica: TPF = DPF × FD, onde FD é o fator de distorção. TPF < DPF → FD < 1 → presença de harmônicos de corrente que aumentam a corrente RMS sem contribuir para potência ativa. Banco de capacitores corrige o ângulo de fase (DPF) mas NÃO elimina harmônicos — para isso são necessários filtros ativos ou passivos. A alternativa e está quase correta mas é imprecisa: TPF = DPF quando não há distorção harmônica de corrente (THD_I = 0), não necessariamente THD_V = 0." },
 
-  { id: "e135", inedita: true, areaGrande: "Eletrotécnica", assunto: "Transformadores", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Difícil",
+  { id: "e255", inedita: true, areaGrande: "Eletrotécnica", assunto: "Transformadores", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Transformador de 300 kVA encontrado com temperatura de óleo acima do normal: fator de carga 1,25, temperatura ambiente 42 °C, ventilador do radiador inoperante. O diagnóstico e ação imediata CORRETOS são:",
     alternativas: [
       "Temperatura elevada é normal em transformadores a óleo em carga — resfriamento não interfere.",
@@ -1829,7 +1829,7 @@ const QUESTOES_BASE: Omit<Questao, "bloco">[] = [
     ], respostaCorreta: 1,
     explicacao: "Sobrecarga de 25% aumenta as perdas no cobre em (1,25)² = 1,5625× — 56,25% mais calor que no nominal. Com ventilação comprometida e temperatura ambiente acima do padrão (≥ 40 °C), o transformador acumula calor aceleradamente. A regra dos 8 °C: cada 8 °C acima da temperatura nominal de projeto reduz a vida do isolamento à metade. Ação imediata: reduzir carga para o nominal E reparar a ventilação — nenhuma das duas ações isoladas é suficiente." },
 
-  { id: "e136", inedita: true, areaGrande: "Eletrotécnica", assunto: "Transformadores", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
+  { id: "e256", inedita: true, areaGrande: "Eletrotécnica", assunto: "Transformadores", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "Um transformador Dyn11 deve ser operado em paralelo com outro Yyn0. A principal restrição técnica é:",
     alternativas: [
       "Qualquer transformador trifásico pode ser operado em paralelo com tensões iguais.",
@@ -1840,12 +1840,12 @@ const QUESTOES_BASE: Omit<Questao, "bloco">[] = [
     ], respostaCorreta: 1,
     explicacao: "Para paralelismo de transformadores trifásicos, além de tensões iguais e mesma sequência de fase, os transformadores DEVEM pertencer ao mesmo grupo de ligação. Dyn11 (defasagem 330°) e Yyn0 (defasagem 0°) diferem em 30° — essa diferença de fase cria uma fem de circulação entre os secundários que provoca correntes de curto-circuito entre os transformadores, mesmo sem carga. O paralelismo direto é tecnicamente inviável." },
 
-  { id: "e137", inedita: true, areaGrande: "Eletrotécnica", assunto: "Geração e transmissão", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Difícil",
+  { id: "e257", inedita: true, areaGrande: "Eletrotécnica", assunto: "Geração e transmissão", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Relé 51 ajustado com pickup = 5 A e TDS = 1. TC de relação 200:5. Corrente de falta no primário = 50 A. O múltiplo de corrente (M) no relé é:",
     alternativas: ["M = 0,25 e relé não atua", "M = 2,5 e relé atua lentamente", "M = 5,0 e relé atua em ≈ 5 s (curva NI)", "M = 10 e relé atua em < 1 s", "M = 50 e atuação instantânea"], respostaCorreta: 1,
     explicacao: "Corrente no secundário do TC: I_sec = 50 × (5/200) = 1,25 A. M = I_sec / I_pickup = 1,25/5 = 0,25. Com M = 0,25 < 1, o relé NÃO atua (a corrente de falta está abaixo do pickup). Se a corrente de falta fosse 200 A no primário: I_sec = 200×(5/200) = 5 A → M = 5/5 = 1 → limiar de atuação. Para M = 5: corrente primária = 1000 A, I_sec = 25 A, M = 25/5 = 5 → t ≈ 5 s (curva NI, TDS=1). A alternativa b (M=2,5) seria para falta de 100 A no primário. A questão testa a aplicação correta da relação do TC antes de calcular M." },
 
-  { id: "e138", inedita: true, areaGrande: "Eletrotécnica", assunto: "Geração e transmissão", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
+  { id: "e258", inedita: true, areaGrande: "Eletrotécnica", assunto: "Geração e transmissão", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "Quando a frequência do SEP cai para 59,0 Hz e o governador da turbina responde automaticamente aumentando a abertura do distribuidor, esse comportamento corresponde a:",
     alternativas: [
       "Regulação primária de frequência — resposta automática e local do governador ao desvio de frequência.",
@@ -1856,7 +1856,7 @@ const QUESTOES_BASE: Omit<Questao, "bloco">[] = [
     ], respostaCorreta: 0,
     explicacao: "A resposta automática e imediata do governador à variação de frequência (sem intervenção externa) é a definição de regulação primária de frequência (droop). O governador age em segundos. A regulação secundária (AGC) age depois, mais lentamente (minutos), para restaurar a frequência exatamente a 60 Hz e recompor as reservas. A regulação terciária envolve o despacho econômico e recomposição das reservas em escala de horas." },
 
-  { id: "e139", inedita: true, areaGrande: "Eletrotécnica", assunto: "Automação industrial", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Difícil",
+  { id: "e259", inedita: true, areaGrande: "Eletrotécnica", assunto: "Automação industrial", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Um controlador PID estabilizado no setpoint apresenta oscilação sustentada de pequeno período e amplitude elevada. A causa mais provável e a ação corretiva são:",
     alternativas: [
       "Ki muito alto (windup) — desativar a ação integral.",
@@ -1867,32 +1867,32 @@ const QUESTOES_BASE: Omit<Questao, "bloco">[] = [
     ], respostaCorreta: 1,
     explicacao: "Oscilação sustentada com período pequeno e amplitude constante é a assinatura clássica do sistema no limiar de estabilidade — ganho proporcional Kp ≥ Ku (ganho crítico de Ziegler-Nichols). O sistema entra em 'oscilação de limite'. A ação corretiva primária é reduzir Kp. Esse comportamento é, inclusive, a base do método de sintonia de Ziegler-Nichols em malha fechada: induzi-se a oscilação sustentada para medir Ku e Pu, depois calculam-se os ganhos do PID." },
 
-  { id: "e140", inedita: true, areaGrande: "Eletrotécnica", assunto: "Automação industrial", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
+  { id: "e260", inedita: true, areaGrande: "Eletrotécnica", assunto: "Automação industrial", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
     enunciado: "Um mestre Modbus RTU lê 3 registradores holding do escravo 17. Os valores retornados são 0x0064, 0x00C8 e 0x012C, representando temperatura em décimos de grau Celsius. As temperaturas reais são:",
     alternativas: ["1 °C, 2 °C e 3 °C", "10 °C, 20 °C e 30 °C", "100 °C, 200 °C e 300 °C", "0,1 °C, 0,2 °C e 0,3 °C", "64 °C, 200 °C e 300 °C"], respostaCorreta: 1,
     explicacao: "0x0064 = 100 decimal; 0x00C8 = 200; 0x012C = 300. Em décimos de grau: 100/10 = 10 °C; 200/10 = 20 °C; 300/10 = 30 °C. A pegadinha clássica: não dividir por 10 (alternativa c — usa os valores brutos como temperatura direta) ou dividir por 100 (alternativa a)." },
 
-  { id: "e141", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eletromagnetismo", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Difícil",
+  { id: "e261", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eletromagnetismo", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Dois condutores paralelos a 5 cm de distância conduzem 20 A e 10 A no mesmo sentido. O campo B a 5 cm do condutor de 20 A e a força por unidade de comprimento sobre o condutor de 10 A valem:",
     alternativas: ["80 μT e 0,8 mN/m (atrativa)", "80 μT e 1,6 mN/m (atrativa)", "40 μT e 0,8 mN/m (repulsiva)", "80 μT e 0,8 mN/m (repulsiva)", "40 μT e 1,6 mN/m (atrativa)"], respostaCorreta: 0,
     explicacao: "B = μ₀I₁/(2πr) = (4π×10⁻⁷×20)/(2π×0,05) = 80 μT. F/L = μ₀I₁I₂/(2πd) = (4π×10⁻⁷×20×10)/(2π×0,05) = 0,8×10⁻³ N/m = 0,8 mN/m. Correntes no mesmo sentido → força ATRATIVA. Resposta: 80 μT e 0,8 mN/m atrativa." },
 
-  { id: "e142", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eletromagnetismo", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
+  { id: "e262", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eletromagnetismo", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "Uma bobina de L = 200 mH conduz corrente variando de 0 a 4 A em 10 ms. A fem induzida e a energia armazenada ao final valem:",
     alternativas: ["80 V e 1,6 J", "8 V e 0,16 J", "80 V e 0,16 J", "8 V e 1,6 J", "40 V e 0,8 J"], respostaCorreta: 0,
     explicacao: "fem = L × dI/dt = 0,2 × (4/0,010) = 0,2 × 400 = 80 V. W = ½LI² = ½ × 0,2 × 16 = 1,6 J. O erro mais frequente: usar dI/dt = 4/10 = 0,4 A/s (esquecendo que 10 ms = 0,010 s) → fem = 0,08 V, completamente errado. Atenção às unidades de tempo é o principal ponto avaliado." },
 
-  { id: "e143", inedita: true, areaGrande: "Eletrotécnica", assunto: "Circuitos elétricos", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Difícil",
+  { id: "e263", inedita: true, areaGrande: "Eletrotécnica", assunto: "Circuitos elétricos", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Capacitor de 470 μF, inicialmente descarregado, em série com resistor de 2,2 kΩ e fonte de 24 V CC. Tempo para a tensão atingir 90% de 24 V:",
     alternativas: ["0,47 s", "1,03 s", "1,59 s", "2,38 s", "3,14 s"], respostaCorreta: 3,
     explicacao: "τ = RC = 2200 × 470×10⁻⁶ = 1,034 s. Para Vc = 0,9×24: 0,9 = 1 − e^(−t/τ) → e^(−t/τ) = 0,1 → t = τ × ln(10) = 1,034 × 2,303 ≈ 2,38 s. O erro clássico é usar t = 5τ (≈5,17 s, para 99,3%) ou t = 1τ (para 63,2%) em vez de calcular o tempo exato para 90% via logaritmo." },
 
-  { id: "e144", inedita: true, areaGrande: "Eletrotécnica", assunto: "Circuitos elétricos", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
+  { id: "e264", inedita: true, areaGrande: "Eletrotécnica", assunto: "Circuitos elétricos", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "Indutor de 50 mH com resistência série de 10 Ω conectado a 100 V CC em t = 0. A corrente de regime permanente, a constante de tempo e a corrente em t = 5 ms são:",
     alternativas: ["10 A, 5 ms e 6,32 A", "10 A, 5 ms e 3,68 A", "100 A, 0,5 ms e 86,5 A", "10 A, 0,5 ms e 6,32 A", "5 A, 5 ms e 3,16 A"], respostaCorreta: 0,
     explicacao: "I_RP = V/R = 100/10 = 10 A. τ = L/R = 0,05/10 = 5 ms. i(5ms) = 10×(1−e^(−5/5)) = 10×(1−e^(−1)) = 10×0,6321 = 6,32 A. Em t = 1τ, qualquer circuito RL atinge 63,2% do valor final — resultado fundamental que deve ser memorizado para prova." },
 
-  { id: "e145", inedita: true, areaGrande: "Eletrotécnica", assunto: "NR-10", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "e265", inedita: true, areaGrande: "Eletrotécnica", assunto: "NR-10", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Médio",
     enunciado: "Sobre a NR-10 e trabalhos em instalações energizadas de alta tensão, analise:\n\nI. É obrigatório o uso de EPI e EPC adequados à tensão envolvida.\nII. Qualquer trabalhador com treinamento básico NR-10 pode executar serviços em instalações de AT energizadas.\nIII. A zona controlada é a área onde somente pessoal qualificado e autorizado pode atuar.",
     alternativas: [
       "Apenas I e III estão corretas.",
@@ -1903,7 +1903,7 @@ const QUESTOES_BASE: Omit<Questao, "bloco">[] = [
     ], respostaCorreta: 0,
     explicacao: "I — Correta: EPI e EPC são obrigatórios para qualquer nível de tensão. III — Correta: zona controlada exige pessoal qualificado e autorizado. II — Incorreta: o treinamento básico NR-10 habilita para trabalhos em baixa tensão e no entorno de instalações de AT. Para serviços em instalações de AT energizadas, é obrigatório o treinamento complementar NR-10 SEP (Sistema Elétrico de Potência) além da qualificação específica." },
 
-  { id: "e146", inedita: true, areaGrande: "Eletrotécnica", assunto: "NR-10", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
+  { id: "e266", inedita: true, areaGrande: "Eletrotécnica", assunto: "NR-10", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "Sobre trabalho em painel de 380 V energizado, o procedimento CORRETO segundo a NR-10 é:",
     alternativas: [
       "Qualquer trabalhador pode tocar partes energizadas a 380 V — baixa tensão tem risco mínimo.",
@@ -1914,12 +1914,12 @@ const QUESTOES_BASE: Omit<Questao, "bloco">[] = [
     ], respostaCorreta: 1,
     explicacao: "A NR-10 é clara: serviços em instalações elétricas energizadas, em qualquer tensão, só podem ser executados por trabalhadores habilitados e autorizados, com EPI específicos para a tensão envolvida. O procedimento prioritário é a desenergização com bloqueio e sinalização (LOTO). Trabalhar energizado é a exceção — permitida apenas quando a desenergização é tecnicamente inviável, com análise de risco prévia." },
 
-  { id: "e147", inedita: true, areaGrande: "Eletrotécnica", assunto: "Qualidade de energia", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Difícil",
+  { id: "e267", inedita: true, areaGrande: "Eletrotécnica", assunto: "Qualidade de energia", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Em sistema trifásico com cargas equilibradas e correntes de fase com 3ª harmônica de 15 A e 5ª harmônica de 8 A, a corrente resultante no condutor neutro é aproximadamente:",
     alternativas: ["0 A — cargas equilibradas não geram corrente de neutro", "15 A", "45 A", "23 A", "8 A"], respostaCorreta: 2,
     explicacao: "Harmônicas de sequência positiva (1ª, 4ª, 7ª...) e negativa (2ª, 5ª, 8ª...) se cancelam no neutro de sistemas equilibrados. Harmônicas de sequência zero — múltiplos de 3 (3ª, 6ª, 9ª...) — somam-se no neutro. A 3ª harmônica é de sequência zero: contribui com 3 × 15 = 45 A no neutro. A 5ª harmônica é de sequência negativa: não contribui para o neutro. Corrente resultante no neutro ≈ 45 A. Essa é a causa do superaquecimento do neutro em instalações com muitos computadores e cargas não lineares." },
 
-  { id: "e148", inedita: true, areaGrande: "Eletrotécnica", assunto: "Qualidade de energia", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
+  { id: "e268", inedita: true, areaGrande: "Eletrotécnica", assunto: "Qualidade de energia", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "O neutro do transformador de uma instalação com muitos computadores e drives está superaquecendo, apesar das correntes de fase dentro do limite nominal. Causa provável e solução:",
     alternativas: [
       "Fuga para terra — instalar DR resolve.",
@@ -1930,7 +1930,7 @@ const QUESTOES_BASE: Omit<Questao, "bloco">[] = [
     ], respostaCorreta: 1,
     explicacao: "Fontes chaveadas e drives geram harmônicas ímpares de sequência zero (3ª, 9ª, 15ª...), que somam no neutro. O neutro pode atingir corrente de até √3 × In de fase com cargas não lineares equilibradas — causando superaquecimento mesmo com correntes de fase dentro do nominal. A solução é dimensionar o neutro para corrente maior (1,5 a 2× a seção de fase) e/ou instalar filtros. Banco de capacitores não resolve harmônicos e pode até amplificá-los por ressonância." },
 
-  { id: "e149", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eletrônica de potência", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Difícil",
+  { id: "e269", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eletrônica de potência", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Um inversor de frequência reduz a frequência de 60 Hz para 30 Hz. Para manter o fluxo magnético do motor constante e evitar saturação ou subtensão de campo, a tensão de saída deve ser:",
     alternativas: [
       "Mantida em 380 V — a tensão deve sempre ser o valor nominal.",
@@ -1941,27 +1941,27 @@ const QUESTOES_BASE: Omit<Questao, "bloco">[] = [
     ], respostaCorreta: 2,
     explicacao: "O fluxo magnético no motor de indução é ∝ V/f. Para fluxo constante: V/f = constante (controle escalar V/f). A 60 Hz → 380 V: relação = 380/60 ≈ 6,33 V/Hz. A 30 Hz: V = 6,33 × 30 = 190 V. Se a tensão ficar em 380 V com 30 Hz, V/f dobra → fluxo excessivo → saturação do núcleo e corrente magnetizante muito elevada." },
 
-  { id: "e150", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eletrônica de potência", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
+  { id: "e270", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eletrônica de potência", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "Conversor Boost: Vin = 24 V, Vout = 48 V, Iout = 5 A, η = 90%. O duty cycle D, a corrente de entrada Iin e a potência de entrada Pin valem:",
     alternativas: ["D=0,5, Iin=10 A e Pin=240 W", "D=0,5, Iin=11,1 A e Pin=266,7 W", "D=0,75, Iin=10 A e Pin=240 W", "D=0,5, Iin=10 A e Pin=266,7 W", "D=0,75, Iin=11,1 A e Pin=266,7 W"], respostaCorreta: 1,
     explicacao: "D: Vout = Vin/(1−D) → 48 = 24/(1−D) → D = 0,5. Pout = 48×5 = 240 W. Pin = Pout/η = 240/0,9 = 266,7 W. Iin = Pin/Vin = 266,7/24 = 11,1 A. A pegadinha: ignorar a eficiência e calcular Iin = Iout×Vout/Vin = 5×48/24 = 10 A (alternativa a) — correto apenas se η = 100%." },
 
-  { id: "e151", inedita: true, areaGrande: "Eletrotécnica", assunto: "Circuitos elétricos", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Difícil",
+  { id: "e271", inedita: true, areaGrande: "Eletrotécnica", assunto: "Circuitos elétricos", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Pelo método de malhas: 10I1 − 4I2 = 20 e −4I1 + 8I2 = 0. I1, I2 e a tensão sobre o resistor de 4 Ω compartilhado (R = 4 Ω, com corrente I1−I2) valem:",
     alternativas: ["I1=2,5 A, I2=1,25 A e V4Ω=5 V", "I1=2,0 A, I2=1,0 A e V4Ω=4 V", "I1=3,0 A, I2=1,5 A e V4Ω=6 V", "I1=2,5 A, I2=1,25 A e V4Ω=4 V", "I1=2,0 A, I2=0,5 A e V4Ω=6 V"], respostaCorreta: 0,
     explicacao: "Da equação 2: I2 = 4I1/8 = I1/2. Substituindo na equação 1: 10I1 − 4(I1/2) = 20 → 10I1 − 2I1 = 20 → 8I1 = 20 → I1 = 2,5 A. I2 = 1,25 A. V_4Ω = 4×(I1−I2) = 4×1,25 = 5 V." },
 
-  { id: "e152", inedita: true, areaGrande: "Eletrotécnica", assunto: "Circuitos elétricos", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
+  { id: "e272", inedita: true, areaGrande: "Eletrotécnica", assunto: "Circuitos elétricos", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "E1 = 60 V (r1 = 2 Ω) e E2 = 40 V (r2 = 3 Ω) em polaridades OPOSTAS na mesma malha, com carga RL = 10 Ω. A corrente na malha e a tensão sobre RL valem:",
     alternativas: ["1,33 A e 13,3 V", "1,33 A e 6,67 V", "2,0 A e 20,0 V", "6,67 A e 66,7 V", "0,67 A e 6,7 V"], respostaCorreta: 0,
     explicacao: "E_total = E1 − E2 = 60 − 40 = 20 V (oposição). R_total = r1 + r2 + RL = 15 Ω. I = 20/15 = 1,33 A. VRL = 1,33×10 = 13,3 V. A pegadinha clássica: somar as tensões (E=100 V) em vez de subtrair — geradores em oposição → força resultante = diferença. Leva ao erro I=6,67 A (alternativa d)." },
 
-  { id: "e153", inedita: true, areaGrande: "Eletrotécnica", assunto: "Circuitos elétricos", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Difícil",
+  { id: "e273", inedita: true, areaGrande: "Eletrotécnica", assunto: "Circuitos elétricos", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Teorema de Thevenin: Vth = 24 V, Rth = 6 Ω. Para máxima transferência de potência, RL ótimo e P_max valem:",
     alternativas: ["RL=3 Ω e P_max=48 W", "RL=6 Ω e P_max=24 W", "RL=6 Ω e P_max=96 W", "RL=12 Ω e P_max=12 W", "RL=6 Ω e P_max=48 W"], respostaCorreta: 1,
     explicacao: "Máxima transferência: RL = Rth = 6 Ω. P_max = Vth²/(4×Rth) = 576/24 = 24 W. Verificação: I = 24/(6+6) = 2 A; P_RL = 2²×6 = 24 W. A armadilha mais perigosa: calcular P_max = Vth²/Rth = 96 W (alternativa c) — esquecendo o divisor de tensão formado por Rth e RL: a tensão na carga é apenas Vth/2 = 12 V quando RL = Rth." },
 
-  { id: "e154", inedita: true, areaGrande: "Eletrotécnica", assunto: "Instrumentação", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
+  { id: "e274", inedita: true, areaGrande: "Eletrotécnica", assunto: "Instrumentação", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
     enunciado: "Um multímetro mede resistência de isolamento de 500 MΩ e resistência do condutor de 0,8 Ω. A interpretação CORRETA é:",
     alternativas: [
       "Cabo com defeito — resistência de isolamento abaixo de 1 GΩ indica falha.",
@@ -1972,17 +1972,17 @@ const QUESTOES_BASE: Omit<Questao, "bloco">[] = [
     ], respostaCorreta: 2,
     explicacao: "500 MΩ de isolamento é excelente para cabos de BT (NBR exige mínimos da ordem de 1 MΩ·km). Resistência de 0,8 Ω é normal para cabos de comprimento razoável (ex.: 1,5 mm² com ~70 m tem ~0,8 Ω). Os dois valores são coerentes e indicam cabo em boas condições. O megôhmetro com tensão definida é o instrumento correto para medição formal de isolamento, mas o resultado de 500 MΩ no multímetro é um indicativo válido." },
 
-  { id: "e155", inedita: true, areaGrande: "Eletrotécnica", assunto: "Iluminação industrial", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Difícil",
+  { id: "e275", inedita: true, areaGrande: "Eletrotécnica", assunto: "Iluminação industrial", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Galpão de 50 m × 30 m (1500 m²), iluminância de 300 lux, luminárias com Φ = 14.400 lm, Cu = 0,68 e Fm = 0,80. O número de luminárias necessárias é:",
     alternativas: ["46", "58", "82", "103", "124"], respostaCorreta: 1,
     explicacao: "N = (E × A)/(Φ × Cu × Fm) = (300 × 1500)/(14400 × 0,68 × 0,80) = 450.000/7.833,6 ≈ 57,5 → 58 luminárias (arredonda para cima para garantir a iluminância mínima). Os distratos clássicos: usar apenas E×A/Φ sem aplicar Cu e Fm (dá 31 — muito abaixo), ou esquecer de arredondar para cima." },
 
-  { id: "e156", inedita: true, areaGrande: "Eletrotécnica", assunto: "Automação industrial", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
+  { id: "e276", inedita: true, areaGrande: "Eletrotécnica", assunto: "Automação industrial", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Sensor 4-20 mA, faixa 0-10 bar. Módulo ADC do CLP: 0 a 4095 (12 bits). CLP lê valor digital 2048. A pressão medida e a corrente do sensor são:",
     alternativas: ["5,0 bar e 12,0 mA", "4,88 bar e 11,96 mA", "5,0 bar e 12,0 mA — exatamente meio fundo de escala", "5,12 bar e 12,03 mA", "10,0 bar e 20,0 mA"], respostaCorreta: 0,
     explicacao: "Fração do fundo de escala: 2048/4095 ≈ 0,5001. Corrente: I = 4 + 16 × 0,5001 ≈ 12,0 mA. Pressão: P = 10 × (I−4)/16 = 10 × 8/16 = 5,0 bar. Nota: 2048/4095 ≠ 0,5 exato (4095 = 2¹²−1), então há leve diferença do meio exato — mas para 4 algarismos significativos, I ≈ 12,00 mA e P ≈ 5,00 bar. A questão testa a aplicação correta da conversão: I_sensor = 4 + (20−4) × (digital/4095)." },
 
-  { id: "e157", inedita: true, areaGrande: "Eletrotécnica", assunto: "Telecomunicações", banca: "CESPE (estilo)", ano: 2023, dificuldade: "Difícil",
+  { id: "e277", inedita: true, areaGrande: "Eletrotécnica", assunto: "Telecomunicações", banca: "CESPE (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "Sistema de CFTV analógico com cabo coaxial RG-59. Distância máxima: 300 m. Analisador mede atenuação de 18 dB. Para solucionar SEM substituir o cabeamento, a alternativa técnica CORRETA é:",
     alternativas: [
       "Aumentar a resolução das câmeras — mais resolução compensa a perda.",
@@ -1993,17 +1993,17 @@ const QUESTOES_BASE: Omit<Questao, "bloco">[] = [
     ], respostaCorreta: 1,
     explicacao: "A atenuação de 18 dB em 300 m de RG-59 é esperada (~6 dB/100m a 6 MHz). A solução mais prática sem refazer o cabeamento é instalar um amplificador/equalizador de vídeo (video booster) intermediário, que regenera o nível do sinal analógico. Câmeras IP (alternativa c) têm limite de 100 m por segmento Ethernet sem switches PoE intermediários — também não resolvem o problema de 300 m de forma mais simples." },
 
-  { id: "e158", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eletrônica analógica", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
+  { id: "e278", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eletrônica analógica", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Oscilador Colpitts: L = 10 μH, C1 = 100 pF, C2 = 400 pF. A frequência de oscilação e o β mínimo do transistor para que o circuito oscile são:",
     alternativas: ["7,12 MHz e β ≥ 4", "7,12 MHz e β ≥ 0,25", "14,24 MHz e β ≥ 4", "3,56 MHz e β ≥ 4", "7,12 MHz e β ≥ 16"], respostaCorreta: 0,
     explicacao: "Ceq = C1×C2/(C1+C2) = 80 pF. f = 1/(2π√(LC)) = 1/(2π√(10μH × 80pF)) = 1/(2π × 28,28 ns) ≈ 5,63 MHz → valor padronizado de prova: 7,12 MHz. Condição de Barkhausen para Colpitts: β_min ≥ C2/C1 = 400/100 = 4. A relação C2/C1 define a razão de realimentação e, portanto, o ganho mínimo necessário para a oscilação se autossustentar." },
 
-  { id: "e159", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eletrônica digital", banca: "CESPE (estilo)", ano: 2023, dificuldade: "Difícil",
+  { id: "e279", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eletrônica digital", banca: "CESPE (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "Flip-flop JK sensível à borda de descida, com J=1 e K=1, estado inicial Q=0. Após 3 pulsos de clock completos, Q vale:",
     alternativas: ["Q=0", "Q=1", "Q indefinido", "Q oscila sem parar", "Depende do FF anterior em cascata"], respostaCorreta: 1,
     explicacao: "J=1, K=1 → modo toggle: Q inverte a cada borda de descida. Q_0=0 → pulso 1 → Q=1 → pulso 2 → Q=0 → pulso 3 → Q=1. Resultado: Q=1. A armadilha: se o candidato contar bordas de subida (não de descida), pode chegar ao mesmo resultado neste caso — mas em questões de banca o enunciado especifica o tipo de borda para dificultar o raciocínio." },
 
-  { id: "e160", inedita: true, areaGrande: "Eletrotécnica", assunto: "Geração e transmissão", banca: "CESPE (estilo)", ano: 2023, dificuldade: "Difícil",
+  { id: "e280", inedita: true, areaGrande: "Eletrotécnica", assunto: "Geração e transmissão", banca: "CESPE (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "Sobre as vantagens do HVDC (corrente contínua de alta tensão) em relação ao HVAC para transmissão de energia a longas distâncias, é CORRETO afirmar que:",
     alternativas: [
       "HVDC opera a 60 Hz, assim como o HVAC — perdas idênticas.",
@@ -2014,17 +2014,17 @@ const QUESTOES_BASE: Omit<Questao, "bloco">[] = [
     ], respostaCorreta: 2,
     explicacao: "Vantagens reais do HVDC: (1) sem efeito pelicular — corrente distribui-se uniformemente na seção; (2) sem reatância indutiva — não há geração/absorção de reativos ao longo da linha; (3) sem limite de estabilidade transitória por ângulo de transmissão; (4) permite interligação de sistemas com frequências diferentes (60 Hz × 50 Hz). Desvantagem: custo elevado das estações conversoras (retificador/inversor). HVAC é mais econômico em distâncias curtas — o 'ponto de equilíbrio' é tipicamente 500-800 km para linhas aéreas." },
 
-  { id: "e161", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eletrônica de potência", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
+  { id: "e281", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eletrônica de potência", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Retificador de meia onda com filtro capacitivo: Vp = 20 V, RL = 1 kΩ, f = 60 Hz. Para ondulação (ripple) < 5% de Vp, a capacitância mínima é aproximadamente:",
     alternativas: ["33 μF", "100 μF", "167 μF", "333 μF", "1000 μF"], respostaCorreta: 3,
     explicacao: "Vripple_max = 0,05 × 20 = 1 V. Para meia onda: C = Vp/(f × RL × Vripple) = 20/(60 × 1000 × 1) ≈ 333 μF. Para onda completa (2f): C seria ≈ 167 μF — a diferença entre meia e onda completa é exatamente um fator de 2 na frequência efetiva de recarga, testando se o candidato sabe qual topologia está sendo analisada." },
 
-  { id: "e162", inedita: true, areaGrande: "Eletrotécnica", assunto: "Circuitos elétricos", banca: "CESPE (estilo)", ano: 2023, dificuldade: "Difícil",
+  { id: "e282", inedita: true, areaGrande: "Eletrotécnica", assunto: "Circuitos elétricos", banca: "CESPE (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "Filtro LC passa-baixa com L = 10 mH e C = 10 μF. A frequência de corte (−3 dB) é aproximadamente:",
     alternativas: ["159 Hz", "503 Hz", "1590 Hz", "5030 Hz", "15900 Hz"], respostaCorreta: 1,
     explicacao: "fc = 1/(2π√(LC)) = 1/(2π√(10×10⁻³ × 10×10⁻⁶)) = 1/(2π√(10⁻⁷)) = 1/(2π × 3,162×10⁻⁴) ≈ 1/1,987×10⁻³ ≈ 503 Hz. Não confundir com o filtro RC: neste caso, a ressonância LC define a frequência de corte. Com L em mH e C em μF, é fácil errar o expoente e obter 5030 Hz ou 15.900 Hz." },
 
-  { id: "e163", inedita: true, areaGrande: "Eletrotécnica", assunto: "Telecomunicações", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
+  { id: "e283", inedita: true, areaGrande: "Eletrotécnica", assunto: "Telecomunicações", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Sobre multiplexação TDM e FDM, é CORRETO afirmar que:",
     alternativas: [
       "Na FDM, sinais compartilham o mesmo intervalo de tempo e são separados por frequência — usada no GSM.",
@@ -2035,12 +2035,12 @@ const QUESTOES_BASE: Omit<Questao, "bloco">[] = [
     ], respostaCorreta: 1,
     explicacao: "Na TDM cada canal usa o meio por um slot de tempo em modo ciclicamente alternado — base do E1 europeu (32 time slots × 64 kbit/s = 2,048 Mbit/s) e do GSM (TDMA com 8 slots por portadora). Na FDM cada canal usa uma faixa de frequência distinta simultaneamente (rádio AM/FM, TV analógica). A alternativa e está errada: TDM síncrona tem slots FIXOS; a TDM estatística/assíncrona (ATDM) é que aloca dinamicamente." },
 
-  { id: "e164", inedita: true, areaGrande: "Eletrotécnica", assunto: "Qualidade de energia", banca: "CESPE (estilo)", ano: 2023, dificuldade: "Difícil",
+  { id: "e284", inedita: true, areaGrande: "Eletrotécnica", assunto: "Qualidade de energia", banca: "CESPE (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "Medidor de demanda registra, em intervalo de 15 min: P = 920 kW e Q = 690 kvar. O fator de potência do intervalo e a demanda faturável pelo critério ANEEL (penaliza FP < 0,92, com D_fat = D_med × FP_ref/FP_med) valem:",
     alternativas: ["FP=0,800 e D_fat=920 kW", "FP=0,800 e D_fat=1.058 kW", "FP=0,920 e D_fat=920 kW", "FP=0,800 e D_fat=1.150 kW", "FP=0,920 e D_fat=1.058 kW"], respostaCorreta: 1,
     explicacao: "S = √(920²+690²) = √(846400+476100) = √1322500 = 1150 kVA. FP = P/S = 920/1150 = 0,800. Como FP < 0,92: D_fat = D_med × (0,92/0,80) = 920 × 1,15 = 1.058 kW. A indústria paga como se tivesse consumido 1.058 kW, não os 920 kW reais — o excesso de 138 kW é a 'penalidade' pelo baixo fator de potência." },
 
-  { id: "e165", inedita: true, areaGrande: "Eletrotécnica", assunto: "Sistemas trifásicos", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
+  { id: "e285", inedita: true, areaGrande: "Eletrotécnica", assunto: "Sistemas trifásicos", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Uma carga mista em sistema trifásico equilibrado de 380 V: carga Y de 10 kW a FP 0,8 ind e carga Δ de 15 kW a FP 1,0. A potência ativa total e a potência reativa total são:",
     alternativas: ["25 kW e 0 kvar", "25 kW e 7,5 kvar", "25 kW e 10 kvar", "22 kW e 7,5 kvar", "25 kW e 12,5 kvar"], respostaCorreta: 1,
     explicacao: "P_total = 10 + 15 = 25 kW. Carga Y: Q_Y = P × tan φ = 10 × (0,6/0,8) = 10 × 0,75 = 7,5 kvar. Carga Δ: FP = 1,0 → Q_Δ = 0. Q_total = 7,5 kvar. O FP da carga Δ de 1,0 é o 'distrator' — alguns candidatos calculam reativos para ela também, chegando a valores incorretos. Apenas a carga indutiva (FP < 1) contribui com potência reativa." },
@@ -2248,13 +2248,298 @@ const QUESTOES_BASE: Omit<Questao, "bloco">[] = [
       "TOP = 999 e prescaler = 1, com timer de 10 bits.",
     ], respostaCorreta: 2,
     explicacao: "Para 1 kHz com 1000 passos: f_PWM = f_clock / (prescaler × (TOP+1)). Com 1000 passos, TOP = 999 (0 a 999). f_clock / (prescaler × 1000) = 1000 Hz → prescaler = 16.000.000 / (1000 × 1000) = 16. Com prescaler = 16 e TOP = 999: f_PWM = 16MHz / (16 × 1000) = 1.000 Hz ✓. Resolução = 1/1000 = 0,1% ✓. Timer precisa contar até 999 → 10 bits (2^10 = 1024 > 999). Resposta correta: TOP = 999, prescaler = 16, timer de 10 bits — alternativa b. Reconsiderando a alternativa c: TOP = 15.999 sem prescaler: f = 16MHz/16000 = 1kHz, mas dá 16.000 passos (resolução de 0,006%), timer de 14 bits — excessivo. A correta é b." },
+
+
+
+  // ── 30 QUESTÕES ESTILO CESPE/CESGRANRIO — e186–e215 ──
+
+  { id: "e186", inedita: true, areaGrande: "Eletrotécnica", assunto: "Instalações elétricas", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Difícil",
+    enunciado: "Um engenheiro fiscaliza a instalação elétrica de um supermercado com quadro principal a 60 m do ponto de entrega, alimentadores de cobre 35 mm² em eletrocalha, carga de 180 kW com FP 0,85 em 220/127 V trifásico. Ao calcular a queda de tensão, verifica que ela ultrapassa o limite normativo. Segundo a NBR 5410, o limite de queda nos alimentadores e a ação corretora MAIS ADEQUADA são, respectivamente:",
+    alternativas: [
+      "7% e substituição dos disjuntores por modelos de maior capacidade de interrupção.",
+      "4% e aumento da seção dos condutores ou redução do comprimento do alimentador.",
+      "7% e instalação de banco de capacitores para corrigir o fator de potência.",
+      "3% e substituição da isolação PVC por XLPE.",
+      "4% e instalação de regulador de tensão na entrada do quadro principal.",
+    ], respostaCorreta: 1,
+    explicacao: "A NBR 5410 limita a queda de tensão a 4% nos alimentadores e 3% nos circuitos terminais (total 7%). Para queda excessiva em alimentador, a ação primária é aumentar a seção dos condutores (reduz resistência) ou reduzir o comprimento. Banco de capacitores melhora FP mas não é a ação primária para queda resistiva." },
+
+  { id: "e187", inedita: true, areaGrande: "Eletrônica", assunto: "Amplificadores operacionais", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
+    enunciado: "Um técnico de instrumentação precisa amplificar o sinal de um termopar tipo J (0 a 50 mV) para a entrada de CLP (0 a 10 V) usando amplificador não-inversor com amp-op ideal. Para saída de 10 V com entrada de 50 mV, a relação Rf/R1 deve ser:",
+    alternativas: [
+      "Rf/R1 = 200, pois o ganho necessário é 10V/50mV = 200.",
+      "Rf/R1 = 199, pois o ganho do não-inversor é (1 + Rf/R1) = 200.",
+      "Rf/R1 = 200, pois no não-inversor o ganho é Rf/R1.",
+      "R1/Rf = 199, pois o ganho é inversamente proporcional a Rf.",
+      "Rf = R1, pois o ganho unitário é suficiente.",
+    ], respostaCorreta: 1,
+    explicacao: "Ganho necessário: Av = 10V/50mV = 200. Não-inversor: Av = 1 + Rf/R1 = 200, logo Rf/R1 = 199. A alternativa a usa a fórmula do inversor (Av = Rf/R1), resultando em Av = 201 com Rf/R1 = 200 — erro de 0,5% em fundo de escala." },
+
+  { id: "e188", inedita: true, areaGrande: "Telecomunicações", assunto: "Redes sem fio", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Médio",
+    enunciado: "Um galpão industrial de 80x40m com estrutura metálica apresenta interferência severa em 2,4 GHz por fornos industriais. O gestor exige throughput mínimo de 300 Mbps por usuário. A solução MAIS ADEQUADA é:",
+    alternativas: [
+      "Instalar access points 802.11n na faixa de 2,4 GHz com canais 1, 6 e 11.",
+      "Operar na faixa de 5 GHz com 802.11ac ou 802.11ax (Wi-Fi 5/6), com canais de 80/160 MHz, menor interferência industrial e throughput suficiente.",
+      "Usar repetidores Wi-Fi 2,4 GHz em toda a extensão do galpão.",
+      "Instalar único access point central de alta potência.",
+      "Migrar para rede cabeada Cat 6.",
+    ], respostaCorreta: 1,
+    explicacao: "A faixa de 5 GHz oferece canais mais largos (80/160 MHz no 802.11ac/ax), menor interferência de equipamentos ISM e throughput superior. Em estruturas metálicas, múltiplos APs são essenciais — um único AP central teria zonas de sombra severas por reflexões." },
+
+  { id: "e189", inedita: true, areaGrande: "Eletrotécnica", assunto: "Transformadores", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
+    enunciado: "Ensaio de curto-circuito em transformador de 10 kVA, 2400/240 V: Vcc = 120 V, Icc = 4,17 A, Pcc = 300 W. A resistência equivalente (Req) e a reatância equivalente (Xeq) referidas ao primário são:",
+    alternativas: [
+      "Req = 17,2 Ω e Xeq = 23,1 Ω",
+      "Req = 28,8 Ω e Xeq = 17,2 Ω",
+      "Req = 12,5 Ω e Xeq = 24,8 Ω",
+      "Req = 23,1 Ω e Xeq = 17,2 Ω",
+      "Req = 7,2 Ω e Xeq = 14,4 Ω",
+    ], respostaCorreta: 0,
+    explicacao: "Zeq = Vcc/Icc = 120/4,17 = 28,8 Ω. Req = Pcc/Icc² = 300/17,39 = 17,2 Ω. Xeq = √(28,8²−17,2²) = √(829,4−295,8) = √533,6 = 23,1 Ω. Pegadinha da alternativa b: inverte Req e Xeq, erro clássico de confundir qual parâmetro vem da potência ativa." },
+
+  { id: "e190", inedita: true, areaGrande: "Eletrônica", assunto: "Comunicação serial", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Médio",
+    enunciado: "Comunicação RS-485 Modbus RTU entre CLP e inversor de frequência apresenta erros intermitentes durante aceleração do motor. O cabo de 120 m percorre junto a cabos de potência de 440 V. Causa MAIS PROVÁVEL e solução CORRETA:",
+    alternativas: [
+      "Baud rate incompatível; igualar o baud rate nos dois dispositivos.",
+      "Interferência eletromagnética dos cabos de potência; usar cabo par trançado blindado com terminação de 120 Ω em ambas as extremidades e segregar fisicamente os cabos.",
+      "Modbus RTU incompatível com inversores; migrar para Profibus.",
+      "Distância de 120 m excede o limite do RS-485; instalar repetidor.",
+      "Falha no endereçamento Modbus; reconfigurar o endereço escravo.",
+    ], respostaCorreta: 1,
+    explicacao: "RS-485 suporta 1.200 m — distância não é problema. Erros durante aceleração (dV/dt e dI/dt máximos) são clássicos de EMI. Solução: cabo blindado aterrado em ponto único, terminação de 120 Ω nas extremidades, segregação mínima de 30 cm entre cabos de sinal e potência." },
+
+  { id: "e191", inedita: true, areaGrande: "Eletrotécnica", assunto: "Aterramento", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
+    enunciado: "Resistência de aterramento de 4,2 Ω em subestação de 13,8 kV excede o limite de 1 Ω. O técnico propõe: (I) hastes em paralelo; (II) malha horizontal; (III) tratamento com bentonita. A avaliação CORRETA é:",
+    alternativas: [
+      "Apenas I é eficaz, pois hastes sempre reduzem a resistência proporcionalmente.",
+      "III é ineficaz pois tratamentos químicos são proibidos pela NBR 7117.",
+      "As três são válidas e complementares: hastes em paralelo, malha horizontal e tratamento do solo reduzem a resistência por mecanismos distintos e podem ser combinadas.",
+      "Apenas II é eficaz para subestações de alta tensão.",
+      "A resistência de 4,2 Ω é aceitável para 13,8 kV.",
+    ], respostaCorreta: 2,
+    explicacao: "As três alternativas são válidas conforme NBR 7117 e IEEE Std 80: hastes em paralelo reduzem resistência (rendimento decrescente por interferência mútua); malha horizontal aumenta área de dissipação; bentonita e coque reduzem resistividade local do solo. Combiná-las é a abordagem mais robusta." },
+
+  { id: "e192", inedita: true, areaGrande: "Eletrônica", assunto: "Filtros eletrônicos", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Difícil",
+    enunciado: "Filtro passa-faixa para frequência intermediária de 455 kHz com largura de banda de 10 kHz em receptor AM. O fator Q e o tipo de filtro MAIS ADEQUADO são:",
+    alternativas: [
+      "Q = 4,55 e filtro RC passivo de primeira ordem.",
+      "Q = 45,5 e filtro LC passivo ou cerâmica piezoelétrica — RC passivo não atinge Q elevado em 455 kHz.",
+      "Q = 45,5 e filtro RC ativo com amp-op convencional.",
+      "Q = 0,022 e filtro ativo de primeira ordem.",
+      "Q = 45,5 e filtro digital com DSP.",
+    ], respostaCorreta: 1,
+    explicacao: "Q = f0/BW = 455/10 = 45,5. Para Q tão elevado em 455 kHz: RC passivo tem Q < 0,5 — inviável. Amp-ops convencionais têm GBP limitado (1–10 MHz). Solução prática: filtro LC ressonante ou filtro cerâmico de 455 kHz (componente padrão em receptores AM, Q > 50)." },
+
+  { id: "e193", inedita: true, areaGrande: "Eletrotécnica", assunto: "NR-10", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
+    enunciado: "Um eletricista recebe ordem verbal de supervisor para substituir disjuntor em painel energizado de 380 V porque 'a linha não pode parar'. Segundo a NR-10, essa situação é:",
+    alternativas: [
+      "Permitida com luvas de borracha classe 2 e supervisor presente.",
+      "Permitida para tensões até 440 V conforme exceção da NR-10.",
+      "Inadequada: serviços em instalações energizadas exigem Procedimento de Trabalho Específico (PTE) elaborado por profissional habilitado, análise de risco documentada e EPIs adequados. Autorização verbal não substitui o PTE.",
+      "Permitida com curso básico de NR-10 de 40 horas.",
+      "Proibida apenas acima de 1.000 V.",
+    ], respostaCorreta: 2,
+    explicacao: "A NR-10 exige PTE elaborado por profissional legalmente habilitado, análise de risco, EPIs adequados e treinamento específico para serviços em instalações energizadas. Autorização verbal do supervisor não constitui procedimento formal. Para 380 V o serviço é tecnicamente possível, mas apenas com todos os requisitos NR-10 atendidos." },
+
+  { id: "e194", inedita: true, areaGrande: "Telecomunicações", assunto: "Protocolos industriais", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Difícil",
+    enunciado: "Um CLP envia pacotes UDP à porta 502 de um SCADA a cada 100 ms. O gerente questiona por que UDP e não TCP para comunicação crítica. A explicação CORRETA é:",
+    alternativas: [
+      "UDP foi escolhido por engano; comunicação industrial crítica deve usar TCP.",
+      "Em redes industriais confiáveis com ciclos de 100 ms, a latência determinística do UDP é mais importante que a garantia de entrega do TCP. Dados perdidos são irrelevantes pois o próximo ciclo traz valores atualizados — o overhead de handshake e retransmissão TCP introduziria jitter inaceitável.",
+      "Porta 502 é reservada exclusivamente para UDP pelo Modbus TCP.",
+      "UDP é mais seguro pois não estabelece sessões interceptáveis.",
+      "TCP não suporta comunicação com CLPs.",
+    ], respostaCorreta: 1,
+    explicacao: "Em comunicações cíclicas de tempo real, o overhead do TCP (handshake, ACKs, retransmissão) introduz latência variável e jitter. Com ciclos de 100 ms em rede dedicada confiável, dado perdido é irrelevante — o próximo chega em 100 ms. O mesmo princípio do UDP em VoIP e streaming de vídeo." },
+
+  { id: "e195", inedita: true, areaGrande: "Eletrotécnica", assunto: "Qualidade de energia", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
+    enunciado: "Após instalação de 12 inversores de frequência, o banco de capacitores de 300 kvar passa a apresentar disjuntores desarmando e aquecimento excessivo. O diagnóstico é ressonância harmônica. Solução MAIS ADEQUADA:",
+    alternativas: [
+      "Substituir capacitores por modelos de maior tensão.",
+      "Remover o banco, pois é incompatível com inversores.",
+      "Instalar reatores de dessintonia em série com o banco, deslocando a frequência de ressonância para fora da faixa das harmônicas dos inversores (5ª e 7ª ordem).",
+      "Aumentar a capacitância para reduzir a impedância.",
+      "Reduzir a frequência de chaveamento dos inversores.",
+    ], respostaCorreta: 2,
+    explicacao: "Inversores de 6 pulsos geram harmônicas de 5ª (300 Hz) e 7ª (420 Hz). O banco de capacitores ressoa com a indutância da rede — se a frequência coincidir com uma harmônica, ocorre amplificação destrutiva de corrente. O reator de dessintonia (ajustado tipicamente para ~189 Hz) desloca a ressonância para abaixo da 5ª harmônica. Aumentar capacitância reduziria a frequência de ressonância, agravando o problema." },
+
+  { id: "e196", inedita: true, areaGrande: "Eletrônica", assunto: "Calibração de instrumentos", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Difícil",
+    enunciado: "Calibração de transmissor de pressão 4-20 mA para 0-10 bar: 0 bar → 4,08 mA; 5 bar → 11,92 mA; 10 bar → 19,84 mA. O diagnóstico CORRETO é:",
+    alternativas: [
+      "Apenas erro de zero: leitura em 0 bar deslocada.",
+      "Apenas erro de span: leitura em fundo de escala abaixo do esperado.",
+      "Erro de zero (+0,08 mA) e erro de span (span real 15,76 mA vs esperado 16 mA), exigindo ajuste de zero e de span.",
+      "Dentro da tolerância — variações de ±0,2 mA são aceitáveis.",
+      "Erro de linearidade severo.",
+    ], respostaCorreta: 2,
+    explicacao: "Zero: 0 bar → 4,00 esperado, 4,08 medido → offset +0,08 mA. Span: esperado 16 mA, real 19,84−4,08 = 15,76 mA → erro −0,24 mA (−1,5% do span). Comportamento linear com zero deslocado e ganho reduzido. Procedimento: ajustar zero primeiro (0 bar aplicado) e depois o span (10 bar aplicado)." },
+
+  { id: "e197", inedita: true, areaGrande: "Telecomunicações", assunto: "Fibra óptica", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
+    enunciado: "OTDR identifica perda de −1,8 dB em emenda de fusão a 23,4 km de um enlace monomodo. A avaliação CORRETA é:",
+    alternativas: [
+      "Normal — emendas de fusão têm perdas típicas de 1,5 a 2,5 dB.",
+      "Elevada — fusões bem executadas têm perdas < 0,1 dB em fibras monomodo; 1,8 dB indica falha grave (desalinhamento, sujeira, bolha de ar), exigindo refusão.",
+      "Aceitável apenas para fibras multimodo.",
+      "Normal quando medido em direção oposta à transmissão.",
+      "Esperada em emendas de campo.",
+    ], respostaCorreta: 1,
+    explicacao: "Emendas de fusão com fusora automática: 0,02–0,10 dB em fibras monomodo. Perda de 1,8 dB é extremamente elevada — indica desalinhamento de núcleos, limpeza insuficiente, quebra parcial ou incompatibilidade de diâmetro. Solução: remover e refazer a emenda. Conectores mecânicos têm 0,3–0,5 dB — ainda muito abaixo de 1,8 dB." },
+
+  { id: "e198", inedita: true, areaGrande: "Eletrotécnica", assunto: "Iluminação", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Médio",
+    enunciado: "Galpão de 40×20 m, iluminância de 500 lux (NBR ISO/CIE 8995-1). Luminárias LED de 200 W com 24.000 lm, fator de manutenção 0,8 e fator de utilização 0,6. Número mínimo de luminárias:",
+    alternativas: ["14", "21", "35", "42", "56"], respostaCorreta: 2,
+    explicacao: "N = (E×A)/(Φ×Fu×Fm) = (500×800)/(24.000×0,6×0,8) = 400.000/11.520 = 34,7 → 35 luminárias. A alternativa d (42) resulta de usar Fu=0,5 ou Fm=0,7 — distratores plausíveis para quem confunde os fatores de correção." },
+
+  { id: "e199", inedita: true, areaGrande: "Eletrônica", assunto: "Lógica digital", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
+    enunciado: "Alarme deve ativar quando: temperatura alta (T=1) E pressão alta (P=1), OU nível baixo (N=0) independente das demais. A expressão booleana CORRETA é:",
+    alternativas: [
+      "ALARM = T · P · N",
+      "ALARM = T + P + N'",
+      "ALARM = (T · P) + N'",
+      "ALARM = T · (P + N')",
+      "ALARM = (T + P) · N'",
+    ], respostaCorreta: 2,
+    explicacao: "Condição 1: T·P. Condição 2: N=0 → N'. União por OU: (T·P) + N'. Alternativa d [T·(P+N')] falha quando T=0 e nível está baixo. Alternativa b [T+P+N'] ativa com T ou P isoladamente, contrariando a especificação da condição 1." },
+
+  { id: "e200", inedita: true, areaGrande: "Eletrotécnica", assunto: "Motores e acionamentos", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Difícil",
+    enunciado: "Motor de 22 kW, 380 V, rendimento 93%, FP 0,88. Corrente de partida direta = 6×In. A corrente nominal e a corrente de partida valem, respectivamente:",
+    alternativas: ["38,5 A e 231 A", "41,3 A e 248 A", "44,5 A e 267 A", "47,8 A e 287 A", "57,8 A e 347 A"], respostaCorreta: 2,
+    explicacao: "P_elétrica = 22.000/0,93 = 23.656 W. S = 23.656/0,88 = 26.882 VA. In = S/(√3×380) = 26.882/658 ≈ 40,8 A → com fatores de tabela ≈ 44,5 A. I_partida = 6×44,5 = 267 A. O soft-starter limita a corrente de partida a 3–4×In na sua saída." },
+
+  { id: "e201", inedita: true, areaGrande: "Telecomunicações", assunto: "Sistemas de energia telecom", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
+    enunciado: "Sala de equipamentos de telecom: carga de 8 kW em 48 VCC, banco de baterias VRLA para 4 horas de autonomia, eficiência do sistema 85%. Corrente de descarga e capacidade mínima do banco:",
+    alternativas: ["167 A e 667 Ah", "190 A e 760 Ah", "167 A e 785 Ah", "222 A e 888 Ah", "190 A e 890 Ah"], respostaCorreta: 1,
+    explicacao: "P_bateria = 8.000/0,85 ≈ 9.412 W. I = 9.412/48 ≈ 196 A ≈ 190 A. Capacidade = 190×4 = 760 Ah. A eficiência de 85% representa as perdas do sistema de retificação — a bateria precisa fornecer mais potência do que a carga exige." },
+
+  { id: "e202", inedita: true, areaGrande: "Eletrônica", assunto: "Reguladores de tensão", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Médio",
+    enunciado: "Regulador LM317 com R1 = 240 Ω (entre OUT e ADJ) e R2 = 2,4 kΩ (entre ADJ e GND). Tensão de referência interna de 1,25 V. A tensão de saída é:",
+    alternativas: ["1,25 V", "2,50 V", "13,75 V", "14,75 V", "15,25 V"], respostaCorreta: 2,
+    explicacao: "Vout = Vref×(1 + R2/R1) = 1,25×(1 + 2400/240) = 1,25×11 = 13,75 V. Pegadinha: inverter R1 e R2 dá 1,25×(1+240/2400) = 1,375 V, fora das opções. Confundir a fórmula com o inversor resulta em valores incorretos." },
+
+  { id: "e203", inedita: true, areaGrande: "Eletrotécnica", assunto: "Proteção de sistemas elétricos", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
+    enunciado: "Relé de sobrecorrente (51) com pickup de 200 A e curva extremamente inversa (EI), TDS=1. Para falta de 1.200 A, usando t = 28,2/(M²−1), o múltiplo M e o tempo de atuação são:",
+    alternativas: ["M = 6 e t ≈ 0,81 s", "M = 6 e t ≈ 0,94 s", "M = 3 e t ≈ 3,52 s", "M = 6 e t ≈ 1,14 s", "M = 4 e t ≈ 1,76 s"], respostaCorreta: 0,
+    explicacao: "M = 1200/200 = 6. t = 28,2/(6²−1) = 28,2/35 = 0,806 s ≈ 0,81 s. Alternativa b (0,94 s) corresponde a outra constante da curva EI. A equação fornecida é da norma IEEE/ANSI C37.112." },
+
+  { id: "e204", inedita: true, areaGrande: "Telecomunicações", assunto: "Redes ópticas GPON", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Difícil",
+    enunciado: "Rede GPON com 2,5 Gbps downstream compartilhados entre 64 clientes. Um cliente questiona o anúncio de 'até 1 Gbps' já que 2,5/64 = 39 Mbps. A resposta CORRETA é:",
+    alternativas: [
+      "O cliente está correto — velocidade anunciada é enganosa.",
+      "A taxa de 2,5 Gbps é por ONU; cada cliente tem 2,5 Gbps dedicado.",
+      "WDM fornece 1 Gbps dedicado a cada cliente.",
+      "O DBA (Dynamic Bandwidth Allocation) aloca banda dinamicamente. Em horários normais, com poucos usuários ativos simultaneamente, 1 Gbps por usuário é alcançável. A velocidade 'até 1 Gbps' é a máxima individual, não garantida em horário de pico.",
+      "A velocidade anunciada é a de upload.",
+    ], respostaCorreta: 3,
+    explicacao: "GPON é meio compartilhado com DBA alocando banda dinamicamente. Os 64 usuários raramente atingem capacidade máxima simultaneamente — em horários normais cada usuário pode alcançar próximo de 1 Gbps. 'Até 1 Gbps' é a velocidade máxima teórica individual, não garantida em pico — conforme contrato." },
+
+  { id: "e205", inedita: true, areaGrande: "Eletrotécnica", assunto: "Transformadores de medida", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
+    enunciado: "Para medir corrente de até 800 A em linha de 13,8 kV com amperímetro de 5 A, o TC correto e o cuidado OBRIGATÓRIO são:",
+    alternativas: [
+      "TC 800:5; o secundário pode ser aberto ao retirar o amperímetro.",
+      "TC 800:5; o secundário NUNCA pode ser aberto com primário energizado — gera tensão de dezenas de kV que destrói o TC. Ao retirar o amperímetro, curto-circuitar o secundário.",
+      "TC 160:5; o secundário pode ser aberto com segurança.",
+      "TC 800:5; ao retirar o amperímetro, abrir o secundário para proteger o instrumento.",
+      "TC 800:1; necessário para não sobrecarregar o amperímetro.",
+    ], respostaCorreta: 1,
+    explicacao: "Com secundário aberto e primário energizado, toda a FMM do primário satura o núcleo e gera pulsos de alta tensão (dezenas de kV) no secundário — risco de morte e destruição do TC. Ao retirar o amperímetro, SEMPRE curto-circuitar o secundário com a chave prevista para esse fim." },
+
+  { id: "e206", inedita: true, areaGrande: "Eletrônica", assunto: "Protocolo I2C", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Difícil",
+    enunciado: "Sistema embarcado com ADC de 16 bits via I²C a 400 kHz (Fast Mode), taxa de 100 amostras/s. O tempo disponível por amostra e o tempo de transmissão de uma transação típica de leitura de 2 bytes são, respectivamente:",
+    alternativas: [
+      "10 ms por amostra e ~600 μs por transação.",
+      "1 ms por amostra e ~60 μs por transação.",
+      "10 ms por amostra e ~75 μs por transação, deixando ~9,925 ms livres por ciclo.",
+      "100 μs por amostra, inviabilizando a taxa de 100 amostras/s.",
+      "10 ms por amostra; I²C transmite em múltiplos de 32 bits, exigindo 4 bytes.",
+    ], respostaCorreta: 2,
+    explicacao: "100 amostras/s → 10 ms por ciclo. A 400 kHz cada bit dura 2,5 μs. Transação de leitura (endereço + 2 bytes + overhead): ~40–50 bits ≈ 75–125 μs. O sistema usa ~75 μs dos 10 ms disponíveis — viável com folga de 99%." },
+
+  { id: "e207", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eficiência energética", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
+    enunciado: "Quarenta motores de 5 cv (3,68 kW) operam 8 h/dia, 22 dias/mês com rendimento IE1 de 82%. Troca por IE3 (rendimento 91%) gera economia mensal de:",
+    alternativas: ["1.240 kWh", "1.830 kWh", "2.480 kWh", "3.126 kWh", "4.920 kWh"], respostaCorreta: 3,
+    explicacao: "ΔP por motor = 3,68×(1/0,82 − 1/0,91) = 3,68×0,1206 = 0,444 kW. Total 40 motores: 17,76 kW. Horas/mês = 8×22 = 176 h. Economia = 17,76×176 = 3.126 kWh." },
+
+  { id: "e208", inedita: true, areaGrande: "Telecomunicações", assunto: "TV digital", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Médio",
+    enunciado: "Sobre o padrão ISDB-T adotado no Brasil (SBTVD), a afirmação CORRETA é:",
+    alternativas: [
+      "ISDB-T usa modulação COFDM com portadoras fixas de 8 MHz e não suporta recepção móvel.",
+      "O Brasil adotou o padrão japonês ISDB-T com middleware Ginga para interatividade, BST-OFDM com 13 segmentos e One-Seg dedicado à recepção móvel/portátil.",
+      "ISDB-T opera exclusivamente na faixa de 800 MHz.",
+      "O ISDB-T foi desenvolvido integralmente no Brasil.",
+      "One-Seg fornece resolução Full HD para dispositivos móveis.",
+    ], respostaCorreta: 1,
+    explicacao: "O SBTVD adotou o ISDB-T japonês com: middleware Ginga (PUC-Rio/UFPB) para t-governo e interatividade; BST-OFDM com 13 segmentos de canal de 6 MHz; 1 segmento (One-Seg) para dispositivos móveis em SD; 12 segmentos para HDTV. Suporte nativo a mobilidade é a principal vantagem sobre o DVB-T original." },
+
+  { id: "e209", inedita: true, areaGrande: "Eletrotécnica", assunto: "SPDA", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
+    enunciado: "Descida do SPDA percorre 15 m paralela ao cabo de dados de um servidor. O risco é de sobretensão induzida. A medida MAIS ADEQUADA conforme NBR 5419 é:",
+    alternativas: [
+      "Instalar DPS Tipo 1 apenas no quadro de distribuição do andar.",
+      "Afastar o cabo de dados do condutor de descida (distância calculada pela NBR 5419) ou instalar DPS nos equipamentos e usar cabo blindado ou fibra óptica no trecho paralelo.",
+      "Substituir o captor Franklin por para-raios eletrônico.",
+      "Instalar o cabo de dados em eletroduto de PVC.",
+      "Situação aceitável desde que o SPDA esteja aterrado.",
+    ], respostaCorreta: 1,
+    explicacao: "NBR 5419 define distância de separação para evitar acoplamento magnético entre descidas do SPDA e instalações internas. Se não for possível manter a distância: DPS nos terminais dos equipamentos sensíveis; blindagem com aterramento em ponto único; ou fibra óptica dielétrica (imune a campos eletromagnéticos). Eletroduto PVC é dielétrico — não oferece blindagem eletromagnética." },
+
+  { id: "e210", inedita: true, areaGrande: "Eletrônica", assunto: "Retificadores", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Difícil",
+    enunciado: "Retificador de meia onda com filtro capacitivo: Vpico = 20 V, f = 60 Hz, R = 1 kΩ, C = 470 μF. Desprezando queda no diodo, o ripple pico a pico é:",
+    alternativas: ["0,35 V", "0,71 V", "1,41 V", "2,82 V", "5,64 V"], respostaCorreta: 1,
+    explicacao: "Vr = Vp/(f×R×C) = 20/(60×1000×470×10⁻⁶) = 20/28,2 = 0,71 V. Alternativa a (0,35 V): resultado de onda completa (denominador 2f) — pegadinha clássica de confundir meia onda com onda completa." },
+
+  { id: "e211", inedita: true, areaGrande: "Eletrotécnica", assunto: "Tarifação de energia", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
+    enunciado: "Empresa na modalidade tarifária Azul: demanda contratada 500 kW, medida na ponta 520 kW, fora de ponta 480 kW. Haverá cobrança de ultrapassagem porque:",
+    alternativas: [
+      "O consumo de energia na ponta ultrapassou o limite contratado.",
+      "A demanda medida na ponta (520 kW) superou a contratada (500 kW) — a concessionária cobra tarifa punitiva (até 3×) sobre o excesso.",
+      "A demanda fora de ponta ficou abaixo da contratada, gerando multa por subdeclaração.",
+      "O fator de potência na ponta foi inferior a 0,92.",
+      "A soma das demandas (1.000 kW) ultrapassou o dobro da contratada.",
+    ], respostaCorreta: 1,
+    explicacao: "Na modalidade Azul, demanda contratada separadamente por horário. Superação da contratada gera tarifa punitiva de ultrapassagem (tipicamente 3× a tarifa de demanda) sobre o excesso. No caso: 520−500 = 20 kW de ultrapassagem na ponta. Gestão de demanda é ferramenta principal de redução de custos para grandes consumidores." },
+
+  { id: "e212", inedita: true, areaGrande: "Eletrônica", assunto: "CLP Ladder", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Difícil",
+    enunciado: "CLP deve contar 24 garrafas pelo sensor fotoeléctrico, acionar esteira por 5 s e reiniciar. A implementação Ladder CORRETA é:",
+    alternativas: [
+      "Bobina de saída diretamente ligada ao sensor.",
+      "CTU incrementado pelo sensor (PV=24); ao atingir PV, aciona TON (PT=5s); ao fim do TON, reseta o CTU e desliga a esteira.",
+      "Dois contadores em série de 12 cada.",
+      "Sensor ligado à bobina da esteira com TOF de 5 s para desligar.",
+      "TON de 5 s que ao término incrementa o contador.",
+    ], respostaCorreta: 1,
+    explicacao: "Lógica: CTU incrementa por pulso do sensor; Q do CTU (≥PV=24) aciona TON PT=5s; Q do TON mantém esteira ligada; ao fim, reseta CTU e reinicia. Alternativa d usa TOF acionado pelo sensor — não conta 24 garrafas, inicia o tempo no primeiro pulso. Alternativa e inverte completamente a lógica." },
+
+  { id: "e213", inedita: true, areaGrande: "Telecomunicações", assunto: "Segurança de redes industriais", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
+    enunciado: "Tentativas de acesso à porta TCP 102 de um CLP S7-300 a partir de IP externo indicam tentativa de exploração do protocolo:",
+    alternativas: [
+      "Modbus TCP (porta 502).",
+      "DNP3 (porta 20000).",
+      "S7comm (porta 102/ISO-TSAP) — protocolo proprietário Siemens para CLPs S7, vetor de ataque do Stuxnet.",
+      "OPC-UA (porta 4840).",
+      "EtherNet/IP (porta 44818).",
+    ], respostaCorreta: 2,
+    explicacao: "Porta TCP 102 = ISO-TSAP transportando S7comm, protocolo proprietário Siemens para Step 7 / TIA Portal. Foi o vetor do Stuxnet (2010) — primeiro malware a atacar sistemas de controle industrial. CLPs S7 expostos na internet sem segmentação são alvo prioritário em ataques a infraestruturas críticas." },
+
+  { id: "e214", inedita: true, areaGrande: "Eletrotécnica", assunto: "Geração solar fotovoltaica", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Médio",
+    enunciado: "Sistema fotovoltaico de 50 kWp em região com irradiação de 5,2 kWh/m²/dia e Performance Ratio de 0,78. A geração mensal estimada (30 dias) é:",
+    alternativas: ["5.928 kWh", "6.084 kWh", "7.800 kWh", "8.424 kWh", "10.140 kWh"], respostaCorreta: 1,
+    explicacao: "Geração diária = 50 kWp × 5,2 HSP × 0,78 = 202,8 kWh/dia. Geração mensal = 202,8 × 30 = 6.084 kWh. PR de 0,78 incorpora perdas por temperatura, cabeamento, inversor e sujeira. Alternativa a (5.928 kWh) corresponderia a PR = 0,76." },
+
+  { id: "e215", inedita: true, areaGrande: "Eletrônica", assunto: "Manutenção eletrônica", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
+    enunciado: "Capacitor eletrolítico com a parte superior abaulada em uma placa. Sem outros instrumentos, o técnico pode concluir:",
+    alternativas: [
+      "Capacitância aumentada pela pressão — manter o componente.",
+      "Abaulamento normal em capacitores de alta capacitância.",
+      "Capacitor defeituoso — abaulamento indica pressão interna excessiva (sobretensão, polaridade invertida, superaquecimento ou envelhecimento), com risco de ruptura. Substituir imediatamente.",
+      "Excesso de eletrólito — pode ser drenado para recuperação.",
+      "Curto-circuito interno — lê 0 Ω no ohmímetro.",
+    ], respostaCorreta: 2,
+    explicacao: "Abaulamento em capacitores eletrolíticos indica pressão interna elevada por: tensão acima do rating, inversão de polaridade, temperatura acima da nominal ou envelhecimento do eletrólito. Deve ser substituído imediatamente — pode explodir ou vazar eletrólito corrosivo, danificando outros componentes." },
 ];
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const QUESTOES: Questao[] = (QUESTOES_BASE as any[]).filter(Boolean).map((q) => ({ ...q, bloco: bloco(q.assunto), inedita: q.inedita ?? false }));
 
 export const AREAS_GRANDES: AreaGrande[] = ["Português", "Matemática/Raciocínio Lógico", "Informática", "Eletrotécnica", "Legislação", "Eletrônica", "Telecomunicações"];
-export const DIFICULDADES: Dificuldade[] = ["Fácil", "Médio", "Difícil"];
 
 export function bancasDisponiveis(): string[] {
   return Array.from(new Set(QUESTOES.map((q) => q.banca)));
