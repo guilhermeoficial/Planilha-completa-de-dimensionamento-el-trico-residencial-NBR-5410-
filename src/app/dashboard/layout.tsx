@@ -26,18 +26,17 @@ export default async function DashboardLayout({ children }: { children: React.Re
 
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="flex items-center justify-between border-b border-panel-border bg-bg-elevated px-6 py-3.5">
-        <Link href="/dashboard" className="flex items-center gap-2 font-display text-base font-bold">
+      <header className="flex items-center justify-between border-b border-panel-border bg-bg px-6 py-3">
+        <Link href="/dashboard" className="flex items-center gap-2 font-display text-sm font-bold tracking-tight">
           <span className="inline-block h-2 w-2 rounded-full bg-accent" />
           Voltis
-        </Link>
-        <div className="flex items-center gap-3 text-sm text-muted">
           {ehAdmin && (
-            <span className="rounded-full bg-accent/15 px-2.5 py-1 font-mono text-xs font-semibold uppercase tracking-wide text-accent">
+            <span className="ml-2 rounded-full bg-accent/15 px-2 py-0.5 font-mono text-xs font-semibold uppercase tracking-wide text-accent">
               Conta mestre
             </span>
           )}
-          <span className="hidden sm:inline">{data.user?.email}</span>
+        </Link>
+        <div className="flex items-center gap-2">
           <TemaToggle />
           {!ehAdmin && <ManageSubscriptionButton />}
           <LogoutButton />

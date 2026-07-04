@@ -5,10 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import type { ProjectRow, AmbienteRow, AmbienteTueRow, CircuitoRow, MotorRow } from "@/lib/types";
-import {
-  Plus, FolderOpen, Copy, Wrench, GraduationCap,
-  ClipboardList, ArrowRight, MoreVertical,
-} from "lucide-react";
+import { Plus, FolderOpen, Copy, Wrench, GraduationCap, ClipboardList, ArrowRight, Zap, BookOpen, BarChart3, Sparkles } from "lucide-react";
 
 export default function DashboardPage() {
   const supabase = createClient();
@@ -20,8 +17,18 @@ export default function DashboardPage() {
   const [cliente, setCliente] = useState("");
   const [salvando, setSalvando] = useState(false);
   const [duplicando, setDuplicando] = useState<string | null>(null);
+  const [nomeUsuario, setNomeUsuario] = useState("");
 
-  useEffect(() => { carregar(); }, []);
+  useEffect(() => {
+    carregar();
+    async function pegarUsuario() {
+      const { data } = await supabase.auth.getUser();
+      if (data.user?.email) {
+        setNomeUsuario(data.user.email.split("@")[0]);
+      }
+    }
+    pegarUsuario();
+  }, []);
 
   async function carregar() {
     setCarregando(true);
@@ -73,174 +80,168 @@ export default function DashboardPage() {
     router.push(`/dashboard/projects/${novoProjeto.id}`);
   }
 
-  const ultimoProjeto = projetos[0];
-
   return (
-    <div className="mx-auto max-w-6xl px-6 py-10">
+    <div className="min-h-screen">
 
-      {/* Título */}
-      <div className="mb-8">
-        <h1 className="font-display text-3xl font-bold">Bem-vindo ao Hub Voltis</h1>
-        <p className="mt-1 text-sm text-muted">Escolha por onde quer começar.</p>
+      {/* ── Saudação ── */}
+      <div className="border-b border-panel-border bg-bg-elevated/60 px-8 py-6">
+        <p className="font-mono text-xs uppercase tracking-widest text-muted">Bem-vindo de volta</p>
+        <h1 className="mt-1 font-display text-2xl font-bold capitalize">{nomeUsuario || "Voltis"}</h1>
+        <p className="mt-0.5 text-sm text-muted">Por onde você quer começar hoje?</p>
       </div>
 
-      {/* ── 3 cards grandes ── */}
-      <div className="grid gap-5 lg:grid-cols-3">
+      {/* ── 3 Cards principais ── */}
+      <div className="grid min-h-[calc(100vh-130px)] grid-cols-1 md:grid-cols-3">
 
-        {/* ─ Card Ferramentas & Projetos ─ */}
-        <div className="flex flex-col rounded-2xl border border-phase-s/40 bg-panel overflow-hidden">
-          {/* topo colorido */}
-          <div className="flex items-center gap-3 bg-phase-s/10 px-5 py-4 border-b border-phase-s/20">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-phase-s/20">
-              <Wrench size={20} className="text-phase-s" />
-            </div>
-            <div>
-              <p className="font-display text-base font-bold">Projetos &</p>
-              <p className="font-display text-base font-bold">Ferramentas</p>
-            </div>
-          </div>
+        {/* ─ QUESTÕES ─ */}
+        <Link
+          href="/dashboard/cursos/questoes"
+          className="group relative flex flex-col overflow-hidden border-r border-panel-border bg-panel transition-colors hover:bg-accent/5"
+        >
+          {/* faixa lateral de cor */}
+          <div className="absolute left-0 top-0 h-full w-1 bg-accent opacity-60 group-hover:opacity-100 transition-opacity" />
 
-          {/* conteúdo */}
-          <div className="flex flex-1 flex-col p-5">
-            {/* último projeto */}
-            <div className="mb-3 flex items-center justify-between">
-              <p className="text-xs text-muted">Projetos recentes</p>
-              <button
-                onClick={() => setMostrarForm((v) => !v)}
-                className="flex items-center gap-1 rounded-md bg-phase-s/15 px-2.5 py-1 text-xs font-medium text-phase-s hover:bg-phase-s/25 transition-colors"
-              >
-                <Plus size={12} /> Novo projeto
-              </button>
+          <div className="flex flex-1 flex-col px-10 py-12">
+            {/* ícone grande */}
+            <div className="mb-8 flex h-16 w-16 items-center justify-center rounded-2xl border border-accent/30 bg-accent/10 transition-all group-hover:scale-110 group-hover:bg-accent/20">
+              <ClipboardList size={32} className="text-accent" />
             </div>
 
-            {mostrarForm && (
-              <form onSubmit={criarProjeto} className="mb-3 flex flex-col gap-2">
-                <input required placeholder="Nome do projeto" value={nome} onChange={(e) => setNome(e.target.value)} className="rounded-md border border-panel-border bg-bg px-3 py-1.5 text-xs" />
-                <input placeholder="Cliente (opcional)" value={cliente} onChange={(e) => setCliente(e.target.value)} className="rounded-md border border-panel-border bg-bg px-3 py-1.5 text-xs" />
-                <button disabled={salvando} className="rounded-md bg-phase-s px-3 py-1.5 text-xs font-medium text-bg hover:opacity-90 disabled:opacity-50">
-                  {salvando ? "Criando..." : "Criar"}
-                </button>
-              </form>
-            )}
+            <p className="font-mono text-xs uppercase tracking-widest text-accent">Módulo 01</p>
+            <h2 className="mt-2 font-display text-3xl font-bold leading-tight">Simulados &<br />Questões</h2>
+            <p className="mt-4 text-sm leading-relaxed text-muted">
+              Banco com questões inéditas de Eletrotécnica, Eletrônica e Telecomunicações.
+              Gabarito comentado, filtros por banca, estatísticas e caderno de erros.
+            </p>
 
-            <div className="flex-1 space-y-2">
-              {carregando ? (
-                <p className="text-xs text-muted">Carregando...</p>
-              ) : projetos.length === 0 ? (
-                <div className="flex items-center gap-2 rounded-lg border border-dashed border-panel-border p-3 text-xs text-muted">
-                  <FolderOpen size={14} /> Nenhum projeto ainda.
+            <div className="mt-6 space-y-2">
+              {[
+                { icon: Sparkles, text: "Questões inéditas exclusivas" },
+                { icon: BarChart3, text: "Estatísticas de desempenho" },
+                { icon: BookOpen, text: "Gabarito comentado completo" },
+              ].map(({ icon: Icon, text }) => (
+                <div key={text} className="flex items-center gap-2 text-xs text-muted">
+                  <Icon size={12} className="text-accent shrink-0" />
+                  {text}
                 </div>
-              ) : (
-                projetos.slice(0, 3).map((p) => (
-                  <Link key={p.id} href={`/dashboard/projects/${p.id}`}
-                    className="group flex items-center justify-between rounded-lg border border-panel-border bg-bg-elevated px-3 py-2.5 transition-colors hover:border-phase-s/50"
-                  >
-                    <div className="min-w-0">
-                      <p className="truncate text-xs font-semibold">{p.nome}</p>
-                      <p className="text-xs text-muted">{p.cliente || "Sem cliente"} · {p.tensao_v}V · {new Date(p.created_at).toLocaleDateString("pt-BR")}</p>
-                    </div>
-                    <div className="flex items-center gap-1 shrink-0">
-                      <button onClick={(e) => duplicarProjeto(p, e)} disabled={duplicando === p.id} title="Duplicar" className="rounded p-1 text-muted opacity-0 hover:text-phase-s group-hover:opacity-100 transition-opacity">
-                        <Copy size={13} />
-                      </button>
-                      <MoreVertical size={13} className="text-muted opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </div>
-                  </Link>
-                ))
+              ))}
+            </div>
+
+            <div className="mt-auto pt-10 flex items-center gap-2 font-semibold text-accent">
+              Iniciar questões <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+            </div>
+          </div>
+        </Link>
+
+        {/* ─ CURSOS ─ */}
+        <Link
+          href="/dashboard/cursos"
+          className="group relative flex flex-col overflow-hidden border-r border-panel-border bg-panel transition-colors hover:bg-phase-t/5"
+        >
+          <div className="absolute left-0 top-0 h-full w-1 bg-phase-t opacity-60 group-hover:opacity-100 transition-opacity" />
+
+          <div className="flex flex-1 flex-col px-10 py-12">
+            <div className="mb-8 flex h-16 w-16 items-center justify-center rounded-2xl border border-phase-t/30 bg-phase-t/10 transition-all group-hover:scale-110 group-hover:bg-phase-t/20">
+              <GraduationCap size={32} className="text-phase-t" />
+            </div>
+
+            <p className="font-mono text-xs uppercase tracking-widest text-phase-t">Módulo 02</p>
+            <h2 className="mt-2 font-display text-3xl font-bold leading-tight">Cursos &<br />Módulos</h2>
+            <p className="mt-4 text-sm leading-relaxed text-muted">
+              Conteúdo completo de Eletrotécnica, Eletrônica e Instrumentação.
+              Dicas interativas, equações renderizadas e exemplos resolvidos.
+            </p>
+
+            <div className="mt-6 space-y-2">
+              {[
+                { icon: BookOpen,    text: "5 módulos por área temática" },
+                { icon: Sparkles,    text: "Dicas visuais interativas" },
+                { icon: BarChart3,   text: "Progresso salvo automaticamente" },
+              ].map(({ icon: Icon, text }) => (
+                <div key={text} className="flex items-center gap-2 text-xs text-muted">
+                  <Icon size={12} className="text-phase-t shrink-0" />
+                  {text}
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-auto pt-10 flex items-center gap-2 font-semibold text-phase-t">
+              Ir para os cursos <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+            </div>
+          </div>
+        </Link>
+
+        {/* ─ FERRAMENTAS ─ */}
+        <div className="group relative flex flex-col overflow-hidden bg-panel">
+          <div className="absolute left-0 top-0 h-full w-1 bg-phase-s opacity-60 group-hover:opacity-100 transition-opacity" />
+
+          <div className="flex flex-1 flex-col px-10 py-12">
+            <div className="mb-8 flex h-16 w-16 items-center justify-center rounded-2xl border border-phase-s/30 bg-phase-s/10 transition-all group-hover:scale-110 group-hover:bg-phase-s/20">
+              <Wrench size={32} className="text-phase-s" />
+            </div>
+
+            <p className="font-mono text-xs uppercase tracking-widest text-phase-s">Módulo 03</p>
+            <h2 className="mt-2 font-display text-3xl font-bold leading-tight">Projetos &<br />Ferramentas</h2>
+            <p className="mt-4 text-sm leading-relaxed text-muted">
+              Dimensionamento NBR 5410, projetos elétricos residenciais e industriais,
+              calculadoras e conversores técnicos.
+            </p>
+
+            {/* Projetos recentes */}
+            <div className="mt-6">
+              <div className="mb-2 flex items-center justify-between">
+                <p className="text-xs text-muted">Projetos recentes</p>
+                <button
+                  onClick={() => setMostrarForm(v => !v)}
+                  className="flex items-center gap-1 text-xs text-phase-s hover:underline"
+                >
+                  <Plus size={11} /> Novo
+                </button>
+              </div>
+
+              {mostrarForm && (
+                <form onSubmit={criarProjeto} className="mb-3 flex flex-col gap-2">
+                  <input required placeholder="Nome do projeto" value={nome} onChange={e => setNome(e.target.value)} className="rounded-md border border-panel-border bg-bg px-3 py-1.5 text-xs" />
+                  <input placeholder="Cliente (opcional)" value={cliente} onChange={e => setCliente(e.target.value)} className="rounded-md border border-panel-border bg-bg px-3 py-1.5 text-xs" />
+                  <button disabled={salvando} className="rounded-md bg-phase-s px-3 py-1.5 text-xs font-medium text-bg hover:opacity-90 disabled:opacity-50">
+                    {salvando ? "Criando..." : "Criar"}
+                  </button>
+                </form>
               )}
-            </div>
 
-            {/* botões inferiores */}
-            <div className="mt-4 space-y-2">
-              <Link href="/dashboard/ferramentas" className="flex w-full items-center justify-center gap-2 rounded-lg border border-panel-border py-2 text-sm text-muted hover:border-phase-s hover:text-phase-s transition-colors">
-                <Wrench size={14} /> Calculadoras & Conversores
-              </Link>
-              <Link href="/dashboard/projects" className="flex w-full items-center justify-center gap-2 rounded-lg bg-phase-s py-2 text-sm font-medium text-bg hover:opacity-90 transition-opacity">
-                Acessar Projetos <ArrowRight size={14} />
-              </Link>
-            </div>
-          </div>
-        </div>
-
-        {/* ─ Card Cursos ─ */}
-        <div className="flex flex-col rounded-2xl border border-phase-t/40 bg-panel overflow-hidden">
-          <div className="flex items-center gap-3 bg-phase-t/10 px-5 py-4 border-b border-phase-t/20">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-phase-t/20">
-              <GraduationCap size={20} className="text-phase-t" />
-            </div>
-            <p className="font-display text-base font-bold">Seus Cursos</p>
-          </div>
-
-          <div className="flex flex-1 flex-col p-5">
-            <p className="mb-3 text-xs text-muted">Módulos disponíveis</p>
-
-            <div className="flex-1 space-y-2">
-              {[
-                "Eletrotécnica Básica",
-                "Normas Regulamentadoras — NR10",
-                "Máquinas Elétricas",
-                "Eletrônica Aplicada",
-                "Instalações Industriais",
-              ].map((curso) => (
-                <Link key={curso} href="/dashboard/cursos"
-                  className="flex items-center rounded-lg border border-panel-border bg-bg-elevated px-3 py-2.5 text-xs transition-colors hover:border-phase-t/50 hover:text-phase-t"
-                >
-                  {curso}
-                </Link>
-              ))}
-            </div>
-
-            {/* barra de progresso */}
-            <div className="mt-4">
-              <div className="mb-1 flex justify-between text-xs text-muted">
-                <span>Progresso geral</span>
-                <span>40%</span>
-              </div>
-              <div className="h-1.5 overflow-hidden rounded-full bg-bg-elevated">
-                <div className="h-full w-[40%] rounded-full bg-phase-t transition-all" />
+              <div className="space-y-1.5">
+                {carregando ? (
+                  <p className="text-xs text-muted">Carregando...</p>
+                ) : projetos.length === 0 ? (
+                  <div className="flex items-center gap-2 rounded-lg border border-dashed border-panel-border p-3 text-xs text-muted">
+                    <FolderOpen size={13} /> Nenhum projeto ainda.
+                  </div>
+                ) : (
+                  projetos.slice(0, 3).map((p) => (
+                    <Link key={p.id} href={`/dashboard/projects/${p.id}`}
+                      className="flex items-center justify-between rounded-lg border border-panel-border bg-bg-elevated px-3 py-2 text-xs transition-colors hover:border-phase-s/50"
+                    >
+                      <div className="min-w-0">
+                        <p className="truncate font-semibold">{p.nome}</p>
+                        <p className="text-muted">{p.cliente || "Sem cliente"} · {p.tensao_v}V</p>
+                      </div>
+                      <button onClick={e => duplicarProjeto(p, e)} disabled={duplicando === p.id} className="ml-2 shrink-0 rounded p-1 text-muted hover:text-phase-s">
+                        <Copy size={12} />
+                      </button>
+                    </Link>
+                  ))
+                )}
               </div>
             </div>
 
-            <Link href="/dashboard/cursos" className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg bg-phase-t py-2 text-sm font-medium text-bg hover:opacity-90 transition-opacity">
-              Ir para Aulas <ArrowRight size={14} />
-            </Link>
-          </div>
-        </div>
-
-        {/* ─ Card Simulados & Questões ─ */}
-        <div className="flex flex-col rounded-2xl border border-accent/40 bg-panel overflow-hidden">
-          <div className="flex items-center gap-3 bg-accent/10 px-5 py-4 border-b border-accent/20">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent/20">
-              <ClipboardList size={20} className="text-accent" />
+            <div className="mt-auto pt-6 grid grid-cols-2 gap-2">
+              <Link href="/dashboard/ferramentas" className="flex items-center justify-center gap-1.5 rounded-lg border border-panel-border py-2 text-xs text-muted hover:border-phase-s hover:text-phase-s transition-colors">
+                <Zap size={12} /> Calculadoras
+              </Link>
+              <Link href="/dashboard/projects" className="flex items-center justify-center gap-1.5 rounded-lg bg-phase-s py-2 text-xs font-medium text-bg hover:opacity-90 transition-opacity">
+                Ver projetos <ArrowRight size={12} />
+              </Link>
             </div>
-            <div>
-              <p className="font-display text-base font-bold">Simulados</p>
-              <p className="font-display text-base font-bold">& Questões</p>
-            </div>
-          </div>
-
-          <div className="flex flex-1 flex-col p-5">
-            <p className="mb-3 text-xs text-muted">Categorias disponíveis</p>
-
-            <div className="flex-1 space-y-2">
-              {[
-                "Eletrotécnica Geral",
-                "Eletrônica e Instrumentação",
-                "Telecomunicações",
-                "NBR 5410 e Normas",
-                "Questões Inéditas ✨",
-              ].map((cat) => (
-                <Link key={cat} href="/dashboard/cursos/questoes"
-                  className="flex items-center rounded-lg border border-panel-border bg-bg-elevated px-3 py-2.5 text-xs transition-colors hover:border-accent/50 hover:text-accent"
-                >
-                  {cat}
-                </Link>
-              ))}
-            </div>
-
-            <Link href="/dashboard/cursos/questoes" className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg bg-accent py-2 text-sm font-medium text-bg hover:opacity-90 transition-opacity">
-              Iniciar Questões <ArrowRight size={14} />
-            </Link>
           </div>
         </div>
 
