@@ -2544,9 +2544,6 @@ export const AREAS_GRANDES: AreaGrande[] = ["Português", "Matemática/Raciocín
 
 export const DIFICULDADES: Dificuldade[] = ["Fácil", "Médio", "Difícil"];
 
-export const BLOCOS = ["Básicos", "Bloco I", "Bloco II", "Bloco III"] as const;
-export type Bloco = typeof BLOCOS[number];
-
 export function bancasDisponiveis(): string[] {
   return Array.from(new Set(QUESTOES.map((q) => q.banca)));
 }
