@@ -2542,6 +2542,11 @@ export const QUESTOES: Questao[] = (QUESTOES_BASE as any[]).filter(Boolean).map(
 
 export const AREAS_GRANDES: AreaGrande[] = ["Português", "Matemática/Raciocínio Lógico", "Informática", "Eletrotécnica", "Legislação", "Eletrônica", "Telecomunicações"];
 
+export const DIFICULDADES: Dificuldade[] = ["Fácil", "Médio", "Difícil"];
+
+export const BLOCOS = ["Básicos", "Bloco I", "Bloco II", "Bloco III"] as const;
+export type Bloco = typeof BLOCOS[number];
+
 export function bancasDisponiveis(): string[] {
   return Array.from(new Set(QUESTOES.map((q) => q.banca)));
 }
@@ -2554,4 +2559,3 @@ export function assuntosDisponiveis(areaGrande?: AreaGrande): string[] {
   const filtradas = areaGrande ? QUESTOES.filter((q) => q.areaGrande === areaGrande) : QUESTOES;
   return Array.from(new Set(filtradas.map((q) => q.assunto)));
 }
-// fix
