@@ -595,6 +595,388 @@ export const AREAS: Area[] = [
           },
         ],
       },
+      // ── MÓDULO 6 — CIRCUITOS ELÉTRICOS COMPLETO ──────────────────────────
+      {
+        slug: "circuitos-eletricos-completo",
+        titulo: "Módulo 6 — Circuitos Elétricos: Do Básico ao Avançado",
+        descricao: "CC e CA, Thévenin, Norton, superposição, supermalha, supernó, máxima transferência de potência, diodo, LED e muito mais.",
+        bloco: "Bloco I",
+        paginas: [
+
+          // ── SEÇÃO CC ────────────────────────────────────────────────────
+          {
+            titulo: "6.1 — Elementos de Circuito: Fontes e Resistores",
+            conteudo: [
+              "Um circuito elétrico é formado por elementos interligados que permitem o fluxo de corrente elétrica. Os elementos se dividem em ativos (fontes — fornecem energia) e passivos (resistores, capacitores, indutores — absorvem ou armazenam energia).",
+              "Fonte de tensão ideal: mantém tensão constante nos seus terminais independentemente da corrente que fornece. Símbolo: círculo com + e −. Exemplo: bateria ideal, gerador ideal. Na prática, toda fonte real tem resistência interna em série.",
+              "Fonte de corrente ideal: mantém corrente constante nos seus terminais independentemente da tensão que aparece neles. Símbolo: círculo com seta. Usada em modelagem de transistores e amplificadores.",
+              "Fonte de tensão real: modelada como fonte ideal em série com resistência interna Rint. A tensão nos terminais cai com o aumento da corrente: Vterm = Voc − Rint × I, onde Voc é a tensão em circuito aberto.",
+              "Fonte de corrente real: modelada como fonte ideal em paralelo com resistência interna. Corrente nos terminais: Iterm = Icc − V/Rint, onde Icc é a corrente de curto-circuito.",
+              "O resistor é o elemento passivo mais básico — converte energia elétrica em calor (efeito Joule). Resistores reais têm tolerância (±1%, ±5%, ±10%), coeficiente de temperatura e potência máxima nominal. Operar acima da potência nominal danifica o componente.",
+              "O código de cores dos resistores: cada cor representa um dígito (preto=0, marrom=1, vermelho=2, laranja=3, amarelo=4, verde=5, azul=6, violeta=7, cinza=8, branco=9). Faixas de tolerância: ouro=±5%, prata=±10%, sem faixa=±20%.",
+            ],
+            equacoes: [
+              { latex: "V_{term} = V_{oc} - R_{int} \\\\cdot I", legenda: "Tensão nos terminais de fonte real: Voc = tensão em aberto, Rint = resistência interna" },
+              { latex: "P_{max\\ resistor} = I^2 \\\\cdot R = \\\\dfrac{V^2}{R}", legenda: "Potência dissipada no resistor — não exceder a potência nominal" },
+            ],
+            conteudo2: [
+              "Exemplo: bateria de 12 V com resistência interna de 0,5 Ω fornecendo 8 A. Tensão nos terminais: V = 12 − 0,5 × 8 = 12 − 4 = 8 V. A queda de 4 V ocorre internamente, aquecendo a bateria.",
+            ],
+          },
+
+          {
+            titulo: "6.2 — Leis de Kirchhoff: KCL e KVL",
+            conteudo: [
+              "As Leis de Kirchhoff são as ferramentas fundamentais de análise de qualquer circuito elétrico. São consequências diretas da conservação de carga (KCL) e da conservação de energia (KVL).",
+              "KCL — Lei dos Nós (1ª Lei de Kirchhoff): a soma algébrica de todas as correntes em qualquer nó de um circuito é zero. Convenção: correntes que entram no nó são positivas, correntes que saem são negativas. Equivale a dizer que carga não se acumula nos nós.",
+              "KVL — Lei das Malhas (2ª Lei de Kirchhoff): a soma algébrica de todas as tensões em qualquer malha fechada é zero. Percorrendo a malha em um sentido fixo: se passamos pelo + antes do − de um elemento, a tensão é positiva; se passamos pelo − antes do +, é negativa.",
+              "Convenção de sinais para KVL: ao percorrer um resistor no sentido da corrente assumida, a queda de tensão é −R×I (queda). Ao percorrer uma fonte do − para o +, a contribuição é +V (elevação). Ao percorrer uma fonte do + para o −, é −V (queda).",
+              "Método sistemático de análise: (1) Identificar os nós e malhas do circuito. (2) Atribuir correntes e referências. (3) Aplicar KCL nos nós ou KVL nas malhas. (4) Resolver o sistema de equações. (5) Verificar se as correntes negativas indicam sentido inverso ao assumido.",
+              "Para circuitos simples (uma malha), a KVL basta. Para circuitos com múltiplas malhas, usam-se métodos sistemáticos: análise nodal (KCL em todos os nós) ou análise de malhas (KVL em todas as malhas independentes).",
+            ],
+            equacoes: [
+              { latex: "\\\\sum_{k} I_k = 0 \\\\quad \\\\text{(em qualquer nó)}", legenda: "KCL: soma das correntes no nó = zero" },
+              { latex: "\\\\sum_{k} V_k = 0 \\\\quad \\\\text{(em qualquer malha fechada)}", legenda: "KVL: soma das tensões na malha = zero" },
+            ],
+            conteudo2: [
+              "Exemplo KVL: malha com fonte 12 V, R1 = 2 Ω e R2 = 4 Ω em série. KVL: +12 − 2I − 4I = 0. 6I = 12. I = 2 A. Tensão em R1: V1 = 2×2 = 4 V. Tensão em R2: V2 = 4×2 = 8 V. Verificação: 4 + 8 = 12 V ✓.",
+              "Exemplo KCL: nó com correntes I1 = 3 A entrando, I2 = 1 A saindo, I3 = ? KCL: 3 − 1 − I3 = 0. I3 = 2 A saindo.",
+            ],
+          },
+
+          {
+            titulo: "6.3 — Método das Malhas (Análise por Correntes de Malha)",
+            conteudo: [
+              "O método das malhas é uma técnica sistemática para analisar circuitos com múltiplas malhas. Em vez de usar correntes de ramo, define-se uma corrente de malha circulando em cada malha independente do circuito.",
+              "Procedimento: (1) Identificar as malhas independentes (malhas que não podem ser divididas em malhas menores). (2) Atribuir corrente de malha a cada uma (sentido horário por convenção). (3) Escrever a equação KVL para cada malha, usando as correntes de malha. (4) Resolver o sistema linear de equações. (5) A corrente real em cada ramo compartilhado é a diferença das correntes de malha adjacentes.",
+              "Em ramos compartilhados entre duas malhas, a tensão no resistor é R × (I1 − I2), onde I1 e I2 são as correntes de malha. O sinal depende de qual malha está sendo analisada.",
+              "O método das malhas é especialmente eficiente quando o número de malhas independentes é menor que o número de nós independentes — gera menos equações e facilita a solução.",
+              "Para N malhas independentes, o sistema tem N equações e N incógnitas (as correntes de malha). A solução pode ser obtida por substituição, escalonamento ou regra de Cramer.",
+            ],
+            equacoes: [
+              { latex: "\\\\sum R_{kk} \\\\cdot I_k - \\\\sum R_{kj} \\\\cdot I_j = \\\\sum V_{fontes}", legenda: "Equação de malha k: Rkk = soma das resistências da malha k, Rkj = resistências compartilhadas" },
+            ],
+            conteudo2: [
+              "Exemplo: circuito com duas malhas. Malha 1 (I1): +12 − 3I1 − 2(I1−I2) = 0 → 5I1 − 2I2 = 12. Malha 2 (I2): −2(I2−I1) − 4I2 − 6 = 0 → −2I1 + 6I2 = −6. Resolvendo: I1 = 66/26 ≈ 2,54 A, I2 = −6/26 ≈ −0,23 A (sentido inverso ao assumido).",
+            ],
+          },
+
+          {
+            titulo: "6.4 — Supermalha",
+            conteudo: [
+              "A supermalha surge quando uma fonte de corrente está localizada no ramo compartilhado entre duas malhas. Nesse caso, não é possível escrever diretamente a KVL para cada malha separadamente, pois a tensão na fonte de corrente é desconhecida.",
+              "Para criar a supermalha: combina-se as duas malhas que contêm a fonte de corrente em uma única malha maior, excluindo o ramo com a fonte de corrente. Escreve-se a KVL para essa malha combinada.",
+              "A equação de restrição: a diferença entre as correntes de malha nas duas malhas adjacentes à fonte de corrente é igual ao valor da fonte de corrente. Essa equação complementa a KVL da supermalha.",
+              "A supermalha pode envolver mais de duas malhas se a fonte de corrente for adjacente a várias. O procedimento é o mesmo: combinar todas as malhas afetadas, excluir o ramo da fonte de corrente e escrever a restrição.",
+              "Resumo: supermalha = KVL ao redor da malha combinada (sem o ramo da fonte de corrente) + equação de restrição da fonte de corrente.",
+            ],
+            equacoes: [
+              { latex: "I_1 - I_2 = I_s \\\\quad \\\\text{(equação de restrição da supermalha)}", legenda: "A diferença das correntes de malha = valor da fonte de corrente" },
+            ],
+            conteudo2: [
+              "Exemplo: fonte de corrente de 4 A entre os nós das malhas I1 e I2 (com I1 saindo pelo + da fonte). Restrição: I1 − I2 = 4. Supermalha (KVL ao redor, excluindo a fonte de corrente): − R1×I1 − R3×I2 + V_fonte = 0. Com R1=2Ω, R3=3Ω, V_fonte=10V: −2I1 − 3I2 + 10 = 0. Sistema: I1 − I2 = 4 e 2I1 + 3I2 = 10. Solução: I1 = 4,4 A, I2 = 0,4 A.",
+            ],
+          },
+
+          {
+            titulo: "6.5 — Método dos Nós (Análise Nodal)",
+            conteudo: [
+              "O método dos nós usa tensões de nó como variáveis. Define-se um nó de referência (terra, potencial zero) e calcula-se a tensão de todos os outros nós em relação a esse referencial.",
+              "Procedimento: (1) Identificar todos os nós. (2) Escolher o nó de referência (geralmente o de maior número de conexões). (3) Atribuir tensão de nó a cada nó não-referência. (4) Aplicar KCL em cada nó não-referência, expressando correntes em termos das tensões de nó. (5) Resolver o sistema.",
+              "Corrente em resistor entre dois nós: I = (V1 − V2)/R, fluindo de V1 para V2 se V1 > V2. Na KCL, correntes que saem do nó são positivas, que chegam são negativas (ou vice-versa — o importante é ser consistente).",
+              "Para N nós não-referência, o sistema tem N equações com N incógnitas (tensões de nó). Geralmente eficiente quando N é pequeno.",
+              "O método nodal é mais eficiente que o de malhas quando o circuito tem poucos nós mas muitas malhas — típico em circuitos eletrônicos com muitos componentes em paralelo.",
+            ],
+            equacoes: [
+              { latex: "\\\\sum \\\\dfrac{V_k - V_j}{R_{kj}} = \\\\sum I_{fontes \\text{ no nó } k}", legenda: "KCL no nó k: soma das correntes saindo = soma das fontes de corrente" },
+            ],
+            conteudo2: [
+              "Exemplo: dois nós (V1 e V2) com referência em terra. Fonte de 10V em série com R1=2Ω conectando terra ao nó V1. R2=4Ω entre V1 e V2. R3=6Ω conectando V2 ao terra. KCL em V1: (V1−10)/2 + (V1−V2)/4 = 0 → 3V1 − V2 = 20. KCL em V2: (V2−V1)/4 + V2/6 = 0 → −3V1 + 5V2 = 0. Solução: V1 = 8,33 V, V2 = 5 V.",
+            ],
+          },
+
+          {
+            titulo: "6.6 — Supernó",
+            conteudo: [
+              "O supernó surge quando uma fonte de tensão conecta dois nós não-referência. Nesse caso, a tensão entre os dois nós é conhecida (igual ao valor da fonte), mas a corrente na fonte é desconhecida — impossível escrever KCL separada para cada um.",
+              "Para criar o supernó: aplica-se KCL ao redor da superfície que engloba ambos os nós e a fonte de tensão (como uma 'bolha'). As correntes que entram e saem dessa superfície são somadas.",
+              "A equação de restrição do supernó: a diferença de tensão entre os dois nós é igual à tensão da fonte. Essa equação, combinada com a KCL do supernó, completa o sistema.",
+              "O supernó é a contrapartida nodal da supermalha: supermalha trata fonte de corrente entre malhas; supernó trata fonte de tensão entre nós.",
+              "Se o supernó contiver mais de uma fonte de tensão (em série), inclui-se todas na equação de restrição.",
+            ],
+            equacoes: [
+              { latex: "V_1 - V_2 = V_s \\\\quad \\\\text{(equação de restrição do supernó)}", legenda: "Diferença de tensão entre os nós do supernó = tensão da fonte" },
+            ],
+            conteudo2: [
+              "Exemplo: fonte de tensão de 6V conectando os nós V1 e V2 (V1 = V2 + 6). R1=3Ω de V1 ao terra. R2=5Ω de V2 ao terra. Fonte de corrente de 2A entrando no nó V1. KCL do supernó (superfície englobando V1 e V2): V1/3 + V2/5 = 2. Restrição: V1 − V2 = 6. Sistema: V1/3 + V2/5 = 2 e V1 = V2 + 6. Solução: V2 = 0 V, V1 = 6 V. Verificação: 6/3 + 0/5 = 2 A ✓.",
+            ],
+          },
+
+          {
+            titulo: "6.7 — Teorema da Superposição",
+            conteudo: [
+              "O teorema da superposição afirma que, em um circuito linear com múltiplas fontes independentes, a resposta (tensão ou corrente) em qualquer elemento é igual à soma algébrica das respostas causadas por cada fonte independente atuando sozinha.",
+              "Para aplicar a superposição: analisa-se o circuito N vezes (uma para cada fonte independente). A cada análise, todas as outras fontes independentes são desativadas: fontes de tensão são substituídas por curto-circuito (fio); fontes de corrente são substituídas por circuito aberto.",
+              "A resposta total é a soma algébrica das respostas parciais. Importante: fontes dependentes NUNCA são desativadas — permanecem ativas em todas as análises.",
+              "Atenção: o teorema da superposição se aplica a tensões e correntes (grandezas lineares), mas NÃO se aplica diretamente a potências (grandeza não-linear — P = I²R ou V²/R). A potência total NÃO é a soma das potências individuais.",
+              "A superposição é especialmente útil quando o circuito tem fontes de tipos diferentes (tensão e corrente) ou quando fontes de valores diferentes facilitam análises separadas.",
+              "Limitações: aplica-se apenas a circuitos lineares (componentes com relação V×I linear — resistores, capacitores e indutores ideais). Não se aplica a circuitos com diodos, transistores operando fora da região linear, etc.",
+            ],
+            equacoes: [
+              { latex: "V_{total} = V_1' + V_2' + \\\\cdots + V_n'", legenda: "Superposição: resposta total = soma das respostas de cada fonte atuando isoladamente" },
+              { latex: "P_{total} \\\\neq P_1' + P_2' + \\\\cdots \\\\quad \\\\text{(superposição NÃO vale para potência)}", legenda: "CUIDADO: potência não obedece ao princípio de superposição" },
+            ],
+            conteudo2: [
+              "Exemplo: circuito com fonte de tensão V1=12V e fonte de corrente I2=3A, com R1=4Ω e R2=6Ω. Análise 1 (só V1, abrir I2): I' = 12/(4+6) = 1,2 A. V_R2' = 1,2×6 = 7,2 V. Análise 2 (só I2, curto V1): divisor de corrente, I_R2'' = 3×4/(4+6) = 1,2 A. V_R2'' = 1,2×6 = 7,2 V. Total: V_R2 = 7,2 + 7,2 = 14,4 V.",
+            ],
+          },
+
+          {
+            titulo: "6.8 — Transformação de Fontes",
+            conteudo: [
+              "A transformação de fontes é uma técnica que permite converter uma fonte de tensão em série com resistor em uma fonte de corrente em paralelo com o mesmo resistor (e vice-versa), sem alterar o comportamento externo do circuito.",
+              "Conversão fonte de tensão → fonte de corrente: Is = Vs/R. A resistência R permanece a mesma, mas vai de série para paralelo. O sentido da corrente deve ser preservado.",
+              "Conversão fonte de corrente → fonte de tensão: Vs = Is × R. A resistência R vai de paralelo para série. O polo + fica no terminal onde a corrente entrava.",
+              "A transformação é equivalente nos terminais: a tensão em aberto e a corrente de curto são iguais antes e depois da transformação. Isso é a base do Teorema de Thévenin e Norton.",
+              "A transformação de fontes simplifica circuitos complexos combinando fontes e resistores em sequência, reduzindo progressivamente a complexidade até uma forma que permite fácil análise.",
+              "Limitação: fontes ideais (tensão ideal sem resistência em série, ou corrente ideal sem resistência em paralelo) NÃO podem ser transformadas.",
+            ],
+            equacoes: [
+              { latex: "I_s = \\\\dfrac{V_s}{R} \\\\quad \\\\Leftrightarrow \\\\quad V_s = I_s \\\\cdot R", legenda: "Transformação equivalente entre fonte de tensão (com R série) e fonte de corrente (com R paralelo)" },
+            ],
+            conteudo2: [
+              "Uso prático: simplificar circuitos com múltiplas fontes e resistores combinando-os progressivamente por transformações de fonte até obter um único equivalente Thévenin ou Norton.",
+            ],
+          },
+
+          {
+            titulo: "6.9 — Teorema de Thévenin",
+            conteudo: [
+              "O Teorema de Thévenin é um dos teoremas mais poderosos da análise de circuitos. Afirma que qualquer circuito linear com fontes e resistores, visto por um par de terminais (A e B), pode ser substituído por uma fonte de tensão Vth em série com uma resistência Rth.",
+              "Vth (tensão de Thévenin) é a tensão em circuito aberto nos terminais A-B — a tensão que aparece nos terminais quando nada está conectado a eles.",
+              "Rth (resistência de Thévenin) é a resistência equivalente vista dos terminais A-B com todas as fontes independentes desativadas (fontes de tensão = curto, fontes de corrente = aberto). Se houver fontes dependentes, usa-se um método diferente.",
+              "Cálculo de Rth com fontes dependentes: desativa-se apenas as fontes independentes. Aplica-se uma fonte de teste (tensão Vtest ou corrente Itest) nos terminais A-B. Calcula-se a corrente ou tensão resultante. Rth = Vtest/Itest.",
+              "O equivalente de Thévenin é extremamente útil quando se quer analisar o efeito de diferentes cargas conectadas aos terminais A-B — basta analisar o simples circuito Vth + Rth + Rcarga, sem recalcular todo o circuito.",
+              "Aplicações práticas: análise de circuitos de instrumentação, cálculo de corrente em cargas variáveis, projeto de amplificadores, análise de redes de distribuição de energia elétrica.",
+            ],
+            equacoes: [
+              { latex: "V_{th} = V_{AB}\\\\big|_{I_{carga}=0}", legenda: "Tensão de Thévenin = tensão em aberto nos terminais A-B" },
+              { latex: "R_{th} = R_{AB}\\\\big|_{\\\\text{fontes desativadas}}", legenda: "Resistência de Thévenin = resistência vista dos terminais com fontes desativadas" },
+              { latex: "I_{carga} = \\\\dfrac{V_{th}}{R_{th} + R_{carga}}", legenda: "Corrente na carga usando o equivalente Thévenin" },
+            ],
+            conteudo2: [
+              "Exemplo: circuito com fonte 24V, R1=6Ω em série com a fonte, R2=12Ω em paralelo com os terminais A-B. Vth: com A-B aberto, divisor de tensão: Vth = 24 × 12/(6+12) = 24 × 0,667 = 16 V. Rth: desativando a fonte de 24V (curto), R1 e R2 ficam em paralelo: Rth = 6×12/(6+12) = 4 Ω. Equivalente Thévenin: fonte de 16V em série com 4Ω.",
+              "Com carga de 8Ω: I = 16/(4+8) = 1,33 A. V_carga = 1,33×8 = 10,67 V.",
+            ],
+          },
+
+          {
+            titulo: "6.10 — Teorema de Norton",
+            conteudo: [
+              "O Teorema de Norton é o complemento do Teorema de Thévenin. Afirma que qualquer circuito linear com fontes e resistores, visto por um par de terminais, pode ser substituído por uma fonte de corrente In em paralelo com uma resistência Rn.",
+              "In (corrente de Norton) é a corrente de curto-circuito nos terminais A-B — a corrente que flui quando os terminais são curto-circuitados.",
+              "Rn (resistência de Norton) é idêntica à resistência de Thévenin: Rn = Rth. O mesmo procedimento de cálculo se aplica.",
+              "A relação entre os equivalentes: Vth = In × Rn. Os dois teoremas são completamente equivalentes e um pode ser obtido do outro por uma simples transformação de fonte.",
+              "Escolha entre Thévenin e Norton: use Thévenin quando a carga é em série com outros elementos (facilita cálculo de corrente). Use Norton quando cargas estão em paralelo (facilita soma de correntes por KCL).",
+              "Procedimento alternativo para In: calcula-se Vth e Rth, depois In = Vth/Rth. Ou calcula-se diretamente a corrente de curto-circuito no circuito original.",
+            ],
+            equacoes: [
+              { latex: "I_n = I_{cc} = \\\\dfrac{V_{th}}{R_{th}}", legenda: "Corrente de Norton = corrente de curto-circuito = Vth/Rth" },
+              { latex: "R_n = R_{th}", legenda: "Resistência de Norton idêntica à de Thévenin" },
+              { latex: "V_{th} = I_n \\\\cdot R_n", legenda: "Relação entre os dois equivalentes" },
+            ],
+            conteudo2: [
+              "Continuando o exemplo anterior: Vth = 16V, Rth = 4Ω. Equivalente Norton: In = 16/4 = 4 A em paralelo com Rn = 4Ω. Com carga de 8Ω: divisor de corrente: I_carga = 4 × 4/(4+8) = 1,33 A ✓ (mesmo resultado).",
+              "Dica de prova: os três valores-chave de qualquer rede de dois terminais são: Voc (tensão em aberto = Vth), Icc (corrente de curto = In) e Req (resistência equivalente = Rth = Rn). Conhecendo dois deles, calcula-se o terceiro por Voc = Icc × Req.",
+            ],
+          },
+
+          {
+            titulo: "6.11 — Máxima Transferência de Potência",
+            conteudo: [
+              "O Teorema de Máxima Transferência de Potência determina o valor da resistência de carga Rcarga que maximiza a potência transferida a ela, dado um circuito fonte representado pelo equivalente Thévenin.",
+              "A potência na carga é P = I² × Rcarga = [Vth/(Rth + Rcarga)]² × Rcarga. Essa função tem um máximo quando Rcarga = Rth — a carga deve ser igual à resistência interna (Thévenin) do circuito fonte.",
+              "Na condição de máxima transferência (Rcarga = Rth): P_max = Vth² / (4 × Rth). A tensão na carga é exatamente metade de Vth. A corrente de carga é Vth/(2×Rth).",
+              "Eficiência na máxima transferência: como Rcarga = Rth, a mesma potência é dissipada na fonte e na carga. A eficiência de transferência é de apenas 50% — metade da energia gerada é perdida internamente.",
+              "Aplicações: em sistemas de telecomunicações e eletrônica de sinais, a máxima transferência de potência é a prioridade — interessa maximizar o sinal recebido, mesmo com baixa eficiência. Em sistemas de potência (energia elétrica industrial), a prioridade é a eficiência — opera-se com Rcarga >> Rth para minimizar perdas internas.",
+              "Em CA, a máxima transferência ocorre quando a impedância da carga é o conjugado complexo da impedância de Thévenin: ZL = Zth*. Isso significa que a parte resistiva é igual e a parte reativa é oposta em sinal.",
+            ],
+            equacoes: [
+              { latex: "R_{carga} = R_{th} \\\\quad \\\\Rightarrow \\\\quad P_{max} = \\\\dfrac{V_{th}^2}{4 \\\\cdot R_{th}}", legenda: "Condição e valor de máxima transferência de potência" },
+              { latex: "\\\\eta_{max\\ transf} = 50\\\\%", legenda: "Eficiência na máxima transferência: metade da energia é perdida na resistência interna" },
+            ],
+            conteudo2: [
+              "Exemplo: fonte Thévenin com Vth = 24V e Rth = 6Ω. Rcarga ótima = 6Ω. Pmax = 24²/(4×6) = 576/24 = 24 W. Verificação: I = 24/(6+6) = 2A. P = 4×6 = 24W ✓. Para Rcarga = 3Ω: P = [24/9]² × 3 = 7,11 × 3 = 21,3 W < 24 W. Para Rcarga = 12Ω: P = [24/18]² × 12 = 1,78 × 12 = 21,3 W < 24 W.",
+            ],
+          },
+
+          {
+            titulo: "6.12 — Capacitores: Carga, Descarga e Circuitos RC",
+            conteudo: [
+              "O capacitor é um elemento que armazena energia no campo elétrico entre duas placas condutoras separadas por um dielétrico. A capacitância C (em Farads) indica a quantidade de carga armazenada por unidade de tensão.",
+              "Em CC em regime permanente, o capacitor se comporta como circuito aberto — não passa corrente. É por isso que capacitores bloqueiam CC e são usados para separar sinais CA de CC em circuitos de áudio e comunicação.",
+              "A carga de um capacitor em circuito RC: ao conectar uma fonte de tensão V em série com R e C, a tensão no capacitor cresce exponencialmente de 0 até V. A corrente decai de I0 = V/R até zero.",
+              "A constante de tempo τ = R × C define a velocidade de carga/descarga. Em t = τ, o capacitor atingiu 63,2% da tensão final. Em t = 5τ, está praticamente em regime (99,3%).",
+              "A descarga: ao curto-circuitar um capacitor carregado em V0 através de R, a tensão decai exponencialmente de V0 até zero. A corrente inicial é I0 = V0/R (negativa — sai do capacitor).",
+              "Associação de capacitores: em paralelo, as capacitâncias somam (C_eq = C1 + C2 + ...). Em série, os inversos somam (1/C_eq = 1/C1 + 1/C2 + ...) — inverso do que acontece com resistores.",
+              "Energia armazenada no capacitor: E = ½ × C × V². Essa energia pode ser liberada rapidamente em pulsos de alta potência (flash de câmera, desfibriladores) ou lentamente como fonte de energia de backup.",
+            ],
+            equacoes: [
+              { latex: "v_C(t) = V \\\\cdot \\\\left(1 - e^{-t/\\\\tau}\\\\right) \\\\qquad \\\\tau = R \\\\cdot C", legenda: "Carga do capacitor: V = tensão final, τ = RC = constante de tempo" },
+              { latex: "v_C(t) = V_0 \\\\cdot e^{-t/\\\\tau}", legenda: "Descarga do capacitor: V0 = tensão inicial" },
+              { latex: "E = \\\\dfrac{1}{2} C V^2", legenda: "Energia armazenada no capacitor (J)" },
+            ],
+            conteudo2: [
+              "Exemplo: R = 10 kΩ, C = 100 μF, fonte de 12V. τ = 10.000 × 100×10⁻⁶ = 1 segundo. Em t = 1s: Vc = 12×(1−e⁻¹) = 12×0,632 = 7,58 V. Em t = 5s: Vc = 12×(1−e⁻⁵) ≈ 12×0,993 = 11,92 V (praticamente carregado).",
+            ],
+            dicas: [
+              {
+                gatilho: "ver a curva de carga do capacitor",
+                titulo: "Carga exponencial do capacitor",
+                tipo: "carga-capacitor",
+                explicacao: "A tensão no capacitor sobe exponencialmente, iniciando em 0 e tendendo à tensão da fonte. A velocidade é controlada pela constante de tempo τ = RC. Em 1τ: 63,2%. Em 2τ: 86,5%. Em 3τ: 95%. Em 5τ: 99,3% — praticamente em regime.",
+              },
+            ],
+          },
+
+          {
+            titulo: "6.13 — Indutores e Circuitos RL",
+            conteudo: [
+              "O indutor é um elemento que armazena energia no campo magnético de uma bobina. A indutância L (em Henrys) indica a relação entre a tensão induzida e a taxa de variação da corrente.",
+              "Em CC em regime permanente, o indutor se comporta como curto-circuito (fio) — não oferece resistência a correntes constantes. A tensão em um indutor ideal em regime CC é zero.",
+              "Ao energizar um indutor em circuito RL: a corrente cresce exponencialmente de 0 até I_final = V/R. A tensão no indutor decai de V até zero.",
+              "A constante de tempo do circuito RL: τ = L/R. Em t = τ, a corrente atingiu 63,2% do valor final. O indutor se opõe a variações bruscas de corrente — é por isso que nunca se deve abrir abruptamente o circuito de um indutor sob carga (pode gerar pulso de tensão destrutivo).",
+              "Ao desligar (circuito RL com chave aberta): a corrente no indutor tende a se manter, gerando uma fem elevada nos terminais da chave. Diodos de roda-livre (freewheeling diodes) são colocados em paralelo com bobinas de relés e motores para proteger o circuito.",
+              "Associação de indutores: em série, as indutâncias somam. Em paralelo, os inversos somam — igual aos resistores.",
+              "Energia armazenada no indutor: E = ½ × L × I². Em um curto-circuito de sistema de potência, a energia armazenada nos indutores da rede contribui para a corrente de falta.",
+            ],
+            equacoes: [
+              { latex: "i_L(t) = \\\\dfrac{V}{R} \\\\cdot \\\\left(1 - e^{-t/\\\\tau}\\\\right) \\\\qquad \\\\tau = \\\\dfrac{L}{R}", legenda: "Crescimento da corrente no indutor: V/R = corrente final, τ = L/R" },
+              { latex: "i_L(t) = I_0 \\\\cdot e^{-t/\\\\tau}", legenda: "Decaimento da corrente (desligar fonte)" },
+              { latex: "E = \\\\dfrac{1}{2} L I^2", legenda: "Energia armazenada no indutor (J)" },
+            ],
+            conteudo2: [
+              "Exemplo: R = 50 Ω, L = 0,5 H, fonte de 100V. τ = 0,5/50 = 10 ms. Corrente final: 100/50 = 2 A. Em t = 10ms: i = 2×(1−e⁻¹) = 2×0,632 = 1,26 A. Em t = 50ms: i ≈ 2×0,993 = 1,99 A.",
+              "O pulso de tensão ao abrir o circuito do indutor: e = −L × ΔI/Δt. Se ΔI = 2A e Δt = 1ms: e = −0,5 × 2/0,001 = −1.000 V. Esse pulso pode destruir transistores e tiristores — daí a necessidade do diodo de roda-livre.",
+            ],
+            dicas: [
+              {
+                gatilho: "ver o decaimento da corrente no indutor",
+                titulo: "Corrente decaindo no indutor",
+                tipo: "descarga-indutor",
+                explicacao: "Ao desligar a fonte, a corrente no indutor decai exponencialmente. O indutor tenta manter a corrente constante — qualquer interrupção brusca gera pico de tensão. A constante de tempo τ = L/R determina a velocidade do decaimento.",
+              },
+            ],
+          },
+
+          // ── SEÇÃO COMPONENTES SEMICONDUTORES ───────────────────────────
+          {
+            titulo: "6.14 — Diodo de Junção PN e LED",
+            conteudo: [
+              "O diodo é um componente semicondutor com duas regiões: tipo P (dopagem com buracos) e tipo N (dopagem com elétrons). A junção PN cria uma barreira de potencial que permite a passagem de corrente em apenas um sentido.",
+              "Polarização direta (ânodo mais positivo que o cátodo): a barreira é reduzida, a corrente flui livremente. A tensão de joelho (tensão de limiar) é de aproximadamente 0,6 a 0,7 V para diodos de silício e 0,2 a 0,3 V para germânio.",
+              "Polarização reversa (ânodo mais negativo que o cátodo): a barreira aumenta, praticamente nenhuma corrente flui (apenas a corrente de saturação reversa, muito pequena). Esse estado persiste até a tensão de ruptura (Zener ou avalanche).",
+              "Modelo simplificado do diodo (para análise de circuitos): diodo ideal — curto-circuito quando polarizado diretamente, circuito aberto quando reversamente. Modelo com queda de tensão — queda constante de 0,7 V quando diretamente polarizado.",
+              "O LED (Light Emitting Diode) é um diodo especial que emite luz quando polarizado diretamente. A tensão de joelho varia com a cor: vermelho ≈ 1,8 V, amarelo ≈ 2,0 V, verde ≈ 2,1 V, azul e branco ≈ 3,0 a 3,5 V.",
+              "Para limitar a corrente no LED, usa-se um resistor em série. A corrente típica de operação é 10 a 20 mA. A resistência é calculada a partir da tensão de alimentação, da queda no LED e da corrente desejada.",
+              "LEDs de potência (power LEDs) operam com correntes de 350 mA a vários Ampères, usados em iluminação industrial e faróis de veículos. Precisam de dissipadores de calor e drivers de corrente constante.",
+              "Aplicações do diodo: retificação (converter CA em CC), proteção contra polaridade inversa, clipping (limitação de tensão), clamping (fixação de nível CC) e demodulação de sinal AM.",
+            ],
+            equacoes: [
+              { latex: "R_{serie} = \\\\dfrac{V_{alimentacao} - V_{LED}}{I_{LED}}", legenda: "Resistor em série com LED: garante a corrente nominal de operação" },
+              { latex: "I_D = I_s \\\\cdot \\\\left(e^{\\\\,V_D / V_T} - 1\\\\right)", legenda: "Equação de Shockley do diodo: Is = corrente de saturação, VT = 26mV a 25°C" },
+            ],
+            conteudo2: [
+              "Exemplo LED: alimentação de 5V, LED vermelho (queda 1,8V), corrente desejada 15mA. R = (5 − 1,8) / 0,015 = 3,2 / 0,015 = 213 Ω. Usar resistor comercial de 220 Ω: I = (5−1,8)/220 = 14,5 mA ✓.",
+              "Exemplo retificador: diodo em série com fonte CA de 127V (rms) e carga de 1kΩ. Na meia onda positiva: I = (127√2 − 0,7)/1000 = 179 mA de pico. Na meia onda negativa: diodo bloqueado, I = 0. Tensão média na carga: 0,45 × 127 = 57 V.",
+            ],
+          },
+
+          {
+            titulo: "6.15 — Análise de Circuitos com Diodos",
+            conteudo: [
+              "Para analisar circuitos com diodos, usa-se o método de suposição e verificação: assume-se o estado de cada diodo (conduzindo ou bloqueado), resolve-se o circuito com o modelo simplificado e verifica-se se o estado assumido é consistente.",
+              "Verificação: se o diodo foi assumido como conduzindo, confirma-se que a tensão no ânodo é maior que no cátodo (VD ≥ 0,7V). Se assumido como bloqueado, confirma-se que VD < 0,7V. Se inconsistente, inverte-se a suposição e resolve-se novamente.",
+              "Circuito grampeador (clipper): limita a amplitude do sinal de saída. Clipper série: diodo em série com a carga — passa apenas os semiciclos positivos (ou negativos). Clipper paralelo: diodo em paralelo com a carga — limita a tensão máxima na carga.",
+              "Circuito fixador (clamper): adiciona um nível CC ao sinal de entrada sem alterar sua forma de onda. Usa um capacitor em série com a entrada e um diodo. O capacitor carrega até o pico do sinal e fixa o nível mínimo ou máximo da saída.",
+              "Multiplicador de tensão: combinação de capacitores e diodos que produz tensão CC múltipla da tensão de entrada. O dobrador de tensão produz aproximadamente 2×Vp. Usado em fontes de alta tensão de baixa corrente (osciloscópios, TVs de tubo).",
+              "O diodo Zener opera na tensão de ruptura reversa de forma estável e controlada. Usado como regulador de tensão: mantém tensão constante nos terminais mesmo com variação da corrente. O resistor em série limita a corrente e dissipa o excesso de tensão.",
+            ],
+            equacoes: [
+              { latex: "V_Z = \\\\text{constante} \\\\quad \\\\text{(quando }I_Z > I_{Z_{min}}\\\\text{)}", legenda: "Diodo Zener: tensão constante na polarização reversa acima da corrente mínima" },
+              { latex: "R_{serie} = \\\\dfrac{V_{entrada} - V_Z}{I_Z + I_{carga}}", legenda: "Resistor série do regulador Zener" },
+            ],
+            conteudo2: [
+              "Exemplo Zener: V_entrada = 12V variável (10 a 15V), Zener de 5,1V, carga de 510Ω. I_carga = 5,1/510 = 10 mA. Para V_entrada = 10V: R = (10−5,1)/(10m + 5m) = 4,9/15m = 327 Ω. Usar 330 Ω. Verificar para V_entrada = 15V: IZ = (15−5,1)/330 − 10m = 30m − 10m = 20 mA. Pmax_zener = 5,1 × 20m = 102 mW (dentro do limite típico de 500mW).",
+            ],
+          },
+
+          // ── ANÁLISE EM CA ───────────────────────────────────────────────
+          {
+            titulo: "6.16 — Análise Fasorial de Circuitos CA",
+            conteudo: [
+              "A análise fasorial transforma o problema de equações diferenciais em CA em um problema algébrico com números complexos. Em vez de trabalhar com funções do tempo, representa-se cada grandeza senoidal por um fasor — um número complexo com magnitude (valor eficaz) e ângulo (fase).",
+              "Um fasor representa uma senoide: v(t) = Vp × cos(ωt + φ) é representada pelo fasor V = Vp∠φ (ou Vrms∠φ, dependendo da convenção adotada). A frequência ω é a mesma para todos os elementos — não aparece explicitamente no fasor.",
+              "Impedâncias complexas: resistor Z_R = R (real, sem fase). Indutor Z_L = jωL = jXL (imaginário puro positivo). Capacitor Z_C = 1/(jωC) = −jXC (imaginário puro negativo). Circuito série: Z_total = R + j(XL − XC).",
+              "A análise de circuitos em CA com fasores usa exatamente as mesmas leis e técnicas dos circuitos CC: KCL, KVL, Thévenin, Norton, superposição, divisor de tensão/corrente — apenas com aritmética de números complexos.",
+              "Divisor de tensão em CA: V_R = V × Z_R/Z_total, V_L = V × Z_L/Z_total. Os valores são complexos — magnitude e fase precisam ser calculados.",
+              "A partir do fasor, recupera-se a função do tempo: se V = 10∠30° V (com ω = 377 rad/s), então v(t) = 10√2 × cos(377t + 30°) V.",
+            ],
+            equacoes: [
+              { latex: "\\\\mathbf{Z}_R = R \\\\qquad \\\\mathbf{Z}_L = j\\\\omega L \\\\qquad \\\\mathbf{Z}_C = \\\\dfrac{1}{j\\\\omega C} = -\\\\dfrac{jX_C}{1}", legenda: "Impedâncias complexas dos elementos básicos" },
+              { latex: "\\\\mathbf{Z}_{RLC} = R + j(\\\\omega L - \\\\dfrac{1}{\\\\omega C}) = R + j(X_L - X_C)", legenda: "Impedância total do circuito RLC série" },
+              { latex: "|\\\\mathbf{Z}| = \\\\sqrt{R^2 + (X_L - X_C)^2} \\\\qquad \\\\angle\\\\mathbf{Z} = \\\\arctan\\\\left(\\\\dfrac{X_L - X_C}{R}\\\\right)", legenda: "Módulo e ângulo da impedância" },
+            ],
+            conteudo2: [
+              "Exemplo: R=10Ω, L=50mH, C=330μF em série, f=60Hz. XL=2π×60×0,05=18,85Ω. XC=1/(2π×60×330×10⁻⁶)=8,04Ω. Z=10+j(18,85−8,04)=10+j10,81. |Z|=√(100+116,9)=14,73Ω. φ=arctan(10,81/10)=47,2°. I=127/14,73=8,62A. Corrente atrasa 47,2° em relação à tensão.",
+            ],
+          },
+
+          {
+            titulo: "6.17 — Potência em CA: Ativa, Reativa, Aparente e Fator de Potência",
+            conteudo: [
+              "A análise de potência em CA com a notação fasorial torna os cálculos sistemáticos. A potência complexa S = P + jQ engloba as três componentes de potência.",
+              "Potência ativa P (W): dissipada no resistor, realiza trabalho útil. P = V_rms × I_rms × cos(φ) = I²_rms × R = |I|² × Re(Z).",
+              "Potência reativa Q (var): associada aos elementos reativos. Q = V_rms × I_rms × sen(φ) = |I|² × X. Positiva para indutores (Q_L > 0), negativa para capacitores (Q_C < 0).",
+              "Potência aparente S (VA): S = V_rms × I_rms = |V| × |I|. Módulo da potência complexa: |S| = √(P² + Q²).",
+              "Fator de potência: FP = P/S = cos(φ). FP lagging (atrasado) para cargas indutivas (corrente atrasada). FP leading (adiantado) para cargas capacitivas (corrente adiantada).",
+              "Medição de potência: wattímetro mede P diretamente. Varmetro mede Q. Para medir as três potências num sistema trifásico, usa-se o método dos dois wattímetros.",
+              "Geração de Q por capacitores: bancos de capacitores fornecem Q_C = V²/X_C = V² × ωC. Instalados próximos às cargas indutivas, reduzem o Q demandado da rede e diminuem a corrente total.",
+            ],
+            equacoes: [
+              { latex: "\\\\mathbf{S} = P + jQ = V_{rms} \\\\cdot I_{rms}^* = |\\\\mathbf{I}|^2 \\\\cdot \\\\mathbf{Z}", legenda: "Potência complexa: * indica conjugado complexo" },
+              { latex: "P = |\\\\mathbf{I}|^2 \\\\cdot R \\\\qquad Q = |\\\\mathbf{I}|^2 \\\\cdot X \\\\qquad S = |\\\\mathbf{I}|^2 \\\\cdot |\\\\mathbf{Z}|", legenda: "Potências em termos da corrente e da impedância" },
+              { latex: "Q_C = \\\\dfrac{V^2}{X_C} = V^2 \\\\cdot \\\\omega C", legenda: "Potência reativa gerada pelo capacitor (negativa = fornecida)" },
+            ],
+            conteudo2: [
+              "Exemplo: impedância Z = 10 + j8 Ω, tensão V = 100∠0° V. I = V/Z = 100/(10+j8) = 100∠0° / 12,81∠38,7° = 7,81∠−38,7° A. P = |I|²×R = 61×10 = 610 W. Q = |I|²×X = 61×8 = 488 var (indutivo). S = |I|²×|Z| = 61×12,81 = 781 VA. FP = P/S = 610/781 = 0,78 lagging.",
+            ],
+          },
+
+          {
+            titulo: "6.18 — Ressonância em Série e em Paralelo",
+            conteudo: [
+              "A ressonância ocorre quando as reatâncias indutiva e capacitiva se anulam, resultando em comportamento puramente resistivo do circuito. É um fenômeno com aplicações importantes e riscos que o técnico precisa conhecer.",
+              "Ressonância em série (RLC série): na frequência de ressonância f0, XL = XC, a impedância é mínima (Z = R) e a corrente é máxima (I = V/R). As tensões no indutor e no capacitor são iguais em módulo, mas opostas em fase — podem ser muito maiores que a tensão da fonte.",
+              "O fator de qualidade Q (não confundir com potência reativa) em série: Q = XL/R = 1/(R√(C/L)). Quanto maior Q, mais seletiva é a ressonância — a corrente cai rapidamente para frequências afastadas de f0. Q elevado é desejável em filtros de rádio e TV.",
+              "A largura de banda BW = f0/Q é a faixa de frequências em que a corrente fica acima de 1/√2 do valor de pico (queda de 3 dB).",
+              "Ressonância em paralelo (RLC paralelo): na frequência de ressonância, a impedância é MÁXIMA (igual a R para indutor e capacitor ideais, ou R_paralelo = L/(RC) para circuito real) e a corrente da fonte é MÍNIMA. As correntes no indutor e capacitor circulam internamente — podem ser muito maiores que a corrente da fonte.",
+              "Riscos da ressonância: em sistemas de distribuição de energia, bancos de capacitores instalados para correção de FP podem entrar em ressonância com a indutância da rede numa frequência harmônica, amplificando a corrente harmônica e danificando os capacitores. O técnico de manutenção deve conhecer esse risco.",
+              "Aplicações construtivas da ressonância: filtros de rádio e TV (sintonização de estações), osciladores de cristal (relógios precisos), filtros de harmônicos em sistemas de potência.",
+            ],
+            equacoes: [
+              { latex: "f_0 = \\\\dfrac{1}{2\\\\pi\\\\sqrt{LC}}", legenda: "Frequência de ressonância (série e paralelo)" },
+              { latex: "Q = \\\\dfrac{X_L}{R} = \\\\dfrac{1}{R}\\\\sqrt{\\\\dfrac{L}{C}}", legenda: "Fator de qualidade do circuito ressonante série" },
+              { latex: "BW = \\\\dfrac{f_0}{Q} \\\\quad [\\\\text{Hz}]", legenda: "Largura de banda (-3 dB)" },
+              { latex: "V_L = V_C = Q \\\\cdot V_{fonte} \\\\quad \\\\text{(na ressonância série)}", legenda: "Sobretensão nos elementos reativos: pode ser Q vezes a tensão da fonte" },
+            ],
+            conteudo2: [
+              "Exemplo: L=10mH, C=10μF, R=5Ω. f0=1/(2π×√(10×10⁻³×10×10⁻⁶))=1/(2π×√(10⁻⁷))=1/(2π×316×10⁻⁶)=503 Hz. XL=2π×503×0,01=31,6Ω. Q=31,6/5=6,32. Na ressonância com V=10V: I=10/5=2A. Tensão no indutor: VL=2×31,6=63,2 V — 6,32 vezes a tensão da fonte!",
+            ],
+          },
+
+        ],
+      },
     ],
   },
   {
