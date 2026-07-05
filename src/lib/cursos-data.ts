@@ -371,7 +371,7 @@ export const AREAS: Area[] = [
               "• Lei de Faraday-Lenz: todo campo magnético variável, ao atravessar um condutor (ou espira), induz nele uma força eletromotriz (fem) — é a indução eletromagnética.",
             ],
             equacoes: [
-              { latex: "e = -N \\dfrac{d\\Phi}{dt}", legenda: "Lei de Faraday: fem induzida proporcional à variação do fluxo magnético no tempo" },
+              { latex: "e = N \\cdot \\dfrac{\\Delta\\Phi}{\\Delta t}", legenda: "Lei de Faraday: fem induzida N = espiras, ΔΦ = variação do fluxo (Wb), Δt = intervalo de tempo (s)" },
             ],
             conteudo2: [
               "O sinal negativo (Lei de Lenz) indica que a fem induzida sempre se opõe à causa que a gerou — é a natureza tentando \"resistir\" à mudança. Esse princípio explica, por exemplo, por que um motor desenvolve uma força contraeletromotriz que se opõe à tensão aplicada conforme ele acelera.",
@@ -653,11 +653,11 @@ export const AREAS: Area[] = [
               "A potência dissipada por um resistor é P = V × I. Combinando com a Lei de Ohm: P = I²R (útil quando se conhece a corrente — cálculo de perdas em condutores) e P = V²/R (útil quando se conhece a tensão).",
             ],
             equacoes: [
-              { latex: "V = R \cdot I \quad R = \dfrac{V}{I} \quad I = \dfrac{V}{R}", legenda: "Lei de Ohm — três formas" },
-              { latex: "R = \rho \cdot \dfrac{L}{A}", legenda: "Resistência do condutor: ρ = resistividade (Ω·m), L = comprimento (m), A = seção (m²)" },
-              { latex: "R_{série} = R_1 + R_2 + \cdots + R_n", legenda: "Resistência equivalente em série" },
-              { latex: "\dfrac{1}{R_{par}} = \dfrac{1}{R_1} + \dfrac{1}{R_2} + \cdots", legenda: "Resistência equivalente em paralelo" },
-              { latex: "P = V \cdot I = I^2 \cdot R = \dfrac{V^2}{R}", legenda: "Potência elétrica — três formas" },
+              { latex: "V = R \\cdot I \\quad R = \\dfrac{V}{I} \\quad I = \\dfrac{V}{R}", legenda: "Lei de Ohm — três formas" },
+              { latex: "R = \\rho \\cdot \\dfrac{L}{A}", legenda: "Resistência do condutor: ρ = resistividade (Ω·m), L = comprimento (m), A = seção (m²)" },
+              { latex: "R_{série} = R_1 + R_2 + \\cdots + R_n", legenda: "Resistência equivalente em série" },
+              { latex: "\\dfrac{1}{R_{par}} = \\dfrac{1}{R_1} + \\dfrac{1}{R_2} + \\cdots", legenda: "Resistência equivalente em paralelo" },
+              { latex: "P = V \\cdot I = I^2 \\cdot R = \\dfrac{V^2}{R}", legenda: "Potência elétrica — três formas" },
             ],
             conteudo2: [
               "Exemplo: condutor de cobre 2,5 mm², 30 m de comprimento (ida+volta = 60 m), conduzindo 20 A. R = 1,72×10⁻⁸ × 60 / (2,5×10⁻⁶) = 0,413 Ω. Queda de tensão: ΔV = 0,413 × 20 ≈ 8,26 V — representa 6,5% sobre 127 V, acima do limite de 3% da NBR 5410 para circuitos terminais.",
@@ -677,12 +677,12 @@ export const AREAS: Area[] = [
               "A ressonância em série ocorre quando XL = XC, tornando a impedância mínima (= R) e a corrente máxima. A frequência de ressonância é f₀ = 1/(2π√LC). Em ressonância, a tensão nos componentes reativos pode ser muito maior que a tensão da fonte — fenômeno de sobretensão.",
             ],
             equacoes: [
-              { latex: "v(t) = V_p \cdot \sen(\omega t + \varphi)", legenda: "Tensão senoidal instantânea" },
-              { latex: "V_{rms} = \dfrac{V_p}{\sqrt{2}} \approx 0{,}707\,V_p", legenda: "Valor eficaz de tensão senoidal" },
-              { latex: "X_L = 2\pi f L \quad (\Omega)", legenda: "Reatância indutiva — aumenta com a frequência" },
-              { latex: "X_C = \dfrac{1}{2\pi f C} \quad (\Omega)", legenda: "Reatância capacitiva — diminui com a frequência" },
-              { latex: "Z = \sqrt{R^2 + (X_L - X_C)^2} \quad \varphi = \arctan\!\left(\dfrac{X_L - X_C}{R}\right)", legenda: "Impedância e ângulo de fase do circuito RLC série" },
-              { latex: "f_0 = \dfrac{1}{2\pi\sqrt{LC}}", legenda: "Frequência de ressonância em série" },
+              { latex: "v(t) = V_p \\cdot \\sen(\\omega t + \\varphi)", legenda: "Tensão senoidal instantânea" },
+              { latex: "V_{rms} = \\dfrac{V_p}{\\sqrt{2}} \\approx 0{,}707\\,V_p", legenda: "Valor eficaz de tensão senoidal" },
+              { latex: "X_L = 2\\pi f L \\quad (\\Omega)", legenda: "Reatância indutiva — aumenta com a frequência" },
+              { latex: "X_C = \\dfrac{1}{2\\pi f C} \\quad (\\Omega)", legenda: "Reatância capacitiva — diminui com a frequência" },
+              { latex: "Z = \\sqrt{R^2 + (X_L - X_C)^2} \\quad \\varphi = \\arctan\\!\\left(\\dfrac{X_L - X_C}{R}\\right)", legenda: "Impedância e ângulo de fase do circuito RLC série" },
+              { latex: "f_0 = \\dfrac{1}{2\\pi\\sqrt{LC}}", legenda: "Frequência de ressonância em série" },
             ],
             conteudo2: [
               "Exemplo: circuito RL série com R = 30 Ω, L = 0,1 H, alimentado por 127 V / 60 Hz. XL = 2π×60×0,1 ≈ 37,7 Ω. |Z| = √(30²+37,7²) ≈ 48,1 Ω. I = 127/48,1 ≈ 2,64 A. φ = arctan(37,7/30) ≈ 51,5°. FP = cos(51,5°) ≈ 0,624 indutivo.",
@@ -704,11 +704,11 @@ export const AREAS: Area[] = [
               "A energia elétrica (E) é a potência integrada no tempo. Na prática comercial, usa-se o quilowatt-hora (kWh): 1 kWh = 3,6 × 10⁶ J = 3,6 MJ.",
             ],
             equacoes: [
-              { latex: "P = V\,I\cos\varphi \quad (\text{W})", legenda: "Potência ativa" },
-              { latex: "Q = V\,I\sen\varphi \quad (\text{var})", legenda: "Potência reativa (+ indutiva, − capacitiva)" },
-              { latex: "S = V\,I = \sqrt{P^2 + Q^2} \quad (\text{VA})", legenda: "Potência aparente" },
-              { latex: "FP = \cos\varphi = \dfrac{P}{S}", legenda: "Fator de potência" },
-              { latex: "Q_C = P\,(\tan\varphi_1 - \tan\varphi_2)", legenda: "Potência reativa do banco de capacitores para correção do FP" },
+              { latex: "P = V\\,I\\cos\\varphi \\quad (\\text{W})", legenda: "Potência ativa" },
+              { latex: "Q = V\\,I\\sen\\varphi \\quad (\\text{var})", legenda: "Potência reativa (+ indutiva, − capacitiva)" },
+              { latex: "S = V\\,I = \\sqrt{P^2 + Q^2} \\quad (\\text{VA})", legenda: "Potência aparente" },
+              { latex: "FP = \\cos\\varphi = \\dfrac{P}{S}", legenda: "Fator de potência" },
+              { latex: "Q_C = P\\,(\\tan\\varphi_1 - \\tan\\varphi_2)", legenda: "Potência reativa do banco de capacitores para correção do FP" },
             ],
           },
           {
@@ -724,10 +724,10 @@ export const AREAS: Area[] = [
               "O método dos dois wattímetros mede a potência ativa total de um sistema trifásico a 3 fios com apenas dois wattímetros: P_total = W1 + W2 (as leituras podem ser positivas ou negativas dependendo do FP).",
             ],
             equacoes: [
-              { latex: "\text{Estrela: }\; V_L = \sqrt{3}\,V_f \approx 1{,}732\,V_f \;,\quad I_L = I_f", legenda: "Relações em estrela" },
-              { latex: "\text{Triângulo: }\; V_L = V_f \;,\quad I_L = \sqrt{3}\,I_f \approx 1{,}732\,I_f", legenda: "Relações em triângulo" },
-              { latex: "P_{total} = \sqrt{3}\,V_L\,I_L\,\cos\varphi", legenda: "Potência ativa trifásica total" },
-              { latex: "S_{total} = \sqrt{3}\,V_L\,I_L \;,\quad Q_{total} = \sqrt{3}\,V_L\,I_L\,\sen\varphi", legenda: "Potências aparente e reativa trifásicas" },
+              { latex: "\\text{Estrela: }\\; V_L = \\sqrt{3}\\,V_f \\approx 1{,}732\\,V_f \\;,\\quad I_L = I_f", legenda: "Relações em estrela" },
+              { latex: "\\text{Triângulo: }\\; V_L = V_f \\;,\\quad I_L = \\sqrt{3}\\,I_f \\approx 1{,}732\\,I_f", legenda: "Relações em triângulo" },
+              { latex: "P_{total} = \\sqrt{3}\\,V_L\\,I_L\\,\\cos\\varphi", legenda: "Potência ativa trifásica total" },
+              { latex: "S_{total} = \\sqrt{3}\\,V_L\\,I_L \\;,\\quad Q_{total} = \\sqrt{3}\\,V_L\\,I_L\\,\\sen\\varphi", legenda: "Potências aparente e reativa trifásicas" },
             ],
             conteudo2: [
               "Exemplo: motor trifásico 380 V (linha), FP 0,85, I = 20 A. P = √3 × 380 × 20 × 0,85 ≈ 11.186 W. S = √3 × 380 × 20 ≈ 13.160 VA. Q = √(S²−P²) ≈ 6.936 var.",
@@ -748,10 +748,10 @@ export const AREAS: Area[] = [
               "A força de Lorentz é a força sobre um condutor percorrido por corrente dentro de um campo magnético: F = B × I × L × sen(θ). Esta é a força que impulsiona o rotor do motor elétrico — a interação entre o campo girante do estator e as correntes no rotor produz o torque.",
             ],
             equacoes: [
-              { latex: "e = -N\,\dfrac{d\Phi}{dt}", legenda: "Lei de Faraday: fem induzida, N = espiras, Φ = fluxo (Wb)" },
-              { latex: "B = \dfrac{\Phi}{A} \quad (\text{Tesla})", legenda: "Indução magnética" },
-              { latex: "B = \mu_0\,\mu_r\,H", legenda: "Relação B-H: μ₀ = 4π×10⁻⁷ H/m" },
-              { latex: "F = B\,I\,L\,\sen\theta \quad (\text{N})", legenda: "Força de Lorentz sobre condutor em campo magnético" },
+              { latex: "e = N \\cdot \\dfrac{\\Delta\\Phi}{\\Delta t}", legenda: "Lei de Faraday: fem induzida: N = espiras, ΔΦ = variação do fluxo (Wb), Δt = intervalo de tempo (s)" },
+              { latex: "B = \\dfrac{\\Phi}{A} \\quad (\\text{Tesla})", legenda: "Indução magnética" },
+              { latex: "B = \\mu_0\\,\\mu_r\\,H", legenda: "Relação B-H: μ₀ = 4π×10⁻⁷ H/m" },
+              { latex: "F = B\\,I\\,L\\,\\sen\\theta \\quad (\\text{N})", legenda: "Força de Lorentz sobre condutor em campo magnético" },
             ],
           },
           {
@@ -769,10 +769,10 @@ export const AREAS: Area[] = [
               "A proteção do transformador inclui: relé de Buchholz (detecta gases de falhas internas no óleo), termômetro com alarme e desligamento, relé diferencial (proteção contra curto interno), fusíveis de AT e disjuntores de BT.",
             ],
             equacoes: [
-              { latex: "a = \dfrac{N_1}{N_2} = \dfrac{V_1}{V_2} = \dfrac{I_2}{I_1}", legenda: "Relação de transformação (transformador ideal)" },
-              { latex: "\eta = \dfrac{P_2}{P_2 + P_{fe} + P_{cu}}", legenda: "Rendimento do transformador" },
-              { latex: "Z_{cc}\% = \dfrac{V_{cc}}{V_{nominal}} \times 100", legenda: "Impedância percentual de curto-circuito" },
-              { latex: "I_{cc} = \dfrac{I_{nominal}}{Z_{cc}\%/100}", legenda: "Corrente de curto-circuito no barramento de BT" },
+              { latex: "a = \\dfrac{N_1}{N_2} = \\dfrac{V_1}{V_2} = \\dfrac{I_2}{I_1}", legenda: "Relação de transformação (transformador ideal)" },
+              { latex: "\\eta = \\dfrac{P_2}{P_2 + P_{fe} + P_{cu}}", legenda: "Rendimento do transformador" },
+              { latex: "Z_{cc}\\% = \\dfrac{V_{cc}}{V_{nominal}} \\times 100", legenda: "Impedância percentual de curto-circuito" },
+              { latex: "I_{cc} = \\dfrac{I_{nominal}}{Z_{cc}\\%/100}", legenda: "Corrente de curto-circuito no barramento de BT" },
             ],
             conteudo2: [
               "Dica de prova: Zcc% baixo → corrente de curto maior, mais exigente para os disjuntores, melhor regulação de tensão. Zcc% alto → limita mais o curto, mas regulação de tensão pior (maior queda com a carga). Transformadores de distribuição residencial têm Zcc% entre 4% e 6%.",
@@ -793,10 +793,10 @@ export const AREAS: Area[] = [
               "Diagnóstico de falhas em motores: desequilíbrio de corrente (problema de isolamento ou conexão), vibração excessiva (desbalanceamento ou rolamento desgastado), temperatura acima do normal (sobrecarga, má ventilação ou falha de isolamento), ruído incomum (rolamento danificado), corrente acima da nominal (sobrecarga mecânica ou tensão abaixo do nominal).",
             ],
             equacoes: [
-              { latex: "N_s = \dfrac{120\,f}{p} \quad (\text{rpm})", legenda: "Velocidade síncrona: f = frequência (Hz), p = número de polos" },
-              { latex: "s = \dfrac{N_s - N_r}{N_s}", legenda: "Escorregamento" },
-              { latex: "N_r = N_s\,(1-s)", legenda: "Velocidade do rotor" },
-              { latex: "f_{rotor} = s\,f_{rede}", legenda: "Frequência das correntes rotóricas" },
+              { latex: "N_s = \\dfrac{120\\,f}{p} \\quad (\\text{rpm})", legenda: "Velocidade síncrona: f = frequência (Hz), p = número de polos" },
+              { latex: "s = \\dfrac{N_s - N_r}{N_s}", legenda: "Escorregamento" },
+              { latex: "N_r = N_s\\,(1-s)", legenda: "Velocidade do rotor" },
+              { latex: "f_{rotor} = s\\,f_{rede}", legenda: "Frequência das correntes rotóricas" },
             ],
             conteudo2: [
               "Exemplo: motor 4 polos, 60 Hz, 1740 rpm. Ns = 120×60/4 = 1800 rpm. s = (1800−1740)/1800 = 3,33%. fr = 0,0333×60 = 2 Hz.",
@@ -817,10 +817,10 @@ export const AREAS: Area[] = [
               "A velocidade do motor CC shunt é controlada por: variação da tensão de armadura V (abaixo da velocidade base — método mais eficiente), resistência em série com a armadura (ineficiente), ou enfraquecimento do campo (acima da velocidade base).",
             ],
             equacoes: [
-              { latex: "N_s = \dfrac{120\,f}{p} \quad \text{(rotor síncrono gira nesta velocidade)}", legenda: "Velocidade síncrona" },
-              { latex: "E = V - R_a\,I_a", legenda: "Fem contraeletromotriz do motor CC" },
-              { latex: "n = \dfrac{V - R_a\,I_a}{K\,\Phi}", legenda: "Velocidade do motor CC excitação independente/shunt" },
-              { latex: "T = K_T\,\Phi\,I_a", legenda: "Torque do motor CC" },
+              { latex: "N_s = \\dfrac{120\\,f}{p} \\quad \\text{(rotor síncrono gira nesta velocidade)}", legenda: "Velocidade síncrona" },
+              { latex: "E = V - R_a\\,I_a", legenda: "Fem contraeletromotriz do motor CC" },
+              { latex: "n = \\dfrac{V - R_a\\,I_a}{K\\,\\Phi}", legenda: "Velocidade do motor CC excitação independente/shunt" },
+              { latex: "T = K_T\\,\\Phi\\,I_a", legenda: "Torque do motor CC" },
             ],
           },
           {
@@ -837,8 +837,8 @@ export const AREAS: Area[] = [
               "A seletividade (coordenação de proteções) é a propriedade do sistema de isolar apenas o trecho em falta, sem desligar o restante da instalação. O dispositivo mais próximo da falta deve atuar antes do dispositivo geral. A coordenação é obtida ajustando corretamente as curvas de disparo e tempos de retardo dos dispositivos em série.",
             ],
             equacoes: [
-              { latex: "I_{cc} \leq I_{cu} \quad \text{(requisito do disjuntor no ponto de instalação)}", legenda: "Capacidade de interrupção deve superar o curto máximo" },
-              { latex: "\Delta I = I_{fase} - I_{neutro} \geq I_{\Delta n} \Rightarrow \text{DR atua}", legenda: "Princípio do dispositivo DR" },
+              { latex: "I_{cc} \\leq I_{cu} \\quad \\text{(requisito do disjuntor no ponto de instalação)}", legenda: "Capacidade de interrupção deve superar o curto máximo" },
+              { latex: "\\Delta I = I_{fase} - I_{neutro} \\geq I_{\\Delta n} \\Rightarrow \\text{DR atua}", legenda: "Princípio do dispositivo DR" },
             ],
           },
           {
@@ -1136,7 +1136,7 @@ export const AREAS: Area[] = [
               "O torque é medido com torquímetros (estáticos) ou com medidores de torque rotativos (com telemetria). Em processos contínuos, o torque de um eixo é calculado indiretamente pela corrente e pela tensão do motor elétrico de acionamento.",
             ],
             equacoes: [
-              { latex: "a = \\dfrac{d^2x}{dt^2}", legenda: "Aceleração como derivada segunda da posição" },
+              { latex: "a = \\dfrac{\\Delta v}{\\Delta t}", legenda: "Aceleração: variação da velocidade no tempo (m/s²)" },
               { latex: "T = F \\cdot r", legenda: "Torque: F = força (N), r = raio do braço de alavanca (m)" },
             ],
           },
@@ -1203,7 +1203,7 @@ export const AREAS: Area[] = [
               "A sintonia do PID é o ajuste dos parâmetros Kp, Ti e Td para obter a melhor resposta em malha fechada. Os métodos mais usados são: Ziegler-Nichols (em malha aberta ou fechada), IMC (controle por modelo interno) e ajuste manual iterativo.",
             ],
             equacoes: [
-              { latex: "u(t) = K_p \\left[ e(t) + \\dfrac{1}{T_i}\\int_0^t e(\\tau)\\,d\\tau + T_d\\,\\dfrac{de(t)}{dt} \\right]", legenda: "Equação do controlador PID: Kp = ganho proporcional, Ti = tempo integral, Td = tempo derivativo" },
+              { latex: "Saída = K_p \\cdot e + K_i \\cdot \\sum e \\cdot \\Delta t + K_d \\cdot \\dfrac{\\Delta e}{\\Delta t}", legenda: "PID discreto: e = erro (SP−PV), Kp = ganho proporcional, Ki = ganho integral, Kd = ganho derivativo" },
               { latex: "e(t) = SP - PV", legenda: "Erro: SP = setpoint, PV = variável de processo" },
             ],
           },
