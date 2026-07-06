@@ -1147,8 +1147,8 @@ export const AREAS: Area[] = [
               "O código de cores dos resistores: cada cor representa um dígito (preto=0, marrom=1, vermelho=2, laranja=3, amarelo=4, verde=5, azul=6, violeta=7, cinza=8, branco=9). Faixas de tolerância: ouro=±5%, prata=±10%, sem faixa=±20%.",
             ],
             equacoes: [
-              { latex: "V_{term} = V_{oc} - R_{int} \\\\cdot I", legenda: "Tensão nos terminais de fonte real: Voc = tensão em aberto, Rint = resistência interna" },
-              { latex: "P_{max\\ resistor} = I^2 \\\\cdot R = \\\\dfrac{V^2}{R}", legenda: "Potência dissipada no resistor — não exceder a potência nominal" },
+              { latex: "V_{term} = V_{oc} - R_{int} \\cdot I", legenda: "Tensão nos terminais de fonte real: Voc = tensão em aberto, Rint = resistência interna" },
+              { latex: "P_{max\\ resistor} = I^2 \\cdot R = \\dfrac{V^2}{R}", legenda: "Potência dissipada no resistor — não exceder a potência nominal" },
             ],
             conteudo2: [
               "Exemplo: bateria de 12 V com resistência interna de 0,5 Ω fornecendo 8 A. Tensão nos terminais: V = 12 − 0,5 × 8 = 12 − 4 = 8 V. A queda de 4 V ocorre internamente, aquecendo a bateria.",
@@ -1166,8 +1166,8 @@ export const AREAS: Area[] = [
               "Para circuitos simples (uma malha), a KVL basta. Para circuitos com múltiplas malhas, usam-se métodos sistemáticos: análise nodal (KCL em todos os nós) ou análise de malhas (KVL em todas as malhas independentes).",
             ],
             equacoes: [
-              { latex: "\\\\sum_{k} I_k = 0 \\\\quad \\\\text{(em qualquer nó)}", legenda: "KCL: soma das correntes no nó = zero" },
-              { latex: "\\\\sum_{k} V_k = 0 \\\\quad \\\\text{(em qualquer malha fechada)}", legenda: "KVL: soma das tensões na malha = zero" },
+              { latex: "\\sum_{k} I_k = 0 \\quad \\text{(em qualquer nó)}", legenda: "KCL: soma das correntes no nó = zero" },
+              { latex: "\\sum_{k} V_k = 0 \\quad \\text{(em qualquer malha fechada)}", legenda: "KVL: soma das tensões na malha = zero" },
             ],
             conteudo2: [
               "Exemplo KVL: malha com fonte 12 V, R1 = 2 Ω e R2 = 4 Ω em série. KVL: +12 − 2I − 4I = 0. 6I = 12. I = 2 A. Tensão em R1: V1 = 2×2 = 4 V. Tensão em R2: V2 = 4×2 = 8 V. Verificação: 4 + 8 = 12 V ✓.",
@@ -1185,7 +1185,7 @@ export const AREAS: Area[] = [
               "Para N malhas independentes, o sistema tem N equações e N incógnitas (as correntes de malha). A solução pode ser obtida por substituição, escalonamento ou regra de Cramer.",
             ],
             equacoes: [
-              { latex: "\\\\sum R_{kk} \\\\cdot I_k - \\\\sum R_{kj} \\\\cdot I_j = \\\\sum V_{fontes}", legenda: "Equação de malha k: Rkk = soma das resistências da malha k, Rkj = resistências compartilhadas" },
+              { latex: "\\sum R_{kk} \\cdot I_k - \\sum R_{kj} \\cdot I_j = \\sum V_{fontes}", legenda: "Equação de malha k: Rkk = soma das resistências da malha k, Rkj = resistências compartilhadas" },
             ],
             conteudo2: [
               "Exemplo: circuito com duas malhas. Malha 1 (I1): +12 − 3I1 − 2(I1−I2) = 0 → 5I1 − 2I2 = 12. Malha 2 (I2): −2(I2−I1) − 4I2 − 6 = 0 → −2I1 + 6I2 = −6. Resolvendo: I1 = 66/26 ≈ 2,54 A, I2 = −6/26 ≈ −0,23 A (sentido inverso ao assumido).",
@@ -1202,7 +1202,7 @@ export const AREAS: Area[] = [
               "Resumo: supermalha = KVL ao redor da malha combinada (sem o ramo da fonte de corrente) + equação de restrição da fonte de corrente.",
             ],
             equacoes: [
-              { latex: "I_1 - I_2 = I_s \\\\quad \\\\text{(equação de restrição da supermalha)}", legenda: "A diferença das correntes de malha = valor da fonte de corrente" },
+              { latex: "I_1 - I_2 = I_s \\quad \\text{(equação de restrição da supermalha)}", legenda: "A diferença das correntes de malha = valor da fonte de corrente" },
             ],
             conteudo2: [
               "Exemplo: fonte de corrente de 4 A entre os nós das malhas I1 e I2 (com I1 saindo pelo + da fonte). Restrição: I1 − I2 = 4. Supermalha (KVL ao redor, excluindo a fonte de corrente): − R1×I1 − R3×I2 + V_fonte = 0. Com R1=2Ω, R3=3Ω, V_fonte=10V: −2I1 − 3I2 + 10 = 0. Sistema: I1 − I2 = 4 e 2I1 + 3I2 = 10. Solução: I1 = 4,4 A, I2 = 0,4 A.",
@@ -1219,7 +1219,7 @@ export const AREAS: Area[] = [
               "O método nodal é mais eficiente que o de malhas quando o circuito tem poucos nós mas muitas malhas — típico em circuitos eletrônicos com muitos componentes em paralelo.",
             ],
             equacoes: [
-              { latex: "\\\\sum \\\\dfrac{V_k - V_j}{R_{kj}} = \\\\sum I_{fontes \\text{ no nó } k}", legenda: "KCL no nó k: soma das correntes saindo = soma das fontes de corrente" },
+              { latex: "\\sum \\dfrac{V_k - V_j}{R_{kj}} = \\sum I_{fontes \\text{ no nó } k}", legenda: "KCL no nó k: soma das correntes saindo = soma das fontes de corrente" },
             ],
             conteudo2: [
               "Exemplo: dois nós (V1 e V2) com referência em terra. Fonte de 10V em série com R1=2Ω conectando terra ao nó V1. R2=4Ω entre V1 e V2. R3=6Ω conectando V2 ao terra. KCL em V1: (V1−10)/2 + (V1−V2)/4 = 0 → 3V1 − V2 = 20. KCL em V2: (V2−V1)/4 + V2/6 = 0 → −3V1 + 5V2 = 0. Solução: V1 = 8,33 V, V2 = 5 V.",
@@ -1236,7 +1236,7 @@ export const AREAS: Area[] = [
               "Se o supernó contiver mais de uma fonte de tensão (em série), inclui-se todas na equação de restrição.",
             ],
             equacoes: [
-              { latex: "V_1 - V_2 = V_s \\\\quad \\\\text{(equação de restrição do supernó)}", legenda: "Diferença de tensão entre os nós do supernó = tensão da fonte" },
+              { latex: "V_1 - V_2 = V_s \\quad \\text{(equação de restrição do supernó)}", legenda: "Diferença de tensão entre os nós do supernó = tensão da fonte" },
             ],
             conteudo2: [
               "Exemplo: fonte de tensão de 6V conectando os nós V1 e V2 (V1 = V2 + 6). R1=3Ω de V1 ao terra. R2=5Ω de V2 ao terra. Fonte de corrente de 2A entrando no nó V1. KCL do supernó (superfície englobando V1 e V2): V1/3 + V2/5 = 2. Restrição: V1 − V2 = 6. Sistema: V1/3 + V2/5 = 2 e V1 = V2 + 6. Solução: V2 = 0 V, V1 = 6 V. Verificação: 6/3 + 0/5 = 2 A ✓.",
@@ -1254,8 +1254,8 @@ export const AREAS: Area[] = [
               "Limitações: aplica-se apenas a circuitos lineares (componentes com relação V×I linear — resistores, capacitores e indutores ideais). Não se aplica a circuitos com diodos, transistores operando fora da região linear, etc.",
             ],
             equacoes: [
-              { latex: "V_{total} = V_1' + V_2' + \\\\cdots + V_n'", legenda: "Superposição: resposta total = soma das respostas de cada fonte atuando isoladamente" },
-              { latex: "P_{total} \\\\neq P_1' + P_2' + \\\\cdots \\\\quad \\\\text{(superposição NÃO vale para potência)}", legenda: "CUIDADO: potência não obedece ao princípio de superposição" },
+              { latex: "V_{total} = V_1' + V_2' + \\cdots + V_n'", legenda: "Superposição: resposta total = soma das respostas de cada fonte atuando isoladamente" },
+              { latex: "P_{total} \\neq P_1' + P_2' + \\cdots \\quad \\text{(superposição NÃO vale para potência)}", legenda: "CUIDADO: potência não obedece ao princípio de superposição" },
             ],
             conteudo2: [
               "Exemplo: circuito com fonte de tensão V1=12V e fonte de corrente I2=3A, com R1=4Ω e R2=6Ω. Análise 1 (só V1, abrir I2): I' = 12/(4+6) = 1,2 A. V_R2' = 1,2×6 = 7,2 V. Análise 2 (só I2, curto V1): divisor de corrente, I_R2'' = 3×4/(4+6) = 1,2 A. V_R2'' = 1,2×6 = 7,2 V. Total: V_R2 = 7,2 + 7,2 = 14,4 V.",
@@ -1273,7 +1273,7 @@ export const AREAS: Area[] = [
               "Limitação: fontes ideais (tensão ideal sem resistência em série, ou corrente ideal sem resistência em paralelo) NÃO podem ser transformadas.",
             ],
             equacoes: [
-              { latex: "I_s = \\\\dfrac{V_s}{R} \\\\quad \\\\Leftrightarrow \\\\quad V_s = I_s \\\\cdot R", legenda: "Transformação equivalente entre fonte de tensão (com R série) e fonte de corrente (com R paralelo)" },
+              { latex: "I_s = \\dfrac{V_s}{R} \\quad \\Leftrightarrow \\quad V_s = I_s \\cdot R", legenda: "Transformação equivalente entre fonte de tensão (com R série) e fonte de corrente (com R paralelo)" },
             ],
             conteudo2: [
               "Uso prático: simplificar circuitos com múltiplas fontes e resistores combinando-os progressivamente por transformações de fonte até obter um único equivalente Thévenin ou Norton.",
@@ -1291,9 +1291,9 @@ export const AREAS: Area[] = [
               "Aplicações práticas: análise de circuitos de instrumentação, cálculo de corrente em cargas variáveis, projeto de amplificadores, análise de redes de distribuição de energia elétrica.",
             ],
             equacoes: [
-              { latex: "V_{th} = V_{AB}\\\\big|_{I_{carga}=0}", legenda: "Tensão de Thévenin = tensão em aberto nos terminais A-B" },
-              { latex: "R_{th} = R_{AB}\\\\big|_{\\\\text{fontes desativadas}}", legenda: "Resistência de Thévenin = resistência vista dos terminais com fontes desativadas" },
-              { latex: "I_{carga} = \\\\dfrac{V_{th}}{R_{th} + R_{carga}}", legenda: "Corrente na carga usando o equivalente Thévenin" },
+              { latex: "V_{th} = V_{AB}\\big|_{I_{carga}=0}", legenda: "Tensão de Thévenin = tensão em aberto nos terminais A-B" },
+              { latex: "R_{th} = R_{AB}\\big|_{\\text{fontes desativadas}}", legenda: "Resistência de Thévenin = resistência vista dos terminais com fontes desativadas" },
+              { latex: "I_{carga} = \\dfrac{V_{th}}{R_{th} + R_{carga}}", legenda: "Corrente na carga usando o equivalente Thévenin" },
             ],
             conteudo2: [
               "Exemplo: circuito com fonte 24V, R1=6Ω em série com a fonte, R2=12Ω em paralelo com os terminais A-B. Vth: com A-B aberto, divisor de tensão: Vth = 24 × 12/(6+12) = 24 × 0,667 = 16 V. Rth: desativando a fonte de 24V (curto), R1 e R2 ficam em paralelo: Rth = 6×12/(6+12) = 4 Ω. Equivalente Thévenin: fonte de 16V em série com 4Ω.",
@@ -1312,9 +1312,9 @@ export const AREAS: Area[] = [
               "Procedimento alternativo para In: calcula-se Vth e Rth, depois In = Vth/Rth. Ou calcula-se diretamente a corrente de curto-circuito no circuito original.",
             ],
             equacoes: [
-              { latex: "I_n = I_{cc} = \\\\dfrac{V_{th}}{R_{th}}", legenda: "Corrente de Norton = corrente de curto-circuito = Vth/Rth" },
+              { latex: "I_n = I_{cc} = \\dfrac{V_{th}}{R_{th}}", legenda: "Corrente de Norton = corrente de curto-circuito = Vth/Rth" },
               { latex: "R_n = R_{th}", legenda: "Resistência de Norton idêntica à de Thévenin" },
-              { latex: "V_{th} = I_n \\\\cdot R_n", legenda: "Relação entre os dois equivalentes" },
+              { latex: "V_{th} = I_n \\cdot R_n", legenda: "Relação entre os dois equivalentes" },
             ],
             conteudo2: [
               "Continuando o exemplo anterior: Vth = 16V, Rth = 4Ω. Equivalente Norton: In = 16/4 = 4 A em paralelo com Rn = 4Ω. Com carga de 8Ω: divisor de corrente: I_carga = 4 × 4/(4+8) = 1,33 A ✓ (mesmo resultado).",
@@ -1333,8 +1333,8 @@ export const AREAS: Area[] = [
               "Em CA, a máxima transferência ocorre quando a impedância da carga é o conjugado complexo da impedância de Thévenin: ZL = Zth*. Isso significa que a parte resistiva é igual e a parte reativa é oposta em sinal.",
             ],
             equacoes: [
-              { latex: "R_{carga} = R_{th} \\\\quad \\\\Rightarrow \\\\quad P_{max} = \\\\dfrac{V_{th}^2}{4 \\\\cdot R_{th}}", legenda: "Condição e valor de máxima transferência de potência" },
-              { latex: "\\\\eta_{max\\ transf} = 50\\\\%", legenda: "Eficiência na máxima transferência: metade da energia é perdida na resistência interna" },
+              { latex: "R_{carga} = R_{th} \\quad \\Rightarrow \\quad P_{max} = \\dfrac{V_{th}^2}{4 \\cdot R_{th}}", legenda: "Condição e valor de máxima transferência de potência" },
+              { latex: "\\eta_{max\\ transf} = 50\\%", legenda: "Eficiência na máxima transferência: metade da energia é perdida na resistência interna" },
             ],
             conteudo2: [
               "Exemplo: fonte Thévenin com Vth = 24V e Rth = 6Ω. Rcarga ótima = 6Ω. Pmax = 24²/(4×6) = 576/24 = 24 W. Verificação: I = 24/(6+6) = 2A. P = 4×6 = 24W ✓. Para Rcarga = 3Ω: P = [24/9]² × 3 = 7,11 × 3 = 21,3 W < 24 W. Para Rcarga = 12Ω: P = [24/18]² × 12 = 1,78 × 12 = 21,3 W < 24 W.",
@@ -1353,9 +1353,9 @@ export const AREAS: Area[] = [
               "Energia armazenada no capacitor: E = ½ × C × V². Essa energia pode ser liberada rapidamente em pulsos de alta potência (flash de câmera, desfibriladores) ou lentamente como fonte de energia de backup.",
             ],
             equacoes: [
-              { latex: "v_C(t) = V \\\\cdot \\\\left(1 - e^{-t/\\\\tau}\\\\right) \\\\qquad \\\\tau = R \\\\cdot C", legenda: "Carga do capacitor: V = tensão final, τ = RC = constante de tempo" },
-              { latex: "v_C(t) = V_0 \\\\cdot e^{-t/\\\\tau}", legenda: "Descarga do capacitor: V0 = tensão inicial" },
-              { latex: "E = \\\\dfrac{1}{2} C V^2", legenda: "Energia armazenada no capacitor (J)" },
+              { latex: "v_C(t) = V \\cdot \\left(1 - e^{-t/\\tau}\\right) \\qquad \\tau = R \\cdot C", legenda: "Carga do capacitor: V = tensão final, τ = RC = constante de tempo" },
+              { latex: "v_C(t) = V_0 \\cdot e^{-t/\\tau}", legenda: "Descarga do capacitor: V0 = tensão inicial" },
+              { latex: "E = \\dfrac{1}{2} C V^2", legenda: "Energia armazenada no capacitor (J)" },
             ],
             conteudo2: [
               "Exemplo: R = 10 kΩ, C = 100 μF, fonte de 12V. τ = 10.000 × 100×10⁻⁶ = 1 segundo. Em t = 1s: Vc = 12×(1−e⁻¹) = 12×0,632 = 7,58 V. Em t = 5s: Vc = 12×(1−e⁻⁵) ≈ 12×0,993 = 11,92 V (praticamente carregado).",
@@ -1382,9 +1382,9 @@ export const AREAS: Area[] = [
               "Energia armazenada no indutor: E = ½ × L × I². Em um curto-circuito de sistema de potência, a energia armazenada nos indutores da rede contribui para a corrente de falta.",
             ],
             equacoes: [
-              { latex: "i_L(t) = \\\\dfrac{V}{R} \\\\cdot \\\\left(1 - e^{-t/\\\\tau}\\\\right) \\\\qquad \\\\tau = \\\\dfrac{L}{R}", legenda: "Crescimento da corrente no indutor: V/R = corrente final, τ = L/R" },
-              { latex: "i_L(t) = I_0 \\\\cdot e^{-t/\\\\tau}", legenda: "Decaimento da corrente (desligar fonte)" },
-              { latex: "E = \\\\dfrac{1}{2} L I^2", legenda: "Energia armazenada no indutor (J)" },
+              { latex: "i_L(t) = \\dfrac{V}{R} \\cdot \\left(1 - e^{-t/\\tau}\\right) \\qquad \\tau = \\dfrac{L}{R}", legenda: "Crescimento da corrente no indutor: V/R = corrente final, τ = L/R" },
+              { latex: "i_L(t) = I_0 \\cdot e^{-t/\\tau}", legenda: "Decaimento da corrente (desligar fonte)" },
+              { latex: "E = \\dfrac{1}{2} L I^2", legenda: "Energia armazenada no indutor (J)" },
             ],
             conteudo2: [
               "Exemplo: R = 50 Ω, L = 0,5 H, fonte de 100V. τ = 0,5/50 = 10 ms. Corrente final: 100/50 = 2 A. Em t = 10ms: i = 2×(1−e⁻¹) = 2×0,632 = 1,26 A. Em t = 50ms: i ≈ 2×0,993 = 1,99 A.",
@@ -1414,8 +1414,8 @@ export const AREAS: Area[] = [
               "Aplicações do diodo: retificação (converter CA em CC), proteção contra polaridade inversa, clipping (limitação de tensão), clamping (fixação de nível CC) e demodulação de sinal AM.",
             ],
             equacoes: [
-              { latex: "R_{serie} = \\\\dfrac{V_{alimentacao} - V_{LED}}{I_{LED}}", legenda: "Resistor em série com LED: garante a corrente nominal de operação" },
-              { latex: "I_D = I_s \\\\cdot \\\\left(e^{\\\\,V_D / V_T} - 1\\\\right)", legenda: "Equação de Shockley do diodo: Is = corrente de saturação, VT = 26mV a 25°C" },
+              { latex: "R_{serie} = \\dfrac{V_{alimentacao} - V_{LED}}{I_{LED}}", legenda: "Resistor em série com LED: garante a corrente nominal de operação" },
+              { latex: "I_D = I_s \\cdot \\left(e^{\\,V_D / V_T} - 1\\right)", legenda: "Equação de Shockley do diodo: Is = corrente de saturação, VT = 26mV a 25°C" },
             ],
             conteudo2: [
               "Exemplo LED: alimentação de 5V, LED vermelho (queda 1,8V), corrente desejada 15mA. R = (5 − 1,8) / 0,015 = 3,2 / 0,015 = 213 Ω. Usar resistor comercial de 220 Ω: I = (5−1,8)/220 = 14,5 mA ✓.",
@@ -1434,8 +1434,8 @@ export const AREAS: Area[] = [
               "O diodo Zener opera na tensão de ruptura reversa de forma estável e controlada. Usado como regulador de tensão: mantém tensão constante nos terminais mesmo com variação da corrente. O resistor em série limita a corrente e dissipa o excesso de tensão.",
             ],
             equacoes: [
-              { latex: "V_Z = \\\\text{constante} \\\\quad \\\\text{(quando }I_Z > I_{Z_{min}}\\\\text{)}", legenda: "Diodo Zener: tensão constante na polarização reversa acima da corrente mínima" },
-              { latex: "R_{serie} = \\\\dfrac{V_{entrada} - V_Z}{I_Z + I_{carga}}", legenda: "Resistor série do regulador Zener" },
+              { latex: "V_Z = \\text{constante} \\quad \\text{(quando }I_Z > I_{Z_{min}}\\text{)}", legenda: "Diodo Zener: tensão constante na polarização reversa acima da corrente mínima" },
+              { latex: "R_{serie} = \\dfrac{V_{entrada} - V_Z}{I_Z + I_{carga}}", legenda: "Resistor série do regulador Zener" },
             ],
             conteudo2: [
               "Exemplo Zener: V_entrada = 12V variável (10 a 15V), Zener de 5,1V, carga de 510Ω. I_carga = 5,1/510 = 10 mA. Para V_entrada = 10V: R = (10−5,1)/(10m + 5m) = 4,9/15m = 327 Ω. Usar 330 Ω. Verificar para V_entrada = 15V: IZ = (15−5,1)/330 − 10m = 30m − 10m = 20 mA. Pmax_zener = 5,1 × 20m = 102 mW (dentro do limite típico de 500mW).",
@@ -1454,9 +1454,9 @@ export const AREAS: Area[] = [
               "A partir do fasor, recupera-se a função do tempo: se V = 10∠30° V (com ω = 377 rad/s), então v(t) = 10√2 × cos(377t + 30°) V.",
             ],
             equacoes: [
-              { latex: "\\\\mathbf{Z}_R = R \\\\qquad \\\\mathbf{Z}_L = j\\\\omega L \\\\qquad \\\\mathbf{Z}_C = \\\\dfrac{1}{j\\\\omega C} = -\\\\dfrac{jX_C}{1}", legenda: "Impedâncias complexas dos elementos básicos" },
-              { latex: "\\\\mathbf{Z}_{RLC} = R + j(\\\\omega L - \\\\dfrac{1}{\\\\omega C}) = R + j(X_L - X_C)", legenda: "Impedância total do circuito RLC série" },
-              { latex: "|\\\\mathbf{Z}| = \\\\sqrt{R^2 + (X_L - X_C)^2} \\\\qquad \\\\angle\\\\mathbf{Z} = \\\\arctan\\\\left(\\\\dfrac{X_L - X_C}{R}\\\\right)", legenda: "Módulo e ângulo da impedância" },
+              { latex: "\\mathbf{Z}_R = R \\qquad \\mathbf{Z}_L = j\\omega L \\qquad \\mathbf{Z}_C = \\dfrac{1}{j\\omega C} = -\\dfrac{jX_C}{1}", legenda: "Impedâncias complexas dos elementos básicos" },
+              { latex: "\\mathbf{Z}_{RLC} = R + j(\\omega L - \\dfrac{1}{\\omega C}) = R + j(X_L - X_C)", legenda: "Impedância total do circuito RLC série" },
+              { latex: "|\\mathbf{Z}| = \\sqrt{R^2 + (X_L - X_C)^2} \\qquad \\angle\\mathbf{Z} = \\arctan\\left(\\dfrac{X_L - X_C}{R}\\right)", legenda: "Módulo e ângulo da impedância" },
             ],
             conteudo2: [
               "Exemplo: R=10Ω, L=50mH, C=330μF em série, f=60Hz. XL=2π×60×0,05=18,85Ω. XC=1/(2π×60×330×10⁻⁶)=8,04Ω. Z=10+j(18,85−8,04)=10+j10,81. |Z|=√(100+116,9)=14,73Ω. φ=arctan(10,81/10)=47,2°. I=127/14,73=8,62A. Corrente atrasa 47,2° em relação à tensão.",
@@ -1475,9 +1475,9 @@ export const AREAS: Area[] = [
               "Geração de Q por capacitores: bancos de capacitores fornecem Q_C = V²/X_C = V² × ωC. Instalados próximos às cargas indutivas, reduzem o Q demandado da rede e diminuem a corrente total.",
             ],
             equacoes: [
-              { latex: "\\\\mathbf{S} = P + jQ = V_{rms} \\\\cdot I_{rms}^* = |\\\\mathbf{I}|^2 \\\\cdot \\\\mathbf{Z}", legenda: "Potência complexa: * indica conjugado complexo" },
-              { latex: "P = |\\\\mathbf{I}|^2 \\\\cdot R \\\\qquad Q = |\\\\mathbf{I}|^2 \\\\cdot X \\\\qquad S = |\\\\mathbf{I}|^2 \\\\cdot |\\\\mathbf{Z}|", legenda: "Potências em termos da corrente e da impedância" },
-              { latex: "Q_C = \\\\dfrac{V^2}{X_C} = V^2 \\\\cdot \\\\omega C", legenda: "Potência reativa gerada pelo capacitor (negativa = fornecida)" },
+              { latex: "\\mathbf{S} = P + jQ = V_{rms} \\cdot I_{rms}^* = |\\mathbf{I}|^2 \\cdot \\mathbf{Z}", legenda: "Potência complexa: * indica conjugado complexo" },
+              { latex: "P = |\\mathbf{I}|^2 \\cdot R \\qquad Q = |\\mathbf{I}|^2 \\cdot X \\qquad S = |\\mathbf{I}|^2 \\cdot |\\mathbf{Z}|", legenda: "Potências em termos da corrente e da impedância" },
+              { latex: "Q_C = \\dfrac{V^2}{X_C} = V^2 \\cdot \\omega C", legenda: "Potência reativa gerada pelo capacitor (negativa = fornecida)" },
             ],
             conteudo2: [
               "Exemplo: impedância Z = 10 + j8 Ω, tensão V = 100∠0° V. I = V/Z = 100/(10+j8) = 100∠0° / 12,81∠38,7° = 7,81∠−38,7° A. P = |I|²×R = 61×10 = 610 W. Q = |I|²×X = 61×8 = 488 var (indutivo). S = |I|²×|Z| = 61×12,81 = 781 VA. FP = P/S = 610/781 = 0,78 lagging.",
@@ -1496,10 +1496,10 @@ export const AREAS: Area[] = [
               "Aplicações construtivas da ressonância: filtros de rádio e TV (sintonização de estações), osciladores de cristal (relógios precisos), filtros de harmônicos em sistemas de potência.",
             ],
             equacoes: [
-              { latex: "f_0 = \\\\dfrac{1}{2\\\\pi\\\\sqrt{LC}}", legenda: "Frequência de ressonância (série e paralelo)" },
-              { latex: "Q = \\\\dfrac{X_L}{R} = \\\\dfrac{1}{R}\\\\sqrt{\\\\dfrac{L}{C}}", legenda: "Fator de qualidade do circuito ressonante série" },
-              { latex: "BW = \\\\dfrac{f_0}{Q} \\\\quad [\\\\text{Hz}]", legenda: "Largura de banda (-3 dB)" },
-              { latex: "V_L = V_C = Q \\\\cdot V_{fonte} \\\\quad \\\\text{(na ressonância série)}", legenda: "Sobretensão nos elementos reativos: pode ser Q vezes a tensão da fonte" },
+              { latex: "f_0 = \\dfrac{1}{2\\pi\\sqrt{LC}}", legenda: "Frequência de ressonância (série e paralelo)" },
+              { latex: "Q = \\dfrac{X_L}{R} = \\dfrac{1}{R}\\sqrt{\\dfrac{L}{C}}", legenda: "Fator de qualidade do circuito ressonante série" },
+              { latex: "BW = \\dfrac{f_0}{Q} \\quad [\\text{Hz}]", legenda: "Largura de banda (-3 dB)" },
+              { latex: "V_L = V_C = Q \\cdot V_{fonte} \\quad \\text{(na ressonância série)}", legenda: "Sobretensão nos elementos reativos: pode ser Q vezes a tensão da fonte" },
             ],
             conteudo2: [
               "Exemplo: L=10mH, C=10μF, R=5Ω. f0=1/(2π×√(10×10⁻³×10×10⁻⁶))=1/(2π×√(10⁻⁷))=1/(2π×316×10⁻⁶)=503 Hz. XL=2π×503×0,01=31,6Ω. Q=31,6/5=6,32. Na ressonância com V=10V: I=10/5=2A. Tensão no indutor: VL=2×31,6=63,2 V — 6,32 vezes a tensão da fonte!",
@@ -1544,8 +1544,8 @@ export const AREAS: Area[] = [
             ],
             equacoes: [
               { latex: "E = X_{medido} - X_{verdadeiro}", legenda: "Erro de medição" },
-              { latex: "E\\\\% = \\\\dfrac{E}{\\\\text{Fundo de Escala}} \\\\times 100", legenda: "Erro percentual em relação ao fundo de escala (span)" },
-              { latex: "U = k \\\\cdot u_c", legenda: "Incerteza expandida: k = fator de abrangência (k=2 para 95% de confiança)" },
+              { latex: "E\\% = \\dfrac{E}{\\text{Fundo de Escala}} \\times 100", legenda: "Erro percentual em relação ao fundo de escala (span)" },
+              { latex: "U = k \\cdot u_c", legenda: "Incerteza expandida: k = fator de abrangência (k=2 para 95% de confiança)" },
             ],
             conteudo2: [
               "Dica de prova: a diferença entre exatidão e precisão é sempre explorada. Um instrumento preciso e exato tem resultados próximos entre si E próximos ao valor verdadeiro. Preciso mas inexato: resultados próximos entre si mas afastados do verdadeiro. Exato mas impreciso: resultados médios próximos ao verdadeiro mas com alta dispersão.",
@@ -1566,8 +1566,8 @@ export const AREAS: Area[] = [
               "A curva de calibração completa deve incluir pontos de subida (0%, 25%, 50%, 75%, 100%) e de descida (100%, 75%, 50%, 25%, 0%) para revelar a histerese.",
             ],
             equacoes: [
-              { latex: "I_{saída} = 4 + 16 \\\\cdot \\\\dfrac{X - X_{min}}{X_{max} - X_{min}} \\\\quad [\\\\text{mA}]", legenda: "Conversão linear para sinal 4-20 mA: X = valor medido, Xmin e Xmax = faixa do instrumento" },
-              { latex: "\\\\text{Histerese}\\\\% = \\\\dfrac{\\\\Delta_{subida} - \\\\Delta_{descida}}{\\\\text{Span}} \\\\times 100", legenda: "Erro de histerese em % do span" },
+              { latex: "I_{saída} = 4 + 16 \\cdot \\dfrac{X - X_{min}}{X_{max} - X_{min}} \\quad [\\text{mA}]", legenda: "Conversão linear para sinal 4-20 mA: X = valor medido, Xmin e Xmax = faixa do instrumento" },
+              { latex: "\\text{Histerese}\\% = \\dfrac{\\Delta_{subida} - \\Delta_{descida}}{\\text{Span}} \\times 100", legenda: "Erro de histerese em % do span" },
             ],
             conteudo2: [
               "Exemplo: transmissor de temperatura 0-200°C, sinal 4-20 mA. Para T=75°C: I = 4 + 16×(75/200) = 4 + 6 = 10 mA. Para I=14 mA: T = (14-4)/16 × 200 = 0,625 × 200 = 125°C.",
@@ -1588,7 +1588,7 @@ export const AREAS: Area[] = [
               "Modos de falha (ação da válvula): a escolha do modo de falha é determinada pela análise de segurança do processo. Falha-Fecha (FC, fail-close, air-to-open): a mola fecha a válvula quando o ar de instrumento falha — usada quando fechar é mais seguro (injeção de produto perigoso). Falha-Abre (FA, fail-open, air-to-close): a mola abre quando o ar falha — usada quando abrir é mais seguro (água de resfriamento).",
             ],
             equacoes: [
-              { latex: "F_v = C_v \\\\cdot \\\\sqrt{\\\\dfrac{\\\\Delta P}{G_f}}", legenda: "Equação de dimensionamento de válvula de controle: Cv = coeficiente de vazão, ΔP = queda de pressão (psi), Gf = gravidade específica do fluido" },
+              { latex: "F_v = C_v \\cdot \\sqrt{\\dfrac{\\Delta P}{G_f}}", legenda: "Equação de dimensionamento de válvula de controle: Cv = coeficiente de vazão, ΔP = queda de pressão (psi), Gf = gravidade específica do fluido" },
             ],
             conteudo2: [
               "Características de vazão intrínsecas: LINEAR (vazão proporcional à abertura — usada em processos com ΔP constante). IGUAL PERCENTAGEM (a variação percentual de Cv é proporcional à abertura — mais comum, usada quando ΔP varia). ABERTURA RÁPIDA (Cv sobe rapidamente nos primeiros graus de abertura — usada em on-off).",
@@ -1646,8 +1646,8 @@ export const AREAS: Area[] = [
             ],
             equacoes: [
               { latex: "P_{abs} = P_{man} + P_{atm}", legenda: "Relação entre pressão absoluta, manométrica e atmosférica" },
-              { latex: "P = \\\\rho \\\\cdot g \\\\cdot h", legenda: "Pressão hidrostática: rho = densidade (kg/m³), g = 9,81 m/s², h = altura de coluna (m)" },
-              { latex: "1\\\\,\\\\text{bar} = 100\\\\,\\\\text{kPa} = 14{,}504\\\\,\\\\text{psi} = 1{,}0197\\\\,\\\\text{kgf/cm}^2", legenda: "Conversão de unidades de pressão" },
+              { latex: "P = \\rho \\cdot g \\cdot h", legenda: "Pressão hidrostática: rho = densidade (kg/m³), g = 9,81 m/s², h = altura de coluna (m)" },
+              { latex: "1\\,\\text{bar} = 100\\,\\text{kPa} = 14{,}504\\,\\text{psi} = 1{,}0197\\,\\text{kgf/cm}^2", legenda: "Conversão de unidades de pressão" },
             ],
             conteudo2: [
               "Erro por variação de temperatura: transmissores de pressão possuem compensação de temperatura interna. Mesmo assim, variações bruscas de temperatura ambiente afetam o zero e o span — por isso revisões periódicas de calibração são necessárias.",
@@ -1667,8 +1667,8 @@ export const AREAS: Area[] = [
               "PROTEÇÃO DO TERMOPAR: o elemento sensível é encapsulado em um tubo de proteção (termopoço). O termopoço protege o sensor do processo corrosivo, pressão e velocidade do fluido. Materiais: aço inox (até 800°C), Inconel (até 1100°C), óxido de alumínio (para altas temperaturas e ambientes agressivos).",
             ],
             equacoes: [
-              { latex: "R(T) = R_0 \\\\cdot (1 + \\\\alpha \\\\cdot T)", legenda: "Resistência do PT100: R0 = 100 Ohm (a 0°C), alpha = 0,00385 Ohm/(Ohm.°C)" },
-              { latex: "\\\\alpha = \\\\dfrac{R_{100} - R_0}{R_0 \\\\cdot 100} = 0{,}00385 \\\\;\\\\Omega/(\\\\Omega \\\\cdot ^\\\\circ C)", legenda: "Coeficiente de temperatura do PT100 (padrão IEC 751)" },
+              { latex: "R(T) = R_0 \\cdot (1 + \\alpha \\cdot T)", legenda: "Resistência do PT100: R0 = 100 Ohm (a 0°C), alpha = 0,00385 Ohm/(Ohm.°C)" },
+              { latex: "\\alpha = \\dfrac{R_{100} - R_0}{R_0 \\cdot 100} = 0{,}00385 \\;\\Omega/(\\Omega \\cdot ^\\circ C)", legenda: "Coeficiente de temperatura do PT100 (padrão IEC 751)" },
             ],
             conteudo2: [
               "Exemplo PT100: temperatura medida 80°C. R(80) = 100 × (1 + 0,00385 × 80) = 100 × 1,308 = 130,8 Ω.",
@@ -1689,8 +1689,8 @@ export const AREAS: Area[] = [
               "CHAVES DE NÍVEL: detectam nível em pontos específicos (alto, baixo). Tipos: bóia magnética (simples, confiável), reed switch, vibração (diapasão — ideal para sólidos), condutividade (para líquidos condutores), óptico.",
             ],
             equacoes: [
-              { latex: "h = \\\\dfrac{\\\\Delta P}{\\\\rho \\\\cdot g}", legenda: "Nível por DP: h = altura do líquido (m), ΔP = pressão diferencial (Pa), ρ = densidade (kg/m³), g = 9,81 m/s²" },
-              { latex: "d = \\\\dfrac{c \\\\cdot t}{2}", legenda: "Distância por ultrassom/radar: c = velocidade de propagação, t = tempo de trânsito (ida + volta)" },
+              { latex: "h = \\dfrac{\\Delta P}{\\rho \\cdot g}", legenda: "Nível por DP: h = altura do líquido (m), ΔP = pressão diferencial (Pa), ρ = densidade (kg/m³), g = 9,81 m/s²" },
+              { latex: "d = \\dfrac{c \\cdot t}{2}", legenda: "Distância por ultrassom/radar: c = velocidade de propagação, t = tempo de trânsito (ida + volta)" },
             ],
             conteudo2: [
               "Exemplo DP: tanque de água (ρ=1000 kg/m³), DP=24,5 kPa. h = 24.500/(1000×9,81) = 2,5 m.",
@@ -1711,8 +1711,8 @@ export const AREAS: Area[] = [
               "MEDIDOR ULTRASSÔNICO: emite e recebe pulsos ultrassônicos em sentidos opostos ao fluxo. A diferença de tempo de trânsito indica a velocidade do fluido. Clamp-on (externo ao tubo): não invasivo, instalado sem interromper o processo.",
             ],
             equacoes: [
-              { latex: "Q = K \\\\cdot \\\\sqrt{\\\\dfrac{\\\\Delta P}{\\\\rho}}", legenda: "Vazão volumétrica por DP: K = constante (depende do tipo de medidor e geometria), ΔP = pressão diferencial, ρ = densidade do fluido" },
-              { latex: "f_{vortex} = S_t \\\\cdot \\\\dfrac{v}{d}", legenda: "Frequência dos vórtices: St = número de Strouhal (~0,2), v = velocidade (m/s), d = diâmetro do obstáculo (m)" },
+              { latex: "Q = K \\cdot \\sqrt{\\dfrac{\\Delta P}{\\rho}}", legenda: "Vazão volumétrica por DP: K = constante (depende do tipo de medidor e geometria), ΔP = pressão diferencial, ρ = densidade do fluido" },
+              { latex: "f_{vortex} = S_t \\cdot \\dfrac{v}{d}", legenda: "Frequência dos vórtices: St = número de Strouhal (~0,2), v = velocidade (m/s), d = diâmetro do obstáculo (m)" },
             ],
             conteudo2: [
               "Escolha do medidor: Placa de orifício = padrão, baixo custo, gases e líquidos limpos. EM = fluidos condutores, lamas. Coriolis = medição fiscal, alta precisão. Vortex = vapor e gases. Ultrassônico clamp-on = medição temporária sem interrupção do processo.",
@@ -1733,8 +1733,8 @@ export const AREAS: Area[] = [
               "MEDIÇÃO DE TORQUE: torquímetros estáticos para verificação de aperto de parafusos. Medição dinâmica de torque em eixos rotativos usa extensômetros com telemetria sem fio ou anéis coletores.",
             ],
             equacoes: [
-              { latex: "\\\\dfrac{\\\\Delta R}{R} = G_F \\\\cdot \\\\varepsilon", legenda: "Extensômetro (strain gauge): GF = fator de gauge (~2 para metal), epsilon = deformação específica (m/m)" },
-              { latex: "T = F \\\\cdot r \\\\quad [\\\\text{N}\\\\cdot\\\\text{m}]", legenda: "Torque: F = força tangencial (N), r = raio (m)" },
+              { latex: "\\dfrac{\\Delta R}{R} = G_F \\cdot \\varepsilon", legenda: "Extensômetro (strain gauge): GF = fator de gauge (~2 para metal), epsilon = deformação específica (m/m)" },
+              { latex: "T = F \\cdot r \\quad [\\text{N}\\cdot\\text{m}]", legenda: "Torque: F = força tangencial (N), r = raio (m)" },
             ],
             conteudo2: [
               "Monitoramento de vibração de máquinas (norma ISO 10816): velocidade de vibração RMS na carcaça. Classe I (pequenas máquinas < 15 kW): até 2,8 mm/s = bom, 2,8-7,1 = aceitável, 7,1-18 = alerta, > 18 = perigoso. Os limites variam com a classe e rigidez da fundação.",
@@ -1754,8 +1754,8 @@ export const AREAS: Area[] = [
               "SENSOR DE PONTO DE ORVALHO: mede a temperatura na qual a umidade do gás condensa. Fundamental para gás natural de exportação (especificação de umidade) e sistemas de ar comprimido de instrumento.",
             ],
             equacoes: [
-              { latex: "pH = -\\\\log_{10}[H^+]", legenda: "Definição de pH: concentração de íons H⁺ em mol/L" },
-              { latex: "E = E_0 + 0{,}05916 \\\\cdot \\\\log[H^+] \\\\quad \\\\text{(a 25°C)}", legenda: "Equação de Nernst para eletrodo de pH: variação de 59,16 mV por unidade de pH" },
+              { latex: "pH = -\\log_{10}[H^+]", legenda: "Definição de pH: concentração de íons H⁺ em mol/L" },
+              { latex: "E = E_0 + 0{,}05916 \\cdot \\log[H^+] \\quad \\text{(a 25°C)}", legenda: "Equação de Nernst para eletrodo de pH: variação de 59,16 mV por unidade de pH" },
             ],
             conteudo2: [
               "Dica de prova: sensores de gás LEL com tecnologia catalítica (pellistor) PERDEM SENSIBILIDADE (intoxicação do catalisador) quando expostos a silicones, compostos de enxofre ou halogênados. Por isso, em ambientes com esses contaminantes, usa-se infravermelho (NDIR) para hidrocarbonetos. Esse ponto é frequentemente explorado em provas da Petrobras.",
