@@ -595,388 +595,6 @@ export const AREAS: Area[] = [
           },
         ],
       },
-      // ── MÓDULO 6 — CIRCUITOS ELÉTRICOS COMPLETO ──────────────────────────
-      {
-        slug: "circuitos-eletricos-completo",
-        titulo: "Módulo 6 — Circuitos Elétricos: Do Básico ao Avançado",
-        descricao: "CC e CA, Thévenin, Norton, superposição, supermalha, supernó, máxima transferência de potência, diodo, LED e muito mais.",
-        bloco: "Bloco I",
-        paginas: [
-
-          // ── SEÇÃO CC ────────────────────────────────────────────────────
-          {
-            titulo: "6.1 — Elementos de Circuito: Fontes e Resistores",
-            conteudo: [
-              "Um circuito elétrico é formado por elementos interligados que permitem o fluxo de corrente elétrica. Os elementos se dividem em ativos (fontes — fornecem energia) e passivos (resistores, capacitores, indutores — absorvem ou armazenam energia).",
-              "Fonte de tensão ideal: mantém tensão constante nos seus terminais independentemente da corrente que fornece. Símbolo: círculo com + e −. Exemplo: bateria ideal, gerador ideal. Na prática, toda fonte real tem resistência interna em série.",
-              "Fonte de corrente ideal: mantém corrente constante nos seus terminais independentemente da tensão que aparece neles. Símbolo: círculo com seta. Usada em modelagem de transistores e amplificadores.",
-              "Fonte de tensão real: modelada como fonte ideal em série com resistência interna Rint. A tensão nos terminais cai com o aumento da corrente: Vterm = Voc − Rint × I, onde Voc é a tensão em circuito aberto.",
-              "Fonte de corrente real: modelada como fonte ideal em paralelo com resistência interna. Corrente nos terminais: Iterm = Icc − V/Rint, onde Icc é a corrente de curto-circuito.",
-              "O resistor é o elemento passivo mais básico — converte energia elétrica em calor (efeito Joule). Resistores reais têm tolerância (±1%, ±5%, ±10%), coeficiente de temperatura e potência máxima nominal. Operar acima da potência nominal danifica o componente.",
-              "O código de cores dos resistores: cada cor representa um dígito (preto=0, marrom=1, vermelho=2, laranja=3, amarelo=4, verde=5, azul=6, violeta=7, cinza=8, branco=9). Faixas de tolerância: ouro=±5%, prata=±10%, sem faixa=±20%.",
-            ],
-            equacoes: [
-              { latex: "V_{term} = V_{oc} - R_{int} \\\\cdot I", legenda: "Tensão nos terminais de fonte real: Voc = tensão em aberto, Rint = resistência interna" },
-              { latex: "P_{max\\ resistor} = I^2 \\\\cdot R = \\\\dfrac{V^2}{R}", legenda: "Potência dissipada no resistor — não exceder a potência nominal" },
-            ],
-            conteudo2: [
-              "Exemplo: bateria de 12 V com resistência interna de 0,5 Ω fornecendo 8 A. Tensão nos terminais: V = 12 − 0,5 × 8 = 12 − 4 = 8 V. A queda de 4 V ocorre internamente, aquecendo a bateria.",
-            ],
-          },
-
-          {
-            titulo: "6.2 — Leis de Kirchhoff: KCL e KVL",
-            conteudo: [
-              "As Leis de Kirchhoff são as ferramentas fundamentais de análise de qualquer circuito elétrico. São consequências diretas da conservação de carga (KCL) e da conservação de energia (KVL).",
-              "KCL — Lei dos Nós (1ª Lei de Kirchhoff): a soma algébrica de todas as correntes em qualquer nó de um circuito é zero. Convenção: correntes que entram no nó são positivas, correntes que saem são negativas. Equivale a dizer que carga não se acumula nos nós.",
-              "KVL — Lei das Malhas (2ª Lei de Kirchhoff): a soma algébrica de todas as tensões em qualquer malha fechada é zero. Percorrendo a malha em um sentido fixo: se passamos pelo + antes do − de um elemento, a tensão é positiva; se passamos pelo − antes do +, é negativa.",
-              "Convenção de sinais para KVL: ao percorrer um resistor no sentido da corrente assumida, a queda de tensão é −R×I (queda). Ao percorrer uma fonte do − para o +, a contribuição é +V (elevação). Ao percorrer uma fonte do + para o −, é −V (queda).",
-              "Método sistemático de análise: (1) Identificar os nós e malhas do circuito. (2) Atribuir correntes e referências. (3) Aplicar KCL nos nós ou KVL nas malhas. (4) Resolver o sistema de equações. (5) Verificar se as correntes negativas indicam sentido inverso ao assumido.",
-              "Para circuitos simples (uma malha), a KVL basta. Para circuitos com múltiplas malhas, usam-se métodos sistemáticos: análise nodal (KCL em todos os nós) ou análise de malhas (KVL em todas as malhas independentes).",
-            ],
-            equacoes: [
-              { latex: "\\\\sum_{k} I_k = 0 \\\\quad \\\\text{(em qualquer nó)}", legenda: "KCL: soma das correntes no nó = zero" },
-              { latex: "\\\\sum_{k} V_k = 0 \\\\quad \\\\text{(em qualquer malha fechada)}", legenda: "KVL: soma das tensões na malha = zero" },
-            ],
-            conteudo2: [
-              "Exemplo KVL: malha com fonte 12 V, R1 = 2 Ω e R2 = 4 Ω em série. KVL: +12 − 2I − 4I = 0. 6I = 12. I = 2 A. Tensão em R1: V1 = 2×2 = 4 V. Tensão em R2: V2 = 4×2 = 8 V. Verificação: 4 + 8 = 12 V ✓.",
-              "Exemplo KCL: nó com correntes I1 = 3 A entrando, I2 = 1 A saindo, I3 = ? KCL: 3 − 1 − I3 = 0. I3 = 2 A saindo.",
-            ],
-          },
-
-          {
-            titulo: "6.3 — Método das Malhas (Análise por Correntes de Malha)",
-            conteudo: [
-              "O método das malhas é uma técnica sistemática para analisar circuitos com múltiplas malhas. Em vez de usar correntes de ramo, define-se uma corrente de malha circulando em cada malha independente do circuito.",
-              "Procedimento: (1) Identificar as malhas independentes (malhas que não podem ser divididas em malhas menores). (2) Atribuir corrente de malha a cada uma (sentido horário por convenção). (3) Escrever a equação KVL para cada malha, usando as correntes de malha. (4) Resolver o sistema linear de equações. (5) A corrente real em cada ramo compartilhado é a diferença das correntes de malha adjacentes.",
-              "Em ramos compartilhados entre duas malhas, a tensão no resistor é R × (I1 − I2), onde I1 e I2 são as correntes de malha. O sinal depende de qual malha está sendo analisada.",
-              "O método das malhas é especialmente eficiente quando o número de malhas independentes é menor que o número de nós independentes — gera menos equações e facilita a solução.",
-              "Para N malhas independentes, o sistema tem N equações e N incógnitas (as correntes de malha). A solução pode ser obtida por substituição, escalonamento ou regra de Cramer.",
-            ],
-            equacoes: [
-              { latex: "\\\\sum R_{kk} \\\\cdot I_k - \\\\sum R_{kj} \\\\cdot I_j = \\\\sum V_{fontes}", legenda: "Equação de malha k: Rkk = soma das resistências da malha k, Rkj = resistências compartilhadas" },
-            ],
-            conteudo2: [
-              "Exemplo: circuito com duas malhas. Malha 1 (I1): +12 − 3I1 − 2(I1−I2) = 0 → 5I1 − 2I2 = 12. Malha 2 (I2): −2(I2−I1) − 4I2 − 6 = 0 → −2I1 + 6I2 = −6. Resolvendo: I1 = 66/26 ≈ 2,54 A, I2 = −6/26 ≈ −0,23 A (sentido inverso ao assumido).",
-            ],
-          },
-
-          {
-            titulo: "6.4 — Supermalha",
-            conteudo: [
-              "A supermalha surge quando uma fonte de corrente está localizada no ramo compartilhado entre duas malhas. Nesse caso, não é possível escrever diretamente a KVL para cada malha separadamente, pois a tensão na fonte de corrente é desconhecida.",
-              "Para criar a supermalha: combina-se as duas malhas que contêm a fonte de corrente em uma única malha maior, excluindo o ramo com a fonte de corrente. Escreve-se a KVL para essa malha combinada.",
-              "A equação de restrição: a diferença entre as correntes de malha nas duas malhas adjacentes à fonte de corrente é igual ao valor da fonte de corrente. Essa equação complementa a KVL da supermalha.",
-              "A supermalha pode envolver mais de duas malhas se a fonte de corrente for adjacente a várias. O procedimento é o mesmo: combinar todas as malhas afetadas, excluir o ramo da fonte de corrente e escrever a restrição.",
-              "Resumo: supermalha = KVL ao redor da malha combinada (sem o ramo da fonte de corrente) + equação de restrição da fonte de corrente.",
-            ],
-            equacoes: [
-              { latex: "I_1 - I_2 = I_s \\\\quad \\\\text{(equação de restrição da supermalha)}", legenda: "A diferença das correntes de malha = valor da fonte de corrente" },
-            ],
-            conteudo2: [
-              "Exemplo: fonte de corrente de 4 A entre os nós das malhas I1 e I2 (com I1 saindo pelo + da fonte). Restrição: I1 − I2 = 4. Supermalha (KVL ao redor, excluindo a fonte de corrente): − R1×I1 − R3×I2 + V_fonte = 0. Com R1=2Ω, R3=3Ω, V_fonte=10V: −2I1 − 3I2 + 10 = 0. Sistema: I1 − I2 = 4 e 2I1 + 3I2 = 10. Solução: I1 = 4,4 A, I2 = 0,4 A.",
-            ],
-          },
-
-          {
-            titulo: "6.5 — Método dos Nós (Análise Nodal)",
-            conteudo: [
-              "O método dos nós usa tensões de nó como variáveis. Define-se um nó de referência (terra, potencial zero) e calcula-se a tensão de todos os outros nós em relação a esse referencial.",
-              "Procedimento: (1) Identificar todos os nós. (2) Escolher o nó de referência (geralmente o de maior número de conexões). (3) Atribuir tensão de nó a cada nó não-referência. (4) Aplicar KCL em cada nó não-referência, expressando correntes em termos das tensões de nó. (5) Resolver o sistema.",
-              "Corrente em resistor entre dois nós: I = (V1 − V2)/R, fluindo de V1 para V2 se V1 > V2. Na KCL, correntes que saem do nó são positivas, que chegam são negativas (ou vice-versa — o importante é ser consistente).",
-              "Para N nós não-referência, o sistema tem N equações com N incógnitas (tensões de nó). Geralmente eficiente quando N é pequeno.",
-              "O método nodal é mais eficiente que o de malhas quando o circuito tem poucos nós mas muitas malhas — típico em circuitos eletrônicos com muitos componentes em paralelo.",
-            ],
-            equacoes: [
-              { latex: "\\\\sum \\\\dfrac{V_k - V_j}{R_{kj}} = \\\\sum I_{fontes \\text{ no nó } k}", legenda: "KCL no nó k: soma das correntes saindo = soma das fontes de corrente" },
-            ],
-            conteudo2: [
-              "Exemplo: dois nós (V1 e V2) com referência em terra. Fonte de 10V em série com R1=2Ω conectando terra ao nó V1. R2=4Ω entre V1 e V2. R3=6Ω conectando V2 ao terra. KCL em V1: (V1−10)/2 + (V1−V2)/4 = 0 → 3V1 − V2 = 20. KCL em V2: (V2−V1)/4 + V2/6 = 0 → −3V1 + 5V2 = 0. Solução: V1 = 8,33 V, V2 = 5 V.",
-            ],
-          },
-
-          {
-            titulo: "6.6 — Supernó",
-            conteudo: [
-              "O supernó surge quando uma fonte de tensão conecta dois nós não-referência. Nesse caso, a tensão entre os dois nós é conhecida (igual ao valor da fonte), mas a corrente na fonte é desconhecida — impossível escrever KCL separada para cada um.",
-              "Para criar o supernó: aplica-se KCL ao redor da superfície que engloba ambos os nós e a fonte de tensão (como uma 'bolha'). As correntes que entram e saem dessa superfície são somadas.",
-              "A equação de restrição do supernó: a diferença de tensão entre os dois nós é igual à tensão da fonte. Essa equação, combinada com a KCL do supernó, completa o sistema.",
-              "O supernó é a contrapartida nodal da supermalha: supermalha trata fonte de corrente entre malhas; supernó trata fonte de tensão entre nós.",
-              "Se o supernó contiver mais de uma fonte de tensão (em série), inclui-se todas na equação de restrição.",
-            ],
-            equacoes: [
-              { latex: "V_1 - V_2 = V_s \\\\quad \\\\text{(equação de restrição do supernó)}", legenda: "Diferença de tensão entre os nós do supernó = tensão da fonte" },
-            ],
-            conteudo2: [
-              "Exemplo: fonte de tensão de 6V conectando os nós V1 e V2 (V1 = V2 + 6). R1=3Ω de V1 ao terra. R2=5Ω de V2 ao terra. Fonte de corrente de 2A entrando no nó V1. KCL do supernó (superfície englobando V1 e V2): V1/3 + V2/5 = 2. Restrição: V1 − V2 = 6. Sistema: V1/3 + V2/5 = 2 e V1 = V2 + 6. Solução: V2 = 0 V, V1 = 6 V. Verificação: 6/3 + 0/5 = 2 A ✓.",
-            ],
-          },
-
-          {
-            titulo: "6.7 — Teorema da Superposição",
-            conteudo: [
-              "O teorema da superposição afirma que, em um circuito linear com múltiplas fontes independentes, a resposta (tensão ou corrente) em qualquer elemento é igual à soma algébrica das respostas causadas por cada fonte independente atuando sozinha.",
-              "Para aplicar a superposição: analisa-se o circuito N vezes (uma para cada fonte independente). A cada análise, todas as outras fontes independentes são desativadas: fontes de tensão são substituídas por curto-circuito (fio); fontes de corrente são substituídas por circuito aberto.",
-              "A resposta total é a soma algébrica das respostas parciais. Importante: fontes dependentes NUNCA são desativadas — permanecem ativas em todas as análises.",
-              "Atenção: o teorema da superposição se aplica a tensões e correntes (grandezas lineares), mas NÃO se aplica diretamente a potências (grandeza não-linear — P = I²R ou V²/R). A potência total NÃO é a soma das potências individuais.",
-              "A superposição é especialmente útil quando o circuito tem fontes de tipos diferentes (tensão e corrente) ou quando fontes de valores diferentes facilitam análises separadas.",
-              "Limitações: aplica-se apenas a circuitos lineares (componentes com relação V×I linear — resistores, capacitores e indutores ideais). Não se aplica a circuitos com diodos, transistores operando fora da região linear, etc.",
-            ],
-            equacoes: [
-              { latex: "V_{total} = V_1' + V_2' + \\\\cdots + V_n'", legenda: "Superposição: resposta total = soma das respostas de cada fonte atuando isoladamente" },
-              { latex: "P_{total} \\\\neq P_1' + P_2' + \\\\cdots \\\\quad \\\\text{(superposição NÃO vale para potência)}", legenda: "CUIDADO: potência não obedece ao princípio de superposição" },
-            ],
-            conteudo2: [
-              "Exemplo: circuito com fonte de tensão V1=12V e fonte de corrente I2=3A, com R1=4Ω e R2=6Ω. Análise 1 (só V1, abrir I2): I' = 12/(4+6) = 1,2 A. V_R2' = 1,2×6 = 7,2 V. Análise 2 (só I2, curto V1): divisor de corrente, I_R2'' = 3×4/(4+6) = 1,2 A. V_R2'' = 1,2×6 = 7,2 V. Total: V_R2 = 7,2 + 7,2 = 14,4 V.",
-            ],
-          },
-
-          {
-            titulo: "6.8 — Transformação de Fontes",
-            conteudo: [
-              "A transformação de fontes é uma técnica que permite converter uma fonte de tensão em série com resistor em uma fonte de corrente em paralelo com o mesmo resistor (e vice-versa), sem alterar o comportamento externo do circuito.",
-              "Conversão fonte de tensão → fonte de corrente: Is = Vs/R. A resistência R permanece a mesma, mas vai de série para paralelo. O sentido da corrente deve ser preservado.",
-              "Conversão fonte de corrente → fonte de tensão: Vs = Is × R. A resistência R vai de paralelo para série. O polo + fica no terminal onde a corrente entrava.",
-              "A transformação é equivalente nos terminais: a tensão em aberto e a corrente de curto são iguais antes e depois da transformação. Isso é a base do Teorema de Thévenin e Norton.",
-              "A transformação de fontes simplifica circuitos complexos combinando fontes e resistores em sequência, reduzindo progressivamente a complexidade até uma forma que permite fácil análise.",
-              "Limitação: fontes ideais (tensão ideal sem resistência em série, ou corrente ideal sem resistência em paralelo) NÃO podem ser transformadas.",
-            ],
-            equacoes: [
-              { latex: "I_s = \\\\dfrac{V_s}{R} \\\\quad \\\\Leftrightarrow \\\\quad V_s = I_s \\\\cdot R", legenda: "Transformação equivalente entre fonte de tensão (com R série) e fonte de corrente (com R paralelo)" },
-            ],
-            conteudo2: [
-              "Uso prático: simplificar circuitos com múltiplas fontes e resistores combinando-os progressivamente por transformações de fonte até obter um único equivalente Thévenin ou Norton.",
-            ],
-          },
-
-          {
-            titulo: "6.9 — Teorema de Thévenin",
-            conteudo: [
-              "O Teorema de Thévenin é um dos teoremas mais poderosos da análise de circuitos. Afirma que qualquer circuito linear com fontes e resistores, visto por um par de terminais (A e B), pode ser substituído por uma fonte de tensão Vth em série com uma resistência Rth.",
-              "Vth (tensão de Thévenin) é a tensão em circuito aberto nos terminais A-B — a tensão que aparece nos terminais quando nada está conectado a eles.",
-              "Rth (resistência de Thévenin) é a resistência equivalente vista dos terminais A-B com todas as fontes independentes desativadas (fontes de tensão = curto, fontes de corrente = aberto). Se houver fontes dependentes, usa-se um método diferente.",
-              "Cálculo de Rth com fontes dependentes: desativa-se apenas as fontes independentes. Aplica-se uma fonte de teste (tensão Vtest ou corrente Itest) nos terminais A-B. Calcula-se a corrente ou tensão resultante. Rth = Vtest/Itest.",
-              "O equivalente de Thévenin é extremamente útil quando se quer analisar o efeito de diferentes cargas conectadas aos terminais A-B — basta analisar o simples circuito Vth + Rth + Rcarga, sem recalcular todo o circuito.",
-              "Aplicações práticas: análise de circuitos de instrumentação, cálculo de corrente em cargas variáveis, projeto de amplificadores, análise de redes de distribuição de energia elétrica.",
-            ],
-            equacoes: [
-              { latex: "V_{th} = V_{AB}\\\\big|_{I_{carga}=0}", legenda: "Tensão de Thévenin = tensão em aberto nos terminais A-B" },
-              { latex: "R_{th} = R_{AB}\\\\big|_{\\\\text{fontes desativadas}}", legenda: "Resistência de Thévenin = resistência vista dos terminais com fontes desativadas" },
-              { latex: "I_{carga} = \\\\dfrac{V_{th}}{R_{th} + R_{carga}}", legenda: "Corrente na carga usando o equivalente Thévenin" },
-            ],
-            conteudo2: [
-              "Exemplo: circuito com fonte 24V, R1=6Ω em série com a fonte, R2=12Ω em paralelo com os terminais A-B. Vth: com A-B aberto, divisor de tensão: Vth = 24 × 12/(6+12) = 24 × 0,667 = 16 V. Rth: desativando a fonte de 24V (curto), R1 e R2 ficam em paralelo: Rth = 6×12/(6+12) = 4 Ω. Equivalente Thévenin: fonte de 16V em série com 4Ω.",
-              "Com carga de 8Ω: I = 16/(4+8) = 1,33 A. V_carga = 1,33×8 = 10,67 V.",
-            ],
-          },
-
-          {
-            titulo: "6.10 — Teorema de Norton",
-            conteudo: [
-              "O Teorema de Norton é o complemento do Teorema de Thévenin. Afirma que qualquer circuito linear com fontes e resistores, visto por um par de terminais, pode ser substituído por uma fonte de corrente In em paralelo com uma resistência Rn.",
-              "In (corrente de Norton) é a corrente de curto-circuito nos terminais A-B — a corrente que flui quando os terminais são curto-circuitados.",
-              "Rn (resistência de Norton) é idêntica à resistência de Thévenin: Rn = Rth. O mesmo procedimento de cálculo se aplica.",
-              "A relação entre os equivalentes: Vth = In × Rn. Os dois teoremas são completamente equivalentes e um pode ser obtido do outro por uma simples transformação de fonte.",
-              "Escolha entre Thévenin e Norton: use Thévenin quando a carga é em série com outros elementos (facilita cálculo de corrente). Use Norton quando cargas estão em paralelo (facilita soma de correntes por KCL).",
-              "Procedimento alternativo para In: calcula-se Vth e Rth, depois In = Vth/Rth. Ou calcula-se diretamente a corrente de curto-circuito no circuito original.",
-            ],
-            equacoes: [
-              { latex: "I_n = I_{cc} = \\\\dfrac{V_{th}}{R_{th}}", legenda: "Corrente de Norton = corrente de curto-circuito = Vth/Rth" },
-              { latex: "R_n = R_{th}", legenda: "Resistência de Norton idêntica à de Thévenin" },
-              { latex: "V_{th} = I_n \\\\cdot R_n", legenda: "Relação entre os dois equivalentes" },
-            ],
-            conteudo2: [
-              "Continuando o exemplo anterior: Vth = 16V, Rth = 4Ω. Equivalente Norton: In = 16/4 = 4 A em paralelo com Rn = 4Ω. Com carga de 8Ω: divisor de corrente: I_carga = 4 × 4/(4+8) = 1,33 A ✓ (mesmo resultado).",
-              "Dica de prova: os três valores-chave de qualquer rede de dois terminais são: Voc (tensão em aberto = Vth), Icc (corrente de curto = In) e Req (resistência equivalente = Rth = Rn). Conhecendo dois deles, calcula-se o terceiro por Voc = Icc × Req.",
-            ],
-          },
-
-          {
-            titulo: "6.11 — Máxima Transferência de Potência",
-            conteudo: [
-              "O Teorema de Máxima Transferência de Potência determina o valor da resistência de carga Rcarga que maximiza a potência transferida a ela, dado um circuito fonte representado pelo equivalente Thévenin.",
-              "A potência na carga é P = I² × Rcarga = [Vth/(Rth + Rcarga)]² × Rcarga. Essa função tem um máximo quando Rcarga = Rth — a carga deve ser igual à resistência interna (Thévenin) do circuito fonte.",
-              "Na condição de máxima transferência (Rcarga = Rth): P_max = Vth² / (4 × Rth). A tensão na carga é exatamente metade de Vth. A corrente de carga é Vth/(2×Rth).",
-              "Eficiência na máxima transferência: como Rcarga = Rth, a mesma potência é dissipada na fonte e na carga. A eficiência de transferência é de apenas 50% — metade da energia gerada é perdida internamente.",
-              "Aplicações: em sistemas de telecomunicações e eletrônica de sinais, a máxima transferência de potência é a prioridade — interessa maximizar o sinal recebido, mesmo com baixa eficiência. Em sistemas de potência (energia elétrica industrial), a prioridade é a eficiência — opera-se com Rcarga >> Rth para minimizar perdas internas.",
-              "Em CA, a máxima transferência ocorre quando a impedância da carga é o conjugado complexo da impedância de Thévenin: ZL = Zth*. Isso significa que a parte resistiva é igual e a parte reativa é oposta em sinal.",
-            ],
-            equacoes: [
-              { latex: "R_{carga} = R_{th} \\\\quad \\\\Rightarrow \\\\quad P_{max} = \\\\dfrac{V_{th}^2}{4 \\\\cdot R_{th}}", legenda: "Condição e valor de máxima transferência de potência" },
-              { latex: "\\\\eta_{max\\ transf} = 50\\\\%", legenda: "Eficiência na máxima transferência: metade da energia é perdida na resistência interna" },
-            ],
-            conteudo2: [
-              "Exemplo: fonte Thévenin com Vth = 24V e Rth = 6Ω. Rcarga ótima = 6Ω. Pmax = 24²/(4×6) = 576/24 = 24 W. Verificação: I = 24/(6+6) = 2A. P = 4×6 = 24W ✓. Para Rcarga = 3Ω: P = [24/9]² × 3 = 7,11 × 3 = 21,3 W < 24 W. Para Rcarga = 12Ω: P = [24/18]² × 12 = 1,78 × 12 = 21,3 W < 24 W.",
-            ],
-          },
-
-          {
-            titulo: "6.12 — Capacitores: Carga, Descarga e Circuitos RC",
-            conteudo: [
-              "O capacitor é um elemento que armazena energia no campo elétrico entre duas placas condutoras separadas por um dielétrico. A capacitância C (em Farads) indica a quantidade de carga armazenada por unidade de tensão.",
-              "Em CC em regime permanente, o capacitor se comporta como circuito aberto — não passa corrente. É por isso que capacitores bloqueiam CC e são usados para separar sinais CA de CC em circuitos de áudio e comunicação.",
-              "A carga de um capacitor em circuito RC: ao conectar uma fonte de tensão V em série com R e C, a tensão no capacitor cresce exponencialmente de 0 até V. A corrente decai de I0 = V/R até zero.",
-              "A constante de tempo τ = R × C define a velocidade de carga/descarga. Em t = τ, o capacitor atingiu 63,2% da tensão final. Em t = 5τ, está praticamente em regime (99,3%).",
-              "A descarga: ao curto-circuitar um capacitor carregado em V0 através de R, a tensão decai exponencialmente de V0 até zero. A corrente inicial é I0 = V0/R (negativa — sai do capacitor).",
-              "Associação de capacitores: em paralelo, as capacitâncias somam (C_eq = C1 + C2 + ...). Em série, os inversos somam (1/C_eq = 1/C1 + 1/C2 + ...) — inverso do que acontece com resistores.",
-              "Energia armazenada no capacitor: E = ½ × C × V². Essa energia pode ser liberada rapidamente em pulsos de alta potência (flash de câmera, desfibriladores) ou lentamente como fonte de energia de backup.",
-            ],
-            equacoes: [
-              { latex: "v_C(t) = V \\\\cdot \\\\left(1 - e^{-t/\\\\tau}\\\\right) \\\\qquad \\\\tau = R \\\\cdot C", legenda: "Carga do capacitor: V = tensão final, τ = RC = constante de tempo" },
-              { latex: "v_C(t) = V_0 \\\\cdot e^{-t/\\\\tau}", legenda: "Descarga do capacitor: V0 = tensão inicial" },
-              { latex: "E = \\\\dfrac{1}{2} C V^2", legenda: "Energia armazenada no capacitor (J)" },
-            ],
-            conteudo2: [
-              "Exemplo: R = 10 kΩ, C = 100 μF, fonte de 12V. τ = 10.000 × 100×10⁻⁶ = 1 segundo. Em t = 1s: Vc = 12×(1−e⁻¹) = 12×0,632 = 7,58 V. Em t = 5s: Vc = 12×(1−e⁻⁵) ≈ 12×0,993 = 11,92 V (praticamente carregado).",
-            ],
-            dicas: [
-              {
-                gatilho: "ver a curva de carga do capacitor",
-                titulo: "Carga exponencial do capacitor",
-                tipo: "carga-capacitor",
-                explicacao: "A tensão no capacitor sobe exponencialmente, iniciando em 0 e tendendo à tensão da fonte. A velocidade é controlada pela constante de tempo τ = RC. Em 1τ: 63,2%. Em 2τ: 86,5%. Em 3τ: 95%. Em 5τ: 99,3% — praticamente em regime.",
-              },
-            ],
-          },
-
-          {
-            titulo: "6.13 — Indutores e Circuitos RL",
-            conteudo: [
-              "O indutor é um elemento que armazena energia no campo magnético de uma bobina. A indutância L (em Henrys) indica a relação entre a tensão induzida e a taxa de variação da corrente.",
-              "Em CC em regime permanente, o indutor se comporta como curto-circuito (fio) — não oferece resistência a correntes constantes. A tensão em um indutor ideal em regime CC é zero.",
-              "Ao energizar um indutor em circuito RL: a corrente cresce exponencialmente de 0 até I_final = V/R. A tensão no indutor decai de V até zero.",
-              "A constante de tempo do circuito RL: τ = L/R. Em t = τ, a corrente atingiu 63,2% do valor final. O indutor se opõe a variações bruscas de corrente — é por isso que nunca se deve abrir abruptamente o circuito de um indutor sob carga (pode gerar pulso de tensão destrutivo).",
-              "Ao desligar (circuito RL com chave aberta): a corrente no indutor tende a se manter, gerando uma fem elevada nos terminais da chave. Diodos de roda-livre (freewheeling diodes) são colocados em paralelo com bobinas de relés e motores para proteger o circuito.",
-              "Associação de indutores: em série, as indutâncias somam. Em paralelo, os inversos somam — igual aos resistores.",
-              "Energia armazenada no indutor: E = ½ × L × I². Em um curto-circuito de sistema de potência, a energia armazenada nos indutores da rede contribui para a corrente de falta.",
-            ],
-            equacoes: [
-              { latex: "i_L(t) = \\\\dfrac{V}{R} \\\\cdot \\\\left(1 - e^{-t/\\\\tau}\\\\right) \\\\qquad \\\\tau = \\\\dfrac{L}{R}", legenda: "Crescimento da corrente no indutor: V/R = corrente final, τ = L/R" },
-              { latex: "i_L(t) = I_0 \\\\cdot e^{-t/\\\\tau}", legenda: "Decaimento da corrente (desligar fonte)" },
-              { latex: "E = \\\\dfrac{1}{2} L I^2", legenda: "Energia armazenada no indutor (J)" },
-            ],
-            conteudo2: [
-              "Exemplo: R = 50 Ω, L = 0,5 H, fonte de 100V. τ = 0,5/50 = 10 ms. Corrente final: 100/50 = 2 A. Em t = 10ms: i = 2×(1−e⁻¹) = 2×0,632 = 1,26 A. Em t = 50ms: i ≈ 2×0,993 = 1,99 A.",
-              "O pulso de tensão ao abrir o circuito do indutor: e = −L × ΔI/Δt. Se ΔI = 2A e Δt = 1ms: e = −0,5 × 2/0,001 = −1.000 V. Esse pulso pode destruir transistores e tiristores — daí a necessidade do diodo de roda-livre.",
-            ],
-            dicas: [
-              {
-                gatilho: "ver o decaimento da corrente no indutor",
-                titulo: "Corrente decaindo no indutor",
-                tipo: "descarga-indutor",
-                explicacao: "Ao desligar a fonte, a corrente no indutor decai exponencialmente. O indutor tenta manter a corrente constante — qualquer interrupção brusca gera pico de tensão. A constante de tempo τ = L/R determina a velocidade do decaimento.",
-              },
-            ],
-          },
-
-          // ── SEÇÃO COMPONENTES SEMICONDUTORES ───────────────────────────
-          {
-            titulo: "6.14 — Diodo de Junção PN e LED",
-            conteudo: [
-              "O diodo é um componente semicondutor com duas regiões: tipo P (dopagem com buracos) e tipo N (dopagem com elétrons). A junção PN cria uma barreira de potencial que permite a passagem de corrente em apenas um sentido.",
-              "Polarização direta (ânodo mais positivo que o cátodo): a barreira é reduzida, a corrente flui livremente. A tensão de joelho (tensão de limiar) é de aproximadamente 0,6 a 0,7 V para diodos de silício e 0,2 a 0,3 V para germânio.",
-              "Polarização reversa (ânodo mais negativo que o cátodo): a barreira aumenta, praticamente nenhuma corrente flui (apenas a corrente de saturação reversa, muito pequena). Esse estado persiste até a tensão de ruptura (Zener ou avalanche).",
-              "Modelo simplificado do diodo (para análise de circuitos): diodo ideal — curto-circuito quando polarizado diretamente, circuito aberto quando reversamente. Modelo com queda de tensão — queda constante de 0,7 V quando diretamente polarizado.",
-              "O LED (Light Emitting Diode) é um diodo especial que emite luz quando polarizado diretamente. A tensão de joelho varia com a cor: vermelho ≈ 1,8 V, amarelo ≈ 2,0 V, verde ≈ 2,1 V, azul e branco ≈ 3,0 a 3,5 V.",
-              "Para limitar a corrente no LED, usa-se um resistor em série. A corrente típica de operação é 10 a 20 mA. A resistência é calculada a partir da tensão de alimentação, da queda no LED e da corrente desejada.",
-              "LEDs de potência (power LEDs) operam com correntes de 350 mA a vários Ampères, usados em iluminação industrial e faróis de veículos. Precisam de dissipadores de calor e drivers de corrente constante.",
-              "Aplicações do diodo: retificação (converter CA em CC), proteção contra polaridade inversa, clipping (limitação de tensão), clamping (fixação de nível CC) e demodulação de sinal AM.",
-            ],
-            equacoes: [
-              { latex: "R_{serie} = \\\\dfrac{V_{alimentacao} - V_{LED}}{I_{LED}}", legenda: "Resistor em série com LED: garante a corrente nominal de operação" },
-              { latex: "I_D = I_s \\\\cdot \\\\left(e^{\\\\,V_D / V_T} - 1\\\\right)", legenda: "Equação de Shockley do diodo: Is = corrente de saturação, VT = 26mV a 25°C" },
-            ],
-            conteudo2: [
-              "Exemplo LED: alimentação de 5V, LED vermelho (queda 1,8V), corrente desejada 15mA. R = (5 − 1,8) / 0,015 = 3,2 / 0,015 = 213 Ω. Usar resistor comercial de 220 Ω: I = (5−1,8)/220 = 14,5 mA ✓.",
-              "Exemplo retificador: diodo em série com fonte CA de 127V (rms) e carga de 1kΩ. Na meia onda positiva: I = (127√2 − 0,7)/1000 = 179 mA de pico. Na meia onda negativa: diodo bloqueado, I = 0. Tensão média na carga: 0,45 × 127 = 57 V.",
-            ],
-          },
-
-          {
-            titulo: "6.15 — Análise de Circuitos com Diodos",
-            conteudo: [
-              "Para analisar circuitos com diodos, usa-se o método de suposição e verificação: assume-se o estado de cada diodo (conduzindo ou bloqueado), resolve-se o circuito com o modelo simplificado e verifica-se se o estado assumido é consistente.",
-              "Verificação: se o diodo foi assumido como conduzindo, confirma-se que a tensão no ânodo é maior que no cátodo (VD ≥ 0,7V). Se assumido como bloqueado, confirma-se que VD < 0,7V. Se inconsistente, inverte-se a suposição e resolve-se novamente.",
-              "Circuito grampeador (clipper): limita a amplitude do sinal de saída. Clipper série: diodo em série com a carga — passa apenas os semiciclos positivos (ou negativos). Clipper paralelo: diodo em paralelo com a carga — limita a tensão máxima na carga.",
-              "Circuito fixador (clamper): adiciona um nível CC ao sinal de entrada sem alterar sua forma de onda. Usa um capacitor em série com a entrada e um diodo. O capacitor carrega até o pico do sinal e fixa o nível mínimo ou máximo da saída.",
-              "Multiplicador de tensão: combinação de capacitores e diodos que produz tensão CC múltipla da tensão de entrada. O dobrador de tensão produz aproximadamente 2×Vp. Usado em fontes de alta tensão de baixa corrente (osciloscópios, TVs de tubo).",
-              "O diodo Zener opera na tensão de ruptura reversa de forma estável e controlada. Usado como regulador de tensão: mantém tensão constante nos terminais mesmo com variação da corrente. O resistor em série limita a corrente e dissipa o excesso de tensão.",
-            ],
-            equacoes: [
-              { latex: "V_Z = \\\\text{constante} \\\\quad \\\\text{(quando }I_Z > I_{Z_{min}}\\\\text{)}", legenda: "Diodo Zener: tensão constante na polarização reversa acima da corrente mínima" },
-              { latex: "R_{serie} = \\\\dfrac{V_{entrada} - V_Z}{I_Z + I_{carga}}", legenda: "Resistor série do regulador Zener" },
-            ],
-            conteudo2: [
-              "Exemplo Zener: V_entrada = 12V variável (10 a 15V), Zener de 5,1V, carga de 510Ω. I_carga = 5,1/510 = 10 mA. Para V_entrada = 10V: R = (10−5,1)/(10m + 5m) = 4,9/15m = 327 Ω. Usar 330 Ω. Verificar para V_entrada = 15V: IZ = (15−5,1)/330 − 10m = 30m − 10m = 20 mA. Pmax_zener = 5,1 × 20m = 102 mW (dentro do limite típico de 500mW).",
-            ],
-          },
-
-          // ── ANÁLISE EM CA ───────────────────────────────────────────────
-          {
-            titulo: "6.16 — Análise Fasorial de Circuitos CA",
-            conteudo: [
-              "A análise fasorial transforma o problema de equações diferenciais em CA em um problema algébrico com números complexos. Em vez de trabalhar com funções do tempo, representa-se cada grandeza senoidal por um fasor — um número complexo com magnitude (valor eficaz) e ângulo (fase).",
-              "Um fasor representa uma senoide: v(t) = Vp × cos(ωt + φ) é representada pelo fasor V = Vp∠φ (ou Vrms∠φ, dependendo da convenção adotada). A frequência ω é a mesma para todos os elementos — não aparece explicitamente no fasor.",
-              "Impedâncias complexas: resistor Z_R = R (real, sem fase). Indutor Z_L = jωL = jXL (imaginário puro positivo). Capacitor Z_C = 1/(jωC) = −jXC (imaginário puro negativo). Circuito série: Z_total = R + j(XL − XC).",
-              "A análise de circuitos em CA com fasores usa exatamente as mesmas leis e técnicas dos circuitos CC: KCL, KVL, Thévenin, Norton, superposição, divisor de tensão/corrente — apenas com aritmética de números complexos.",
-              "Divisor de tensão em CA: V_R = V × Z_R/Z_total, V_L = V × Z_L/Z_total. Os valores são complexos — magnitude e fase precisam ser calculados.",
-              "A partir do fasor, recupera-se a função do tempo: se V = 10∠30° V (com ω = 377 rad/s), então v(t) = 10√2 × cos(377t + 30°) V.",
-            ],
-            equacoes: [
-              { latex: "\\\\mathbf{Z}_R = R \\\\qquad \\\\mathbf{Z}_L = j\\\\omega L \\\\qquad \\\\mathbf{Z}_C = \\\\dfrac{1}{j\\\\omega C} = -\\\\dfrac{jX_C}{1}", legenda: "Impedâncias complexas dos elementos básicos" },
-              { latex: "\\\\mathbf{Z}_{RLC} = R + j(\\\\omega L - \\\\dfrac{1}{\\\\omega C}) = R + j(X_L - X_C)", legenda: "Impedância total do circuito RLC série" },
-              { latex: "|\\\\mathbf{Z}| = \\\\sqrt{R^2 + (X_L - X_C)^2} \\\\qquad \\\\angle\\\\mathbf{Z} = \\\\arctan\\\\left(\\\\dfrac{X_L - X_C}{R}\\\\right)", legenda: "Módulo e ângulo da impedância" },
-            ],
-            conteudo2: [
-              "Exemplo: R=10Ω, L=50mH, C=330μF em série, f=60Hz. XL=2π×60×0,05=18,85Ω. XC=1/(2π×60×330×10⁻⁶)=8,04Ω. Z=10+j(18,85−8,04)=10+j10,81. |Z|=√(100+116,9)=14,73Ω. φ=arctan(10,81/10)=47,2°. I=127/14,73=8,62A. Corrente atrasa 47,2° em relação à tensão.",
-            ],
-          },
-
-          {
-            titulo: "6.17 — Potência em CA: Ativa, Reativa, Aparente e Fator de Potência",
-            conteudo: [
-              "A análise de potência em CA com a notação fasorial torna os cálculos sistemáticos. A potência complexa S = P + jQ engloba as três componentes de potência.",
-              "Potência ativa P (W): dissipada no resistor, realiza trabalho útil. P = V_rms × I_rms × cos(φ) = I²_rms × R = |I|² × Re(Z).",
-              "Potência reativa Q (var): associada aos elementos reativos. Q = V_rms × I_rms × sen(φ) = |I|² × X. Positiva para indutores (Q_L > 0), negativa para capacitores (Q_C < 0).",
-              "Potência aparente S (VA): S = V_rms × I_rms = |V| × |I|. Módulo da potência complexa: |S| = √(P² + Q²).",
-              "Fator de potência: FP = P/S = cos(φ). FP lagging (atrasado) para cargas indutivas (corrente atrasada). FP leading (adiantado) para cargas capacitivas (corrente adiantada).",
-              "Medição de potência: wattímetro mede P diretamente. Varmetro mede Q. Para medir as três potências num sistema trifásico, usa-se o método dos dois wattímetros.",
-              "Geração de Q por capacitores: bancos de capacitores fornecem Q_C = V²/X_C = V² × ωC. Instalados próximos às cargas indutivas, reduzem o Q demandado da rede e diminuem a corrente total.",
-            ],
-            equacoes: [
-              { latex: "\\\\mathbf{S} = P + jQ = V_{rms} \\\\cdot I_{rms}^* = |\\\\mathbf{I}|^2 \\\\cdot \\\\mathbf{Z}", legenda: "Potência complexa: * indica conjugado complexo" },
-              { latex: "P = |\\\\mathbf{I}|^2 \\\\cdot R \\\\qquad Q = |\\\\mathbf{I}|^2 \\\\cdot X \\\\qquad S = |\\\\mathbf{I}|^2 \\\\cdot |\\\\mathbf{Z}|", legenda: "Potências em termos da corrente e da impedância" },
-              { latex: "Q_C = \\\\dfrac{V^2}{X_C} = V^2 \\\\cdot \\\\omega C", legenda: "Potência reativa gerada pelo capacitor (negativa = fornecida)" },
-            ],
-            conteudo2: [
-              "Exemplo: impedância Z = 10 + j8 Ω, tensão V = 100∠0° V. I = V/Z = 100/(10+j8) = 100∠0° / 12,81∠38,7° = 7,81∠−38,7° A. P = |I|²×R = 61×10 = 610 W. Q = |I|²×X = 61×8 = 488 var (indutivo). S = |I|²×|Z| = 61×12,81 = 781 VA. FP = P/S = 610/781 = 0,78 lagging.",
-            ],
-          },
-
-          {
-            titulo: "6.18 — Ressonância em Série e em Paralelo",
-            conteudo: [
-              "A ressonância ocorre quando as reatâncias indutiva e capacitiva se anulam, resultando em comportamento puramente resistivo do circuito. É um fenômeno com aplicações importantes e riscos que o técnico precisa conhecer.",
-              "Ressonância em série (RLC série): na frequência de ressonância f0, XL = XC, a impedância é mínima (Z = R) e a corrente é máxima (I = V/R). As tensões no indutor e no capacitor são iguais em módulo, mas opostas em fase — podem ser muito maiores que a tensão da fonte.",
-              "O fator de qualidade Q (não confundir com potência reativa) em série: Q = XL/R = 1/(R√(C/L)). Quanto maior Q, mais seletiva é a ressonância — a corrente cai rapidamente para frequências afastadas de f0. Q elevado é desejável em filtros de rádio e TV.",
-              "A largura de banda BW = f0/Q é a faixa de frequências em que a corrente fica acima de 1/√2 do valor de pico (queda de 3 dB).",
-              "Ressonância em paralelo (RLC paralelo): na frequência de ressonância, a impedância é MÁXIMA (igual a R para indutor e capacitor ideais, ou R_paralelo = L/(RC) para circuito real) e a corrente da fonte é MÍNIMA. As correntes no indutor e capacitor circulam internamente — podem ser muito maiores que a corrente da fonte.",
-              "Riscos da ressonância: em sistemas de distribuição de energia, bancos de capacitores instalados para correção de FP podem entrar em ressonância com a indutância da rede numa frequência harmônica, amplificando a corrente harmônica e danificando os capacitores. O técnico de manutenção deve conhecer esse risco.",
-              "Aplicações construtivas da ressonância: filtros de rádio e TV (sintonização de estações), osciladores de cristal (relógios precisos), filtros de harmônicos em sistemas de potência.",
-            ],
-            equacoes: [
-              { latex: "f_0 = \\\\dfrac{1}{2\\\\pi\\\\sqrt{LC}}", legenda: "Frequência de ressonância (série e paralelo)" },
-              { latex: "Q = \\\\dfrac{X_L}{R} = \\\\dfrac{1}{R}\\\\sqrt{\\\\dfrac{L}{C}}", legenda: "Fator de qualidade do circuito ressonante série" },
-              { latex: "BW = \\\\dfrac{f_0}{Q} \\\\quad [\\\\text{Hz}]", legenda: "Largura de banda (-3 dB)" },
-              { latex: "V_L = V_C = Q \\\\cdot V_{fonte} \\\\quad \\\\text{(na ressonância série)}", legenda: "Sobretensão nos elementos reativos: pode ser Q vezes a tensão da fonte" },
-            ],
-            conteudo2: [
-              "Exemplo: L=10mH, C=10μF, R=5Ω. f0=1/(2π×√(10×10⁻³×10×10⁻⁶))=1/(2π×√(10⁻⁷))=1/(2π×316×10⁻⁶)=503 Hz. XL=2π×503×0,01=31,6Ω. Q=31,6/5=6,32. Na ressonância com V=10V: I=10/5=2A. Tensão no indutor: VL=2×31,6=63,2 V — 6,32 vezes a tensão da fonte!",
-            ],
-          },
-
-        ],
-      },
     ],
   },
   {
@@ -1508,6 +1126,388 @@ export const AREAS: Area[] = [
           },
         ],
       },
+      // ── MÓDULO 6 — CIRCUITOS ELÉTRICOS COMPLETO ──────────────────────────
+      {
+        slug: "circuitos-eletricos-completo",
+        titulo: "Módulo 6 — Circuitos Elétricos: Do Básico ao Avançado",
+        descricao: "CC e CA, Thévenin, Norton, superposição, supermalha, supernó, máxima transferência de potência, diodo, LED e muito mais.",
+        bloco: "Bloco I",
+        paginas: [
+
+          // ── SEÇÃO CC ────────────────────────────────────────────────────
+          {
+            titulo: "6.1 — Elementos de Circuito: Fontes e Resistores",
+            conteudo: [
+              "Um circuito elétrico é formado por elementos interligados que permitem o fluxo de corrente elétrica. Os elementos se dividem em ativos (fontes — fornecem energia) e passivos (resistores, capacitores, indutores — absorvem ou armazenam energia).",
+              "Fonte de tensão ideal: mantém tensão constante nos seus terminais independentemente da corrente que fornece. Símbolo: círculo com + e −. Exemplo: bateria ideal, gerador ideal. Na prática, toda fonte real tem resistência interna em série.",
+              "Fonte de corrente ideal: mantém corrente constante nos seus terminais independentemente da tensão que aparece neles. Símbolo: círculo com seta. Usada em modelagem de transistores e amplificadores.",
+              "Fonte de tensão real: modelada como fonte ideal em série com resistência interna Rint. A tensão nos terminais cai com o aumento da corrente: Vterm = Voc − Rint × I, onde Voc é a tensão em circuito aberto.",
+              "Fonte de corrente real: modelada como fonte ideal em paralelo com resistência interna. Corrente nos terminais: Iterm = Icc − V/Rint, onde Icc é a corrente de curto-circuito.",
+              "O resistor é o elemento passivo mais básico — converte energia elétrica em calor (efeito Joule). Resistores reais têm tolerância (±1%, ±5%, ±10%), coeficiente de temperatura e potência máxima nominal. Operar acima da potência nominal danifica o componente.",
+              "O código de cores dos resistores: cada cor representa um dígito (preto=0, marrom=1, vermelho=2, laranja=3, amarelo=4, verde=5, azul=6, violeta=7, cinza=8, branco=9). Faixas de tolerância: ouro=±5%, prata=±10%, sem faixa=±20%.",
+            ],
+            equacoes: [
+              { latex: "V_{term} = V_{oc} - R_{int} \\\\cdot I", legenda: "Tensão nos terminais de fonte real: Voc = tensão em aberto, Rint = resistência interna" },
+              { latex: "P_{max\\ resistor} = I^2 \\\\cdot R = \\\\dfrac{V^2}{R}", legenda: "Potência dissipada no resistor — não exceder a potência nominal" },
+            ],
+            conteudo2: [
+              "Exemplo: bateria de 12 V com resistência interna de 0,5 Ω fornecendo 8 A. Tensão nos terminais: V = 12 − 0,5 × 8 = 12 − 4 = 8 V. A queda de 4 V ocorre internamente, aquecendo a bateria.",
+            ],
+          },
+
+          {
+            titulo: "6.2 — Leis de Kirchhoff: KCL e KVL",
+            conteudo: [
+              "As Leis de Kirchhoff são as ferramentas fundamentais de análise de qualquer circuito elétrico. São consequências diretas da conservação de carga (KCL) e da conservação de energia (KVL).",
+              "KCL — Lei dos Nós (1ª Lei de Kirchhoff): a soma algébrica de todas as correntes em qualquer nó de um circuito é zero. Convenção: correntes que entram no nó são positivas, correntes que saem são negativas. Equivale a dizer que carga não se acumula nos nós.",
+              "KVL — Lei das Malhas (2ª Lei de Kirchhoff): a soma algébrica de todas as tensões em qualquer malha fechada é zero. Percorrendo a malha em um sentido fixo: se passamos pelo + antes do − de um elemento, a tensão é positiva; se passamos pelo − antes do +, é negativa.",
+              "Convenção de sinais para KVL: ao percorrer um resistor no sentido da corrente assumida, a queda de tensão é −R×I (queda). Ao percorrer uma fonte do − para o +, a contribuição é +V (elevação). Ao percorrer uma fonte do + para o −, é −V (queda).",
+              "Método sistemático de análise: (1) Identificar os nós e malhas do circuito. (2) Atribuir correntes e referências. (3) Aplicar KCL nos nós ou KVL nas malhas. (4) Resolver o sistema de equações. (5) Verificar se as correntes negativas indicam sentido inverso ao assumido.",
+              "Para circuitos simples (uma malha), a KVL basta. Para circuitos com múltiplas malhas, usam-se métodos sistemáticos: análise nodal (KCL em todos os nós) ou análise de malhas (KVL em todas as malhas independentes).",
+            ],
+            equacoes: [
+              { latex: "\\\\sum_{k} I_k = 0 \\\\quad \\\\text{(em qualquer nó)}", legenda: "KCL: soma das correntes no nó = zero" },
+              { latex: "\\\\sum_{k} V_k = 0 \\\\quad \\\\text{(em qualquer malha fechada)}", legenda: "KVL: soma das tensões na malha = zero" },
+            ],
+            conteudo2: [
+              "Exemplo KVL: malha com fonte 12 V, R1 = 2 Ω e R2 = 4 Ω em série. KVL: +12 − 2I − 4I = 0. 6I = 12. I = 2 A. Tensão em R1: V1 = 2×2 = 4 V. Tensão em R2: V2 = 4×2 = 8 V. Verificação: 4 + 8 = 12 V ✓.",
+              "Exemplo KCL: nó com correntes I1 = 3 A entrando, I2 = 1 A saindo, I3 = ? KCL: 3 − 1 − I3 = 0. I3 = 2 A saindo.",
+            ],
+          },
+
+          {
+            titulo: "6.3 — Método das Malhas (Análise por Correntes de Malha)",
+            conteudo: [
+              "O método das malhas é uma técnica sistemática para analisar circuitos com múltiplas malhas. Em vez de usar correntes de ramo, define-se uma corrente de malha circulando em cada malha independente do circuito.",
+              "Procedimento: (1) Identificar as malhas independentes (malhas que não podem ser divididas em malhas menores). (2) Atribuir corrente de malha a cada uma (sentido horário por convenção). (3) Escrever a equação KVL para cada malha, usando as correntes de malha. (4) Resolver o sistema linear de equações. (5) A corrente real em cada ramo compartilhado é a diferença das correntes de malha adjacentes.",
+              "Em ramos compartilhados entre duas malhas, a tensão no resistor é R × (I1 − I2), onde I1 e I2 são as correntes de malha. O sinal depende de qual malha está sendo analisada.",
+              "O método das malhas é especialmente eficiente quando o número de malhas independentes é menor que o número de nós independentes — gera menos equações e facilita a solução.",
+              "Para N malhas independentes, o sistema tem N equações e N incógnitas (as correntes de malha). A solução pode ser obtida por substituição, escalonamento ou regra de Cramer.",
+            ],
+            equacoes: [
+              { latex: "\\\\sum R_{kk} \\\\cdot I_k - \\\\sum R_{kj} \\\\cdot I_j = \\\\sum V_{fontes}", legenda: "Equação de malha k: Rkk = soma das resistências da malha k, Rkj = resistências compartilhadas" },
+            ],
+            conteudo2: [
+              "Exemplo: circuito com duas malhas. Malha 1 (I1): +12 − 3I1 − 2(I1−I2) = 0 → 5I1 − 2I2 = 12. Malha 2 (I2): −2(I2−I1) − 4I2 − 6 = 0 → −2I1 + 6I2 = −6. Resolvendo: I1 = 66/26 ≈ 2,54 A, I2 = −6/26 ≈ −0,23 A (sentido inverso ao assumido).",
+            ],
+          },
+
+          {
+            titulo: "6.4 — Supermalha",
+            conteudo: [
+              "A supermalha surge quando uma fonte de corrente está localizada no ramo compartilhado entre duas malhas. Nesse caso, não é possível escrever diretamente a KVL para cada malha separadamente, pois a tensão na fonte de corrente é desconhecida.",
+              "Para criar a supermalha: combina-se as duas malhas que contêm a fonte de corrente em uma única malha maior, excluindo o ramo com a fonte de corrente. Escreve-se a KVL para essa malha combinada.",
+              "A equação de restrição: a diferença entre as correntes de malha nas duas malhas adjacentes à fonte de corrente é igual ao valor da fonte de corrente. Essa equação complementa a KVL da supermalha.",
+              "A supermalha pode envolver mais de duas malhas se a fonte de corrente for adjacente a várias. O procedimento é o mesmo: combinar todas as malhas afetadas, excluir o ramo da fonte de corrente e escrever a restrição.",
+              "Resumo: supermalha = KVL ao redor da malha combinada (sem o ramo da fonte de corrente) + equação de restrição da fonte de corrente.",
+            ],
+            equacoes: [
+              { latex: "I_1 - I_2 = I_s \\\\quad \\\\text{(equação de restrição da supermalha)}", legenda: "A diferença das correntes de malha = valor da fonte de corrente" },
+            ],
+            conteudo2: [
+              "Exemplo: fonte de corrente de 4 A entre os nós das malhas I1 e I2 (com I1 saindo pelo + da fonte). Restrição: I1 − I2 = 4. Supermalha (KVL ao redor, excluindo a fonte de corrente): − R1×I1 − R3×I2 + V_fonte = 0. Com R1=2Ω, R3=3Ω, V_fonte=10V: −2I1 − 3I2 + 10 = 0. Sistema: I1 − I2 = 4 e 2I1 + 3I2 = 10. Solução: I1 = 4,4 A, I2 = 0,4 A.",
+            ],
+          },
+
+          {
+            titulo: "6.5 — Método dos Nós (Análise Nodal)",
+            conteudo: [
+              "O método dos nós usa tensões de nó como variáveis. Define-se um nó de referência (terra, potencial zero) e calcula-se a tensão de todos os outros nós em relação a esse referencial.",
+              "Procedimento: (1) Identificar todos os nós. (2) Escolher o nó de referência (geralmente o de maior número de conexões). (3) Atribuir tensão de nó a cada nó não-referência. (4) Aplicar KCL em cada nó não-referência, expressando correntes em termos das tensões de nó. (5) Resolver o sistema.",
+              "Corrente em resistor entre dois nós: I = (V1 − V2)/R, fluindo de V1 para V2 se V1 > V2. Na KCL, correntes que saem do nó são positivas, que chegam são negativas (ou vice-versa — o importante é ser consistente).",
+              "Para N nós não-referência, o sistema tem N equações com N incógnitas (tensões de nó). Geralmente eficiente quando N é pequeno.",
+              "O método nodal é mais eficiente que o de malhas quando o circuito tem poucos nós mas muitas malhas — típico em circuitos eletrônicos com muitos componentes em paralelo.",
+            ],
+            equacoes: [
+              { latex: "\\\\sum \\\\dfrac{V_k - V_j}{R_{kj}} = \\\\sum I_{fontes \\text{ no nó } k}", legenda: "KCL no nó k: soma das correntes saindo = soma das fontes de corrente" },
+            ],
+            conteudo2: [
+              "Exemplo: dois nós (V1 e V2) com referência em terra. Fonte de 10V em série com R1=2Ω conectando terra ao nó V1. R2=4Ω entre V1 e V2. R3=6Ω conectando V2 ao terra. KCL em V1: (V1−10)/2 + (V1−V2)/4 = 0 → 3V1 − V2 = 20. KCL em V2: (V2−V1)/4 + V2/6 = 0 → −3V1 + 5V2 = 0. Solução: V1 = 8,33 V, V2 = 5 V.",
+            ],
+          },
+
+          {
+            titulo: "6.6 — Supernó",
+            conteudo: [
+              "O supernó surge quando uma fonte de tensão conecta dois nós não-referência. Nesse caso, a tensão entre os dois nós é conhecida (igual ao valor da fonte), mas a corrente na fonte é desconhecida — impossível escrever KCL separada para cada um.",
+              "Para criar o supernó: aplica-se KCL ao redor da superfície que engloba ambos os nós e a fonte de tensão (como uma 'bolha'). As correntes que entram e saem dessa superfície são somadas.",
+              "A equação de restrição do supernó: a diferença de tensão entre os dois nós é igual à tensão da fonte. Essa equação, combinada com a KCL do supernó, completa o sistema.",
+              "O supernó é a contrapartida nodal da supermalha: supermalha trata fonte de corrente entre malhas; supernó trata fonte de tensão entre nós.",
+              "Se o supernó contiver mais de uma fonte de tensão (em série), inclui-se todas na equação de restrição.",
+            ],
+            equacoes: [
+              { latex: "V_1 - V_2 = V_s \\\\quad \\\\text{(equação de restrição do supernó)}", legenda: "Diferença de tensão entre os nós do supernó = tensão da fonte" },
+            ],
+            conteudo2: [
+              "Exemplo: fonte de tensão de 6V conectando os nós V1 e V2 (V1 = V2 + 6). R1=3Ω de V1 ao terra. R2=5Ω de V2 ao terra. Fonte de corrente de 2A entrando no nó V1. KCL do supernó (superfície englobando V1 e V2): V1/3 + V2/5 = 2. Restrição: V1 − V2 = 6. Sistema: V1/3 + V2/5 = 2 e V1 = V2 + 6. Solução: V2 = 0 V, V1 = 6 V. Verificação: 6/3 + 0/5 = 2 A ✓.",
+            ],
+          },
+
+          {
+            titulo: "6.7 — Teorema da Superposição",
+            conteudo: [
+              "O teorema da superposição afirma que, em um circuito linear com múltiplas fontes independentes, a resposta (tensão ou corrente) em qualquer elemento é igual à soma algébrica das respostas causadas por cada fonte independente atuando sozinha.",
+              "Para aplicar a superposição: analisa-se o circuito N vezes (uma para cada fonte independente). A cada análise, todas as outras fontes independentes são desativadas: fontes de tensão são substituídas por curto-circuito (fio); fontes de corrente são substituídas por circuito aberto.",
+              "A resposta total é a soma algébrica das respostas parciais. Importante: fontes dependentes NUNCA são desativadas — permanecem ativas em todas as análises.",
+              "Atenção: o teorema da superposição se aplica a tensões e correntes (grandezas lineares), mas NÃO se aplica diretamente a potências (grandeza não-linear — P = I²R ou V²/R). A potência total NÃO é a soma das potências individuais.",
+              "A superposição é especialmente útil quando o circuito tem fontes de tipos diferentes (tensão e corrente) ou quando fontes de valores diferentes facilitam análises separadas.",
+              "Limitações: aplica-se apenas a circuitos lineares (componentes com relação V×I linear — resistores, capacitores e indutores ideais). Não se aplica a circuitos com diodos, transistores operando fora da região linear, etc.",
+            ],
+            equacoes: [
+              { latex: "V_{total} = V_1' + V_2' + \\\\cdots + V_n'", legenda: "Superposição: resposta total = soma das respostas de cada fonte atuando isoladamente" },
+              { latex: "P_{total} \\\\neq P_1' + P_2' + \\\\cdots \\\\quad \\\\text{(superposição NÃO vale para potência)}", legenda: "CUIDADO: potência não obedece ao princípio de superposição" },
+            ],
+            conteudo2: [
+              "Exemplo: circuito com fonte de tensão V1=12V e fonte de corrente I2=3A, com R1=4Ω e R2=6Ω. Análise 1 (só V1, abrir I2): I' = 12/(4+6) = 1,2 A. V_R2' = 1,2×6 = 7,2 V. Análise 2 (só I2, curto V1): divisor de corrente, I_R2'' = 3×4/(4+6) = 1,2 A. V_R2'' = 1,2×6 = 7,2 V. Total: V_R2 = 7,2 + 7,2 = 14,4 V.",
+            ],
+          },
+
+          {
+            titulo: "6.8 — Transformação de Fontes",
+            conteudo: [
+              "A transformação de fontes é uma técnica que permite converter uma fonte de tensão em série com resistor em uma fonte de corrente em paralelo com o mesmo resistor (e vice-versa), sem alterar o comportamento externo do circuito.",
+              "Conversão fonte de tensão → fonte de corrente: Is = Vs/R. A resistência R permanece a mesma, mas vai de série para paralelo. O sentido da corrente deve ser preservado.",
+              "Conversão fonte de corrente → fonte de tensão: Vs = Is × R. A resistência R vai de paralelo para série. O polo + fica no terminal onde a corrente entrava.",
+              "A transformação é equivalente nos terminais: a tensão em aberto e a corrente de curto são iguais antes e depois da transformação. Isso é a base do Teorema de Thévenin e Norton.",
+              "A transformação de fontes simplifica circuitos complexos combinando fontes e resistores em sequência, reduzindo progressivamente a complexidade até uma forma que permite fácil análise.",
+              "Limitação: fontes ideais (tensão ideal sem resistência em série, ou corrente ideal sem resistência em paralelo) NÃO podem ser transformadas.",
+            ],
+            equacoes: [
+              { latex: "I_s = \\\\dfrac{V_s}{R} \\\\quad \\\\Leftrightarrow \\\\quad V_s = I_s \\\\cdot R", legenda: "Transformação equivalente entre fonte de tensão (com R série) e fonte de corrente (com R paralelo)" },
+            ],
+            conteudo2: [
+              "Uso prático: simplificar circuitos com múltiplas fontes e resistores combinando-os progressivamente por transformações de fonte até obter um único equivalente Thévenin ou Norton.",
+            ],
+          },
+
+          {
+            titulo: "6.9 — Teorema de Thévenin",
+            conteudo: [
+              "O Teorema de Thévenin é um dos teoremas mais poderosos da análise de circuitos. Afirma que qualquer circuito linear com fontes e resistores, visto por um par de terminais (A e B), pode ser substituído por uma fonte de tensão Vth em série com uma resistência Rth.",
+              "Vth (tensão de Thévenin) é a tensão em circuito aberto nos terminais A-B — a tensão que aparece nos terminais quando nada está conectado a eles.",
+              "Rth (resistência de Thévenin) é a resistência equivalente vista dos terminais A-B com todas as fontes independentes desativadas (fontes de tensão = curto, fontes de corrente = aberto). Se houver fontes dependentes, usa-se um método diferente.",
+              "Cálculo de Rth com fontes dependentes: desativa-se apenas as fontes independentes. Aplica-se uma fonte de teste (tensão Vtest ou corrente Itest) nos terminais A-B. Calcula-se a corrente ou tensão resultante. Rth = Vtest/Itest.",
+              "O equivalente de Thévenin é extremamente útil quando se quer analisar o efeito de diferentes cargas conectadas aos terminais A-B — basta analisar o simples circuito Vth + Rth + Rcarga, sem recalcular todo o circuito.",
+              "Aplicações práticas: análise de circuitos de instrumentação, cálculo de corrente em cargas variáveis, projeto de amplificadores, análise de redes de distribuição de energia elétrica.",
+            ],
+            equacoes: [
+              { latex: "V_{th} = V_{AB}\\\\big|_{I_{carga}=0}", legenda: "Tensão de Thévenin = tensão em aberto nos terminais A-B" },
+              { latex: "R_{th} = R_{AB}\\\\big|_{\\\\text{fontes desativadas}}", legenda: "Resistência de Thévenin = resistência vista dos terminais com fontes desativadas" },
+              { latex: "I_{carga} = \\\\dfrac{V_{th}}{R_{th} + R_{carga}}", legenda: "Corrente na carga usando o equivalente Thévenin" },
+            ],
+            conteudo2: [
+              "Exemplo: circuito com fonte 24V, R1=6Ω em série com a fonte, R2=12Ω em paralelo com os terminais A-B. Vth: com A-B aberto, divisor de tensão: Vth = 24 × 12/(6+12) = 24 × 0,667 = 16 V. Rth: desativando a fonte de 24V (curto), R1 e R2 ficam em paralelo: Rth = 6×12/(6+12) = 4 Ω. Equivalente Thévenin: fonte de 16V em série com 4Ω.",
+              "Com carga de 8Ω: I = 16/(4+8) = 1,33 A. V_carga = 1,33×8 = 10,67 V.",
+            ],
+          },
+
+          {
+            titulo: "6.10 — Teorema de Norton",
+            conteudo: [
+              "O Teorema de Norton é o complemento do Teorema de Thévenin. Afirma que qualquer circuito linear com fontes e resistores, visto por um par de terminais, pode ser substituído por uma fonte de corrente In em paralelo com uma resistência Rn.",
+              "In (corrente de Norton) é a corrente de curto-circuito nos terminais A-B — a corrente que flui quando os terminais são curto-circuitados.",
+              "Rn (resistência de Norton) é idêntica à resistência de Thévenin: Rn = Rth. O mesmo procedimento de cálculo se aplica.",
+              "A relação entre os equivalentes: Vth = In × Rn. Os dois teoremas são completamente equivalentes e um pode ser obtido do outro por uma simples transformação de fonte.",
+              "Escolha entre Thévenin e Norton: use Thévenin quando a carga é em série com outros elementos (facilita cálculo de corrente). Use Norton quando cargas estão em paralelo (facilita soma de correntes por KCL).",
+              "Procedimento alternativo para In: calcula-se Vth e Rth, depois In = Vth/Rth. Ou calcula-se diretamente a corrente de curto-circuito no circuito original.",
+            ],
+            equacoes: [
+              { latex: "I_n = I_{cc} = \\\\dfrac{V_{th}}{R_{th}}", legenda: "Corrente de Norton = corrente de curto-circuito = Vth/Rth" },
+              { latex: "R_n = R_{th}", legenda: "Resistência de Norton idêntica à de Thévenin" },
+              { latex: "V_{th} = I_n \\\\cdot R_n", legenda: "Relação entre os dois equivalentes" },
+            ],
+            conteudo2: [
+              "Continuando o exemplo anterior: Vth = 16V, Rth = 4Ω. Equivalente Norton: In = 16/4 = 4 A em paralelo com Rn = 4Ω. Com carga de 8Ω: divisor de corrente: I_carga = 4 × 4/(4+8) = 1,33 A ✓ (mesmo resultado).",
+              "Dica de prova: os três valores-chave de qualquer rede de dois terminais são: Voc (tensão em aberto = Vth), Icc (corrente de curto = In) e Req (resistência equivalente = Rth = Rn). Conhecendo dois deles, calcula-se o terceiro por Voc = Icc × Req.",
+            ],
+          },
+
+          {
+            titulo: "6.11 — Máxima Transferência de Potência",
+            conteudo: [
+              "O Teorema de Máxima Transferência de Potência determina o valor da resistência de carga Rcarga que maximiza a potência transferida a ela, dado um circuito fonte representado pelo equivalente Thévenin.",
+              "A potência na carga é P = I² × Rcarga = [Vth/(Rth + Rcarga)]² × Rcarga. Essa função tem um máximo quando Rcarga = Rth — a carga deve ser igual à resistência interna (Thévenin) do circuito fonte.",
+              "Na condição de máxima transferência (Rcarga = Rth): P_max = Vth² / (4 × Rth). A tensão na carga é exatamente metade de Vth. A corrente de carga é Vth/(2×Rth).",
+              "Eficiência na máxima transferência: como Rcarga = Rth, a mesma potência é dissipada na fonte e na carga. A eficiência de transferência é de apenas 50% — metade da energia gerada é perdida internamente.",
+              "Aplicações: em sistemas de telecomunicações e eletrônica de sinais, a máxima transferência de potência é a prioridade — interessa maximizar o sinal recebido, mesmo com baixa eficiência. Em sistemas de potência (energia elétrica industrial), a prioridade é a eficiência — opera-se com Rcarga >> Rth para minimizar perdas internas.",
+              "Em CA, a máxima transferência ocorre quando a impedância da carga é o conjugado complexo da impedância de Thévenin: ZL = Zth*. Isso significa que a parte resistiva é igual e a parte reativa é oposta em sinal.",
+            ],
+            equacoes: [
+              { latex: "R_{carga} = R_{th} \\\\quad \\\\Rightarrow \\\\quad P_{max} = \\\\dfrac{V_{th}^2}{4 \\\\cdot R_{th}}", legenda: "Condição e valor de máxima transferência de potência" },
+              { latex: "\\\\eta_{max\\ transf} = 50\\\\%", legenda: "Eficiência na máxima transferência: metade da energia é perdida na resistência interna" },
+            ],
+            conteudo2: [
+              "Exemplo: fonte Thévenin com Vth = 24V e Rth = 6Ω. Rcarga ótima = 6Ω. Pmax = 24²/(4×6) = 576/24 = 24 W. Verificação: I = 24/(6+6) = 2A. P = 4×6 = 24W ✓. Para Rcarga = 3Ω: P = [24/9]² × 3 = 7,11 × 3 = 21,3 W < 24 W. Para Rcarga = 12Ω: P = [24/18]² × 12 = 1,78 × 12 = 21,3 W < 24 W.",
+            ],
+          },
+
+          {
+            titulo: "6.12 — Capacitores: Carga, Descarga e Circuitos RC",
+            conteudo: [
+              "O capacitor é um elemento que armazena energia no campo elétrico entre duas placas condutoras separadas por um dielétrico. A capacitância C (em Farads) indica a quantidade de carga armazenada por unidade de tensão.",
+              "Em CC em regime permanente, o capacitor se comporta como circuito aberto — não passa corrente. É por isso que capacitores bloqueiam CC e são usados para separar sinais CA de CC em circuitos de áudio e comunicação.",
+              "A carga de um capacitor em circuito RC: ao conectar uma fonte de tensão V em série com R e C, a tensão no capacitor cresce exponencialmente de 0 até V. A corrente decai de I0 = V/R até zero.",
+              "A constante de tempo τ = R × C define a velocidade de carga/descarga. Em t = τ, o capacitor atingiu 63,2% da tensão final. Em t = 5τ, está praticamente em regime (99,3%).",
+              "A descarga: ao curto-circuitar um capacitor carregado em V0 através de R, a tensão decai exponencialmente de V0 até zero. A corrente inicial é I0 = V0/R (negativa — sai do capacitor).",
+              "Associação de capacitores: em paralelo, as capacitâncias somam (C_eq = C1 + C2 + ...). Em série, os inversos somam (1/C_eq = 1/C1 + 1/C2 + ...) — inverso do que acontece com resistores.",
+              "Energia armazenada no capacitor: E = ½ × C × V². Essa energia pode ser liberada rapidamente em pulsos de alta potência (flash de câmera, desfibriladores) ou lentamente como fonte de energia de backup.",
+            ],
+            equacoes: [
+              { latex: "v_C(t) = V \\\\cdot \\\\left(1 - e^{-t/\\\\tau}\\\\right) \\\\qquad \\\\tau = R \\\\cdot C", legenda: "Carga do capacitor: V = tensão final, τ = RC = constante de tempo" },
+              { latex: "v_C(t) = V_0 \\\\cdot e^{-t/\\\\tau}", legenda: "Descarga do capacitor: V0 = tensão inicial" },
+              { latex: "E = \\\\dfrac{1}{2} C V^2", legenda: "Energia armazenada no capacitor (J)" },
+            ],
+            conteudo2: [
+              "Exemplo: R = 10 kΩ, C = 100 μF, fonte de 12V. τ = 10.000 × 100×10⁻⁶ = 1 segundo. Em t = 1s: Vc = 12×(1−e⁻¹) = 12×0,632 = 7,58 V. Em t = 5s: Vc = 12×(1−e⁻⁵) ≈ 12×0,993 = 11,92 V (praticamente carregado).",
+            ],
+            dicas: [
+              {
+                gatilho: "ver a curva de carga do capacitor",
+                titulo: "Carga exponencial do capacitor",
+                tipo: "carga-capacitor",
+                explicacao: "A tensão no capacitor sobe exponencialmente, iniciando em 0 e tendendo à tensão da fonte. A velocidade é controlada pela constante de tempo τ = RC. Em 1τ: 63,2%. Em 2τ: 86,5%. Em 3τ: 95%. Em 5τ: 99,3% — praticamente em regime.",
+              },
+            ],
+          },
+
+          {
+            titulo: "6.13 — Indutores e Circuitos RL",
+            conteudo: [
+              "O indutor é um elemento que armazena energia no campo magnético de uma bobina. A indutância L (em Henrys) indica a relação entre a tensão induzida e a taxa de variação da corrente.",
+              "Em CC em regime permanente, o indutor se comporta como curto-circuito (fio) — não oferece resistência a correntes constantes. A tensão em um indutor ideal em regime CC é zero.",
+              "Ao energizar um indutor em circuito RL: a corrente cresce exponencialmente de 0 até I_final = V/R. A tensão no indutor decai de V até zero.",
+              "A constante de tempo do circuito RL: τ = L/R. Em t = τ, a corrente atingiu 63,2% do valor final. O indutor se opõe a variações bruscas de corrente — é por isso que nunca se deve abrir abruptamente o circuito de um indutor sob carga (pode gerar pulso de tensão destrutivo).",
+              "Ao desligar (circuito RL com chave aberta): a corrente no indutor tende a se manter, gerando uma fem elevada nos terminais da chave. Diodos de roda-livre (freewheeling diodes) são colocados em paralelo com bobinas de relés e motores para proteger o circuito.",
+              "Associação de indutores: em série, as indutâncias somam. Em paralelo, os inversos somam — igual aos resistores.",
+              "Energia armazenada no indutor: E = ½ × L × I². Em um curto-circuito de sistema de potência, a energia armazenada nos indutores da rede contribui para a corrente de falta.",
+            ],
+            equacoes: [
+              { latex: "i_L(t) = \\\\dfrac{V}{R} \\\\cdot \\\\left(1 - e^{-t/\\\\tau}\\\\right) \\\\qquad \\\\tau = \\\\dfrac{L}{R}", legenda: "Crescimento da corrente no indutor: V/R = corrente final, τ = L/R" },
+              { latex: "i_L(t) = I_0 \\\\cdot e^{-t/\\\\tau}", legenda: "Decaimento da corrente (desligar fonte)" },
+              { latex: "E = \\\\dfrac{1}{2} L I^2", legenda: "Energia armazenada no indutor (J)" },
+            ],
+            conteudo2: [
+              "Exemplo: R = 50 Ω, L = 0,5 H, fonte de 100V. τ = 0,5/50 = 10 ms. Corrente final: 100/50 = 2 A. Em t = 10ms: i = 2×(1−e⁻¹) = 2×0,632 = 1,26 A. Em t = 50ms: i ≈ 2×0,993 = 1,99 A.",
+              "O pulso de tensão ao abrir o circuito do indutor: e = −L × ΔI/Δt. Se ΔI = 2A e Δt = 1ms: e = −0,5 × 2/0,001 = −1.000 V. Esse pulso pode destruir transistores e tiristores — daí a necessidade do diodo de roda-livre.",
+            ],
+            dicas: [
+              {
+                gatilho: "ver o decaimento da corrente no indutor",
+                titulo: "Corrente decaindo no indutor",
+                tipo: "descarga-indutor",
+                explicacao: "Ao desligar a fonte, a corrente no indutor decai exponencialmente. O indutor tenta manter a corrente constante — qualquer interrupção brusca gera pico de tensão. A constante de tempo τ = L/R determina a velocidade do decaimento.",
+              },
+            ],
+          },
+
+          // ── SEÇÃO COMPONENTES SEMICONDUTORES ───────────────────────────
+          {
+            titulo: "6.14 — Diodo de Junção PN e LED",
+            conteudo: [
+              "O diodo é um componente semicondutor com duas regiões: tipo P (dopagem com buracos) e tipo N (dopagem com elétrons). A junção PN cria uma barreira de potencial que permite a passagem de corrente em apenas um sentido.",
+              "Polarização direta (ânodo mais positivo que o cátodo): a barreira é reduzida, a corrente flui livremente. A tensão de joelho (tensão de limiar) é de aproximadamente 0,6 a 0,7 V para diodos de silício e 0,2 a 0,3 V para germânio.",
+              "Polarização reversa (ânodo mais negativo que o cátodo): a barreira aumenta, praticamente nenhuma corrente flui (apenas a corrente de saturação reversa, muito pequena). Esse estado persiste até a tensão de ruptura (Zener ou avalanche).",
+              "Modelo simplificado do diodo (para análise de circuitos): diodo ideal — curto-circuito quando polarizado diretamente, circuito aberto quando reversamente. Modelo com queda de tensão — queda constante de 0,7 V quando diretamente polarizado.",
+              "O LED (Light Emitting Diode) é um diodo especial que emite luz quando polarizado diretamente. A tensão de joelho varia com a cor: vermelho ≈ 1,8 V, amarelo ≈ 2,0 V, verde ≈ 2,1 V, azul e branco ≈ 3,0 a 3,5 V.",
+              "Para limitar a corrente no LED, usa-se um resistor em série. A corrente típica de operação é 10 a 20 mA. A resistência é calculada a partir da tensão de alimentação, da queda no LED e da corrente desejada.",
+              "LEDs de potência (power LEDs) operam com correntes de 350 mA a vários Ampères, usados em iluminação industrial e faróis de veículos. Precisam de dissipadores de calor e drivers de corrente constante.",
+              "Aplicações do diodo: retificação (converter CA em CC), proteção contra polaridade inversa, clipping (limitação de tensão), clamping (fixação de nível CC) e demodulação de sinal AM.",
+            ],
+            equacoes: [
+              { latex: "R_{serie} = \\\\dfrac{V_{alimentacao} - V_{LED}}{I_{LED}}", legenda: "Resistor em série com LED: garante a corrente nominal de operação" },
+              { latex: "I_D = I_s \\\\cdot \\\\left(e^{\\\\,V_D / V_T} - 1\\\\right)", legenda: "Equação de Shockley do diodo: Is = corrente de saturação, VT = 26mV a 25°C" },
+            ],
+            conteudo2: [
+              "Exemplo LED: alimentação de 5V, LED vermelho (queda 1,8V), corrente desejada 15mA. R = (5 − 1,8) / 0,015 = 3,2 / 0,015 = 213 Ω. Usar resistor comercial de 220 Ω: I = (5−1,8)/220 = 14,5 mA ✓.",
+              "Exemplo retificador: diodo em série com fonte CA de 127V (rms) e carga de 1kΩ. Na meia onda positiva: I = (127√2 − 0,7)/1000 = 179 mA de pico. Na meia onda negativa: diodo bloqueado, I = 0. Tensão média na carga: 0,45 × 127 = 57 V.",
+            ],
+          },
+
+          {
+            titulo: "6.15 — Análise de Circuitos com Diodos",
+            conteudo: [
+              "Para analisar circuitos com diodos, usa-se o método de suposição e verificação: assume-se o estado de cada diodo (conduzindo ou bloqueado), resolve-se o circuito com o modelo simplificado e verifica-se se o estado assumido é consistente.",
+              "Verificação: se o diodo foi assumido como conduzindo, confirma-se que a tensão no ânodo é maior que no cátodo (VD ≥ 0,7V). Se assumido como bloqueado, confirma-se que VD < 0,7V. Se inconsistente, inverte-se a suposição e resolve-se novamente.",
+              "Circuito grampeador (clipper): limita a amplitude do sinal de saída. Clipper série: diodo em série com a carga — passa apenas os semiciclos positivos (ou negativos). Clipper paralelo: diodo em paralelo com a carga — limita a tensão máxima na carga.",
+              "Circuito fixador (clamper): adiciona um nível CC ao sinal de entrada sem alterar sua forma de onda. Usa um capacitor em série com a entrada e um diodo. O capacitor carrega até o pico do sinal e fixa o nível mínimo ou máximo da saída.",
+              "Multiplicador de tensão: combinação de capacitores e diodos que produz tensão CC múltipla da tensão de entrada. O dobrador de tensão produz aproximadamente 2×Vp. Usado em fontes de alta tensão de baixa corrente (osciloscópios, TVs de tubo).",
+              "O diodo Zener opera na tensão de ruptura reversa de forma estável e controlada. Usado como regulador de tensão: mantém tensão constante nos terminais mesmo com variação da corrente. O resistor em série limita a corrente e dissipa o excesso de tensão.",
+            ],
+            equacoes: [
+              { latex: "V_Z = \\\\text{constante} \\\\quad \\\\text{(quando }I_Z > I_{Z_{min}}\\\\text{)}", legenda: "Diodo Zener: tensão constante na polarização reversa acima da corrente mínima" },
+              { latex: "R_{serie} = \\\\dfrac{V_{entrada} - V_Z}{I_Z + I_{carga}}", legenda: "Resistor série do regulador Zener" },
+            ],
+            conteudo2: [
+              "Exemplo Zener: V_entrada = 12V variável (10 a 15V), Zener de 5,1V, carga de 510Ω. I_carga = 5,1/510 = 10 mA. Para V_entrada = 10V: R = (10−5,1)/(10m + 5m) = 4,9/15m = 327 Ω. Usar 330 Ω. Verificar para V_entrada = 15V: IZ = (15−5,1)/330 − 10m = 30m − 10m = 20 mA. Pmax_zener = 5,1 × 20m = 102 mW (dentro do limite típico de 500mW).",
+            ],
+          },
+
+          // ── ANÁLISE EM CA ───────────────────────────────────────────────
+          {
+            titulo: "6.16 — Análise Fasorial de Circuitos CA",
+            conteudo: [
+              "A análise fasorial transforma o problema de equações diferenciais em CA em um problema algébrico com números complexos. Em vez de trabalhar com funções do tempo, representa-se cada grandeza senoidal por um fasor — um número complexo com magnitude (valor eficaz) e ângulo (fase).",
+              "Um fasor representa uma senoide: v(t) = Vp × cos(ωt + φ) é representada pelo fasor V = Vp∠φ (ou Vrms∠φ, dependendo da convenção adotada). A frequência ω é a mesma para todos os elementos — não aparece explicitamente no fasor.",
+              "Impedâncias complexas: resistor Z_R = R (real, sem fase). Indutor Z_L = jωL = jXL (imaginário puro positivo). Capacitor Z_C = 1/(jωC) = −jXC (imaginário puro negativo). Circuito série: Z_total = R + j(XL − XC).",
+              "A análise de circuitos em CA com fasores usa exatamente as mesmas leis e técnicas dos circuitos CC: KCL, KVL, Thévenin, Norton, superposição, divisor de tensão/corrente — apenas com aritmética de números complexos.",
+              "Divisor de tensão em CA: V_R = V × Z_R/Z_total, V_L = V × Z_L/Z_total. Os valores são complexos — magnitude e fase precisam ser calculados.",
+              "A partir do fasor, recupera-se a função do tempo: se V = 10∠30° V (com ω = 377 rad/s), então v(t) = 10√2 × cos(377t + 30°) V.",
+            ],
+            equacoes: [
+              { latex: "\\\\mathbf{Z}_R = R \\\\qquad \\\\mathbf{Z}_L = j\\\\omega L \\\\qquad \\\\mathbf{Z}_C = \\\\dfrac{1}{j\\\\omega C} = -\\\\dfrac{jX_C}{1}", legenda: "Impedâncias complexas dos elementos básicos" },
+              { latex: "\\\\mathbf{Z}_{RLC} = R + j(\\\\omega L - \\\\dfrac{1}{\\\\omega C}) = R + j(X_L - X_C)", legenda: "Impedância total do circuito RLC série" },
+              { latex: "|\\\\mathbf{Z}| = \\\\sqrt{R^2 + (X_L - X_C)^2} \\\\qquad \\\\angle\\\\mathbf{Z} = \\\\arctan\\\\left(\\\\dfrac{X_L - X_C}{R}\\\\right)", legenda: "Módulo e ângulo da impedância" },
+            ],
+            conteudo2: [
+              "Exemplo: R=10Ω, L=50mH, C=330μF em série, f=60Hz. XL=2π×60×0,05=18,85Ω. XC=1/(2π×60×330×10⁻⁶)=8,04Ω. Z=10+j(18,85−8,04)=10+j10,81. |Z|=√(100+116,9)=14,73Ω. φ=arctan(10,81/10)=47,2°. I=127/14,73=8,62A. Corrente atrasa 47,2° em relação à tensão.",
+            ],
+          },
+
+          {
+            titulo: "6.17 — Potência em CA: Ativa, Reativa, Aparente e Fator de Potência",
+            conteudo: [
+              "A análise de potência em CA com a notação fasorial torna os cálculos sistemáticos. A potência complexa S = P + jQ engloba as três componentes de potência.",
+              "Potência ativa P (W): dissipada no resistor, realiza trabalho útil. P = V_rms × I_rms × cos(φ) = I²_rms × R = |I|² × Re(Z).",
+              "Potência reativa Q (var): associada aos elementos reativos. Q = V_rms × I_rms × sen(φ) = |I|² × X. Positiva para indutores (Q_L > 0), negativa para capacitores (Q_C < 0).",
+              "Potência aparente S (VA): S = V_rms × I_rms = |V| × |I|. Módulo da potência complexa: |S| = √(P² + Q²).",
+              "Fator de potência: FP = P/S = cos(φ). FP lagging (atrasado) para cargas indutivas (corrente atrasada). FP leading (adiantado) para cargas capacitivas (corrente adiantada).",
+              "Medição de potência: wattímetro mede P diretamente. Varmetro mede Q. Para medir as três potências num sistema trifásico, usa-se o método dos dois wattímetros.",
+              "Geração de Q por capacitores: bancos de capacitores fornecem Q_C = V²/X_C = V² × ωC. Instalados próximos às cargas indutivas, reduzem o Q demandado da rede e diminuem a corrente total.",
+            ],
+            equacoes: [
+              { latex: "\\\\mathbf{S} = P + jQ = V_{rms} \\\\cdot I_{rms}^* = |\\\\mathbf{I}|^2 \\\\cdot \\\\mathbf{Z}", legenda: "Potência complexa: * indica conjugado complexo" },
+              { latex: "P = |\\\\mathbf{I}|^2 \\\\cdot R \\\\qquad Q = |\\\\mathbf{I}|^2 \\\\cdot X \\\\qquad S = |\\\\mathbf{I}|^2 \\\\cdot |\\\\mathbf{Z}|", legenda: "Potências em termos da corrente e da impedância" },
+              { latex: "Q_C = \\\\dfrac{V^2}{X_C} = V^2 \\\\cdot \\\\omega C", legenda: "Potência reativa gerada pelo capacitor (negativa = fornecida)" },
+            ],
+            conteudo2: [
+              "Exemplo: impedância Z = 10 + j8 Ω, tensão V = 100∠0° V. I = V/Z = 100/(10+j8) = 100∠0° / 12,81∠38,7° = 7,81∠−38,7° A. P = |I|²×R = 61×10 = 610 W. Q = |I|²×X = 61×8 = 488 var (indutivo). S = |I|²×|Z| = 61×12,81 = 781 VA. FP = P/S = 610/781 = 0,78 lagging.",
+            ],
+          },
+
+          {
+            titulo: "6.18 — Ressonância em Série e em Paralelo",
+            conteudo: [
+              "A ressonância ocorre quando as reatâncias indutiva e capacitiva se anulam, resultando em comportamento puramente resistivo do circuito. É um fenômeno com aplicações importantes e riscos que o técnico precisa conhecer.",
+              "Ressonância em série (RLC série): na frequência de ressonância f0, XL = XC, a impedância é mínima (Z = R) e a corrente é máxima (I = V/R). As tensões no indutor e no capacitor são iguais em módulo, mas opostas em fase — podem ser muito maiores que a tensão da fonte.",
+              "O fator de qualidade Q (não confundir com potência reativa) em série: Q = XL/R = 1/(R√(C/L)). Quanto maior Q, mais seletiva é a ressonância — a corrente cai rapidamente para frequências afastadas de f0. Q elevado é desejável em filtros de rádio e TV.",
+              "A largura de banda BW = f0/Q é a faixa de frequências em que a corrente fica acima de 1/√2 do valor de pico (queda de 3 dB).",
+              "Ressonância em paralelo (RLC paralelo): na frequência de ressonância, a impedância é MÁXIMA (igual a R para indutor e capacitor ideais, ou R_paralelo = L/(RC) para circuito real) e a corrente da fonte é MÍNIMA. As correntes no indutor e capacitor circulam internamente — podem ser muito maiores que a corrente da fonte.",
+              "Riscos da ressonância: em sistemas de distribuição de energia, bancos de capacitores instalados para correção de FP podem entrar em ressonância com a indutância da rede numa frequência harmônica, amplificando a corrente harmônica e danificando os capacitores. O técnico de manutenção deve conhecer esse risco.",
+              "Aplicações construtivas da ressonância: filtros de rádio e TV (sintonização de estações), osciladores de cristal (relógios precisos), filtros de harmônicos em sistemas de potência.",
+            ],
+            equacoes: [
+              { latex: "f_0 = \\\\dfrac{1}{2\\\\pi\\\\sqrt{LC}}", legenda: "Frequência de ressonância (série e paralelo)" },
+              { latex: "Q = \\\\dfrac{X_L}{R} = \\\\dfrac{1}{R}\\\\sqrt{\\\\dfrac{L}{C}}", legenda: "Fator de qualidade do circuito ressonante série" },
+              { latex: "BW = \\\\dfrac{f_0}{Q} \\\\quad [\\\\text{Hz}]", legenda: "Largura de banda (-3 dB)" },
+              { latex: "V_L = V_C = Q \\\\cdot V_{fonte} \\\\quad \\\\text{(na ressonância série)}", legenda: "Sobretensão nos elementos reativos: pode ser Q vezes a tensão da fonte" },
+            ],
+            conteudo2: [
+              "Exemplo: L=10mH, C=10μF, R=5Ω. f0=1/(2π×√(10×10⁻³×10×10⁻⁶))=1/(2π×√(10⁻⁷))=1/(2π×316×10⁻⁶)=503 Hz. XL=2π×503×0,01=31,6Ω. Q=31,6/5=6,32. Na ressonância com V=10V: I=10/5=2A. Tensão no indutor: VL=2×31,6=63,2 V — 6,32 vezes a tensão da fonte!",
+            ],
+          },
+
+        ],
+      },
     ],
   },
 
@@ -1523,138 +1523,267 @@ export const AREAS: Area[] = [
       // ── BLOCO I ──────────────────────────────────────────────────────────
       {
         slug: "instr-bloco1",
-        titulo: "Bloco I — Metrologia, Instrumentos e Manutenção",
-        descricao: "Metrologia industrial, calibração, válvulas de controle, simbologia ISA, medição de grandezas e manutenção de instrumentos.",
+        titulo: "Bloco I — Metrologia, Válvulas, Simbologia e Medição",
+        descricao: "VIM, calibração, válvulas de controle com diagramas, simbologia ISA 5.1, medição de pressão, temperatura, nível, vazão e grandezas mecânicas.",
         bloco: "Bloco I",
         paginas: [
+
           {
             titulo: "1.1 — Metrologia Industrial e VIM",
             conteudo: [
-              "A metrologia é a ciência das medições e suas aplicações. O Vocabulário Internacional de Metrologia (VIM) define os termos e conceitos fundamentais usados em todos os campos de medição.",
-              "Os principais conceitos do VIM que caem em concursos são: mensurando (grandeza que se deseja medir), resultado de medição, incerteza de medição, exatidão (proximidade ao valor verdadeiro), precisão (repetibilidade das medições), erro (diferença entre resultado e valor verdadeiro), resolução (menor variação detectável) e rastreabilidade (cadeia de calibrações até padrões nacionais).",
-              "A incerteza de medição é um parâmetro que caracteriza a dispersão dos valores que podem ser razoavelmente atribuídos ao mensurando. Não é o mesmo que erro — a incerteza quantifica a dúvida sobre o resultado.",
-              "A rastreabilidade metrológica é a propriedade do resultado de uma medição pela qual ele pode ser relacionado a uma referência (padrão nacional ou internacional) através de uma cadeia ininterrupta de calibrações documentadas.",
+              "A metrologia é a ciência das medições. O VIM (Vocabulário Internacional de Metrologia) é o dicionário oficial da metrologia — define com precisão os termos usados em calibração, ensaio e inspeção. Seu domínio é exigido em concursos de instrumentação da Petrobras, Eletrobras e ANP.",
+              "MENSURANDO: a grandeza específica que se deseja medir. Exemplo: 'a pressão manométrica no topo do vaso V-101 às 14h00'. Não basta dizer 'pressão' — o mensurando deve ser completamente definido.",
+              "RESULTADO DE MEDIÇÃO: conjunto de valores atribuídos ao mensurando, acompanhado de informações relevantes. Um resultado completo inclui o valor numérico, a unidade, a incerteza e as condições de medição.",
+              "ERRO DE MEDIÇÃO: diferença entre o valor medido e o valor verdadeiro. Divide-se em erro sistemático (tendência — desvia sempre no mesmo sentido, corrigível por calibração) e erro aleatório (dispersão — varia imprevisivelmente, reduzível aumentando o número de medições).",
+              "EXATIDÃO: proximidade entre o resultado de medição e o valor verdadeiro. Alta exatidão = baixo erro sistemático.",
+              "PRECISÃO (Repetibilidade): grau de concordância entre resultados independentes de medições repetidas do mesmo mensurando, nas mesmas condições. Alta precisão = baixo erro aleatório.",
+              "ATENÇÃO: um instrumento pode ser preciso (resultados repetíveis) mas inexato (desviado do valor verdadeiro), ou exato (próximo ao valor real) mas impreciso (resultados dispersos). A calibração corrige a exatidão; o projeto do instrumento determina a precisão.",
+              "RESOLUÇÃO: menor variação do mensurando que causa mudança perceptível na indicação. Um termômetro com resolução de 0,1°C não consegue distinguir variações menores que 0,1°C.",
+              "RASTREABILIDADE METROLÓGICA: propriedade do resultado de medição que permite relacioná-lo a uma referência nacional (INMETRO) ou internacional (BIPM), por meio de cadeia ininterrupta de calibrações documentadas com incertezas declaradas.",
+              "INCERTEZA DE MEDIÇÃO: parâmetro que quantifica a dispersão dos valores que podem ser atribuídos ao mensurando. Expressa-se como U = k × u_c, onde u_c é a incerteza combinada e k é o fator de abrangência (tipicamente k=2 para nível de confiança de 95%).",
             ],
             equacoes: [
               { latex: "E = X_{medido} - X_{verdadeiro}", legenda: "Erro de medição" },
-              { latex: "E\\% = \\dfrac{E}{Fundo\\ de\\ Escala} \\times 100", legenda: "Erro percentual em relação ao fundo de escala" },
+              { latex: "E\\\\% = \\\\dfrac{E}{\\\\text{Fundo de Escala}} \\\\times 100", legenda: "Erro percentual em relação ao fundo de escala (span)" },
+              { latex: "U = k \\\\cdot u_c", legenda: "Incerteza expandida: k = fator de abrangência (k=2 para 95% de confiança)" },
+            ],
+            conteudo2: [
+              "Dica de prova: a diferença entre exatidão e precisão é sempre explorada. Um instrumento preciso e exato tem resultados próximos entre si E próximos ao valor verdadeiro. Preciso mas inexato: resultados próximos entre si mas afastados do verdadeiro. Exato mas impreciso: resultados médios próximos ao verdadeiro mas com alta dispersão.",
             ],
           },
+
           {
-            titulo: "1.2 — Calibração de Instrumentos",
+            titulo: "1.2 — Calibração: Procedimento, Ajuste e Curva",
             conteudo: [
-              "Calibração é a operação que, sob condições especificadas, estabelece a relação entre os valores indicados por um instrumento de medição e os valores correspondentes realizados por padrões.",
-              "O procedimento de calibração de um transmissor 4-20 mA envolve: ajuste do zero (0% da faixa → 4 mA) e do span (100% da faixa → 20 mA). Erros de zero (offset) e de span (ganho) são ajustados independentemente.",
-              "A histerese é o fenômeno pelo qual o instrumento apresenta leituras diferentes para o mesmo valor do mensurando, dependendo se a medição é feita em sentido crescente ou decrescente. É causada por folgas mecânicas, atrito e efeitos magnéticos.",
-              "A curva de calibração é o resultado gráfico ou tabular que relaciona o sinal de entrada com o sinal de saída do instrumento. Idealmente é uma linha reta (instrumento linear) entre os pontos de ajuste de zero e de span.",
-              "O intervalo de calibração define com que frequência um instrumento deve ser recalibrado. Depende da criticidade da medição, do histórico de deriva e das especificações do fabricante.",
+              "Calibração é a operação que estabelece a relação entre os valores indicados por um instrumento e os valores correspondentes realizados por padrões rastreáveis. O resultado é a curva de calibração ou o certificado de calibração.",
+              "Calibração NÃO é o mesmo que ajuste. A calibração apenas documenta o estado do instrumento. O ajuste (ou regulagem) é a intervenção que altera o instrumento para reduzir os erros. Após qualquer ajuste, o instrumento deve ser recalibrado.",
+              "PROCEDIMENTO DE CALIBRAÇÃO de um transmissor 4-20 mA (faixa 0 a 100 bar): (1) Conectar padrão de pressão (gerador) e multímetro na saída. (2) Aplicar 0 bar — verificar saída = 4,000 mA. (3) Aplicar 100 bar — verificar saída = 20,000 mA. (4) Aplicar pontos intermediários (25%, 50%, 75%) em ambos os sentidos (subida e descida). (5) Registrar todos os valores e calcular erros. (6) Ajustar zero e span se necessário.",
+              "ERRO DE ZERO (offset): a curva de saída está deslocada paralelamente à curva ideal. Corrigido pelo ajuste de zero.",
+              "ERRO DE SPAN (ganho): a inclinação da curva é diferente da ideal — o instrumento amplifica ou reduz a variação. Corrigido pelo ajuste de span.",
+              "HISTERESE: diferença entre os valores de saída para o mesmo valor de entrada, dependendo se a medição é feita em sentido crescente ou decrescente. Causada por atrito, folga mecânica e efeitos magnéticos. Não é corrigível por ajuste de zero e span.",
+              "LINEARIDADE: máximo desvio da curva de calibração em relação a uma linha reta de referência, expresso em % do span.",
+              "REPETIBILIDADE: máxima variação entre resultados de medições repetidas do mesmo ponto, nas mesmas condições.",
+              "A curva de calibração completa deve incluir pontos de subida (0%, 25%, 50%, 75%, 100%) e de descida (100%, 75%, 50%, 25%, 0%) para revelar a histerese.",
             ],
             equacoes: [
-              { latex: "I_{saída} = 4 + 16 \\cdot \\dfrac{X - X_{min}}{X_{max} - X_{min}} \\text{ (mA)}", legenda: "Conversão linear para sinal 4-20 mA" },
+              { latex: "I_{saída} = 4 + 16 \\\\cdot \\\\dfrac{X - X_{min}}{X_{max} - X_{min}} \\\\quad [\\\\text{mA}]", legenda: "Conversão linear para sinal 4-20 mA: X = valor medido, Xmin e Xmax = faixa do instrumento" },
+              { latex: "\\\\text{Histerese}\\\\% = \\\\dfrac{\\\\Delta_{subida} - \\\\Delta_{descida}}{\\\\text{Span}} \\\\times 100", legenda: "Erro de histerese em % do span" },
+            ],
+            conteudo2: [
+              "Exemplo: transmissor de temperatura 0-200°C, sinal 4-20 mA. Para T=75°C: I = 4 + 16×(75/200) = 4 + 6 = 10 mA. Para I=14 mA: T = (14-4)/16 × 200 = 0,625 × 200 = 125°C.",
+              "Dica de prova: calibrar é documentar; ajustar é intervir. Um instrumento pode ser calibrado (ter seu certificado emitido) sem ser ajustado, se seus erros estiverem dentro da tolerância especificada.",
             ],
           },
+
           {
-            titulo: "1.3 — Válvulas de Controle e Acessórios",
+            titulo: "1.3 — Válvulas de Controle: Tipos e Funcionamento",
             conteudo: [
-              "A válvula de controle é o elemento final de controle mais usado na indústria de processo. Recebe um sinal de controle (pneumático 3-15 psi ou elétrico 4-20 mA) e varia a abertura para controlar a vazão do fluido.",
-              "Os tipos principais de válvulas de controle são: globo (controle preciso de vazão), borboleta (grandes diâmetros, baixa perda de carga), esfera (corte on-off ou controle em 3 vias) e diafragma (fluidos corrosivos ou viscosos).",
-              "O posicionador é o acessório mais importante da válvula de controle. Recebe o sinal do controlador e posiciona com precisão a haste da válvula, corrigindo erros de histerese e atrito. Posicionadores modernos são digitais (HART, Foundation Fieldbus).",
-              "O solenóide (válvula solenóide) opera em modo todo-ou-nada: aberta ou fechada. É acionada eletricamente e usada em sistemas de bloqueio (shutdown) e em válvulas de alívio.",
-              "Os filtros reguladores de ar são obrigatórios na alimentação pneumática das válvulas de controle: filtram impurezas e regulam a pressão de ar de instrumento (geralmente 20 psi).",
+              "A válvula de controle é o elemento final de controle mais usado na indústria de processo. Recebe um sinal do controlador (pneumático 3-15 psi ou elétrico 4-20 mA) e varia sua abertura para controlar a vazão do fluido de processo.",
+              "VÁLVULA GLOBO: corpo em forma de S com sede e tampão (plug). É o tipo mais versátil e preciso para controle de vazão. Disponível em configurações de fluxo direto, angular e de três vias. Tem alta perda de carga e não é recomendada para fluidos com sólidos. É a mais usada em refinarias e plantas petroquímicas.",
+              "VÁLVULA BORBOLETA: disco giratório no centro do duto. Compacta, leve e barata. Boa para grandes diâmetros e baixa perda de carga. Menor precisão de controle que a globo, especialmente em aberturas pequenas. Usada em água, utilidades e produtos limpos de baixa pressão.",
+              "VÁLVULA ESFERA (BALL VALVE): esfera perfurada que gira 90° entre aberta e fechada. Excelente vedação, muito usada em on-off. Versões de controle (V-ball, com furo em V) oferecem boa característica de vazão para controle.",
+              "VÁLVULA DIAFRAGMA: membrana flexível pressiona contra um assento. Ideal para fluidos corrosivos, viscosos, com sólidos em suspensão ou em serviços sanitários/farmacêuticos. Pressão e temperatura limitadas.",
+              "VÁLVULA GAVETA (GATE VALVE): disco plano que sobe e desce perpendicularmente ao fluxo. Usada exclusivamente como válvula de bloqueio (aberta ou fechada) — não é para controle contínuo, pois vibra e erode nas posições intermediárias.",
+              "VÁLVULA BORBOLETA EXCÊNTRICA (HIGH PERFORMANCE): eixo da borboleta deslocado do centro — elimina contato do disco com o assento durante a rotação, reduzindo atrito e desgaste. Boa para serviços de alta pressão e temperaturas extremas.",
+              "Modos de falha (ação da válvula): a escolha do modo de falha é determinada pela análise de segurança do processo. Falha-Fecha (FC, fail-close, air-to-open): a mola fecha a válvula quando o ar de instrumento falha — usada quando fechar é mais seguro (injeção de produto perigoso). Falha-Abre (FA, fail-open, air-to-close): a mola abre quando o ar falha — usada quando abrir é mais seguro (água de resfriamento).",
             ],
             equacoes: [
-              { latex: "F_v = C_v \\cdot \\sqrt{\\dfrac{\\Delta P}{G_f}}", legenda: "Fórmula de vazão da válvula: Cv = coeficiente de vazão, ΔP = queda de pressão, Gf = gravidade específica do fluido" },
+              { latex: "F_v = C_v \\\\cdot \\\\sqrt{\\\\dfrac{\\\\Delta P}{G_f}}", legenda: "Equação de dimensionamento de válvula de controle: Cv = coeficiente de vazão, ΔP = queda de pressão (psi), Gf = gravidade específica do fluido" },
+            ],
+            conteudo2: [
+              "Características de vazão intrínsecas: LINEAR (vazão proporcional à abertura — usada em processos com ΔP constante). IGUAL PERCENTAGEM (a variação percentual de Cv é proporcional à abertura — mais comum, usada quando ΔP varia). ABERTURA RÁPIDA (Cv sobe rapidamente nos primeiros graus de abertura — usada em on-off).",
             ],
           },
+
           {
-            titulo: "1.4 — Simbologia ISA 5.1",
+            titulo: "1.4 — Acessórios de Válvulas de Controle",
             conteudo: [
-              "A norma ANSI/ISA 5.1 define a simbologia para instrumentação e automação de processos industriais. É usada nos Diagramas de Tubulação e Instrumentação (P&ID — Piping and Instrumentation Diagram).",
-              "Cada instrumento no P&ID é representado por um símbolo geométrico (círculo, quadrado, losango) que indica sua localização (campo, painel, CLP) e por uma tag alfanumérica que identifica a grandeza e a função.",
-              "A tag de instrumento é composta por letras funcionais: a primeira letra indica a grandeza medida (P = pressão, T = temperatura, F = vazão, L = nível, A = análise) e as letras seguintes indicam a função (I = indicação, C = controle, T = transmissão, R = registro, A = alarme, V = válvula).",
-              "Exemplos de tags: FIC = Controlador Indicador de Vazão; PCV = Válvula de Controle de Pressão; TT = Transmissor de Temperatura; LSH = Chave de Nível Alto; PAHH = Alarme de Alta-Alta Pressão.",
+              "O POSICIONADOR é o acessório mais importante da válvula de controle. Recebe o sinal do controlador e posiciona a haste com precisão, independentemente de variações de atrito, pressão e temperatura do processo. Funciona como um controlador de posição de malha fechada para a haste da válvula.",
+              "Posicionadores pneumáticos convencionais: recebem sinal de 4-20 mA, convertem em movimento de haste com realimentação mecânica. São confiáveis mas não permitem diagnóstico remoto.",
+              "Posicionadores digitais (HART, FF, PROFIBUS): microprocessador interno que controla a posição, executa diagnóstico completo do atuador e válvula, e comunica dados ao sistema de controle. Permitem detectar desgaste do empanque (gland), problemas no atuador e fricção excessiva sem retirar a válvula de operação.",
+              "O SOLENÓIDE (válvula solenóide piloto): atua a válvula de controle em modo on-off, independentemente do sinal do posicionador. Usado em sistemas de segurança (SIS — Safety Instrumented System) para fechar a válvula rapidamente em caso de emergência. Normalmente alimentado por sinal do sistema de segurança (ESD).",
+              "O FILTRO-REGULADOR DE AR (FRL): tríade de preparação do ar de instrumento. Filtro: remove partículas, umidade e óleo do ar comprimido. Regulador: mantém a pressão de saída constante (geralmente 20 psi para instrumentos pneumáticos). Lubrificador: adiciona névoa de óleo para instrumentos que necessitam (cada vez menos usados com instrumentos modernos).",
+              "VÁLVULA DE ALÍVIO DO ATUADOR: protege o atuador contra sobrepressão acidental durante manutenção ou falha do regulador. Abre automaticamente quando a pressão supera o limite seguro.",
+              "INDICADOR DE POSIÇÃO: feedback visual da posição da haste. Fundamental para operação local e verificação do loop. Versões com transmissão elétrica do sinal de posição (4-20 mA) são usadas em posicionadores para realimentação.",
+              "LOCK-UP VALVE (válvula de travamento): mantém a pressão do atuador constante quando o ar de instrumento falha, travando a válvula na posição em que estava. Usada quando nem abrir nem fechar é o modo de falha seguro.",
             ],
             equacoes: [],
-          },
-          {
-            titulo: "1.5 — Medição de Pressão",
-            conteudo: [
-              "A pressão é definida como força por unidade de área. As principais unidades são: Pa (Pascal), bar, kgf/cm², psi e mmHg. Conversão: 1 bar = 100 kPa = 14,5 psi = 1,02 kgf/cm².",
-              "Pressão manométrica é medida em relação à pressão atmosférica local. Pressão absoluta inclui a pressão atmosférica. Pressão diferencial é a diferença entre dois pontos do processo.",
-              "Os principais elementos primários de medição de pressão são: tubo de Bourdon (mecânico, molas em C, espiral ou hélix), diafragma, cápsula e fole — todos convertem pressão em deslocamento mecânico.",
-              "Os transmissores de pressão modernos usam células capacitivas ou piezelétricas para converter o deslocamento em sinal elétrico 4-20 mA. São altamente precisos e podem medir pressão absoluta, manométrica ou diferencial.",
-              "A medição de nível por pressão diferencial (DP) usa a coluna de líquido acima do sensor: a pressão medida é proporcional ao nível. É o método mais simples e robusto para nível em vasos fechados.",
-            ],
-            equacoes: [
-              { latex: "P = \\rho \\cdot g \\cdot h", legenda: "Pressão hidrostática: ρ = densidade (kg/m³), g = 9,81 m/s², h = altura (m)" },
+            conteudo2: [
+              "Dica de prova: o posicionador corrige erro de histerese e atrito da válvula. Sem posicionador, o controlador PID precisa de ganho alto para superar o atrito, o que pode causar instabilidade. Com posicionador, a malha de posição interna trata do atrito, e o controlador PID trabalha apenas com a variável de processo.",
             ],
           },
+
           {
-            titulo: "1.6 — Medição de Temperatura",
+            titulo: "1.5 — Simbologia ISA 5.1: P&ID Completo",
             conteudo: [
-              "A temperatura é a grandeza mais medida na indústria de processo. Os principais elementos de medição são: termopares, RTDs (PT100, PT1000) e termistores.",
-              "O termopar é baseado no efeito Seebeck: a junção de dois metais diferentes gera uma tensão (fem) proporcional à diferença de temperatura entre a junção de medição e a junção de referência (junta fria). São robustos, baratos e cobrem ampla faixa de temperatura.",
-              "Os principais tipos de termopar são: J (ferro-constantan, -40 a 750°C), K (cromel-alumel, -200 a 1260°C, mais comum na indústria), T (cobre-constantan, -200 a 350°C), E (alta sensibilidade) e S/R/B (platina, alta temperatura).",
-              "O RTD PT100 é um resistor de platina cuja resistência varia linearmente com a temperatura. A 0°C, a resistência é exatamente 100 Ω; a 100°C, é aproximadamente 138,5 Ω. O PT100 é mais preciso que o termopar mas menos robusto.",
-              "A configuração de 3 fios para PT100 é a mais usada em campo: compensa a resistência dos cabos de ligação, eliminando o erro de medição causado pela resistência do cabo (crítico em medições de longa distância).",
-            ],
-            equacoes: [
-              { latex: "R(T) = R_0 \\cdot (1 + \\alpha \\cdot T)", legenda: "Resistência do PT100: R0 = 100Ω (a 0°C), α = 0,00385 Ω/(Ω·°C)" },
-            ],
-          },
-          {
-            titulo: "1.7 — Medição de Nível e Vazão",
-            conteudo: [
-              "A medição de nível usa princípios variados: pressão diferencial (DP), bóia, ultrassom, radar, capacitância e laser. A escolha depende do fluido (líquido, sólido, corrosivo), das condições do processo (pressão, temperatura) e da precisão exigida.",
-              "A medição de vazão é uma das mais críticas na indústria de petróleo. Os principais tipos de medidores são: placa de orifício (DP), tubo de Venturi, rotâmetro, turbina, eletromagnético, Coriolis (massa) e ultrassônico.",
-              "A placa de orifício é o medidor de vazão mais simples e barato. Cria uma restrição no duto, gerando uma queda de pressão (DP) proporcional ao quadrado da vazão. A raiz quadrada do DP é proporcional à vazão volumétrica.",
-              "O medidor Coriolis mede a vazão mássica diretamente, sem depender da densidade ou viscosidade do fluido. É o mais preciso disponível (±0,1% ou melhor) e é usado em medição fiscal de petróleo e gás.",
-            ],
-            equacoes: [
-              { latex: "Q = K \\cdot \\sqrt{\\Delta P}", legenda: "Vazão volumétrica por DP: K = constante que depende da geometria e do fluido" },
-            ],
-          },
-          {
-            titulo: "1.8 — Medição de Grandezas Mecânicas",
-            conteudo: [
-              "A medição de grandezas mecânicas inclui: proximidade, posição, velocidade, aceleração, vibração, força, torque, massa e densidade.",
-              "Sensores de proximidade indutivos detectam objetos metálicos sem contato físico, por variação de campo eletromagnético. Sensores capacitivos detectam qualquer material (metálico ou não). Sensores fotoeléctricos usam feixe de luz.",
-              "Os acelerômetros piezoelétricos são usados para medição de vibração em máquinas rotativas. A vibração excessiva indica problemas como desbalanceamento, desalinhamento, folga mecânica ou falha em rolamentos.",
-              "A célula de carga é o sensor mais usado para medição de força e massa (pesagem). Funciona com extensômetros (strain gauges) colados em elemento elástico: a deformação elástica é proporcional à força aplicada.",
-              "O torque é medido com torquímetros (estáticos) ou com medidores de torque rotativos (com telemetria). Em processos contínuos, o torque de um eixo é calculado indiretamente pela corrente e pela tensão do motor elétrico de acionamento.",
-            ],
-            equacoes: [
-              { latex: "a = \\dfrac{\\Delta v}{\\Delta t}", legenda: "Aceleração: variação da velocidade no tempo (m/s²)" },
-              { latex: "T = F \\cdot r", legenda: "Torque: F = força (N), r = raio do braço de alavanca (m)" },
-            ],
-          },
-          {
-            titulo: "1.9 — Instrumentação Analítica",
-            conteudo: [
-              "A instrumentação analítica mede a composição química de fluidos de processo: pH, condutividade, oxigênio dissolvido, turbidez, concentração de gases (CO, CO₂, H₂S, O₂) e análise cromatográfica.",
-              "O analisador de pH mede a concentração de íons H⁺ na solução usando um eletrodo de vidro. O pH varia de 0 (ácido forte) a 14 (base forte), com pH 7 sendo neutro. É altamente sensível à temperatura — requer compensação.",
-              "O analisador de O₂ (oxigênio) em gases de combustão é fundamental para o controle de eficiência de fornos e caldeiras. O teor de O₂ indica se a combustão está com excesso de ar (O₂ alto) ou deficiência de ar (O₂ baixo, risco de CO).",
-              "O cromatógrafo de processo analisa a composição de misturas gasosas ou líquidas separando os componentes por afinidade com uma fase estacionária. É o padrão em medição de qualidade de gás natural.",
-            ],
-            equacoes: [
-              { latex: "pH = -\\log_{10}[H^+]", legenda: "Definição de pH" },
-            ],
-          },
-          {
-            titulo: "1.10 — Manutenção Corretiva, Preventiva, Preditiva e Comissionamento",
-            conteudo: [
-              "A manutenção corretiva atua após a ocorrência da falha, restaurando o instrumento à condição operacional. Pode ser planejada (falha prevista) ou não planejada (falha inesperada).",
-              "A manutenção preventiva é realizada em intervalos de tempo predeterminados, independentemente das condições do instrumento. Inclui limpeza, calibração, troca de consumíveis e inspeção visual.",
-              "A manutenção preditiva monitora parâmetros do instrumento (sinal de saída, pressão de suprimento de ar, consumo de energia) para detectar degradação antes da falha. Permite otimizar o intervalo de manutenção.",
-              "O comissionamento é o processo de verificação, ajuste e documentação de instrumentos e sistemas de controle novos ou após grande revisão, garantindo que funcionem conforme o projeto antes da partida da planta.",
-              "O loop check (verificação de malha) é parte essencial do comissionamento: testa todo o caminho do sinal desde o sensor de campo, passando pela fiação, pela barreira de segurança intrínseca e pelo cartão de entrada do CLP ou DCS, verificando calibração, faixa e alarmes.",
+              "A norma ANSI/ISA-5.1 define a simbologia para Diagramas de Tubulação e Instrumentação (P&ID). O P&ID é o documento mais importante para a operação e manutenção de plantas industriais — mostra todos os instrumentos, válvulas, tubulações e suas interconexões.",
+              "IDENTIFICAÇÃO (TAG) do instrumento: código alfanumérico composto por letras funcionais + número de loop. A estrutura é: letra(s) de variável + letra(s) de função + número do loop. Exemplos: FIC-101 (Controlador Indicador de Vazão, loop 101), PT-205 (Transmissor de Pressão, loop 205), TCV-312 (Válvula de Controle de Temperatura, loop 312).",
+              "PRIMEIRA LETRA (variável medida ou iniciadora): F = Flow (Vazão), P = Pressure (Pressão), T = Temperature (Temperatura), L = Level (Nível), A = Analysis (Análise), D = Density (Densidade), E = Voltage (Tensão elétrica), I = Current (Corrente elétrica), S = Speed (Velocidade), W = Weight (Peso/Força), Q = Quantity (Quantidade), Z = Position (Posição).",
+              "LETRAS SEGUINTES (função do instrumento): I = Indicator (Indicador), C = Controller (Controlador), T = Transmitter (Transmissor), R = Recorder (Registrador), A = Alarm (Alarme), H = High (Alto), L = Low (Baixo), V = Valve (Válvula) ou Vibration, E = Element (Elemento primário), S = Switch (Chave), Y = Relay/Compute (Relé/Computação), K = Control Station (Estação de controle manual).",
+              "SÍMBOLOS GEOMÉTRICOS do instrumento: círculo com linha cheia na parte superior = instrumento montado no campo (acessível ao operador). Círculo com linha tracejada = instrumento montado no painel principal da sala de controle. Círculo com linha cheia completa = montado no campo, mas não normalmente acessível. Quadrado com círculo interno = instrumento em CLP/DCS/computador.",
+              "LINHAS DE SINAL: linha contínua = tubulação de processo. Linha com 'X-X-X' = sinal pneumático. Linha com 'E-E-E' (ou tracejada fina) = sinal elétrico. Linha com 'H-H-H' = linha hidráulica. Linha com 'G-G-G' = guia (impulso).",
+              "SÍMBOLOS DE VÁLVULAS no P&ID: globo = borboleta com linhas diagonais. Borboleta = dois triângulos com vértices se tocando. Esfera = círculo. Gaveta = dois triângulos com vértices opostos. Diafragma = retângulo com linha curva interna. Atuador pneumático = retângulo sobre a válvula com seta. Atuador de mola = mola sobre o retângulo.",
             ],
             equacoes: [],
+            conteudo2: [
+              "Tags compostas mais frequentes em provas: FIC = Flow Indicating Controller (Controlador Indicador de Vazão). FCV = Flow Control Valve (Válvula de Controle de Vazão). PIC = Pressure Indicating Controller. PSH = Pressure Switch High (Chave de Pressão Alta). LSLL = Level Switch Low Low (Chave de Nível Muito Baixo — dois níveis de alarme). TT = Temperature Transmitter. AT = Analyser Transmitter.",
+              "Hierarquia de alarmes: H (High / Alto), HH (High High / Muito Alto), L (Low / Baixo), LL (Low Low / Muito Baixo). O LL geralmente aciona o ESD (Emergency Shutdown). O PAHH pode iniciar o bloqueio total da unidade.",
+            ],
           },
+
+          {
+            titulo: "1.6 — Medição de Pressão: Princípios e Instrumentos",
+            conteudo: [
+              "A pressão é definida como força por unidade de área. As unidades mais usadas na indústria são: kPa (SI), bar, kgf/cm², psi, mmHg (mmca, mca). Conversões essenciais: 1 bar = 100 kPa = 14,504 psi = 1,0197 kgf/cm² = 750,1 mmHg.",
+              "PRESSÃO ABSOLUTA: medida em relação ao vácuo absoluto. Usada em termodinâmica e em cálculos de escoamento.",
+              "PRESSÃO MANOMÉTRICA (GAUGE): medida em relação à pressão atmosférica local. A maioria dos transmissores industriais mede pressão manométrica. P_abs = P_man + P_atm.",
+              "PRESSÃO DIFERENCIAL (DP): diferença de pressão entre dois pontos. Muito usada em medição de nível e de vazão.",
+              "VÁCUO: pressão manométrica negativa — pressão abaixo da atmosférica.",
+              "ELEMENTOS PRIMÁRIOS DE MEDIÇÃO DE PRESSÃO: TUBO DE BOURDON — tubo curvado de seção oval que se deforma com a pressão interna. Simples, barato, adequado para pressões de 0,5 a 70.000 kPa. O Bourdon em C é o mais comum; em espiral e helicoidal para alta sensibilidade. DIAFRAGMA — membrana flexível que deflete com a pressão. Para baixas pressões e fluidos corrosivos. CÁPSULA — dois diafragmas soldados, muito sensível para pressões muito baixas. FOLE — elemento com múltiplos dobros, usado para baixíssimas pressões e medição diferencial.",
+              "TRANSMISSORES MODERNOS: usam células capacitivas ou piezelétricas para converter a deflexão mecânica em sinal elétrico. A célula capacitiva mede a variação de capacitância entre a membrana e um eletrodo fixo — altíssima precisão, até 0,025% do span. O sinal de saída é 4-20 mA com protocolo HART para comunicação digital sobreposta.",
+              "TRANSMISSOR DE PRESSÃO DIFERENCIAL (DP CELL): dois lados de pressão (high e low) atuam em lados opostos de uma membrana. Aplicações: medição de nível em vasos pressurizados, medição de vazão com placa de orifício, medição de queda de carga em filtros e trocadores.",
+              "CUIDADOS NA INSTALAÇÃO: tomadas de pressão devem ser instaladas corretamente — em tubulações horizontais para líquidos na parte inferior (evitar bolhas de gás), na parte superior para gases (evitar acúmulo de líquido). Para fluidos corrosivos ou viscosos, usa-se selo de diafragma remoto (remote seal diaphragm).",
+            ],
+            equacoes: [
+              { latex: "P_{abs} = P_{man} + P_{atm}", legenda: "Relação entre pressão absoluta, manométrica e atmosférica" },
+              { latex: "P = \\\\rho \\\\cdot g \\\\cdot h", legenda: "Pressão hidrostática: rho = densidade (kg/m³), g = 9,81 m/s², h = altura de coluna (m)" },
+              { latex: "1\\\\,\\\\text{bar} = 100\\\\,\\\\text{kPa} = 14{,}504\\\\,\\\\text{psi} = 1{,}0197\\\\,\\\\text{kgf/cm}^2", legenda: "Conversão de unidades de pressão" },
+            ],
+            conteudo2: [
+              "Erro por variação de temperatura: transmissores de pressão possuem compensação de temperatura interna. Mesmo assim, variações bruscas de temperatura ambiente afetam o zero e o span — por isso revisões periódicas de calibração são necessárias.",
+            ],
+          },
+
+          {
+            titulo: "1.7 — Medição de Temperatura: Termopares e RTDs",
+            conteudo: [
+              "A temperatura é a grandeza mais medida na indústria de processo. Os principais elementos sensores são termopares, RTDs (Resistance Temperature Detectors) e termistores.",
+              "TERMOPAR: baseia-se no efeito Seebeck — quando dois metais diferentes são unidos, a diferença de temperatura entre a junção de medição (ponta quente) e a junção de referência (ponta fria) gera uma fem (força eletromotriz) proporcional à diferença de temperatura. A junta fria precisa estar à temperatura conhecida (compensação de junção fria).",
+              "TIPOS DE TERMOPAR E SUAS FAIXAS: Tipo J (Ferro-Constantan): −40 a 750°C, boa sensibilidade, barato, mas oxida acima de 550°C. Tipo K (Cromel-Alumel): −200 a 1260°C, o mais universal na indústria, sensibilidade de ~41 μV/°C. Tipo T (Cobre-Constantan): −200 a 350°C, excelente para baixas temperaturas e criogenia. Tipo E (Cromel-Constantan): maior sensibilidade de todos (~68 μV/°C). Tipo N (Nicrosil-Nisil): −200 a 1300°C, alta estabilidade a longo prazo. Tipos S, R, B (Platina-Ródio): 0 a 1700°C, para altas temperaturas em fornos industriais.",
+              "RTD PT100: resistor de platina com resistência de exatamente 100 Ω a 0°C. A relação resistência-temperatura é muito linear. A 100°C: R ≈ 138,5 Ω. Coeficiente α = 0,00385 Ω/(Ω·°C). Mais preciso que o termopar mas menos robusto e com faixa menor.",
+              "PT1000: resistência de 1000 Ω a 0°C — 10x mais sensível que o PT100. Usado quando os cabos de extensão são longos (a resistência de 1000Ω minimiza o efeito da resistência do cabo).",
+              "CONFIGURAÇÕES DE LIGAÇÃO DO PT100: 2 fios (para curtas distâncias, erro significativo da resistência do cabo). 3 fios (compensa a resistência de UM cabo, forma de compensação mais comum na indústria). 4 fios (compensa completamente os dois cabos — maior precisão, usado em laboratórios e padrões).",
+              "TERMISTOR (NTC/PTC): resistor semiconductor de óxido metálico. NTC (Negative Temperature Coefficient): resistência decresce com temperatura — alta sensibilidade, mas faixa estreita e não-lineares. PTC (Positive Temperature Coefficient): resistência cresce acentuadamente acima de uma temperatura — usado como proteção térmica em motores e transformadores.",
+              "PROTEÇÃO DO TERMOPAR: o elemento sensível é encapsulado em um tubo de proteção (termopoço). O termopoço protege o sensor do processo corrosivo, pressão e velocidade do fluido. Materiais: aço inox (até 800°C), Inconel (até 1100°C), óxido de alumínio (para altas temperaturas e ambientes agressivos).",
+            ],
+            equacoes: [
+              { latex: "R(T) = R_0 \\\\cdot (1 + \\\\alpha \\\\cdot T)", legenda: "Resistência do PT100: R0 = 100 Ohm (a 0°C), alpha = 0,00385 Ohm/(Ohm.°C)" },
+              { latex: "\\\\alpha = \\\\dfrac{R_{100} - R_0}{R_0 \\\\cdot 100} = 0{,}00385 \\\\;\\\\Omega/(\\\\Omega \\\\cdot ^\\\\circ C)", legenda: "Coeficiente de temperatura do PT100 (padrão IEC 751)" },
+            ],
+            conteudo2: [
+              "Exemplo PT100: temperatura medida 80°C. R(80) = 100 × (1 + 0,00385 × 80) = 100 × 1,308 = 130,8 Ω.",
+              "Dica de prova: termopar mede diferença de temperatura (efeito Seebeck) — precisa de compensação de junta fria. RTD mede temperatura absoluta via variação de resistência — mais preciso mas mais frágil. Para altas temperaturas (>600°C), use termopar tipos S, R ou B. Para precisão em temperaturas moderadas, use PT100.",
+            ],
+          },
+
+          {
+            titulo: "1.8 — Medição de Nível",
+            conteudo: [
+              "A medição de nível é crítica em tanques de armazenamento, vasos de processo e colunas de destilação. Métodos incorretos ou falhas de medição causam transbordamentos, perdas de produto e riscos graves de segurança.",
+              "MEDIÇÃO POR PRESSÃO DIFERENCIAL (DP): o método mais simples e robusto para nível em vasos fechados. A pressão na parte inferior do vaso é a soma da pressão do gás no topo (P_topo) mais a pressão hidrostática da coluna de líquido (ρ×g×h). O transmissor DP mede a diferença: DP = ρ×g×h. Conhecendo a densidade do líquido, calcula-se o nível h = DP/(ρ×g).",
+              "MÉTODO DE PRESSÃO SIMPLES: para tanques atmosféricos (P_topo = P_atm), um transmissor de pressão manométrica na base do tanque indica diretamente a pressão hidrostática. Simples, barato, mas sensível a variações de temperatura (que alteram a densidade).",
+              "MEDIÇÃO POR BÓIA (FLOAT): bóia acoplada a transmissor magnético ou por torque. Para tanques de armazenamento grandes (petróleo, GLP). Alta precisão mas custo elevado para instalação.",
+              "MEDIÇÃO POR ULTRASSOM: sensor emite pulso ultrassônico que reflete na superfície do líquido e retorna ao sensor. O nível é calculado pela distância = velocidade do som × tempo/2. Sem contato com o fluido — ideal para produtos corrosivos, alta temperatura ou alta viscosidade. Afetado por espuma, vapores e temperatura.",
+              "MEDIÇÃO POR RADAR: similar ao ultrassom mas usa ondas eletromagnéticas (micro-ondas). Não é afetado por temperatura, pressão e vapores. Dois tipos: TDR (Time Domain Reflectometry — radar guiado, com haste ou cabo) para vasos com obstáculos, e radar de antena livre (non-contact) para tanques grandes.",
+              "MEDIÇÃO POR CAPACITÂNCIA: a sonda forma capacitor com o vaso. A capacitância varia com o nível (dielétrico do líquido). Boa para líquidos e sólidos, mas requer calibração específica para cada produto.",
+              "CHAVES DE NÍVEL: detectam nível em pontos específicos (alto, baixo). Tipos: bóia magnética (simples, confiável), reed switch, vibração (diapasão — ideal para sólidos), condutividade (para líquidos condutores), óptico.",
+            ],
+            equacoes: [
+              { latex: "h = \\\\dfrac{\\\\Delta P}{\\\\rho \\\\cdot g}", legenda: "Nível por DP: h = altura do líquido (m), ΔP = pressão diferencial (Pa), ρ = densidade (kg/m³), g = 9,81 m/s²" },
+              { latex: "d = \\\\dfrac{c \\\\cdot t}{2}", legenda: "Distância por ultrassom/radar: c = velocidade de propagação, t = tempo de trânsito (ida + volta)" },
+            ],
+            conteudo2: [
+              "Exemplo DP: tanque de água (ρ=1000 kg/m³), DP=24,5 kPa. h = 24.500/(1000×9,81) = 2,5 m.",
+              "Problema do leg suprimido: quando a tomada de baixo do DP está abaixo do zero de medição e preenchida com fluido, a pressão da coluna de líquido no leg é subtraída, 'suprimindo' o zero. O transmissor precisa de supressão de zero ou recalculação do span.",
+            ],
+          },
+
+          {
+            titulo: "1.9 — Medição de Vazão",
+            conteudo: [
+              "A vazão é uma das grandezas mais críticas em plantas petroquímicas — determina o balanço de massa dos processos, o consumo de energia e o controle de qualidade do produto. Existem dezenas de tecnologias de medição de vazão, cada uma adequada a condições específicas.",
+              "PLACA DE ORIFÍCIO (Orifice Plate): restrição no duto que gera queda de pressão (DP) proporcional ao quadrado da velocidade do fluido. É a mais simples, barata e confiável — por isso é a mais usada mundialmente. Desvantagem: alta perda de carga permanente (~65% do DP medido) e sensível a desgaste das bordas.",
+              "TUBO DE VENTURI: convergente e divergente suave, com tomadas de pressão na entrada e no gargalo. Menor perda de carga permanente (~10-15% do DP) que a placa de orifício. Mais caro e robusto — usado para fluidos com sólidos e para grandes diâmetros.",
+              "ROTÂMETRO (Variable Area): tubo cônico com um flutuador. A área da secção anular aumenta com o fluxo até o peso do flutuador ser equilibrado pelo empuxo e força de arrasto. Leitura direta, simples, sem energia elétrica — mas deve estar vertical e é afetado por densidade e viscosidade.",
+              "MEDIDOR ELETROMAGNÉTICO (Flowmeter EM): aplica campo magnético transversal ao fluido condutor. Pelo efeito Faraday, o fluido condutor em movimento gera fem proporcional à velocidade. Necessita fluido eletricamente condutor (mínimo 5 μS/cm). Não tem partes móveis, sem perda de carga adicional — excelente para lamas, polpas e fluidos corrosivos.",
+              "MEDIDOR VORTEX: corpo rompe-vórtice gera vórtices de Von Kármán com frequência proporcional à velocidade do fluido. Boa precisão, sem partes móveis, adequado para vapor, gases e líquidos limpos.",
+              "MEDIDOR CORIOLIS: tubos vibratórios cuja frequência de oscilação é alterada pela massa de fluido que os percorre. Mede VAZÃO MÁSSICA diretamente, independente de temperatura, pressão e densidade. Também mede densidade e fração volumétrica. Padrão para medição fiscal de petróleo e gás natural. Alto custo, não recomendado para fluidos bifásicos ou com gás dissolvido.",
+              "MEDIDOR ULTRASSÔNICO: emite e recebe pulsos ultrassônicos em sentidos opostos ao fluxo. A diferença de tempo de trânsito indica a velocidade do fluido. Clamp-on (externo ao tubo): não invasivo, instalado sem interromper o processo.",
+            ],
+            equacoes: [
+              { latex: "Q = K \\\\cdot \\\\sqrt{\\\\dfrac{\\\\Delta P}{\\\\rho}}", legenda: "Vazão volumétrica por DP: K = constante (depende do tipo de medidor e geometria), ΔP = pressão diferencial, ρ = densidade do fluido" },
+              { latex: "f_{vortex} = S_t \\\\cdot \\\\dfrac{v}{d}", legenda: "Frequência dos vórtices: St = número de Strouhal (~0,2), v = velocidade (m/s), d = diâmetro do obstáculo (m)" },
+            ],
+            conteudo2: [
+              "Escolha do medidor: Placa de orifício = padrão, baixo custo, gases e líquidos limpos. EM = fluidos condutores, lamas. Coriolis = medição fiscal, alta precisão. Vortex = vapor e gases. Ultrassônico clamp-on = medição temporária sem interrupção do processo.",
+              "ATENÇÃO: a placa de orifício mede DP proporcional ao QUADRADO da vazão. Para extrair Q, tira-se a raiz quadrada de DP — isso implica que em 50% da vazão máxima, o DP é apenas 25% do DP máximo. A leitura em baixa vazão é pouco precisa.",
+            ],
+          },
+
+          {
+            titulo: "1.10 — Medição de Grandezas Mecânicas",
+            conteudo: [
+              "A instrumentação de grandezas mecânicas monitora a integridade e o desempenho de máquinas rotativas (motores, compressores, bombas, turbinas), sendo fundamental na manutenção preditiva.",
+              "SENSORES DE PROXIMIDADE INDUTIVOS: bobina oscilante detecta a presença de materiais ferrosos pela mudança de indutância. Saída digital (on/off). Distância de detecção típica: 2 a 15 mm. Usados em contagem de peças, detecção de fim de curso e proteção de máquinas.",
+              "SENSORES CAPACITIVOS: detectam qualquer material (metálico ou não). Úteis para detecção de nível de granéis, líquidos não condutores e materiais plásticos.",
+              "SENSORES FOTOELÉTRICOS: emissores e receptores de luz (infravermelho ou laser). Tipos: barreira (emissor e receptor opostos), reflexivo (reflexão no alvo) e difuso (reflexão direta no alvo). Alcances de milímetros a dezenas de metros.",
+              "MEDIÇÃO DE VELOCIDADE/ROTAÇÃO: encoder óptico ou magnético produz pulsos por revolução. A frequência dos pulsos é proporcional à velocidade. Tacômetro de efeito Hall usa alternâncias do campo magnético de uma engrenagem ou disco dentado.",
+              "MEDIÇÃO DE VIBRAÇÃO (ACELERÔMETRO PIEZOELÉTRICO): cristal piezoelétrico gera carga elétrica proporcional à aceleração mecânica. É o sensor mais usado em análise de vibração de máquinas. A análise espectral da vibração identifica: desbalanceamento (1×RPM), desalinhamento (1× e 2×RPM), folga mecânica (harmoniais da RPM), defeito em rolamento (frequências específicas baseadas na geometria), falha em engrenagem (frequência de engrenamento).",
+              "CÉLULA DE CARGA (EXTENSÔMETRO): extensômetro (strain gauge) colado em elemento elástico. A deformação elástica é proporcional à força aplicada. A variação de resistência do extensômetro (ΔR/R ≈ 2×ε, onde ε é a deformação) é medida por ponte de Wheatstone. Usada em balanças industriais, prensas e sistemas de ancoragem.",
+              "MEDIÇÃO DE TORQUE: torquímetros estáticos para verificação de aperto de parafusos. Medição dinâmica de torque em eixos rotativos usa extensômetros com telemetria sem fio ou anéis coletores.",
+            ],
+            equacoes: [
+              { latex: "\\\\dfrac{\\\\Delta R}{R} = G_F \\\\cdot \\\\varepsilon", legenda: "Extensômetro (strain gauge): GF = fator de gauge (~2 para metal), epsilon = deformação específica (m/m)" },
+              { latex: "T = F \\\\cdot r \\\\quad [\\\\text{N}\\\\cdot\\\\text{m}]", legenda: "Torque: F = força tangencial (N), r = raio (m)" },
+            ],
+            conteudo2: [
+              "Monitoramento de vibração de máquinas (norma ISO 10816): velocidade de vibração RMS na carcaça. Classe I (pequenas máquinas < 15 kW): até 2,8 mm/s = bom, 2,8-7,1 = aceitável, 7,1-18 = alerta, > 18 = perigoso. Os limites variam com a classe e rigidez da fundação.",
+            ],
+          },
+
+          {
+            titulo: "1.11 — Instrumentação Analítica",
+            conteudo: [
+              "A instrumentação analítica mede a composição química e as propriedades físico-químicas dos fluidos de processo. É fundamental no controle de qualidade, na segurança e na eficiência dos processos petroquímicos.",
+              "ANALISADOR DE pH: o eletrodo de vidro (combina eletrodo de medição e referência num único corpo) gera potencial elétrico proporcional ao pH. Cada unidade de pH corresponde a 59,16 mV a 25°C (equação de Nernst). MUITO sensível à temperatura — necessita compensação automática de temperatura (ATC). Calibração com soluções tampão padrão de pH 4,0, 7,0 e 10,0.",
+              "ANALISADOR DE CONDUTIVIDADE: mede a capacidade do líquido de conduzir corrente elétrica, proporcional à concentração de íons dissolvidos. Usado para controle de pureza de água (ultrapura tem condutividade < 0,1 μS/cm), concentração de ácidos/bases e detecção de contaminação.",
+              "ANALISADOR DE OXIGÊNIO EM GASES (O₂): fundamental no controle de combustão. Célula eletroquímica (célula de combustível) ou sensor paramagnético (O₂ é paramagnético — atraído por campo magnético). O teor de O₂ nos gases de exaustão indica a eficiência da queima: O₂ elevado = excesso de ar (eficiência baixa), O₂ muito baixo = deficiência de ar (risco de CO e explosão).",
+              "ANALISADOR DE GASES COMBUSTÍVEIS (LEL — Lower Explosive Limit): detecta concentrações de gases inflamáveis (H₂S, CH₄, GLP) em porcentagem do limite inferior de explosividade. Alarme em 10% do LEL, parada em 20-25% do LEL. Tecnologias: catalítico (pellistor) para hidrocarbonetos, infravermelho (NDIR) para gases específicos, eletroquímico para gases tóxicos (CO, H₂S, SO₂, Cl₂).",
+              "CROMATÓGRAFO DE PROCESSO (GC): separa e analisa componentes de misturas gasosas por afinidade com fase estacionária e velocidade de transporte por fase móvel (gás de arraste). Resultado: cromatograma com picos identificados por tempo de retenção e quantificados por área. Padrão em medição de qualidade de gás natural (composição, poder calorífico, número Wobbe).",
+              "ANALISADOR DE TURBIDEZ: mede a opacidade de líquidos pela dispersão de luz (nefelometria) ou absorção. Usado em tratamento de água, controle de clarificação e detecção de sólidos em suspensão.",
+              "SENSOR DE PONTO DE ORVALHO: mede a temperatura na qual a umidade do gás condensa. Fundamental para gás natural de exportação (especificação de umidade) e sistemas de ar comprimido de instrumento.",
+            ],
+            equacoes: [
+              { latex: "pH = -\\\\log_{10}[H^+]", legenda: "Definição de pH: concentração de íons H⁺ em mol/L" },
+              { latex: "E = E_0 + 0{,}05916 \\\\cdot \\\\log[H^+] \\\\quad \\\\text{(a 25°C)}", legenda: "Equação de Nernst para eletrodo de pH: variação de 59,16 mV por unidade de pH" },
+            ],
+            conteudo2: [
+              "Dica de prova: sensores de gás LEL com tecnologia catalítica (pellistor) PERDEM SENSIBILIDADE (intoxicação do catalisador) quando expostos a silicones, compostos de enxofre ou halogênados. Por isso, em ambientes com esses contaminantes, usa-se infravermelho (NDIR) para hidrocarbonetos. Esse ponto é frequentemente explorado em provas da Petrobras.",
+            ],
+          },
+
+          {
+            titulo: "1.12 — Manutenção e Comissionamento de Instrumentos",
+            conteudo: [
+              "A manutenção de instrumentação industrial segue os mesmos três paradigmas da manutenção geral, mas com características específicas do ambiente de processo.",
+              "MANUTENÇÃO CORRETIVA: executada após a falha do instrumento. Deve ser ágil para minimizar o tempo sem medição. O procedimento típico: (1) Confirmar a falha (verificar se é o instrumento ou o processo). (2) Isolar a variável de processo (bloquear a tomada de processo, colocar em modo manual no DCS). (3) Substituir ou reparar o instrumento. (4) Recalibrar. (5) Retornar ao serviço com verificação funcional.",
+              "MANUTENÇÃO PREVENTIVA: execução programada por tempo ou por número de ciclos. Inclui: calibração periódica, limpeza de tomadas e purges, troca de juntas e empanques, verificação de suprimento de ar, limpeza de filtros e inspeção visual.",
+              "MANUTENÇÃO PREDITIVA: baseada no monitoramento do estado real do instrumento. Técnicas: diagnóstico via posicionador digital (desvio de haste, fricção, tempo de resposta), monitoramento do sinal 4-20 mA (desvios de zero e span entre calibrações), análise de vibração em válvulas de controle de alta frequência.",
+              "COMISSIONAMENTO: conjunto de atividades que verificam e documentam que um instrumento ou sistema foi instalado, calibrado e configurado de acordo com o projeto, antes da partida da planta.",
+              "LOOP CHECK (verificação de malha): teste completo do sinal desde o elemento primário no campo até a tela do DCS/SCADA. Procedimento: (1) Simular o sinal no campo (simulador de termopar, source de mA). (2) Verificar se o sinal chega correto no DCS. (3) Verificar alarmes e intertravamentos. (4) Testar a ação do elemento final de controle (válvula abrindo/fechando conforme esperado). (5) Documentar com assinatura do técnico e do engenheiro responsável.",
+              "TESTE FUNCIONAL SIS (Safety Instrumented System): os instrumentos dos sistemas de segurança (ESD, F&G, HIPPS) exigem testes de demanda periódicos para garantir que atuarão quando necessário. A frequência de teste é determinada pelo SIL (Safety Integrity Level) do sistema, calculado conforme IEC 61511.",
+              "DOCUMENTAÇÃO: todo trabalho de manutenção em instrumentação deve ser registrado em ordens de serviço com: TAG do instrumento, data, descrição do serviço, valores pré e pós-intervenção, técnico responsável e assinatura. Sem documentação, o trabalho não aconteceu.",
+            ],
+            equacoes: [],
+            conteudo2: [
+              "PFD (Probability of Failure on Demand): probabilidade de o sistema de segurança falhar quando demandado. SIL 1: PFD entre 0,1 e 0,01. SIL 2: 0,01 a 0,001. SIL 3: 0,001 a 0,0001. O nível SIL determina a frequência mínima de teste dos instrumentos de segurança — instrumentos SIL 2 normalmente são testados anualmente ou semestralmente.",
+            ],
+          },
+
         ],
       },
 
-      // ── BLOCO II ─────────────────────────────────────────────────────────
+            // ── BLOCO II ─────────────────────────────────────────────────────────
       {
         slug: "instr-bloco2",
         titulo: "Bloco II — CLP, PID e Redes Industriais",
