@@ -10,7 +10,7 @@ export interface Dica {
   gatilho: string;
   titulo: string;
   explicacao: string;
-  tipo: "senoide-fase" | "atraso-indutivo" | "avanco-capacitivo" | "triangulo-potencias" | "carga-capacitor" | "descarga-indutor" | "comparacao-corrente" | "curva-bh" | "torque-velocidade-inducao" | "curva-disjuntor";
+  tipo: "senoide-fase" | "atraso-indutivo" | "avanco-capacitivo" | "triangulo-potencias" | "carga-capacitor" | "descarga-indutor" | "comparacao-corrente" | "curva-bh" | "torque-velocidade-inducao" | "curva-disjuntor" | "valvula-globo" | "valvula-borboleta" | "valvula-esfera" | "valvula-diafragma" | "valvula-gaveta" | "atuador-pneumatico" | "loop-controle" | "sinal-4-20ma";
 }
 
 export interface Pagina {
@@ -1573,6 +1573,21 @@ export const AREAS: Area[] = [
               "Exemplo: transmissor de temperatura 0-200°C, sinal 4-20 mA. Para T=75°C: I = 4 + 16×(75/200) = 4 + 6 = 10 mA. Para I=14 mA: T = (14-4)/16 × 200 = 0,625 × 200 = 125°C.",
               "Dica de prova: calibrar é documentar; ajustar é intervir. Um instrumento pode ser calibrado (ter seu certificado emitido) sem ser ajustado, se seus erros estiverem dentro da tolerância especificada.",
             ],
+            dicas: [
+              {
+                gatilho: "ver o sinal 4-20 mA",
+                titulo: "Sinal 4-20 mA — Conversão linear",
+                tipo: "sinal-4-20ma",
+                explicacao: "4 mA = 0% da faixa (zero vivo). 20 mA = 100% da faixa (fundo de escala). A linearidade garante que qualquer ponto intermediário seja proporcional. O 'zero vivo' em 4 mA permite detectar fio rompido (0 mA) — diferenciando de sinal zero real.",
+              },
+              {
+                gatilho: "ver a malha de controle completa",
+                titulo: "Malha de Controle 4-20 mA",
+                tipo: "loop-controle",
+                explicacao: "Sensor → Transmissor (4-20mA) → Controlador (DCS/CLP) → Válvula de controle (4-20mA) → Processo. O loop check verifica cada elo dessa cadeia durante o comissionamento.",
+              },
+            ],
+
           },
 
           {
@@ -1593,6 +1608,45 @@ export const AREAS: Area[] = [
             conteudo2: [
               "Características de vazão intrínsecas: LINEAR (vazão proporcional à abertura — usada em processos com ΔP constante). IGUAL PERCENTAGEM (a variação percentual de Cv é proporcional à abertura — mais comum, usada quando ΔP varia). ABERTURA RÁPIDA (Cv sobe rapidamente nos primeiros graus de abertura — usada em on-off).",
             ],
+            dicas: [
+              {
+                gatilho: "ver válvula globo",
+                titulo: "Válvula Globo — Corte transversal",
+                tipo: "valvula-globo",
+                explicacao: "O fluxo muda de direção no interior do corpo. O tampão (plug) sobe e desce para controlar a passagem pelo assento (sede). Alta precisão de controle — a mais usada em plantas petroquímicas.",
+              },
+              {
+                gatilho: "ver válvula borboleta",
+                titulo: "Válvula Borboleta — Disco giratório",
+                tipo: "valvula-borboleta",
+                explicacao: "O disco gira 90° em torno do eixo central. Compacta e leve — ótima para grandes diâmetros e baixa perda de carga. Menor precisão que a globo nas posições parcialmente abertas.",
+              },
+              {
+                gatilho: "ver válvula esfera",
+                titulo: "Válvula Esfera — Vedação perfeita",
+                tipo: "valvula-esfera",
+                explicacao: "A esfera perfurada gira 90° entre totalmente aberta e fechada. Vedação perfeita — usada em bloqueio ou em serviços com controle (versão V-ball). Alta pressão e temperatura.",
+              },
+              {
+                gatilho: "ver válvula diafragma",
+                titulo: "Válvula Diafragma — Membrana flexível",
+                tipo: "valvula-diafragma",
+                explicacao: "A membrana flexível separa completamente o fluido do mecanismo de atuação. Ideal para fluidos corrosivos, viscosos ou com sólidos em suspensão — aplicações sanitárias e farmacêuticas.",
+              },
+              {
+                gatilho: "ver válvula gaveta",
+                titulo: "Válvula Gaveta — Somente bloqueio",
+                tipo: "valvula-gaveta",
+                explicacao: "O disco plano (gaveta) se move perpendicular ao fluxo. NUNCA deve ser usada para controle — vibra e erode em posições parcialmente abertas. Use apenas totalmente aberta ou fechada.",
+              },
+              {
+                gatilho: "ver atuador pneumático",
+                titulo: "Atuador Pneumático — Mola e Diafragma",
+                tipo: "atuador-pneumatico",
+                explicacao: "O ar de instrumento (3-15 psi) comprime a membrana contra a mola, movendo a haste. Sem ar, a mola retorna ao estado de falha (FC ou FA). O posicionador controla precisamente a posição da haste.",
+              },
+            ],
+
           },
 
           {
