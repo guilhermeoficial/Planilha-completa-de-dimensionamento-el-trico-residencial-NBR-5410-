@@ -10,7 +10,7 @@ export interface Dica {
   gatilho: string;
   titulo: string;
   explicacao: string;
-  tipo: "senoide-fase" | "atraso-indutivo" | "avanco-capacitivo" | "triangulo-potencias" | "carga-capacitor" | "descarga-indutor" | "comparacao-corrente" | "curva-bh" | "torque-velocidade-inducao" | "curva-disjuntor" | "valvula-globo" | "valvula-borboleta" | "valvula-esfera" | "valvula-diafragma" | "valvula-gaveta" | "atuador-pneumatico" | "loop-controle" | "sinal-4-20ma";
+  tipo: string;
 }
 
 export interface Pagina {
@@ -21,6 +21,7 @@ export interface Pagina {
   videoUrl?: string; // reservado para quando os vídeos (Manim/Python) existirem
   animacao?: "lei-de-ohm"; // animação interativa embutida nesta página
   dicas?: Dica[]; // dicas interativas com gráfico ao passar o mouse — estratégia de ensino
+  tabelasSimbolos?: string[]; // IDs de tabelas de símbolos a renderizar (ex: "valvulas-direcionais")
 }
 
 export interface Modulo {
@@ -1961,6 +1962,67 @@ export const AREAS: Area[] = [
             equacoes: [
               { latex: "F = P \\cdot A \\cdot \\eta", legenda: "Força do cilindro pneumático: η = rendimento mecânico (~0,85 a 0,95)" },
             ],
+          },
+
+          {
+            titulo: "3.6 — Simbologia Pneumática: Válvulas Direcionais (ISO 1219)",
+            conteudo: [
+              "A simbologia pneumática é normalizada pela ISO 1219-1. Dominar esses símbolos é essencial para leitura de diagramas de circuitos pneumáticos em plantas industriais.",
+              "As válvulas direcionais controlam o caminho que o ar percorre no circuito. São identificadas pelo número de vias (conexões com o circuito) e o número de posições de controle.",
+              "Cada quadrado no símbolo representa uma posição da válvula. As setas dentro de cada quadrado indicam a direção do fluxo naquela posição. Linhas verticais indicam bloqueio (passagem fechada).",
+              "A posição normal é indicada pela posição em que a válvula se encontra sem atuação — geralmente a posição à direita do símbolo, conectada à mola de retorno.",
+              "Válvulas 5/2 e 5/3 são as mais usadas em acionamento de cilindros de duplo efeito. A válvula 5/2 tem duas posições estáveis. A 5/3 tem três posições — a central pode ser fechada, com pressão ou com escape.",
+            ],
+            equacoes: [],
+            tabelasSimbolos: ["valvulas-direcionais"],
+          },
+
+          {
+            titulo: "3.7 — Simbologia Pneumática: Atuadores de Válvulas",
+            conteudo: [
+              "Os atuadores determinam como a válvula direcional é acionada. São representados no símbolo à esquerda e à direita das células de posição.",
+              "O acionamento manual (alavanca, botão, pedal) é representado por diferentes símbolos geométricos. O acionamento mecânico (mola, rolete, came) usa símbolos específicos para cada tipo.",
+              "O acionamento por solenóide elétrico é representado por um retângulo com linhas internas (representando o enrolamento). Solenóides de dupla ação permitem posicionar a válvula em qualquer das posições estáveis.",
+              "O acionamento por piloto pneumático (sinal de pressão de ar) é representado por seta com linha. É o método mais comum em sistemas totalmente pneumáticos sem componentes elétricos.",
+            ],
+            equacoes: [],
+            tabelasSimbolos: ["atuadores"],
+          },
+
+          {
+            titulo: "3.8 — Simbologia Pneumática: Cilindros",
+            conteudo: [
+              "Os cilindros são os atuadores lineares dos sistemas pneumáticos. Convertem a energia do ar comprimido em força e movimento linear.",
+              "O símbolo básico do cilindro é composto por retângulo (corpo) e retângulo menor (pistão com haste). As tampas do cilindro são indicadas por linhas mais espessas nas extremidades.",
+              "O amortecimento nas extremidades do curso (representado por triângulo com seta de ajuste) permite reduzir o impacto mecânico ao final do curso, aumentando a vida útil do cilindro e dos componentes adjacentes.",
+              "Cilindros com sensor de posição integrado (reed switch magnético ou encoder linear) permitem controle de posicionamento e feedback ao CLP sem sensores externos.",
+            ],
+            equacoes: [],
+            tabelasSimbolos: ["cilindros"],
+          },
+
+          {
+            titulo: "3.9 — Simbologia Pneumática: Válvulas de Fluxo e Anti-retorno",
+            conteudo: [
+              "As válvulas de controle de fluxo regulam a velocidade dos cilindros controlando a vazão de ar. Instaladas no escape dos cilindros (meter-out), proporcionam controle de velocidade mais estável.",
+              "A válvula anti-retorno (check valve) permite fluxo em apenas um sentido. Combinada com a válvula de fluxo, permite velocidade diferente na extensão e retração do cilindro.",
+              "A válvula de escape rápido é instalada próxima ao cilindro para descarregar o ar diretamente para a atmosfera sem passar pela válvula direcional, aumentando drasticamente a velocidade de retorno.",
+              "A válvula shuttle (OU) seleciona automaticamente o sinal de maior pressão entre duas entradas — usada para acionar um cilindro a partir de dois pontos de comando diferentes.",
+            ],
+            equacoes: [],
+            tabelasSimbolos: ["valvulas-fluxo"],
+          },
+
+          {
+            titulo: "3.10 — Simbologia Pneumática: Tratamento do Ar e Acessórios",
+            conteudo: [
+              "O tratamento adequado do ar comprimido é fundamental para a vida útil dos componentes pneumáticos. Partículas, umidade e falta de lubrificação são as principais causas de falha prematura.",
+              "A unidade de manutenção (FRL — Filtro, Regulador, Lubrificador) é o conjunto padrão de preparação do ar. O filtro remove partículas e condensado. O regulador mantém pressão constante independente das variações da rede. O lubrificador adiciona névoa de óleo ao ar.",
+              "O pressostato monitora a pressão do ar comprimido e aciona um sinal elétrico quando a pressão cai abaixo ou sobe acima dos limites ajustados — protegendo o processo contra queda de pressão na rede.",
+              "O silenciador reduz o ruído do escape do ar para a atmosfera. Instalado nas portas de escape das válvulas direcionais, reduz drasticamente o nível de ruído da máquina.",
+            ],
+            equacoes: [],
+            tabelasSimbolos: ["tratamento-ar", "outros-pneumaticos"],
           },
         ],
       },

@@ -7,6 +7,8 @@ import type { Modulo } from "@/lib/cursos-data";
 import Formula from "../../formula";
 import AnimacaoLeiDeOhm from "./animacao-lei-de-ohm";
 import DicaGrafico from "../../dica-grafico";
+import TabelaSimbolos from "@/components/tabela-simbolos";
+import type { TabelaSimbolosId } from "@/components/tabela-simbolos";
 
 export default function ModuloLeitor({ areaSlug, areaNome, modulo }: { areaSlug: string; areaNome: string; modulo: Modulo }) {
   const [pagina, setPagina] = useState(0);
@@ -14,7 +16,7 @@ export default function ModuloLeitor({ areaSlug, areaNome, modulo }: { areaSlug:
   const atual = modulo.paginas[pagina];
 
   return (
-    <div className="mx-auto max-w-2xl px-6 py-10">
+    <div className="mx-auto max-w-3xl px-6 py-10">
       <Link href={`/dashboard/cursos/${areaSlug}`} className="mb-4 inline-flex items-center gap-1.5 text-sm text-muted hover:text-text">
         <ArrowLeft size={15} /> {areaNome}
       </Link>
@@ -56,6 +58,15 @@ export default function ModuloLeitor({ areaSlug, areaNome, modulo }: { areaSlug:
           </div>
         )}
 
+        {/* ── Tabelas de símbolos embutidas ── */}
+        {atual.tabelasSimbolos && atual.tabelasSimbolos.length > 0 && (
+          <div className="mt-2 space-y-4">
+            {atual.tabelasSimbolos.map((id, i) => (
+              <TabelaSimbolos key={i} id={id as TabelaSimbolosId} />
+            ))}
+          </div>
+        )}
+
         {atual.animacao === "lei-de-ohm" && (
           <div className="mt-5">
             <AnimacaoLeiDeOhm />
@@ -66,7 +77,7 @@ export default function ModuloLeitor({ areaSlug, areaNome, modulo }: { areaSlug:
           <div className="mt-4 flex flex-wrap gap-2 border-t border-panel-border pt-3">
             <span className="text-xs text-muted">Passe o mouse pra ver:</span>
             {atual.dicas.map((d, i) => (
-              <DicaGrafico key={i} gatilho={d.gatilho} titulo={d.titulo} explicacao={d.explicacao} tipo={d.tipo} />
+              <DicaGrafico key={i} gatilho={d.gatilho} titulo={d.titulo} explicacao={d.explicacao} tipo={d.tipo as import("../../dica-grafico").TipoGrafico} />
             ))}
           </div>
         )}
@@ -98,3 +109,4 @@ export default function ModuloLeitor({ areaSlug, areaNome, modulo }: { areaSlug:
     </div>
   );
 }
+
