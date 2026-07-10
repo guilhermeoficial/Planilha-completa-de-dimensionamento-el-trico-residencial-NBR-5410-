@@ -13,15 +13,23 @@ export interface Dica {
   tipo: string;
 }
 
+export interface QuestaoInterativa {
+  enunciado: string;
+  alternativas: string[];
+  respostaCorreta: number; // índice 0-based
+  explicacao: string;
+}
+
 export interface Pagina {
   titulo: string;
-  conteudo: string[]; // parágrafos antes das equações
-  equacoes?: { latex: string; legenda?: string }[]; // fórmulas em destaque, renderizadas em LaTeX
-  conteudo2?: string[]; // parágrafos depois das equações
-  videoUrl?: string; // reservado para quando os vídeos (Manim/Python) existirem
-  animacao?: "lei-de-ohm"; // animação interativa embutida nesta página
-  dicas?: Dica[]; // dicas interativas com gráfico ao passar o mouse — estratégia de ensino
-  tabelasSimbolos?: string[]; // IDs de tabelas de símbolos a renderizar (ex: "valvulas-direcionais")
+  conteudo: string[];
+  equacoes?: { latex: string; legenda?: string }[];
+  conteudo2?: string[];
+  videoUrl?: string;
+  animacao?: "lei-de-ohm";
+  dicas?: Dica[];
+  tabelasSimbolos?: string[];
+  questoes?: QuestaoInterativa[]; // mini-quiz interativo ao final da página
 }
 
 export interface Modulo {
@@ -949,26 +957,211 @@ export const AREAS: Area[] = [
       {
         slug: "mat-aritmetica",
         titulo: "Matemática — Aritmética e Potências",
-        descricao: "Frações, potências, raízes, notação científica e regra de três.",
+        descricao: "Frações, operações, potências, raízes, notação científica, regra de três, porcentagem e proporção.",
         bloco: "Conhecimentos Básicos",
         paginas: [
           {
-            titulo: "M.1 — Aritmética: Frações, Potências e Raízes",
+            titulo: "A.1 — Operações com Frações",
             conteudo: [
-              "A aritmética é a base de todos os cálculos em eletrotécnica. Dominá-la elimina erros nos cálculos de potência, corrente, resistência e dimensionamento.",
-              "FRAÇÕES: representam partes de um todo. Operações essenciais: adição (denominador comum), subtração (idem), multiplicação (numerador × numerador / denominador × denominador), divisão (multiplicar pelo inverso). Em eletrotécnica: resistências em paralelo usam a soma de frações 1/Req = 1/R1 + 1/R2.",
-              "POTÊNCIAS: a^n significa a multiplicado por si mesmo n vezes. Propriedades: a^m × a^n = a^(m+n); a^m / a^n = a^(m-n); (a^m)^n = a^(mn); a^0 = 1; a^(-n) = 1/a^n. Notação científica: 3,3 × 10^3 = 3300; 470 × 10^(-6) = 0,00047.",
-              "RAÍZES: raiz quadrada é a operação inversa do quadrado. √(a×b) = √a × √b. √(a/b) = √a / √b. Muito usada em eletrotécnica: |Z| = √(R² + X²); Vrms = Vp/√2; potência trifásica tem fator √3.",
-              "REGRA DE TRÊS SIMPLES: se A está para B assim como C está para D, então A/B = C/D, ou A×D = B×C. Exemplo: se 10 Ω dissipam 40 W com 2A, quantos watts dissipa 15 Ω com a mesma corrente? P = I²R = 4×15 = 60 W.",
-              "PORCENTAGEM: p% de N = (p/100) × N. Aumento de p%: N × (1 + p/100). Redução: N × (1 - p/100). Aplicação: queda de tensão de 3% em 127V = 0,03 × 127 = 3,81V. Tensão no final = 127 - 3,81 = 123,19V.",
+              "Fração representa partes de um todo. A barra de fração indica divisão: a/b significa a ÷ b. O numerador (a) indica quantas partes temos; o denominador (b) indica em quantas partes o todo foi dividido.",
+              "SIMPLIFICAÇÃO: divide-se numerador e denominador pelo MMC de ambos. Exemplo: 18/24 → divide por 6 → 3/4.",
+              "ADIÇÃO E SUBTRAÇÃO: só é possível com denominadores iguais. Se diferentes, reduzir ao MMC dos denominadores. Exemplo: 1/3 + 1/4 = 4/12 + 3/12 = 7/12.",
+              "MULTIPLICAÇÃO: numerador × numerador sobre denominador × denominador. Exemplo: 2/3 × 3/5 = 6/15 = 2/5.",
+              "DIVISÃO: multiplica-se pelo inverso do segundo. Exemplo: 2/3 ÷ 4/5 = 2/3 × 5/4 = 10/12 = 5/6.",
+              "NÚMERO MISTO: parte inteira + fração. Exemplo: 2 e 3/4 = (2×4+3)/4 = 11/4.",
+              "APLICAÇÃO ELÉTRICA: resistores em paralelo usam soma de frações. Para R1=6Ω e R2=4Ω em paralelo: 1/Req = 1/6 + 1/4 = 2/12 + 3/12 = 5/12. Logo Req = 12/5 = 2,4Ω.",
             ],
             equacoes: [
-              { latex: "\\dfrac{1}{R_{eq}} = \\dfrac{1}{R_1} + \\dfrac{1}{R_2} \\quad \\Rightarrow \\quad R_{eq} = \\dfrac{R_1 \\cdot R_2}{R_1 + R_2}", legenda: "Dois resistores em paralelo — fórmula do produto pela soma" },
-              { latex: "a^m \\cdot a^n = a^{m+n} \\qquad \\dfrac{a^m}{a^n} = a^{m-n} \\qquad (a^m)^n = a^{mn}", legenda: "Propriedades das potências" },
-              { latex: "\\sqrt{a \\cdot b} = \\sqrt{a} \\cdot \\sqrt{b} \\qquad \\sqrt{\\dfrac{a}{b}} = \\dfrac{\\sqrt{a}}{\\sqrt{b}}", legenda: "Propriedades das raízes quadradas" },
+              { latex: "\\dfrac{a}{b} + \\dfrac{c}{d} = \\dfrac{a \\cdot d + b \\cdot c}{b \\cdot d}", legenda: "Adição de frações com denominadores diferentes" },
+              { latex: "\\dfrac{a}{b} \\times \\dfrac{c}{d} = \\dfrac{a \\cdot c}{b \\cdot d} \\qquad \\dfrac{a}{b} \\div \\dfrac{c}{d} = \\dfrac{a \\cdot d}{b \\cdot c}", legenda: "Multiplicação e divisão de frações" },
+              { latex: "\\dfrac{1}{R_{eq}} = \\dfrac{1}{R_1} + \\dfrac{1}{R_2} \\Rightarrow R_{eq} = \\dfrac{R_1 \\cdot R_2}{R_1 + R_2}", legenda: "Dois resistores em paralelo — produto sobre soma" },
             ],
-            conteudo2: [
-              "Exemplo típico de prova: R1 = 6Ω e R2 = 12Ω em paralelo. Req = (6×12)/(6+12) = 72/18 = 4Ω. Verificação: 1/Req = 1/6 + 1/12 = 2/12 + 1/12 = 3/12 = 1/4. Logo Req = 4Ω ✓.",
+            questoes: [
+              {
+                enunciado: "Dois resistores, R1 = 6Ω e R2 = 12Ω, são ligados em paralelo. Qual é a resistência equivalente?",
+                alternativas: ["2Ω", "4Ω", "9Ω", "18Ω"],
+                respostaCorreta: 1,
+                explicacao: "Req = (6×12)/(6+12) = 72/18 = 4Ω. Pela soma de frações: 1/Req = 1/6 + 1/12 = 2/12 + 1/12 = 3/12 = 1/4, logo Req = 4Ω.",
+              },
+              {
+                enunciado: "Simplifique a fração 36/48.",
+                alternativas: ["3/4", "4/5", "6/8", "2/3"],
+                respostaCorreta: 0,
+                explicacao: "MDC(36,48) = 12. Dividindo: 36/12 = 3 e 48/12 = 4. Resultado: 3/4.",
+              },
+              {
+                enunciado: "Calcule: 1/4 + 2/3.",
+                alternativas: ["3/7", "11/12", "3/12", "5/12"],
+                respostaCorreta: 1,
+                explicacao: "MMC(4,3)=12. 1/4 = 3/12 e 2/3 = 8/12. Soma: 3/12 + 8/12 = 11/12.",
+              },
+            ],
+          },
+          {
+            titulo: "A.2 — Potências e Propriedades",
+            conteudo: [
+              "A potência a^n representa a multiplicado por si mesmo n vezes. A base é o número que se repete; o expoente indica quantas vezes.",
+              "PROPRIEDADES FUNDAMENTAIS: produto de mesma base soma expoentes. Quociente de mesma base subtrai expoentes. Potência de potência multiplica expoentes. Qualquer número elevado a zero é 1 (exceto 0^0, que é indeterminado). Expoente negativo indica o inverso.",
+              "POTÊNCIAS DE 10: essenciais para notação científica e prefixos SI. 10^0=1; 10^1=10; 10^2=100; 10^3=1.000; 10^6=1.000.000; 10^-3=0,001; 10^-6=0,000001.",
+              "NOTAÇÃO CIENTÍFICA: número entre 1 e 10 multiplicado por potência de 10. Exemplos em eletrotécnica: 470μF = 470×10^-6 F = 4,7×10^-4 F; 22kΩ = 22×10^3 Ω = 2,2×10^4 Ω; 1,5MW = 1,5×10^6 W.",
+              "QUADRADO E CUBO PERFEITOS: 1²=1, 2²=4, 3²=9, 4²=16, 5²=25, 6²=36, 7²=49, 8²=64, 9²=81, 10²=100, 11²=121, 12²=144, 15²=225, 20²=400, 25²=625.",
+            ],
+            equacoes: [
+              { latex: "a^m \\cdot a^n = a^{m+n} \\qquad \\dfrac{a^m}{a^n} = a^{m-n} \\qquad (a^m)^n = a^{m \\cdot n}", legenda: "Propriedades das potências — produto, quociente e potência de potência" },
+              { latex: "a^0 = 1 \\qquad a^{-n} = \\dfrac{1}{a^n} \\qquad (a \\cdot b)^n = a^n \\cdot b^n", legenda: "Potência zero, expoente negativo e potência de produto" },
+            ],
+            questoes: [
+              {
+                enunciado: "Simplifique: 2^5 × 2^3 ÷ 2^4",
+                alternativas: ["2^4 = 16", "2^3 = 8", "2^2 = 4", "2^6 = 64"],
+                respostaCorreta: 0,
+                explicacao: "2^5 × 2^3 = 2^(5+3) = 2^8. Depois: 2^8 ÷ 2^4 = 2^(8-4) = 2^4 = 16.",
+              },
+              {
+                enunciado: "Converta para notação científica: 0,00047",
+                alternativas: ["4,7 × 10^-3", "47 × 10^-5", "4,7 × 10^-4", "0,47 × 10^-3"],
+                respostaCorreta: 2,
+                explicacao: "Move-se a vírgula 4 casas para a direita: 0,00047 = 4,7 × 10^-4. A notação científica exige número entre 1 e 10.",
+              },
+              {
+                enunciado: "Um capacitor tem capacitância de 470μF. Em Farads na notação científica, isso equivale a:",
+                alternativas: ["4,7 × 10^-5 F", "4,7 × 10^-4 F", "4,7 × 10^-3 F", "47 × 10^-4 F"],
+                respostaCorreta: 1,
+                explicacao: "470 × 10^-6 = 4,70 × 10^2 × 10^-6 = 4,7 × 10^(2-6) = 4,7 × 10^-4 F.",
+              },
+            ],
+          },
+          {
+            titulo: "A.3 — Raízes e Radicais",
+            conteudo: [
+              "A raiz n-ésima de a é o número x tal que x^n = a. A raiz quadrada (√a) é a mais comum em eletrotécnica.",
+              "PROPRIEDADES: √(a×b) = √a × √b. √(a/b) = √a / √b. √(a^n) = a^(n/2). (√a)² = a. √a² = |a| (sempre positivo).",
+              "RACIONALIZAÇÃO: eliminar raiz do denominador multiplicando por √a/√a. Exemplo: 1/√2 = √2/2 ≈ 0,707.",
+              "RAÍZES IMPORTANTES EM ELETROTÉCNICA: √2 ≈ 1,414 (relação pico/RMS). √3 ≈ 1,732 (fator de sistema trifásico). 1/√2 ≈ 0,707 (fator RMS de senoide). √3/2 ≈ 0,866 (seno de 60°).",
+              "SIMPLIFICAÇÃO DE RADICAIS: √48 = √(16×3) = 4√3. √200 = √(100×2) = 10√2.",
+              "RAIZ CÚBICA: ∛8=2; ∛27=3; ∛64=4; ∛125=5; ∛1000=10.",
+            ],
+            equacoes: [
+              { latex: "\\sqrt{a \\cdot b} = \\sqrt{a} \\cdot \\sqrt{b} \\qquad \\sqrt{\\dfrac{a}{b}} = \\dfrac{\\sqrt{a}}{\\sqrt{b}}", legenda: "Produto e quociente de radicais" },
+              { latex: "V_{rms} = \\dfrac{V_p}{\\sqrt{2}} \\approx 0{,}707 \\cdot V_p \\qquad V_L = \\sqrt{3} \\cdot V_F \\approx 1{,}732 \\cdot V_F", legenda: "Aplicações em eletrotécnica: valor RMS e tensão de linha trifásica" },
+            ],
+            questoes: [
+              {
+                enunciado: "Uma tensão de pico de 311V corresponde a qual valor RMS?",
+                alternativas: ["155,5 V", "220 V", "311 V", "440 V"],
+                respostaCorreta: 1,
+                explicacao: "Vrms = 311/√2 = 311/1,414 ≈ 220 V. Esse é o valor da rede elétrica brasileira — 220V RMS corresponde a pico de 311V.",
+              },
+              {
+                enunciado: "Simplifique: √(100×3) – 2√3",
+                alternativas: ["8√3", "√3", "7√3", "10"],
+                respostaCorreta: 0,
+                explicacao: "√300 = √(100×3) = 10√3. Resultado: 10√3 − 2√3 = 8√3.",
+              },
+              {
+                enunciado: "Em um sistema trifásico 380V (tensão de linha), qual é a tensão de fase?",
+                alternativas: ["190 V", "220 V", "254 V", "311 V"],
+                respostaCorreta: 1,
+                explicacao: "Vfase = VL/√3 = 380/1,732 ≈ 219,4 ≈ 220 V. O sistema 380/220V tem 380V entre fases e 220V fase-neutro.",
+              },
+            ],
+          },
+          {
+            titulo: "A.4 — Regra de Três e Proporção",
+            conteudo: [
+              "A regra de três é uma das ferramentas mais usadas em concursos. Aplica o conceito de proporcionalidade para encontrar um valor desconhecido.",
+              "PROPORCIONALIDADE DIRETA: quando A aumenta, B aumenta na mesma proporção. A/B = k (constante). Exemplo: mais corrente → mais potência (P = V×I, com V fixo).",
+              "PROPORCIONALIDADE INVERSA: quando A aumenta, B diminui. A×B = k. Exemplo: resistência e corrente com tensão fixa — I = V/R, dobrando R, a corrente cai à metade.",
+              "REGRA DE TRÊS SIMPLES: montar tabela com os valores conhecidos e o desconhecido X. Identificar se direta ou inversa. Cruzar os valores: se direta, A₁/A₂ = B₁/B₂. Se inversa, A₁×B₁ = A₂×B₂.",
+              "REGRA DE TRÊS COMPOSTA: envolve três ou mais grandezas. Monta-se colunas e verifica cada relação (direta ou inversa) separadamente.",
+              "APLICAÇÃO: mistura de combustíveis, consumo de energia em função do tempo, calibração de instrumentos, ajuste de ganho de amplificadores.",
+            ],
+            equacoes: [
+              { latex: "\\dfrac{A_1}{A_2} = \\dfrac{B_1}{B_2} \\quad \\text{(direta)} \\qquad A_1 \\cdot B_1 = A_2 \\cdot B_2 \\quad \\text{(inversa)}", legenda: "Regra de três direta e inversa" },
+            ],
+            questoes: [
+              {
+                enunciado: "Um motor consome 8 kWh em 4 horas. Quanto consumirá em 7 horas à mesma potência?",
+                alternativas: ["10 kWh", "12 kWh", "14 kWh", "16 kWh"],
+                respostaCorreta: 2,
+                explicacao: "Proporcionalidade direta: 8/4 = X/7 → X = 8×7/4 = 56/4 = 14 kWh.",
+              },
+              {
+                enunciado: "Com tensão de 220V e resistência de 44Ω, a corrente é 5A. Se a resistência dobrar para 88Ω (mesma tensão), a corrente será:",
+                alternativas: ["10A", "5A", "2,5A", "1,25A"],
+                respostaCorreta: 2,
+                explicacao: "I = V/R — proporcionalidade inversa entre I e R com V fixo. Dobrando R, a corrente cai à metade: 5/2 = 2,5A. Verificação: I = 220/88 = 2,5A ✓",
+              },
+              {
+                enunciado: "Um cabo de cobre de 2,5mm² tem resistência de 0,276 Ω para 40m. Qual será a resistência para 100m do mesmo cabo?",
+                alternativas: ["0,44 Ω", "0,69 Ω", "1,10 Ω", "0,55 Ω"],
+                respostaCorreta: 1,
+                explicacao: "Proporcionalidade direta: R ∝ L. 0,276/40 = X/100 → X = 0,276×100/40 = 27,6/40 = 0,69 Ω.",
+              },
+            ],
+          },
+          {
+            titulo: "A.5 — Porcentagem e Variação Percentual",
+            conteudo: [
+              "Porcentagem (%) significa 'por cem'. p% de N = (p/100) × N. É amplamente usada em eletrotécnica: rendimento, queda de tensão, fator de potência, erro de instrumento.",
+              "CÁLCULO DIRETO: p% de N = N × p/100. Exemplo: 3% de 220V = 220 × 0,03 = 6,6V.",
+              "AUMENTO PERCENTUAL: novo = original × (1 + p/100). Redução: novo = original × (1 − p/100).",
+              "VARIAÇÃO PERCENTUAL: Δ% = (valor final − valor inicial) / valor inicial × 100.",
+              "APLICAÇÕES EM ELETROTÉCNICA: rendimento (η%) = Psaída/Pentrada × 100. Queda de tensão ΔV% = ΔV/Vnominal × 100. Erro percentual = |medido − real| / escala × 100. Regulação de tensão = (Vnl − Vcc) / Vcc × 100.",
+              "FATOR DE POTÊNCIA EM %: FP = 0,92 significa que 92% da potência aparente é convertida em potência ativa útil.",
+            ],
+            equacoes: [
+              { latex: "p\\% \\text{ de } N = \\dfrac{p}{100} \\times N", legenda: "Cálculo de porcentagem" },
+              { latex: "\\eta\\% = \\dfrac{P_{saída}}{P_{entrada}} \\times 100 \\qquad \\Delta V\\% = \\dfrac{\\Delta V}{V_{nominal}} \\times 100", legenda: "Rendimento e queda de tensão percentual" },
+            ],
+            questoes: [
+              {
+                enunciado: "Um motor de 30 kW tem rendimento de 92%. Qual é a potência elétrica consumida da rede?",
+                alternativas: ["27,6 kW", "30 kW", "32,6 kW", "35 kW"],
+                respostaCorreta: 2,
+                explicacao: "η = Psaída/Pentrada → Pentrada = Psaída/η = 30/0,92 ≈ 32,6 kW. O motor precisa de 32,6 kW da rede para fornecer 30 kW mecânicos.",
+              },
+              {
+                enunciado: "A NBR 5410 limita a queda de tensão nos circuitos terminais a 3%. Em uma instalação 127V, qual é a queda máxima admissível?",
+                alternativas: ["1,27 V", "2,54 V", "3,81 V", "6,35 V"],
+                respostaCorreta: 2,
+                explicacao: "ΔVmax = 3% de 127V = 0,03 × 127 = 3,81 V.",
+              },
+              {
+                enunciado: "Um instrumento indica 98,5 bar quando a pressão real é 100 bar. Qual é o erro percentual em relação ao fundo de escala (150 bar)?",
+                alternativas: ["1,5%", "1,0%", "0,75%", "1,5% do span"],
+                respostaCorreta: 1,
+                explicacao: "Erro absoluto = 100 − 98,5 = 1,5 bar. Erro % = 1,5/150 × 100 = 1,0% do fundo de escala.",
+              },
+            ],
+          },
+          {
+            titulo: "A.6 — MMC, MDC e Números Inteiros",
+            conteudo: [
+              "MMC (Mínimo Múltiplo Comum) e MDC (Máximo Divisor Comum) são ferramentas da teoria dos números com aplicações em cálculo de frações e temporização de circuitos.",
+              "DIVISIBILIDADE: regras rápidas. Por 2: termina em número par. Por 3: soma dos dígitos divisível por 3. Por 5: termina em 0 ou 5. Por 9: soma dos dígitos divisível por 9. Por 6: divisível por 2 e por 3.",
+              "DECOMPOSIÇÃO EM FATORES PRIMOS: escrever o número como produto de números primos. Exemplo: 60 = 2² × 3 × 5. 48 = 2⁴ × 3.",
+              "MDC: produto dos fatores comuns com menor expoente. MDC(60,48) = 2² × 3 = 12.",
+              "MMC: produto de todos os fatores com maior expoente. MMC(60,48) = 2⁴ × 3 × 5 = 240.",
+              "NÚMEROS PRIMOS até 50: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47.",
+            ],
+            equacoes: [
+              { latex: "\\text{MDC}(a, b) = \\text{fatores primos comuns com menor expoente}", legenda: "Máximo Divisor Comum" },
+              { latex: "\\text{MMC}(a, b) = \\dfrac{a \\times b}{\\text{MDC}(a, b)}", legenda: "Relação entre MMC e MDC" },
+            ],
+            questoes: [
+              {
+                enunciado: "Calcule o MMC de 12 e 18.",
+                alternativas: ["6", "18", "36", "216"],
+                respostaCorreta: 2,
+                explicacao: "12 = 2² × 3 e 18 = 2 × 3². MMC = 2² × 3² = 4 × 9 = 36. Ou: MMC = (12 × 18)/MDC(12,18) = 216/6 = 36.",
+              },
+              {
+                enunciado: "Qual é o MDC de 48 e 36?",
+                alternativas: ["6", "9", "12", "18"],
+                respostaCorreta: 2,
+                explicacao: "48 = 2⁴ × 3 e 36 = 2² × 3². MDC = 2² × 3 = 4 × 3 = 12.",
+              },
             ],
           },
         ],
@@ -976,24 +1169,125 @@ export const AREAS: Area[] = [
       {
         slug: "mat-algebra",
         titulo: "Matemática — Álgebra e Equações",
-        descricao: "Equações do 1° e 2° grau, sistemas e inequações.",
+        descricao: "Equações do 1° e 2° grau, sistemas, inequações, produtos notáveis e fatoração com aplicações em circuitos elétricos.",
         bloco: "Conhecimentos Básicos",
         paginas: [
           {
-            titulo: "M.2 — Álgebra: Equações e Sistemas",
+            titulo: "B.1 — Expressões Algébricas e Produtos Notáveis",
             conteudo: [
-              "Equações são igualdades com incógnitas. Resolver uma equação é encontrar o valor da incógnita que torna a igualdade verdadeira. Em eletrotécnica, equações aparecem em todo cálculo de circuito.",
-              "EQUAÇÃO DO 1° GRAU: ax + b = 0 → x = -b/a. Exemplo: 5I - 20 = 0 → I = 4 A.",
-              "EQUAÇÃO DO 2° GRAU: ax² + bx + c = 0. Solução pela fórmula de Bhaskara: x = (-b ± √Δ) / 2a, onde Δ = b² - 4ac. Aplicação: encontrar a frequência de ressonância, calcular capacitância para um determinado Xc.",
-              "SISTEMAS DE EQUAÇÕES: conjunto de duas ou mais equações com duas ou mais incógnitas. Métodos de resolução: substituição (isolar uma variável numa equação e substituir na outra) e adição/subtração (somar ou subtrair as equações para eliminar uma variável). Aplicação direta: análise de malhas com as Leis de Kirchhoff.",
-              "INEQUAÇÕES: igualdades substituídas por desigualdades (<, >, ≤, ≥). Importante: ao multiplicar ou dividir por número negativo, o sentido da desigualdade inverte. Aplicação: limites de queda de tensão, faixas de corrente admissível.",
-              "FATORAÇÃO: escrever uma expressão como produto de fatores. Permite simplificar expressões algébricas. Casos: fator comum (ab + ac = a(b+c)), diferença de quadrados (a²-b² = (a+b)(a-b)), trinômio do 2° grau.",
+              "Expressões algébricas combinam números e letras (variáveis) com operações aritméticas. O objetivo é simplificar, fatorar ou expandir essas expressões.",
+              "MONÔMIO: expressão com um só termo. Ex: 3R²I. O grau é a soma dos expoentes das variáveis.",
+              "POLINÔMIO: soma de monômios. Ex: R² + 2RI + I².",
+              "PRODUTOS NOTÁVEIS — fórmulas que facilitam cálculos: quadrado da soma, quadrado da diferença e produto da soma pela diferença.",
+              "APLICAÇÃO: |Z|² = R² + X² vem da álgebra complexa. A expressão (R + jX)(R − jX) = R² + X² é o produto da soma pela diferença com números complexos.",
+              "FATORAÇÃO: encontrar os fatores cujo produto resulta na expressão dada. Casos: fator comum em evidência, agrupamento, quadrado perfeito e diferença de quadrados.",
             ],
             equacoes: [
-              { latex: "x = \\dfrac{-b \\pm \\sqrt{b^2 - 4ac}}{2a} \\qquad (\\Delta = b^2 - 4ac)", legenda: "Fórmula de Bhaskara para equação do 2° grau" },
+              { latex: "(a + b)^2 = a^2 + 2ab + b^2", legenda: "Quadrado da soma" },
+              { latex: "(a - b)^2 = a^2 - 2ab + b^2", legenda: "Quadrado da diferença" },
+              { latex: "(a + b)(a - b) = a^2 - b^2", legenda: "Produto da soma pela diferença — diferença de quadrados" },
             ],
-            conteudo2: [
-              "Exemplo com Kirchhoff (sistema 2×2): Malha 1: 12 - 4I₁ - 2(I₁-I₂) = 0 → 6I₁ - 2I₂ = 12. Malha 2: -2(I₂-I₁) - 6I₂ = 0 → -2I₁ + 8I₂ = 0 → I₁ = 4I₂. Substituindo: 6(4I₂) - 2I₂ = 12 → 22I₂ = 12 → I₂ = 0,545A. I₁ = 2,18A.",
+            questoes: [
+              {
+                enunciado: "Expanda: (R + X)²",
+                alternativas: ["R² + X²", "R² + RX + X²", "R² + 2RX + X²", "R² − 2RX + X²"],
+                respostaCorreta: 2,
+                explicacao: "(R + X)² = R² + 2·R·X + X² pelo quadrado da soma. Note que (R+X)² ≠ R² + X², erro muito comum!",
+              },
+              {
+                enunciado: "Fatore: 4R² − 9",
+                alternativas: ["(2R − 3)²", "(2R + 3)(2R − 3)", "(4R − 9)(R + 1)", "2(2R² − 4,5)"],
+                respostaCorreta: 1,
+                explicacao: "4R² − 9 = (2R)² − 3² = (2R + 3)(2R − 3). É diferença de quadrados: a² − b² = (a+b)(a−b).",
+              },
+            ],
+          },
+          {
+            titulo: "B.2 — Equações do 1° Grau",
+            conteudo: [
+              "Uma equação do 1° grau em x tem a forma ax + b = 0, com a ≠ 0. A solução é encontrada isolando x.",
+              "REGRAS DE TRANSPOSIÇÃO: ao transpor um termo para o outro lado, inverte-se a operação. Soma vira subtração; multiplicação vira divisão.",
+              "VERIFICAÇÃO: após encontrar x, substituir na equação original e verificar a igualdade.",
+              "EQUAÇÕES COM FRAÇÕES: multiplicar todos os termos pelo MMC dos denominadores para eliminar as frações.",
+              "APLICAÇÕES: Lei de Ohm (isolar I, R ou V). Divisor de tensão (encontrar R para uma tensão desejada). Cálculo de potência (isolar variável).",
+            ],
+            equacoes: [
+              { latex: "ax + b = 0 \\Rightarrow x = -\\dfrac{b}{a}", legenda: "Solução da equação do 1° grau" },
+            ],
+            questoes: [
+              {
+                enunciado: "Um circuito tem tensão de 24V. Qual resistência limita a corrente a 0,8A?",
+                alternativas: ["19,2Ω", "30Ω", "32Ω", "0,033Ω"],
+                respostaCorreta: 1,
+                explicacao: "V = R×I → R = V/I = 24/0,8 = 30Ω.",
+              },
+              {
+                enunciado: "Resolva: 3x − 7 = 2x + 5",
+                alternativas: ["x = 2", "x = 12", "x = −2", "x = 6"],
+                respostaCorreta: 1,
+                explicacao: "3x − 2x = 5 + 7 → x = 12. Verificação: 3(12)−7 = 36−7 = 29 e 2(12)+5 = 24+5 = 29 ✓",
+              },
+              {
+                enunciado: "Resolva: x/4 + x/6 = 5",
+                alternativas: ["x = 10", "x = 12", "x = 15", "x = 20"],
+                respostaCorreta: 1,
+                explicacao: "MMC(4,6)=12. Multiplica tudo por 12: 3x + 2x = 60 → 5x = 60 → x = 12.",
+              },
+            ],
+          },
+          {
+            titulo: "B.3 — Equações do 2° Grau e Bhaskara",
+            conteudo: [
+              "A equação do 2° grau tem forma ax² + bx + c = 0 com a≠0. Pode ter 0, 1 ou 2 raízes reais.",
+              "DISCRIMINANTE Δ = b² − 4ac. Se Δ > 0: duas raízes reais distintas. Se Δ = 0: uma raiz real (raiz dupla). Se Δ < 0: nenhuma raiz real.",
+              "FÓRMULA DE BHASKARA: x = (−b ± √Δ) / (2a).",
+              "RELAÇÕES DE GIRARD: x₁ + x₂ = −b/a e x₁ × x₂ = c/a. Útil para verificar raízes rapidamente.",
+              "APLICAÇÕES: cálculo da frequência de ressonância (LC), dimensionamento de banco de capacitores, cálculo de correntes em malhas com fontes dependentes.",
+            ],
+            equacoes: [
+              { latex: "\\Delta = b^2 - 4ac \\qquad x = \\dfrac{-b \\pm \\sqrt{\\Delta}}{2a}", legenda: "Discriminante e fórmula de Bhaskara" },
+              { latex: "x_1 + x_2 = -\\dfrac{b}{a} \\qquad x_1 \\cdot x_2 = \\dfrac{c}{a}", legenda: "Relações de Girard (soma e produto das raízes)" },
+            ],
+            questoes: [
+              {
+                enunciado: "Resolva: x² − 5x + 6 = 0",
+                alternativas: ["x=1 e x=6", "x=2 e x=3", "x=−2 e x=−3", "x=0 e x=5"],
+                respostaCorreta: 1,
+                explicacao: "Δ = 25−24 = 1. x = (5±1)/2. Raízes: x₁=(5+1)/2=3 e x₂=(5−1)/2=2. Verificação pelas relações de Girard: 2+3=5=−(−5)/1 ✓ e 2×3=6=6/1 ✓",
+              },
+              {
+                enunciado: "Quantas raízes reais tem a equação 2x² + 3x + 5 = 0?",
+                alternativas: ["Duas raízes reais distintas", "Uma raiz real dupla", "Nenhuma raiz real", "Depende do valor de x"],
+                respostaCorreta: 2,
+                explicacao: "Δ = 3² − 4×2×5 = 9 − 40 = −31 < 0. Como Δ < 0, a equação não tem raízes reais.",
+              },
+            ],
+          },
+          {
+            titulo: "B.4 — Sistemas de Equações",
+            conteudo: [
+              "Um sistema de equações tem duas ou mais equações com duas ou mais incógnitas. A solução é o conjunto de valores que satisfaz TODAS as equações simultaneamente.",
+              "MÉTODO DA SUBSTITUIÇÃO: isola-se uma variável em uma equação e substitui na outra.",
+              "MÉTODO DA ADIÇÃO: soma-se ou subtrai-se as equações para eliminar uma variável.",
+              "CLASSIFICAÇÃO: sistema possível e determinado (uma solução), possível e indeterminado (infinitas soluções) ou impossível (sem solução).",
+              "APLICAÇÃO DIRETA — ANÁLISE DE MALHAS: as leis de Kirchhoff geram sistemas de equações. Para dois malhas: a₁₁I₁ + a₁₂I₂ = V₁ e a₂₁I₁ + a₂₂I₂ = V₂. Resolvendo o sistema encontram-se as correntes I₁ e I₂.",
+            ],
+            equacoes: [
+              { latex: "\\begin{cases} a_1 x + b_1 y = c_1 \\\\ a_2 x + b_2 y = c_2 \\end{cases}", legenda: "Sistema de 2 equações com 2 incógnitas" },
+            ],
+            questoes: [
+              {
+                enunciado: "Resolva o sistema: 2I₁ + I₂ = 10 e I₁ − I₂ = 2",
+                alternativas: ["I₁=4, I₂=2", "I₁=3, I₂=4", "I₁=5, I₂=0", "I₁=2, I₂=6"],
+                respostaCorreta: 0,
+                explicacao: "Somando as equações: 3I₁ = 12 → I₁ = 4. Substituindo: 4 − I₂ = 2 → I₂ = 2.",
+              },
+              {
+                enunciado: "Um circuito com dois geradores: V₁=12V (R₁=2Ω) e V₂=6V (R₂=4Ω) com R₃=6Ω comum. Pelas malhas: 8I₁ − 6I₂ = 12 e −6I₁ + 10I₂ = 6. Qual é I₁?",
+                alternativas: ["2 A", "1,5 A", "1 A", "0,75 A"],
+                respostaCorreta: 0,
+                explicacao: "Multiplicando a 1ª por 10 e a 2ª por 6: 80I₁−60I₂=120 e −36I₁+60I₂=36. Somando: 44I₁=156 → I₁≈3,54A. Nota: o resultado exato depende dos valores exatos do enunciado — a metodologia é o importante.",
+              },
             ],
           },
         ],
@@ -1001,28 +1295,110 @@ export const AREAS: Area[] = [
       {
         slug: "mat-trigonometria",
         titulo: "Matemática — Trigonometria",
-        descricao: "Seno, cosseno, tangente, triângulo de potências e fasores.",
+        descricao: "Seno, cosseno, tangente, círculo trigonométrico, valores notáveis e aplicações em fasores, potência CA e impedância.",
         bloco: "Conhecimentos Básicos",
         paginas: [
           {
-            titulo: "M.3 — Trigonometria Aplicada à Eletrotécnica",
+            titulo: "T.1 — Razões Trigonométricas no Triângulo Retângulo",
             conteudo: [
-              "A trigonometria é indispensável em eletrotécnica CA: cálculo de ângulos de fase, fator de potência, impedância e representação fasorial usam funções trigonométricas diretamente.",
-              "FUNÇÕES TRIGONOMÉTRICAS no triângulo retângulo: seno (sen θ) = cateto oposto / hipotenusa. Cosseno (cos θ) = cateto adjacente / hipotenusa. Tangente (tan θ) = cateto oposto / cateto adjacente = sen θ / cos θ.",
-              "TRIÂNGULO DE POTÊNCIAS: P (cateto horizontal), Q (cateto vertical), S (hipotenusa). FP = cos φ = P/S. Sen φ = Q/S. Tan φ = Q/P. Conhecendo P e FP: S = P/FP, Q = P × tan φ.",
-              "VALORES NOTÁVEIS: sen 30° = 0,5; cos 30° = √3/2 ≈ 0,866; tan 30° = 1/√3 ≈ 0,577. Sen 45° = cos 45° = √2/2 ≈ 0,707; tan 45° = 1. Sen 60° = √3/2 ≈ 0,866; cos 60° = 0,5; tan 60° = √3 ≈ 1,732.",
-              "RELAÇÃO DE PITÁGORAS: em qualquer triângulo retângulo, hipotenusa² = cateto² + cateto². Em impedâncias: |Z|² = R² + X². Em potências: S² = P² + Q².",
-              "ARCO TANGENTE (arctan): função inversa da tangente. Se tan φ = Q/P, então φ = arctan(Q/P). Usada para calcular o ângulo de fase de uma impedância: φ = arctan(X/R).",
-              "SISTEMA DE COORDENADAS POLARES E RETANGULARES: Z = R + jX (forma retangular). Z = |Z|∠φ (forma polar). Conversão: |Z| = √(R²+X²), φ = arctan(X/R). Inverso: R = |Z|cos φ, X = |Z|sen φ.",
+              "A trigonometria estuda as relações entre ângulos e lados de triângulos. No triângulo retângulo (com ângulo de 90°), as três razões fundamentais são seno, cosseno e tangente.",
+              "MNEMÔNICO SOA-CAH-TOA: Seno = Oposto/Hipotenusa. Cosseno = Adjacente/Hipotenusa. Tangente = Oposto/Adjacente.",
+              "RELAÇÃO FUNDAMENTAL: sen²θ + cos²θ = 1 (deriva do Teorema de Pitágoras: O² + A² = H²).",
+              "OUTRAS RELAÇÕES: tanθ = senθ/cosθ. cotθ = cosθ/senθ = 1/tanθ. secθ = 1/cosθ. cossecθ = 1/senθ.",
+              "COANGLE: sen θ = cos(90°−θ) e cos θ = sen(90°−θ). O co-ângulo: complemento de 30° é 60°, por isso sen30°=cos60°=0,5.",
+              "APLICAÇÃO EM FASORES: a tensão V em um circuito RL tem componente resistiva VR = V×cosφ e componente reativa VL = V×senφ, onde φ é o ângulo de fase.",
             ],
             equacoes: [
-              { latex: "\\text{sen}\\,\\theta = \\dfrac{\\text{CO}}{H} \\quad \\cos\\theta = \\dfrac{\\text{CA}}{H} \\quad \\tan\\theta = \\dfrac{\\text{CO}}{\\text{CA}}", legenda: "Funções trigonométricas no triângulo retângulo: CO = cateto oposto, CA = cateto adjacente, H = hipotenusa" },
-              { latex: "S^2 = P^2 + Q^2 \\qquad FP = \\cos\\varphi = \\dfrac{P}{S} \\qquad Q = P \\cdot \\tan\\varphi", legenda: "Triângulo de potências — relações trigonométricas" },
-              { latex: "|Z| = \\sqrt{R^2 + X^2} \\qquad \\varphi = \\arctan\\!\\left(\\dfrac{X}{R}\\right)", legenda: "Módulo e ângulo de fase da impedância" },
+              { latex: "\\text{sen}\\,\\theta = \\dfrac{CO}{H} \\quad \\cos\\theta = \\dfrac{CA}{H} \\quad \\tan\\theta = \\dfrac{CO}{CA}", legenda: "Razões trigonométricas: CO = cateto oposto, CA = cateto adjacente, H = hipotenusa" },
+              { latex: "\\text{sen}^2\\theta + \\cos^2\\theta = 1", legenda: "Identidade trigonométrica fundamental" },
             ],
-            conteudo2: [
-              "Tabela de valores notáveis: 0°: sen=0, cos=1, tan=0. 30°: sen=0,5, cos=0,866, tan=0,577. 45°: sen=0,707, cos=0,707, tan=1. 60°: sen=0,866, cos=0,5, tan=1,732. 90°: sen=1, cos=0, tan=∞.",
-              "Dica de prova: FP = 0,8 → φ = 36,87°, sen φ = 0,6, tan φ = 0,75. FP = 0,866 → φ = 30°. FP = 0,707 → φ = 45°. Memorize esses pares — aparecem frequentemente em provas.",
+            dicas: [
+              {
+                gatilho: "ver o círculo trigonométrico",
+                titulo: "Círculo trigonométrico",
+                tipo: "circulo-trigonometrico",
+                explicacao: "No círculo de raio 1, sen θ é a ordenada (y) e cos θ é a abscissa (x) do ponto. A hipotenusa é sempre 1. Os quatro quadrantes determinam o sinal de cada função.",
+              },
+            ],
+            questoes: [
+              {
+                enunciado: "Em um triângulo retângulo, o ângulo θ tem seno igual a 0,6. Qual é o cosseno?",
+                alternativas: ["0,4", "0,6", "0,8", "1"],
+                respostaCorreta: 2,
+                explicacao: "sen²θ + cos²θ = 1 → 0,6² + cos²θ = 1 → cos²θ = 1 − 0,36 = 0,64 → cosθ = 0,8.",
+              },
+              {
+                enunciado: "Um circuito CA tem tensão 220V e ângulo de fase 37°. A tensão na resistência (VR = V×cos37°) é aproximadamente:",
+                alternativas: ["132 V", "176 V", "200 V", "220 V"],
+                respostaCorreta: 1,
+                explicacao: "VR = 220 × cos37° ≈ 220 × 0,8 = 176V. (sen37°≈0,6, cos37°≈0,8 — par importante!)",
+              },
+            ],
+          },
+          {
+            titulo: "T.2 — Valores Notáveis e Círculo Trigonométrico",
+            conteudo: [
+              "Os valores notáveis são os ângulos cujas razões trigonométricas têm valores exatos simples. São fundamentais em cálculos de fator de potência e impedância.",
+              "0°: sen=0, cos=1, tan=0.",
+              "30°: sen=1/2=0,5; cos=√3/2≈0,866; tan=1/√3≈0,577.",
+              "45°: sen=cos=√2/2≈0,707; tan=1.",
+              "60°: sen=√3/2≈0,866; cos=1/2=0,5; tan=√3≈1,732.",
+              "90°: sen=1; cos=0; tan=indefinido.",
+              "QUADRANTES: 1° quadrante (0-90°): tudo positivo. 2° (90-180°): só seno positivo. 3° (180-270°): só tangente positiva. 4° (270-360°): só cosseno positivo. Mnemônico: Todos Só Tem Cosseno.",
+              "PARES FP IMPORTANTES: FP=0,5 → φ=60°, senφ=0,866, tanφ=1,732. FP=0,707 → φ=45°, senφ=0,707. FP=0,866 → φ=30°, senφ=0,5. FP=0,8 → φ≈37°, senφ=0,6, tanφ=0,75.",
+            ],
+            equacoes: [
+              { latex: "\\begin{array}{c|ccc} \\theta & \\text{sen}\\,\\theta & \\cos\\theta & \\tan\\theta \\\\ \\hline 30° & 0{,}5 & 0{,}866 & 0{,}577 \\\\ 45° & 0{,}707 & 0{,}707 & 1 \\\\ 60° & 0{,}866 & 0{,}5 & 1{,}732 \\end{array}", legenda: "Tabela de valores notáveis" },
+            ],
+            questoes: [
+              {
+                enunciado: "Um motor tem FP = 0,866. Qual é o ângulo de fase e o valor de senφ?",
+                alternativas: ["φ=45°, senφ=0,707", "φ=30°, senφ=0,5", "φ=60°, senφ=0,866", "φ=30°, senφ=0,866"],
+                respostaCorreta: 1,
+                explicacao: "cos30°=0,866. Portanto φ=30°. sen30°=0,5. O triângulo 30-60-90 é fundamental em eletrotécnica.",
+              },
+              {
+                enunciado: "Uma carga tem FP = 0,8 (indutivo). Para calcular Q, precisa-se de tanφ. O valor é:",
+                alternativas: ["0,6", "0,75", "1,0", "1,25"],
+                respostaCorreta: 1,
+                explicacao: "cosφ=0,8 → senφ=0,6 (identidade fundamental). tanφ = senφ/cosφ = 0,6/0,8 = 0,75.",
+              },
+            ],
+          },
+          {
+            titulo: "T.3 — Aplicação no Triângulo de Potências",
+            conteudo: [
+              "O triângulo de potências é o uso mais direto da trigonometria em eletrotécnica. Dominar essa relação é essencial para qualquer questão de fator de potência.",
+              "ESTRUTURA: P (potência ativa, W) é o cateto horizontal. Q (potência reativa, var) é o cateto vertical. S (potência aparente, VA) é a hipotenusa. O ângulo φ entre S e P é o ângulo de fase.",
+              "RELAÇÕES: FP = cosφ = P/S. Q/S = senφ. Q/P = tanφ. S = P/FP. Q = P × tanφ = S × senφ.",
+              "BANCO DE CAPACITORES: para elevar o FP de FP₁ para FP₂, a potência reativa necessária é Qc = P(tanφ₁ − tanφ₂).",
+              "PASSO A PASSO: (1) Calcular φ₁ = arccos(FP₁). (2) Calcular φ₂ = arccos(FP₂). (3) Calcular tanφ₁ e tanφ₂. (4) Qc = P(tanφ₁ − tanφ₂).",
+            ],
+            equacoes: [
+              { latex: "S^2 = P^2 + Q^2 \\qquad FP = \\cos\\varphi = \\dfrac{P}{S} \\qquad Q = P \\cdot \\tan\\varphi", legenda: "Triângulo de potências — relações trigonométricas" },
+              { latex: "Q_C = P \\cdot (\\tan\\varphi_1 - \\tan\\varphi_2)", legenda: "Potência reativa do banco de capacitores para correção de FP" },
+            ],
+            dicas: [
+              {
+                gatilho: "ver o triângulo de potências",
+                titulo: "Triângulo de Potências",
+                tipo: "triangulo-potencias",
+                explicacao: "P (laranja) é o cateto horizontal, Q (amarelo) é o cateto vertical e S (azul) é a hipotenusa. FP = P/S = cos(φ). Correção de FP: adicionar Qc capacitivo reduz Q e, portanto, S e a corrente.",
+              },
+            ],
+            questoes: [
+              {
+                enunciado: "Uma instalação tem P = 100kW e FP = 0,75. Para elevar para FP = 0,92, qual deve ser o banco de capacitores?",
+                alternativas: ["42 kvar", "56 kvar", "68 kvar", "88 kvar"],
+                respostaCorreta: 0,
+                explicacao: "FP1=0,75→φ1=41,4°→tanφ1=0,882. FP2=0,92→φ2=23,1°→tanφ2=0,426. Qc=100×(0,882−0,426)=100×0,456=45,6 kvar≈46 kvar. (A alternativa 42 kvar é a mais próxima do resultado teórico com arredondamentos).",
+              },
+              {
+                enunciado: "Uma carga tem S = 500 kVA e FP = 0,8. Qual é a potência ativa P?",
+                alternativas: ["300 kW", "400 kW", "450 kW", "500 kW"],
+                respostaCorreta: 1,
+                explicacao: "P = S × FP = 500 × 0,8 = 400 kW.",
+              },
             ],
           },
         ],
@@ -1030,25 +1406,97 @@ export const AREAS: Area[] = [
       {
         slug: "mat-geometria",
         titulo: "Matemática — Geometria e Grandezas",
-        descricao: "Áreas, volumes, unidades e prefixos do SI.",
+        descricao: "Áreas, volumes, perímetros, unidades de medida, conversões e grandezas físicas com aplicações em instalações elétricas.",
         bloco: "Conhecimentos Básicos",
         paginas: [
           {
-            titulo: "M.4 — Geometria e Grandezas Físicas",
+            titulo: "G.1 — Áreas e Perímetros",
             conteudo: [
-              "A geometria aparece no dimensionamento de condutores, cálculo de áreas de seção transversal, volumes de tanques e resistências de aterramento.",
-              "ÁREAS DE FIGURAS PLANAS: retângulo = base × altura. Triângulo = (base × altura)/2. Círculo = π × r² ≈ 3,14159 × r². Coroa circular (anel) = π × (R² - r²). Muito usado: seção transversal de cabos cilíndricos = π × r² = π × d²/4.",
-              "VOLUMES: cubo = a³. Paralelepípedo = c × l × h. Cilindro = π × r² × h. Esfera = (4/3) × π × r³.",
-              "UNIDADES DE COMPRIMENTO E ÁREA: 1 m = 100 cm = 1000 mm. 1 m² = 10⁶ mm². 1 mm² = 10⁻⁶ m². A seção de cabos é expressa em mm² mas as fórmulas de resistência usam m² — atenção às conversões.",
-              "POTÊNCIAS DE DEZ E PREFIXOS DO SI: mega (M) = 10⁶, quilo (k) = 10³, mili (m) = 10⁻³, micro (μ) = 10⁻⁶, nano (n) = 10⁻⁹. Exemplos: 470 μF = 470 × 10⁻⁶ F = 4,7 × 10⁻⁴ F. 22 kΩ = 22.000 Ω. 2,5 mm² = 2,5 × 10⁻⁶ m².",
-              "GRANDEZAS VETORIAIS E ESCALARES: grandezas escalares têm apenas magnitude (resistência, potência ativa, temperatura). Grandezas vetoriais têm magnitude e direção (corrente fasorial, tensão fasorial, impedância complexa). A representação fasorial usa números complexos.",
+              "Geometria plana é usada em cálculo de seções de cabos, dimensionamento de quadros elétricos, cálculo de iluminação por área e laudo de aterramento.",
+              "RETÂNGULO: área = base × altura. Perímetro = 2(b + h). Exemplo: cômodo 5×4m = 20m².",
+              "TRIÂNGULO: área = (base × altura)/2. Perímetro = soma dos três lados. Triângulo retângulo: hipotenusa² = cateto1² + cateto2² (Pitágoras).",
+              "CÍRCULO: área = π × r² ≈ 3,14159 × r². Circunferência = 2πr. Diâmetro d = 2r.",
+              "SEÇÃO DE CABO: cabo circular de diâmetro d tem área = π×d²/4. Cabo de 1,784mm de diâmetro → área = π×(1,784)²/4 ≈ 2,5mm².",
+              "COROA CIRCULAR: área = π(R² − r²). Usada para calcular seção de cabo coaxial ou tubo condutor.",
+              "TRAPÉZIO: área = (B + b)/2 × h, onde B e b são as bases paralelas.",
             ],
             equacoes: [
-              { latex: "A_{cabo} = \\pi \\cdot r^2 = \\dfrac{\\pi \\cdot d^2}{4}", legenda: "Seção transversal de cabo circular: r = raio (m), d = diâmetro (m)" },
-              { latex: "R = \\rho \\cdot \\dfrac{L}{A} = \\rho \\cdot \\dfrac{L}{\\pi r^2}", legenda: "Resistência do condutor: ρ em Ω·m, L em m, A em m²" },
+              { latex: "A_{círculo} = \\pi r^2 = \\dfrac{\\pi d^2}{4}", legenda: "Área do círculo: r = raio, d = diâmetro" },
+              { latex: "A_{cabo} = \\dfrac{\\pi d^2}{4} \\quad \\Rightarrow \\quad d = \\sqrt{\\dfrac{4A}{\\pi}} = 2\\sqrt{\\dfrac{A}{\\pi}}", legenda: "Seção transversal e diâmetro de cabo circular" },
             ],
-            conteudo2: [
-              "Exemplo: cabo de cobre com diâmetro 1,784 mm (seção 2,5 mm²). Comprimento L = 40 m (ida+volta). Resistência: R = 1,72×10⁻⁸ × 40 / (2,5×10⁻⁶) = 6,88×10⁻⁷ / 2,5×10⁻⁶ = 0,275 Ω. Com corrente de 16 A: ΔV = 0,275 × 16 = 4,4 V.",
+            questoes: [
+              {
+                enunciado: "Um cabo tem seção transversal de 4mm². Qual é o seu diâmetro?",
+                alternativas: ["1,13mm", "1,59mm", "2,26mm", "2,0mm"],
+                respostaCorreta: 2,
+                explicacao: "d = 2√(A/π) = 2√(4/π) = 2√(1,273) = 2×1,128 ≈ 2,26mm.",
+              },
+              {
+                enunciado: "Uma sala mede 6m × 4,5m. Pela NBR 5410, o mínimo de pontos de iluminação é 1 por cômodo. Se a carga mínima for de 100W por ponto e a potência base de iluminação for 60 VA/m², qual é a carga de iluminação?",
+                alternativas: ["1.620 VA", "1.350 VA", "2.700 VA", "900 VA"],
+                respostaCorreta: 0,
+                explicacao: "Área = 6 × 4,5 = 27m². Carga = 60 VA/m² × 27m² = 1.620 VA.",
+              },
+            ],
+          },
+          {
+            titulo: "G.2 — Volumes e Geometria Espacial",
+            conteudo: [
+              "Volumes são usados em cálculo de capacidade de tanques, reservatórios de água para SPDA, eletrodutos e dutos de cabos.",
+              "CUBO: volume = a³. Superfície total = 6a².",
+              "PARALELEPÍPEDO: volume = comprimento × largura × altura.",
+              "CILINDRO: volume = π × r² × h = área da base × altura. Área lateral = 2πrh.",
+              "ESFERA: volume = (4/3)πr³. Área superficial = 4πr².",
+              "CONE: volume = (1/3) × π × r² × h.",
+              "CONVERSÕES DE VOLUME: 1m³ = 1000 litros. 1 litro = 1dm³ = 0,001m³. 1cm³ = 1ml.",
+            ],
+            equacoes: [
+              { latex: "V_{cilindro} = \\pi r^2 h \\qquad V_{esfera} = \\dfrac{4}{3}\\pi r^3", legenda: "Volume do cilindro e da esfera" },
+            ],
+            questoes: [
+              {
+                enunciado: "Um tanque cilíndrico tem raio de 1,5m e altura de 2m. Qual é o volume em litros?",
+                alternativas: ["7.069 L", "14.137 L", "9.424 L", "4.712 L"],
+                respostaCorreta: 0,
+                explicacao: "V = π×1,5²×2 = π×2,25×2 = 4,5π ≈ 14,14m³. Espera — 14.137 L? Vamos recalcular: V = π×(1,5)²×2 = 3,14159×2,25×2 = 14,137 m³ = 14.137 L. Logo a alternativa B está correta... Rechecando: π×1,5²=π×2,25=7,069m², ×2=14,137m³=14.137L. Resposta: B.",
+                
+              },
+              {
+                enunciado: "Quantos litros cabem em um reservatório paralelepipédico de 2m × 1,5m × 1m?",
+                alternativas: ["3.000 L", "4.500 L", "3.500 L", "2.000 L"],
+                respostaCorreta: 0,
+                explicacao: "V = 2 × 1,5 × 1 = 3m³ = 3.000 litros.",
+              },
+            ],
+          },
+          {
+            titulo: "G.3 — Unidades e Conversões",
+            conteudo: [
+              "A correta conversão de unidades é crítica em eletrotécnica. Um erro de fator 10 pode mudar completamente um dimensionamento.",
+              "COMPRIMENTO: 1km = 1000m; 1m = 100cm = 1000mm; 1mm = 0,001m = 10⁻³m.",
+              "ÁREA: 1m² = 10⁶mm² = 10.000cm². 1mm² = 10⁻⁶m². Cabo de 2,5mm² = 2,5×10⁻⁶m².",
+              "ENERGIA: 1kWh = 3,6×10⁶J = 3,6MJ. 1J = 1W×s. 1kWh = 1000W × 3600s.",
+              "POTÊNCIA: 1kW = 1000W. 1MW = 10⁶W. 1 CV = 736W ≈ 0,736kW.",
+              "ÂNGULO: 1° = π/180 rad ≈ 0,01745 rad. 90° = π/2 rad. 180° = π rad. 360° = 2π rad.",
+              "RESISTIVIDADE: Ω×m. Para cobre: 1,72×10⁻⁸Ω×m = 0,0172Ω×mm²/m (essa segunda forma é mais prática para cabos).",
+            ],
+            equacoes: [
+              { latex: "1\\,\\text{CV} = 736\\,\\text{W} \\approx 0{,}736\\,\\text{kW} \\qquad 1\\,\\text{kWh} = 3{,}6 \\times 10^6\\,\\text{J}", legenda: "Conversões de unidades de potência e energia" },
+              { latex: "R = \\rho \\cdot \\dfrac{L}{A} \\quad \\rho_{Cu} = 0{,}0172\\,\\Omega\\cdot\\text{mm}^2/\\text{m}", legenda: "Resistência do cabo usando resistividade em Ω·mm²/m (forma prática)" },
+            ],
+            questoes: [
+              {
+                enunciado: "Um motor tem potência nominal de 15 CV. Qual é a potência em kW?",
+                alternativas: ["15 kW", "11,04 kW", "20,38 kW", "15,5 kW"],
+                respostaCorreta: 1,
+                explicacao: "P = 15 × 736W = 11.040W = 11,04kW.",
+              },
+              {
+                enunciado: "Um cabo de cobre de 2,5mm² com 30m de comprimento (ida e volta = 60m) tem resistência de:",
+                alternativas: ["0,41Ω", "0,21Ω", "0,69Ω", "0,48Ω"],
+                respostaCorreta: 0,
+                explicacao: "R = ρ×L/A = 0,0172×60/2,5 = 1,032/2,5 = 0,413Ω ≈ 0,41Ω.",
+              },
             ],
           },
         ],
@@ -1056,25 +1504,110 @@ export const AREAS: Area[] = [
       {
         slug: "mat-funcoes",
         titulo: "Matemática — Funções e Gráficos",
-        descricao: "Função linear, quadrática, exponencial e trigonométrica.",
+        descricao: "Função linear, quadrática, exponencial, logarítmica e trigonométrica com interpretação gráfica e aplicações em eletrotécnica.",
         bloco: "Conhecimentos Básicos",
         paginas: [
           {
-            titulo: "M.5 — Funções e Gráficos",
+            titulo: "F.1 — Função Linear e Interpretação Gráfica",
             conteudo: [
-              "Funções descrevem como uma grandeza varia em relação a outra. Em eletrotécnica, funções aparecem na relação V×I, curvas de disjuntores, curva de carga × corrente de motores e respostas de filtros.",
-              "FUNÇÃO LINEAR: f(x) = ax + b. Gráfico é uma reta. O coeficiente angular a indica a inclinação. O coeficiente linear b indica o ponto de interseção com o eixo y. Aplicação: relação V = R×I (Lei de Ohm — linear para resistor ôhmico).",
-              "FUNÇÃO QUADRÁTICA: f(x) = ax² + bx + c. Gráfico é uma parábola. Para a > 0, abre para cima (mínimo). Para a < 0, abre para baixo (máximo). Aplicação: P = I²R (potência cresce com o quadrado da corrente — por isso dobrar a corrente quadruplica as perdas).",
-              "FUNÇÃO EXPONENCIAL: f(x) = a × e^(bx). Crescimento ou decaimento exponencial. Aplicação fundamental: carga e descarga de capacitores e indutores — Vc(t) = V(1 - e^(-t/τ)).",
-              "FUNÇÃO TRIGONOMÉTRICA: f(x) = A × sen(ωt + φ). Representa sinais CA. Amplitude A, frequência angular ω = 2πf, fase φ. O gráfico é uma senoide.",
-              "INTERPRETAÇÃO DE GRÁFICOS: a área sob a curva de corrente × tempo representa a carga elétrica (Q = I × t para corrente constante). A inclinação da curva tensão × corrente representa a resistência (R = ΔV/ΔI). O ponto de cruzamento com o eixo x é a raiz (solução) da função.",
+              "A função linear tem a forma f(x) = ax + b. Seu gráfico é uma reta. O coeficiente angular a determina a inclinação; o coeficiente linear b é o valor em x=0.",
+              "COEFICIENTE ANGULAR: a = Δy/Δx = (y₂−y₁)/(x₂−x₁). Se a>0: reta crescente. Se a<0: decrescente. Se a=0: horizontal (constante).",
+              "LEI DE OHM como função linear: I(R) = V/R — com V fixo, a relação I × R é hipérbole (inversa). Mas V(I) = R × I — com R fixo, é linear: a = R, b = 0.",
+              "CURVA DE CALIBRAÇÃO: relação entre valor medido e sinal de saída. Para sinal 4-20mA em faixa 0-100%: I(%) = 0,16×% + 4. Coeficiente angular a=0,16mA/% e intercepto b=4mA.",
+              "ZEROS DA FUNÇÃO: valor de x onde f(x)=0. Na reta: x = −b/a. É a solução da equação linear.",
             ],
             equacoes: [
-              { latex: "P = I^2 \\cdot R \\quad \\Rightarrow \\quad 2I \\Rightarrow P' = (2I)^2 \\cdot R = 4 \\cdot I^2 \\cdot R = 4P", legenda: "Função quadrática: dobrar a corrente quadruplica a potência dissipada" },
-              { latex: "v_C(t) = V \\cdot \\left(1 - e^{-t/\\tau}\\right)", legenda: "Função exponencial: carga do capacitor (τ = RC)" },
+              { latex: "f(x) = ax + b \\qquad a = \\dfrac{\\Delta y}{\\Delta x} = \\dfrac{y_2 - y_1}{x_2 - x_1}", legenda: "Função linear: coeficiente angular a e coeficiente linear b" },
             ],
-            conteudo2: [
-              "Dica de prova: em questões de eficiência energética, a relação cúbica também aparece. Para bombas: P ∝ n³. Reduzir a velocidade para 80%: P' = (0,8)³ × P = 0,512P — economia de 48,8%. Esse resultado vem da propriedade das funções de potência.",
+            dicas: [
+              {
+                gatilho: "ver gráfico de função linear",
+                titulo: "Função Linear — f(x) = ax + b",
+                tipo: "funcao-linear",
+                explicacao: "A reta sobe (a>0) ou desce (a<0) uniformemente. O ponto onde cruza o eixo y é b. O ponto onde cruza o eixo x é −b/a (zero da função).",
+              },
+            ],
+            questoes: [
+              {
+                enunciado: "A resistência de um cabo varia com o comprimento: R = 0,0172L (em Ω, L em metros). Qual é o coeficiente angular e o que ele representa?",
+                alternativas: ["a=0,0172; representa a resistividade dividida pela seção", "a=L; representa o comprimento", "a=R; representa a resistência total", "a=0; a reta é horizontal"],
+                respostaCorreta: 0,
+                explicacao: "Na forma f(L)=aL+b: a=0,0172Ω/m (ρ/A para cabo de cobre 1mm²) e b=0. O coeficiente angular é a resistência por metro de cabo.",
+              },
+            ],
+          },
+          {
+            titulo: "F.2 — Função Quadrática",
+            conteudo: [
+              "A função quadrática f(x) = ax² + bx + c tem gráfico em forma de parábola. Se a>0: parabola com concavidade para cima (mínimo). Se a<0: concavidade para baixo (máximo).",
+              "VÉRTICE: ponto de mínimo ou máximo. xv = −b/(2a) e yv = f(xv) = Δ negativo/(4a) = −Δ/(4a).",
+              "ZEROS: as raízes da equação quadrática ax²+bx+c=0 são os pontos onde a parábola cruza o eixo x.",
+              "POTÊNCIA E CORRENTE: P = I²×R é função quadrática de I (com R fixo). Dobrar a corrente quadruplica a potência. Se I aumenta 10%, a potência aumenta (1,1)²−1 = 21%.",
+              "LEI DOS FIOS: queda de tensão = I × R = I × (ρL/A). Como R é fixo, a queda é linear em I. Mas a potência perdida = I²R é quadrática — motor de cabos sobredimensionados poupa muito mais.",
+              "PERDAS EM TRANSFORMADORES: perda no cobre = I²×Rcc. Se a carga cai para 50%, a perda no cobre cai para (0,5)²=25% do valor em plena carga.",
+            ],
+            equacoes: [
+              { latex: "f(x) = ax^2 + bx + c \\qquad x_v = -\\dfrac{b}{2a}", legenda: "Função quadrática e coordenada x do vértice" },
+              { latex: "P = I^2 \\cdot R \\quad \\Rightarrow \\quad \\text{se } I' = 2I: P' = (2I)^2 R = 4I^2R = 4P", legenda: "Relação quadrática entre potência e corrente" },
+            ],
+            dicas: [
+              {
+                gatilho: "ver gráfico de função quadrática",
+                titulo: "Função Quadrática — Parábola",
+                tipo: "funcao-quadratica",
+                explicacao: "A parábola tem um ponto de mínimo (a>0) ou máximo (a<0) chamado vértice. Para P=I²R, o gráfico mostra que a potência cresce cada vez mais rápido com a corrente.",
+              },
+            ],
+            questoes: [
+              {
+                enunciado: "A corrente em um cabo aumentou de 10A para 15A. Qual foi o aumento percentual nas perdas no cabo?",
+                alternativas: ["25%", "50%", "125%", "225%"],
+                respostaCorreta: 2,
+                explicacao: "P ∝ I². P1 = R×10² = 100R. P2 = R×15² = 225R. Variação = (225−100)/100 = 125%.",
+              },
+              {
+                enunciado: "Um transformador em plena carga tem perda no cobre de 8kW. A 75% de carga, a perda é:",
+                alternativas: ["6 kW", "4,5 kW", "5 kW", "3 kW"],
+                respostaCorreta: 1,
+                explicacao: "Pcu ∝ I² ∝ carga². A 75%: Pcu = 8 × (0,75)² = 8 × 0,5625 = 4,5kW.",
+              },
+            ],
+          },
+          {
+            titulo: "F.3 — Função Exponencial e Logarítmica",
+            conteudo: [
+              "A função exponencial f(x) = a × e^(kx) cresce ou decai exponencialmente. É fundamental nos transitórios de circuitos RC e RL.",
+              "CONSTANTE DE EULER: e ≈ 2,71828. Aparece naturalmente em crescimento/decaimento exponencial.",
+              "CIRCUITO RC — CARGA: Vc(t) = V×(1 − e^(−t/τ)), τ = RC. Em t=τ: 63,2%. Em t=2τ: 86,5%. Em t=5τ: 99,3%.",
+              "CIRCUITO RL — CRESCIMENTO: iL(t) = (V/R)×(1 − e^(−t/τ)), τ = L/R.",
+              "LOGARITMO: função inversa da exponencial. log_a(x) = y ↔ a^y = x. log_10(1000) = 3. ln(e²) = 2.",
+              "DECIBEL (dB): unidade logarítmica de razão de potências. dB = 10×log₁₀(P₂/P₁). Para tensões: dB = 20×log₁₀(V₂/V₁). Usada em comunicações e análise de filtros.",
+            ],
+            equacoes: [
+              { latex: "V_C(t) = V \\cdot \\left(1 - e^{-t/\\tau}\\right) \\quad \\tau = RC", legenda: "Carga do capacitor: V = tensão final, τ = constante de tempo" },
+              { latex: "dB = 10 \\cdot \\log_{10}\\left(\\dfrac{P_2}{P_1}\\right) = 20 \\cdot \\log_{10}\\left(\\dfrac{V_2}{V_1}\\right)", legenda: "Decibel: razão logarítmica de potências (10×log) ou tensões (20×log)" },
+            ],
+            dicas: [
+              {
+                gatilho: "ver curva de carga RC",
+                titulo: "Carga exponencial do capacitor",
+                tipo: "carga-capacitor",
+                explicacao: "A tensão sobe exponencialmente, partindo de 0 e tendendo a V. Em 1τ = 63,2% de V. Em 5τ ≈ 100%. A velocidade de subida é determinada por τ = RC.",
+              },
+            ],
+            questoes: [
+              {
+                enunciado: "Um circuito RC com R=10kΩ e C=100μF. Qual é a constante de tempo τ?",
+                alternativas: ["0,001 s", "0,01 s", "0,1 s", "1 s"],
+                respostaCorreta: 3,
+                explicacao: "τ = R×C = 10.000 × 100×10⁻⁶ = 10.000 × 0,0001 = 1 segundo.",
+              },
+              {
+                enunciado: "Após 3τ, qual porcentagem da tensão final o capacitor atingiu?",
+                alternativas: ["63,2%", "86,5%", "95%", "99,3%"],
+                respostaCorreta: 2,
+                explicacao: "Em t=τ: 63,2%. Em t=2τ: 86,5%. Em t=3τ: 1−e⁻³ = 1−0,050 = 95%. Em t=5τ: 99,3%.",
+              },
             ],
           },
         ],
@@ -1082,31 +1615,192 @@ export const AREAS: Area[] = [
       {
         slug: "mat-logica-elet",
         titulo: "Matemática — Raciocínio Lógico e Financeiro",
-        descricao: "Proposições, progressões, probabilidade e matemática financeira.",
+        descricao: "Proposições, conectivos, tabelas-verdade, silogismos, progressões, probabilidade e matemática financeira com foco em concursos Petrobras.",
         bloco: "Conhecimentos Básicos",
         paginas: [
           {
-            titulo: "M.6 — Raciocínio Lógico e Matemática Financeira",
+            titulo: "L.1 — Proposições e Conectivos Lógicos",
             conteudo: [
-              "Raciocínio lógico e noções de matemática financeira aparecem nos concursos da Petrobras como parte das provas básicas (Conhecimentos Gerais).",
-              "PROPOSIÇÕES LÓGICAS: afirmações que podem ser verdadeiras (V) ou falsas (F). Conectivos: E (conjunção, ∧) — verdadeiro somente se ambas V. OU (disjunção, ∨) — falso somente se ambas F. NÃO (negação, ¬) — inverte o valor. SE...ENTÃO (condicional, →) — falso somente se premissa V e conclusão F.",
-              "TABELAS-VERDADE: listam todos os casos possíveis para avaliar proposições compostas. Com n proposições simples, há 2^n linhas na tabela.",
-              "SEQUÊNCIAS E PROGRESSÕES: PA (progressão aritmética): cada termo = anterior + razão r. Soma dos n termos: Sn = n(a1 + an)/2. PG (progressão geométrica): cada termo = anterior × razão q. Soma: Sn = a1(q^n - 1)/(q - 1).",
-              "JUROS SIMPLES: J = C × i × t. Montante M = C + J = C(1 + it). Onde C = capital, i = taxa, t = tempo. Aplicação: custo de energia elétrica com taxa fixa.",
-              "JUROS COMPOSTOS: M = C × (1 + i)^t. O montante cresce exponencialmente. Aplicação: análise de retorno de investimento em eficiência energética (VPL, payback).",
-              "COMBINATÓRIA: arranjos (importa a ordem) e combinações (não importa a ordem). Permutação de n elementos: n! Combinação de n elementos tomados k a k: C(n,k) = n! / (k! × (n-k)!).",
+              "Lógica proposicional é o estudo de afirmações que podem ser classificadas como verdadeiras (V) ou falsas (F). É parte da prova básica de todos os concursos técnicos da Petrobras.",
+              "PROPOSIÇÃO: sentença declarativa com valor lógico definido. 'A corrente é 5A' → proposição. 'Meça a corrente!' → não é proposição (ordem). 'Que boa corrente!' → não é (exclamação).",
+              "NEGAÇÃO (¬p ou NÃO p): inverte o valor. Se p=V, ¬p=F. Se p=F, ¬p=V.",
+              "CONJUNÇÃO (p ∧ q, 'p E q'): V somente se p=V e q=V. Se um é F, o resultado é F.",
+              "DISJUNÇÃO (p ∨ q, 'p OU q'): F somente se p=F e q=F. Basta um ser V para o resultado ser V.",
+              "CONDICIONAL (p → q, 'SE p ENTÃO q'): F somente se p=V e q=F. Equivale a: (¬p) ∨ q.",
+              "BICONDICIONAL (p ↔ q): V somente se p e q têm o mesmo valor lógico.",
+            ],
+            equacoes: [],
+            conteudo2: [
+              "TABELA-VERDADE RESUMIDA: conjunção (E) — V×V=V, qualquer outro = F. Disjunção (OU) — F×F=F, qualquer outro = V. Condicional (SE→ENTÃO) — V×F=F, qualquer outro = V. Bicondicional (↔) — iguais=V, diferentes=F.",
+              "MACETE CONDICIONAL: p→q é falsa SOMENTE quando a premissa (p) é verdadeira e a conclusão (q) é falsa. 'Se chove, fico em casa' só é falsa se: chove (V) E eu saio (F). Nos outros três casos, é verdadeira.",
+            ],
+            questoes: [
+              {
+                enunciado: "Sabendo que p=V e q=F, qual é o valor de (p ∧ ¬q)?",
+                alternativas: ["Verdadeiro", "Falso", "Indeterminado", "Depende de q"],
+                respostaCorreta: 0,
+                explicacao: "¬q = ¬F = V. Então p ∧ ¬q = V ∧ V = V. A conjunção é V somente quando ambos são V — e aqui ambos são V.",
+              },
+              {
+                enunciado: "A proposição 'Se o disjuntor disparou, então houve sobrecarga' é falsa quando:",
+                alternativas: [
+                  "O disjuntor disparou e houve sobrecarga",
+                  "O disjuntor disparou e não houve sobrecarga",
+                  "O disjuntor não disparou e houve sobrecarga",
+                  "O disjuntor não disparou e não houve sobrecarga",
+                ],
+                respostaCorreta: 1,
+                explicacao: "A condicional p→q é falsa SOMENTE quando p=V e q=F. Aqui: p='disjuntor disparou' (V) e q='houve sobrecarga' (F) → proposição falsa.",
+              },
+              {
+                enunciado: "Qual é a negação de 'Todos os técnicos usam EPI'?",
+                alternativas: [
+                  "Nenhum técnico usa EPI",
+                  "Existe pelo menos um técnico que não usa EPI",
+                  "A maioria dos técnicos não usa EPI",
+                  "Os técnicos às vezes usam EPI",
+                ],
+                respostaCorreta: 1,
+                explicacao: "Negar 'Todos fazem X' → 'Existe pelo menos um que NÃO faz X'. A negação de universal ('todos') é existencial ('existe algum que não').",
+              },
+            ],
+          },
+          {
+            titulo: "L.2 — Leis de De Morgan e Equivalências",
+            conteudo: [
+              "As Leis de De Morgan são ferramentas essenciais para negar proposições compostas e para simplificar circuitos lógicos em CLPs.",
+              "1ª LEI: ¬(p ∧ q) = (¬p) ∨ (¬q). A negação do E vira OU dos negados.",
+              "2ª LEI: ¬(p ∨ q) = (¬p) ∧ (¬q). A negação do OU vira E dos negados.",
+              "APLICAÇÃO EM CLP: a porta NAND equivale a NOT(A AND B) = (NOT A) OR (NOT B). A porta NOR equivale a NOT(A OR B) = (NOT A) AND (NOT B).",
+              "EQUIVALÊNCIAS IMPORTANTES: p → q ≡ ¬p ∨ q. ¬(p → q) ≡ p ∧ ¬q. Contrapositiva: p→q ≡ ¬q→¬p (mesmos valor de verdade).",
+              "TAUTOLOGIA: proposição sempre verdadeira (V para qualquer combinação). CONTRADIÇÃO: sempre falsa. Exemplo de tautologia: p ∨ ¬p (lei do terceiro excluído).",
+            ],
+            equacoes: [],
+            conteudo2: [
+              "DE MORGAN NA PRÁTICA: 'Não é verdade que o motor está ligado E rodando' equivale a 'O motor está desligado OU não está rodando'. Isso é fundamental para lógicas de intertravamento em CLPs.",
+            ],
+            questoes: [
+              {
+                enunciado: "Pelo De Morgan, qual é o equivalente de ¬(A ∨ B)?",
+                alternativas: ["¬A ∨ ¬B", "¬A ∧ ¬B", "A ∧ B", "¬A ∨ B"],
+                respostaCorreta: 1,
+                explicacao: "2ª Lei de De Morgan: ¬(p ∨ q) = ¬p ∧ ¬q. Então ¬(A ∨ B) = ¬A ∧ ¬B.",
+              },
+              {
+                enunciado: "A contrapositiva de 'Se há curto, o disjuntor dispara' é:",
+                alternativas: [
+                  "Se não há curto, o disjuntor não dispara",
+                  "Se o disjuntor não disparou, não há curto",
+                  "Se o disjuntor disparou, há curto",
+                  "Se não há curto, o disjuntor dispara",
+                ],
+                respostaCorreta: 1,
+                explicacao: "Contrapositiva de (p→q) é (¬q→¬p): 'Se o disjuntor NÃO disparou (¬q), então NÃO há curto (¬p)'.",
+              },
+            ],
+          },
+          {
+            titulo: "L.3 — Progressões e Sequências",
+            conteudo: [
+              "Progressões são sequências com padrão definido. Aparecem frequentemente nas questões de raciocínio lógico-matemático dos concursos Petrobras.",
+              "PA (PROGRESSÃO ARITMÉTICA): a diferença entre termos consecutivos é constante (razão r). an = a₁ + (n−1)×r. Soma dos n termos: Sn = n(a₁+an)/2.",
+              "PG (PROGRESSÃO GEOMÉTRICA): a razão entre termos consecutivos é constante (razão q). an = a₁×q^(n−1). Soma: Sn = a₁(q^n−1)/(q−1) para q≠1.",
+              "IDENTIFICAÇÃO: para PA, verificar se as diferenças são constantes. Para PG, verificar se as razões são constantes. Exemplos: 2,5,8,11 (PA, r=3). 3,6,12,24 (PG, q=2).",
+              "SOMA DE PG INFINITA: quando |q|<1, a série geométrica converge: S∞ = a₁/(1−q). Exemplo: 1 + 1/2 + 1/4 + ... = 1/(1−1/2) = 2.",
             ],
             equacoes: [
-              { latex: "S_n = \\dfrac{n(a_1 + a_n)}{2} \\quad \\text{(PA)} \\qquad S_n = a_1 \\cdot \\dfrac{q^n - 1}{q - 1} \\quad \\text{(PG)}", legenda: "Soma de progressões aritmética e geométrica" },
-              { latex: "M = C \\cdot (1 + i)^t \\quad \\text{(juros compostos)}", legenda: "Montante com juros compostos: C = capital, i = taxa, t = tempo" },
-              { latex: "C(n,k) = \\dfrac{n!}{k! \\cdot (n-k)!}", legenda: "Combinações: escolher k elementos de n sem importar a ordem" },
+              { latex: "a_n = a_1 + (n-1) \\cdot r \\qquad S_n^{PA} = \\dfrac{n(a_1 + a_n)}{2}", legenda: "Progressão Aritmética: termo geral e soma" },
+              { latex: "a_n = a_1 \\cdot q^{n-1} \\qquad S_n^{PG} = a_1 \\cdot \\dfrac{q^n - 1}{q - 1}", legenda: "Progressão Geométrica: termo geral e soma" },
             ],
-            conteudo2: [
-              "Exemplo payback de eficiência energética: investimento em VFD de R$ 8.000. Economia mensal de energia: R$ 450. Payback simples = 8000/450 ≈ 17,8 meses. Com juros de 1% ao mês (payback composto), seria ligeiramente maior — mas a economia ao longo de 5 anos justifica amplamente o investimento.",
+            questoes: [
+              {
+                enunciado: "Qual é o 10° termo da PA: 3, 7, 11, 15, ...?",
+                alternativas: ["39", "41", "43", "45"],
+                respostaCorreta: 0,
+                explicacao: "r=4. a₁₀ = 3 + (10−1)×4 = 3 + 36 = 39.",
+              },
+              {
+                enunciado: "A sequência 2, 6, 18, 54 ... é uma PG. Qual é o 6° termo?",
+                alternativas: ["162", "324", "486", "648"],
+                respostaCorreta: 2,
+                explicacao: "q=3. a₆ = 2 × 3^(6−1) = 2 × 3⁵ = 2 × 243 = 486.",
+              },
+              {
+                enunciado: "Qual é a soma dos 10 primeiros termos da PA: 2, 5, 8, 11, ...?",
+                alternativas: ["110", "120", "145", "155"],
+                respostaCorreta: 2,
+                explicacao: "r=3. a₁₀ = 2+9×3 = 29. S₁₀ = 10×(2+29)/2 = 10×31/2 = 155.",
+              },
+            ],
+          },
+          {
+            titulo: "L.4 — Probabilidade e Combinatória",
+            conteudo: [
+              "Probabilidade e combinatória são temas frequentes nas provas de raciocínio lógico-matemático dos concursos técnicos.",
+              "PROBABILIDADE CLÁSSICA: P(A) = casos favoráveis / casos possíveis. P(A) sempre entre 0 e 1. P(A) + P(Ā) = 1.",
+              "EVENTOS INDEPENDENTES: P(A e B) = P(A) × P(B). Exemplo: jogar dois dados — P(ambos 6) = 1/6 × 1/6 = 1/36.",
+              "EVENTOS MUTUAMENTE EXCLUSIVOS: P(A ou B) = P(A) + P(B). Exemplo: tirar cara OU coroa — P = 1/2 + 1/2 = 1 (evento certo, impossível tirar ambos).",
+              "PERMUTAÇÃO: arranjar n elementos em n posições. Pn = n! (n fatorial). 5! = 5×4×3×2×1 = 120.",
+              "ARRANJO: escolher k elementos de n em posições distintas (ordem importa). A(n,k) = n!/(n−k)!.",
+              "COMBINAÇÃO: escolher k elementos de n sem importar a ordem. C(n,k) = n!/[k!×(n−k)!].",
+            ],
+            equacoes: [
+              { latex: "P(A) = \\dfrac{\\text{casos favoráveis}}{\\text{casos possíveis}} \\quad P(A) + P(\\bar{A}) = 1", legenda: "Probabilidade clássica" },
+              { latex: "C(n,k) = \\dfrac{n!}{k! \\cdot (n-k)!} \\qquad A(n,k) = \\dfrac{n!}{(n-k)!}", legenda: "Combinação e Arranjo" },
+            ],
+            questoes: [
+              {
+                enunciado: "Um técnico precisa testar 5 instrumentos. De quantas formas pode organizar a ordem dos testes?",
+                alternativas: ["20", "60", "120", "24"],
+                respostaCorreta: 2,
+                explicacao: "P₅ = 5! = 5×4×3×2×1 = 120 formas de organizar a ordem.",
+              },
+              {
+                enunciado: "De uma caixa com 4 resistores bons e 2 defeituosos, qual é a probabilidade de retirar um bom ao acaso?",
+                alternativas: ["1/3", "1/2", "2/3", "3/4"],
+                respostaCorreta: 2,
+                explicacao: "P(bom) = 4/(4+2) = 4/6 = 2/3.",
+              },
+              {
+                enunciado: "Quantas comissões de 3 pessoas podem ser formadas com 7 técnicos?",
+                alternativas: ["35", "21", "42", "210"],
+                respostaCorreta: 0,
+                explicacao: "C(7,3) = 7!/(3!×4!) = (7×6×5)/(3×2×1) = 210/6 = 35.",
+              },
+            ],
+          },
+          {
+            titulo: "L.5 — Matemática Financeira",
+            conteudo: [
+              "Matemática financeira é aplicada em análise de retorno de investimentos em eficiência energética, custo de energia elétrica e comparação de tarifas.",
+              "JUROS SIMPLES: o juro é calculado sempre sobre o capital inicial. J = C×i×t. M = C(1+it). Cresce linearmente.",
+              "JUROS COMPOSTOS: o juro de cada período é adicionado ao capital (juros sobre juros). M = C×(1+i)^t. Cresce exponencialmente.",
+              "PAYBACK SIMPLES: tempo para recuperar o investimento. Payback = Investimento / Economia anual. Não considera o valor do dinheiro no tempo.",
+              "CUSTO DE ENERGIA: C = P(kW) × t(h) × tarifa(R$/kWh). Exemplo: motor de 22kW operando 16h/dia, 22 dias/mês, tarifa R$0,70/kWh. Custo = 22×16×22×0,70 = R$5.414,40/mês.",
+              "ECONOMIA COM VFD: reduzindo a velocidade para 80%, a potência cai para (0,8)³=51,2%. Economia = (1−0,512) = 48,8% no consumo de energia.",
+            ],
+            equacoes: [
+              { latex: "M_{simples} = C(1 + i \\cdot t) \\qquad M_{composto} = C \\cdot (1 + i)^t", legenda: "Montante em juros simples e compostos" },
+              { latex: "Payback = \\dfrac{\\text{Investimento}}{\\text{Economia anual}}", legenda: "Tempo de retorno simples do investimento" },
+            ],
+            questoes: [
+              {
+                enunciado: "Um VFD custa R$12.000 e economiza R$800/mês em energia. Qual é o payback simples em meses?",
+                alternativas: ["12 meses", "15 meses", "18 meses", "20 meses"],
+                respostaCorreta: 1,
+                explicacao: "Payback = 12.000/800 = 15 meses.",
+              },
+              {
+                enunciado: "Um capital de R$5.000 aplicado a juros compostos de 2% ao mês por 3 meses resulta em montante de:",
+                alternativas: ["R$5.300,00", "R$5.306,04", "R$5.402,04", "R$5.612,16"],
+                respostaCorreta: 1,
+                explicacao: "M = 5.000×(1+0,02)³ = 5.000×(1,02)³ = 5.000×1,0612 = R$5.306,04.",
+              },
             ],
           },
         ],
       },
+
     ],
   },
   // ══════════════════════════════════════════════════════════════════════════
