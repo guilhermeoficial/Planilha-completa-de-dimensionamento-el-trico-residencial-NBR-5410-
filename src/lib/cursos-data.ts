@@ -944,25 +944,14 @@ export const AREAS: Area[] = [
 
         ],
       },
-    ],
-  },
 
-  // ══════════════════════════════════════════════════════════════════════════
-  // CURSO: TÉCNICO EM MANUTENÇÃO ELÉTRICA — MATEMÁTICA (ÊNFASE 5)
-  // ══════════════════════════════════════════════════════════════════════════
-  {
-    slug: "manutencao-eletrica-matematica",
-    nome: "Técnico em Manutenção Elétrica — Matemática e Raciocínio",
-    nivel: "Técnico",
-    descricao: "Matemática aplicada para o concurso Petrobras Ênfase 5: aritmética, álgebra, trigonometria, geometria e raciocínio lógico com foco em aplicações elétricas.",
-    modulos: [
+// ── MATEMÁTICA — CONHECIMENTOS BÁSICOS ─────────────────────────────
       {
-        slug: "mat-elet-basica",
-        titulo: "Módulo Matemática — Fundamentos e Aplicações",
-        descricao: "Frações, potências, equações, funções, trigonometria e geometria com aplicações diretas em eletrotécnica.",
+        slug: "mat-aritmetica",
+        titulo: "Matemática — Aritmética e Potências",
+        descricao: "Frações, potências, raízes, notação científica e regra de três.",
         bloco: "Conhecimentos Básicos",
         paginas: [
-
           {
             titulo: "M.1 — Aritmética: Frações, Potências e Raízes",
             conteudo: [
@@ -982,7 +971,14 @@ export const AREAS: Area[] = [
               "Exemplo típico de prova: R1 = 6Ω e R2 = 12Ω em paralelo. Req = (6×12)/(6+12) = 72/18 = 4Ω. Verificação: 1/Req = 1/6 + 1/12 = 2/12 + 1/12 = 3/12 = 1/4. Logo Req = 4Ω ✓.",
             ],
           },
-
+        ],
+      },
+      {
+        slug: "mat-algebra",
+        titulo: "Matemática — Álgebra e Equações",
+        descricao: "Equações do 1° e 2° grau, sistemas e inequações.",
+        bloco: "Conhecimentos Básicos",
+        paginas: [
           {
             titulo: "M.2 — Álgebra: Equações e Sistemas",
             conteudo: [
@@ -1000,7 +996,14 @@ export const AREAS: Area[] = [
               "Exemplo com Kirchhoff (sistema 2×2): Malha 1: 12 - 4I₁ - 2(I₁-I₂) = 0 → 6I₁ - 2I₂ = 12. Malha 2: -2(I₂-I₁) - 6I₂ = 0 → -2I₁ + 8I₂ = 0 → I₁ = 4I₂. Substituindo: 6(4I₂) - 2I₂ = 12 → 22I₂ = 12 → I₂ = 0,545A. I₁ = 2,18A.",
             ],
           },
-
+        ],
+      },
+      {
+        slug: "mat-trigonometria",
+        titulo: "Matemática — Trigonometria",
+        descricao: "Seno, cosseno, tangente, triângulo de potências e fasores.",
+        bloco: "Conhecimentos Básicos",
+        paginas: [
           {
             titulo: "M.3 — Trigonometria Aplicada à Eletrotécnica",
             conteudo: [
@@ -1022,7 +1025,14 @@ export const AREAS: Area[] = [
               "Dica de prova: FP = 0,8 → φ = 36,87°, sen φ = 0,6, tan φ = 0,75. FP = 0,866 → φ = 30°. FP = 0,707 → φ = 45°. Memorize esses pares — aparecem frequentemente em provas.",
             ],
           },
-
+        ],
+      },
+      {
+        slug: "mat-geometria",
+        titulo: "Matemática — Geometria e Grandezas",
+        descricao: "Áreas, volumes, unidades e prefixos do SI.",
+        bloco: "Conhecimentos Básicos",
+        paginas: [
           {
             titulo: "M.4 — Geometria e Grandezas Físicas",
             conteudo: [
@@ -1041,7 +1051,14 @@ export const AREAS: Area[] = [
               "Exemplo: cabo de cobre com diâmetro 1,784 mm (seção 2,5 mm²). Comprimento L = 40 m (ida+volta). Resistência: R = 1,72×10⁻⁸ × 40 / (2,5×10⁻⁶) = 6,88×10⁻⁷ / 2,5×10⁻⁶ = 0,275 Ω. Com corrente de 16 A: ΔV = 0,275 × 16 = 4,4 V.",
             ],
           },
-
+        ],
+      },
+      {
+        slug: "mat-funcoes",
+        titulo: "Matemática — Funções e Gráficos",
+        descricao: "Função linear, quadrática, exponencial e trigonométrica.",
+        bloco: "Conhecimentos Básicos",
+        paginas: [
           {
             titulo: "M.5 — Funções e Gráficos",
             conteudo: [
@@ -1060,7 +1077,14 @@ export const AREAS: Area[] = [
               "Dica de prova: em questões de eficiência energética, a relação cúbica também aparece. Para bombas: P ∝ n³. Reduzir a velocidade para 80%: P' = (0,8)³ × P = 0,512P — economia de 48,8%. Esse resultado vem da propriedade das funções de potência.",
             ],
           },
-
+        ],
+      },
+      {
+        slug: "mat-logica-elet",
+        titulo: "Matemática — Raciocínio Lógico e Financeiro",
+        descricao: "Proposições, progressões, probabilidade e matemática financeira.",
+        bloco: "Conhecimentos Básicos",
+        paginas: [
           {
             titulo: "M.6 — Raciocínio Lógico e Matemática Financeira",
             conteudo: [
@@ -1081,12 +1105,10 @@ export const AREAS: Area[] = [
               "Exemplo payback de eficiência energética: investimento em VFD de R$ 8.000. Economia mensal de energia: R$ 450. Payback simples = 8000/450 ≈ 17,8 meses. Com juros de 1% ao mês (payback composto), seria ligeiramente maior — mas a economia ao longo de 5 anos justifica amplamente o investimento.",
             ],
           },
-
         ],
       },
     ],
   },
-
   // ══════════════════════════════════════════════════════════════════════════
   // CURSO: TÉCNICO EM MANUTENÇÃO INSTRUMENTAÇÃO — PETROBRAS (ÊNFASE 6)
   // ══════════════════════════════════════════════════════════════════════════
@@ -1601,25 +1623,14 @@ export const AREAS: Area[] = [
           },
         ],
       },
-    ],
-  },
 
-  // ══════════════════════════════════════════════════════════════════════════
-  // CURSO: MATEMÁTICA — ÊNFASE 6 (INSTRUMENTAÇÃO)
-  // ══════════════════════════════════════════════════════════════════════════
-  {
-    slug: "manutencao-instrumentacao-matematica",
-    nome: "Técnico em Instrumentação — Matemática e Raciocínio",
-    nivel: "Técnico",
-    descricao: "Matemática aplicada para o concurso Petrobras Ênfase 6: aritmética, álgebra, funções, estatística e raciocínio lógico com aplicações em instrumentação.",
-    modulos: [
+      // ── MATEMÁTICA — CONHECIMENTOS BÁSICOS ─────────────────────────────
       {
-        slug: "mat-instr-basica",
-        titulo: "Módulo Matemática — Fundamentos para Instrumentação",
-        descricao: "Matemática aplicada a metrologia, conversão de unidades, análise de erros e raciocínio lógico.",
+        slug: "mat-unidades",
+        titulo: "Matemática — Unidades e Conversões",
+        descricao: "Prefixos SI, pressão, temperatura, vazão e sinal 4-20 mA.",
         bloco: "Conhecimentos Básicos",
         paginas: [
-
           {
             titulo: "M.1 — Conversão de Unidades e Sistema Internacional",
             conteudo: [
@@ -1638,7 +1649,14 @@ export const AREAS: Area[] = [
               "Exemplo: transmissor de temperatura PT100, faixa -20 a +180°C, sinal 4-20mA. Para T = 80°C: I = 4 + 16×(80-(-20))/(180-(-20)) = 4 + 16×(100/200) = 4 + 8 = 12 mA. Verificação: 12 mA está exatamente na metade do span → 80°C está na metade da faixa (-20 a +180 = 200°C de span, metade = -20 + 100 = 80°C) ✓.",
             ],
           },
-
+        ],
+      },
+      {
+        slug: "mat-estatistica",
+        titulo: "Matemática — Estatística e Metrologia",
+        descricao: "Média, desvio padrão, distribuição normal e incerteza.",
+        bloco: "Conhecimentos Básicos",
+        paginas: [
           {
             titulo: "M.2 — Estatística e Análise de Erros em Metrologia",
             conteudo: [
@@ -1658,7 +1676,14 @@ export const AREAS: Area[] = [
               "Exemplo: 5 medições de pressão (bar): 10,2; 10,1; 10,3; 10,2; 10,2. Média: (10,2+10,1+10,3+10,2+10,2)/5 = 51,0/5 = 10,20 bar. Desvios: (-0,00; -0,10; +0,10; 0,00; 0,00). s = √[(0+0,01+0,01+0+0)/4] = √(0,005) = 0,0707 bar. Incerteza padrão: u = s/√n = 0,0707/√5 = 0,0316 bar. U = 2 × 0,0316 = 0,063 bar (95% de confiança). Resultado: 10,20 ± 0,063 bar.",
             ],
           },
-
+        ],
+      },
+      {
+        slug: "mat-algebra-instr",
+        titulo: "Matemática — Álgebra Aplicada",
+        descricao: "Equação da reta, interpolação, calibração e regra de três.",
+        bloco: "Conhecimentos Básicos",
+        paginas: [
           {
             titulo: "M.3 — Álgebra e Equações Aplicadas à Instrumentação",
             conteudo: [
@@ -1676,7 +1701,14 @@ export const AREAS: Area[] = [
               "Dica de concurso: perguntas sobre sinal 4-20 mA são quase sempre resolvidas por interpolação linear ou regra de três. Memorize: 0% = 4 mA, 25% = 8 mA, 50% = 12 mA, 75% = 16 mA, 100% = 20 mA. Cada 25% = 4 mA de variação.",
             ],
           },
-
+        ],
+      },
+      {
+        slug: "mat-logica-instr",
+        titulo: "Matemática — Raciocínio Lógico",
+        descricao: "Proposições, conectivos, silogismos e portas lógicas.",
+        bloco: "Conhecimentos Básicos",
+        paginas: [
           {
             titulo: "M.4 — Raciocínio Lógico para Concursos",
             conteudo: [
@@ -1693,7 +1725,14 @@ export const AREAS: Area[] = [
               "Lei de De Morgan na prática: 'NÃO (vai chover E vai ventar)' é equivalente a 'NÃO vai chover OU NÃO vai ventar'. Isso é exatamente a porta NAND no CLP: a saída é 0 (falso) somente se AMBAS as entradas são 1 (verdadeiro).",
             ],
           },
-
+        ],
+      },
+      {
+        slug: "mat-combinatoria",
+        titulo: "Matemática — Sequências e Probabilidade",
+        descricao: "PA, PG, matrizes, probabilidade e combinatória.",
+        bloco: "Conhecimentos Básicos",
+        paginas: [
           {
             titulo: "M.5 — Sequências, Matrizes e Probabilidade",
             conteudo: [
@@ -1713,12 +1752,12 @@ export const AREAS: Area[] = [
               "Exemplo: num painel de instrumentação, há 5 posições para instalar transmissores. De quantas formas podemos escolher 3 transmissores de marcas diferentes para essas posições se a ordem importa? A(5,3) = 5!/(5-3)! = 120/2 = 60 arranjos. Se a ordem não importar: C(5,3) = 5!/(3!×2!) = 120/12 = 10 combinações.",
             ],
           },
-
         ],
       },
     ],
   },
 ];
+
 
 export function buscarArea(slug: string): Area | undefined {
   return AREAS.find((a) => a.slug === slug);
