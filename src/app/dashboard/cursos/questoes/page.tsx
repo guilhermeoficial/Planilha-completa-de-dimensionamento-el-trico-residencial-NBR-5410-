@@ -7,6 +7,7 @@ import {
   GraduationCap, BookMarked, NotebookPen, Sparkles,
 } from "lucide-react";
 import Explosao from "@/components/explosao";
+import CircuitoQuestao from "@/components/circuito-questao";
 import { createClient } from "@/lib/supabase/client";
 import {
   QUESTOES, AREAS_GRANDES, DIFICULDADES, BLOCOS, bancasDisponiveis, anosDisponiveis, assuntosDisponiveis,
@@ -328,7 +329,7 @@ export default function QuestoesPage() {
                   <strong className="text-text">Órgão:</strong> Petrobras
                 </p>
 
-                {q.temImagem && <ImagemQuestao id={q.id} />}
+                {q.temImagem && <CircuitoQuestao id={q.id} />}
 
                 <p className="text-sm font-medium">{q.enunciado}</p>
 
@@ -538,7 +539,7 @@ export default function QuestoesPage() {
 function ImagemQuestao({ id }: { id: string }) {
   const [erro, setErro] = useState(false);
   const [extensaoIdx, setExtensaoIdx] = useState(0);
-  const extensoes = ["png", "jpg", "jpeg", "webp"];
+  const extensoes = ["svg", "png", "jpg", "jpeg", "webp"];
 
   if (erro && extensaoIdx >= extensoes.length - 1) {
     return (
