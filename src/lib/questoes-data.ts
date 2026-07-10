@@ -2543,7 +2543,7 @@ const QUESTOES_BASE: any[] = [
 
   // ── LÍNGUA PORTUGUESA ───────────────────────────────────────────────────
 
-  { id: "p13", inedita: true, areaGrande: "Português", assunto: "Interpretação de texto", banca: "FGV (estilo)", ano: 2024, dificuldade: "Fácil",
+  { id: "p13", inedita: true, areaGrande: "Português", assunto: "Interpretação de texto", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Fácil",
     enunciado: "Leia o texto a seguir e responda à questão.\n\n\"A manutenção elétrica industrial é uma atividade de alto risco que requer qualificação específica dos profissionais envolvidos. A negligência com os procedimentos de segurança pode resultar em acidentes graves e até fatais. Por isso, as empresas do setor energético investem continuamente em treinamentos e na atualização das práticas de trabalho seguro, visando não apenas cumprir as exigências legais, mas também preservar a integridade física de seus colaboradores.\"\n\nO principal objetivo do texto é:",
     alternativas: [
       "Criticar as empresas que não investem em treinamentos elétricos.",
@@ -2554,7 +2554,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 2,
     explicacao: "O texto apresenta a manutenção elétrica como atividade de risco, menciona as consequências da negligência e aponta os investimentos das empresas em treinamento. O objetivo central é destacar a importância da qualificação e das práticas seguras — alternativa C." },
 
-  { id: "p14", inedita: true, areaGrande: "Português", assunto: "Interpretação de texto", banca: "FGV (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "p14", inedita: true, areaGrande: "Português", assunto: "Interpretação de texto", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "Com base no mesmo texto: 'A negligência com os procedimentos de segurança pode resultar em acidentes graves e até fatais.'\n\nNo período acima, o termo 'até' desempenha a seguinte função:",
     alternativas: [
       "Indica adição de ideia semelhante à anterior.",
@@ -2565,7 +2565,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 2,
     explicacao: "'Até' aqui é uma partícula de inclusão com valor intensificador/gradativo: os acidentes vão de graves até fatais, indicando o grau máximo da escala. Função: gradação crescente — alternativa C." },
 
-  { id: "p15", inedita: true, areaGrande: "Português", assunto: "Tipologia textual", banca: "FGV (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "p15", inedita: true, areaGrande: "Português", assunto: "Tipologia textual", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "Leia: \"Os avanços tecnológicos têm transformado profundamente o setor elétrico. Equipamentos cada vez mais sofisticados substituem gradualmente sistemas obsoletos, aumentando a eficiência e a confiabilidade das instalações. No entanto, essa evolução também exige dos técnicos um processo contínuo de atualização e aprendizado.\"\n\nA relação semântica estabelecida pela expressão 'No entanto' é de:",
     alternativas: [
       "Causa e consequência.",
@@ -2576,7 +2576,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 3,
     explicacao: "'No entanto' é conjunção adversativa — estabelece contraste: os avanços são positivos (eficiência), mas, por outro lado (contraste), também trazem a exigência de atualização. Alternativa D." },
 
-  { id: "p16", inedita: true, areaGrande: "Português", assunto: "Vocabulário", banca: "FGV (estilo)", ano: 2024, dificuldade: "Fácil",
+  { id: "p16", inedita: true, areaGrande: "Português", assunto: "Vocabulário", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Fácil",
     enunciado: "Assinale a opção que apresenta comentário correto sobre um dos vocábulos sublinhados no trecho: 'A negligência com os procedimentos de segurança pode resultar em acidentes graves e até fatais.'",
     alternativas: [
       "'Negligência' é sinônimo de 'imprudência deliberada'.",
@@ -2587,7 +2587,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 1,
     explicacao: "'Procedimentos' refere-se a ações planejadas, sistematizadas, que seguem uma sequência definida — como os procedimentos de segurança de uma norma técnica. Alternativa B. 'Negligência' é falta de cuidado (não necessariamente deliberada). 'Resultar' indica consequência, não causa. 'Graves' e 'fatais' são gradação, não antônimos." },
 
-  { id: "p17", inedita: true, areaGrande: "Português", assunto: "Concordância verbal", banca: "FGV (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "p17", inedita: true, areaGrande: "Português", assunto: "Concordância verbal", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "Assinale a frase em que houve erro de concordância verbal.",
     alternativas: [
       "Os técnicos que executam serviços em alta tensão devem ter habilitação específica.",
@@ -2598,7 +2598,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 4,
     explicacao: "Na alternativa E, 'Faz' (singular) é o correto, pois quando 'fazer' indica tempo decorrido é impessoal e fica no singular: 'Faz dois anos...'. Usar 'Fazem' é erro de concordância. Nas demais, a concordância está correta." },
 
-  { id: "p18", inedita: true, areaGrande: "Português", assunto: "Crase", banca: "FGV (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "p18", inedita: true, areaGrande: "Português", assunto: "Crase", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "Assinale a opção em que o emprego do acento grave (crase) está correto.",
     alternativas: [
       "O técnico se dirigiu à bancada de testes com cuidado.",
@@ -2609,7 +2609,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 0,
     explicacao: "Na alternativa A, 'dirigiu-se à bancada' = 'dirigiu-se a + a bancada' — crase correta. Em B, 'à respeito' é errado (a respeito, sem crase). Em C, 'à todos' errado (a todos, sem crase — 'todos' é masculino plural). Em D, 'à procedimentos' errado (procedimentos é masculino). Em E, 'à noite' e 'à tarde' estão certos, mas 'à espera' na frase anterior seria correto — a frase E está correta, mas tem crase errada em B." },
 
-  { id: "p19", inedita: true, areaGrande: "Português", assunto: "Regência verbal", banca: "FGV (estilo)", ano: 2024, dificuldade: "Difícil",
+  { id: "p19", inedita: true, areaGrande: "Português", assunto: "Regência verbal", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Difícil",
     enunciado: "Em relação à regência verbal, assinale a frase em que o uso da preposição está correto.",
     alternativas: [
       "O eletricista assistiu o treinamento sobre NR-10 com atenção.",
@@ -2620,7 +2620,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 1,
     explicacao: "B está correta: 'informar algo a alguém' — 'informou aos técnicos'. Em A, 'assistir' no sentido de 'ver' rege 'a': 'assistiu ao treinamento'. Em C, 'visar' no sentido de 'almejar' rege 'a': 'visa ao cumprimento'. Em D, 'preferir' rege 'a': 'preferiu a chave a (ao) inversor'. Em E, 'obedecer' rege 'a': 'obedeceu às instruções'." },
 
-  { id: "p20", inedita: true, areaGrande: "Português", assunto: "Tipologia textual", banca: "FGV (estilo)", ano: 2024, dificuldade: "Fácil",
+  { id: "p20", inedita: true, areaGrande: "Português", assunto: "Tipologia textual", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Fácil",
     enunciado: "Leia: \"Se o disjuntor desligar repetidamente, verifique se a carga está dentro do limite nominal. Caso não esteja, redistribua os circuitos ou substitua o disjuntor por um de maior capacidade.\"\n\nEsse trecho pertence predominantemente ao tipo textual:",
     alternativas: [
       "Narrativo, pois relata uma sequência de eventos.",
@@ -2631,7 +2631,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 3,
     explicacao: "O texto usa verbos no imperativo ('verifique', 'redistribua', 'substitua') e orienta o leitor sobre como proceder em uma situação — características do texto injuntivo ou instrucional. Alternativa D." },
 
-  { id: "p21", inedita: true, areaGrande: "Português", assunto: "Vocabulário", banca: "FGV (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "p21", inedita: true, areaGrande: "Português", assunto: "Vocabulário", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "A frase em que o vocábulo 'corrente' tem sentido diferente do das outras é:",
     alternativas: [
       "A corrente elétrica no circuito primário é de 10 ampères.",
@@ -2642,7 +2642,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 3,
     explicacao: "Em A, B, C e E, 'corrente' significa fluxo de elétrons (grandeza elétrica). Em D, 'corrente' significa 'atual, comum, vigente' — sentido diferente dos demais. Alternativa D." },
 
-  { id: "p22", inedita: true, areaGrande: "Português", assunto: "Pontuação", banca: "FGV (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "p22", inedita: true, areaGrande: "Português", assunto: "Pontuação", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "Assinale a alternativa em que o uso da vírgula está incorreto.",
     alternativas: [
       "O técnico, após verificar o circuito, liberou o equipamento.",
@@ -2653,7 +2653,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 4,
     explicacao: "Em E, a vírgula após 'mas' está incorreta. 'Mas' é conjunção adversativa que não deve ser separada por vírgula do elemento que introduz. O correto seria: 'mas o técnico não iniciou'. As vírgulas nas demais alternativas estão corretas (apostos, orações adjetivas e adjuntos adverbiais deslocados)." },
 
-  { id: "p23", inedita: true, areaGrande: "Português", assunto: "Concordância verbal", banca: "FGV (estilo)", ano: 2024, dificuldade: "Difícil",
+  { id: "p23", inedita: true, areaGrande: "Português", assunto: "Concordância verbal", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Difícil",
     enunciado: "Assinale a opção que estabelece corretamente a correspondência entre a frase negativa e a afirmativa equivalente.",
     alternativas: [
       "Nenhum técnico foi reprovado. / Todos os técnicos foram aprovados.",
@@ -2664,7 +2664,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 3,
     explicacao: "A negativa 'Não há nenhuma irregularidade' equivale à afirmativa 'Há alguma irregularidade' — a dupla negação se converte em afirmação parcial (existe pelo menos uma). As demais apresentam distorções: em A, reprovado ≠ aprovado necessariamente. Em B e C, as equivalências são corretas mas invertidas (jamais = nunca, sempre). Em E, a equivalência está correta." },
 
-  { id: "p24", inedita: true, areaGrande: "Português", assunto: "Semântica", banca: "FGV (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "p24", inedita: true, areaGrande: "Português", assunto: "Semântica", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "Assinale a opção que apresenta erro na substituição da locução adjetiva pelo adjetivo equivalente.",
     alternativas: [
       "circuito de corrente alternada → circuito alternado.",
@@ -2677,7 +2677,7 @@ const QUESTOES_BASE: any[] = [
 
   // ── INFORMÁTICA ─────────────────────────────────────────────────────────
 
-  { id: "i11", inedita: true, areaGrande: "Informática", assunto: "Planilhas eletrônicas", banca: "FGV (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "i11", inedita: true, areaGrande: "Informática", assunto: "Planilhas eletrônicas", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "Em uma planilha MS Excel 2016, a célula A1 contém o valor 127 e a célula B1 contém o valor 220. Qual das fórmulas a seguir calcula a média entre os dois valores e verifica se ela é maior que 170, exibindo 'ALTA' em caso verdadeiro e 'NORMAL' em caso falso?",
     alternativas: [
       "=SE(MÉDIA(A1;B1)>170;\"ALTA\";\"NORMAL\")",
@@ -2688,7 +2688,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 0,
     explicacao: "A fórmula correta combina a função MÉDIA (que calcula a média dos valores) com a função SE. A fórmula =SE(MÉDIA(A1;B1)>170;\"ALTA\";\"NORMAL\") calcula a média de 127 e 220 (= 173,5), verifica se é maior que 170 (verdadeiro) e exibe 'ALTA'. A alternativa B erra a precedência de operadores: A1+B1/2 = 127+110 = 237, não a média." },
 
-  { id: "i12", inedita: true, areaGrande: "Informática", assunto: "Planilhas eletrônicas", banca: "FGV (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "i12", inedita: true, areaGrande: "Informática", assunto: "Planilhas eletrônicas", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "João criou uma planilha no MS Excel 2016 com os seguintes dados:\n\nA1: 'Corrente' | B1: 5\nA2: 'Tensão' | B2: 220\nA3: 'Resistência' | B3: (vazio)\n\nPara calcular a resistência (R = V/I) na célula B3, João deve usar a fórmula:",
     alternativas: [
       "=B2*B1",
@@ -2699,7 +2699,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 2,
     explicacao: "Pela Lei de Ohm, R = V/I = 220/5 = 44Ω. No Excel, a divisão é representada pelo operador /. A fórmula =B2/B1 divide a tensão (B2=220) pela corrente (B1=5). As outras alternativas calculam grandezas erradas ou usam sintaxe inválida (DIVISÃO e ÷ não existem no Excel)." },
 
-  { id: "i13", inedita: true, areaGrande: "Informática", assunto: "Processador de texto", banca: "FGV (estilo)", ano: 2024, dificuldade: "Fácil",
+  { id: "i13", inedita: true, areaGrande: "Informática", assunto: "Processador de texto", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Fácil",
     enunciado: "No MS Word 2016, para inserir automaticamente a numeração de páginas no rodapé do documento, o usuário deve acessar:",
     alternativas: [
       "Guia 'Página Inicial' → Grupo 'Parágrafo' → 'Lista numerada'.",
@@ -2710,7 +2710,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 1,
     explicacao: "Para inserir numeração de página no Word, acessa-se a guia 'Inserir', grupo 'Cabeçalho e Rodapé', opção 'Número de Página'. Ali é possível escolher a posição (topo, rodapé, margem) e o formato da numeração — alternativa B." },
 
-  { id: "i14", inedita: true, areaGrande: "Informática", assunto: "Segurança da informação", banca: "FGV (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "i14", inedita: true, areaGrande: "Informática", assunto: "Segurança da informação", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "Um técnico recebeu um e-mail com o assunto 'Urgente: atualize seus dados bancários agora!' de um endereço semelhante ao de sua empresa, porém com domínio ligeiramente diferente. O link do e-mail levava a uma página com aparência idêntica ao portal interno. Esse tipo de ataque é conhecido como:",
     alternativas: [
       "Ransomware.",
@@ -2721,7 +2721,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 1,
     explicacao: "Phishing é o ataque em que o criminoso se passa por entidade legítima (banco, empresa) para enganar o usuário e obter credenciais ou dados confidenciais. Características típicas: urgência, domínio falso semelhante ao original, página falsa idêntica à real. Alternativa B." },
 
-  { id: "i15", inedita: true, areaGrande: "Informática", assunto: "Sistema operacional", banca: "FGV (estilo)", ano: 2024, dificuldade: "Fácil",
+  { id: "i15", inedita: true, areaGrande: "Informática", assunto: "Sistema operacional", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Fácil",
     enunciado: "No Windows 10, o atalho de teclado utilizado para copiar um arquivo selecionado é Ctrl+C e para colá-lo em outro local é Ctrl+V. Para desfazer a última ação realizada, o atalho é:",
     alternativas: [
       "Ctrl+D.",
@@ -2732,7 +2732,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 2,
     explicacao: "Ctrl+Z é o atalho padrão para 'Desfazer' (Undo) na maioria dos programas Windows. Ctrl+X é recortar. Ctrl+Y é refazer (Redo). Ctrl+A é selecionar tudo. Ctrl+D é excluir (em alguns contextos). Alternativa C." },
 
-  { id: "i16", inedita: true, areaGrande: "Informática", assunto: "Planilhas eletrônicas", banca: "FGV (estilo)", ano: 2024, dificuldade: "Difícil",
+  { id: "i16", inedita: true, areaGrande: "Informática", assunto: "Planilhas eletrônicas", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Difícil",
     enunciado: "Em uma planilha MS Excel, a fórmula =PROCV(\"Motor\";A1:C10;3;FALSO) busca o valor 'Motor' na primeira coluna do intervalo A1:C10 e retorna o valor da:",
     alternativas: [
       "Primeira coluna do intervalo onde 'Motor' foi encontrado.",
@@ -2743,7 +2743,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 2,
     explicacao: "A sintaxe de PROCV é: PROCV(valor_procurado; intervalo; número_da_coluna; [correspondência]). O argumento '3' indica a terceira coluna do intervalo (coluna C). FALSO indica correspondência exata. A fórmula retorna o valor da coluna C na linha onde 'Motor' for encontrado na coluna A. Alternativa C." },
 
-  { id: "i17", inedita: true, areaGrande: "Informática", assunto: "Redes de computadores", banca: "FGV (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "i17", inedita: true, areaGrande: "Informática", assunto: "Redes de computadores", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "Um técnico precisou acessar remotamente o computador de um colega para dar suporte. Para isso, utilizou um protocolo que permite a transmissão de tela e o controle remoto de forma criptografada. Esse protocolo é o:",
     alternativas: [
       "FTP.",
@@ -2754,7 +2754,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 2,
     explicacao: "SSH (Secure Shell) é o protocolo que permite acesso remoto a computadores de forma segura e criptografada. É amplamente usado para administração remota de servidores e sistemas. FTP é transferência de arquivos. SMTP e POP3 são protocolos de e-mail. HTTP é transferência web. Alternativa C." },
 
-  { id: "i18", inedita: true, areaGrande: "Informática", assunto: "Processador de texto", banca: "FGV (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "i18", inedita: true, areaGrande: "Informática", assunto: "Processador de texto", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "Analise as afirmativas sobre o MS Word 2016.\n\nI. O comando 'Ctrl+Shift+P' altera o tamanho da fonte selecionada.\nII. O 'Controle de alterações' registra inclusões, exclusões e formatações realizadas no documento.\nIII. A extensão padrão de arquivo ao salvar no Word 2016 é '.doc'.\nIV. O modo 'Layout da Web' mostra como o documento ficará ao ser impresso.\n\nEstá correto o que se afirma em:",
     alternativas: [
       "I e II, apenas.",
@@ -2765,7 +2765,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 1,
     explicacao: "Apenas II está correta: o Controle de Alterações registra todas as modificações no documento. I está errada: Ctrl+Shift+P abre o campo de tamanho de fonte mas não altera diretamente. III está errada: a extensão padrão do Word 2016 é '.docx', não '.doc'. IV está errada: 'Layout da Web' simula como o documento aparece no navegador, não na impressão — para impressão, usa-se 'Layout de Impressão'. Alternativa B." },
 
-  { id: "i19", inedita: true, areaGrande: "Informática", assunto: "Segurança da informação", banca: "FGV (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "i19", inedita: true, areaGrande: "Informática", assunto: "Segurança da informação", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "Um programa malicioso se instalou no computador de uma empresa e criptografou todos os arquivos, exigindo pagamento em criptomoeda para liberar o acesso. Esse tipo de malware é classificado como:",
     alternativas: [
       "Spyware.",
@@ -2776,7 +2776,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 2,
     explicacao: "Ransomware ('ransom' = resgate em inglês) é o malware que sequestra arquivos por criptografia e exige pagamento para restaurar o acesso. É um dos ataques mais graves ao ambiente corporativo. Spyware espiona o usuário. Adware exibe propagandas. Trojan se disfarça de programa legítimo. Rootkit oculta processos maliciosos. Alternativa C." },
 
-  { id: "i20", inedita: true, areaGrande: "Informática", assunto: "Conceitos básicos", banca: "FGV (estilo)", ano: 2024, dificuldade: "Fácil",
+  { id: "i20", inedita: true, areaGrande: "Informática", assunto: "Conceitos básicos", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Fácil",
     enunciado: "Considere as afirmativas sobre dispositivos de armazenamento.\n\nI. O HD (Hard Disk) armazena dados em discos magnéticos giratórios.\nII. O SSD (Solid State Drive) utiliza memória flash e não possui partes móveis.\nIII. O SSD é geralmente mais lento que o HD na leitura de dados.\nIV. O HD é mais suscetível a danos por impacto mecânico que o SSD.\n\nEstá correto o que se afirma em:",
     alternativas: [
       "I e II, apenas.",
@@ -2789,7 +2789,7 @@ const QUESTOES_BASE: any[] = [
 
   // ── LEGISLAÇÃO / NORMAS ─────────────────────────────────────────────────
 
-  { id: "leg7", inedita: true, areaGrande: "Legislação", assunto: "NR-10", banca: "FGV (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "leg7", inedita: true, areaGrande: "Legislação", assunto: "NR-10", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "De acordo com a NR-10, a tensão máxima que define o limite superior da classificação Extra Baixa Tensão (EBT) para corrente alternada é:",
     alternativas: [
       "12 V.",
@@ -2800,7 +2800,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 2,
     explicacao: "A NR-10 classifica as tensões como: EBT (Extra Baixa Tensão): até 50V CA ou 120V CC. BT (Baixa Tensão): acima de EBT até 1000V CA ou 1500V CC. AT (Alta Tensão): acima de 1000V CA ou 1500V CC. O limite da EBT para CA é 50V — alternativa C." },
 
-  { id: "leg8", inedita: true, areaGrande: "Legislação", assunto: "NR-10", banca: "FGV (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "leg8", inedita: true, areaGrande: "Legislação", assunto: "NR-10", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "Sobre o Procedimento de Bloqueio e Etiquetagem (LOTO — Lockout/Tagout) previsto na NR-10, analise as afirmativas.\n\nI. O bloqueio deve ser realizado com cadeado individual de cada trabalhador envolvido no serviço.\nII. Após aplicar o bloqueio, é dispensável verificar a ausência de tensão antes de iniciar o serviço.\nIII. A etiqueta de bloqueio deve conter o nome do responsável e o motivo do bloqueio.\nIV. O desbloqueio pode ser realizado por qualquer funcionário presente, independentemente de ter aplicado o bloqueio.\n\nEstá correto o que se afirma em:",
     alternativas: [
       "I e II, apenas.",
@@ -2811,7 +2811,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 1,
     explicacao: "I está correta: cada trabalhador aplica seu próprio cadeado. III está correta: a etiqueta deve identificar o responsável e o motivo. II está ERRADA: verificar ausência de tensão é etapa obrigatória ANTES de iniciar o serviço. IV está ERRADA: somente quem aplicou o bloqueio pode retirá-lo. Alternativa B." },
 
-  { id: "leg9", inedita: true, areaGrande: "Legislação", assunto: "NR-10", banca: "FGV (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "leg9", inedita: true, areaGrande: "Legislação", assunto: "NR-10", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "A carga horária mínima do Treinamento Básico para trabalhadores que interagem com instalações elétricas em Baixa Tensão, conforme a NR-10, é de:",
     alternativas: [
       "8 horas.",
@@ -2822,7 +2822,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 3,
     explicacao: "A NR-10 determina que o Treinamento Básico (habilitação para BT) deve ter carga horária mínima de 40 horas. O Treinamento Complementar para SEP (Sistemas Elétricos de Potência — AT) requer mais 40 horas adicionais. A reciclagem é obrigatória a cada 2 anos. Alternativa D." },
 
-  { id: "leg10", inedita: true, areaGrande: "Legislação", assunto: "NBR 5410", banca: "FGV (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "leg10", inedita: true, areaGrande: "Legislação", assunto: "NBR 5410", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "Conforme a NBR 5410, a seção mínima do condutor de fase em circuitos terminais de tomadas de uso geral (TUG) é:",
     alternativas: [
       "1,0 mm².",
@@ -2833,7 +2833,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 2,
     explicacao: "A NBR 5410 estabelece seções mínimas: circuitos de iluminação → 1,5mm². Circuitos de tomadas de uso geral (TUG) → 2,5mm². Circuitos de tomadas de uso específico (TUE) → seção conforme a carga. Condutor de proteção (PE) segue tabela própria. Alternativa C." },
 
-  { id: "leg11", inedita: true, areaGrande: "Legislação", assunto: "NR-6", banca: "FGV (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "leg11", inedita: true, areaGrande: "Legislação", assunto: "NR-6", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "As luvas de borracha isolante utilizadas por eletricistas são classificadas por classe de tensão. A Classe 0 é adequada para trabalhos em tensões de até:",
     alternativas: [
       "500 V.",
@@ -2844,7 +2844,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 1,
     explicacao: "Pelas normas ABNT NBR 10622 / IEC 60903: Classe 00: até 500V. Classe 0: até 1.000V. Classe 1: até 7.500V. Classe 2: até 17.000V. Classe 3: até 26.500V. Classe 4: até 36.000V. A Classe 0 protege até 1.000V — alternativa B." },
 
-  { id: "leg12", inedita: true, areaGrande: "Legislação", assunto: "NR-10", banca: "FGV (estilo)", ano: 2024, dificuldade: "Difícil",
+  { id: "leg12", inedita: true, areaGrande: "Legislação", assunto: "NR-10", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Difícil",
     enunciado: "Conforme a NR-10, o trabalho em instalações elétricas energizadas é considerado:",
     alternativas: [
       "Proibido em qualquer circunstância, devendo sempre ser realizado sem tensão.",
@@ -2855,7 +2855,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 3,
     explicacao: "A NR-10 estabelece que o trabalho sem tensão (desligado) é a REGRA. O trabalho energizado é a EXCEÇÃO, permitido somente quando tecnicamente inviável o desligamento, exigindo: justificativa técnica, Análise de Risco, Procedimento de Trabalho Específico (PTE) aprovado por profissional habilitado e equipe treinada. Alternativa D." },
 
-  { id: "leg13", inedita: true, areaGrande: "Legislação", assunto: "NBR 5419", banca: "FGV (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "leg13", inedita: true, areaGrande: "Legislação", assunto: "NBR 5419", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "A NBR 5419 trata da proteção de estruturas contra descargas atmosféricas (SPDA). Os Dispositivos de Proteção contra Surtos (DPS) instalados junto ao quadro de distribuição de uma edificação são classificados como:",
     alternativas: [
       "Tipo 1 — protegem contra descargas diretas.",
@@ -2866,7 +2866,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 1,
     explicacao: "Os DPS são classificados em: Tipo 1 (ou Classe I): instalados onde há SPDA, suportam descarga direta parcial. Tipo 2 (Classe II): instalados nos quadros de distribuição, protegem contra surtos induzidos. Tipo 3 (Classe III): instalados junto aos equipamentos sensíveis (computadores, inversores), última barreira. A questão pergunta sobre os do quadro de distribuição → Tipo 2 — alternativa B." },
 
-  { id: "leg14", inedita: true, areaGrande: "Legislação", assunto: "NR-10", banca: "FGV (estilo)", ano: 2024, dificuldade: "Difícil",
+  { id: "leg14", inedita: true, areaGrande: "Legislação", assunto: "NR-10", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Difícil",
     enunciado: "Sobre as medidas de controle dos riscos elétricos previstas na NR-10, assinale a afirmativa que apresenta a hierarquia correta, da medida prioritária para a última opção:",
     alternativas: [
       "EPI → Proteção Coletiva → Eliminação do Risco.",
@@ -2879,7 +2879,7 @@ const QUESTOES_BASE: any[] = [
 
   // ── CONHECIMENTOS ESPECÍFICOS — ELETROTÉCNICA ───────────────────────────
 
-  { id: "e286", inedita: true, areaGrande: "Eletrotécnica", assunto: "Circuitos CC", banca: "FGV (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "e286", inedita: true, areaGrande: "Eletrotécnica", assunto: "Circuitos CC", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "A figura representa um circuito de corrente contínua com uma fonte de 120 V e três resistores: R1 = 20Ω em série com o paralelo de R2 = 30Ω e R3 = 60Ω.\n\nO circuito equivalente de Thévenin visto pelos terminais A-B (após R1) é formado por:",
     alternativas: [
       "Vth = 120 V e Rth = 80 Ω.",
@@ -2890,7 +2890,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 3,
     explicacao: "R2//R3 = (30×60)/(30+60) = 1800/90 = 20Ω. Vth = 120 × 20/(20+20) = 120 × 0,5 = 80V (divisor de tensão entre R1 e R2//R3... aguarde: Rth (com fonte curto) = R1 // (R2//R3) não. Rth visto de A-B com fonte curto: Rth = R1 em série com (R2//R3 — não, A-B está após R1). Rth = R1 em paralelo com o caminho via fonte + R2//R3. Simplificando: Rth = R1 = 20Ω com a fonte curto, e Vth = 120×(R2//R3)/(R1+R2//R3) = 80V. Alternativa D." },
 
-  { id: "e287", inedita: true, areaGrande: "Eletrotécnica", assunto: "Corrente alternada", banca: "FGV (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "e287", inedita: true, areaGrande: "Eletrotécnica", assunto: "Corrente alternada", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "Um circuito elétrico de corrente alternada monofásico possui resistência de 30Ω e reatância indutiva de 40Ω. A impedância do circuito e o fator de potência são, respectivamente:",
     alternativas: [
       "50Ω e FP = 0,8.",
@@ -2901,7 +2901,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 0,
     explicacao: "|Z| = √(R² + XL²) = √(30² + 40²) = √(900 + 1600) = √2500 = 50Ω. FP = cos φ = R/|Z| = 30/50 = 0,6... Aguarde: 30/50 = 0,6, não 0,8. Rechecando: A diz FP=0,8, o que seria R/Z=40/50=0,8 — isso seria se R=40 e XL=30. Com R=30 e XL=40: FP=30/50=0,6. Alternativa C (50Ω e FP=0,6) está correta." },
 
-  { id: "e288", inedita: true, areaGrande: "Eletrotécnica", assunto: "Potência em CA", banca: "FGV (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "e288", inedita: true, areaGrande: "Eletrotécnica", assunto: "Potência em CA", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "Uma carga industrial trifásica consome 150 kW com fator de potência de 0,75 indutivo. A potência reativa consumida por essa carga é igual a:",
     alternativas: [
       "100 kvar.",
@@ -2912,7 +2912,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 1,
     explicacao: "FP = 0,75 → φ = arccos(0,75) = 41,4°. sen φ = √(1 - 0,75²) = √(1 - 0,5625) = √0,4375 ≈ 0,661. Q = P × tan φ = 150 × (0,661/0,75) = 150 × 0,882 ≈ 132,3 kvar. Hmm — alternativa C parece correta: tan φ = Q/P → Q = P × tan φ. tan(41,4°) ≈ 0,8819. Q = 150 × 0,8819 ≈ 132,3 kvar. Alternativa C." },
 
-  { id: "e289", inedita: true, areaGrande: "Eletrotécnica", assunto: "Transformadores", banca: "FGV (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "e289", inedita: true, areaGrande: "Eletrotécnica", assunto: "Transformadores", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "Um transformador monofásico ideal tem relação de transformação a = 10. O primário é alimentado por 2200 V e a carga no secundário consome 5 A. A corrente no primário e a tensão no secundário são, respectivamente:",
     alternativas: [
       "5 A e 220 V.",
@@ -2923,7 +2923,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 2,
     explicacao: "Com a = N1/N2 = V1/V2 = I2/I1. V2 = V1/a = 2200/10 = 220V. I1 = I2/a = 5/10 = 0,5A. Corrente no primário: 0,5A. Tensão no secundário: 220V. Alternativa C." },
 
-  { id: "e290", inedita: true, areaGrande: "Eletrotécnica", assunto: "Motores elétricos", banca: "FGV (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "e290", inedita: true, areaGrande: "Eletrotécnica", assunto: "Motores elétricos", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "Um motor de indução trifásico de 4 polos é alimentado por rede de 60 Hz. A velocidade síncrona e a velocidade real do rotor, considerando escorregamento de 4%, são respectivamente:",
     alternativas: [
       "3600 rpm e 3456 rpm.",
@@ -2934,7 +2934,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 1,
     explicacao: "Ns = 120×f/p = 120×60/4 = 1800 rpm. Nr = Ns×(1−s) = 1800×(1−0,04) = 1800×0,96 = 1728 rpm. Alternativa B." },
 
-  { id: "e291", inedita: true, areaGrande: "Eletrotécnica", assunto: "Sistemas trifásicos", banca: "FGV (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "e291", inedita: true, areaGrande: "Eletrotécnica", assunto: "Sistemas trifásicos", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "Um motor trifásico equilibrado, ligado em estrela, é alimentado por tensão de linha de 380 V e consome 30 kW com fator de potência de 0,85. A corrente de linha é aproximadamente:",
     alternativas: [
       "42,6 A.",
@@ -2945,7 +2945,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 0,
     explicacao: "P = √3 × VL × IL × cos φ → IL = P / (√3 × VL × FP) = 30.000 / (1,732 × 380 × 0,85) = 30.000 / 559,1 ≈ 53,7 A. Hmm — resultado dá 53,7A → alternativa B. Rechecando: √3×380 = 658,2. 658,2×0,85 = 559,5. 30000/559,5 ≈ 53,6A. Alternativa B." },
 
-  { id: "e292", inedita: true, areaGrande: "Eletrotécnica", assunto: "Proteção de circuitos", banca: "FGV (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "e292", inedita: true, areaGrande: "Eletrotécnica", assunto: "Proteção de circuitos", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "A respeito dos disjuntores termomagnéticos de curva D, analise as afirmativas.\n\nI. A curva D atua no disparo magnético instantâneo entre 10 e 20 vezes a corrente nominal.\nII. A curva D é indicada para proteção de cargas resistivas como aquecedores e lâmpadas incandescentes.\nIII. A curva D é recomendada para motores elétricos e transformadores, que possuem alta corrente de partida.\nIV. A curva B atua no disparo magnético entre 3 e 5 vezes a corrente nominal.\n\nEstão corretas:",
     alternativas: [
       "I e II, apenas.",
@@ -2956,7 +2956,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 2,
     explicacao: "I: Correto — curva D: 10 a 20×In (alguns autores citam até 20×In). III: Correto — curva D é para cargas com alta corrente de partida (motores, transformadores). IV: Correto — curva B atua entre 3 e 5×In (para cargas resistivas sensíveis). II: ERRADA — cargas resistivas (aquecedores, lâmpadas) usam curva B ou C, não D. Alternativa C." },
 
-  { id: "e293", inedita: true, areaGrande: "Eletrotécnica", assunto: "Comandos elétricos", banca: "FGV (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "e293", inedita: true, areaGrande: "Eletrotécnica", assunto: "Comandos elétricos", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "Em um circuito de comando de motor elétrico com retenção (self-holding), o contato auxiliar do contator principal é ligado em paralelo com o botão de partida (NA). A função desse contato auxiliar é:",
     alternativas: [
       "Proteger o motor contra sobrecarga.",
@@ -2967,7 +2967,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 1,
     explicacao: "O contato auxiliar NA do contator, em paralelo com o botão de partida, forma o circuito de retenção (self-holding): ao pressionar o botão, o contator é energizado; ao liberar, o contato auxiliar já fechado mantém o contator energizado. O desligamento só ocorre ao pressionar o botão de parada (NF). Alternativa B." },
 
-  { id: "e294", inedita: true, areaGrande: "Eletrotécnica", assunto: "Instalações elétricas BT", banca: "FGV (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "e294", inedita: true, areaGrande: "Eletrotécnica", assunto: "Instalações elétricas BT", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "Em uma instalação elétrica de baixa tensão, a queda de tensão máxima admissível segundo a NBR 5410, desde o ponto de entrega até o ponto de utilização mais desfavorável, é:",
     alternativas: [
       "2%.",
@@ -2978,7 +2978,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 3,
     explicacao: "A NBR 5410 limita a queda de tensão total em 7%: máximo de 4% nos alimentadores e 3% nos circuitos terminais. A soma total não pode exceder 7% da tensão nominal no ponto de entrega. Alternativa D." },
 
-  { id: "e295", inedita: true, areaGrande: "Eletrotécnica", assunto: "Sistemas trifásicos", banca: "FGV (estilo)", ano: 2024, dificuldade: "Difícil",
+  { id: "e295", inedita: true, areaGrande: "Eletrotécnica", assunto: "Sistemas trifásicos", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Difícil",
     enunciado: "Um sistema trifásico equilibrado 380/220 V possui uma carga de 90 kW com FP = 0,9 indutivo. A corrente de neutro nesse sistema estrela equilibrado é:",
     alternativas: [
       "Igual à corrente de linha.",
@@ -2989,7 +2989,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 2,
     explicacao: "Em sistema trifásico EQUILIBRADO (cargas iguais nas três fases), a soma fasorial das três correntes de fase é zero, pois estão defasadas 120° entre si. Portanto, a corrente de neutro é zero — daí a possibilidade de usar sistemas a 3 fios sem neutro em cargas equilibradas. Alternativa C." },
 
-  { id: "e296", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eletromagnetismo", banca: "FGV (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "e296", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eletromagnetismo", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "A respeito da indução eletromagnética, assinale a afirmativa correta.",
     alternativas: [
       "Um campo magnético constante induz corrente constante em um condutor próximo.",
@@ -3000,7 +3000,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 1,
     explicacao: "A Lei de Faraday estabelece que e = N × ΔΦ/Δt — a fem induzida é proporcional ao número de espiras (N) e à taxa de variação do fluxo. A está errada: campo constante NÃO induz corrente. C está errada: a Lei de Lenz diz que a corrente induzida SE OPÕE à variação (sentido contrário). D está errada: qualquer condutor pode ter corrente induzida. E está errada: a fem depende justamente da taxa de variação. Alternativa B." },
 
-  { id: "e297", inedita: true, areaGrande: "Eletrotécnica", assunto: "Máquinas elétricas", banca: "FGV (estilo)", ano: 2024, dificuldade: "Difícil",
+  { id: "e297", inedita: true, areaGrande: "Eletrotécnica", assunto: "Máquinas elétricas", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Difícil",
     enunciado: "Um motor de corrente contínua do tipo série apresenta as seguintes características quando operado sem carga: torque muito baixo e velocidade muito alta, podendo atingir velocidades perigosas. Isso ocorre porque:",
     alternativas: [
       "Sem carga, a corrente de armadura é nula, anulando o fluxo de campo.",
@@ -3011,7 +3011,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 1,
     explicacao: "No motor CC série, o enrolamento de campo está em série com a armadura. Sem carga, a corrente de armadura (Ia) é mínima. Como o campo é série, Φ ∝ Ia — o fluxo também é mínimo. A velocidade n ∝ (V − Ia×Ra)/Φ: com Φ tendendo a zero, n tende ao infinito. Por isso o motor série NUNCA deve operar sem carga — pode se destruir. Alternativa B." },
 
-  { id: "e298", inedita: true, areaGrande: "Eletrotécnica", assunto: "Partida estrela-triângulo", banca: "FGV (estilo)", ano: 2024, dificuldade: "Difícil",
+  { id: "e298", inedita: true, areaGrande: "Eletrotécnica", assunto: "Partida estrela-triângulo", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Difícil",
     enunciado: "Um motor trifásico de 22 kW, 380 V, FP = 0,88 e rendimento de 90% possui corrente de partida direta de 7 vezes a corrente nominal. Utilizando partida estrela-triângulo, a corrente de partida é:",
     alternativas: [
       "7 vezes a nominal.",
@@ -3022,7 +3022,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 3,
     explicacao: "Na partida estrela-triângulo, a tensão aplicada ao motor na partida é VL/√3 (conexão estrela). A corrente de partida é reduzida para 1/3 da corrente de partida direta (não é 1/√3 da corrente — é 1/3 porque tanto a tensão quanto a corrente de fase são reduzidas). Se a direta é 7×In, a Y-Δ é (7/3)×In ≈ 2,33×In. As alternativas C e D descrevem o mesmo resultado (1/3 × 7 = 2,33). Alternativa D (ou C, dependendo da formulação). A resposta mais precisa é D: 'é 1/3 da corrente de partida direta'." },
 
-  { id: "e299", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eletrônica básica", banca: "FGV (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "e299", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eletrônica básica", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "A respeito dos transistores bipolares de junção (BJT), assinale a afirmativa correta.",
     alternativas: [
       "O transistor NPN conduz quando a junção base-emissor é polarizada reversamente.",
@@ -3033,7 +3033,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 2,
     explicacao: "A configuração de emissor comum é a mais usada por apresentar ganho de tensão E ganho de corrente simultaneamente, resultando em alto ganho de potência. A: NPN conduz com polarização DIRETA base-emissor. B: Saturação = chave FECHADA (condução máxima). D: Base comum tem ganho de corrente próximo de 1 (mas alto ganho de tensão). E: Corte = chave aberta (não conduz). Alternativa C." },
 
-  { id: "e300", inedita: true, areaGrande: "Eletrotécnica", assunto: "Instalações elétricas BT", banca: "FGV (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "e300", inedita: true, areaGrande: "Eletrotécnica", assunto: "Instalações elétricas BT", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "Em uma instalação elétrica predial, o Dispositivo Diferencial Residual (DR) de alta sensibilidade (≤ 30 mA) é obrigatório segundo a NBR 5410 em circuitos que alimentam tomadas nos seguintes locais:",
     alternativas: [
       "Sala de estar e escritório.",
@@ -3044,7 +3044,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 1,
     explicacao: "A NBR 5410 exige DR de alta sensibilidade (≤30mA) nos circuitos de tomadas em: banheiros, cozinhas, áreas de serviço, garagens, áreas externas e locais com chuveiro/banheira. O DR protege contra choques elétricos nesses ambientes úmidos ou com risco aumentado de contato com a eletricidade. Alternativa B." },
 
-  { id: "e301", inedita: true, areaGrande: "Eletrotécnica", assunto: "Aterramento", banca: "FGV (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "e301", inedita: true, areaGrande: "Eletrotécnica", assunto: "Aterramento", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "No sistema de aterramento TN-S, as letras T, N e S indicam, respectivamente:",
     alternativas: [
       "Terra, Neutro e Série.",
@@ -3055,7 +3055,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 1,
     explicacao: "Na nomenclatura IEC/ABNT: T = aterramento direto de um ponto (terra da fonte). N = massas conectadas ao neutro (condutor de neutro). S = Separated (separado) — o condutor de proteção (PE) e o neutro (N) são condutores separados ao longo de toda a instalação. No TN-C (Combined), PE e N são combinados num único condutor (PEN). Alternativa B." },
 
-  { id: "e302", inedita: true, areaGrande: "Eletrotécnica", assunto: "Medidas elétricas", banca: "FGV (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "e302", inedita: true, areaGrande: "Eletrotécnica", assunto: "Medidas elétricas", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "Um técnico mediu a resistência de isolamento de um cabo com um megôhmetro e obteve 50 MΩ. Sabe-se que o cabo tem tensão nominal de 1000 V. Analise as afirmativas.\n\nI. O valor de 50 MΩ é aceitável para um cabo de 1000 V.\nII. O megôhmetro aplica alta tensão CC para medir a resistência de isolamento.\nIII. O megôhmetro deve ser usado com o cabo energizado para obter leitura correta.\n\nEstá correto o que se afirma em:",
     alternativas: [
       "I, apenas.",
@@ -3066,7 +3066,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 2,
     explicacao: "I: Correto — critério simplificado: R_iso ≥ 1MΩ por kV de tensão nominal = 1MΩ para 1kV. 50MΩ >> 1MΩ, portanto aceitável. II: Correto — o megôhmetro (Megger) aplica alta tensão CC (500V, 1000V, 2500V, 5000V) para medir resistências muito altas. III: ERRADA — o cabo deve estar DESLIGADO e isolado do circuito; medir com o cabo energizado é extremamente perigoso e danifica o equipamento. Alternativa C." },
 
-  { id: "e303", inedita: true, areaGrande: "Eletrotécnica", assunto: "Qualidade de energia", banca: "FGV (estilo)", ano: 2024, dificuldade: "Difícil",
+  { id: "e303", inedita: true, areaGrande: "Eletrotécnica", assunto: "Qualidade de energia", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Difícil",
     enunciado: "Ao analisar a forma de onda da corrente de alimentação de um retificador trifásico, o técnico observou componentes de frequência em 60 Hz, 180 Hz, 300 Hz e 420 Hz. As componentes de 180 Hz, 300 Hz e 420 Hz são denominadas:",
     alternativas: [
       "Sub-harmônicos da fundamental.",
@@ -3077,7 +3077,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 2,
     explicacao: "Harmônicos são múltiplos inteiros da frequência fundamental (60 Hz). 180 Hz = 3×60 → 3° harmônico. 300 Hz = 5×60 → 5° harmônico. 420 Hz = 7×60 → 7° harmônico. São características típicas de cargas não-lineares como retificadores. Sub-harmônicos são frações da fundamental. Inter-harmônicos são não-múltiplos inteiros. Alternativa C." },
 
-  { id: "e304", inedita: true, areaGrande: "Eletrotécnica", assunto: "Fator de potência", banca: "FGV (estilo)", ano: 2024, dificuldade: "Difícil",
+  { id: "e304", inedita: true, areaGrande: "Eletrotécnica", assunto: "Fator de potência", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Difícil",
     enunciado: "Uma instalação industrial possui carga de 200 kW com FP = 0,6 indutivo. Para elevar o FP para 0,9, deve-se instalar um banco de capacitores com potência reativa de aproximadamente:",
     alternativas: [
       "80 kvar.",
@@ -3088,7 +3088,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 3,
     explicacao: "FP1=0,6 → φ1=53,13° → tan φ1 = 0,8/0,6 = 4/3 ≈ 1,333. FP2=0,9 → φ2=25,84° → tan φ2 = sin(25,84°)/0,9 ≈ 0,436/0,9 ≈ 0,484. Qc = P × (tan φ1 − tan φ2) = 200 × (1,333 − 0,484) = 200 × 0,849 ≈ 170 kvar. Alternativa C." },
 
-  { id: "e305", inedita: true, areaGrande: "Eletrotécnica", assunto: "Automação industrial", banca: "FGV (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "e305", inedita: true, areaGrande: "Eletrotécnica", assunto: "Automação industrial", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "Em uma lógica de comando programada em Ladder (diagrama de contatos) em um CLP, um contato NA (Normalmente Aberto) de uma botoeira física está em série com a bobina de uma saída digital. Analise as afirmativas.\n\nI. Quando a botoeira física está pressionada, o contato NA é fechado no Ladder e a saída é ativada.\nII. O estado 'normalmente aberto' do contato no Ladder reflete o estado real da botoeira sem atuação.\nIII. Para realizar a função de intertravamento, usa-se um contato NF de uma variável auxiliar em série.\nIV. O tempo de ciclo do CLP não afeta a resposta do programa Ladder.\n\nEstá correto o que se afirma em:",
     alternativas: [
       "I e II, apenas.",
