@@ -41,571 +41,6 @@ export interface Area {
 }
 
 export const AREAS: Area[] = [
-  {
-    slug: "eletrotecnica",
-    nome: "Eletrotécnica",
-    nivel: "Técnico",
-    descricao: "Fundamentos de circuitos elétricos, máquinas e instalações — base para concursos técnicos (Petrobras, Eletrobras, transmissoras e distribuidoras).",
-    modulos: [
-      {
-        slug: "fundamentos-eletricidade",
-        titulo: "Módulo 1 — Fundamentos de Eletricidade",
-        descricao: "Grandezas elétricas básicas: tensão, corrente, resistência e potência — com fórmulas e simulação interativa.",
-        bloco: "Bloco I",
-        paginas: [
-          {
-            titulo: "1.1 — O que é corrente elétrica",
-            conteudo: [
-              "A corrente elétrica é o movimento ordenado de cargas elétricas (elétrons livres) através de um condutor, provocado por uma diferença de potencial entre dois pontos.",
-              "Sua unidade de medida é o Ampère (A), e o instrumento usado para medi-la é o amperímetro, conectado em série com o circuito.",
-              "Formalmente, a corrente é definida como a taxa de variação de carga elétrica (Q, em Coulombs) ao longo do tempo:",
-            ],
-            equacoes: [
-              { latex: "I = \\dfrac{\\Delta Q}{\\Delta t}", legenda: "I em Ampères (A), Q em Coulombs (C), t em segundos (s)" },
-            ],
-          },
-          {
-            titulo: "1.2 — Tensão elétrica (diferença de potencial)",
-            conteudo: [
-              "A tensão elétrica, também chamada de diferença de potencial (ddp) ou voltagem, é a grandeza que impulsiona os elétrons através de um circuito.",
-              "É medida em Volts (V), usando um voltímetro conectado em paralelo com o trecho do circuito que se quer medir.",
-              "Em termos energéticos, a tensão representa o trabalho realizado por unidade de carga para deslocá-la entre dois pontos:",
-            ],
-            equacoes: [
-              { latex: "V = \\dfrac{W}{Q}", legenda: "V em Volts (V), W (trabalho/energia) em Joules (J), Q em Coulombs (C)" },
-            ],
-          },
-          {
-            titulo: "1.3 — Resistência elétrica e a Lei de Ohm",
-            conteudo: [
-              "Todo material oferece uma certa oposição à passagem da corrente elétrica, chamada de resistência elétrica, medida em Ohms (Ω).",
-              "A Lei de Ohm relaciona as três grandezas fundamentais:",
-            ],
-            equacoes: [
-              { latex: "V = R \\times I" },
-              { latex: "I = \\dfrac{V}{R}", legenda: "forma usada para calcular a corrente" },
-              { latex: "R = \\dfrac{V}{I}", legenda: "forma usada para calcular a resistência" },
-            ],
-            animacao: "lei-de-ohm",
-          },
-          {
-            titulo: "1.4 — Resistência de um condutor (2ª Lei de Ohm)",
-            conteudo: [
-              "A resistência de um fio condutor depende do material (resistividade ρ), do seu comprimento (L) e da área da seção transversal (A):",
-            ],
-            equacoes: [
-              { latex: "R = \\rho \\cdot \\dfrac{L}{A}", legenda: "ρ em Ω·m, L em metros, A em m²" },
-            ],
-            conteudo2: [
-              "Quanto mais longo o fio, maior a resistência; quanto mais grosso (maior área), menor a resistência — é por isso que cabos de seção maior são usados em circuitos de maior corrente.",
-            ],
-          },
-          {
-            titulo: "1.5 — Potência elétrica",
-            conteudo: [
-              "A potência elétrica representa a taxa de conversão de energia elétrica em outra forma de energia (calor, luz, movimento), por unidade de tempo.",
-            ],
-            equacoes: [
-              { latex: "P = V \\times I" },
-              { latex: "P = I^2 \\times R", legenda: "substituindo V = R×I" },
-              { latex: "P = \\dfrac{V^2}{R}", legenda: "substituindo I = V/R" },
-            ],
-            conteudo2: [
-              "Essas três formas da fórmula de potência são frequentemente cobradas em concursos — vale memorizar todas as variações e saber transitar entre elas.",
-            ],
-          },
-          {
-            titulo: "1.6 — Energia elétrica consumida",
-            conteudo: [
-              "A energia elétrica é a potência multiplicada pelo tempo de uso — é o que a concessionária efetivamente cobra na conta de luz, em kWh:",
-            ],
-            equacoes: [
-              { latex: "E = P \\times t", legenda: "E em Wh (ou kWh se P estiver em kW e t em horas)" },
-            ],
-            conteudo2: [
-              "Exemplo de prova: um chuveiro de 5500W ligado por 0,5h consome E = 5500 × 0,5 = 2750 Wh = 2,75 kWh.",
-            ],
-          },
-          {
-            titulo: "1.7 — Associação de resistores",
-            conteudo: ["Em série: a corrente é a mesma em todos os resistores, e a resistência equivalente é a soma simples:"],
-            equacoes: [
-              { latex: "R_{eq} = R_1 + R_2 + R_3 + \\dots" },
-            ],
-            conteudo2: [
-              "Em paralelo: a tensão é a mesma em todos os resistores, e o inverso da resistência equivalente é a soma dos inversos:",
-            ],
-          },
-          {
-            titulo: "1.8 — Associação em paralelo (continuação)",
-            conteudo: [],
-            equacoes: [
-              { latex: "\\dfrac{1}{R_{eq}} = \\dfrac{1}{R_1} + \\dfrac{1}{R_2} + \\dfrac{1}{R_3} + \\dots" },
-              { latex: "R_{eq} = \\dfrac{R_1 \\times R_2}{R_1 + R_2}", legenda: "fórmula direta para apenas 2 resistores em paralelo" },
-            ],
-            conteudo2: [
-              "Pegadinha comum de prova: associar incorretamente as fórmulas — lembre-se que em paralelo a resistência equivalente é sempre MENOR que a menor resistência individual do circuito.",
-            ],
-          },
-        ],
-      },
-      {
-        slug: "diagramas-e-ca",
-        titulo: "Módulo 2 — Diagramas, Corrente Alternada e Trifásico",
-        descricao: "Simbologia, diagramas unifilares/trifilares, circuitos CA, potência e sistemas trifásicos.",
-        bloco: "Bloco I",
-        paginas: [
-          {
-            titulo: "2.1 — Simbologia elétrica básica",
-            conteudo: [
-              "Antes de ler qualquer diagrama, é preciso reconhecer os símbolos padronizados dos principais componentes. Eles são definidos por normas de simbologia gráfica (no Brasil, a ABNT NBR 5444) e são praticamente universais entre fabricantes e projetistas.",
-              "Os principais símbolos que você vai encontrar constantemente em provas e em campo:",
-              "• Resistor: um retângulo (padrão IEC/ABNT) ou um zigue-zague (padrão americano, ainda comum em livros)",
-              "• Capacitor: duas linhas paralelas, com uma curva se for capacitor eletrolítico (polarizado)",
-              "• Indutor (bobina): uma série de semicírculos ou espiras desenhadas",
-              "• Fonte de tensão CC: símbolo com traço longo (+) e traço curto (−)",
-              "• Disjuntor: um interruptor com uma marcação diagonal de \"X\" ou um pequeno retângulo cruzado",
-              "• Contator e relé: um retângulo (bobina) e pares de linhas paralelas (contatos), que se abrem ou fecham",
-              "• Motor: um círculo com a letra M dentro; gerador: círculo com G",
-            ],
-          },
-          {
-            titulo: "2.2 — Diagrama unifilar, multifilar e trifilar",
-            conteudo: [
-              "Um mesmo circuito pode ser representado de formas diferentes, dependendo do nível de detalhe que se quer mostrar:",
-              "• Diagrama unifilar: representa todas as fases de um circuito trifásico com uma única linha, simplificando a visualização. É o mais usado em projetos de instalações e subestações, justamente porque dá uma visão geral sem poluir o desenho com repetições.",
-              "• Diagrama multifilar (ou trifilar, no caso de 3 fases): mostra cada condutor (cada fase, neutro e terra) com sua própria linha. É mais detalhado e usado quando se precisa mostrar exatamente como cada fio é conectado fisicamente — por exemplo, em diagramas de comando e force de quadros elétricos.",
-              "Dica de prova: se a questão mencionar \"visão geral da distribuição de energia de uma subestação\", pense em unifilar. Se mencionar \"ligação física, fio a fio, de um motor\", pense em multifilar/trifilar.",
-            ],
-          },
-          {
-            titulo: "2.3 — Esquemas de acionamento e comando",
-            conteudo: [
-              "Os diagramas de comando elétrico (também chamados de diagramas de força e comando) descrevem como um motor ou equipamento é ligado, desligado e protegido.",
-              "Componentes típicos de um esquema de comando:",
-              "• Botoeira (botão pulsador): aciona manualmente um circuito — geralmente \"liga\" (NA — normalmente aberto) e \"desliga\" (NF — normalmente fechado)",
-              "• Contator: uma \"chave\" eletromagnética que liga/desliga o circuito de força a partir de um sinal de comando de baixa potência",
-              "• Relé térmico: protege o motor contra sobrecarga, monitorando a corrente e desarmando o circuito se ela ficar alta por tempo prolongado",
-              "• Sinalizadores luminosos: indicam visualmente o estado do sistema (ligado, desligado, em falha) — cores padronizadas (vermelho geralmente indica alarme/parada, verde indica funcionamento normal)",
-              "Em provas, é comum pedir para identificar, num diagrama de comando real, qual elemento é o quê — então a prática de reconhecer esses símbolos vale muito.",
-            ],
-          },
-          {
-            titulo: "2.4 — O que é corrente alternada (CA)",
-            conteudo: [
-              "Diferente da corrente contínua (CC), que mantém sempre o mesmo sentido e valor, a corrente alternada varia ao longo do tempo seguindo uma forma de onda — na grande maioria dos sistemas de energia, essa forma é senoidal.",
-              "A tensão alternada senoidal é descrita matematicamente por:",
-            ],
-            equacoes: [
-              { latex: "v(t) = V_{m} \\sin(\\omega t + \\varphi)", legenda: "Vm = tensão de pico, ω = frequência angular, φ = ângulo de fase" },
-              { latex: "\\omega = 2\\pi f", legenda: "relação entre frequência angular (rad/s) e frequência (Hz)" },
-            ],
-            conteudo2: [
-              "No Brasil, a frequência da rede é de 60 Hz — ou seja, a tensão completa 60 ciclos por segundo. Em parte da Europa e outros países, é 50 Hz.",
-            ],
-            dicas: [
-              { gatilho: "ver a forma de onda senoidal", titulo: "Tensão senoidal", tipo: "senoide-fase",
-                explicacao: "A curva azul (V) mostra como a tensão sobe e desce ciclicamente. Em circuitos puramente resistivos, a corrente (vermelha) acompanha exatamente o mesmo formato, sem atraso." },
-            ],
-          },
-          {
-            titulo: "2.5 — Valor de pico e valor eficaz (RMS)",
-            conteudo: [
-              "O valor de pico (Vm) é o valor máximo que a onda atinge. Mas na prática, quando falamos da \"tensão da rede\" (127V, 220V, 380V), estamos falando do valor eficaz — também chamado de RMS (Root Mean Square).",
-              "O valor eficaz é o valor de uma tensão/corrente contínua equivalente que produziria o mesmo efeito de potência (mesmo aquecimento num resistor) que a onda alternada real.",
-            ],
-            equacoes: [
-              { latex: "V_{rms} = \\dfrac{V_m}{\\sqrt{2}} \\approx 0{,}707 \\, V_m" },
-            ],
-            conteudo2: [
-              "Exemplo de prova: uma tensão de pico de 311V corresponde a Vrms = 311/√2 ≈ 220V — exatamente a tensão de fase usual no Brasil. Esse cálculo (311V de pico ⇄ 220V eficaz) é extremamente recorrente em provas.",
-            ],
-          },
-          {
-            titulo: "2.6 — Defasagem: indutores atrasam a corrente",
-            conteudo: [
-              "Em circuitos puramente resistivos, tensão e corrente estão em fase (sobem e descem juntas). Mas quando há indutância no circuito (como em motores e transformadores), a corrente fica atrasada em relação à tensão.",
-              "Esse comportamento é descrito pela reatância indutiva:",
-            ],
-            equacoes: [
-              { latex: "X_L = \\omega L = 2\\pi f L", legenda: "XL em Ohms, L = indutância em Henry (H)" },
-            ],
-            conteudo2: [
-              "Quanto maior a indutância ou a frequência, maior a oposição à variação da corrente — e maior o atraso de fase. No caso ideal de um indutor puro, esse atraso é de 90°.",
-            ],
-            dicas: [
-              { gatilho: "ver o atraso da corrente", titulo: "Corrente atrasada (carga indutiva)", tipo: "atraso-indutivo",
-                explicacao: "A corrente (vermelha) atinge seu pico depois da tensão (azul) — esse atraso é típico de motores, transformadores e qualquer carga com bobinas." },
-            ],
-          },
-          {
-            titulo: "2.7 — Defasagem: capacitores avançam a corrente",
-            conteudo: [
-              "O comportamento oposto ocorre em circuitos capacitivos: a corrente fica adiantada em relação à tensão. A oposição oferecida por um capacitor à corrente alternada é a reatância capacitiva:",
-            ],
-            equacoes: [
-              { latex: "X_C = \\dfrac{1}{\\omega C} = \\dfrac{1}{2\\pi f C}", legenda: "XC em Ohms, C = capacitância em Farad (F)" },
-            ],
-            conteudo2: [
-              "Note que XC é inversamente proporcional à frequência — diferente de XL, que é diretamente proporcional. Essa relação inversa é frequentemente cobrada em forma de questão conceitual (\"o que acontece com a reatância capacitiva se a frequência dobrar?\" — resposta: ela cai à metade).",
-            ],
-            dicas: [
-              { gatilho: "ver o avanço da corrente", titulo: "Corrente adiantada (carga capacitiva)", tipo: "avanco-capacitivo",
-                explicacao: "A corrente (vermelha) atinge seu pico antes da tensão (azul) — efeito típico de bancos de capacitores e cargas capacitivas." },
-            ],
-          },
-          {
-            titulo: "2.8 — Potência ativa, reativa e aparente",
-            conteudo: [
-              "Em circuitos de corrente alternada com cargas reativas (indutivas ou capacitivas), surgem três tipos de potência:",
-              "• Potência ativa (P): a potência que realmente realiza trabalho útil (gira motores, gera luz, aquece resistências). Medida em Watts (W).",
-              "• Potência reativa (Q): associada à energia armazenada e devolvida pelos campos elétrico/magnético de capacitores e indutores — não realiza trabalho útil, mas é necessária para o funcionamento de motores e transformadores. Medida em Volt-Ampère-Reativo (VAr).",
-              "• Potência aparente (S): a potência total \"vista\" pela rede, resultado da combinação vetorial de P e Q. Medida em Volt-Ampère (VA).",
-            ],
-            equacoes: [
-              { latex: "P = V \\, I \\cos(\\varphi)", legenda: "potência ativa" },
-              { latex: "Q = V \\, I \\sin(\\varphi)", legenda: "potência reativa" },
-              { latex: "S = V \\, I", legenda: "potência aparente" },
-            ],
-          },
-          {
-            titulo: "2.9 — O triângulo de potências",
-            conteudo: [
-              "As três potências se relacionam geometricamente como um triângulo retângulo, onde P e Q são os catetos e S é a hipotenusa:",
-            ],
-            equacoes: [
-              { latex: "S^2 = P^2 + Q^2", legenda: "Teorema de Pitágoras aplicado às potências" },
-              { latex: "S = \\sqrt{P^2 + Q^2}" },
-            ],
-            dicas: [
-              { gatilho: "ver o triângulo de potências", titulo: "Triângulo de potências", tipo: "triangulo-potencias",
-                explicacao: "P (potência ativa) e Q (reativa) são os catetos; S (aparente) é a hipotenusa. O ângulo entre P e S é o mesmo ângulo de defasagem (φ) entre tensão e corrente." },
-            ],
-          },
-          {
-            titulo: "2.10 — Fator de potência",
-            conteudo: [
-              "O fator de potência (FP) é a relação entre a potência ativa e a potência aparente — indica o quão \"eficientemente\" a energia fornecida está sendo convertida em trabalho útil.",
-            ],
-            equacoes: [
-              { latex: "FP = \\cos(\\varphi) = \\dfrac{P}{S}" },
-            ],
-            conteudo2: [
-              "FP = 1 (cargas puramente resistivas, como chuveiros e lâmpadas incandescentes): toda a energia fornecida é convertida em trabalho útil.",
-              "FP < 1 (motores, transformadores — cargas indutivas): parte da energia fica \"circulando\" como potência reativa, sem realizar trabalho, mas ainda exigindo capacidade dos condutores e equipamentos.",
-              "No Brasil, as concessionárias de energia cobram penalidades de empresas com FP abaixo de 0,92 — por isso a correção de fator de potência é tão relevante na indústria.",
-            ],
-          },
-          {
-            titulo: "2.11 — Correção do fator de potência",
-            conteudo: [
-              "Como a maioria das cargas industriais (motores) é indutiva, a forma mais comum de corrigir o fator de potência é instalar um banco de capacitores em paralelo com a carga — os capacitores fornecem a potência reativa localmente, reduzindo a quantidade que precisa vir da rede.",
-              "A potência reativa do banco de capacitores necessária para elevar o FP de um valor atual para um valor desejado é:",
-            ],
-            equacoes: [
-              { latex: "Q_c = P \\times \\left[ \\tan(\\varphi_{atual}) - \\tan(\\varphi_{desejado}) \\right]" },
-            ],
-            conteudo2: [
-              "Esse é exatamente o cálculo que o módulo industrial do Voltis já automatiza pra você na aba de Ferramentas — vale revisitar aquela calculadora depois de entender a fórmula por trás dela.",
-            ],
-          },
-          {
-            titulo: "2.12 — Sistemas trifásicos: por que três fases?",
-            conteudo: [
-              "A energia elétrica é gerada, transmitida e distribuída majoritariamente em sistemas trifásicos — três tensões senoidais de mesma amplitude e frequência, mas defasadas entre si em 120°.",
-              "As vantagens da geração e transmissão trifásica em relação à monofásica incluem: melhor aproveitamento dos condutores (para a mesma potência, menos material condutor é necessário), potência instantânea total constante (sem as oscilações de uma única fase), e motores trifásicos mais simples e eficientes (sem necessidade de capacitor de partida, como em motores monofásicos).",
-            ],
-          },
-          {
-            titulo: "2.13 — Ligação estrela (Y)",
-            conteudo: [
-              "Na ligação estrela, as três fases têm uma extremidade conectada a um ponto comum (o neutro), e a outra extremidade disponível como fase.",
-              "Na ligação estrela, a tensão de linha (entre duas fases) é maior que a tensão de fase (entre fase e neutro):",
-            ],
-            equacoes: [
-              { latex: "V_L = \\sqrt{3} \\times V_F" },
-            ],
-            conteudo2: [
-              "Exemplo prático: numa rede trifásica de 220V de fase, a tensão de linha é 220×√3 ≈ 381V — valor próximo do padrão de 380V muito comum em instalações industriais brasileiras.",
-            ],
-          },
-          {
-            titulo: "2.14 — Ligação triângulo (Δ)",
-            conteudo: [
-              "Na ligação triângulo, as três fases são conectadas formando um laço fechado (cada bobina/enrolamento liga o final de uma fase ao início da próxima), sem ponto neutro.",
-              "Na ligação triângulo, a tensão de linha é igual à tensão de fase:",
-            ],
-            equacoes: [
-              { latex: "V_L = V_F" },
-            ],
-            conteudo2: [
-              "Já a corrente de linha é maior que a corrente de fase, na mesma proporção √3 — é o efeito inverso do que ocorre na estrela:",
-            ],
-          },
-          {
-            titulo: "2.15 — Resumo comparativo estrela × triângulo",
-            conteudo: [
-              "Esse quadro-resumo é um dos pontos mais cobrados em prova — vale memorizar:",
-              "• Estrela (Y): VL = √3 × VF · IL = IF · tem neutro disponível",
-              "• Triângulo (Δ): VL = VF · IL = √3 × IF · não tem neutro",
-              "Aplicação prática mais comum desse conceito: a partida estrela-triângulo de motores, onde o motor liga primeiro em estrela (menor corrente de partida) e depois comuta para triângulo (operação nominal) — você já viu essa simulação interativa no Módulo 1.",
-            ],
-            dicas: [
-              { gatilho: "comparar as correntes", titulo: "Corrente: estrela vs triângulo", tipo: "comparacao-corrente",
-                explicacao: "Para a mesma potência do motor, a corrente de linha em triângulo é 3× maior que em estrela — por isso a partida estrela-triângulo reduz o impacto na rede." },
-            ],
-          },
-        ],
-      },
-      {
-        slug: "maquinas-e-protecao",
-        titulo: "Módulo 3 — Máquinas Elétricas e Proteção",
-        descricao: "Eletromagnetismo, transformadores, máquinas síncronas/CC, motores de indução, proteção de baixa tensão e comandos.",
-        bloco: "Bloco I",
-        paginas: [
-          {
-            titulo: "3.1 — Eletromagnetismo: a base de toda máquina elétrica",
-            conteudo: [
-              "Toda máquina elétrica girante (motores e geradores) e todo transformador funcionam a partir do mesmo princípio físico: a relação entre corrente elétrica e campo magnético, descrita pelas leis do eletromagnetismo.",
-              "Dois fenômenos sustentam praticamente tudo que vem a seguir neste módulo:",
-              "• Lei de Ampère: toda corrente elétrica gera, ao seu redor, um campo magnético.",
-              "• Lei de Faraday-Lenz: todo campo magnético variável, ao atravessar um condutor (ou espira), induz nele uma força eletromotriz (fem) — é a indução eletromagnética.",
-            ],
-            equacoes: [
-              { latex: "e = N \\cdot \\dfrac{\\Delta\\Phi}{\\Delta t}", legenda: "Lei de Faraday: fem induzida N = espiras, ΔΦ = variação do fluxo (Wb), Δt = intervalo de tempo (s)" },
-            ],
-            conteudo2: [
-              "O sinal negativo (Lei de Lenz) indica que a fem induzida sempre se opõe à causa que a gerou — é a natureza tentando \"resistir\" à mudança. Esse princípio explica, por exemplo, por que um motor desenvolve uma força contraeletromotriz que se opõe à tensão aplicada conforme ele acelera.",
-            ],
-          },
-          {
-            titulo: "3.2 — Circuito magnético e relutância",
-            conteudo: [
-              "Assim como um circuito elétrico tem resistência à passagem de corrente, um circuito magnético (o caminho que o fluxo magnético percorre, geralmente dentro de um núcleo de ferro) tem relutância — a oposição à passagem do fluxo magnético.",
-            ],
-            equacoes: [
-              { latex: "\\mathcal{R} = \\dfrac{l}{\\mu \\, A}", legenda: "relutância: l = comprimento do caminho magnético, μ = permeabilidade do material, A = área da seção" },
-              { latex: "\\Phi = \\dfrac{N \\, I}{\\mathcal{R}}", legenda: "fluxo magnético, em analogia direta com a Lei de Ohm (V = R×I)" },
-            ],
-            conteudo2: [
-              "Note a analogia: N×I (força magnetomotriz) faz o papel da tensão, e a relutância faz o papel da resistência. Núcleos de ferro têm permeabilidade muito maior que o ar — por isso, qualquer entreferro (gap de ar) no circuito magnético aumenta MUITO a relutância total, mesmo sendo fisicamente pequeno.",
-            ],
-            dicas: [
-              { gatilho: "ver a curva de magnetização", titulo: "Curva B-H e saturação do núcleo", tipo: "curva-bh",
-                explicacao: "O fluxo magnético (B) cresce quase linearmente com a corrente de excitação (H) no início, mas a partir de certo ponto o núcleo satura — aumentar muito a corrente já não aumenta o fluxo na mesma proporção. Esse é o motivo de transformadores e motores terem um limite de tensão/corrente de operação." },
-            ],
-          },
-          {
-            titulo: "3.3 — Transformadores: princípio de funcionamento",
-            conteudo: [
-              "Um transformador é uma máquina elétrica estática (sem partes girantes) que transfere energia elétrica entre dois ou mais circuitos por meio de indução eletromagnética, normalmente alterando o nível de tensão.",
-              "O enrolamento primário, ao ser energizado em CA, cria um fluxo magnético variável no núcleo; esse fluxo induz uma tensão no enrolamento secundário, proporcional à razão entre o número de espiras de cada lado.",
-            ],
-            equacoes: [
-              { latex: "\\dfrac{V_1}{V_2} = \\dfrac{N_1}{N_2} = a", legenda: "relação de transformação (a)" },
-              { latex: "\\dfrac{I_1}{I_2} = \\dfrac{N_2}{N_1} = \\dfrac{1}{a}", legenda: "as correntes se relacionam de forma inversa às tensões" },
-            ],
-            conteudo2: [
-              "Quando N1 > N2 (mais espiras no primário), o transformador é abaixador (V2 < V1). Quando N1 < N2, é elevador. Em ambos os casos, a potência aparente é praticamente conservada (desprezando perdas): S1 ≈ S2.",
-            ],
-          },
-          {
-            titulo: "3.4 — Ligações trifásicas de transformadores",
-            conteudo: [
-              "Transformadores trifásicos podem ter seus enrolamentos primário e secundário ligados em estrela (Y) ou triângulo (Δ), em qualquer combinação: Yy, Yd, Dy, Dd — sendo Dy (delta no primário, estrela no secundário) uma das combinações mais comuns em subestações de distribuição, pois fornece o ponto neutro no secundário.",
-              "A defasagem angular entre primário e secundário (indicada por números como Dyn11) é importante para o paralelismo de transformadores e não deve ser ignorada em provas mais avançadas.",
-            ],
-            conteudo2: [
-              "Lembrando do Módulo 2: na ligação delta, V_fase = V_linha; na estrela, V_linha = √3 × V_fase. Isso é o que você usa para calcular a tensão em cada lado de um transformador Dy a partir da relação de espiras.",
-            ],
-          },
-          {
-            titulo: "3.5 — Perdas, rendimento e ensaios de transformadores",
-            conteudo: [
-              "Um transformador real apresenta duas categorias principais de perdas:",
-              "• Perdas no núcleo (perdas em vazio ou perdas no ferro): por histerese e correntes parasitas (Foucault), praticamente constantes para uma dada tensão, independente da carga.",
-              "• Perdas no cobre (perdas em carga): por efeito Joule nos enrolamentos, proporcionais ao quadrado da corrente de carga.",
-            ],
-            equacoes: [
-              { latex: "\\eta = \\dfrac{P_{saida}}{P_{saida} + P_{nucleo} + P_{cobre}} \\times 100\\%" },
-            ],
-            conteudo2: [
-              "Essas perdas são determinadas, na prática, por dois ensaios padronizados: o ensaio em vazio (a vazio, mede perdas no núcleo) e o ensaio de curto-circuito (mede perdas no cobre e a impedância percentual Zcc%, usada para estimar a corrente de curto-circuito do transformador).",
-              "Como as perdas no cobre escalam com o quadrado da corrente, o rendimento de um transformador normalmente é maior a uma fração da carga nominal (não necessariamente a 100%) — outro ponto clássico de prova.",
-            ],
-          },
-          {
-            titulo: "3.6 — Autotransformadores",
-            conteudo: [
-              "O autotransformador é um caso particular de transformador com um único enrolamento, parte dele compartilhada entre primário e secundário. Parte da energia é transferida por condução elétrica direta (sem passar pela transformação eletromagnética), e só a outra parte é efetivamente \"transformada\".",
-              "Vantagens: menor custo, menor peso e dimensões mais compactas para uma mesma potência — por isso é muito usado em chaves de partida compensadoras de motores e em ajustes finos de tensão entre níveis próximos.",
-              "Desvantagem importante: por não ter isolação galvânica entre primário e secundário, não pode ser usado quando segurança de isolamento elétrico entre os dois lados é exigida.",
-            ],
-          },
-          {
-            titulo: "3.7 — Máquinas síncronas: o gerador síncrono",
-            conteudo: [
-              "O gerador síncrono (alternador) é a máquina que converte a maior parte da energia elétrica do planeta, sendo o coração das usinas hidrelétricas, termelétricas e eólicas de grande porte.",
-              "Seu princípio: uma corrente contínua circula pelo enrolamento de campo do rotor, criando um campo magnético fixo em relação ao rotor. Ao girar (movido por uma turbina), esse campo \"varre\" os enrolamentos do estator, induzindo nele uma tensão alternada — pela Lei de Faraday.",
-              "A velocidade do rotor (síncrona) está diretamente ligada à frequência gerada e ao número de polos da máquina:",
-            ],
-            equacoes: [
-              { latex: "N_s = \\dfrac{120 \\, f}{p}", legenda: "Ns em rpm, f = frequência em Hz, p = número de polos" },
-            ],
-          },
-          {
-            titulo: "3.8 — Regulação de tensão e paralelismo de geradores síncronos",
-            conteudo: [
-              "A regulação de tensão (RT) de um gerador mede o quanto a tensão terminal varia entre a condição a vazio (sem carga) e a plena carga:",
-            ],
-            equacoes: [
-              { latex: "RT(\\%) = \\dfrac{V_{vazio} - V_{carga}}{V_{carga}} \\times 100" },
-            ],
-            conteudo2: [
-              "Para conectar dois (ou mais) geradores síncronos a um mesmo barramento, alimentando a mesma carga, é preciso satisfazer as condições de sincronismo: mesma tensão eficaz, mesma frequência, mesma sequência de fase e ângulos de fase coincidentes no instante do fechamento da chave. Sem essas condições, o paralelismo pode causar correntes de curto-circuito internas severas entre os geradores.",
-            ],
-          },
-          {
-            titulo: "3.9 — Máquinas de corrente contínua: princípio e tipos",
-            conteudo: [
-              "Motores e geradores CC têm a mesma estrutura básica: um enrolamento de campo (estator, que cria o campo magnético principal) e uma armadura (rotor, onde a tensão é gerada ou onde o torque é desenvolvido), conectados por meio do comutador e das escovas — que mantêm a corrente sempre fluindo no mesmo sentido na armadura, apesar da rotação.",
-              "As máquinas CC são classificadas pela forma como o enrolamento de campo é conectado:",
-              "• Excitação independente: o campo é alimentado por uma fonte externa separada.",
-              "• Em derivação (shunt): o campo está em paralelo com a armadura.",
-              "• Série: o campo está em série com a armadura (mesma corrente passa por ambos).",
-              "• Composto (cumulativo ou diferencial): combina campo série e campo shunt.",
-            ],
-          },
-          {
-            titulo: "3.10 — Motor CC série: por que é usado em cargas pesadas",
-            conteudo: [
-              "No motor CC série, o fluxo de campo é diretamente proporcional à corrente de armadura (já que é o mesmo enrolamento, em série). Isso gera um comportamento bem característico: torque elevado em baixa velocidade (alta corrente → alto fluxo → alto torque) e velocidade muito alta quando a carga é leve (baixa corrente → baixo fluxo).",
-              "Por essa característica, o motor série é tradicionalmente usado em aplicações de partida pesada, como guindastes, guinchos e tração elétrica (trens, bondes) — porém nunca deve ser ligado sem carga mecânica nenhuma, pois pode acelerar descontroladamente (\"fugir\") até se danificar.",
-            ],
-          },
-          {
-            titulo: "3.11 — Motores de indução trifásicos: o campo girante",
-            conteudo: [
-              "O motor de indução é, de longe, o motor mais usado na indústria — robusto, barato e de manutenção simples, pois o rotor não precisa de nenhuma conexão elétrica externa (nem escovas, nem comutador).",
-              "Quando uma corrente trifásica equilibrada percorre os três enrolamentos do estator (espaçados 120° entre si no espaço), gera-se um campo magnético girante, de intensidade constante e velocidade síncrona Ns. Esse campo girante \"arrasta\" o rotor por indução — daí o nome do motor.",
-              "Importante: o rotor NUNCA gira exatamente na velocidade síncrona; sempre há um pequeno atraso (escorregamento), pois é justamente essa diferença de velocidade relativa que induz corrente no rotor e gera o torque.",
-            ],
-            equacoes: [
-              { latex: "s = \\dfrac{N_s - N}{N_s}", legenda: "escorregamento (s): Ns = velocidade síncrona, N = velocidade real do rotor" },
-              { latex: "f_{rotor} = s \\times f", legenda: "frequência das correntes induzidas no rotor" },
-            ],
-          },
-          {
-            titulo: "3.12 — Curva de torque x velocidade do motor de indução",
-            conteudo: [
-              "O comportamento do motor de indução é melhor visualizado por sua curva de conjugado (torque) em função da velocidade (ou do escorregamento):",
-              "• Na partida (rotor parado, s = 1), o torque é o conjugado de partida — geralmente entre 150% e 250% do nominal, mas acompanhado de uma corrente de partida muito alta (de 5 a 8 vezes a nominal).",
-              "• Conforme acelera, o torque sobe até um pico (conjugado máximo, ou de breakdown) e depois cai até a velocidade de operação nominal, próxima da síncrona, onde o torque se equilibra com a carga.",
-            ],
-            dicas: [
-              { gatilho: "ver a curva torque × velocidade", titulo: "Conjugado x velocidade do motor de indução", tipo: "torque-velocidade-inducao",
-                explicacao: "O torque parte de um valor relativamente alto (partida), sobe até um pico (conjugado máximo) e cai até zero na velocidade síncrona, onde não há mais escorregamento e, portanto, não há mais corrente induzida no rotor — e sem corrente induzida, não há torque." },
-            ],
-          },
-          {
-            titulo: "3.13 — Métodos de partida de motores de indução",
-            conteudo: [
-              "Como a corrente de partida direta pode causar quedas de tensão significativas na rede (e exigir disjuntores e cabos sobredimensionados só para suportar um pico de poucos segundos), métodos de partida indireta são usados em motores de maior potência:",
-              "• Partida direta: liga o motor diretamente na tensão nominal — simples, mas com pico de corrente máximo (5-8× a nominal). Indicada apenas para motores pequenos ou redes robustas.",
-              "• Partida estrela-triângulo: o motor liga inicialmente em estrela (menor tensão por fase, menor corrente) e comuta para triângulo após alguns segundos, na tensão/corrente nominal. Reduz a corrente de partida para cerca de 1/3 da partida direta — mas também reduz o torque de partida na mesma proporção.",
-              "• Chave compensadora (autotransformador de partida): parte com tensão reduzida por um autotransformador, com taps típicos de 50%, 65% e 80% — permite um ajuste mais fino do compromisso entre corrente e torque de partida.",
-              "• Soft-starter: dispositivo eletrônico que eleva a tensão gradualmente (rampa), suavizando a partida tanto eletricamente quanto mecanicamente; muito usado em bombas e esteiras, para evitar golpes de carga.",
-              "• Inversor de frequência: além de partir o motor com torque controlado, permite variar a velocidade continuamente após a partida — é a solução mais flexível, mas a de maior custo.",
-            ],
-          },
-          {
-            titulo: "3.14 — Motores de indução monofásicos",
-            conteudo: [
-              "Diferente do trifásico, um único enrolamento monofásico não cria um campo girante por si só — cria apenas um campo pulsante (que não tem capacidade de gerar torque de partida sozinho, embora consiga manter a rotação uma vez que o motor já esteja girando).",
-              "Por isso, motores monofásicos são classificados pelo método usado para gerar o torque de partida:",
-              "• Fase dividida (split-phase): usa um enrolamento auxiliar de partida, desligado por uma chave centrífuga após o motor atingir certa velocidade.",
-              "• Capacitor de partida: usa um capacitor em série com o enrolamento auxiliar, aumentando o torque de partida — muito comum em compressores e bombas.",
-              "• Capacitor permanente: o capacitor fica permanentemente em série com o enrolamento auxiliar, melhorando o fator de potência e a eficiência durante toda a operação.",
-              "• Polos sombreados (shaded-pole): um anel de cobre em parte do polo cria a defasagem necessária para a partida — sistema simples e barato, mas com baixo torque de partida, usado em ventiladores pequenos.",
-            ],
-          },
-          {
-            titulo: "3.15 — Dispositivos de proteção de baixa tensão",
-            conteudo: [
-              "A proteção de circuitos de baixa tensão se apoia em três frentes principais:",
-              "• Fusíveis: elemento metálico que se funde (interrompendo o circuito) quando a corrente excede um valor por tempo suficiente. Simples e confiável, mas precisa ser substituído após atuar.",
-              "• Disjuntores termomagnéticos: combinam um elemento térmico (bimetálico, para sobrecargas — atuação lenta) e um elemento magnético (solenoide, para curto-circuitos — atuação quase instantânea). Podem ser religados após atuar, sem substituição de peças.",
-              "• Dispositivo DR (diferencial-residual): mede a diferença entre a corrente que entra e a que sai do circuito protegido; se essa diferença (corrente de fuga, geralmente para a terra) superar um limite (tipicamente 30 mA para proteção de pessoas), o DR desarma. Protege contra choques elétricos por contato indireto — não substitui o disjuntor, que protege contra sobrecarga/curto.",
-            ],
-            dicas: [
-              { gatilho: "ver a curva tempo × corrente do disjuntor", titulo: "Curva de atuação do disjuntor termomagnético", tipo: "curva-disjuntor",
-                explicacao: "Para correntes pouco acima da nominal, a atuação é lenta (zona térmica, sobrecarga — segundos a minutos). Para correntes muito elevadas, a atuação é quase instantânea (zona magnética, curto-circuito — milissegundos)." },
-            ],
-          },
-          {
-            titulo: "3.16 — Seletividade e comandos elétricos",
-            conteudo: [
-              "Seletividade é a capacidade de um sistema de proteção fazer apenas o disjuntor mais próximo da falta atuar, mantendo o restante da instalação energizado — essencial em instalações com vários níveis de disjuntores em série (geral, distribuição, ramal).",
-              "Já os comandos elétricos automatizam o acionamento de motores e cargas a partir de sinais de baixa potência:",
-              "• Contator: uma \"chave\" eletromagnética operada por uma bobina, que liga/desliga o circuito de força.",
-              "• Relé térmico: protege o motor contra sobrecarga, monitorando a corrente e atuando se ela ficar elevada por tempo prolongado.",
-              "• CLP (Controlador Lógico Programável): substitui a lógica de relés/contatores tradicional por um programa executado eletronicamente, com lógicas como a Ladder (diagrama de contatos) — padronizada pela IEC 61131-3 — permitindo automatizar sequências complexas de forma muito mais flexível que o comando a relés puro.",
-              "Esse é o fechamento do Bloco I do edital verticalizado — o próximo módulo (Medidas Elétricas e Instalações) avança para instrumentação, retificadores/baterias e instalações de baixa e média tensão.",
-            ],
-          },
-        ],
-      },
-      {
-        slug: "medidas-e-instalacoes",
-        titulo: "Módulo 4 — Medidas Elétricas e Instalações",
-        descricao: "Instrumentos de medição, retificadores/baterias/no-breaks, instalações de baixa e média tensão.",
-        bloco: "Bloco II",
-        paginas: [
-          {
-            titulo: "Conteúdo em produção",
-            conteudo: [
-              "Este módulo está sendo escrito e vai cobrir, conforme o edital verticalizado:",
-              "• Fundamentos de medidas elétricas",
-              "• Instrumentos de medição e testes: corrente, tensão, potência e isolação",
-              "• Retificadores, baterias e no-breaks",
-              "• Instalações elétricas de baixa tensão",
-              "• Redes aéreas e instalações elétricas de 1,0 kV a 17,5 kV",
-            ],
-          },
-        ],
-      },
-      {
-        slug: "normas-e-automacao",
-        titulo: "Módulo 5 — Normas, Manutenção e Automação",
-        descricao: "NBR 5410, aterramento, SPDA, NR10, manutenção elétrica, eletrônica e automação industrial.",
-        bloco: "Bloco III",
-        paginas: [
-          {
-            titulo: "Conteúdo em produção",
-            conteudo: [
-              "Este módulo está sendo escrito e vai cobrir, conforme o edital verticalizado:",
-              "• Grandezas elétricas e magnéticas, Sistema Internacional de Unidades",
-              "• Aterramento de equipamentos e SPDA",
-              "• NBR 5410",
-              "• Conceitos básicos de manutenção elétrica",
-              "• Eletrônica analógica e digital, diagramas lógicos",
-              "• Automação industrial",
-              "• Materiais e ferramentas de instalações elétricas",
-              "• NR10 — Segurança em Eletricidade",
-            ],
-          },
-        ],
-      },
-    ],
-  },
-  {
-    slug: "eletronica",
-    nome: "Eletrônica",
-    nivel: "Técnico",
-    descricao: "Semicondutores, diodos, transistores e circuitos eletrônicos básicos.",
-    modulos: [],
-  },
-
   // ══════════════════════════════════════════════════════════════════════════
   // CURSO: TÉCNICO EM MANUTENÇÃO ELÉTRICA — PETROBRAS (ÊNFASE 5)
   // ══════════════════════════════════════════════════════════════════════════
@@ -1513,6 +948,146 @@ export const AREAS: Area[] = [
   },
 
   // ══════════════════════════════════════════════════════════════════════════
+  // CURSO: TÉCNICO EM MANUTENÇÃO ELÉTRICA — MATEMÁTICA (ÊNFASE 5)
+  // ══════════════════════════════════════════════════════════════════════════
+  {
+    slug: "manutencao-eletrica-matematica",
+    nome: "Técnico em Manutenção Elétrica — Matemática e Raciocínio",
+    nivel: "Técnico",
+    descricao: "Matemática aplicada para o concurso Petrobras Ênfase 5: aritmética, álgebra, trigonometria, geometria e raciocínio lógico com foco em aplicações elétricas.",
+    modulos: [
+      {
+        slug: "mat-elet-basica",
+        titulo: "Módulo Matemática — Fundamentos e Aplicações",
+        descricao: "Frações, potências, equações, funções, trigonometria e geometria com aplicações diretas em eletrotécnica.",
+        bloco: "Conhecimentos Básicos",
+        paginas: [
+
+          {
+            titulo: "M.1 — Aritmética: Frações, Potências e Raízes",
+            conteudo: [
+              "A aritmética é a base de todos os cálculos em eletrotécnica. Dominá-la elimina erros nos cálculos de potência, corrente, resistência e dimensionamento.",
+              "FRAÇÕES: representam partes de um todo. Operações essenciais: adição (denominador comum), subtração (idem), multiplicação (numerador × numerador / denominador × denominador), divisão (multiplicar pelo inverso). Em eletrotécnica: resistências em paralelo usam a soma de frações 1/Req = 1/R1 + 1/R2.",
+              "POTÊNCIAS: a^n significa a multiplicado por si mesmo n vezes. Propriedades: a^m × a^n = a^(m+n); a^m / a^n = a^(m-n); (a^m)^n = a^(mn); a^0 = 1; a^(-n) = 1/a^n. Notação científica: 3,3 × 10^3 = 3300; 470 × 10^(-6) = 0,00047.",
+              "RAÍZES: raiz quadrada é a operação inversa do quadrado. √(a×b) = √a × √b. √(a/b) = √a / √b. Muito usada em eletrotécnica: |Z| = √(R² + X²); Vrms = Vp/√2; potência trifásica tem fator √3.",
+              "REGRA DE TRÊS SIMPLES: se A está para B assim como C está para D, então A/B = C/D, ou A×D = B×C. Exemplo: se 10 Ω dissipam 40 W com 2A, quantos watts dissipa 15 Ω com a mesma corrente? P = I²R = 4×15 = 60 W.",
+              "PORCENTAGEM: p% de N = (p/100) × N. Aumento de p%: N × (1 + p/100). Redução: N × (1 - p/100). Aplicação: queda de tensão de 3% em 127V = 0,03 × 127 = 3,81V. Tensão no final = 127 - 3,81 = 123,19V.",
+            ],
+            equacoes: [
+              { latex: "\\dfrac{1}{R_{eq}} = \\dfrac{1}{R_1} + \\dfrac{1}{R_2} \\quad \\Rightarrow \\quad R_{eq} = \\dfrac{R_1 \\cdot R_2}{R_1 + R_2}", legenda: "Dois resistores em paralelo — fórmula do produto pela soma" },
+              { latex: "a^m \\cdot a^n = a^{m+n} \\qquad \\dfrac{a^m}{a^n} = a^{m-n} \\qquad (a^m)^n = a^{mn}", legenda: "Propriedades das potências" },
+              { latex: "\\sqrt{a \\cdot b} = \\sqrt{a} \\cdot \\sqrt{b} \\qquad \\sqrt{\\dfrac{a}{b}} = \\dfrac{\\sqrt{a}}{\\sqrt{b}}", legenda: "Propriedades das raízes quadradas" },
+            ],
+            conteudo2: [
+              "Exemplo típico de prova: R1 = 6Ω e R2 = 12Ω em paralelo. Req = (6×12)/(6+12) = 72/18 = 4Ω. Verificação: 1/Req = 1/6 + 1/12 = 2/12 + 1/12 = 3/12 = 1/4. Logo Req = 4Ω ✓.",
+            ],
+          },
+
+          {
+            titulo: "M.2 — Álgebra: Equações e Sistemas",
+            conteudo: [
+              "Equações são igualdades com incógnitas. Resolver uma equação é encontrar o valor da incógnita que torna a igualdade verdadeira. Em eletrotécnica, equações aparecem em todo cálculo de circuito.",
+              "EQUAÇÃO DO 1° GRAU: ax + b = 0 → x = -b/a. Exemplo: 5I - 20 = 0 → I = 4 A.",
+              "EQUAÇÃO DO 2° GRAU: ax² + bx + c = 0. Solução pela fórmula de Bhaskara: x = (-b ± √Δ) / 2a, onde Δ = b² - 4ac. Aplicação: encontrar a frequência de ressonância, calcular capacitância para um determinado Xc.",
+              "SISTEMAS DE EQUAÇÕES: conjunto de duas ou mais equações com duas ou mais incógnitas. Métodos de resolução: substituição (isolar uma variável numa equação e substituir na outra) e adição/subtração (somar ou subtrair as equações para eliminar uma variável). Aplicação direta: análise de malhas com as Leis de Kirchhoff.",
+              "INEQUAÇÕES: igualdades substituídas por desigualdades (<, >, ≤, ≥). Importante: ao multiplicar ou dividir por número negativo, o sentido da desigualdade inverte. Aplicação: limites de queda de tensão, faixas de corrente admissível.",
+              "FATORAÇÃO: escrever uma expressão como produto de fatores. Permite simplificar expressões algébricas. Casos: fator comum (ab + ac = a(b+c)), diferença de quadrados (a²-b² = (a+b)(a-b)), trinômio do 2° grau.",
+            ],
+            equacoes: [
+              { latex: "x = \\dfrac{-b \\pm \\sqrt{b^2 - 4ac}}{2a} \\qquad (\\Delta = b^2 - 4ac)", legenda: "Fórmula de Bhaskara para equação do 2° grau" },
+            ],
+            conteudo2: [
+              "Exemplo com Kirchhoff (sistema 2×2): Malha 1: 12 - 4I₁ - 2(I₁-I₂) = 0 → 6I₁ - 2I₂ = 12. Malha 2: -2(I₂-I₁) - 6I₂ = 0 → -2I₁ + 8I₂ = 0 → I₁ = 4I₂. Substituindo: 6(4I₂) - 2I₂ = 12 → 22I₂ = 12 → I₂ = 0,545A. I₁ = 2,18A.",
+            ],
+          },
+
+          {
+            titulo: "M.3 — Trigonometria Aplicada à Eletrotécnica",
+            conteudo: [
+              "A trigonometria é indispensável em eletrotécnica CA: cálculo de ângulos de fase, fator de potência, impedância e representação fasorial usam funções trigonométricas diretamente.",
+              "FUNÇÕES TRIGONOMÉTRICAS no triângulo retângulo: seno (sen θ) = cateto oposto / hipotenusa. Cosseno (cos θ) = cateto adjacente / hipotenusa. Tangente (tan θ) = cateto oposto / cateto adjacente = sen θ / cos θ.",
+              "TRIÂNGULO DE POTÊNCIAS: P (cateto horizontal), Q (cateto vertical), S (hipotenusa). FP = cos φ = P/S. Sen φ = Q/S. Tan φ = Q/P. Conhecendo P e FP: S = P/FP, Q = P × tan φ.",
+              "VALORES NOTÁVEIS: sen 30° = 0,5; cos 30° = √3/2 ≈ 0,866; tan 30° = 1/√3 ≈ 0,577. Sen 45° = cos 45° = √2/2 ≈ 0,707; tan 45° = 1. Sen 60° = √3/2 ≈ 0,866; cos 60° = 0,5; tan 60° = √3 ≈ 1,732.",
+              "RELAÇÃO DE PITÁGORAS: em qualquer triângulo retângulo, hipotenusa² = cateto² + cateto². Em impedâncias: |Z|² = R² + X². Em potências: S² = P² + Q².",
+              "ARCO TANGENTE (arctan): função inversa da tangente. Se tan φ = Q/P, então φ = arctan(Q/P). Usada para calcular o ângulo de fase de uma impedância: φ = arctan(X/R).",
+              "SISTEMA DE COORDENADAS POLARES E RETANGULARES: Z = R + jX (forma retangular). Z = |Z|∠φ (forma polar). Conversão: |Z| = √(R²+X²), φ = arctan(X/R). Inverso: R = |Z|cos φ, X = |Z|sen φ.",
+            ],
+            equacoes: [
+              { latex: "\\text{sen}\\,\\theta = \\dfrac{\\text{CO}}{H} \\quad \\cos\\theta = \\dfrac{\\text{CA}}{H} \\quad \\tan\\theta = \\dfrac{\\text{CO}}{\\text{CA}}", legenda: "Funções trigonométricas no triângulo retângulo: CO = cateto oposto, CA = cateto adjacente, H = hipotenusa" },
+              { latex: "S^2 = P^2 + Q^2 \\qquad FP = \\cos\\varphi = \\dfrac{P}{S} \\qquad Q = P \\cdot \\tan\\varphi", legenda: "Triângulo de potências — relações trigonométricas" },
+              { latex: "|Z| = \\sqrt{R^2 + X^2} \\qquad \\varphi = \\arctan\\!\\left(\\dfrac{X}{R}\\right)", legenda: "Módulo e ângulo de fase da impedância" },
+            ],
+            conteudo2: [
+              "Tabela de valores notáveis: 0°: sen=0, cos=1, tan=0. 30°: sen=0,5, cos=0,866, tan=0,577. 45°: sen=0,707, cos=0,707, tan=1. 60°: sen=0,866, cos=0,5, tan=1,732. 90°: sen=1, cos=0, tan=∞.",
+              "Dica de prova: FP = 0,8 → φ = 36,87°, sen φ = 0,6, tan φ = 0,75. FP = 0,866 → φ = 30°. FP = 0,707 → φ = 45°. Memorize esses pares — aparecem frequentemente em provas.",
+            ],
+          },
+
+          {
+            titulo: "M.4 — Geometria e Grandezas Físicas",
+            conteudo: [
+              "A geometria aparece no dimensionamento de condutores, cálculo de áreas de seção transversal, volumes de tanques e resistências de aterramento.",
+              "ÁREAS DE FIGURAS PLANAS: retângulo = base × altura. Triângulo = (base × altura)/2. Círculo = π × r² ≈ 3,14159 × r². Coroa circular (anel) = π × (R² - r²). Muito usado: seção transversal de cabos cilíndricos = π × r² = π × d²/4.",
+              "VOLUMES: cubo = a³. Paralelepípedo = c × l × h. Cilindro = π × r² × h. Esfera = (4/3) × π × r³.",
+              "UNIDADES DE COMPRIMENTO E ÁREA: 1 m = 100 cm = 1000 mm. 1 m² = 10⁶ mm². 1 mm² = 10⁻⁶ m². A seção de cabos é expressa em mm² mas as fórmulas de resistência usam m² — atenção às conversões.",
+              "POTÊNCIAS DE DEZ E PREFIXOS DO SI: mega (M) = 10⁶, quilo (k) = 10³, mili (m) = 10⁻³, micro (μ) = 10⁻⁶, nano (n) = 10⁻⁹. Exemplos: 470 μF = 470 × 10⁻⁶ F = 4,7 × 10⁻⁴ F. 22 kΩ = 22.000 Ω. 2,5 mm² = 2,5 × 10⁻⁶ m².",
+              "GRANDEZAS VETORIAIS E ESCALARES: grandezas escalares têm apenas magnitude (resistência, potência ativa, temperatura). Grandezas vetoriais têm magnitude e direção (corrente fasorial, tensão fasorial, impedância complexa). A representação fasorial usa números complexos.",
+            ],
+            equacoes: [
+              { latex: "A_{cabo} = \\pi \\cdot r^2 = \\dfrac{\\pi \\cdot d^2}{4}", legenda: "Seção transversal de cabo circular: r = raio (m), d = diâmetro (m)" },
+              { latex: "R = \\rho \\cdot \\dfrac{L}{A} = \\rho \\cdot \\dfrac{L}{\\pi r^2}", legenda: "Resistência do condutor: ρ em Ω·m, L em m, A em m²" },
+            ],
+            conteudo2: [
+              "Exemplo: cabo de cobre com diâmetro 1,784 mm (seção 2,5 mm²). Comprimento L = 40 m (ida+volta). Resistência: R = 1,72×10⁻⁸ × 40 / (2,5×10⁻⁶) = 6,88×10⁻⁷ / 2,5×10⁻⁶ = 0,275 Ω. Com corrente de 16 A: ΔV = 0,275 × 16 = 4,4 V.",
+            ],
+          },
+
+          {
+            titulo: "M.5 — Funções e Gráficos",
+            conteudo: [
+              "Funções descrevem como uma grandeza varia em relação a outra. Em eletrotécnica, funções aparecem na relação V×I, curvas de disjuntores, curva de carga × corrente de motores e respostas de filtros.",
+              "FUNÇÃO LINEAR: f(x) = ax + b. Gráfico é uma reta. O coeficiente angular a indica a inclinação. O coeficiente linear b indica o ponto de interseção com o eixo y. Aplicação: relação V = R×I (Lei de Ohm — linear para resistor ôhmico).",
+              "FUNÇÃO QUADRÁTICA: f(x) = ax² + bx + c. Gráfico é uma parábola. Para a > 0, abre para cima (mínimo). Para a < 0, abre para baixo (máximo). Aplicação: P = I²R (potência cresce com o quadrado da corrente — por isso dobrar a corrente quadruplica as perdas).",
+              "FUNÇÃO EXPONENCIAL: f(x) = a × e^(bx). Crescimento ou decaimento exponencial. Aplicação fundamental: carga e descarga de capacitores e indutores — Vc(t) = V(1 - e^(-t/τ)).",
+              "FUNÇÃO TRIGONOMÉTRICA: f(x) = A × sen(ωt + φ). Representa sinais CA. Amplitude A, frequência angular ω = 2πf, fase φ. O gráfico é uma senoide.",
+              "INTERPRETAÇÃO DE GRÁFICOS: a área sob a curva de corrente × tempo representa a carga elétrica (Q = I × t para corrente constante). A inclinação da curva tensão × corrente representa a resistência (R = ΔV/ΔI). O ponto de cruzamento com o eixo x é a raiz (solução) da função.",
+            ],
+            equacoes: [
+              { latex: "P = I^2 \\cdot R \\quad \\Rightarrow \\quad 2I \\Rightarrow P' = (2I)^2 \\cdot R = 4 \\cdot I^2 \\cdot R = 4P", legenda: "Função quadrática: dobrar a corrente quadruplica a potência dissipada" },
+              { latex: "v_C(t) = V \\cdot \\left(1 - e^{-t/\\tau}\\right)", legenda: "Função exponencial: carga do capacitor (τ = RC)" },
+            ],
+            conteudo2: [
+              "Dica de prova: em questões de eficiência energética, a relação cúbica também aparece. Para bombas: P ∝ n³. Reduzir a velocidade para 80%: P' = (0,8)³ × P = 0,512P — economia de 48,8%. Esse resultado vem da propriedade das funções de potência.",
+            ],
+          },
+
+          {
+            titulo: "M.6 — Raciocínio Lógico e Matemática Financeira",
+            conteudo: [
+              "Raciocínio lógico e noções de matemática financeira aparecem nos concursos da Petrobras como parte das provas básicas (Conhecimentos Gerais).",
+              "PROPOSIÇÕES LÓGICAS: afirmações que podem ser verdadeiras (V) ou falsas (F). Conectivos: E (conjunção, ∧) — verdadeiro somente se ambas V. OU (disjunção, ∨) — falso somente se ambas F. NÃO (negação, ¬) — inverte o valor. SE...ENTÃO (condicional, →) — falso somente se premissa V e conclusão F.",
+              "TABELAS-VERDADE: listam todos os casos possíveis para avaliar proposições compostas. Com n proposições simples, há 2^n linhas na tabela.",
+              "SEQUÊNCIAS E PROGRESSÕES: PA (progressão aritmética): cada termo = anterior + razão r. Soma dos n termos: Sn = n(a1 + an)/2. PG (progressão geométrica): cada termo = anterior × razão q. Soma: Sn = a1(q^n - 1)/(q - 1).",
+              "JUROS SIMPLES: J = C × i × t. Montante M = C + J = C(1 + it). Onde C = capital, i = taxa, t = tempo. Aplicação: custo de energia elétrica com taxa fixa.",
+              "JUROS COMPOSTOS: M = C × (1 + i)^t. O montante cresce exponencialmente. Aplicação: análise de retorno de investimento em eficiência energética (VPL, payback).",
+              "COMBINATÓRIA: arranjos (importa a ordem) e combinações (não importa a ordem). Permutação de n elementos: n! Combinação de n elementos tomados k a k: C(n,k) = n! / (k! × (n-k)!).",
+            ],
+            equacoes: [
+              { latex: "S_n = \\dfrac{n(a_1 + a_n)}{2} \\quad \\text{(PA)} \\qquad S_n = a_1 \\cdot \\dfrac{q^n - 1}{q - 1} \\quad \\text{(PG)}", legenda: "Soma de progressões aritmética e geométrica" },
+              { latex: "M = C \\cdot (1 + i)^t \\quad \\text{(juros compostos)}", legenda: "Montante com juros compostos: C = capital, i = taxa, t = tempo" },
+              { latex: "C(n,k) = \\dfrac{n!}{k! \\cdot (n-k)!}", legenda: "Combinações: escolher k elementos de n sem importar a ordem" },
+            ],
+            conteudo2: [
+              "Exemplo payback de eficiência energética: investimento em VFD de R$ 8.000. Economia mensal de energia: R$ 450. Payback simples = 8000/450 ≈ 17,8 meses. Com juros de 1% ao mês (payback composto), seria ligeiramente maior — mas a economia ao longo de 5 anos justifica amplamente o investimento.",
+            ],
+          },
+
+        ],
+      },
+    ],
+  },
+
+  // ══════════════════════════════════════════════════════════════════════════
   // CURSO: TÉCNICO EM MANUTENÇÃO INSTRUMENTAÇÃO — PETROBRAS (ÊNFASE 6)
   // ══════════════════════════════════════════════════════════════════════════
   {
@@ -2024,6 +1599,121 @@ export const AREAS: Area[] = [
             equacoes: [],
             tabelasSimbolos: ["tratamento-ar", "outros-pneumaticos"],
           },
+        ],
+      },
+    ],
+  },
+
+  // ══════════════════════════════════════════════════════════════════════════
+  // CURSO: MATEMÁTICA — ÊNFASE 6 (INSTRUMENTAÇÃO)
+  // ══════════════════════════════════════════════════════════════════════════
+  {
+    slug: "manutencao-instrumentacao-matematica",
+    nome: "Técnico em Instrumentação — Matemática e Raciocínio",
+    nivel: "Técnico",
+    descricao: "Matemática aplicada para o concurso Petrobras Ênfase 6: aritmética, álgebra, funções, estatística e raciocínio lógico com aplicações em instrumentação.",
+    modulos: [
+      {
+        slug: "mat-instr-basica",
+        titulo: "Módulo Matemática — Fundamentos para Instrumentação",
+        descricao: "Matemática aplicada a metrologia, conversão de unidades, análise de erros e raciocínio lógico.",
+        bloco: "Conhecimentos Básicos",
+        paginas: [
+
+          {
+            titulo: "M.1 — Conversão de Unidades e Sistema Internacional",
+            conteudo: [
+              "A instrumentação industrial lida com dezenas de unidades de medida diferentes. A conversão correta é fundamental para calibração, especificação e diagnóstico de instrumentos.",
+              "PRESSÃO: 1 bar = 100 kPa = 14,504 psi = 1,0197 kgf/cm² = 10,2 mca (metros de coluna de água) = 750,1 mmHg. Para converter psi para bar: dividir por 14,504. Para bar para kPa: multiplicar por 100.",
+              "TEMPERATURA: °C para °F: T(°F) = T(°C) × 1,8 + 32. °F para °C: T(°C) = (T(°F) - 32) / 1,8. Para Kelvin: T(K) = T(°C) + 273,15. Pontos de referência: 0°C = 32°F = 273,15 K. 100°C = 212°F = 373,15 K.",
+              "VAZÃO: 1 m³/h = 1000 L/h = 16,67 L/min = 0,2778 L/s. 1 galão americano (gal) = 3,785 L. 1 barril de petróleo (bbl) = 42 galões = 158,97 L ≈ 159 L.",
+              "SINAL 4-20 mA: conversão linear entre valor de processo e corrente. Para uma faixa 0-100 bar: cada 1 mA = 100/16 = 6,25 bar. Para X bar: I = 4 + 16 × (X/100) mA.",
+              "PREFIXOS SI: Giga (G) = 10⁹, Mega (M) = 10⁶, Quilo (k) = 10³, Hecto (h) = 10², Deca (da) = 10¹, deci (d) = 10⁻¹, centi (c) = 10⁻², mili (m) = 10⁻³, micro (μ) = 10⁻⁶, nano (n) = 10⁻⁹, pico (p) = 10⁻¹².",
+            ],
+            equacoes: [
+              { latex: "T(°F) = 1{,}8 \\cdot T(°C) + 32 \\qquad T(°C) = \\dfrac{T(°F) - 32}{1{,}8}", legenda: "Conversão Celsius ↔ Fahrenheit" },
+              { latex: "I = 4 + 16 \\cdot \\dfrac{X - X_{min}}{X_{max} - X_{min}} \\quad [\\text{mA}]", legenda: "Conversão de valor de processo para sinal 4-20 mA" },
+            ],
+            conteudo2: [
+              "Exemplo: transmissor de temperatura PT100, faixa -20 a +180°C, sinal 4-20mA. Para T = 80°C: I = 4 + 16×(80-(-20))/(180-(-20)) = 4 + 16×(100/200) = 4 + 8 = 12 mA. Verificação: 12 mA está exatamente na metade do span → 80°C está na metade da faixa (-20 a +180 = 200°C de span, metade = -20 + 100 = 80°C) ✓.",
+            ],
+          },
+
+          {
+            titulo: "M.2 — Estatística e Análise de Erros em Metrologia",
+            conteudo: [
+              "A metrologia usa estatística para quantificar a qualidade das medições. Os conceitos de média, desvio padrão e incerteza são exigidos em concursos de instrumentação.",
+              "MÉDIA ARITMÉTICA: soma dos valores dividida pelo número de medições. Representa o valor mais provável do mensurando quando os erros são aleatórios e simétricos.",
+              "DESVIO PADRÃO (σ): mede a dispersão dos valores em torno da média. Desvio padrão da amostra: s = √[Σ(xi - x̄)² / (n-1)]. Quanto menor o desvio padrão, maior a repetibilidade do instrumento.",
+              "DISTRIBUIÇÃO NORMAL (Gaussiana): a maioria dos erros aleatórios segue distribuição normal. Propriedade: 68,3% dos valores estão dentro de ±1σ da média. 95,4% dentro de ±2σ. 99,7% dentro de ±3σ.",
+              "INCERTEZA EXPANDIDA: U = k × u, onde u é a incerteza padrão e k é o fator de abrangência. Para nível de confiança de 95% com distribuição normal, k = 2. Para 99,7%, k = 3.",
+              "PROPAGAÇÃO DE INCERTEZAS: quando a grandeza medida é calculada a partir de outras grandezas, as incertezas se propagam. Para f = A + B: u_f = √(u_A² + u_B²). Para f = A × B: u_f/f = √((u_A/A)² + (u_B/B)²).",
+            ],
+            equacoes: [
+              { latex: "\\bar{x} = \\dfrac{1}{n} \\sum_{i=1}^{n} x_i", legenda: "Média aritmética de n medições" },
+              { latex: "s = \\sqrt{\\dfrac{\\sum_{i=1}^{n}(x_i - \\bar{x})^2}{n-1}}", legenda: "Desvio padrão da amostra (repetibilidade)" },
+              { latex: "U = k \\cdot u_c \\quad (k=2 \\text{ para } 95\\%\\text{ de confiança})", legenda: "Incerteza expandida: k = fator de abrangência" },
+            ],
+            conteudo2: [
+              "Exemplo: 5 medições de pressão (bar): 10,2; 10,1; 10,3; 10,2; 10,2. Média: (10,2+10,1+10,3+10,2+10,2)/5 = 51,0/5 = 10,20 bar. Desvios: (-0,00; -0,10; +0,10; 0,00; 0,00). s = √[(0+0,01+0,01+0+0)/4] = √(0,005) = 0,0707 bar. Incerteza padrão: u = s/√n = 0,0707/√5 = 0,0316 bar. U = 2 × 0,0316 = 0,063 bar (95% de confiança). Resultado: 10,20 ± 0,063 bar.",
+            ],
+          },
+
+          {
+            titulo: "M.3 — Álgebra e Equações Aplicadas à Instrumentação",
+            conteudo: [
+              "Equações lineares e sistemas são usados em calibração, cálculo de span, ajuste de zero e especificação de instrumentos.",
+              "EQUAÇÃO DA RETA (calibração): y = ax + b. Em instrumentação, y = sinal de saída (ex: mA), x = valor medido (ex: bar). O coeficiente angular a = (y_max - y_min) / (x_max - x_min) = span de saída / span de entrada. O coeficiente linear b = y_min - a × x_min.",
+              "REGRA DE TRÊS: método rápido para conversão proporcional. Se 16 mA de span corresponde a 100% da faixa, quantos mA correspondem a 35%? 16 mA ÷ 100% × 35% = 5,6 mA. Sinal de saída: 4 + 5,6 = 9,6 mA.",
+              "SISTEMAS DE EQUAÇÕES EM CALIBRAÇÃO: para ajustar zero e span de um transmissor com dois pontos. Ponto 1: 0 bar → 3,90 mA (deveria ser 4,00 mA). Ponto 2: 100 bar → 19,85 mA (deveria ser 20,00 mA). Erro de zero: +0,10 mA (em excesso). Erro de span: 20,00 - 19,85 = 0,15 mA (deficiente). Ajustar zero aumentando 0,10 mA e depois span ajustando em 0,15 mA.",
+              "INTERPOLAÇÃO LINEAR: estimar valor entre dois pontos conhecidos. Para temperatura T entre T1 e T2 com resistências R1 e R2: R(T) = R1 + (R2-R1) × (T-T1)/(T2-T1). Usado para calcular valores intermediários em tabelas de termopar e PT100.",
+            ],
+            equacoes: [
+              { latex: "a = \\dfrac{y_{max} - y_{min}}{x_{max} - x_{min}} = \\dfrac{16 \\text{ mA}}{\\text{Span do processo}}", legenda: "Coeficiente angular da curva de calibração (sensibilidade do instrumento)" },
+              { latex: "R(T) \\approx R_1 + \\dfrac{R_2 - R_1}{T_2 - T_1} \\cdot (T - T_1)", legenda: "Interpolação linear entre dois pontos de calibração" },
+            ],
+            conteudo2: [
+              "Dica de concurso: perguntas sobre sinal 4-20 mA são quase sempre resolvidas por interpolação linear ou regra de três. Memorize: 0% = 4 mA, 25% = 8 mA, 50% = 12 mA, 75% = 16 mA, 100% = 20 mA. Cada 25% = 4 mA de variação.",
+            ],
+          },
+
+          {
+            titulo: "M.4 — Raciocínio Lógico para Concursos",
+            conteudo: [
+              "Raciocínio lógico é parte da prova básica de todos os concursos da Petrobras. Os temas mais frequentes são: proposições, conectivos lógicos, silogismos e lógica de circuitos (AND, OR, NOT).",
+              "PROPOSIÇÃO: afirmação declarativa que pode ser classificada como verdadeira (V) ou falsa (F). Exemplos de proposições: 'A corrente é 5A' (pode ser V ou F). Exemplos que NÃO são proposições: perguntas ('Qual é a corrente?'), ordens ('Meça a corrente!'), paradoxos.",
+              "CONECTIVOS LÓGICOS: E (∧) — conjunção, verdadeira somente se ambas as proposições forem V. OU (∨) — disjunção, falsa somente se ambas forem F. NÃO (¬) — negação, inverte o valor de verdade. SE...ENTÃO (→) — condicional, falsa somente se premissa V e conclusão F. SE E SOMENTE SE (↔) — bicondicional, verdadeira quando ambas têm o mesmo valor.",
+              "NEGAÇÃO DE PROPOSIÇÕES COMPOSTAS — Leis de De Morgan: NÃO(p E q) = (NÃO p) OU (NÃO q). NÃO(p OU q) = (NÃO p) E (NÃO q). Aplicação em lógica de CLPs: NOT(A AND B) = (NOT A) OR (NOT B).",
+              "SILOGISMO: argumento com duas premissas e uma conclusão. Exemplo válido: Premissa 1: Todo técnico da Petrobras usa EPI. Premissa 2: João é técnico da Petrobras. Conclusão: João usa EPI. Válido porque a conclusão decorre logicamente das premissas.",
+              "LÓGICA DE CIRCUITOS (portas lógicas): AND = E, OR = OU, NOT = NÃO, NAND = NÃO-E, NOR = NÃO-OU, XOR = OU exclusivo. A tabela-verdade lista todas as combinações possíveis de entradas e suas saídas correspondentes.",
+            ],
+            equacoes: [],
+            conteudo2: [
+              "Macete para a condicional (p → q): é FALSA somente quando p é V e q é F. Equivalências úteis: p → q ≡ (NÃO p) OU q ≡ (NÃO q) → (NÃO p) (contrapositiva). A contrapositiva tem o mesmo valor de verdade que a condicional original — muito cobrado em provas.",
+              "Lei de De Morgan na prática: 'NÃO (vai chover E vai ventar)' é equivalente a 'NÃO vai chover OU NÃO vai ventar'. Isso é exatamente a porta NAND no CLP: a saída é 0 (falso) somente se AMBAS as entradas são 1 (verdadeiro).",
+            ],
+          },
+
+          {
+            titulo: "M.5 — Sequências, Matrizes e Probabilidade",
+            conteudo: [
+              "Sequências, matrizes e probabilidade são temas frequentes na parte de raciocínio lógico-matemático dos concursos técnicos da Petrobras.",
+              "SEQUÊNCIAS NUMÉRICAS: identificar o padrão que gera a sequência. Tipos comuns: PA (diferença constante), PG (razão constante), quadrados (1, 4, 9, 16...), cubos (1, 8, 27, 64...), Fibonacci (cada termo = soma dos dois anteriores: 1, 1, 2, 3, 5, 8, 13...).",
+              "SEQUÊNCIAS DE FIGURAS: identificar rotações, reflexões, adições ou remoções de elementos em padrões geométricos. Estratégia: analisar linha por linha e coluna por coluna.",
+              "MATRIZES: tabela retangular de números com m linhas e n colunas. Adição: elementos correspondentes. Multiplicação de matriz m×n por n×p resulta em m×p. A multiplicação de matrizes NÃO é comutativa (A×B ≠ B×A em geral). Determinante de matriz 2×2: |A| = ad - bc.",
+              "PROBABILIDADE: P(A) = número de casos favoráveis / número de casos possíveis. P(A) sempre entre 0 e 1. P(A) + P(Ā) = 1. Eventos independentes: P(A e B) = P(A) × P(B). Eventos mutuamente exclusivos: P(A ou B) = P(A) + P(B).",
+              "ANÁLISE COMBINATÓRIA: permutação simples (n elementos em n posições): Pn = n!. Arranjo (n elementos em k posições, importa a ordem): A(n,k) = n!/(n-k)!. Combinação (n elementos em k posições, não importa a ordem): C(n,k) = n! / (k! × (n-k)!).",
+            ],
+            equacoes: [
+              { latex: "P(A) = \\dfrac{\\text{casos favoráveis}}{\\text{casos possíveis}} \\quad 0 \\leq P(A) \\leq 1", legenda: "Definição clássica de probabilidade" },
+              { latex: "C(n,k) = \\dfrac{n!}{k! \\cdot (n-k)!}", legenda: "Combinação de n elementos tomados k a k" },
+              { latex: "\\det\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix} = ad - bc", legenda: "Determinante de matriz 2×2" },
+            ],
+            conteudo2: [
+              "Exemplo: num painel de instrumentação, há 5 posições para instalar transmissores. De quantas formas podemos escolher 3 transmissores de marcas diferentes para essas posições se a ordem importa? A(5,3) = 5!/(5-3)! = 120/2 = 60 arranjos. Se a ordem não importar: C(5,3) = 5!/(3!×2!) = 120/12 = 10 combinações.",
+            ],
+          },
+
         ],
       },
     ],
