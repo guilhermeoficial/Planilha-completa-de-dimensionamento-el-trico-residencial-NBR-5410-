@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /dashboard/projects/
+
+Sitemap: https://voltis.net.br/sitemap.xml

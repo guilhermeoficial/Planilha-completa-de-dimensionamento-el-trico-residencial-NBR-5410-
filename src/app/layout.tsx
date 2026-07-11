@@ -2,8 +2,33 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Voltis — Projetos Elétricos Residenciais",
-  description: "Levantamento de carga, dimensionamento de circuitos e balanceamento de fases conforme a NBR 5410.",
+  title: "Voltis — Plataforma de Estudos para Concursos de Eletrotécnica",
+  description: "Prepare-se para os concursos da Petrobras Ênfase 5 e 6. Banco de questões inéditas, cursos completos de Eletrotécnica e Instrumentação, estatísticas de desempenho e gabarito comentado.",
+  keywords: ["Voltis", "concurso Petrobras", "eletrotécnica", "instrumentação", "questões Petrobras", "Ênfase 5", "Ênfase 6", "técnico manutenção elétrica", "estudos eletrotécnica", "banco de questões"],
+  authors: [{ name: "Voltis" }],
+  creator: "Voltis",
+  publisher: "Voltis",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true },
+  },
+  openGraph: {
+    type: "website",
+    locale: "pt_BR",
+    url: "https://voltis.net.br",
+    siteName: "Voltis",
+    title: "Voltis — Plataforma de Estudos para Concursos de Eletrotécnica",
+    description: "Prepare-se para os concursos da Petrobras Ênfase 5 e 6 com questões inéditas, cursos completos e gabarito comentado.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Voltis — Estudos para Concursos de Eletrotécnica",
+    description: "Banco de questões e cursos para Petrobras Ênfase 5 e 6.",
+  },
+  alternates: {
+    canonical: "https://voltis.net.br",
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -21,3 +46,4 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     </html>
   );
 }
+
