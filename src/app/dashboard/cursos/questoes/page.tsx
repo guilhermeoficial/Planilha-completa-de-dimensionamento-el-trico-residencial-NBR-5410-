@@ -8,6 +8,35 @@ import {
 } from "lucide-react";
 import Explosao from "@/components/explosao";
 import CircuitoQuestao from "@/components/circuito-questao";
+import Formula from "@/app/dashboard/cursos/formula";
+
+// ── Renderiza explicação com suporte a LaTeX inline via $$...$$  ─────────────
+function ExplicacaoRender({ texto }: { texto: string }) {
+  // Renderiza texto com suporte a LaTeX: trechos entre $$ são renderizados via KaTeX
+  const partes: Array<{ tipo: "texto" | "latex"; conteudo: string }> = [];
+  const regex = /\$\$([\s\S]+?)\$\$/g;
+  let ultimo = 0;
+  let match;
+  while ((match = regex.exec(texto)) !== null) {
+    if (match.index > ultimo) {
+      partes.push({ tipo: "texto", conteudo: texto.slice(ultimo, match.index) });
+    }
+    partes.push({ tipo: "latex", conteudo: match[1].trim() });
+    ultimo = match.index + match[0].length;
+  }
+  if (ultimo < texto.length) {
+    partes.push({ tipo: "texto", conteudo: texto.slice(ultimo) });
+  }
+  return (
+    <span>
+      {partes.map((p, i) =>
+        p.tipo === "latex"
+          ? <Formula key={i} latex={p.conteudo} />
+          : <span key={i}>{p.conteudo}</span>
+      )}
+    </span>
+  );
+}
 import { createClient } from "@/lib/supabase/client";
 import {
   QUESTOES, AREAS_GRANDES, DIFICULDADES, BLOCOS, bancasDisponiveis, anosDisponiveis, assuntosDisponiveis,
@@ -408,7 +437,7 @@ export default function QuestoesPage() {
 
                 {respondida && (
                   <p className="mt-3 rounded-md bg-bg-elevated p-3 text-xs text-muted">
-                    <strong className="text-text">Explicação: </strong>{q.explicacao}
+                    <strong className="text-text">Explicação: </strong><ExplicacaoRender texto={q.explicacao} />
                   </p>
                 )}
 
@@ -419,7 +448,7 @@ export default function QuestoesPage() {
                     </p>
                     <p className="text-muted">
                       <strong className="text-text">Resposta: </strong>
-                      {q.alternativas[q.respostaCorreta]} — {q.explicacao}
+                      {q.alternativas[q.respostaCorreta]} — <ExplicacaoRender texto={q.explicacao} />
                     </p>
                   </div>
                 )}
