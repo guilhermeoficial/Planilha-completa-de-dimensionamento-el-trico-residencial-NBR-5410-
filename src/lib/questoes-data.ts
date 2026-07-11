@@ -3099,6 +3099,19 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 1,
     explicacao: "I: Correto — ao pressionar a botoeira (sinal 1), o contato NA fecha e a bobina da saída é energizada. II: Correto — o estado normal (sem atuação) do contato NA é aberto, refletindo o estado real sem pressão. III: Correto — o intertravamento usa contato NF de uma variável (ex: contato NF do contator K2 em série com a bobina de K1). IV: ERRADA — o tempo de ciclo do CLP (scan time) afeta diretamente a velocidade de resposta do programa; ciclos longos causam atraso na detecção de eventos rápidos. Alternativa B." },
 
+  // ── QUESTÃO COM CIRCUITO SVG NEON — ESTILO FGV/COMPESA ──────────────
+  { id: "e306", inedita: true, temImagem: true, areaGrande: "Eletrotécnica",
+    assunto: "Circuitos CA", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Difícil",
+    enunciado: "Assinale a alternativa que apresenta o valor mais próximo do módulo da corrente lida pelo amperímetro (Amp) no circuito da figura. O circuito é alimentado por fonte senoidal de 200 V (valor eficaz), em série com resistor de 100 Ω, seguido pelo paralelo de um indutor com reatância XL = 20 Ω e um capacitor com reatância XC = 25 Ω.",
+    alternativas: [
+      "1,41 A.",
+      "2 A.",
+      "1 A.",
+      "0,7 A.",
+      "1,37 A.",
+    ], respostaCorreta: 0,
+    explicacao: "Passo 1 — Paralelo XL // XC: Z_L = j20 Ω e Z_C = -j25 Ω. Z_par = (j20 × (-j25)) / (j20 + (-j25)). Numerador: j×(-j)×500 = (-j²)×500 = +500. Denominador: j20 - j25 = -j5. Logo Z_par = 500/(-j5) = 500/(- j5) × (j/j) = 500j / 5 = +j100 Ω (caráter indutivo). Passo 2 — Impedância total em série: Z_total = R + Z_par = 100 + j100. Módulo: |Z| = √(100² + 100²) = 100√2 ≈ 141,4 Ω. Passo 3 — Corrente: I = V / |Z| = 200 / (100√2) = 2/√2 = √2 ≈ 1,41 A. Resposta: alternativa A." },
+
 ];
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
