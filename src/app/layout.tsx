@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   authors: [{ name: "Voltis" }],
   creator: "Voltis",
   publisher: "Voltis",
+  verification: {
+    google: "gN_HKV0plGk7dpkdypG7jIKCMxHU9Z7_MgnDXWSTvqg",
+  },
   robots: {
     index: true,
     follow: true,
