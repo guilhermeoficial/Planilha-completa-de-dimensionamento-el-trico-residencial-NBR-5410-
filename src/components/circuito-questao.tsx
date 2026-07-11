@@ -492,70 +492,17 @@ function CircuitoN14() {
   );
 }
 
-// e306 — Fonte 200V | Amp | R=100Ω série | XL=20Ω // XC=25Ω
+// e306 — SVG gerado com Schemdraw (schemdraw v0.23) — aprovado pelo usuário
 function CircuitoE306() {
-  const W = 560, H = 290;
-  // coordenadas principais
-  const xSrc = 85, ySrcTop = 65, ySrcBot = 240, ySrcMid = (ySrcTop + ySrcBot) / 2;
-  const yTop = 65, yBot = 240;
-  const xAmp = 160;
-  const xResStart = 210, xResEnd = 320;
-  const xInd = 390;
-  const xCap = 490;
-
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} className="w-full max-h-72">
-      <Defs/>
-      <Fundo w={W} h={H}/>
-
-      {/* Fios trilho superior */}
-      <Fio x1={xSrc} y1={yTop} x2={xAmp - 16} y2={yTop}/>
-      <Fio x1={xAmp + 16} y1={yTop} x2={xResStart} y2={yTop}/>
-      <Fio x1={xResEnd} y1={yTop} x2={xInd} y2={yTop}/>
-      <Fio x1={xInd} y1={yTop} x2={xCap} y2={yTop}/>
-
-      {/* Fio vertical esq superior: top da fonte → trilho */}
-      <Fio x1={xSrc} y1={ySrcTop + 30} x2={xSrc} y2={yTop}/>
-
-      {/* Fios verticais indutor */}
-      <Fio x1={xInd} y1={yTop} x2={xInd} y2={yTop + 22}/>
-      <Fio x1={xInd} y1={yTop + 142} x2={xInd} y2={yBot}/>
-
-      {/* Fios verticais capacitor */}
-      <Fio x1={xCap} y1={yTop} x2={xCap} y2={(yTop + yBot) / 2 - 20}/>
-      <Fio x1={xCap} y1={(yTop + yBot) / 2 + 20} x2={xCap} y2={yBot}/>
-
-      {/* Trilho inferior */}
-      <Fio x1={xSrc} y1={yBot} x2={xCap} y2={yBot}/>
-
-      {/* Fio vertical esq inferior: fonte → trilho */}
-      <Fio x1={xSrc} y1={ySrcBot - 30} x2={xSrc} y2={yBot}/>
-
-      {/* Fonte */}
-      <FonteCA cx={xSrc} cy={ySrcMid} r={30} label="200 V"/>
-
-      {/* Amperímetro */}
-      <Amperimetro cx={xAmp} cy={yTop}/>
-
-      {/* Resistor 100Ω */}
-      <Resistor x={xResStart} y={yTop} w={xResEnd - xResStart} h={24} label="100 Ω"/>
-
-      {/* Indutor XL=20Ω */}
-      <IndutorV x={xInd} yTop={yTop + 22} yBot={yTop + 142} label="20 Ω / XL"/>
-
-      {/* Capacitor XC=25Ω */}
-      <CapacitorV x={xCap} yTop={yTop} yBot={yBot} label="25 Ω / XC" plateW={44}/>
-
-      {/* Aterramento */}
-      <Ground x={xSrc} y={yBot}/>
-
-      {/* Nós de junção */}
-      <No x={xInd} y={yTop}/>
-      <No x={xCap} y={yTop}/>
-      <No x={xInd} y={yBot}/>
-      <No x={xSrc} y={yTop}/>
-      <No x={xSrc} y={yBot}/>
-    </svg>
+    <div className="w-full">
+      <img
+        src="/questoes-imagens/e306.svg"
+        alt="Circuito: fonte 200V CA, amperímetro, R=100Ω em série, paralelo XL=20Ω e XC=25Ω"
+        className="w-full object-contain"
+        style={{ maxHeight: 220 }}
+      />
+    </div>
   );
 }
 
