@@ -1,5 +1,6 @@
 "use client";
 
+// circuito-questao.tsx — v2 — 10 circuitos SVG neon inline
 // ─────────────────────────────────────────────────────────────────────────────
 // Circuitos elétricos para questões — SVG inline com tema neon
 // Cada circuito é um componente React identificado pelo ID da questão.
