@@ -2,7 +2,7 @@
  
  <defs>
   <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
- <style>path,line,circle,rect,polyline{stroke:#7eb8f7!important;} text,tspan{fill:#7eb8f7!important;stroke:none!important;}</style></defs>
+ <style>path,line,circle,polyline{stroke:#7eb8f7!important;} rect{stroke:none!important;fill:none!important;} text,tspan{fill:#7eb8f7!important;stroke:none!important;} #axes_1>path:first-child{stroke:none!important;fill:none!important;}</style></defs>
  <g id="figure_1">
   
   <g id="axes_1">
@@ -199,7 +199,7 @@ L 2547 0
 L 1831 0 
 z
 " transform="scale(0.015625)"/>
-     <style>path,line,circle,rect,polyline{stroke:#7eb8f7!important;} text,tspan{fill:#7eb8f7!important;stroke:none!important;}</style></defs>
+     <style>path,line,circle,polyline{stroke:#7eb8f7!important;} rect{stroke:none!important;fill:none!important;} text,tspan{fill:#7eb8f7!important;stroke:none!important;} #axes_1>path:first-child{stroke:none!important;fill:none!important;}</style></defs>
      <use xlink:href="#DejaVuSans-31"/>
      <use xlink:href="#DejaVuSans-32" transform="translate(63.623047 0)"/>
      <use xlink:href="#DejaVuSans-30" transform="translate(127.246094 0)"/>
@@ -279,7 +279,7 @@ Q 4150 997 3647 556
 L 4647 556 
 z
 " transform="scale(0.015625)"/>
-     <style>path,line,circle,rect,polyline{stroke:#7eb8f7!important;} text,tspan{fill:#7eb8f7!important;stroke:none!important;}</style></defs>
+     <style>path,line,circle,polyline{stroke:#7eb8f7!important;} rect{stroke:none!important;fill:none!important;} text,tspan{fill:#7eb8f7!important;stroke:none!important;} #axes_1>path:first-child{stroke:none!important;fill:none!important;}</style></defs>
      <use xlink:href="#DejaVuSans-52"/>
      <use xlink:href="#DejaVuSans-31" transform="translate(69.482422 0)"/>
      <use xlink:href="#DejaVuSans-20" transform="translate(133.105469 0)"/>
@@ -327,7 +327,7 @@ Q 3450 3153 3228 2886
 Q 3006 2619 2597 2516 
 z
 " transform="scale(0.015625)"/>
-     <style>path,line,circle,rect,polyline{stroke:#7eb8f7!important;} text,tspan{fill:#7eb8f7!important;stroke:none!important;}</style></defs>
+     <style>path,line,circle,polyline{stroke:#7eb8f7!important;} rect{stroke:none!important;fill:none!important;} text,tspan{fill:#7eb8f7!important;stroke:none!important;} #axes_1>path:first-child{stroke:none!important;fill:none!important;}</style></defs>
      <use xlink:href="#DejaVuSans-52"/>
      <use xlink:href="#DejaVuSans-32" transform="translate(69.482422 0)"/>
      <use xlink:href="#DejaVuSans-20" transform="translate(133.105469 0)"/>
@@ -359,7 +359,7 @@ L 50 0
 L 1831 4666 
 z
 " transform="scale(0.015625)"/>
-     <style>path,line,circle,rect,polyline{stroke:#7eb8f7!important;} text,tspan{fill:#7eb8f7!important;stroke:none!important;}</style></defs>
+     <style>path,line,circle,polyline{stroke:#7eb8f7!important;} rect{stroke:none!important;fill:none!important;} text,tspan{fill:#7eb8f7!important;stroke:none!important;} #axes_1>path:first-child{stroke:none!important;fill:none!important;}</style></defs>
      <use xlink:href="#DejaVuSans-41"/>
     </g>
    </g>
@@ -399,7 +399,7 @@ L 628 0
 L 628 4666 
 z
 " transform="scale(0.015625)"/>
-     <style>path,line,circle,rect,polyline{stroke:#7eb8f7!important;} text,tspan{fill:#7eb8f7!important;stroke:none!important;}</style></defs>
+     <style>path,line,circle,polyline{stroke:#7eb8f7!important;} rect{stroke:none!important;fill:none!important;} text,tspan{fill:#7eb8f7!important;stroke:none!important;} #axes_1>path:first-child{stroke:none!important;fill:none!important;}</style></defs>
      <use xlink:href="#DejaVuSans-42"/>
     </g>
    </g>
@@ -437,7 +437,7 @@ Q 2619 4750 2861 4703
 Q 3103 4656 3366 4563 
 z
 " transform="scale(0.015625)"/>
-     <style>path,line,circle,rect,polyline{stroke:#7eb8f7!important;} text,tspan{fill:#7eb8f7!important;stroke:none!important;}</style></defs>
+     <style>path,line,circle,polyline{stroke:#7eb8f7!important;} rect{stroke:none!important;fill:none!important;} text,tspan{fill:#7eb8f7!important;stroke:none!important;} #axes_1>path:first-child{stroke:none!important;fill:none!important;}</style></defs>
      <use xlink:href="#DejaVuSans-52"/>
      <use xlink:href="#DejaVuSans-33" transform="translate(69.482422 0)"/>
      <use xlink:href="#DejaVuSans-20" transform="translate(133.105469 0)"/>
@@ -505,7 +505,7 @@ z
  </g>
  <defs>
   <clipPath id="p5bf4ddfaf0">
-   <rect x="0" y="-0" width="100%" height="204.16"/>
+   
   </clipPath>
- <style>path,line,circle,rect,polyline{stroke:#7eb8f7!important;} text,tspan{fill:#7eb8f7!important;stroke:none!important;}</style></defs>
+ <style>path,line,circle,polyline{stroke:#7eb8f7!important;} rect{stroke:none!important;fill:none!important;} text,tspan{fill:#7eb8f7!important;stroke:none!important;} #axes_1>path:first-child{stroke:none!important;fill:none!important;}</style></defs>
 </svg>
