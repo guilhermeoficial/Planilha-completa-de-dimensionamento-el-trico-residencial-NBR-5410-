@@ -492,6 +492,20 @@ function CircuitoN14() {
   );
 }
 
+// e286 — SVG gerado com Schemdraw — Fonte 120V + R1=20Ω + paralelo R2=30Ω // R3=60Ω com terminais A-B
+function CircuitoE286() {
+  return (
+    <div className="w-full">
+      <img
+        src="/questoes-imagens/e286.svg"
+        alt="Circuito CC: fonte 120V, R1=20Ω em série, paralelo R2=30Ω e R3=60Ω, terminais A-B"
+        className="w-full object-contain"
+        style={{ maxHeight: 220 }}
+      />
+    </div>
+  );
+}
+
 // e306 — SVG gerado com Schemdraw (schemdraw v0.23) — aprovado pelo usuário
 function CircuitoE306() {
   return (
@@ -520,6 +534,7 @@ const CIRCUITOS: Record<string, React.FC> = {
   n4:    CircuitoN4,
   n5:    CircuitoN5,
   n14:   CircuitoN14,
+  e286:  CircuitoE286,
   e306:  CircuitoE306,
 };
 

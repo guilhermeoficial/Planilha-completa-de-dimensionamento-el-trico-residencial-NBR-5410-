@@ -2875,7 +2875,7 @@ const QUESTOES_BASE: any[] = [
 
   // ── CONHECIMENTOS ESPECÍFICOS — ELETROTÉCNICA ───────────────────────────
 
-  { id: "e286", inedita: true, areaGrande: "Eletrotécnica", assunto: "Circuitos CC", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
+  { id: "e286", inedita: true, temImagem: true, areaGrande: "Eletrotécnica", assunto: "Circuitos CC", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "A figura representa um circuito de corrente contínua com uma fonte de 120 V e três resistores: R1 = 20Ω em série com o paralelo de R2 = 30Ω e R3 = 60Ω.\n\nO circuito equivalente de Thévenin visto pelos terminais A-B (após R1) é formado por:",
     alternativas: [
       "Vth = 120 V e Rth = 80 Ω.",
