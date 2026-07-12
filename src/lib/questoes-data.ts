@@ -2886,7 +2886,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 3,
     explicacao: "R2//R3 = (30×60)/(30+60) = 1800/90 = 20Ω. Vth = 120 × 20/(20+20) = 120 × 0,5 = 80V (divisor de tensão entre R1 e R2//R3... aguarde: Rth (com fonte curto) = R1 // (R2//R3) não. Rth visto de A-B com fonte curto: Rth = R1 em série com (R2//R3 — não, A-B está após R1). Rth = R1 em paralelo com o caminho via fonte + R2//R3. Simplificando: Rth = R1 = 20Ω com a fonte curto, e Vth = 120×(R2//R3)/(R1+R2//R3) = 80V. Alternativa D." },
 
-  { id: "e287", inedita: true, areaGrande: "Eletrotécnica", assunto: "Corrente alternada", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
+  { id: "e287", inedita: true, temImagem: true, areaGrande: "Eletrotécnica", assunto: "Corrente alternada", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "Um circuito elétrico de corrente alternada monofásico possui resistência de 30Ω e reatância indutiva de 40Ω. A impedância do circuito e o fator de potência são, respectivamente:",
     alternativas: [
       "50Ω e FP = 0,8.",

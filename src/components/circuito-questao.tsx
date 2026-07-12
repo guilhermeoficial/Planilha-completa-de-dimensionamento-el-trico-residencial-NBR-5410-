@@ -492,6 +492,20 @@ function CircuitoN14() {
   );
 }
 
+// e287 — Circuito CA série: R=30Ω + XL=40Ω
+function CircuitoE287() {
+  return (
+    <div className="w-full">
+      <img
+        src="/questoes-imagens/e287.svg"
+        alt="Circuito CA série: R=30Ω e XL=40Ω"
+        className="w-full object-contain"
+        style={{ maxHeight: 220 }}
+      />
+    </div>
+  );
+}
+
 // e286 — SVG gerado com Schemdraw — Fonte 120V + R1=20Ω + paralelo R2=30Ω // R3=60Ω com terminais A-B
 function CircuitoE286() {
   return (
@@ -535,6 +549,7 @@ const CIRCUITOS: Record<string, React.FC> = {
   n5:    CircuitoN5,
   n14:   CircuitoN14,
   e286:  CircuitoE286,
+  e287:  CircuitoE287,
   e306:  CircuitoE306,
 };
 
