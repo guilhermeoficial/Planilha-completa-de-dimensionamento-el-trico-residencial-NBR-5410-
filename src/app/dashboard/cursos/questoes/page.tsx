@@ -123,7 +123,13 @@ export default function QuestoesPage() {
       if (ano !== "Todos" && q.ano !== Number(ano)) return false;
       if (dificuldade !== "Todas" && q.dificuldade !== dificuldade) return false;
       if (apenasIneditas && !q.inedita) return false;
-      if (busca.trim() && !q.enunciado.toLowerCase().includes(busca.trim().toLowerCase())) return false;
+      if (busca.trim()) {
+        const termo = busca.trim().toLowerCase();
+        const buscaId = q.id.toLowerCase() === termo || q.id.toLowerCase().startsWith(termo);
+        const buscaEnunciado = q.enunciado.toLowerCase().includes(termo);
+        const buscaAssunto = q.assunto.toLowerCase().includes(termo);
+        if (!buscaId && !buscaEnunciado && !buscaAssunto) return false;
+      }
 
       const resp = respostas[q.id];
       if (filtroMinhas === "resolvidas" && !resp) return false;
