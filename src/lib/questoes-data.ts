@@ -850,7 +850,7 @@ const QUESTOES_BASE: any[] = [
     alternativas: ["10,6 A e 0,87 indutivo", "10,6 A e 0,87 capacitivo", "12,0 A e 1,00", "10,6 A e 0,74 indutivo", "8,5 A e 0,87 indutivo"], respostaCorreta: 0,
     explicacao: "|Z| = √(10² + 5,59²) ≈ 11,48 Ω. I = 120/11,48 ≈ 10,45 A ≈ 10,5 A. FP = R/|Z| = 10/11,48 ≈ 0,87 indutivo (XL > XC). Resposta mais próxima: 10,6 A e 0,87 indutivo." },
 
-  { id: "e62", inedita: true, areaGrande: "Eletrotécnica", assunto: "Circuitos CA", banca: "Voltis Original", ano: 2023, dificuldade: "Difícil",
+  { id: "e62", inedita: true, temImagem: true, areaGrande: "Eletrotécnica", assunto: "Circuitos CA", banca: "Voltis Original", ano: 2023, dificuldade: "Difícil",
     enunciado: "Um circuito RC paralelo tem R = 100 Ω e C = 31,8 μF, alimentado por 220 V / 60 Hz. A corrente total fornecida pela fonte e o fator de potência do circuito valem, respectivamente:",
     alternativas: ["2,2 A e 1,00", "3,1 A e 0,71 capacitivo", "2,2 A e 0,71 capacitivo", "3,1 A e 0,71 indutivo", "2,2 A e 0,87 capacitivo"], respostaCorreta: 1,
     explicacao: "IR = 220/100 = 2,2 A. XC = 1/(2π×60×31,8×10⁻⁶) ≈ 83,5 Ω. IC = 220/83,5 ≈ 2,63 A. Itotal = √(2,2² + 2,63²) ≈ 3,43 A ≈ 3,1 A. FP = IR/Itotal = 2,2/3,43 ≈ 0,64. A alternativa mais próxima com lógica correta (paralelo RC → capacitivo) é 3,1 A e 0,71 capacitivo." },

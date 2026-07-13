@@ -492,6 +492,16 @@ function CircuitoN14() {
   );
 }
 
+// e62 — Circuito RC paralelo: R=100Ω, C=31,8μF, 220V/60Hz
+function CircuitoE62() {
+  return (
+    <div className="w-full">
+      <img src="/questoes-imagens/e62.svg" alt="Circuito RC paralelo: R=100Ω, C=31,8μF, 220V/60Hz"
+        className="w-full object-contain" style={{ maxHeight: 220 }}/>
+    </div>
+  );
+}
+
 // e61 — mesmo circuito do e60 (RLC série 120V/60Hz)
 function CircuitoE61() {
   return (
@@ -570,6 +580,7 @@ const CIRCUITOS: Record<string, React.FC> = {
   n14:   CircuitoN14,
   e60:   CircuitoE60,
   e61:   CircuitoE61,
+  e62:   CircuitoE62,
   e286:  CircuitoE286,
   e287:  CircuitoE287,
   e306:  CircuitoE306,
