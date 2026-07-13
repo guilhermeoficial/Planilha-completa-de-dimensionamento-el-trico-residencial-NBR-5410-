@@ -860,7 +860,7 @@ const QUESTOES_BASE: any[] = [
     alternativas: ["1,59 kHz", "6,28 kHz", "15,9 kHz", "31,8 kHz", "159 kHz"], respostaCorreta: 2,
     explicacao: "fc = 1/(2πRC) = 1/(2π × 10×10³ × 1×10⁻⁹) = 1/(62,8×10⁻⁶) ≈ 15.915 Hz ≈ 15,9 kHz." },
 
-  { id: "e64", inedita: true, areaGrande: "Eletrotécnica", assunto: "Circuitos CA", banca: "Voltis Original", ano: 2023, dificuldade: "Difícil",
+  { id: "e64", inedita: true, temImagem: true, areaGrande: "Eletrotécnica", assunto: "Circuitos CA", banca: "Voltis Original", ano: 2023, dificuldade: "Difícil",
     enunciado: "Um circuito RL série tem R = 6 Ω e XL = 8 Ω, alimentado por 100 V (rms). As potências ativa (P), reativa (Q) e aparente (S) valem, respectivamente:",
     alternativas: ["600 W, 800 var, 1000 VA", "800 W, 600 var, 1000 VA", "60 W, 80 var, 100 VA", "600 W, 800 var, 600 VA", "1000 W, 0 var, 1000 VA"], respostaCorreta: 0,
     explicacao: "|Z| = √(6²+8²) = 10 Ω. I = 100/10 = 10 A. P = I²×R = 100×6 = 600 W. Q = I²×XL = 100×8 = 800 var. S = V×I = 100×10 = 1000 VA." },

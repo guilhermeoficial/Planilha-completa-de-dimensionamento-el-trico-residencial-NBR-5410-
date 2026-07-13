@@ -492,6 +492,16 @@ function CircuitoN14() {
   );
 }
 
+// e64 — Circuito RL série: R=6Ω, XL=8Ω, 100V
+function CircuitoE64() {
+  return (
+    <div className="w-full">
+      <img src="/questoes-imagens/e64.svg" alt="Circuito RL série: R=6Ω, XL=8Ω, 100V"
+        className="w-full object-contain" style={{ maxHeight: 220 }}/>
+    </div>
+  );
+}
+
 // e62 — Circuito RC paralelo: R=100Ω, C=31,8μF, 220V/60Hz
 function CircuitoE62() {
   return (
@@ -581,6 +591,7 @@ const CIRCUITOS: Record<string, React.FC> = {
   e60:   CircuitoE60,
   e61:   CircuitoE61,
   e62:   CircuitoE62,
+  e64:   CircuitoE64,
   e286:  CircuitoE286,
   e287:  CircuitoE287,
   e306:  CircuitoE306,
