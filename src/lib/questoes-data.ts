@@ -551,7 +551,7 @@ const QUESTOES_BASE: any[] = [
     alternativas: ["7,7%", "8,3%", "9,1%", "10,9%", "12,0%"], respostaCorreta: 2,
     explicacao: "RT = [(Vvazio − Vcarga)/Vcarga] × 100 = [(240−220)/220] × 100 ≈ 9,1%." },
 
-  { id: "e40", inedita: true, areaGrande: "Eletrotécnica", assunto: "Circuitos CA", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
+  { id: "e40", inedita: true, temImagem: true, areaGrande: "Eletrotécnica", assunto: "Circuitos CA", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Em um circuito RLC paralelo, alimentado por fonte senoidal, tem-se R = 50 Ω, L = 1 H e C = 4 μF. A frequência de ressonância desse circuito vale aproximadamente:",
     alternativas: ["7,96 Hz", "15,9 Hz", "79,6 Hz", "159 Hz", "796 Hz"], respostaCorreta: 2,
     explicacao: "f0 = 1/(2π√(LC)) = 1/(2π√(1×4×10⁻⁶)) = 1/(2π×2×10⁻³) ≈ 1/0,01257 ≈ 79,6 Hz." },

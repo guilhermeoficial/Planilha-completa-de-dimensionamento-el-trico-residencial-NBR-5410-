@@ -492,6 +492,16 @@ function CircuitoN14() {
   );
 }
 
+// e40 — Circuito RLC paralelo: R=50Ω, L=1H, C=4μF
+function CircuitoE40() {
+  return (
+    <div className="w-full">
+      <img src="/questoes-imagens/e40.svg" alt="Circuito RLC paralelo: R=50Ω, L=1H, C=4μF"
+        className="w-full object-contain" style={{ maxHeight: 220 }}/>
+    </div>
+  );
+}
+
 // e64 — Circuito RL série: R=6Ω, XL=8Ω, 100V
 function CircuitoE64() {
   return (
@@ -588,6 +598,7 @@ const CIRCUITOS: Record<string, React.FC> = {
   n4:    CircuitoN4,
   n5:    CircuitoN5,
   n14:   CircuitoN14,
+  e40:   CircuitoE40,
   e60:   CircuitoE60,
   e61:   CircuitoE61,
   e62:   CircuitoE62,
