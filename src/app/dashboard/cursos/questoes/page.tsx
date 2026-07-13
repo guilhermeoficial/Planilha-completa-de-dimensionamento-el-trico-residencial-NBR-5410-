@@ -208,6 +208,21 @@ export default function QuestoesPage() {
     }
   }
 
+  async function desmarcarQuestao(questaoId: string) {
+    setRespostas((r) => {
+      const novo = { ...r };
+      delete novo[questaoId];
+      return novo;
+    });
+    setSelecaoAtual((s) => { const n = { ...s }; delete n[questaoId]; return n; });
+    if (usuarioId) {
+      await supabase.from("respostas_questoes")
+        .delete()
+        .eq("user_id", usuarioId)
+        .eq("questao_id", questaoId);
+    }
+  }
+
   const totalRespondidas = Object.keys(respostas).length;
   const totalAcertos = Object.values(respostas).filter((r) => r.correta).length;
   const percentualAcerto = totalRespondidas > 0 ? (totalAcertos / totalRespondidas) * 100 : 0;
@@ -498,6 +513,15 @@ export default function QuestoesPage() {
                 >
                   <GraduationCap size={13} /> Gabarito comentado
                 </button>
+                {respondida && (
+                  <button
+                    onClick={() => desmarcarQuestao(q.id)}
+                    className="flex items-center gap-1 text-muted hover:text-danger transition-colors"
+                    title="Desmarcar — permite responder novamente"
+                  >
+                    <RotateCcw size={13} /> Desmarcar
+                  </button>
+                )}
                 <button
                   onClick={() => alternarEstatisticas(q.id)}
                   className={`flex items-center gap-1 hover:text-text ${estatisticasAbertas[q.id] ? "text-accent" : ""}`}
