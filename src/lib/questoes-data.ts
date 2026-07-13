@@ -845,7 +845,7 @@ const QUESTOES_BASE: any[] = [
     alternativas: ["10,0 + j0,0 Ω", "10,0 + j5,6 Ω", "10,0 − j5,6 Ω", "10,0 + j18,8 Ω", "10,0 − j18,8 Ω"], respostaCorreta: 2,
     explicacao: "XL = 2π×60×0,05 ≈ 18,85 Ω. XC = 1/(2π×60×200×10⁻⁶) ≈ 13,26 Ω. X = XL − XC ≈ 5,59 Ω (indutivo). Z = 10 − j5,6 Ω está errado — X é positivo (indutivo): Z = 10 + j5,6 Ω. Recalculando: X = 18,85 − 13,26 = 5,59 Ω indutivo → Z = 10 + j5,6 Ω. Resposta: alternativa C." },
 
-  { id: "e61", inedita: true, areaGrande: "Eletrotécnica", assunto: "Circuitos CA", banca: "Voltis Original", ano: 2024, dificuldade: "Difícil",
+  { id: "e61", inedita: true, temImagem: true, areaGrande: "Eletrotécnica", assunto: "Circuitos CA", banca: "Voltis Original", ano: 2024, dificuldade: "Difícil",
     enunciado: "No circuito RLC série da questão anterior (R=10Ω, XL≈18,85Ω, XC≈13,26Ω, V=120V rms), a corrente eficaz e o fator de potência valem, respectivamente, aproximadamente:",
     alternativas: ["10,6 A e 0,87 indutivo", "10,6 A e 0,87 capacitivo", "12,0 A e 1,00", "10,6 A e 0,74 indutivo", "8,5 A e 0,87 indutivo"], respostaCorreta: 0,
     explicacao: "|Z| = √(10² + 5,59²) ≈ 11,48 Ω. I = 120/11,48 ≈ 10,45 A ≈ 10,5 A. FP = R/|Z| = 10/11,48 ≈ 0,87 indutivo (XL > XC). Resposta mais próxima: 10,6 A e 0,87 indutivo." },
