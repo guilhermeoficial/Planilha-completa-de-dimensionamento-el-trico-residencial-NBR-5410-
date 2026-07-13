@@ -1147,7 +1147,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 0,
     explicacao: "A NBR 5410 permite o seccionamento do neutro desde que seja feito simultaneamente ao seccionamento do condutor de fase (seccionamento multipolar). O seccionamento do neutro de forma independente (sem seccionar a fase ao mesmo tempo) não é permitido, pois poderia deixar partes da instalação energizadas de forma perigosa." },
 
-  { id: "e110", inedita: true, areaGrande: "Eletrotécnica", assunto: "Circuitos CA", banca: "Voltis Original", ano: 2024, dificuldade: "Difícil",
+  { id: "e110", inedita: true, temImagem: true, areaGrande: "Eletrotécnica", assunto: "Circuitos CA", banca: "Voltis Original", ano: 2024, dificuldade: "Difícil",
     enunciado: "Um circuito RLC série com R = 5 Ω, L = 25 mH e C = 100 μF é alimentado por 50 V (rms) / 60 Hz. A tensão eficaz sobre o capacitor vale aproximadamente:",
     alternativas: ["26,5 V", "53,0 V", "74,5 V", "106,2 V", "133,0 V"], respostaCorreta: 2,
     explicacao: "XL = 2π×60×0,025 ≈ 9,42 Ω. XC = 1/(2π×60×100×10⁻⁶) ≈ 26,53 Ω. X_net = XL−XC = −17,11 Ω (capacitivo). |Z| = √(5²+17,11²) ≈ 17,83 Ω. I = 50/17,83 ≈ 2,81 A. VC = I×XC = 2,81×26,53 ≈ 74,5 V." },
