@@ -461,6 +461,16 @@ function CircuitoN14() {
   );
 }
 
+// e88 — Wattímetro monofásico: V=220V, I=10A, φ=60°
+function CircuitoE88() {
+  return (
+    <div className="w-full">
+      <img src="/questoes-imagens/e88.svg" alt="Wattímetro monofásico: V=220V, I=10A, φ=60°"
+        className="w-full object-contain" style={{ maxHeight: 220 }}/>
+    </div>
+  );
+}
+
 // e110 — RLC série: R=5Ω, L=25mH, C=100μF, 50V/60Hz
 function CircuitoE110() {
   return (
@@ -582,6 +592,7 @@ const CIRCUITOS: Record<string, React.FC> = {
   e61:   CircuitoE61,
   e62:   CircuitoE62,
   e64:   CircuitoE64,
+  e88:   CircuitoE88,
   e110:  CircuitoE110,
   e286:  CircuitoE286,
   e287:  CircuitoE287,

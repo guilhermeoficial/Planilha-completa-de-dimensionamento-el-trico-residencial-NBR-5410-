@@ -1016,7 +1016,7 @@ const QUESTOES_BASE: any[] = [
     explicacao: "O DPS Tipo 1 (Classe I de ensaio) é projetado para suportar a descarga parcial de corrente de raio e deve ser instalado nas edificações equipadas com SPDA (Sistema de Proteção contra Descargas Atmosféricas), onde há risco de descarga direta. O Tipo 2 protege contra sobretensões transitórias e é instalado nos quadros de distribuição. O Tipo 3 é instalado próximo aos equipamentos sensíveis." },
 
   // Medidas elétricas avançadas
-  { id: "e88", inedita: true, areaGrande: "Eletrotécnica", assunto: "Instrumentação", banca: "Voltis Original", ano: 2024, dificuldade: "Difícil",
+  { id: "e88", inedita: true, temImagem: true, areaGrande: "Eletrotécnica", assunto: "Instrumentação", banca: "Voltis Original", ano: 2024, dificuldade: "Difícil",
     enunciado: "Um wattímetro monofásico é ligado em um circuito com V = 220 V, I = 10 A e ângulo de fase de 60° entre tensão e corrente. A leitura do wattímetro é:",
     alternativas: ["2.200 W", "1.905 W", "1.100 W", "693 W", "380 W"], respostaCorreta: 2,
     explicacao: "P = V × I × cos φ = 220 × 10 × cos 60° = 2.200 × 0,5 = 1.100 W." },
