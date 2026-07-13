@@ -1131,7 +1131,7 @@ const QUESTOES_BASE: any[] = [
     alternativas: ["7,2 V", "20 V", "30 V", "48 V", "60 V"], respostaCorreta: 2,
     explicacao: "Para conversor Boost: Vout = Vin/(1−D) = 12/(1−0,6) = 12/0,4 = 30 V." },
 
-  { id: "e108", inedita: true, areaGrande: "Eletrotécnica", assunto: "Dimensionamento elétrico", banca: "Voltis Original", ano: 2023, dificuldade: "Difícil",
+  { id: "e108", inedita: true, temImagem: true, areaGrande: "Eletrotécnica", assunto: "Dimensionamento elétrico", banca: "Voltis Original", ano: 2023, dificuldade: "Difícil",
     enunciado: "Um circuito alimenta uma carga resistiva de 4 kW em 127 V monofásico, através de condutores de cobre com resistividade ρ = 1,72×10⁻⁸ Ω·m, seção de 2,5 mm² e comprimento total (ida e volta) de 40 m. A queda de tensão percentual nos condutores vale aproximadamente:",
     alternativas: ["1,7%", "2,7%", "3,4%", "4,3%", "5,4%"], respostaCorreta: 2,
     explicacao: "R = ρ×L/A = 1,72×10⁻⁸ × 40 / (2,5×10⁻⁶) = 6,88×10⁻⁷/2,5×10⁻⁶ = 0,275 Ω. I = P/V = 4000/127 ≈ 31,5 A. ΔV = R×I = 0,275×31,5 ≈ 8,66 V. ΔV% = 8,66/127 × 100 ≈ 6,8%. Reconsiderando comprimento total (ida+volta já incluso): ΔV% ≈ 3,4% (comprimento de 20 m por condutor)." },

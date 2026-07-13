@@ -461,6 +461,16 @@ function CircuitoN14() {
   );
 }
 
+// e108 — Fonte 127V + cabo 2,5mm²/40m + carga 4kW
+function CircuitoE108() {
+  return (
+    <div className="w-full">
+      <img src="/questoes-imagens/e108.svg" alt="Circuito: fonte 127V, cabo 2,5mm², carga 4kW"
+        className="w-full object-contain" style={{ maxHeight: 220 }}/>
+    </div>
+  );
+}
+
 // e88 — Wattímetro monofásico: V=220V, I=10A, φ=60°
 function CircuitoE88() {
   return (
@@ -593,6 +603,7 @@ const CIRCUITOS: Record<string, React.FC> = {
   e62:   CircuitoE62,
   e64:   CircuitoE64,
   e88:   CircuitoE88,
+  e108:  CircuitoE108,
   e110:  CircuitoE110,
   e286:  CircuitoE286,
   e287:  CircuitoE287,
