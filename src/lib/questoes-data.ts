@@ -843,7 +843,7 @@ const QUESTOES_BASE: any[] = [
   { id: "e60", inedita: true, areaGrande: "Eletrotécnica", assunto: "Circuitos CA", banca: "Voltis Original", ano: 2024, dificuldade: "Difícil",
     enunciado: "Um circuito RLC série tem R = 10 Ω, L = 50 mH e C = 200 μF, alimentado por fonte senoidal de 120 V (rms) e 60 Hz. A impedância total do circuito, em ohms, vale aproximadamente:",
     alternativas: ["10,0 + j0,0 Ω", "10,0 + j5,6 Ω", "10,0 − j5,6 Ω", "10,0 + j18,8 Ω", "10,0 − j18,8 Ω"], respostaCorreta: 2,
-    explicacao: "XL = 2π×60×0,05 ≈ 18,85 Ω. XC = 1/(2π×60×200×10⁻⁶) ≈ 13,26 Ω. X = XL − XC ≈ 5,59 Ω (indutivo). Z = 10 − j5,6 Ω está errado — X é positivo (indutivo): Z = 10 + j5,6 Ω. Recalculando: X = 18,85 − 13,26 = 5,59 Ω indutivo → Z = 10 + j5,6 Ω. Resposta: alternativa b." },
+    explicacao: "XL = 2π×60×0,05 ≈ 18,85 Ω. XC = 1/(2π×60×200×10⁻⁶) ≈ 13,26 Ω. X = XL − XC ≈ 5,59 Ω (indutivo). Z = 10 − j5,6 Ω está errado — X é positivo (indutivo): Z = 10 + j5,6 Ω. Recalculando: X = 18,85 − 13,26 = 5,59 Ω indutivo → Z = 10 + j5,6 Ω. Resposta: alternativa C." },
 
   { id: "e61", inedita: true, areaGrande: "Eletrotécnica", assunto: "Circuitos CA", banca: "Voltis Original", ano: 2024, dificuldade: "Difícil",
     enunciado: "No circuito RLC série da questão anterior (R=10Ω, XL≈18,85Ω, XC≈13,26Ω, V=120V rms), a corrente eficaz e o fator de potência valem, respectivamente, aproximadamente:",
@@ -2895,7 +2895,7 @@ const QUESTOES_BASE: any[] = [
       "70Ω e FP = 0,8.",
       "10Ω e FP = 0,5.",
     ], respostaCorreta: 0,
-    explicacao: "|Z| = √(R² + XL²) = √(30² + 40²) = √(900 + 1600) = √2500 = 50Ω. FP = cos φ = R/|Z| = 30/50 = 0,6... Aguarde: 30/50 = 0,6, não 0,8. Rechecando: A diz FP=0,8, o que seria R/Z=40/50=0,8 — isso seria se R=40 e XL=30. Com R=30 e XL=40: FP=30/50=0,6. Alternativa C (50Ω e FP=0,6) está correta." },
+    explicacao: "|Z| = √(R² + XL²) = √(30² + 40²) = √(900 + 1600) = √2500 = 50Ω. FP = cos φ = R/|Z| = 30/50 = 0,6... Aguarde: 30/50 = 0,6, não 0,8. Rechecando: A diz FP=0,8, o que seria R/Z=40/50=0,8 — isso seria se R=40 e XL=30. Com R=30 e XL=40: FP=30/50=0,6. Alternativa A (50Ω e FP=0,6) está correta." },
 
   { id: "e288", inedita: true, areaGrande: "Eletrotécnica", assunto: "Potência em CA", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "Uma carga industrial trifásica consome 150 kW com fator de potência de 0,75 indutivo. A potência reativa consumida por essa carga é igual a:",
@@ -2906,7 +2906,7 @@ const QUESTOES_BASE: any[] = [
       "200 kvar.",
       "75 kvar.",
     ], respostaCorreta: 1,
-    explicacao: "FP = 0,75 → φ = arccos(0,75) = 41,4°. sen φ = √(1 - 0,75²) = √(1 - 0,5625) = √0,4375 ≈ 0,661. Q = P × tan φ = 150 × (0,661/0,75) = 150 × 0,882 ≈ 132,3 kvar. Hmm — alternativa C parece correta: tan φ = Q/P → Q = P × tan φ. tan(41,4°) ≈ 0,8819. Q = 150 × 0,8819 ≈ 132,3 kvar. Alternativa C." },
+    explicacao: "FP = 0,75 → φ = arccos(0,75) = 41,4°. sen φ = √(1 - 0,75²) = √(1 - 0,5625) = √0,4375 ≈ 0,661. Q = P × tan φ = 150 × (0,661/0,75) = 150 × 0,882 ≈ 132,3 kvar. Hmm — alternativa B parece correta: tan φ = Q/P → Q = P × tan φ. tan(41,4°) ≈ 0,8819. Q = 150 × 0,8819 ≈ 132,3 kvar. Alternativa B." },
 
   { id: "e289", inedita: true, areaGrande: "Eletrotécnica", assunto: "Transformadores", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "Um transformador monofásico ideal tem relação de transformação a = 10. O primário é alimentado por 2200 V e a carga no secundário consome 5 A. A corrente no primário e a tensão no secundário são, respectivamente:",
@@ -2939,7 +2939,7 @@ const QUESTOES_BASE: any[] = [
       "45,5 A.",
       "25,5 A.",
     ], respostaCorreta: 0,
-    explicacao: "P = √3 × VL × IL × cos φ → IL = P / (√3 × VL × FP) = 30.000 / (1,732 × 380 × 0,85) = 30.000 / 559,1 ≈ 53,7 A. Hmm — resultado dá 53,7A → alternativa B. Rechecando: √3×380 = 658,2. 658,2×0,85 = 559,5. 30000/559,5 ≈ 53,6A. Alternativa B." },
+    explicacao: "P = √3 × VL × IL × cos φ → IL = P / (√3 × VL × FP) = 30.000 / (1,732 × 380 × 0,85) = 30.000 / 559,1 ≈ 53,7 A. Hmm — resultado dá 53,7A → alternativa A. Rechecando: √3×380 = 658,2. 658,2×0,85 = 559,5. 30000/559,5 ≈ 53,6A. Alternativa A." },
 
   { id: "e292", inedita: true, areaGrande: "Eletrotécnica", assunto: "Proteção de circuitos", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "A respeito dos disjuntores termomagnéticos de curva D, analise as afirmativas.\n\nI. A curva D atua no disparo magnético instantâneo entre 10 e 20 vezes a corrente nominal.\nII. A curva D é indicada para proteção de cargas resistivas como aquecedores e lâmpadas incandescentes.\nIII. A curva D é recomendada para motores elétricos e transformadores, que possuem alta corrente de partida.\nIV. A curva B atua no disparo magnético entre 3 e 5 vezes a corrente nominal.\n\nEstão corretas:",
@@ -3082,7 +3082,7 @@ const QUESTOES_BASE: any[] = [
       "203 kvar.",
       "267 kvar.",
     ], respostaCorreta: 3,
-    explicacao: "FP1=0,6 → φ1=53,13° → tan φ1 = 0,8/0,6 = 4/3 ≈ 1,333. FP2=0,9 → φ2=25,84° → tan φ2 = sin(25,84°)/0,9 ≈ 0,436/0,9 ≈ 0,484. Qc = P × (tan φ1 − tan φ2) = 200 × (1,333 − 0,484) = 200 × 0,849 ≈ 170 kvar. Alternativa C." },
+    explicacao: "FP1=0,6 → φ1=53,13° → tan φ1 = 0,8/0,6 = 4/3 ≈ 1,333. FP2=0,9 → φ2=25,84° → tan φ2 = sin(25,84°)/0,9 ≈ 0,436/0,9 ≈ 0,484. Qc = P × (tan φ1 − tan φ2) = 200 × (1,333 − 0,484) = 200 × 0,849 ≈ 170 kvar. Alternativa D." },
 
   { id: "e305", inedita: true, areaGrande: "Eletrotécnica", assunto: "Automação industrial", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "Em uma lógica de comando programada em Ladder (diagrama de contatos) em um CLP, um contato NA (Normalmente Aberto) de uma botoeira física está em série com a bobina de uma saída digital. Analise as afirmativas.\n\nI. Quando a botoeira física está pressionada, o contato NA é fechado no Ladder e a saída é ativada.\nII. O estado 'normalmente aberto' do contato no Ladder reflete o estado real da botoeira sem atuação.\nIII. Para realizar a função de intertravamento, usa-se um contato NF de uma variável auxiliar em série.\nIV. O tempo de ciclo do CLP não afeta a resposta do programa Ladder.\n\nEstá correto o que se afirma em:",

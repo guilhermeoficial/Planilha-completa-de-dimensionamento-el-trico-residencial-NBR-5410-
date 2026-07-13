@@ -370,6 +370,7 @@ export default function QuestoesPage() {
 
                 <div className="mt-3 space-y-1.5">
                   {q.alternativas.map((alt, i) => {
+                    const letra = ["A", "B", "C", "D", "E"][i];
                     const correta = i === q.respostaCorreta;
                     const eliminada = elimSet.has(i);
                     const estaSelecionada = respondida ? resp.alternativa_index === i : selecaoPendente === i;
@@ -394,6 +395,7 @@ export default function QuestoesPage() {
                           <Explosao visivel={eliminada} />
                           {respondida && correta && <Check size={14} className="relative z-10 shrink-0" />}
                           {respondida && estaSelecionada && !correta && <X size={14} className="relative z-10 shrink-0" />}
+                          <span className="relative z-10 shrink-0 font-mono font-bold text-xs opacity-70">{letra})</span>
                           <span className={`relative z-10 ${eliminada ? "line-through opacity-50" : ""}`}>{alt}</span>
                         </button>
                         {!respondida && (
