@@ -840,7 +840,7 @@ const QUESTOES_BASE: any[] = [
   // ── 50 QUESTÕES ORIGINAIS DE ALTO NÍVEL — Eletrotécnica (e60–e109) ──
 
   // Circuitos CA avançados
-  { id: "e60", inedita: true, areaGrande: "Eletrotécnica", assunto: "Circuitos CA", banca: "Voltis Original", ano: 2024, dificuldade: "Difícil",
+  { id: "e60", inedita: true, temImagem: true, areaGrande: "Eletrotécnica", assunto: "Circuitos CA", banca: "Voltis Original", ano: 2024, dificuldade: "Difícil",
     enunciado: "Um circuito RLC série tem R = 10 Ω, L = 50 mH e C = 200 μF, alimentado por fonte senoidal de 120 V (rms) e 60 Hz. A impedância total do circuito, em ohms, vale aproximadamente:",
     alternativas: ["10,0 + j0,0 Ω", "10,0 + j5,6 Ω", "10,0 − j5,6 Ω", "10,0 + j18,8 Ω", "10,0 − j18,8 Ω"], respostaCorreta: 2,
     explicacao: "XL = 2π×60×0,05 ≈ 18,85 Ω. XC = 1/(2π×60×200×10⁻⁶) ≈ 13,26 Ω. X = XL − XC ≈ 5,59 Ω (indutivo). Z = 10 − j5,6 Ω está errado — X é positivo (indutivo): Z = 10 + j5,6 Ω. Recalculando: X = 18,85 − 13,26 = 5,59 Ω indutivo → Z = 10 + j5,6 Ω. Resposta: alternativa C." },

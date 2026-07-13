@@ -492,6 +492,16 @@ function CircuitoN14() {
   );
 }
 
+// e60 — Circuito RLC série: R=10Ω, L=50mH, C=200μF, 120V/60Hz
+function CircuitoE60() {
+  return (
+    <div className="w-full">
+      <img src="/questoes-imagens/e60.svg" alt="Circuito RLC série: R=10Ω, L=50mH, C=200μF, 120V/60Hz"
+        className="w-full object-contain" style={{ maxHeight: 220 }}/>
+    </div>
+  );
+}
+
 // e287 — Circuito CA série: R=30Ω + XL=40Ω
 function CircuitoE287() {
   return (
@@ -548,6 +558,7 @@ const CIRCUITOS: Record<string, React.FC> = {
   n4:    CircuitoN4,
   n5:    CircuitoN5,
   n14:   CircuitoN14,
+  e60:   CircuitoE60,
   e286:  CircuitoE286,
   e287:  CircuitoE287,
   e306:  CircuitoE306,
