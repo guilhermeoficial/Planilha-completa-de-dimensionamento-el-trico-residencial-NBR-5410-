@@ -166,42 +166,11 @@ function CapacitorV({ x, yTop, yBot, label = "XC", plateW = 48 }: {
 
 // ── e2 — Dois resistores em paralelo (8Ω // 12Ω) ────────────────────────────
 function CircuitoE2() {
-  const W = 500, H = 260;
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} className="w-full max-h-64">
-      <Defs/><Fundo w={W} h={H}/>
-      {/* Fonte */}
-      <FonteCA cx={70} cy={130} r={28} label="V"/>
-      {/* Trilho superior */}
-      <Fio x1={70} y1={102} x2={70} y2={55}/>
-      <Fio x1={70} y1={55} x2={420} y2={55}/>
-      {/* Trilho inferior */}
-      <Fio x1={70} y1={158} x2={70} y2={205}/>
-      <Fio x1={70} y1={205} x2={420} y2={205}/>
-      {/* Nós de junção */}
-      <No x={70} y={55}/><No x={420} y={55}/>
-      <No x={70} y={205}/><No x={420} y={205}/>
-      <No x={220} y={55}/><No x={220} y={205}/>
-      {/* Resistor R1=8Ω (esquerda do paralelo) */}
-      <Fio x1={220} y1={55} x2={220} y2={88}/>
-      <Resistor x={208} y={88} w={24} h={80} label="R₁=8Ω" vertical/>
-      <Fio x1={220} y1={168} x2={220} y2={205}/>
-      {/* Resistor R2=12Ω (direita do paralelo) */}
-      <Fio x1={330} y1={55} x2={330} y2={88}/>
-      <Resistor x={318} y={88} w={24} h={80} label="R₂=12Ω" vertical/>
-      <Fio x1={330} y1={168} x2={330} y2={205}/>
-      {/* Fio da esquerda ao paralelo */}
-      <Fio x1={70} y1={55} x2={220} y2={55}/>
-      <Fio x1={220} y1={55} x2={330} y2={55}/>
-      <Fio x1={330} y1={55} x2={420} y2={55}/>
-      <Fio x1={70} y1={205} x2={420} y2={205}/>
-      {/* Terminais A-B */}
-      <No x={420} y={55}/><No x={420} y={205}/>
-      <text x={430} y={59} fontSize="13" fill="#00e5ff" fontFamily="monospace" fontWeight="bold">A</text>
-      <text x={430} y={209} fontSize="13" fill="#00e5ff" fontFamily="monospace" fontWeight="bold">B</text>
-      <text x={200} y={40} fontSize="11" fill="#aaa" fontFamily="monospace">paralelo</text>
-      <Ground x={70} y={205}/>
-    </svg>
+    <div className="w-full">
+      <img src="/questoes-imagens/e2.svg" alt="Circuito paralelo: R1=8Ω e R2=12Ω"
+        className="w-full object-contain" style={{ maxHeight: 220 }}/>
+    </div>
   );
 }
 
