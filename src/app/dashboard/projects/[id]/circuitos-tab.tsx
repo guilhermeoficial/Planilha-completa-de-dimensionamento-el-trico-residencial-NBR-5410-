@@ -161,7 +161,6 @@ export default function CircuitosTab({ projectId, tensaoV, circuitos, ambientes,
         `Já existem ${circuitos.length} circuito(s) neste projeto.\n\nDeseja SUBSTITUIR todos os circuitos não-bloqueados pelos gerados automaticamente?\n\nCircuitos bloqueados serão mantidos.`
       );
       if (!confirmar) return;
-      // Remover circuitos não-bloqueados antes de gerar novos
       const naoBloquedados = circuitos.filter((c) => !c.bloqueado).map((c) => c.id);
       if (naoBloquedados.length > 0) {
         await supabase.from("circuitos").delete().in("id", naoBloquedados);
@@ -175,6 +174,18 @@ export default function CircuitosTab({ projectId, tensaoV, circuitos, ambientes,
     const bloqueados = circuitos.filter((c) => c.bloqueado);
     let numero = bloqueados.length ? Math.max(...bloqueados.map((c) => c.numero)) + 1 : 1;
 
+    // Tipos de ambiente molhado (NBR 5410)
+    const tiposMolhados = ["Banheiro", "Serviço/Cozinha"];
+
+    // Acumular potências por categoria
+    let potIlumTotal = 0;
+    let pontosIlumTotal = 0;
+    let potTugMolhadoTotal = 0;
+    let pontossTugMolhado = 0;
+    let potTugSecoTotal = 0;
+    let pontosTugSeco = 0;
+    const tuesIndividuais: Array<{ nome: string; potenciaVA: number; fp: number; qtd: number }> = [];
+
     for (const a of ambientes) {
       const tues = tuesPorAmbiente[a.id] ?? [];
       const ambienteCalc: Ambiente = {
@@ -187,29 +198,84 @@ export default function CircuitosTab({ projectId, tensaoV, circuitos, ambientes,
         tuesVinculados: tues.map((t) => ({ tueNome: t.nome, potenciaW: Number(t.potencia_w), fp: Number(t.fp), quantidade: t.quantidade })),
       };
       const previsao = calcularPrevisaoCarga(ambienteCalc);
+      const eMolhado = tiposMolhados.includes(a.tipo);
 
-      if (previsao.potIluminacaoVA > 0) {
-        novos.push({
-          project_id: projectId, numero: numero++, descricao: `Iluminação — ${a.nome}`, tipo: "Iluminação",
-          tensao_v: tensaoV, fp: 0.92, fase: fasesCiclo[faseIdx++ % 3], potencia_va: previsao.potIluminacaoVA,
-          comprimento_m: 15, isolacao: "PVC", bloqueado: false, qtd_pontos: previsao.pontosLuzMin,
-        });
-      }
+      // Acumular iluminação
+      potIlumTotal += previsao.potIluminacaoVA;
+      pontosIlumTotal += previsao.pontosLuzMin;
+
+      // Acumular TUG por categoria
       if (previsao.potTugVA > 0) {
-        novos.push({
-          project_id: projectId, numero: numero++, descricao: `TUG — ${a.nome}`, tipo: "TUG",
-          tensao_v: tensaoV, fp: 0.92, fase: fasesCiclo[faseIdx++ % 3], potencia_va: previsao.potTugVA,
-          comprimento_m: 15, isolacao: "PVC", bloqueado: false, qtd_pontos: previsao.tugMin,
-        });
+        if (eMolhado) {
+          potTugMolhadoTotal += previsao.potTugVA;
+          pontossTugMolhado += previsao.tugMin;
+        } else {
+          potTugSecoTotal += previsao.potTugVA;
+          pontosTugSeco += previsao.tugMin;
+        }
       }
+
+      // TUEs — cada um individual
       for (const t of tues) {
-        novos.push({
-          project_id: projectId, numero: numero++, descricao: `${t.nome} — ${a.nome}`, tipo: "TUE",
-          tensao_v: tensaoV, fp: Number(t.fp), fase: fasesCiclo[faseIdx++ % 3],
-          potencia_va: Number(t.potencia_w) / (Number(t.fp) || 1) * t.quantidade,
-          comprimento_m: 15, isolacao: "PVC", bloqueado: false, qtd_pontos: t.quantidade,
+        tuesIndividuais.push({
+          nome: `${t.nome}`,
+          potenciaVA: Number(t.potencia_w) / (Number(t.fp) || 1) * t.quantidade,
+          fp: Number(t.fp),
+          qtd: t.quantidade,
         });
       }
+    }
+
+    // 1. Circuito único de iluminação
+    if (potIlumTotal > 0) {
+      novos.push({
+        project_id: projectId, numero: numero++,
+        descricao: "Iluminação Geral",
+        tipo: "Iluminação", tensao_v: tensaoV, fp: 0.92,
+        fase: fasesCiclo[faseIdx++ % 3],
+        potencia_va: potIlumTotal,
+        comprimento_m: 20, isolacao: "PVC", bloqueado: false,
+        qtd_pontos: pontosIlumTotal,
+      });
+    }
+
+    // 2. TUG Áreas Molhadas (cozinha, banheiro, serviço)
+    if (potTugMolhadoTotal > 0) {
+      novos.push({
+        project_id: projectId, numero: numero++,
+        descricao: "TUG — Áreas Molhadas",
+        tipo: "TUG", tensao_v: tensaoV, fp: 0.92,
+        fase: fasesCiclo[faseIdx++ % 3],
+        potencia_va: potTugMolhadoTotal,
+        comprimento_m: 20, isolacao: "PVC", bloqueado: false,
+        qtd_pontos: pontossTugMolhado,
+      });
+    }
+
+    // 3. TUG Áreas Secas (sala, quartos, etc.)
+    if (potTugSecoTotal > 0) {
+      novos.push({
+        project_id: projectId, numero: numero++,
+        descricao: "TUG — Áreas Secas",
+        tipo: "TUG", tensao_v: tensaoV, fp: 0.92,
+        fase: fasesCiclo[faseIdx++ % 3],
+        potencia_va: potTugSecoTotal,
+        comprimento_m: 20, isolacao: "PVC", bloqueado: false,
+        qtd_pontos: pontosTugSeco,
+      });
+    }
+
+    // 4. TUEs individuais
+    for (const tue of tuesIndividuais) {
+      novos.push({
+        project_id: projectId, numero: numero++,
+        descricao: tue.nome,
+        tipo: "TUE", tensao_v: tensaoV, fp: tue.fp,
+        fase: fasesCiclo[faseIdx++ % 3],
+        potencia_va: tue.potenciaVA,
+        comprimento_m: 15, isolacao: "PVC", bloqueado: false,
+        qtd_pontos: tue.qtd,
+      });
     }
 
     if (novos.length) await supabase.from("circuitos").insert(novos);
