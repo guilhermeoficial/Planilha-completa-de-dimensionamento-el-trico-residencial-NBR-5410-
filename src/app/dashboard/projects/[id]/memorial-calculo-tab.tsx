@@ -200,9 +200,9 @@ export default function MemorialCalculoTab({ project, ambientes, circuitosCalcul
             ["Tipo de entrada", project.tipo_entrada ?? "Monofásico"],
             ["Concessionária", (project as {concessionaria?: string}).concessionaria ?? "—"],
             ["Emissão", dataHoje],
-            project.responsavel_tecnico ? ["Responsável técnico", project.responsavel_tecnico] : null,
-            project.numero_art ? ["ART/RRT nº", project.numero_art] : null,
-          ].filter(Boolean).map(([l, v]) => (
+            ...(project.responsavel_tecnico ? [["Responsável técnico", project.responsavel_tecnico]] : []),
+            ...(project.numero_art ? [["ART/RRT nº", project.numero_art]] : []),
+          ] as [string, string][]).map(([l, v]) => (
             <div key={l} className="flex justify-between border-b border-panel-border py-1.5 last:border-0">
               <span className="text-muted">{l}</span>
               <span className="font-medium">{v}</span>
