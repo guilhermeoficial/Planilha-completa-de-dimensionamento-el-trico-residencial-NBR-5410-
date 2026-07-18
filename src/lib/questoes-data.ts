@@ -138,22 +138,22 @@ const QUESTOES_BASE: any[] = [
   // ---------------------------------------------------------------------
   // INFORMÁTICA
   // ---------------------------------------------------------------------
-  { id: "i1", areaGrande: "Informática", assunto: "Conceitos básicos", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Fácil",
+  { id: "ic1", areaGrande: "Informática", assunto: "Conceitos básicos", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Fácil",
     enunciado: "No contexto de armazenamento de dados, 1 GB (gigabyte) corresponde, na convenção binária mais usual, a:",
     alternativas: ["1.000 MB", "1.024 MB", "1.000.000 KB", "100 MB"], respostaCorreta: 1,
-    explicacao: "Atalho 'Enviar para > Área de trabalho (criar atalho)': cria um arquivo .lnk (atalho) na Área de trabalho. O arquivo original permanece intocado em seu local. Um atalho é simplesmente um ponteiro para o arquivo original — não ocupa espaço significativo no disco. Se o arquivo original for movido ou excluído, o atalho fica 'quebrado' (ícone com X)." },
-  { id: "i2", areaGrande: "Informática", assunto: "Planilhas eletrônicas", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Médio",
+    explicacao: "1 GB (gigabyte) na convenção binária = $$2^{10}$$ MB = **1.024 MB**. Atenção: na convenção decimal (usada por fabricantes de HD): 1 GB = 1.000 MB. O Windows usa a convenção binária, por isso um HD de 500 GB aparece como ~465 GB no sistema." },
+  { id: "ic2", areaGrande: "Informática", assunto: "Planilhas eletrônicas", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Médio",
     enunciado: "Em uma planilha eletrônica, a fórmula =SOMA(A1:A10) realiza:",
     alternativas: ["A soma dos valores de A1 até A10", "A média dos valores de A1 e A10", "A contagem de células preenchidas entre A1 e A10", "A multiplicação de A1 por A10"], respostaCorreta: 0,
-    explicacao: "Atalhos de navegação no Word: **Ctrl+Home** → início do documento; **Ctrl+End** → final do documento; **Home** → início da linha atual; **End** → fim da linha atual; **Ctrl+→** → próxima palavra; **Ctrl+←** → palavra anterior; **Ctrl+PgDn** → próxima página. Memorize: Home/End = linha; Ctrl+Home/End = documento inteiro." },
-  { id: "i3", areaGrande: "Informática", assunto: "Segurança da informação", banca: "CESGRANRIO (estilo)", ano: 2022, dificuldade: "Médio",
+    explicacao: "=SOMA(A1:A10) realiza a soma de todos os valores numéricos no intervalo de A1 até A10. O operador : (dois pontos) indica um intervalo contíguo. Alternativas erradas: =MÉDIA() calcula a média; =CONT.VALORES() conta células; =PRODUTO() multiplica." },
+  { id: "ic3", areaGrande: "Informática", assunto: "Segurança da informação", banca: "CESGRANRIO (estilo)", ano: 2022, dificuldade: "Médio",
     enunciado: "Um e-mail suspeito solicitando dados bancários, fingindo ser de uma instituição confiável, caracteriza um ataque de:",
     alternativas: ["Phishing", "Ransomware", "Brute force", "Spoofing de IP"], respostaCorreta: 0,
-    explicacao: "**=CONT.SE(intervalo; critério)** — conta células que atendem ao critério. Com critério '>=100': conta quantas células têm valor ≥ 100. Confusão clássica: **CONT.SE** conta; **SOMASE** soma; **MÉDIASE** calcula a média — tudo condicionado a um critério. Para múltiplos critérios: CONT.SES, SOMASES, MÉDIASES." },
-  { id: "i4", areaGrande: "Informática", assunto: "Redes de computadores", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
+    explicacao: "Phishing é um ataque onde o criminoso se passa por entidade legítima (banco, governo) para enganar a vítima e roubar dados. O e-mail que finge ser de uma instituição confiável para obter dados bancários é o exemplo clássico de phishing." },
+  { id: "ic4", areaGrande: "Informática", assunto: "Redes de computadores", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "O protocolo responsável por traduzir nomes de domínio (como exemplo.com.br) em endereços IP é o:",
     alternativas: ["DHCP", "DNS", "FTP", "SMTP"], respostaCorreta: 1,
-    explicacao: "DHCP (Dynamic Host Configuration Protocol, porta 67/68): atribui automaticamente ao dispositivo: Endereço IP, Máscara de sub-rede, Gateway padrão e servidor DNS. Sem DHCP, cada dispositivo precisaria de configuração manual. O processo DORA: Discover → Offer → Request → Acknowledge." },
+    explicacao: "DNS (Domain Name System) traduz nomes de domínio legíveis (como www.exemplo.com.br) em endereços IP numéricos (como 192.0.2.1) que os computadores usam para se comunicar. Sem DNS, seria necessário memorizar IPs para acessar sites." },
 
   // ---------------------------------------------------------------------
   // ELETROTÉCNICA — Circuitos CC
@@ -795,17 +795,17 @@ const QUESTOES_BASE: any[] = [
   // ---------------------------------------------------------------------
   // INFORMÁTICA — lote adicional
   // ---------------------------------------------------------------------
-  { id: "i5", inedita: true, areaGrande: "Informática", assunto: "Conceitos básicos", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Fácil",
+  { id: "ic5", inedita: true, areaGrande: "Informática", assunto: "Conceitos básicos", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Fácil",
     enunciado: "Softwares podem ser classificados em Software Básico (sistema operacional), Software Aplicativo (editores de texto, planilhas) e Software Utilitário (ferramentas de suporte, como antivírus e compactadores). Dentre os itens a seguir, é classificado como Software UTILITÁRIO:",
     alternativas: ["Microsoft Word", "Microsoft Windows", "Adobe Photoshop", "Um programa antivírus", "Um navegador de internet"], respostaCorreta: 3,
-    explicacao: "Phishing: técnica de engenharia social onde o atacante se passa por entidade legítima (banco, governo, empresa) para enganar a vítima e roubar credenciais. Sinais de phishing: remetente com domínio diferente do oficial (@gmail em vez de @bancobrasil.com.br), urgência artificial, links encurtados ou com erros de digitação no domínio." },
+    explicacao: "Antivírus é um software de aplicativo (não básico). O Software Básico inclui: Sistema Operacional (gerencia hardware), compiladores/interpretadores (convertem código), drivers de dispositivo. O antivírus é um aplicativo que roda sobre o SO." },
 
-  { id: "i6", inedita: true, areaGrande: "Informática", assunto: "Planilhas eletrônicas", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
+  { id: "ic6", inedita: true, areaGrande: "Informática", assunto: "Planilhas eletrônicas", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
     enunciado: "Em uma planilha eletrônica, a célula A1 contém o valor 50 e a célula A2 contém o valor 30. Ao digitar na célula A3 a fórmula =SE(A1>A2;\"Maior\";\"Menor\"), o resultado exibido em A3 será:",
     alternativas: ["50", "30", "Maior", "Menor", "Um erro de fórmula"], respostaCorreta: 2,
-    explicacao: "HTTPS = HTTP + TLS (Transport Layer Security). O TLS usa criptografia híbrida: assimétrica (RSA/ECDHE) para trocar a chave de sessão de forma segura, e simétrica (AES-256) para criptografar os dados da sessão. O certificado SSL/TLS é emitido por uma Autoridade Certificadora (CA) confiável e contém a chave pública do servidor.'Maior\') quando a condição é verdadeira." },
+    explicacao: "HTTPS = HTTP + SSL/TLS. O TLS (Transport Layer Security) é o protocolo de criptografia que protege a comunicação entre navegador e servidor, garantindo confidencialidade, integridade e autenticidade. O cadeado no navegador confirma a conexão TLS ativa." },
 
-  { id: "i7", inedita: true, areaGrande: "Informática", assunto: "Segurança da informação", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "ic7", inedita: true, areaGrande: "Informática", assunto: "Segurança da informação", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Médio",
     enunciado: "Sobre ameaças e ataques virtuais, assinale a alternativa que descreve corretamente o conceito de Phishing:",
     alternativas: [
       "Programa que monitora as atividades de um sistema e envia as informações coletadas a terceiros, podendo ter uso legítimo ou malicioso.",
@@ -814,9 +814,9 @@ const QUESTOES_BASE: any[] = [
       "Software projetado especificamente para sequestrar arquivos e exigir pagamento de resgate para sua liberação.",
       "Técnica de sobrecarga de um servidor por meio de múltiplas requisições simultâneas, tornando-o indisponível.",
     ], respostaCorreta: 1,
-    explicacao: "Mala Direta (Correspondências > Iniciar Mala Direta): combina um documento-modelo com campos variáveis (<<Nome>>, <<Endereço>>) a uma **fonte de dados** (planilha Excel, banco Access, contatos Outlook). Resultado: N documentos personalizados automaticamente. Usado para intimações judiciais em massa, cartas de cobrança, etiquetas de endereçamento." },
+    explicacao: "Phishing é definido como mensagem eletrônica (e-mail, SMS, WhatsApp) que tenta enganar o usuário se passando por entidade confiável para obter dados sensíveis. Diferente de vírus (que infecta arquivos), ransomware (que sequestra dados) ou DDoS (que derruba servidores)." },
 
-  { id: "i8", inedita: true, areaGrande: "Informática", assunto: "Conceitos básicos", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Fácil",
+  { id: "ic8", inedita: true, areaGrande: "Informática", assunto: "Conceitos básicos", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Fácil",
     enunciado: "No editor de texto Microsoft Word (versão 2016, em português), a combinação de teclas CTRL+SHIFT+seta para a direita tem como finalidade:",
     alternativas: [
       "Mover o cursor para o final da linha.",
@@ -825,17 +825,17 @@ const QUESTOES_BASE: any[] = [
       "Alternar entre maiúsculas e minúsculas no texto selecionado.",
       "Inserir uma quebra de página.",
     ], respostaCorreta: 1,
-    explicacao: "Referências no Excel: **Relativa** (A1) — se ajusta ao copiar; **Absoluta** ($A$1) — permanece fixa; **Mista** ($A1 ou A$1) — fixa só coluna ou linha. Tecla F4 cicla entre os 4 tipos. Exemplo prático: em uma tabela de preços × quantidades, a coluna de preços deve ter referência absoluta para não se deslocar ao arrastar a fórmula." },
+    explicacao: "No Word, Ctrl+Shift+→ seleciona uma palavra inteira para a direita a cada pressionamento. Atalhos de seleção: Shift+→ seleciona caractere a caractere; Ctrl+A seleciona tudo; Shift+End seleciona até o fim da linha." },
 
-  { id: "i9", inedita: true, areaGrande: "Informática", assunto: "Redes de computadores", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Médio",
+  { id: "ic9", inedita: true, areaGrande: "Informática", assunto: "Redes de computadores", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Médio",
     enunciado: "Um usuário digita, na barra de endereços de um navegador, o endereço de um site (exemplo.com.br) e o navegador exibe a página corretamente, embora a comunicação na internet ocorra por meio de endereços IP. O protocolo/sistema responsável por essa tradução de nome de domínio para endereço IP é:",
     alternativas: ["DHCP", "DNS", "FTP", "SMTP", "HTTP"], respostaCorreta: 1,
-    explicacao: "**Vírus**: parasita — precisa de arquivo hospedeiro, depende de ação do usuário para se propagar. **Worm**: independente — se propaga automaticamente pela rede explorando vulnerabilidades (sem ação do usuário). **Trojan**: disfarce — não se replica, mas abre backdoors. **Ransomware**: extorsão — criptografa dados e exige resgate. **Spyware**: espionagem — coleta dados sem consentimento." },
+    explicacao: "DNS (Domain Name System) resolve nomes de domínio para endereços IP. Quando o usuário digita "www.exemplo.com.br", o navegador consulta o servidor DNS configurado para obter o IP correspondente antes de estabelecer a conexão." },
 
-  { id: "i10", inedita: true, areaGrande: "Informática", assunto: "Segurança da informação", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
+  { id: "ic10", inedita: true, areaGrande: "Informática", assunto: "Segurança da informação", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "Um programa malicioso instalado em um computador passa a monitorar as teclas digitadas pelo usuário, registrando senhas e dados sigilosos para envio posterior a terceiros, sem o conhecimento da vítima. Esse tipo específico de programa malicioso é conhecido como:",
     alternativas: ["Worm", "Keylogger", "Trojan horse genérico", "Adware", "Rootkit"], respostaCorreta: 1,
-    explicacao: "**Win+L** = Bloquear tela (Lock). Sessão permanece ativa em segundo plano — todos os programas continuam rodando. Diferença: **Win+L** bloqueia (rápido, mantém sessão); **Iniciar > Sair** encerra a sessão (fecha programas); **Iniciar > Desligar** desliga o computador. Win+L é o atalho de segurança ao se afastar do computador temporariamente." },
+    explicacao: "Keylogger é um tipo de spyware que registra todas as teclas digitadas pelo usuário e envia as informações para o atacante. Captura senhas, dados bancários e qualquer texto digitado. Diferente de vírus (replica arquivos) ou ransomware (criptografa dados)." },
 
   // ── 50 QUESTÕES ORIGINAIS DE ALTO NÍVEL — Eletrotécnica (e60–e109) ──
 
@@ -2673,7 +2673,7 @@ const QUESTOES_BASE: any[] = [
 
   // ── INFORMÁTICA ─────────────────────────────────────────────────────────
 
-  { id: "i11", inedita: true, areaGrande: "Informática", assunto: "Planilhas eletrônicas", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
+  { id: "ic11", inedita: true, areaGrande: "Informática", assunto: "Planilhas eletrônicas", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "Em uma planilha MS Excel 2016, a célula A1 contém o valor 127 e a célula B1 contém o valor 220. Qual das fórmulas a seguir calcula a média entre os dois valores e verifica se ela é maior que 170, exibindo 'ALTA' em caso verdadeiro e 'NORMAL' em caso falso?",
     alternativas: [
       "=SE(MÉDIA(A1;B1)>170;\"ALTA\";\"NORMAL\")",
@@ -2682,9 +2682,9 @@ const QUESTOES_BASE: any[] = [
       "=SE(A1>170;\"ALTA\";SE(B1>170;\"ALTA\";\"NORMAL\"))",
       "=SE(A1:B1>170;\"ALTA\";\"NORMAL\")",
     ], respostaCorreta: 0,
-    explicacao: "**Endereços IP privados (RFC 1918)**: 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16. Não são roteados na Internet pública. Para sair para a Internet, passam por NAT (Network Address Translation) no roteador, que substitui o IP privado pelo IP público da conexão. O endereço 192.168.1.100 pertence ao bloco 192.168.0.0/16 → privado.'ALTA\';\'NORMAL\') calcula a média de 127 e 220 (= 173,5), verifica se é maior que 170 (verdadeiro) e exibe 'ALTA'. A alternativa B erra a precedência de operadores: A1+B1/2 = 127+110 = 237, não a média." },
+    explicacao: "O bloco 192.168.0.0/16 é definido pela RFC 1918 como endereço IP privado — não roteável diretamente na Internet. Os três blocos privados RFC 1918: 10.0.0.0/8, 172.16.0.0/12 e 192.168.0.0/16. Para acessar a Internet, precisam de NAT." },
 
-  { id: "i12", inedita: true, areaGrande: "Informática", assunto: "Planilhas eletrônicas", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
+  { id: "ic12", inedita: true, areaGrande: "Informática", assunto: "Planilhas eletrônicas", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "João criou uma planilha no MS Excel 2016 com os seguintes dados:\n\nA1: 'Corrente' | B1: 5\nA2: 'Tensão' | B2: 220\nA3: 'Resistência' | B3: (vazio)\n\nPara calcular a resistência (R = V/I) na célula B3, João deve usar a fórmula:",
     alternativas: [
       "=B2*B1",
@@ -2695,7 +2695,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 2,
     explicacao: "Permissões no Google Drive: **Leitor** (só visualiza, pode baixar salvo restrição); **Comentarista** (visualiza + adiciona comentários, mas não edita o conteúdo); **Editor** (edita, renomeia, exclui, reorganiza). Ao compartilhar com 'qualquer pessoa com o link', define-se também o nível de acesso. Muito cobrado em provas!" },
 
-  { id: "i13", inedita: true, areaGrande: "Informática", assunto: "Processador de texto", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Fácil",
+  { id: "ic13", inedita: true, areaGrande: "Informática", assunto: "Processador de texto", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Fácil",
     enunciado: "No MS Word 2016, para inserir automaticamente a numeração de páginas no rodapé do documento, o usuário deve acessar:",
     alternativas: [
       "Guia 'Página Inicial' → Grupo 'Parágrafo' → 'Lista numerada'.",
@@ -2704,9 +2704,9 @@ const QUESTOES_BASE: any[] = [
       "Guia 'Layout' → 'Configurar Página' → 'Opções de Layout'.",
       "Guia 'Exibição' → 'Modos de Exibição' → 'Número de Página'.",
     ], respostaCorreta: 1,
-    explicacao: "Domínios brasileiros reservados: **.gov.br** = órgãos do Executivo Federal e Estadual; **.jus.br** = Poder Judiciário (STF, STJ, TRT, TRE, TJ); **.leg.br** = Poder Legislativo (Câmara, Senado); **.mp.br** = Ministério Público; **.edu.br** = universidades e instituições de ensino; **.org.br** = organizações sem fins lucrativos; **.com.br** = empresas comerciais." },
+    explicacao: "No Word 2016: Inserir > Grupo Cabeçalho e Rodapé > Número de Página. Permite escolher a posição (topo, base, margens) e o formato da numeração. Após inserir, o Word entra automaticamente no modo de edição de cabeçalho/rodapé." },
 
-  { id: "i14", inedita: true, areaGrande: "Informática", assunto: "Segurança da informação", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
+  { id: "ic14", inedita: true, areaGrande: "Informática", assunto: "Segurança da informação", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "Um técnico recebeu um e-mail com o assunto 'Urgente: atualize seus dados bancários agora!' de um endereço semelhante ao de sua empresa, porém com domínio ligeiramente diferente. O link do e-mail levava a uma página com aparência idêntica ao portal interno. Esse tipo de ataque é conhecido como:",
     alternativas: [
       "Ransomware.",
@@ -2715,9 +2715,9 @@ const QUESTOES_BASE: any[] = [
       "Keylogger.",
       "Backdoor.",
     ], respostaCorreta: 1,
-    explicacao: "MFA (Multi-Factor Authentication) exige 2+ fatores de **categorias diferentes**: Categoria 1 — Conhecimento (senha, PIN, padrão); Categoria 2 — Posse (token físico, smartphone com app autenticador, cartão inteligente); Categoria 3 — Inerência (biometria: digital, íris, face, voz). Mesmo que o atacante tenha a senha, sem o segundo fator (ex: código do Google Authenticator) não consegue acessar." },
+    explicacao: "Phishing: e-mail falso que imita banco ou instituição para roubar credenciais. Sinais: remetente com domínio suspeito, urgência artificial, links que não levam ao site oficial. Nunca clicar em links suspeitos — acessar sempre diretamente pelo navegador." },
 
-  { id: "i15", inedita: true, areaGrande: "Informática", assunto: "Sistema operacional", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Fácil",
+  { id: "ic15", inedita: true, areaGrande: "Informática", assunto: "Sistema operacional", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Fácil",
     enunciado: "No Windows 10, o atalho de teclado utilizado para copiar um arquivo selecionado é Ctrl+C e para colá-lo em outro local é Ctrl+V. Para desfazer a última ação realizada, o atalho é:",
     alternativas: [
       "Ctrl+D.",
@@ -2726,9 +2726,9 @@ const QUESTOES_BASE: any[] = [
       "Ctrl+Y.",
       "Ctrl+A.",
     ], respostaCorreta: 2,
-    explicacao: "O arquivo de paginação (pagefile.sys no Windows, swap no Linux) é memória virtual em disco. Quando a RAM está cheia, o SO move páginas menos usadas para o disco (paging out), liberando RAM para processos ativos. Quando necessário, traz de volta do disco (paging in). É muito mais lento que a RAM (HDD: ~100x; SSD: ~10x), mas permite operar com mais dados do que a RAM física suportaria." },
+    explicacao: "Ctrl+Z = Desfazer (Undo). Ctrl+C = Copiar (não desfazer). Outros: Ctrl+X = Recortar, Ctrl+V = Colar, Ctrl+Y = Refazer. O atalho para copiar é Ctrl+C, não Ctrl+Z." },
 
-  { id: "i16", inedita: true, areaGrande: "Informática", assunto: "Planilhas eletrônicas", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Difícil",
+  { id: "ic16", inedita: true, areaGrande: "Informática", assunto: "Planilhas eletrônicas", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Difícil",
     enunciado: "Em uma planilha MS Excel, a fórmula =PROCV(\"Motor\";A1:C10;3;FALSO) busca o valor 'Motor' na primeira coluna do intervalo A1:C10 e retorna o valor da:",
     alternativas: [
       "Primeira coluna do intervalo onde 'Motor' foi encontrado.",
@@ -2737,9 +2737,9 @@ const QUESTOES_BASE: any[] = [
       "Linha 3 do intervalo A1:C10.",
       "Terceira ocorrência da palavra 'Motor' no intervalo.",
     ], respostaCorreta: 2,
-    explicacao: "PROCV (Procura Vertical): =PROCV(valor_procurado; tabela; num_coluna; 0=exato). A função percorre a **1ª coluna** da tabela procurando o valor e, ao encontrar, retorna o valor da coluna indicada por num_coluna. FALSO/0 = correspondência exata (não encontrar → #N/D). VERDADEIRO/1 = correspondência aproximada (tabela deve estar em ordem crescente)." },
+    explicacao: "PROCV retorna o valor da célula na coluna especificada da mesma linha onde o valor procurado foi encontrado. O resultado vai para a célula onde a fórmula está, não para a direita. PROCV procura na 1ª coluna da tabela e retorna um valor de outra coluna." },
 
-  { id: "i17", inedita: true, areaGrande: "Informática", assunto: "Redes de computadores", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
+  { id: "ic17", inedita: true, areaGrande: "Informática", assunto: "Redes de computadores", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "Um técnico precisou acessar remotamente o computador de um colega para dar suporte. Para isso, utilizou um protocolo que permite a transmissão de tela e o controle remoto de forma criptografada. Esse protocolo é o:",
     alternativas: [
       "FTP.",
@@ -2748,9 +2748,9 @@ const QUESTOES_BASE: any[] = [
       "HTTP.",
       "POP3.",
     ], respostaCorreta: 2,
-    explicacao: "**Hub** (camada 1 OSI): retransmite o sinal elétrico para TODAS as portas — qualquer dispositivo recebe todos os dados, colisões frequentes, sem inteligência. **Switch** (camada 2): usa tabela de endereços MAC, encaminha dados SOMENTE para a porta do destinatário — sem colisões, mais eficiente e seguro. Hubs são obsoletos; switches são padrão em redes modernas." },
+    explicacao: "SSH (Secure Shell, porta 22) permite acesso remoto a linha de comando com criptografia. Substitui o Telnet (inseguro). RDP (porta 3389) é para acesso remoto gráfico (Windows). FTP é para transferência de arquivos. VNC é para controle remoto de desktop." },
 
-  { id: "i18", inedita: true, areaGrande: "Informática", assunto: "Processador de texto", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
+  { id: "ic18", inedita: true, areaGrande: "Informática", assunto: "Processador de texto", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "Analise as afirmativas sobre o MS Word 2016.\n\nI. O comando 'Ctrl+Shift+P' altera o tamanho da fonte selecionada.\nII. O 'Controle de alterações' registra inclusões, exclusões e formatações realizadas no documento.\nIII. A extensão padrão de arquivo ao salvar no Word 2016 é '.doc'.\nIV. O modo 'Layout da Web' mostra como o documento ficará ao ser impresso.\n\nEstá correto o que se afirma em:",
     alternativas: [
       "I e II, apenas.",
@@ -2759,9 +2759,9 @@ const QUESTOES_BASE: any[] = [
       "III e IV, apenas.",
       "I, II, III e IV.",
     ], respostaCorreta: 1,
-    explicacao: "Modo Anônimo/InPrivate: o que **NÃO** é salvo localmente: histórico de navegação, cookies, dados de formulários, downloads (histórico apenas — arquivo baixado permanece no PC). O que **CONTINUA** sendo registrado: o provedor de internet registra a navegação; a rede corporativa/escolar monitora; os sites visitados identificam o IP; o Google registra buscas se logado." },
+    explicacao: "Afirmativa correta: II apenas. No Word 2016, o comando Ctrl+L abre a caixa "Localizar" (não Salvar). Ctrl+S salva. Ctrl+B é negrito em inglês (Bold) — no Word em português BR, negrito é Ctrl+N. Verificar as afirmativas I e III como falsas." },
 
-  { id: "i19", inedita: true, areaGrande: "Informática", assunto: "Segurança da informação", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
+  { id: "ic19", inedita: true, areaGrande: "Informática", assunto: "Segurança da informação", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "Um programa malicioso se instalou no computador de uma empresa e criptografou todos os arquivos, exigindo pagamento em criptomoeda para liberar o acesso. Esse tipo de malware é classificado como:",
     alternativas: [
       "Spyware.",
@@ -2770,9 +2770,9 @@ const QUESTOES_BASE: any[] = [
       "Trojan.",
       "Rootkit.",
     ], respostaCorreta: 2,
-    explicacao: "LGPD art. 5°, II — Dados sensíveis: origem racial ou étnica, convicção religiosa, opinião política, filiação sindical/religiosa, dados referentes à saúde ou vida sexual, dados genéticos ou biométricos (quando vinculados a pessoa natural). Exigem: base legal específica, consentimento livre/informado/destacado para fins específicos, e medidas reforçadas de segurança." },
+    explicacao: "Ransomware: malware que criptografa os arquivos da vítima e exige resgate (ransom) para fornecer a chave de descriptografia. Devastou empresas, hospitais e prefeituras. Prevenção: backup offline regular, atualizações e treinamento dos usuários." },
 
-  { id: "i20", inedita: true, areaGrande: "Informática", assunto: "Conceitos básicos", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Fácil",
+  { id: "ic20", inedita: true, areaGrande: "Informática", assunto: "Conceitos básicos", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Fácil",
     enunciado: "Considere as afirmativas sobre dispositivos de armazenamento.\n\nI. O HD (Hard Disk) armazena dados em discos magnéticos giratórios.\nII. O SSD (Solid State Drive) utiliza memória flash e não possui partes móveis.\nIII. O SSD é geralmente mais lento que o HD na leitura de dados.\nIV. O HD é mais suscetível a danos por impacto mecânico que o SSD.\n\nEstá correto o que se afirma em:",
     alternativas: [
       "I e II, apenas.",
@@ -2781,7 +2781,7 @@ const QUESTOES_BASE: any[] = [
       "III e IV, apenas.",
       "I, II, III e IV.",
     ], respostaCorreta: 2,
-    explicacao: "Ransomware: processo típico — 1) infecta (phishing, vulnerabilidade); 2) se conecta ao servidor de C&C (comando e controle); 3) recebe chave de criptografia; 4) criptografa arquivos com algoritmo forte (AES-256 geralmente); 5) exige resgate em criptomoeda. **Prevenção**: backup offline + atualização + treinamento. **Não há garantia** de recuperação mesmo após pagamento." },
+    explicacao: "Afirmativas corretas I, II e IV: I - SSD é mais rápido que HDD; II - Pen drives usam memória flash; IV - HD pode ser afetado por campos magnéticos. Afirmativa III incorreta: memória RAM é volátil (perde dados sem energia), não armazena permanentemente." },
 
   // ── LEGISLAÇÃO / NORMAS ─────────────────────────────────────────────────
 
@@ -3300,181 +3300,181 @@ const QUESTOES_BASE: any[] = [
     enunciado: "No Windows 10, ao clicar com o botão direito do mouse sobre um arquivo e selecionar 'Enviar para > Área de trabalho (criar atalho)', o que é criado?",
     alternativas: ["Uma cópia completa do arquivo na Área de trabalho", "Um atalho (link) que aponta para o arquivo original em seu local atual", "O arquivo é movido para a Área de trabalho", "Uma versão compactada do arquivo na Área de trabalho", "O arquivo é copiado e o original é excluído"],
     respostaCorreta: 1,
-    explicacao: "Atalho 'Enviar para > Área de trabalho (criar atalho)': cria um arquivo .lnk (atalho) na Área de trabalho. O arquivo original permanece intocado em seu local. Um atalho é simplesmente um ponteiro para o arquivo original — não ocupa espaço significativo no disco. Se o arquivo original for movido ou excluído, o atalho fica 'quebrado' (ícone com X)." },
+    explicacao: "No Windows 10/11, ao criar um atalho via "Enviar para > Área de trabalho", cria-se apenas um arquivo .lnk que aponta para o original. O arquivo original não é movido nem copiado. Se o original for excluído, o atalho fica quebrado. Diferente de copiar (Ctrl+C → Ctrl+V), que cria uma cópia independente." },
 
   { id: "i2", inedita: true, areaGrande: "Informática", assunto: "Microsoft Word", banca: "FCC / TRT-1", ano: 2024, dificuldade: "Fácil",
     enunciado: "No Microsoft Word 2016/2019, ao pressionar a combinação de teclas Ctrl+Home, o cursor é posicionado:",
     alternativas: ["No final do documento", "No início do parágrafo atual", "No início do documento (primeira linha, primeira coluna)", "Na célula inicial de uma tabela", "No início da página atual"],
     respostaCorreta: 2,
-    explicacao: "Atalhos de navegação no Word: **Ctrl+Home** → início do documento; **Ctrl+End** → final do documento; **Home** → início da linha atual; **End** → fim da linha atual; **Ctrl+→** → próxima palavra; **Ctrl+←** → palavra anterior; **Ctrl+PgDn** → próxima página. Memorize: Home/End = linha; Ctrl+Home/End = documento inteiro." },
+    explicacao: "Ctrl+Home → posiciona o cursor no **início absoluto do documento** (linha 1, coluna 1). Ctrl+End → final do documento. Home → início da linha atual. End → fim da linha atual. Ctrl+→ → próxima palavra. Ctrl+PgDn → próxima página." },
 
   { id: "i3", inedita: true, areaGrande: "Informática", assunto: "Microsoft Excel", banca: "CEBRASPE / INSS", ano: 2024, dificuldade: "Médio",
     enunciado: "No Excel 2019, a fórmula =CONT.SE(A1:A10;\">=100\") retorna:",
     alternativas: ["A soma de todos os valores >= 100 no intervalo A1:A10", "A contagem de células com valor maior ou igual a 100 em A1:A10", "O maior valor >= 100 no intervalo A1:A10", "VERDADEIRO se existir algum valor >= 100 no intervalo", "Um erro #VALOR! pois a sintaxe está incorreta"],
     respostaCorreta: 1,
-    explicacao: "**=CONT.SE(intervalo; critério)** — conta células que atendem ao critério. Com critério '>=100': conta quantas células têm valor ≥ 100. Confusão clássica: **CONT.SE** conta; **SOMASE** soma; **MÉDIASE** calcula a média — tudo condicionado a um critério. Para múltiplos critérios: CONT.SES, SOMASES, MÉDIASES.'>=100\', conta quantas células têm valor maior ou igual a 100. Para somar valores com critério, usa-se =SOMASE()." },
+    explicacao: "=CONT.SE(intervalo; critério) **conta** células que atendem ao critério. Com ">=100": conta quantas células têm valor ≥ 100. Para **somar** use =SOMASE; para **média** use =MÉDIASE. A função que a questão descreve é CONT.SE, não SOMA." },
 
   { id: "i4", inedita: true, areaGrande: "Informática", assunto: "Redes de computadores", banca: "FCC / TRT-2", ano: 2023, dificuldade: "Médio",
     enunciado: "O protocolo DHCP tem a função de:",
     alternativas: ["Converter nomes de domínio em endereços IP", "Atribuir automaticamente endereços IP e configurações de rede aos dispositivos", "Criptografar a comunicação entre cliente e servidor web", "Transferir arquivos entre computadores em uma rede", "Gerenciar o envio e recebimento de e-mails"],
     respostaCorreta: 1,
-    explicacao: "DHCP (Dynamic Host Configuration Protocol, porta 67/68): atribui automaticamente ao dispositivo: Endereço IP, Máscara de sub-rede, Gateway padrão e servidor DNS. Sem DHCP, cada dispositivo precisaria de configuração manual. O processo DORA: Discover → Offer → Request → Acknowledge." },
+    explicacao: "DHCP (Dynamic Host Configuration Protocol, porta 67 servidor / 68 cliente): atribui automaticamente ao dispositivo: Endereço IP, Máscara de sub-rede, Gateway padrão e servidor DNS. Protocolo DORA: Discover → Offer → Request → Acknowledge." },
 
   { id: "i5", inedita: true, areaGrande: "Informática", assunto: "Segurança da informação", banca: "CEBRASPE / INSS", ano: 2024, dificuldade: "Fácil",
     enunciado: "Um usuário recebe um e-mail de seu banco solicitando que clique em um link para 'atualizar seus dados cadastrais'. Ao analisar o e-mail, percebe que o endereço do remetente é 'bancobrasil.atualiza@gmail.com'. Esse tipo de ataque chama-se:",
     alternativas: ["Ransomware", "Phishing", "DoS (Denial of Service)", "Backdoor", "Keylogger"],
     respostaCorreta: 1,
-    explicacao: "Phishing: técnica de engenharia social onde o atacante se passa por entidade legítima (banco, governo, empresa) para enganar a vítima e roubar credenciais. Sinais de phishing: remetente com domínio diferente do oficial (@gmail em vez de @bancobrasil.com.br), urgência artificial, links encurtados ou com erros de digitação no domínio." },
+    explicacao: "HTTPS = HTTP + TLS (Transport Layer Security). O TLS usa criptografia híbrida: assimétrica (RSA/ECDHE) para troca segura da chave de sessão e simétrica (AES) para criptografar os dados. O certificado TLS é emitido por uma CA (Autoridade Certificadora) confiável." },
 
   { id: "i6", inedita: true, areaGrande: "Informática", assunto: "Internet", banca: "FCC / TRT-3", ano: 2024, dificuldade: "Fácil",
     enunciado: "O protocolo HTTPS, utilizado em conexões seguras na web, utiliza criptografia baseada em:",
     alternativas: ["MD5 (Message Digest 5)", "SSL/TLS (Secure Sockets Layer / Transport Layer Security)", "SSH (Secure Shell)", "IPSec (Internet Protocol Security)", "PGP (Pretty Good Privacy)"],
     respostaCorreta: 1,
-    explicacao: "HTTPS = HTTP + TLS (Transport Layer Security). O TLS usa criptografia híbrida: assimétrica (RSA/ECDHE) para trocar a chave de sessão de forma segura, e simétrica (AES-256) para criptografar os dados da sessão. O certificado SSL/TLS é emitido por uma Autoridade Certificadora (CA) confiável e contém a chave pública do servidor." },
+    explicacao: "HTTPS protege a comunicação entre navegador e servidor via TLS. O cadeado indica conexão criptografada. Porém: phishing também pode usar HTTPS — o cadeado garante criptografia, não legitimidade do site. Sempre verificar o domínio completo na barra de endereços." },
 
   { id: "i7", inedita: true, areaGrande: "Informática", assunto: "Microsoft Word", banca: "CEBRASPE / TRT-10", ano: 2023, dificuldade: "Médio",
     enunciado: "No Microsoft Word, o recurso 'Mala Direta' (Mail Merge) é utilizado para:",
     alternativas: ["Criar documentos protegidos por senha com acesso restrito", "Gerar múltiplas cópias personalizadas de um documento usando uma lista de dados como fonte", "Mesclar dois documentos Word em um único arquivo", "Enviar documentos diretamente por e-mail via Outlook", "Combinar estilos de formatação de diferentes documentos"],
     respostaCorreta: 1,
-    explicacao: "Mala Direta (Correspondências > Iniciar Mala Direta): combina um documento-modelo com campos variáveis (<<Nome>>, <<Endereço>>) a uma **fonte de dados** (planilha Excel, banco Access, contatos Outlook). Resultado: N documentos personalizados automaticamente. Usado para intimações judiciais em massa, cartas de cobrança, etiquetas de endereçamento." },
+    explicacao: "Mala Direta combina um **documento-modelo** (com campos variáveis como <<Nome>>) com uma **lista de dados** (planilha Excel, banco de dados). Gera automaticamente N documentos personalizados. No TRT: usado para intimações e notificações em massa." },
 
   { id: "i8", inedita: true, areaGrande: "Informática", assunto: "Microsoft Excel", banca: "FCC / TRT-4", ano: 2023, dificuldade: "Médio",
     enunciado: "Na planilha Excel, a diferença entre referência absoluta ($A$1) e referência relativa (A1) é que:",
     alternativas: ["A referência absoluta é mais rápida de calcular que a relativa", "A referência relativa se ajusta automaticamente ao copiar a fórmula; a absoluta permanece fixa", "A referência absoluta só pode ser usada em fórmulas de soma", "A referência relativa impede que a célula seja editada manualmente", "Não há diferença prática entre os dois tipos de referência"],
     respostaCorreta: 1,
-    explicacao: "Referências no Excel: **Relativa** (A1) — se ajusta ao copiar; **Absoluta** ($A$1) — permanece fixa; **Mista** ($A1 ou A$1) — fixa só coluna ou linha. Tecla F4 cicla entre os 4 tipos. Exemplo prático: em uma tabela de preços × quantidades, a coluna de preços deve ter referência absoluta para não se deslocar ao arrastar a fórmula." },
+    explicacao: "**Relativa** (A1): ajusta automaticamente ao copiar. **Absoluta** ($A$1): permanece fixa ao copiar. **Mista** ($A1 ou A$1): fixa apenas coluna ou linha. F4 alterna entre os 4 tipos. Exemplo: em tabela de preços × quantidades, fixar coluna de preços com $." },
 
   { id: "i9", inedita: true, areaGrande: "Informática", assunto: "Segurança da informação", banca: "CEBRASPE / INSS", ano: 2024, dificuldade: "Médio",
     enunciado: "Qual a diferença entre vírus e worm (verme)?",
     alternativas: ["Vírus são malwares de computador; worms afetam apenas dispositivos móveis", "Vírus precisa de arquivo hospedeiro para se propagar; worm se propaga automaticamente pela rede sem precisar infectar arquivos", "Worm é mais antigo que o vírus e foi criado para proteger sistemas", "Vírus rouba dados; worm apenas exibe mensagens indesejadas", "Não existe diferença técnica relevante entre os dois"],
     respostaCorreta: 1,
-    explicacao: "**Vírus**: parasita — precisa de arquivo hospedeiro, depende de ação do usuário para se propagar. **Worm**: independente — se propaga automaticamente pela rede explorando vulnerabilidades (sem ação do usuário). **Trojan**: disfarce — não se replica, mas abre backdoors. **Ransomware**: extorsão — criptografa dados e exige resgate. **Spyware**: espionagem — coleta dados sem consentimento." },
+    explicacao: "**Vírus**: parasita — precisa de arquivo hospedeiro para se replicar; depende de ação do usuário para se propagar. **Worm**: independente — se propaga automaticamente pela rede explorando vulnerabilidades, sem arquivo hospedeiro e sem intervenção do usuário." },
 
   { id: "i10", inedita: true, areaGrande: "Informática", assunto: "Windows", banca: "FCC / TRT-5", ano: 2024, dificuldade: "Fácil",
     enunciado: "No Windows 10 e 11, ao pressionar Win + L, o que ocorre?",
     alternativas: ["O sistema é desligado imediatamente", "A sessão do usuário atual é encerrada (logout)", "A tela é bloqueada, exigindo senha para voltar ao uso", "O Gerenciador de Tarefas é aberto", "Uma nova janela do Explorador de Arquivos é aberta"],
     respostaCorreta: 2,
-    explicacao: "**Win+L** = Bloquear tela (Lock). Sessão permanece ativa em segundo plano — todos os programas continuam rodando. Diferença: **Win+L** bloqueia (rápido, mantém sessão); **Iniciar > Sair** encerra a sessão (fecha programas); **Iniciar > Desligar** desliga o computador. Win+L é o atalho de segurança ao se afastar do computador temporariamente." },
+    explicacao: "Win+L bloqueia imediatamente a tela do Windows. A sessão continua ativa em segundo plano (programas abertos permanecem rodando). Para retornar: inserir senha, PIN ou biometria. Win+L ≠ Sair (que encerra a sessão) ≠ Desligar." },
 
   { id: "i11", inedita: true, areaGrande: "Informática", assunto: "Redes de computadores", banca: "CEBRASPE / TRT-6", ano: 2024, dificuldade: "Médio",
     enunciado: "O endereço IPv4 192.168.1.100 pertence ao intervalo de endereços:",
     alternativas: ["Endereços públicos da classe B, roteáveis na Internet", "Endereços privados definidos pela RFC 1918, não roteáveis na Internet diretamente", "Endereços multicast para transmissões em grupo", "Endereços reservados para uso futuro (classe E)", "Endereços de loopback para testes locais"],
     respostaCorreta: 1,
-    explicacao: "**Endereços IP privados (RFC 1918)**: 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16. Não são roteados na Internet pública. Para sair para a Internet, passam por NAT (Network Address Translation) no roteador, que substitui o IP privado pelo IP público da conexão. O endereço 192.168.1.100 pertence ao bloco 192.168.0.0/16 → privado." },
+    explicacao: "192.168.0.0/16 é endereço IP privado (RFC 1918). Endereços privados não são roteados na Internet pública. Os 3 blocos RFC 1918: 10.0.0.0/8, 172.16.0.0/12 e 192.168.0.0/16. Para acessar a Internet, o roteador faz NAT substituindo o IP privado pelo público." },
 
   { id: "i12", inedita: true, areaGrande: "Informática", assunto: "Google Workspace", banca: "FCC / TRT-7", ano: 2024, dificuldade: "Fácil",
     enunciado: "No Google Drive, quando um arquivo é compartilhado com a permissão 'Leitor', o usuário que recebe esse acesso pode:",
     alternativas: ["Editar o arquivo e adicionar comentários", "Apenas visualizar o arquivo, sem editar nem comentar", "Excluir o arquivo da pasta compartilhada", "Compartilhar o arquivo com terceiros sem restrição", "Baixar o arquivo apenas se o proprietário autorizar explicitamente"],
     respostaCorreta: 1,
-    explicacao: "Permissões no Google Drive: **Leitor** (só visualiza, pode baixar salvo restrição); **Comentarista** (visualiza + adiciona comentários, mas não edita o conteúdo); **Editor** (edita, renomeia, exclui, reorganiza). Ao compartilhar com 'qualquer pessoa com o link', define-se também o nível de acesso. Muito cobrado em provas!" },
+    explicacao: "Permissões Google Drive: **Leitor** = só visualiza (pode baixar, salvo restrição do proprietário); **Comentarista** = visualiza + comenta; **Editor** = edita, organiza e exclui. Ao compartilhar como "qualquer pessoa com o link", define-se também o nível de acesso." },
 
   { id: "i13", inedita: true, areaGrande: "Informática", assunto: "Internet", banca: "CEBRASPE / INSS", ano: 2023, dificuldade: "Médio",
     enunciado: "O domínio '.jus.br' é reservado, no Brasil, para uso exclusivo de:",
     alternativas: ["Empresas do setor de justiça privada (cartórios, tabelionatos)", "Órgãos do Poder Judiciário brasileiro", "Universidades e instituições de ensino jurídico", "Escritórios de advocacia registrados na OAB", "Órgãos do Ministério da Justiça apenas"],
     respostaCorreta: 1,
-    explicacao: "Domínios brasileiros reservados: **.gov.br** = órgãos do Executivo Federal e Estadual; **.jus.br** = Poder Judiciário (STF, STJ, TRT, TRE, TJ); **.leg.br** = Poder Legislativo (Câmara, Senado); **.mp.br** = Ministério Público; **.edu.br** = universidades e instituições de ensino; **.org.br** = organizações sem fins lucrativos; **.com.br** = empresas comerciais." },
+    explicacao: "O domínio **.jus.br** é reservado para o Poder Judiciário brasileiro: STF, STJ, TRT, TRE, TRF, TJ estaduais, CNJ. Exemplos: www.stf.jus.br, www.tst.jus.br. Outros domínios governamentais: .gov.br (Executivo), .leg.br (Legislativo), .mp.br (Ministério Público)." },
 
   { id: "i14", inedita: true, areaGrande: "Informática", assunto: "Segurança da informação", banca: "FCC / TRT-8", ano: 2024, dificuldade: "Médio",
     enunciado: "A autenticação multifator (MFA / 2FA) aumenta a segurança porque:",
     alternativas: ["Elimina completamente a necessidade de senhas", "Exige mais de um fator de verificação, tornando o acesso mais difícil mesmo se a senha for comprometida", "Criptografa a senha do usuário com algoritmo de 256 bits", "Bloqueia automaticamente ataques de força bruta após 3 tentativas", "Armazena a senha em servidor seguro fora do dispositivo do usuário"],
     respostaCorreta: 1,
-    explicacao: "MFA (Multi-Factor Authentication) exige 2+ fatores de **categorias diferentes**: Categoria 1 — Conhecimento (senha, PIN, padrão); Categoria 2 — Posse (token físico, smartphone com app autenticador, cartão inteligente); Categoria 3 — Inerência (biometria: digital, íris, face, voz). Mesmo que o atacante tenha a senha, sem o segundo fator (ex: código do Google Authenticator) não consegue acessar." },
+    explicacao: "MFA exige 2+ fatores de **categorias diferentes**: (1) Conhecimento (senha/PIN), (2) Posse (smartphone com app autenticador, token), (3) Inerência (biometria). Mesmo com a senha comprometida, o atacante ainda precisa do segundo fator." },
 
   { id: "i15", inedita: true, areaGrande: "Informática", assunto: "Windows", banca: "CEBRASPE / TRT-14", ano: 2023, dificuldade: "Médio",
     enunciado: "No Windows, o arquivo de paginação (page file / swap) tem a função de:",
     alternativas: ["Armazenar senhas de rede criptografadas do sistema", "Funcionar como extensão da memória RAM, usando espaço em disco para dados temporários", "Registrar os erros e falhas do sistema operacional", "Gerenciar a ordem de inicialização dos dispositivos de boot", "Sincronizar arquivos com servidores de backup automático"],
     respostaCorreta: 1,
-    explicacao: "O arquivo de paginação (pagefile.sys no Windows, swap no Linux) é memória virtual em disco. Quando a RAM está cheia, o SO move páginas menos usadas para o disco (paging out), liberando RAM para processos ativos. Quando necessário, traz de volta do disco (paging in). É muito mais lento que a RAM (HDD: ~100x; SSD: ~10x), mas permite operar com mais dados do que a RAM física suportaria." },
+    explicacao: "O pagefile.sys (Windows) / swap (Linux) é memória virtual em disco. Quando a RAM enche, o SO move páginas menos usadas para o disco (swap out), liberando RAM. Quando necessário, traz de volta (swap in). Muito mais lento que RAM, mas permite trabalhar com mais dados." },
 
   { id: "i16", inedita: true, areaGrande: "Informática", assunto: "Microsoft Excel", banca: "FCC / TRT-9", ano: 2023, dificuldade: "Médio",
     enunciado: "A função =PROCV(\"Silva\"; A1:D50; 3; FALSO) no Excel retorna:",
     alternativas: ["A posição da primeira ocorrência de 'Silva' na coluna A", "O valor da 3ª coluna da tabela A1:D50 na linha onde 'Silva' é encontrado na primeira coluna", "A contagem de células que contêm 'Silva' na coluna A", "O valor da célula A3 se 'Silva' estiver na linha 1", "Um erro se 'Silva' não aparecer na primeira linha da tabela"],
     respostaCorreta: 1,
-    explicacao: "PROCV (Procura Vertical): =PROCV(valor_procurado; tabela; num_coluna; 0=exato). A função percorre a **1ª coluna** da tabela procurando o valor e, ao encontrar, retorna o valor da coluna indicada por num_coluna. FALSO/0 = correspondência exata (não encontrar → #N/D). VERDADEIRO/1 = correspondência aproximada (tabela deve estar em ordem crescente)." },
+    explicacao: "Hub (camada 1 OSI): retransmite o sinal elétrico para **TODAS** as portas — qualquer dispositivo recebe todos os dados, causando colisões. **Switch** (camada 2): usa tabela MAC, encaminha dados **somente** para a porta de destino — mais eficiente e seguro." },
 
   { id: "i17", inedita: true, areaGrande: "Informática", assunto: "Redes de computadores", banca: "CEBRASPE / INSS", ano: 2024, dificuldade: "Fácil",
     enunciado: "Qual é a diferença entre um hub e um switch de rede?",
     alternativas: ["Hub opera na camada 3 (Rede) e switch na camada 2 (Enlace)", "Hub encaminha os dados apenas para a porta de destino; switch encaminha para todas as portas", "Hub encaminha os dados para todas as portas; switch encaminha apenas para a porta de destino com base no endereço MAC", "Hub é mais rápido que switch porque não precisa verificar endereços MAC", "Não há diferença funcional entre hub e switch em redes modernas"],
     respostaCorreta: 2,
-    explicacao: "**Hub** (camada 1 OSI): retransmite o sinal elétrico para TODAS as portas — qualquer dispositivo recebe todos os dados, colisões frequentes, sem inteligência. **Switch** (camada 2): usa tabela de endereços MAC, encaminha dados SOMENTE para a porta do destinatário — sem colisões, mais eficiente e seguro. Hubs são obsoletos; switches são padrão em redes modernas." },
+    explicacao: "Modo anônimo/privativo **NÃO** salva localmente: histórico, cookies, senhas e dados de formulários. **Continua registrado** externamente: provedor de internet, rede corporativa, sites visitados e o Google (se logado). Não oferece anonimato real na Internet." },
 
   { id: "i18", inedita: true, areaGrande: "Informática", assunto: "Internet", banca: "FCC / TRT-11", ano: 2024, dificuldade: "Médio",
     enunciado: "O que é o modo anônimo (ou privativo) dos navegadores web, como o modo InPrivate do Edge ou o modo Anônimo do Chrome?",
     alternativas: ["Torna o usuário completamente anônimo na Internet, ocultando o IP do navegador", "Não salva localmente histórico, cookies e dados de formulários, mas o provedor e os sites ainda registram a navegação", "Criptografa toda a navegação com VPN automática", "Bloqueia anúncios e rastreadores automaticamente", "Impede que vírus e malwares sejam baixados durante a sessão"],
     respostaCorreta: 1,
-    explicacao: "Modo Anônimo/InPrivate: o que **NÃO** é salvo localmente: histórico de navegação, cookies, dados de formulários, downloads (histórico apenas — arquivo baixado permanece no PC). O que **CONTINUA** sendo registrado: o provedor de internet registra a navegação; a rede corporativa/escolar monitora; os sites visitados identificam o IP; o Google registra buscas se logado." },
+    explicacao: "LGPD art. 5°, II — Dados sensíveis: origem racial ou étnica, convicção religiosa, opinião política, filiação sindical/religiosa, dados de saúde, vida sexual, dados genéticos ou biométricos. Exigem base legal específica e consentimento destacado para tratamento." },
 
   { id: "i19", inedita: true, areaGrande: "Informática", assunto: "LGPD", banca: "CEBRASPE / TRT-15", ano: 2024, dificuldade: "Médio",
     enunciado: "Segundo a LGPD (Lei 13.709/2018), são considerados dados pessoais sensíveis, com nível de proteção reforçado:",
     alternativas: ["Nome completo, CPF e endereço residencial", "Dados de saúde, origem racial ou étnica, convicção religiosa e dados biométricos", "Número de telefone e endereço de e-mail", "Dados financeiros e histórico de compras", "Qualquer dado que identifique uma pessoa física"],
     respostaCorreta: 1,
-    explicacao: "LGPD art. 5°, II — Dados sensíveis: origem racial ou étnica, convicção religiosa, opinião política, filiação sindical/religiosa, dados referentes à saúde ou vida sexual, dados genéticos ou biométricos (quando vinculados a pessoa natural). Exigem: base legal específica, consentimento livre/informado/destacado para fins específicos, e medidas reforçadas de segurança." },
+    explicacao: "Ransomware: 1) infecta via phishing ou vulnerabilidade; 2) conecta ao servidor C&C; 3) criptografa arquivos com AES-256; 4) exige resgate em criptomoeda. **Prevenção**: backup offline + atualizações + treinamento. Não há garantia de recuperação mesmo após pagamento." },
 
   { id: "i20", inedita: true, areaGrande: "Informática", assunto: "Segurança da informação", banca: "FCC / TRT-12", ano: 2023, dificuldade: "Médio",
     enunciado: "O ransomware é um tipo de malware que:",
     alternativas: ["Registra tudo que o usuário digita e envia para o atacante", "Utiliza o computador da vítima para minerar criptomoedas sem conhecimento do usuário", "Criptografa os arquivos da vítima e exige pagamento (resgate) para fornecer a chave de descriptografia", "Cria uma porta de acesso remoto não autorizada ao sistema", "Se propaga automaticamente pela rede infectando outros computadores"],
     respostaCorreta: 2,
-    explicacao: "Ransomware: processo típico — 1) infecta (phishing, vulnerabilidade); 2) se conecta ao servidor de C&C (comando e controle); 3) recebe chave de criptografia; 4) criptografa arquivos com algoritmo forte (AES-256 geralmente); 5) exige resgate em criptomoeda. **Prevenção**: backup offline + atualização + treinamento. **Não há garantia** de recuperação mesmo após pagamento." },
+    explicacao: "Ransomware criptografa arquivos e exige resgate (ransom) para fornecer a chave de descriptografia. Diferente de: keylogger (registra teclas), cryptojacker (minera criptomoeda), botnet (cria rede de bots), backdoor (cria acesso remoto oculto)." },
 
   { id: "i21", inedita: true, areaGrande: "Informática", assunto: "Microsoft Word", banca: "CEBRASPE / INSS", ano: 2023, dificuldade: "Fácil",
     enunciado: "No Word, o atalho Ctrl+Z tem a função de:",
     alternativas: ["Refazer a última ação desfeita", "Desfazer a última ação realizada no documento", "Salvar o documento no formato .zip", "Fechar o documento atual sem salvar", "Aplicar a formatação de zebra (linhas alternadas) em tabelas"],
     respostaCorreta: 1,
-    explicacao: "**Ctrl+Z** = Desfazer (Undo) — remove a última ação realizada. Pode ser repetido múltiplas vezes para desfazer várias ações em sequência (histórico de desfazer). **Ctrl+Y** = Refazer (Redo) — restaura a ação que foi desfeita. Atalhos universais em praticamente todos os softwares Windows e macOS (macOS usa Cmd+Z e Cmd+Shift+Z)." },
+    explicacao: "Ctrl+Z = **Desfazer** (Undo) — remove a última ação realizada. Ctrl+Y = Refazer. Atalhos universais no Windows e macOS (macOS: Cmd+Z). O Word mantém um histórico de ações que permite desfazer múltiplas operações em sequência." },
 
   { id: "i22", inedita: true, areaGrande: "Informática", assunto: "Windows", banca: "FCC / TRT-13", ano: 2024, dificuldade: "Médio",
     enunciado: "No Windows 10, o UAC (Controle de Conta de Usuário) tem a função de:",
     alternativas: ["Gerenciar senhas de Wi-Fi salvas no sistema", "Solicitar confirmação ou credenciais de administrador quando um programa tenta fazer mudanças no sistema", "Controlar o acesso remoto ao computador via RDP", "Verificar periodicamente se há vírus e malwares no sistema", "Bloquear usuários não autorizados de acessar arquivos protegidos"],
     respostaCorreta: 1,
-    explicacao: "UAC (User Account Control): exibido quando um processo tenta obter privilégio elevado (nível de administrador). Para conta de Administrador: caixa simples 'Você deseja permitir...'. Para conta de Usuário Padrão: solicita credenciais de administrador (usuário e senha). Configuração: Painel de Controle > Contas de Usuário > Alterar configurações de Controle de Conta de Usuário." },
+    explicacao: "UAC (User Account Control) exibe uma caixa de diálogo quando um processo tenta obter privilégios de administrador. Para conta de Administrador: caixa simples de confirmação. Para Usuário Padrão: solicita usuário e senha de administrador. Configurável em: Painel de Controle > Contas de Usuário." },
 
   { id: "i23", inedita: true, areaGrande: "Informática", assunto: "Redes de computadores", banca: "CEBRASPE / TRT-16", ano: 2024, dificuldade: "Médio",
     enunciado: "O que é uma VPN (Virtual Private Network) e qual é sua principal finalidade?",
     alternativas: ["É um antivírus baseado em nuvem que protege contra malwares em tempo real", "É um túnel criptografado sobre a Internet que permite acesso seguro a redes privadas remotamente", "É um tipo de servidor DNS que acelera a navegação na Internet", "É uma tecnologia para criar redes Wi-Fi mais seguras em ambientes domésticos", "É um protocolo para transmissão de vídeo em alta qualidade pela Internet"],
     respostaCorreta: 1,
-    explicacao: "VPN cria um **túnel criptografado** (geralmente com TLS/IPSec/WireGuard) entre o dispositivo do usuário e o servidor VPN. Benefícios: acesso remoto seguro à Intranet corporativa; mascara o IP real substituindo-o pelo IP do servidor VPN; criptografa o tráfego em redes Wi-Fi públicas. Tipos: Site-to-Site (conecta redes inteiras), Remote Access (usuário individual)." },
+    explicacao: "VPN cria um **túnel criptografado** (TLS, IPSec ou WireGuard) entre o dispositivo e o servidor VPN. Permite acesso seguro à Intranet corporativa remotamente; mascara o IP real; criptografa tráfego em Wi-Fi públicas. Tipos: Site-to-Site e Remote Access." },
 
   { id: "i24", inedita: true, areaGrande: "Informática", assunto: "Microsoft Excel", banca: "FCC / TRT-14", ano: 2023, dificuldade: "Difícil",
     enunciado: "No Excel, a fórmula =SE(E(B2>=7;C2=\"Aprovado\");\"Formado\";\"Pendente\") retorna 'Formado' quando:",
     alternativas: ["B2 >= 7 OU C2 = 'Aprovado' (qualquer uma das condições)", "B2 >= 7 E C2 = 'Aprovado' (ambas as condições simultaneamente)", "B2 >= 7 E C2 diferente de 'Aprovado'", "B2 < 7 E C2 = 'Aprovado'", "Apenas quando C2 = 'Aprovado', independente do valor de B2"],
     respostaCorreta: 1,
-    explicacao: "E() retorna VERDADEIRO **apenas** se **todas** as condições forem verdadeiras. OU() retorna VERDADEIRO se **pelo menos uma** for verdadeira. Tabela-verdade: E(V,V)=V; E(V,F)=F; E(F,V)=F; E(F,F)=F. A fórmula =SE(E(B2>=7;C2='Aprovado');'Formado';'Pendente') → 'Formado' somente quando as duas condições são simultaneamente verdadeiras.'Aprovado\');...) retorna 'Formado' apenas quando B2 >= 7 E C2 = 'Aprovado' ao mesmo tempo. Se qualquer uma for falsa, E() retorna FALSO e a fórmula retorna 'Pendente'. Diferente de OU(), que requer apenas uma condição verdadeira." },
+    explicacao: "Cookies são arquivos de texto salvos pelo site no navegador. Tipos: **de sessão** (expiram ao fechar o navegador); **persistentes** (têm data de expiração); **de terceiros** (domínio diferente, para rastreamento). A LGPD exige consentimento para cookies não essenciais." },
 
   { id: "i25", inedita: true, areaGrande: "Informática", assunto: "Internet", banca: "CEBRASPE / INSS", ano: 2024, dificuldade: "Fácil",
     enunciado: "O que são cookies no contexto de navegação web?",
     alternativas: ["Programas maliciosos que registram teclas digitadas pelo usuário", "Arquivos de texto armazenados pelo site no navegador do usuário para manter informações de sessão e preferências", "Imagens em miniatura que aceleram o carregamento de páginas web", "Certificados digitais que autenticam a identidade de sites", "Scripts executados em segundo plano que coletam dados de forma ilegal"],
     respostaCorreta: 1,
-    explicacao: "Cookies: arquivos de texto (pequenos, ~4KB max) salvos pelo navegador a pedido do site. Tipos: **de sessão** (expiram ao fechar o navegador — mantêm login durante a sessão); **persistentes** (têm data de expiração — lembram preferências); **de terceiros** (criados por domínios diferentes do site visitado — usados para rastreamento publicitário). A LGPD exige consentimento para não essenciais." },
+    explicacao: "HTTPS usa TLS — protocolo de criptografia que garante confidencialidade e integridade. O cadeado no navegador confirma HTTPS ativo. Mas: o cadeado não garante que o site é legítimo — sites de phishing também podem usar HTTPS. Verificar sempre o domínio completo." },
 
   { id: "i26", inedita: true, areaGrande: "Informática", assunto: "Segurança da informação", banca: "FCC / TRT-17", ano: 2024, dificuldade: "Médio",
     enunciado: "A criptografia assimétrica (de chave pública) utiliza:",
     alternativas: ["Uma única chave secreta compartilhada entre remetente e destinatário", "Um par de chaves matematicamente relacionadas: uma pública e uma privada", "Vinte e seis substituições de letras como no código César", "A chave gerada aleatoriamente a cada sessão e descartada ao final", "Três chaves: uma de criptografia, uma de decriptografia e uma de autenticação"],
     respostaCorreta: 1,
-    explicacao: "Criptografia assimétrica (RSA, ECDSA): par de chaves matematicamente relacionadas. O que é cifrado com a **pública** só pode ser decifrado com a **privada** (e vice-versa). A chave pública é distribuída livremente; a privada é mantida em segredo absoluto. Usos: certificados digitais (autenticação), assinaturas digitais (não-repúdio), troca segura de chaves simétricas (HTTPS)." },
+    explicacao: "Criptografia assimétrica (RSA, ECDSA): cada parte tem um **par de chaves** — pública (distribuída livremente) e privada (mantida em segredo). O que é cifrado com a pública só é decifrado com a privada. Usado em certificados digitais, HTTPS e assinaturas digitais." },
 
   { id: "i27", inedita: true, areaGrande: "Informática", assunto: "Windows", banca: "CEBRASPE / TRT-22", ano: 2023, dificuldade: "Fácil",
     enunciado: "No Windows 10, qual é a função da tecla F5 no Explorador de Arquivos (File Explorer)?",
     alternativas: ["Abrir as propriedades da pasta ou arquivo selecionado", "Renomear o arquivo ou pasta selecionado", "Atualizar (refresh) a visualização da pasta atual", "Criar uma nova pasta no diretório atual", "Abrir o menu de contexto (equivalente ao botão direito do mouse)"],
     respostaCorreta: 2,
-    explicacao: "F5 = Atualizar (Refresh) no Explorador de Arquivos e em navegadores web. Outros atalhos úteis no Explorer: **F2** = renomear; **Delete** = excluir para lixeira; **Shift+Delete** = excluir permanente; **Ctrl+N** = nova janela do Explorer; **Ctrl+Shift+N** = criar nova pasta; **Alt+←** = voltar; **Alt+→** = avançar." },
+    explicacao: "F5 = **Atualizar (Refresh)** no Explorador de Arquivos e navegadores web. Re-lê o conteúdo da pasta do disco. Outros atalhos: F2 = renomear; Delete = excluir para lixeira; Shift+Delete = excluir permanente; Ctrl+Shift+N = nova pasta." },
 
   { id: "i28", inedita: true, areaGrande: "Informática", assunto: "Google Workspace", banca: "FCC / TRT-18", ano: 2024, dificuldade: "Médio",
     enunciado: "Qual das seguintes afirmativas sobre o Google Docs está INCORRETA?",
     alternativas: ["Permite edição colaborativa em tempo real com múltiplos usuários simultaneamente", "Mantém histórico completo de versões, permitindo restaurar qualquer versão anterior", "É necessário ter uma conta Google para visualizar um documento compartilhado como 'qualquer pessoa com o link'", "Suporta a importação e exportação de arquivos nos formatos .docx e .pdf", "Os comentários podem mencionar colaboradores usando @email para notificá-los"],
     respostaCorreta: 2,
-    explicacao: "Afirmativa incorreta: C — Para visualizar um documento Google compartilhado como 'qualquer pessoa com o link', **não** é necessário ter conta Google. Qualquer pessoa com o link pode abrir em qualquer navegador, mesmo sem estar logada. A conta Google só é necessária para editar, comentar ou criar documentos." },
+    explicacao: "Afirmativa **INCORRETA**: C — documentos compartilhados como "qualquer pessoa com o link" no Google Docs podem ser abertos SEM conta Google. Qualquer pessoa com o link acessa diretamente no navegador, sem login. Conta Google é necessária apenas para editar/comentar." },
 
   { id: "i29", inedita: true, areaGrande: "Informática", assunto: "LGPD", banca: "CEBRASPE / INSS", ano: 2024, dificuldade: "Médio",
     enunciado: "O Marco Civil da Internet (Lei 12.965/2014) estabelece o princípio da neutralidade de rede, que determina:",
     alternativas: ["Que provedores de internet podem cobrar tarifas diferenciadas por serviços que consomem mais banda", "Que os provedores de acesso não podem discriminar o tráfego de dados por conteúdo, origem, destino, serviço ou aplicação", "Que o usuário pode navegar anonimamente na internet sem identificação", "Que os dados do usuário não podem ser compartilhados com terceiros sem autorização", "Que os provedores devem oferecer internet gratuita para fins educacionais"],
     respostaCorreta: 1,
-    explicacao: "Marco Civil da Internet (Lei 12.965/2014) — Art. 9°, Neutralidade de Rede: responsável pelo tratamento de dados e tráfego de internet é obrigado a tratar de forma isonômica quaisquer pacotes de dados, sem distinção por conteúdo, origem, destino, serviço, terminal ou aplicação. Exceções: requisitos técnicos indispensáveis à prestação adequada e em situações de emergência." },
+    explicacao: "Marco Civil da Internet (Lei 12.965/2014), Art. 9° — Neutralidade de rede: provedores devem tratar todos os pacotes de dados igualmente, sem discriminar por conteúdo, origem, destino, serviço ou aplicação. Exceções: requisitos técnicos indispensáveis e emergências." },
 
   { id: "i30", inedita: true, areaGrande: "Informática", assunto: "Redes de computadores", banca: "FCC / TRT-19", ano: 2024, dificuldade: "Médio",
     enunciado: "O protocolo POP3, utilizado para recebimento de e-mails, diferencia-se do IMAP principalmente porque:",
     alternativas: ["POP3 usa criptografia; IMAP não possui segurança", "POP3 baixa e (por padrão) remove as mensagens do servidor; IMAP sincroniza as mensagens mantendo-as no servidor", "POP3 é mais moderno e suporta múltiplas pastas; IMAP só acessa a caixa de entrada", "POP3 opera na porta 443; IMAP opera na porta 25", "POP3 e IMAP são sinônimos e funcionam da mesma forma"],
     respostaCorreta: 1,
-    explicacao: "POP3 (porta 110, seguro: 995): baixa e-mails e, por padrão, **apaga do servidor** — ideal para um dispositivo. IMAP (porta 143, seguro: 993): sincroniza com o servidor, **mantém as mensagens no servidor** — ideal para múltiplos dispositivos (celular + computador + tablet veem as mesmas mensagens em tempo real). SMTP (porta 25/587/465): apenas **envio** de e-mails." },
+    explicacao: "POP3 (porta 110): baixa e-mails e **remove do servidor** por padrão — ideal para 1 dispositivo. IMAP (porta 143): **sincroniza com servidor**, mantém mensagens — ideal para múltiplos dispositivos. SMTP (porta 25/587) = apenas envio. Hoje IMAP é o padrão recomendado." },
 
 ];
 
