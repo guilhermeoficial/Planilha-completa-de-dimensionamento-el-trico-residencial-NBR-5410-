@@ -356,7 +356,7 @@ export default function CircuitosTab({ projectId, tensaoV, circuitos, ambientes,
             <Wand2 size={15} /> {gerando ? "Gerando..." : "Gerar circuitos a partir dos ambientes"}
           </button>
           <button
-            onClick={adicionarCircuito}
+            onClick={() => adicionarCircuito()}
             className="flex items-center gap-1.5 rounded-md border border-panel-border px-3.5 py-2 text-sm transition-colors hover:border-accent"
           >
             <Plus size={15} /> Circuito manual
