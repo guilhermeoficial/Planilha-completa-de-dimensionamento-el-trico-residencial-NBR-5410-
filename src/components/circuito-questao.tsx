@@ -481,6 +481,16 @@ function CircuitoE88() {
   );
 }
 
+// e102 — Circuito equivalente de curto-circuito: Vcc + R1eq=3Ω + X1eq=5Ω
+function CircuitoE102() {
+  return (
+    <div className="w-full">
+      <img src="/questoes-imagens/e102.svg" alt="Circuito equivalente ensaio curto-circuito transformador"
+        className="w-full object-contain" style={{ maxHeight: 220 }}/>
+    </div>
+  );
+}
+
 // e110 — RLC série: R=5Ω, L=25mH, C=100μF, 50V/60Hz
 function CircuitoE110() {
   return (
@@ -603,6 +613,7 @@ const CIRCUITOS: Record<string, React.FC> = {
   e62:   CircuitoE62,
   e64:   CircuitoE64,
   e88:   CircuitoE88,
+  e102:  CircuitoE102,
   e108:  CircuitoE108,
   e110:  CircuitoE110,
   e286:  CircuitoE286,

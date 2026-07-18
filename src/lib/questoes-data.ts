@@ -1101,7 +1101,7 @@ const QUESTOES_BASE: any[] = [
     ], respostaCorreta: 1,
     explicacao: "Em ressonância paralela, a impedância equivalente é MÁXIMA (resistência de ressonância), tornando a corrente fornecida pela fonte MÍNIMA. Porém, circulam correntes elevadas entre o indutor e o capacitor (corrente de circulação), que podem ser muito maiores que a corrente da fonte — este é o fenômeno do 'tanque de corrente', análogo ao circuito série onde a tensão no LC é maior que a da fonte." },
 
-  { id: "e102", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eletromagnetismo", banca: "Voltis Original", ano: 2023, dificuldade: "Difícil",
+  { id: "e102", inedita: true, temImagem: true, areaGrande: "Eletrotécnica", assunto: "Eletromagnetismo", banca: "Voltis Original", ano: 2023, dificuldade: "Difícil",
     enunciado: "Um transformador monofásico de 10 kVA, 2400/240 V, tem reatância de dispersão total referida ao primário de 5 Ω e resistência total referida ao primário de 3 Ω. A impedância percentual de curto-circuito (Zcc%) vale:",
     alternativas: ["1,45%", "2,40%", "4,17%", "6,25%", "8,33%"], respostaCorreta: 2,
     explicacao: "$$I_{n1} = \dfrac{10000}{2400} \approx 4{,}17\text{ A}$$. $$Z_{base} = \dfrac{V_1^2}{S} = \dfrac{2400^2}{10000} = 576\,\Omega$$. $$Z_{eq} = Z_{cc}\% \times Z_{base}$$" },
