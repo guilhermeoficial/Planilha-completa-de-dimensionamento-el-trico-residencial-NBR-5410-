@@ -2760,7 +2760,9 @@ export const AREAS: Area[] = [
       },
     ],
   },
-];(slug: string): Area | undefined {
+];
+
+export function buscarArea(slug: string): Area | undefined {
   return AREAS.find((a) => a.slug === slug);
 }
 
