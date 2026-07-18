@@ -265,7 +265,7 @@ export default function MemorialCalculoTab({ project, ambientes, circuitosCalcul
         ];
       }),
     });
-    const cur = (doc as { lastAutoTable: { finalY: number } }).lastAutoTable.finalY + 12;
+    const cur = (doc as unknown as { lastAutoTable: { finalY: number } }).lastAutoTable.finalY + 12;
     doc.setFont("helvetica", "normal"); doc.setFontSize(8); doc.setTextColor(80,80,80);
     doc.text(`Carga total: ${Math.round(potTotal).toLocaleString("pt-BR")} W  ·  FD: ${(fatorDemanda*100).toFixed(0)}%  ·  Demanda: ${Math.round(potDemandaW).toLocaleString("pt-BR")} W  ·  Ib entrada: ${ibEntrada.toFixed(1)} A  ·  Disj. geral: ${resumoDemanda.disjuntorGeralA} A  ·  Ramal: ${secaoRamal} mm²`, M, cur);
     const totalPg = doc.getNumberOfPages();
