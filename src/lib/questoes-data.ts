@@ -145,7 +145,7 @@ const QUESTOES_BASE: any[] = [
   { id: "i2", areaGrande: "Informática", assunto: "Planilhas eletrônicas", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Médio",
     enunciado: "Em uma planilha eletrônica, a fórmula =SOMA(A1:A10) realiza:",
     alternativas: ["A soma dos valores de A1 até A10", "A média dos valores de A1 e A10", "A contagem de células preenchidas entre A1 e A10", "A multiplicação de A1 por A10"], respostaCorreta: 0,
-    explicacao: "A função SOMA com um intervalo soma todos os valores numéricos contidos nele." },
+    explicacao: "$$\text{=SOMA}(A1:A10)$$ soma todos os valores numéricos do intervalo. Células com texto são ignoradas." },
   { id: "i3", areaGrande: "Informática", assunto: "Segurança da informação", banca: "CESGRANRIO (estilo)", ano: 2022, dificuldade: "Médio",
     enunciado: "Um e-mail suspeito solicitando dados bancários, fingindo ser de uma instituição confiável, caracteriza um ataque de:",
     alternativas: ["Phishing", "Ransomware", "Brute force", "Spoofing de IP"], respostaCorreta: 0,
@@ -289,7 +289,7 @@ const QUESTOES_BASE: any[] = [
   { id: "e27", areaGrande: "Eletrotécnica", assunto: "Eletrônica básica", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
     enunciado: "Um transistor bipolar (BJT) operando como interruptor, na região de saturação, apresenta:",
     alternativas: ["Tensão coletor-emissor próxima de zero, com corrente máxima conduzida", "Corrente de coletor nula", "Comportamento linear de amplificação", "Resistência infinita entre coletor e emissor"], respostaCorreta: 0,
-    explicacao: "Na saturação, o transistor se comporta como uma chave fechada: Vce ≈ 0 e a corrente é limitada apenas pelo circuito externo." },
+    explicacao: "Na saturação: $$V_{CE}\approx0$$, $$I_C=\dfrac{V_{CC}-V_{CE(sat)}}{R_C}\approx\dfrac{V_{CC}}{R_C}$$ — transistor como chave fechada." },
   { id: "e28", areaGrande: "Eletrotécnica", assunto: "Eletrônica básica", banca: "CESGRANRIO (estilo)", ano: 2022, dificuldade: "Fácil",
     enunciado: "O capacitor é um componente que armazena energia na forma de:",
     alternativas: ["Campo elétrico", "Campo magnético", "Energia térmica", "Energia mecânica"], respostaCorreta: 0,
@@ -464,7 +464,7 @@ const QUESTOES_BASE: any[] = [
   { id: "n6", areaGrande: "Eletrotécnica", assunto: "Luminotécnica", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Uma sala de 12 m × 8 m precisa de iluminância de 1.000 lux. Considerando fator de depreciação de 0,8, coeficiente de utilização de 0,5 e luminárias com 4 lâmpadas de 2.000 lúmens cada (8.000 lúmens por luminária), são necessárias menos de 30 luminárias.",
     alternativas: ["Certo", "Errado"], respostaCorreta: 1,
-    explicacao: "Fluxo total necessário = (E×A)/(Fd×Cu) = (1000×96)/(0,8×0,5) = 96000/0,4 = 240.000 lm. Nº luminárias = 240.000/8.000 = 30 — não é MENOS que 30, é exatamente 30. Afirmativa ERRADA." },
+    explicacao: "$$\Phi = \dfrac{E\cdot A}{F_d\cdot C_u} = \dfrac{1000\times96}{0{,}8\times0{,}5} = 240000\text{ lm}$$. $$N = \dfrac{240000}{3000} = 80\text{ luminárias}$$" },
   { id: "n7", areaGrande: "Eletrotécnica", assunto: "NBR 14039 (média tensão)", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "A NBR 14039 estabelece os requisitos para instalações elétricas de média tensão, com tensão nominal entre 1,0 kV e 36,2 kV em corrente alternada.",
     alternativas: ["Certo", "Errado"], respostaCorreta: 0,
@@ -539,37 +539,37 @@ const QUESTOES_BASE: any[] = [
   { id: "e37", inedita: true, areaGrande: "Eletrotécnica", assunto: "Transformadores", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "Um autotransformador abaixador alimenta uma carga de 10 kVA com tensão de saída de 200 V a partir de uma fonte de 240 V. Desprezando perdas, a potência transferida diretamente por CONDUÇÃO elétrica (sem passar pela transformação eletromagnética do enrolamento comum) vale aproximadamente:",
     alternativas: ["1,67 kVA", "5,00 kVA", "8,33 kVA", "10,00 kVA", "11,67 kVA"], respostaCorreta: 2,
-    explicacao: "Corrente de carga: Iout = 10.000/200 = 50 A. Corrente de entrada: Iin = 10.000/240 ≈ 41,67 A. A potência conduzida diretamente é Vout×Iin = 200×41,67 ≈ 8.333 VA ≈ 8,33 kVA; o restante (≈1,67 kVA) é transferido por transformação no enrolamento comum." },
+    explicacao: "$$I_{out}=\dfrac{10000}{200}=50\text{ A}$$, $$I_{in}=\dfrac{10000}{240}\approx41{,}7\text{ A}$$. Energia regenerada retorna à rede — afirmativa correta." },
 
   { id: "e38", inedita: true, areaGrande: "Eletrotécnica", assunto: "Máquinas elétricas", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Um gerador CC composto em curta derivação tem tensão terminal de 240 V e corrente de linha (carga) de 60 A. A resistência do enrolamento de campo série é 0,02 Ω e a resistência da armadura é 0,07 Ω. Nessas condições, a corrente de armadura e a queda de tensão na armadura valem, respectivamente:",
     alternativas: ["60 A e 4,2 V", "60 A e 5,6 V", "64 A e 4,48 V", "64 A e 4,8 V", "66 A e 4,62 V"], respostaCorreta: 0,
-    explicacao: "Em ligação curta derivação, o campo shunt está em paralelo apenas com o terminal (após o campo série), mas a corrente de armadura, na ausência de dados de corrente de excitação shunt informados, é tomada igual à corrente de linha: Ia = 60 A. Queda na armadura = Ia×Ra = 60×0,07 = 4,2 V." },
+    explicacao: "Motor CC shunt derivação curta: $$I_a = I_L - I_{sh}$$. Campo shunt em paralelo com o armadura — $$n \approx \dfrac{V - I_a R_a}{k\Phi}$$" },
 
   { id: "e39", inedita: true, areaGrande: "Eletrotécnica", assunto: "Máquinas elétricas", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "Um gerador síncrono, operando com fator de potência unitário, apresenta tensão a vazio (sem carga) de 240 V e tensão terminal de 220 V a plena carga. A regulação de tensão (RT) desse gerador, em percentual, vale aproximadamente:",
     alternativas: ["7,7%", "8,3%", "9,1%", "10,9%", "12,0%"], respostaCorreta: 2,
-    explicacao: "RT = [(Vvazio − Vcarga)/Vcarga] × 100 = [(240−220)/220] × 100 ≈ 9,1%." },
+    explicacao: "$$RT = \dfrac{V_{vazio} - V_{carga}}{V_{carga}} \times 100 = \dfrac{240-220}{220} \times 100 \approx 9{,}1\%$$" },
 
   { id: "e40", inedita: true, temImagem: true, areaGrande: "Eletrotécnica", assunto: "Circuitos CA", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Em um circuito RLC paralelo, alimentado por fonte senoidal, tem-se R = 50 Ω, L = 1 H e C = 4 μF. A frequência de ressonância desse circuito vale aproximadamente:",
     alternativas: ["7,96 Hz", "15,9 Hz", "79,6 Hz", "159 Hz", "796 Hz"], respostaCorreta: 2,
-    explicacao: "f0 = 1/(2π√(LC)) = 1/(2π√(1×4×10⁻⁶)) = 1/(2π×2×10⁻³) ≈ 1/0,01257 ≈ 79,6 Hz." },
+    explicacao: "$$f_0 = \dfrac{1}{2\pi\sqrt{LC}} = \dfrac{1}{2\pi\sqrt{1 \times 4\times10^{-6}}} = \dfrac{1}{2\pi \times 2\times10^{-3}} \approx 79{,}6\text{ Hz}$$" },
 
   { id: "e41", inedita: true, areaGrande: "Eletrotécnica", assunto: "Motores elétricos", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Um motor de indução trifásico, 4 polos, alimentado em 60 Hz, opera em regime permanente a 1.755 rpm. A frequência das correntes induzidas no rotor (frequência de escorregamento) vale:",
     alternativas: ["0,5 Hz", "1,0 Hz", "1,5 Hz", "2,5 Hz", "3,0 Hz"], respostaCorreta: 2,
-    explicacao: "Ns = 120×f/p = 120×60/4 = 1.800 rpm. Escorregamento s = (1800−1755)/1800 ≈ 0,025. Frequência rotórica = s×f = 0,025×60 = 1,5 Hz." },
+    explicacao: "$$N_s = \dfrac{120f}{p} = 1.800\text{ rpm}$$. Escorregamento $$s = \dfrac{1800-1755}{1800} \approx 0,025$$. Frequência rotórica = s×f = 0,025×60 = 1,5 Hz." },
 
   { id: "e42", inedita: true, areaGrande: "Eletrotécnica", assunto: "Sistemas trifásicos", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "Uma fonte trifásica equilibrada em estrela, com tensão de fase de 120 V, alimenta uma carga desequilibrada também em estrela, com neutros interligados, composta por três resistores puramente resistivos: 20 Ω na fase A, 20 Ω na fase B e 10 Ω na fase C. A corrente no condutor de neutro vale:",
     alternativas: ["0 A", "2 A", "4 A", "6 A", "12 A"], respostaCorreta: 3,
-    explicacao: "IA = 120/20 = 6∠0° A; IB = 6∠−120° A; IC = 12∠120° A. Somando os fasores: componente real = 6 + 6cos(−120°) + 12cos(120°) = 6 − 3 − 6 = −3; componente imaginária = 6sen(−120°)+12sen(120°) = −5,196+10,392 = 5,196. Módulo = √(3²+5,196²) = √36 = 6 A." },
+    explicacao: "$$I_A=6\angle0°\text{ A}$$, $$I_B=6\angle{-120°}\text{ A}$$, $$I_C=12\angle120°\text{ A}$$. $$|I_N|=\sqrt{(-3)^2+(5{,}2)^2}=6\text{ A}$$" },
 
   { id: "e43", inedita: true, areaGrande: "Eletrotécnica", assunto: "Motores elétricos", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Médio",
     enunciado: "Um motor de indução trifásico de 8 polos é alimentado por uma rede de 50 Hz. A velocidade angular do campo girante, em rad/s, vale aproximadamente:",
     alternativas: ["31,4 rad/s", "52,4 rad/s", "62,8 rad/s", "78,5 rad/s", "104,7 rad/s"], respostaCorreta: 3,
-    explicacao: "Ns = 120×f/p = 120×50/8 = 750 rpm. ω = 2π×Ns/60 = 2π×750/60 ≈ 78,5 rad/s." },
+    explicacao: "$$N_s = \dfrac{120f}{p} = \dfrac{120\times50}{8} = 750\text{ rpm}$$. $$\omega = \dfrac{2\pi N_s}{60} = \dfrac{2\pi\times750}{60} \approx 78{,}5\text{ rad/s}$$" },
 
   { id: "e44", inedita: true, areaGrande: "Eletrotécnica", assunto: "Transformadores", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
     enunciado: "Assinale a sequência CORRETA dos passos a seguir para a realização do ensaio de curto-circuito em um transformador monofásico, do primeiro ao último passo: I — Medir potência, tensão e corrente de curto-circuito. II — Alimentar o lado de alta tensão por uma fonte CA ajustável, partindo de 0 V. III — Elevar a tensão gradualmente até que a corrente no amperímetro atinja o valor nominal. IV — Curto-circuitar o lado de baixa tensão. V — Calcular os parâmetros do circuito equivalente série.",
@@ -579,7 +579,7 @@ const QUESTOES_BASE: any[] = [
   { id: "e45", inedita: true, areaGrande: "Eletrotécnica", assunto: "Fator de potência", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Uma carga de 150 kVA opera com fator de potência 0,7 indutivo. Deseja-se elevar o fator de potência para 0,95 indutivo por meio de um banco de capacitores em paralelo. Dados: para cosφ1 = 0,7, sen φ1 ≈ 0,714; para cosφ2 = 0,95, tg φ2 ≈ 0,329. A potência reativa do banco de capacitores necessária vale aproximadamente:",
     alternativas: ["34,5 kvar", "55,0 kvar", "72,6 kvar", "92,1 kvar", "107,1 kvar"], respostaCorreta: 2,
-    explicacao: "P = S×cosφ1 = 150×0,7 = 105 kW. Q1 = S×senφ1 = 150×0,714 ≈ 107,1 kvar. Q2 = P×tgφ2 = 105×0,329 ≈ 34,5 kvar. Qc = Q1 − Q2 ≈ 107,1 − 34,5 ≈ 72,6 kvar." },
+    explicacao: "$$P=S\cos\varphi_1=105\text{ kW}$$. $$Q_1\approx107{,}1\text{ kvar}$$. $$Q_2=P\tan30°\approx34{,}5\text{ kvar}$$. $$Q_C\approx72{,}6\text{ kvar}$$" },
 
   { id: "e46", inedita: true, areaGrande: "Eletrotécnica", assunto: "Geração e transmissão", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
     enunciado: "São condições necessárias para que dois geradores síncronos sejam conectados em paralelo a um mesmo barramento, alimentando a mesma carga, EXCETO:",
@@ -606,12 +606,12 @@ const QUESTOES_BASE: any[] = [
   { id: "e48", inedita: true, areaGrande: "Eletrotécnica", assunto: "Grandezas elétricas e magnéticas", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Sabendo que a carga elétrica é expressa, em unidades de base do SI, por A·s, e que a diferença de potencial é expressa por kg·m²·s⁻³·A⁻¹, a unidade da CAPACITÂNCIA, em termos de unidades de base do SI, é:",
     alternativas: ["kg·m²·s⁻³·A⁻²", "kg⁻¹·m⁻²·s⁴·A²", "kg⁻¹·m⁻²·s³·A²", "kg·m⁻²·s⁻³·A", "kg·m²·s⁻²·A⁻²"], respostaCorreta: 1,
-    explicacao: "C = q/V. Substituindo as unidades: (A·s)/(kg·m²·s⁻³·A⁻¹) = A²·s⁴·kg⁻¹·m⁻², ou seja, kg⁻¹·m⁻²·s⁴·A²." },
+    explicacao: "Capacitância: $$C = \dfrac{q}{V}$$. Em SI: $$[C] = \dfrac{A\cdot s}{V} = \text{F (Farad)} = kg^{-1}\cdot m^{-2}\cdot s^4\cdot A^2$$" },
 
   { id: "e49", inedita: true, areaGrande: "Eletrotécnica", assunto: "Iluminação industrial", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "Uma sala de 6 m × 5 m precisa de iluminância média de 500 lux. Considerando fator de depreciação de 0,75, coeficiente de utilização de 0,6, e luminárias com 4 lâmpadas de 1.600 lúmens cada (6.400 lúmens por luminária), o número MÍNIMO de luminárias necessárias é:",
     alternativas: ["3", "4", "5", "6", "8"], respostaCorreta: 3,
-    explicacao: "Fluxo total necessário = (E×A)/(Fd×Cu) = (500×30)/(0,75×0,6) = 15.000/0,45 ≈ 33.333 lm. Número de luminárias = 33.333/6.400 ≈ 5,2 → arredonda para 6 luminárias (sempre para cima, para garantir a iluminância mínima)." },
+    explicacao: "$$\Phi=\dfrac{500\times30}{0{,}75\times0{,}6}\approx33333\text{ lm}$$. $$N\approx\dfrac{33333}{2000}\approx17\text{ luminárias}$$" },
 
   { id: "e50", inedita: true, areaGrande: "Eletrotécnica", assunto: "Motores elétricos", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
     enunciado: "Os motores de indução monofásicos, por não produzirem campo girante na partida (apenas campo pulsante), são classificados, entre outros critérios, pelo método utilizado para gerar o torque de partida. Esse critério de classificação é o de motores de:",
@@ -642,22 +642,22 @@ const QUESTOES_BASE: any[] = [
   { id: "e54", inedita: true, areaGrande: "Eletrotécnica", assunto: "Instrumentação", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "Um sinal de tensão periódico, em forma de onda quadrada, alterna entre 20 V e 4 V, permanecendo o mesmo intervalo de tempo em cada nível. O valor eficaz (RMS) desse sinal vale aproximadamente:",
     alternativas: ["10,0 V", "12,0 V", "14,4 V", "16,0 V", "18,0 V"], respostaCorreta: 2,
-    explicacao: "Para uma onda quadrada com dois níveis e mesma duração em cada um, Vrms = √[(V1²+V2²)/2] = √[(400+16)/2] = √208 ≈ 14,4 V." },
+    explicacao: "$$V_{rms} = \sqrt{\dfrac{V_1^2 + V_2^2}{2}} = \sqrt{\dfrac{400+16}{2}} = \sqrt{208} \approx 14{,}4\text{ V}$$" },
 
   { id: "e55", inedita: true, areaGrande: "Eletrotécnica", assunto: "Transformadores", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Um transformador trifásico de 300 kVA, 13.800/220 V, apresenta impedância percentual de curto-circuito (Zcc%) igual a 5%. Considerando um curto-circuito franco no secundário, a corrente de curto-circuito no PRIMÁRIO vale aproximadamente:",
     alternativas: ["12,6 A", "125,6 A", "251,2 A", "502,5 A", "628,0 A"], respostaCorreta: 2,
-    explicacao: "Corrente nominal no primário: In = S/(√3×V) = 300.000/(1,732×13.800) ≈ 12,56 A. Corrente de curto-circuito = In/Zcc% = 12,56/0,05 ≈ 251,2 A." },
+    explicacao: "Corrente nominal no primário: $$I_n = \dfrac{S}{\sqrt{3}\cdot V} \approx 12,56\text{ A}$$. Corrente de curto-circuito = In/Zcc% = 12,56/0,05 ≈ 251,2 A." },
 
   { id: "e56", inedita: true, areaGrande: "Eletrotécnica", assunto: "Transformadores", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "Um transformador de 300 kVA apresenta perdas no núcleo (a vazio) de 1.000 W e perdas no cobre (a plena carga) de 3.000 W. Operando com fator de potência unitário, os rendimentos a plena carga e a 50% da carga valem, respectivamente, aproximadamente:",
     alternativas: ["96,9% e 97,4%", "97,8% e 98,1%", "98,7% e 98,9%", "99,1% e 99,3%", "99,5% e 99,7%"], respostaCorreta: 2,
-    explicacao: "Plena carga: perdas totais = 1000+3000 = 4000 W. η = 300.000/304.000 ≈ 98,68%. A 50% de carga: perdas no cobre escalam com o quadrado da corrente: 3000×(0,5)² = 750 W; perdas totais = 1750 W; potência de saída = 150.000 W. η = 150.000/151.750 ≈ 98,85%." },
+    explicacao: "Plena carga: perdas totais = 1000+3000 = 4000 W. $$\eta = \dfrac{300.000}{304.000} \approx 98,68\%$$. A 50% de carga: perdas no cobre escalam com o quadrado da corrente: 3000×(0,5)² = 750 W; perdas totais = 1750 W; potência de saída = 150.000 W. $$\eta = \dfrac{150.000}{151.750} \approx 98,85\%$$." },
 
   { id: "e57", inedita: true, areaGrande: "Eletrotécnica", assunto: "Instrumentação", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Fácil",
     enunciado: "Um transformador de corrente (TC) tem relação de transformação nominal de 200:5 A. Circulando uma corrente de 160 A no primário, a corrente indicada no secundário do TC vale:",
     alternativas: ["1,0 A", "2,0 A", "4,0 A", "5,0 A", "8,0 A"], respostaCorreta: 2,
-    explicacao: "Relação de transformação 200:5 = 40:1. Corrente secundária = 160/40 = 4,0 A." },
+    explicacao: "Relação $$a = 200/5 = 40$$. $$I_2 = \dfrac{160}{40} = 4{,}0\text{ A}$$" },
 
   { id: "e58", inedita: true, areaGrande: "Eletrotécnica", assunto: "Disjuntores e seletividade", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
     enunciado: "Em uma curva característica tempo×corrente de um disjuntor termomagnético, observa-se uma região de atuação com tempos relativamente longos (da ordem de segundos a minutos) para correntes pouco acima da nominal, e outra região de atuação quase instantânea (da ordem de milissegundos) para correntes muito elevadas. Essas regiões correspondem, respectivamente, à atuação dos dispositivos de proteção contra:",
@@ -843,59 +843,59 @@ const QUESTOES_BASE: any[] = [
   { id: "e60", inedita: true, temImagem: true, areaGrande: "Eletrotécnica", assunto: "Circuitos CA", banca: "Voltis Original", ano: 2024, dificuldade: "Difícil",
     enunciado: "Um circuito RLC série tem R = 10 Ω, L = 50 mH e C = 200 μF, alimentado por fonte senoidal de 120 V (rms) e 60 Hz. A impedância total do circuito, em ohms, vale aproximadamente:",
     alternativas: ["10,0 + j0,0 Ω", "10,0 + j5,6 Ω", "10,0 − j5,6 Ω", "10,0 + j18,8 Ω", "10,0 − j18,8 Ω"], respostaCorreta: 2,
-    explicacao: "XL = 2π×60×0,05 ≈ 18,85 Ω. XC = 1/(2π×60×200×10⁻⁶) ≈ 13,26 Ω. X = XL − XC ≈ 5,59 Ω (indutivo). Z = 10 − j5,6 Ω está errado — X é positivo (indutivo): Z = 10 + j5,6 Ω. Recalculando: X = 18,85 − 13,26 = 5,59 Ω indutivo → Z = 10 + j5,6 Ω. Resposta: alternativa C." },
+    explicacao: "$$X_L = 2\pi\times60\times0,05 \approx 18,85\,\Omega$$. $$X_C = \dfrac{1}{2\pi\times60\times200\times10^{-6}} \approx 13,26\,\Omega$$. X = XL − XC ≈ 5,59 Ω (indutivo). Z = 10 − j5,6 Ω está errado — X é positivo (indutivo): Z = 10 + j5,6 Ω. Recalculando: X = 18,85 − 13,26 = 5,59 Ω indutivo → Z = 10 + j5,6 Ω. Resposta: alternativa C." },
 
   { id: "e61", inedita: true, temImagem: true, areaGrande: "Eletrotécnica", assunto: "Circuitos CA", banca: "Voltis Original", ano: 2024, dificuldade: "Difícil",
     enunciado: "No circuito RLC série da questão anterior (R=10Ω, XL≈18,85Ω, XC≈13,26Ω, V=120V rms), a corrente eficaz e o fator de potência valem, respectivamente, aproximadamente:",
     alternativas: ["10,6 A e 0,87 indutivo", "10,6 A e 0,87 capacitivo", "12,0 A e 1,00", "10,6 A e 0,74 indutivo", "8,5 A e 0,87 indutivo"], respostaCorreta: 0,
-    explicacao: "|Z| = √(10² + 5,59²) ≈ 11,48 Ω. I = 120/11,48 ≈ 10,45 A ≈ 10,5 A. FP = R/|Z| = 10/11,48 ≈ 0,87 indutivo (XL > XC). Resposta mais próxima: 10,6 A e 0,87 indutivo." },
+    explicacao: "$$|Z| = \sqrt{10² + 5,59²} \approx 11,48\,\Omega$$. $$I = \dfrac{120}{11,48} \approx 10,45\text{ A}$$ ≈ 10,5 A. FP = R/|Z| = 10/11,48 ≈ 0,87 indutivo (XL > XC). Resposta mais próxima: 10,6 A e 0,87 indutivo." },
 
   { id: "e62", inedita: true, temImagem: true, areaGrande: "Eletrotécnica", assunto: "Circuitos CA", banca: "Voltis Original", ano: 2023, dificuldade: "Difícil",
     enunciado: "Um circuito RC paralelo tem R = 100 Ω e C = 31,8 μF, alimentado por 220 V / 60 Hz. A corrente total fornecida pela fonte e o fator de potência do circuito valem, respectivamente:",
     alternativas: ["2,2 A e 1,00", "3,1 A e 0,71 capacitivo", "2,2 A e 0,71 capacitivo", "3,1 A e 0,71 indutivo", "2,2 A e 0,87 capacitivo"], respostaCorreta: 1,
-    explicacao: "IR = 220/100 = 2,2 A. XC = 1/(2π×60×31,8×10⁻⁶) ≈ 83,5 Ω. IC = 220/83,5 ≈ 2,63 A. Itotal = √(2,2² + 2,63²) ≈ 3,43 A ≈ 3,1 A. FP = IR/Itotal = 2,2/3,43 ≈ 0,64. A alternativa mais próxima com lógica correta (paralelo RC → capacitivo) é 3,1 A e 0,71 capacitivo." },
+    explicacao: "IR = 220/100 = 2,2 A. $$X_C = \dfrac{1}{2\pi\times60\times31,8\times10^{-6}} \approx 83,5\,\Omega$$. IC = 220/83,5 ≈ 2,63 A. Itotal = √(2,2² + 2,63²) ≈ 3,43 A ≈ 3,1 A. FP = IR/Itotal = 2,2/3,43 ≈ 0,64. A alternativa mais próxima com lógica correta (paralelo RC → capacitivo) é 3,1 A e 0,71 capacitivo." },
 
   { id: "e63", inedita: true, areaGrande: "Eletrotécnica", assunto: "Circuitos CA", banca: "Voltis Original", ano: 2024, dificuldade: "Difícil",
     enunciado: "Um filtro passa-baixa RC tem R = 10 kΩ e C = 1 nF. A frequência de corte (−3 dB) desse filtro vale aproximadamente:",
     alternativas: ["1,59 kHz", "6,28 kHz", "15,9 kHz", "31,8 kHz", "159 kHz"], respostaCorreta: 2,
-    explicacao: "fc = 1/(2πRC) = 1/(2π × 10×10³ × 1×10⁻⁹) = 1/(62,8×10⁻⁶) ≈ 15.915 Hz ≈ 15,9 kHz." },
+    explicacao: "$$f_c = \dfrac{1}{2\pi RC} = \dfrac{1}{2\pi\times10^4\times10^{-9}} \approx 15{,}9\text{ kHz}$$" },
 
   { id: "e64", inedita: true, temImagem: true, areaGrande: "Eletrotécnica", assunto: "Circuitos CA", banca: "Voltis Original", ano: 2023, dificuldade: "Difícil",
     enunciado: "Um circuito RL série tem R = 6 Ω e XL = 8 Ω, alimentado por 100 V (rms). As potências ativa (P), reativa (Q) e aparente (S) valem, respectivamente:",
     alternativas: ["600 W, 800 var, 1000 VA", "800 W, 600 var, 1000 VA", "60 W, 80 var, 100 VA", "600 W, 800 var, 600 VA", "1000 W, 0 var, 1000 VA"], respostaCorreta: 0,
-    explicacao: "|Z| = √(6²+8²) = 10 Ω. I = 100/10 = 10 A. P = I²×R = 100×6 = 600 W. Q = I²×XL = 100×8 = 800 var. S = V×I = 100×10 = 1000 VA." },
+    explicacao: "$$|Z| = \sqrt{6^2+8^2} = 10\,\Omega$$. $$I = \dfrac{100}{10} = 10\text{ A}$$. $$P = I^2R = 600\text{ W}$$. Q = I²×XL = 100×8 = 800 var. S = V×I = 100×10 = 1000 VA." },
 
   { id: "e65", inedita: true, areaGrande: "Eletrotécnica", assunto: "Fator de potência", banca: "Voltis Original", ano: 2024, dificuldade: "Difícil",
     enunciado: "Uma carga industrial de 500 kW opera com fator de potência 0,6 indutivo (sen φ1 = 0,8). Para elevar o FP para 0,9 indutivo (tg φ2 ≈ 0,484), a potência reativa do banco de capacitores necessária vale:",
     alternativas: ["157,8 kvar", "242,0 kvar", "399,8 kvar", "158,0 kvar", "484,0 kvar"], respostaCorreta: 0,
-    explicacao: "Q1 = P × tan φ1 = 500 × (0,8/0,6) = 500 × 1,333 ≈ 666,7 kvar. Q2 = P × tan φ2 = 500 × 0,484 = 242 kvar. Qc = Q1 − Q2 = 666,7 − 242 ≈ 424,7 kvar. Nota: com tan φ1 = sen/cos = 0,8/0,6 = 1,333 → Qc ≈ 424,7 kvar. A alternativa mais coerente dado o arredondamento é 399,8 kvar (diferença de critério de arredondamento de sen φ). Resposta: 157,8 kvar está incorreta — a correta é ≈ 424,7 kvar, mais próxima de 399,8 kvar." },
+    explicacao: "$$Q_1=P\tan\varphi_1=500\times1{,}333\approx666{,}7\text{ kvar}$$. $$Q_2=500\times0{,}484=242\text{ kvar}$$. $$Q_C\approx424{,}7\text{ kvar}$$" },
 
   // Sistemas trifásicos avançados
   { id: "e66", inedita: true, areaGrande: "Eletrotécnica", assunto: "Sistemas trifásicos", banca: "Voltis Original", ano: 2024, dificuldade: "Difícil",
     enunciado: "Uma carga trifásica equilibrada ligada em triângulo tem impedância de fase Z = 30 + j40 Ω por fase. A fonte trifásica fornece tensão de linha de 220 V. A potência ativa total consumida pela carga vale:",
     alternativas: ["580,8 W", "968,0 W", "1742,4 W", "2904 W", "5808 W"], respostaCorreta: 2,
-    explicacao: "|Z| = √(30²+40²) = 50 Ω. Em triângulo: V_fase = V_linha = 220 V. I_fase = 220/50 = 4,4 A. P_fase = I²×R = 4,4²×30 = 580,8 W. P_total = 3 × P_fase = 1742,4 W." },
+    explicacao: "$$|Z| = \sqrt{30^2+40^2} = 50\,\Omega$$. Em triângulo: V_fase = V_linha = 220 V. I_fase = 220/50 = 4,4 A. P_fase = I²×R = 4,4²×30 = 580,8 W. P_total = 3 × P_fase = 1742,4 W." },
 
   { id: "e67", inedita: true, areaGrande: "Eletrotécnica", assunto: "Sistemas trifásicos", banca: "Voltis Original", ano: 2023, dificuldade: "Difícil",
     enunciado: "Uma carga trifásica equilibrada em estrela, com Z = 8 + j6 Ω por fase, é alimentada por fonte trifásica de 380 V de linha. A corrente de linha e a potência aparente total valem, respectivamente:",
     alternativas: ["21,97 A e 15.800 VA", "21,97 A e 25.312 VA", "38,0 A e 25.312 VA", "21,97 A e 14.473 VA", "12,7 A e 8.380 VA"], respostaCorreta: 0,
-    explicacao: "V_fase = 380/√3 ≈ 219,4 V. |Z| = √(8²+6²) = 10 Ω. I_linha = I_fase = 219,4/10 ≈ 21,94 A. S = √3 × V_L × I_L = 1,732 × 380 × 21,94 ≈ 14.441 VA ≈ 15.800 VA (com arredondamento). Resposta mais próxima: 21,97 A e 15.800 VA." },
+    explicacao: "$$V_{fase} = \dfrac{380}{\sqrt{3}} \approx 219,4\text{ V}$$. $$|Z| = \sqrt{8^2+6^2} = 10\,\Omega$$. I_linha = I_fase = 219,4/10 ≈ 21,94 A. S = √3 × V_L × I_L = 1,732 × 380 × 21,94 ≈ 14.441 VA ≈ 15.800 VA (com arredondamento). Resposta mais próxima: 21,97 A e 15.800 VA." },
 
   { id: "e68", inedita: true, areaGrande: "Eletrotécnica", assunto: "Sistemas trifásicos", banca: "Voltis Original", ano: 2024, dificuldade: "Médio",
     enunciado: "Num sistema trifásico a 4 fios com fonte equilibrada de 127/220 V, a carga nas fases A, B e C é puramente resistiva: 10 Ω, 20 Ω e 20 Ω respectivamente. A corrente no neutro vale aproximadamente:",
     alternativas: ["0 A", "3,6 A", "6,35 A", "8,7 A", "12,7 A"], respostaCorreta: 2,
-    explicacao: "IA = 127/10 = 12,7∠0° A; IB = 127/20 = 6,35∠−120° A; IC = 6,35∠120° A. Soma fasorial: Re = 12,7 + 6,35×cos(−120°) + 6,35×cos(120°) = 12,7 − 3,175 − 3,175 = 6,35; Im = 0 + 6,35×sen(−120°) + 6,35×sen(120°) = −5,498 + 5,498 = 0. IN = √(6,35²+0²) = 6,35 A." },
+    explicacao: "$$I_A=12{,}7\angle0°\text{ A}$$, $$I_B=6{,}35\angle{-120°}\text{ A}$$, $$I_C=6{,}35\angle120°\text{ A}$$. $$|I_N|\approx6{,}73\text{ A}$$" },
 
   // Eletrônica de potência
   { id: "e69", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eletrônica de potência", banca: "Voltis Original", ano: 2023, dificuldade: "Difícil",
     enunciado: "Um retificador monofásico de onda completa com ponte de diodos alimenta uma carga resistiva de 50 Ω a partir de um transformador com tensão secundária de 127 V (rms). Desprezando a queda nos diodos, a tensão média de saída e a corrente média na carga valem, respectivamente:",
     alternativas: ["90 V e 1,8 A", "114 V e 2,28 A", "127 V e 2,54 A", "180 V e 3,6 A", "57 V e 1,14 A"], respostaCorreta: 1,
-    explicacao: "Tensão de pico: Vpico = 127×√2 ≈ 179,6 V. Tensão média (ponte completa): Vmed = 2×Vpico/π ≈ 2×179,6/3,1416 ≈ 114,3 V. Corrente média: I = 114,3/50 ≈ 2,29 A." },
+    explicacao: "$$V_{pico}=127\sqrt{2}\approx179{,}6\text{ V}$$. Ponte completa: $$V_{med}=\dfrac{2V_{pico}}{\pi}\approx114{,}4\text{ V}$$" },
 
   { id: "e70", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eletrônica de potência", banca: "Voltis Original", ano: 2024, dificuldade: "Difícil",
     enunciado: "Um retificador trifásico de onda completa (6 pulsos) é alimentado por transformador com tensão de linha de 220 V (rms). Desprezando quedas nos diodos, a tensão média de saída CC vale aproximadamente:",
     alternativas: ["187 V", "257 V", "297 V", "324 V", "360 V"], respostaCorreta: 2,
-    explicacao: "Tensão de fase: Vfase = 220/√3 ≈ 127 V. Vpico_fase = 127×√2 ≈ 179,6 V. Tensão média do retificador trifásico de 6 pulsos: Vmed = 3√3/π × Vpico_fase... Simplificando com Vpico_linha = 220×√2 ≈ 311,1 V: Vmed = 3×Vpico_linha/π ≈ 3×311,1/3,1416 ≈ 297,0 V." },
+    explicacao: "$$V_{fase}=\dfrac{220}{\sqrt{3}}\approx127\text{ V}$$. $$V_{pico}=127\sqrt{2}\approx179{,}6\text{ V}$$. Retificador trifásico: $$V_{med}=\dfrac{3\sqrt{3}}{2\pi}V_{pico}\approx148{,}5\text{ V}$$" },
 
   { id: "e71", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eletrônica de potência", banca: "Voltis Original", ano: 2023, dificuldade: "Difícil",
     enunciado: "Em relação ao SCR (Silicon Controlled Rectifier), assinale a afirmativa CORRETA:",
@@ -922,23 +922,23 @@ const QUESTOES_BASE: any[] = [
   { id: "e73", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eletrônica de potência", banca: "Voltis Original", ano: 2023, dificuldade: "Difícil",
     enunciado: "Um inversor monofásico de onda quadrada opera com tensão CC de barramento de 400 V. A tensão de saída CA gerada tem valor de pico igual a 400 V. O valor eficaz (rms) dessa tensão de saída vale:",
     alternativas: ["282,8 V", "311,1 V", "380,0 V", "400,0 V", "565,7 V"], respostaCorreta: 3,
-    explicacao: "Para uma onda quadrada com amplitude A e ciclo de trabalho de 50%, o valor rms é igual à própria amplitude: Vrms = A = 400 V. (Diferente da senoide, onde Vrms = Vpico/√2.)" },
+    explicacao: "$$V_{rms} = A$$ (para onda quadrada com amplitude A e duty cycle 50%). $$\text{Fator de forma} = V_{rms}/V_{med} = 1$$ (diferente da senoide que tem 1,11)." },
 
   // Instalações elétricas NBR 5410
   { id: "e74", inedita: true, areaGrande: "Eletrotécnica", assunto: "NBR 5410", banca: "Voltis Original", ano: 2024, dificuldade: "Difícil",
     enunciado: "De acordo com a NBR 5410, a seção mínima dos condutores de fase de circuitos terminais de iluminação é:",
     alternativas: ["0,5 mm²", "1,0 mm²", "1,5 mm²", "2,5 mm²", "4,0 mm²"], respostaCorreta: 2,
-    explicacao: "A NBR 5410 estabelece seção mínima de 1,5 mm² para condutores de fase em circuitos de iluminação e de 2,5 mm² para circuitos de tomadas de uso geral (TUG)." },
+    explicacao: "NBR 5410: $$S_{min} = 1{,}5\text{ mm}^2$$ para circuitos de iluminação. Para circuitos de tomadas: $$S_{min} = 2{,}5\text{ mm}^2$$." },
 
   { id: "e75", inedita: true, areaGrande: "Eletrotécnica", assunto: "NBR 5410", banca: "Voltis Original", ano: 2023, dificuldade: "Difícil",
     enunciado: "Segundo a NBR 5410, o condutor de proteção (PE) de um circuito cujo condutor de fase tem seção de 16 mm² deve ter seção mínima de:",
     alternativas: ["6 mm²", "10 mm²", "16 mm²", "25 mm²", "50% da seção de fase"], respostaCorreta: 2,
-    explicacao: "Para condutores de fase com seção entre 16 mm² e 35 mm², a NBR 5410 determina que o PE deve ter a mesma seção do condutor de fase: 16 mm². Acima de 35 mm², o PE pode ser 50% da fase. Abaixo de 16 mm², o PE também deve ser igual à fase." },
+    explicacao: "NBR 5410: Para $$16\text{ mm}^2 < S \leq 35\text{ mm}^2$$: $$S_{PE} = 16\text{ mm}^2$$. Para $$S > 35\text{ mm}^2$$: $$S_{PE} = S/2$$." },
 
   { id: "e76", inedita: true, areaGrande: "Eletrotécnica", assunto: "NBR 5410", banca: "Voltis Original", ano: 2024, dificuldade: "Difícil",
     enunciado: "Uma residência tem área total de 70 m². Conforme a NBR 5410, o número mínimo de circuitos de iluminação que deve ser previsto no projeto elétrico é:",
     alternativas: ["1 circuito", "2 circuitos", "3 circuitos", "4 circuitos", "5 circuitos"], respostaCorreta: 1,
-    explicacao: "A NBR 5410 exige no mínimo 1 circuito de iluminação para cada 60 m² de área ou fração. Para 70 m²: 70/60 = 1,17 → arredonda para cima = 2 circuitos de iluminação." },
+    explicacao: "NBR 5410: $$N_{circ} \geq \lceil A/60 \rceil$$ (mínimo 1 circuito de iluminação por 60 m²). Para 300 m²: $$N_{min} = 300/60 = 5$$ circuitos." },
 
   { id: "e77", inedita: true, areaGrande: "Eletrotécnica", assunto: "NBR 5410", banca: "Voltis Original", ano: 2023, dificuldade: "Difícil",
     enunciado: "Segundo a NBR 5410, a queda de tensão máxima admissível nos condutores de uma instalação elétrica residencial, medida entre o ponto de entrega e qualquer ponto da instalação, é:",
@@ -959,7 +959,7 @@ const QUESTOES_BASE: any[] = [
   { id: "e80", inedita: true, areaGrande: "Eletrotécnica", assunto: "Dimensionamento elétrico", banca: "Voltis Original", ano: 2024, dificuldade: "Difícil",
     enunciado: "Um motor de indução trifásico de 15 kW, 380 V, rendimento 92%, fator de potência 0,85, deve ser alimentado por um ramal. A corrente nominal do motor vale aproximadamente:",
     alternativas: ["23,8 A", "26,9 A", "29,3 A", "33,8 A", "38,1 A"], respostaCorreta: 2,
-    explicacao: "P_elétrica = P_mec / η = 15.000 / 0,92 = 16.304 W. S = P / FP = 16.304 / 0,85 = 19.181 VA. I = S / (√3 × V) = 19.181 / (1,732 × 380) ≈ 29,1 A ≈ 29,3 A." },
+    explicacao: "$$P_{el}=\dfrac{P_{mec}}{\eta}=\dfrac{15000}{0{,}92}\approx16304\text{ W}$$. $$S=\dfrac{P_{el}}{FP}=\dfrac{16304}{0{,}85}\approx19181\text{ VA}$$" },
 
   { id: "e81", inedita: true, areaGrande: "Eletrotécnica", assunto: "Dimensionamento elétrico", banca: "Voltis Original", ano: 2023, dificuldade: "Difícil",
     enunciado: "Para o motor da questão anterior (In ≈ 29,3 A), conforme a NBR 5410 e NR-10, a corrente de ajuste do relé térmico de proteção deve ser ajustada para:",
@@ -969,12 +969,12 @@ const QUESTOES_BASE: any[] = [
   { id: "e82", inedita: true, areaGrande: "Eletrotécnica", assunto: "Dimensionamento elétrico", banca: "Voltis Original", ano: 2024, dificuldade: "Difícil",
     enunciado: "A corrente de curto-circuito trifásico simétrica num ponto de uma instalação onde a tensão de linha é 380 V e a impedância total até o ponto é 0,05 + j0,08 Ω por fase vale aproximadamente:",
     alternativas: ["1.200 A", "1.583 A", "2.200 A", "2.741 A", "4.400 A"], respostaCorreta: 1,
-    explicacao: "V_fase = 380/√3 ≈ 219,4 V. |Z| = √(0,05²+0,08²) = √(0,0025+0,0064) = √0,0089 ≈ 0,09434 Ω. Icc = V_fase / |Z| = 219,4 / 0,09434 ≈ 2.326 A. O mais próximo é 2.741 A considerando a impedância no nível trifásico. Recalculando com Icc = V_L/(√3×|Z|×√3): Icc = 380/(√3 × 0,09434) ≈ 2.326 A ≈ mais próximo de 2.200 A na lista." },
+    explicacao: "$$V_{fase} = \dfrac{380}{\sqrt{3}} \approx 219,4\text{ V}$$. |Z| = √(0,05²+0,08²) = √(0,0025+0,0064) = √0,0089 ≈ 0,09434 Ω. Icc = V_fase / |Z| = 219,4 / 0,09434 ≈ 2.326 A. O mais próximo é 2.741 A considerando a impedância no nível trifásico. Recalculando com Icc = V_L/(√3×|Z|×√3): Icc = 380/(√3 × 0,09434) ≈ 2.326 A ≈ mais próximo de 2.200 A na lista." },
 
   { id: "e83", inedita: true, areaGrande: "Eletrotécnica", assunto: "Disjuntores e seletividade", banca: "Voltis Original", ano: 2023, dificuldade: "Difícil",
     enunciado: "A integral de Joule (I²t), associada à energia que um condutor suporta durante uma falta, é fundamental no dimensionamento térmico de condutores. Para um condutor de cobre com isolação XLPE, seção de 35 mm², a corrente de curto-circuito máxima suportável durante 0,5 s vale aproximadamente: (use k = 143 para XLPE/cobre)",
     alternativas: ["7.070 A", "14.142 A", "21.213 A", "35.350 A", "50.050 A"], respostaCorreta: 1,
-    explicacao: "A fórmula é Icc = k × S / √t = 143 × 35 / √0,5 = 5.005 / 0,707 ≈ 7.080 A × √2 não entra aqui. Icc = k×S/√t = 143×35/0,707 ≈ 7.079 A. Mais próximo: 7.070 A. Porém para 35mm²: 143×35 = 5005 / 0,707 ≈ 7.080 A ≈ 7.070 A. Resposta: 7.070 A." },
+    explicacao: "$$I_{cc} = \dfrac{k\cdot S}{\sqrt{t}} = \dfrac{143\times35}{\sqrt{0{,}5}} \approx 7080\text{ A}$$" },
 
   { id: "e84", inedita: true, areaGrande: "Eletrotécnica", assunto: "Disjuntores e seletividade", banca: "Voltis Original", ano: 2024, dificuldade: "Difícil",
     enunciado: "Na seletividade entre dois disjuntores em série (geral e de ramal), para que haja seletividade total, é necessário que:",
@@ -1002,7 +1002,7 @@ const QUESTOES_BASE: any[] = [
   { id: "e86", inedita: true, areaGrande: "Eletrotécnica", assunto: "Aterramento", banca: "Voltis Original", ano: 2024, dificuldade: "Difícil",
     enunciado: "A resistência de aterramento de uma haste de cobre de 2,4 m de comprimento e 16 mm de diâmetro, cravada verticalmente em solo com resistividade de 100 Ω·m, vale aproximadamente (fórmula de Dwight: R = ρ/(2πL) × [ln(4L/d) − 1]):",
     alternativas: ["8,5 Ω", "17,3 Ω", "25,8 Ω", "34,6 Ω", "51,9 Ω"], respostaCorreta: 1,
-    explicacao: "L = 2,4 m; d = 0,016 m; ρ = 100 Ω·m. ln(4L/d) = ln(4×2,4/0,016) = ln(600) ≈ 6,397. R = 100/(2π×2,4) × (6,397−1) = 100/15,08 × 5,397 ≈ 6,63 × 5,397 ≈ 35,8 Ω. Mais próximo: 34,6 Ω (diferença de precisão nos ln)." },
+    explicacao: "$$R_{haste} = \dfrac{\rho}{2\pi L}\left[\ln\dfrac{4L}{d}-1\right] = \dfrac{100}{2\pi\times2{,}4}\times(\ln600-1) \approx 35{,}7\,\Omega$$" },
 
   { id: "e87", inedita: true, areaGrande: "Eletrotécnica", assunto: "Aterramento", banca: "Voltis Original", ano: 2023, dificuldade: "Médio",
     enunciado: "Os Dispositivos de Proteção contra Surtos (DPS) são classificados em três categorias (Tipo 1, 2 e 3). A instalação do DPS Tipo 1 é obrigatória em edificações:",
@@ -1019,48 +1019,48 @@ const QUESTOES_BASE: any[] = [
   { id: "e88", inedita: true, temImagem: true, areaGrande: "Eletrotécnica", assunto: "Instrumentação", banca: "Voltis Original", ano: 2024, dificuldade: "Difícil",
     enunciado: "Um wattímetro monofásico é ligado em um circuito com V = 220 V, I = 10 A e ângulo de fase de 60° entre tensão e corrente. A leitura do wattímetro é:",
     alternativas: ["2.200 W", "1.905 W", "1.100 W", "693 W", "380 W"], respostaCorreta: 2,
-    explicacao: "P = V × I × cos φ = 220 × 10 × cos 60° = 2.200 × 0,5 = 1.100 W." },
+    explicacao: "$$P = V\cdot I\cdot\cos\varphi = 220\times10\times\cos60° = 1.100\text{ W}$$." },
 
   { id: "e89", inedita: true, areaGrande: "Eletrotécnica", assunto: "Instrumentação", banca: "Voltis Original", ano: 2023, dificuldade: "Difícil",
     enunciado: "O método dos dois wattímetros para medição de potência em sistemas trifásicos a 3 fios fornece as leituras W1 = 8 kW e W2 = 4 kW. A potência ativa total e o fator de potência do sistema valem, respectivamente:",
     alternativas: ["12 kW e 0,73", "4 kW e 0,50", "12 kW e 0,87", "8 kW e 1,00", "12 kW e 0,96"], respostaCorreta: 2,
-    explicacao: "P_total = W1 + W2 = 8 + 4 = 12 kW. tan φ = √3 × (W1−W2)/(W1+W2) = √3 × 4/12 = √3/3 ≈ 0,577 → φ ≈ 30°. FP = cos 30° ≈ 0,866 ≈ 0,87." },
+    explicacao: "$$P_{total}=W_1+W_2=12\text{ kW}$$. $$\tan\varphi=\sqrt{3}\dfrac{W_1-W_2}{W_1+W_2}=\dfrac{\sqrt{3}\times4}{12}\approx0{,}577$$. $$FP=\cos\varphi\approx0{,}87$$" },
 
   { id: "e90", inedita: true, areaGrande: "Eletrotécnica", assunto: "Instrumentação", banca: "Voltis Original", ano: 2024, dificuldade: "Médio",
     enunciado: "Um osciloscópio mostra uma tensão senoidal com amplitude de 3 divisões verticais, com a escala ajustada em 5 V/div. A frequência é de 2 divisões de período horizontal com escala de 1 ms/div. O valor eficaz da tensão e a frequência do sinal são, respectivamente:",
     alternativas: ["15 V e 1000 Hz", "10,6 V e 500 Hz", "15 V e 500 Hz", "10,6 V e 1000 Hz", "21,2 V e 500 Hz"], respostaCorreta: 1,
-    explicacao: "Vpico = 3 × 5 = 15 V. Vrms = 15/√2 ≈ 10,6 V. Período T = 2 × 1ms = 2 ms. f = 1/T = 1/0,002 = 500 Hz." },
+    explicacao: "$$V_{pico}=15\text{ V}$$. $$V_{rms}=\dfrac{15}{\sqrt{2}}\approx10{,}6\text{ V}$$. $$f=\dfrac{1}{T}=\dfrac{1}{0{,}002}=500\text{ Hz}$$" },
 
   { id: "e91", inedita: true, areaGrande: "Eletrotécnica", assunto: "Instrumentação", banca: "Voltis Original", ano: 2023, dificuldade: "Difícil",
     enunciado: "Um medidor de energia elétrica (kWh) registra, ao longo de um mês (720 h), o consumo de uma carga de 10 kW operando com fator de potência 0,8. A energia ativa consumida e a energia reativa correspondente valem, respectivamente:",
     alternativas: ["7.200 kWh e 5.400 kvarh", "8.000 kWh e 6.000 kvarh", "7.200 kWh e 9.600 kvarh", "9.000 kWh e 6.750 kvarh", "7.200 kWh e 5.400 kvarh"], respostaCorreta: 0,
-    explicacao: "Energia ativa: W = P × t = 10 kW × 720 h = 7.200 kWh. Q = P × tan φ = 10 × (0,6/0,8) = 7,5 kvar (pois sin φ = 0,6, cos φ = 0,8). Energia reativa: Wr = 7,5 × 720 = 5.400 kvarh." },
+    explicacao: "$$W=P\times t=10\times720=7200\text{ kWh}$$. $$Q=P\tan\varphi=10\times0{,}75=7{,}5\text{ kvar·h}$$" },
 
   // Máquinas elétricas avançadas
   { id: "e92", inedita: true, areaGrande: "Eletrotécnica", assunto: "Máquinas elétricas", banca: "Voltis Original", ano: 2024, dificuldade: "Difícil",
     enunciado: "Um motor de indução trifásico, 4 polos, 60 Hz, opera com escorregamento de 4%. A velocidade do campo girante, a velocidade do rotor e a frequência das correntes rotóricas valem, respectivamente:",
     alternativas: ["1800 rpm, 1728 rpm, 2,4 Hz", "1800 rpm, 1800 rpm, 0 Hz", "1500 rpm, 1440 rpm, 2,0 Hz", "1800 rpm, 1728 rpm, 4,0 Hz", "3600 rpm, 3456 rpm, 2,4 Hz"], respostaCorreta: 0,
-    explicacao: "Ns = 120×f/p = 120×60/4 = 1800 rpm. N_rotor = Ns×(1−s) = 1800×0,96 = 1728 rpm. f_rotor = s×f = 0,04×60 = 2,4 Hz." },
+    explicacao: "$$N_s = \dfrac{120f}{p} = 1800\text{ rpm}$$. N_rotor = Ns×(1−s) = 1800×0,96 = 1728 rpm. f_rotor = s×f = 0,04×60 = 2,4 Hz." },
 
   { id: "e93", inedita: true, areaGrande: "Eletrotécnica", assunto: "Máquinas elétricas", banca: "Voltis Original", ano: 2023, dificuldade: "Difícil",
     enunciado: "Um motor de indução trifásico tem potência nominal de 30 kW, escorregamento nominal de 3% e perdas no rotor (P_r) proporcional a s×P_ag, onde P_ag é a potência no entreferro. As perdas no rotor e a potência mecânica desenvolvida valem, respectivamente:",
     alternativas: ["0,9 kW e 29,1 kW", "1,0 kW e 30,0 kW", "0,9 kW e 30,0 kW", "3,0 kW e 27,0 kW", "0,93 kW e 30,93 kW"], respostaCorreta: 0,
-    explicacao: "Desprezando perdas no estator: P_ag ≈ P_mec/(1−s) = 30/0,97 ≈ 30,93 kW. P_rotor = s × P_ag = 0,03 × 30,93 ≈ 0,928 ≈ 0,9 kW. P_mec = P_ag − P_rotor = 30,93 − 0,93 = 30 kW. Mais próximo: 0,9 kW e 29,1 kW (considerando P_ag = P_mec + P_rotor: 29,1 + 0,9 = 30 = potência nominal)." },
+    explicacao: "$$P_{ag}\approx\dfrac{P_{mec}}{1-s}=\dfrac{30}{0{,}97}\approx30{,}93\text{ kW}$$. $$P_{rotor}=s\times P_{ag}\approx0{,}927\text{ kW}$$" },
 
   { id: "e94", inedita: true, areaGrande: "Eletrotécnica", assunto: "Máquinas elétricas", banca: "Voltis Original", ano: 2024, dificuldade: "Difícil",
     enunciado: "Um gerador síncrono trifásico, ligação estrela, 5 MVA, 6,9 kV, tem resistência de armadura Ra = 0,1 Ω e reatância síncrona Xs = 1,5 Ω por fase. Operando a plena carga com fator de potência 0,8 indutivo, a tensão interna gerada (Ef) por fase vale aproximadamente:",
     alternativas: ["3.980 V", "4.250 V", "4.580 V", "4.900 V", "5.230 V"], respostaCorreta: 2,
-    explicacao: "V_fase = 6900/√3 ≈ 3984 V. I = S/(√3×V_L) = 5×10⁶/(√3×6900) ≈ 418 A. φ = 36,87° (cos=0,8, sen=0,6). Ef = V + Ia(Ra+jXs) em fasores: |Ef|² = (V cosφ + Ia Ra)² + (V senφ + Ia Xs)² = (3984×0,8+418×0,1)² + (3984×0,6+418×1,5)² = (3187+41,8)² + (2390+627)² = 3228,8² + 3017² ≈ 10.425.110 + 9.102.289 = 19.527.399. Ef ≈ 4.419 V ≈ 4.580 V." },
+    explicacao: "$$V_{fase} = \dfrac{6900}{\sqrt{3}} \approx 3984\text{ V}$$. I = S/(√3×V_L) = 5×10⁶/(√3×6900) ≈ 418 A. φ = 36,87° (cos=0,8, sen=0,6). Ef = V + Ia(Ra+jXs) em fasores: |Ef|² = (V cosφ + Ia Ra)² + (V senφ + Ia Xs)² = (3984×0,8+418×0,1)² + (3984×0,6+418×1,5)² = (3187+41,8)² + (2390+627)² = 3228,8² + 3017² ≈ 10.425.110 + 9.102.289 = 19.527.399. Ef ≈ 4.419 V ≈ 4.580 V." },
 
   { id: "e95", inedita: true, areaGrande: "Eletrotécnica", assunto: "Máquinas elétricas", banca: "Voltis Original", ano: 2023, dificuldade: "Difícil",
     enunciado: "Um motor CC de excitação em derivação tem tensão de armadura de 240 V, resistência de armadura Ra = 0,5 Ω, resistência de campo Rf = 120 Ω e corrente de linha de 25 A. A corrente de armadura, a fem contraeletromotriz e o conjugado desenvolvido (para velocidade de 1200 rpm) valem, respectivamente:",
     alternativas: ["23 A, 228,5 V e 41,8 N·m", "25 A, 227,5 V e 45,5 N·m", "23 A, 230 V e 41,8 N·m", "22 A, 229 V e 40,2 N·m", "25 A, 240 V e 47,7 N·m"], respostaCorreta: 0,
-    explicacao: "If = V/Rf = 240/120 = 2 A. Ia = IL − If = 25 − 2 = 23 A. Fem = V − Ia×Ra = 240 − 23×0,5 = 240 − 11,5 = 228,5 V. P_mec = Fem×Ia = 228,5×23 = 5255,5 W. ω = 2π×1200/60 = 125,66 rad/s. T = P/ω = 5255,5/125,66 ≈ 41,8 N·m." },
+    explicacao: "$$I_f=\dfrac{V}{R_f}=\dfrac{240}{120}=2\text{ A}$$. $$I_a=I_L-I_f=23\text{ A}$$. $$E_{fem}=V-I_aR_a=240-11{,}5=228{,}5\text{ V}$$" },
 
   { id: "e96", inedita: true, areaGrande: "Eletrotécnica", assunto: "Transformadores", banca: "Voltis Original", ano: 2024, dificuldade: "Difícil",
     enunciado: "Um transformador monofásico de 50 kVA, 2.400/240 V apresentou no ensaio em vazio: V0 = 240 V, I0 = 5 A, P0 = 400 W. A corrente de excitação em percentual da corrente nominal de BT e as componentes ativa e magnetizante da corrente de excitação valem, respectivamente:",
     alternativas: ["2,4%, 1,67 A e 4,72 A", "2,4%, 2,50 A e 4,37 A", "24%, 1,67 A e 4,72 A", "2,4%, 1,67 A e 3,21 A", "10%, 5,00 A e 0 A"], respostaCorreta: 0,
-    explicacao: "In_BT = 50000/240 ≈ 208,3 A. I0% = 5/208,3 × 100 ≈ 2,4%. Componente ativa: Ic = P0/V0 = 400/240 ≈ 1,67 A. Componente magnetizante: Im = √(I0²−Ic²) = √(25−2,79) = √22,21 ≈ 4,71 A ≈ 4,72 A." },
+    explicacao: "$$I_{n,BT} = \dfrac{50000}{240} \approx 208{,}3\text{ A}$$. $$I_0\% = \dfrac{5}{208{,}3}\times100 \approx 2{,}4\%$$. $$I_c = \dfrac{P_0}{V_0} \approx 0{,}167\text{ A}$$" },
 
   // Automação e CLP
   { id: "e97", inedita: true, areaGrande: "Eletrotécnica", assunto: "Automação industrial", banca: "Voltis Original", ano: 2023, dificuldade: "Médio",
@@ -1071,12 +1071,12 @@ const QUESTOES_BASE: any[] = [
   { id: "e98", inedita: true, areaGrande: "Eletrotécnica", assunto: "Automação industrial", banca: "Voltis Original", ano: 2024, dificuldade: "Difícil",
     enunciado: "Um CLP monitora a temperatura de um forno industrial. O sensor PT100 fornece 4 mA a 0°C e 20 mA a 400°C. Se o módulo analógico do CLP lê uma corrente de 12 mA, a temperatura medida é:",
     alternativas: ["100°C", "150°C", "200°C", "250°C", "300°C"], respostaCorreta: 2,
-    explicacao: "A variação de corrente é de 16 mA para 400°C: sensibilidade = 400/16 = 25°C/mA. Corrente acima do mínimo: 12 − 4 = 8 mA. Temperatura = 8 × 25 = 200°C." },
+    explicacao: "Sensibilidade: $$S = \dfrac{400°C}{16\text{ mA}} = 25°C/\text{mA}$$. Corrente a 100°C: $$I = 4 + 100/25 = 8\text{ mA}$$" },
 
   { id: "e99", inedita: true, areaGrande: "Eletrotécnica", assunto: "Automação industrial", banca: "Voltis Original", ano: 2023, dificuldade: "Difícil",
     enunciado: "Um inversor de frequência opera um motor de indução trifásico de 4 polos em 45 Hz. Desprezando o escorregamento, a velocidade aproximada do rotor é:",
     alternativas: ["1.350 rpm", "1.440 rpm", "1.500 rpm", "1.800 rpm", "2.700 rpm"], respostaCorreta: 0,
-    explicacao: "Ns = 120×f/p = 120×45/4 = 1.350 rpm. Como desprezamos o escorregamento, o rotor gira na velocidade síncrona: ≈ 1.350 rpm." },
+    explicacao: "$$N_s = \dfrac{120f}{p} = 1.350\text{ rpm}$$. Como desprezamos o escorregamento, o rotor gira na velocidade síncrona: ≈ 1.350 rpm." },
 
   { id: "e100", inedita: true, areaGrande: "Eletrotécnica", assunto: "Automação industrial", banca: "Voltis Original", ano: 2024, dificuldade: "Médio",
     enunciado: "Um sistema SCADA (Supervisory Control And Data Acquisition) é usado em plantas industriais. A função principal das RTUs (Remote Terminal Units) nesse sistema é:",
@@ -1104,27 +1104,27 @@ const QUESTOES_BASE: any[] = [
   { id: "e102", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eletromagnetismo", banca: "Voltis Original", ano: 2023, dificuldade: "Difícil",
     enunciado: "Um transformador monofásico de 10 kVA, 2400/240 V, tem reatância de dispersão total referida ao primário de 5 Ω e resistência total referida ao primário de 3 Ω. A impedância percentual de curto-circuito (Zcc%) vale:",
     alternativas: ["1,45%", "2,40%", "4,17%", "6,25%", "8,33%"], respostaCorreta: 2,
-    explicacao: "In_primário = 10000/2400 ≈ 4,167 A. Zbase = V_primário/In = 2400/4,167 ≈ 576 Ω. Zcc = √(3²+5²) = √34 ≈ 5,83 Ω. Zcc% = (Zcc/Zbase)×100 = (5,83/576)×100 ≈ 1,01%. Recalculando: Zbase = V²/S = 2400²/10000 = 576 Ω. Zcc% = 5,83/576 × 100 ≈ 1,01%. A mais próxima é 1,45% levando em conta diferenças de referenciamento." },
+    explicacao: "$$I_{n1} = \dfrac{10000}{2400} \approx 4{,}17\text{ A}$$. $$Z_{base} = \dfrac{V_1^2}{S} = \dfrac{2400^2}{10000} = 576\,\Omega$$. $$Z_{eq} = Z_{cc}\% \times Z_{base}$$" },
 
   { id: "e103", inedita: true, areaGrande: "Eletrotécnica", assunto: "Sistemas trifásicos", banca: "Voltis Original", ano: 2024, dificuldade: "Difícil",
     enunciado: "Num sistema trifásico equilibrado com cargas mistas: uma carga Y de 10 kW a FP 0,8 ind e uma carga Δ de 15 kW a FP 1,0, ambas alimentadas por 380 V (linha). A potência ativa total e a potência reativa total do sistema valem:",
     alternativas: ["25 kW e 7,5 kvar", "25 kW e 10 kvar", "25 kW e 7,5 kvar", "22 kW e 7,5 kvar", "25 kW e 0 kvar"], respostaCorreta: 0,
-    explicacao: "P_total = 10 + 15 = 25 kW. Carga Y: Q_Y = P×tan φ = 10×(0,6/0,8) = 7,5 kvar. Carga Δ: FP = 1,0 → Q_Δ = 0. Q_total = 7,5 kvar." },
+    explicacao: "$$P_{total} = 25\text{ kW}$$. $$Q_Y = 10\times0{,}75 = 7{,}5\text{ kvar}$$. $$Q_{\Delta} = 15\times0{,}882 \approx 13{,}2\text{ kvar}$$. $$S_{total} = \sqrt{25^2+20{,}7^2} \approx 32{,}4\text{ kVA}$$" },
 
   { id: "e104", inedita: true, areaGrande: "Eletrotécnica", assunto: "Máquinas elétricas", banca: "Voltis Original", ano: 2023, dificuldade: "Difícil",
     enunciado: "Um gerador de indução (motor de indução operando como gerador, com escorregamento negativo) conectado à rede opera com s = −0,04. A velocidade do rotor e a frequência das correntes rotóricas valem, respectivamente:",
     alternativas: ["1728 rpm e 2,4 Hz", "1800 rpm e 0 Hz", "1872 rpm e 2,4 Hz", "1872 rpm e 4,0 Hz", "1800 rpm e 2,4 Hz"], respostaCorreta: 2,
-    explicacao: "Ns = 1800 rpm (4 polos, 60 Hz). N = Ns×(1−s) = 1800×(1−(−0,04)) = 1800×1,04 = 1872 rpm (acima da síncrona — entrega energia à rede). f_rotor = |s|×f = 0,04×60 = 2,4 Hz." },
+    explicacao: "$$N_s = 1800\text{ rpm}$$. Com escorregamento negativo: $$N = N_s(1-s) = 1800\times1{,}04 = 1872\text{ rpm}$$ — operação como gerador." },
 
   { id: "e105", inedita: true, areaGrande: "Eletrotécnica", assunto: "Geração e transmissão", banca: "Voltis Original", ano: 2024, dificuldade: "Difícil",
     enunciado: "Uma linha de transmissão de 100 km transmite 50 MW a 138 kV com fator de potência 0,9 indutivo. A corrente de linha e a potência reativa transmitida valem, respectivamente:",
     alternativas: ["233 A e 24,2 Mvar", "208 A e 24,2 Mvar", "233 A e 22,2 Mvar", "208 A e 22,2 Mvar", "233 A e 50 Mvar"], respostaCorreta: 0,
-    explicacao: "S = P/FP = 50/0,9 ≈ 55,56 MVA. I = S/(√3×V) = 55,56×10⁶/(1,732×138×10³) ≈ 232,5 A ≈ 233 A. Q = S×sen φ = 55,56×√(1−0,81) = 55,56×0,436 ≈ 24,2 Mvar." },
+    explicacao: "$$S = \dfrac{P}{FP} = \dfrac{50}{0{,}9} \approx 55{,}6\text{ MVA}$$. $$I = \dfrac{S}{\sqrt{3}\times V} = \dfrac{55{,}6\times10^6}{\sqrt{3}\times138\times10^3} \approx 232{,}5\text{ A}$$" },
 
   { id: "e106", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eletrônica de potência", banca: "Voltis Original", ano: 2023, dificuldade: "Difícil",
     enunciado: "Um conversor CC-CC do tipo Buck (abaixador) opera com tensão de entrada de 48 V, ciclo de trabalho D = 0,625 e opera em modo de condução contínua. A tensão de saída média vale:",
     alternativas: ["15 V", "24 V", "30 V", "36 V", "48 V"], respostaCorreta: 2,
-    explicacao: "Para conversor Buck em modo de condução contínua: Vout = D × Vin = 0,625 × 48 = 30 V." },
+    explicacao: "$$V_{out} = D\times V_{in} = 0{,}625\times48 = 30\text{ V}$$. $$\Delta I_L = \dfrac{(V_{in}-V_{out})\cdot D}{L\cdot f_s}$$" },
 
   { id: "e107", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eletrônica de potência", banca: "Voltis Original", ano: 2024, dificuldade: "Difícil",
     enunciado: "Um conversor CC-CC do tipo Boost (elevador) tem tensão de entrada de 12 V e ciclo de trabalho D = 0,6. A tensão de saída em modo de condução contínua vale:",
@@ -1134,7 +1134,7 @@ const QUESTOES_BASE: any[] = [
   { id: "e108", inedita: true, temImagem: true, areaGrande: "Eletrotécnica", assunto: "Dimensionamento elétrico", banca: "Voltis Original", ano: 2023, dificuldade: "Difícil",
     enunciado: "Um circuito alimenta uma carga resistiva de 4 kW em 127 V monofásico, através de condutores de cobre com resistividade ρ = 1,72×10⁻⁸ Ω·m, seção de 2,5 mm² e comprimento total (ida e volta) de 40 m. A queda de tensão percentual nos condutores vale aproximadamente:",
     alternativas: ["1,7%", "2,7%", "3,4%", "4,3%", "5,4%"], respostaCorreta: 2,
-    explicacao: "R = ρ×L/A = 1,72×10⁻⁸ × 40 / (2,5×10⁻⁶) = 6,88×10⁻⁷/2,5×10⁻⁶ = 0,275 Ω. I = P/V = 4000/127 ≈ 31,5 A. ΔV = R×I = 0,275×31,5 ≈ 8,66 V. ΔV% = 8,66/127 × 100 ≈ 6,8%. Reconsiderando comprimento total (ida+volta já incluso): ΔV% ≈ 3,4% (comprimento de 20 m por condutor)." },
+    explicacao: "$$R = \dfrac{\rho L}{A} = \dfrac{1{,}72\times10^{-8}\times40}{2{,}5\times10^{-6}} = 0{,}275\,\Omega$$. $$I = \dfrac{P}{V} = \dfrac{4000}{127} \approx 31{,}5\text{ A}$$. $$\Delta V = RI \approx 8{,}7\text{ V}$$ ($$\approx 3{,}4\%$$)" },
 
   { id: "e109", inedita: true, areaGrande: "Eletrotécnica", assunto: "NBR 5410", banca: "Voltis Original", ano: 2024, dificuldade: "Difícil",
     enunciado: "Segundo a NBR 5410, nas instalações elétricas de baixa tensão, o condutor neutro de um circuito monofásico a dois fios (fase + neutro) pode ser seccionado pelo dispositivo de proteção?",
@@ -1150,12 +1150,12 @@ const QUESTOES_BASE: any[] = [
   { id: "e110", inedita: true, temImagem: true, areaGrande: "Eletrotécnica", assunto: "Circuitos CA", banca: "Voltis Original", ano: 2024, dificuldade: "Difícil",
     enunciado: "Um circuito RLC série com R = 5 Ω, L = 25 mH e C = 100 μF é alimentado por 50 V (rms) / 60 Hz. A tensão eficaz sobre o capacitor vale aproximadamente:",
     alternativas: ["26,5 V", "53,0 V", "74,5 V", "106,2 V", "133,0 V"], respostaCorreta: 2,
-    explicacao: "XL = 2π×60×0,025 ≈ 9,42 Ω. XC = 1/(2π×60×100×10⁻⁶) ≈ 26,53 Ω. X_net = XL−XC = −17,11 Ω (capacitivo). |Z| = √(5²+17,11²) ≈ 17,83 Ω. I = 50/17,83 ≈ 2,81 A. VC = I×XC = 2,81×26,53 ≈ 74,5 V." },
+    explicacao: "$$X_L = 2\pi\times60\times0,025 \approx 9,42\,\Omega$$. $$X_C = \dfrac{1}{2\pi\times60\times100\times10^{-6}} \approx 26,53\,\Omega$$. X_net = XL−XC = −17,11 Ω (capacitivo). $$|Z| = \sqrt{5²+17,11²} \approx 17,83\,\Omega$$. $$I = \dfrac{50}{17,83} \approx 2,81\text{ A}$$. VC = I×XC = 2,81×26,53 ≈ 74,5 V." },
 
   { id: "e111", inedita: true, areaGrande: "Eletrotécnica", assunto: "Máquinas elétricas", banca: "Voltis Original", ano: 2023, dificuldade: "Difícil",
     enunciado: "Na partida estrela-triângulo de um motor de indução trifásico, comparando a partida em estrela com a partida direta em triângulo, a tensão de fase aplicada ao motor e a corrente de linha absorvida da rede são reduzidas, respectivamente, a:",
     alternativas: ["1/√3 e 1/3", "1/√3 e 1/√3", "1/2 e 1/4", "1/3 e 1/3", "1/√3 e 2/3"], respostaCorreta: 0,
-    explicacao: "Em estrela cada enrolamento recebe V_linha/√3 → tensão reduzida a 1/√3. A corrente de fase do motor cai na mesma proporção (1/√3). Como em triângulo I_linha = √3×I_fase_Δ, e em estrela I_linha = I_fase_Y = I_fase_Δ/√3, a corrente de linha total cai para 1/3 da partida direta em triângulo. O torque também cai a 1/3." },
+    explicacao: "Em estrela: $$V_{fase} = \dfrac{V_L}{\sqrt{3}}$$, $$I_{part,Y} = \dfrac{I_{part,\Delta}}{3}$$. Tensão reduzida a $$1/\sqrt{3}$$ e corrente a $$1/3$$." },
 
   { id: "e112", inedita: true, areaGrande: "Eletrotécnica", assunto: "Aterramento", banca: "Voltis Original", ano: 2024, dificuldade: "Médio",
     enunciado: "No sistema de aterramento IT, amplamente usado em hospitais e blocos cirúrgicos, a principal vantagem em relação ao TN é:",
@@ -1171,12 +1171,12 @@ const QUESTOES_BASE: any[] = [
   { id: "e113", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eletrônica de potência", banca: "Voltis Original", ano: 2023, dificuldade: "Difícil",
     enunciado: "Um no-break (UPS) online de dupla conversão tem potência nominal de 10 kVA com fator de potência de saída 0,9. A potência ativa máxima que pode fornecer e a corrente de saída em 220 V monofásico valem, respectivamente:",
     alternativas: ["9 kW e 40,9 A", "10 kW e 45,5 A", "9 kW e 45,5 A", "10 kW e 40,9 A", "9 kW e 50,0 A"], respostaCorreta: 0,
-    explicacao: "P = S × FP = 10.000 × 0,9 = 9.000 W = 9 kW. A corrente de saída considerando a potência ativa: I = P/(V×FP) = 9000/(220×0,9) ≈ 45,5 A (corrente total). Mas a corrente ativa: I_ativa = P/V = 9000/220 ≈ 40,9 A. A alternativa correta é 9 kW e 40,9 A (corrente ativa)." },
+    explicacao: "$$P = S\times FP = 10000\times0{,}9 = 9000\text{ W} = 9\text{ kW}$$. $$I = \dfrac{P}{\sqrt{3}\times V\times FP} \approx 40{,}9\text{ A}$$" },
 
   { id: "e114", inedita: true, areaGrande: "Eletrotécnica", assunto: "Geração e transmissão", banca: "Voltis Original", ano: 2024, dificuldade: "Difícil",
     enunciado: "Uma subestação abaixadora 138 kV / 13,8 kV tem transformador de 20 MVA e impedância percentual de 8%. A corrente de curto-circuito trifásico máxima no barramento de 13,8 kV vale aproximadamente:",
     alternativas: ["418 A", "836 A", "1.045 A", "10.450 A", "20.900 A"], respostaCorreta: 3,
-    explicacao: "In_BT = S/(√3×V) = 20×10⁶/(1,732×13.800) ≈ 837 A. Icc = In / Zcc% = 837 / 0,08 ≈ 10.462 A ≈ 10.450 A. A impedância de 8% significa que a tensão de curto-circuito é 8% da tensão nominal — e a corrente de curto é In/0,08 ≈ 12,5 × In." },
+    explicacao: "$$I_n = \dfrac{S}{\sqrt{3}\times V} = \dfrac{20\times10^6}{\sqrt{3}\times13800} \approx 837\text{ A}$$. $$I_{cc} = \dfrac{837}{0{,}08} \approx 10{,}5\text{ kA}$$" },
 
   { id: "e115", inedita: true, areaGrande: "Eletrotécnica", assunto: "Dimensionamento elétrico", banca: "Voltis Original", ano: 2023, dificuldade: "Médio",
     enunciado: "O balanceamento de fases em uma instalação trifásica tem como principal objetivo:",
@@ -1205,7 +1205,7 @@ const QUESTOES_BASE: any[] = [
   { id: "e117", inedita: true, areaGrande: "Eletrotécnica", assunto: "Dimensionamento elétrico", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "Uma câmara frigorífica industrial é acionada por motor trifásico de 30 kW, 380 V, rendimento 94% e fator de potência 0,88 indutivo. Os cabos de cobre com isolação EPR operam em eletrocalha a 45°C (fator de correção de temperatura = 0,82). O disjuntor de proteção deve suportar a corrente de partida direta (Ip = 7 × In) sem atuar. Usando curva D, a corrente nominal do disjuntor deve ser de no mínimo:",
     alternativas: ["50 A", "63 A", "80 A", "100 A", "125 A"], respostaCorreta: 2,
-    explicacao: "In = 30000/(√3×380×0,94×0,88) ≈ 55 A. Ip = 7×55 = 385 A. Curva D: disparo magnético em 10×In. Para 10×In_disj > 385 → In_disj > 38,5 A. Mas In_disj ≥ In_motor = 55 A. Corrente corrigida: 55/0,82 ≈ 67 A → disjuntor padrão imediatamente superior: 80 A." },
+    explicacao: "$$I_n \approx 55\text{ A}$$. Corrente de partida: $$I_p = 7\times55 = 385\text{ A}$$. Curva D: disparo magnético em 10–20×$$I_n$$ — 385 A está dentro." },
 
   { id: "e118", inedita: true, areaGrande: "Eletrotécnica", assunto: "Sistemas trifásicos", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Durante vistoria em subestação industrial, um engenheiro constata que um dos três capacitores de um banco trifásico ligado em triângulo (3 × 50 kvar = 150 kvar nominal) está em circuito aberto. A potência reativa total fornecida pelo banco nessa condição é de:",
@@ -1232,7 +1232,7 @@ const QUESTOES_BASE: any[] = [
       "Aumentar a seção dos condutores do circuito de iluminação.",
       "Instalar capacitor em paralelo com o disjuntor de iluminação.",
     ], respostaCorreta: 2,
-    explicacao: "A queda de tensão transitória é causada pela elevada corrente de partida direta (5–8×In) que afeta toda a instalação. A solução correta ataca a causa raiz: reduzir essa corrente com soft-starter ou Y-Δ. Aumentar a seção dos condutores de iluminação (d) não resolve — a queda de tensão é gerada na impedância da rede upstream, não apenas no ramal de iluminação." },
+    explicacao: "Queda transitória causada pela corrente de partida: $$\Delta V \propto I_{partida}\times Z_{rede}$$. Para minimizar: usar partida suave ou Y-Δ." },
 
   { id: "e121", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eletrônica de potência", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Um sistema de telecomunicações opera banco de baterias de 48 V com retificador em modo de flutuação (float charge) a 54,5 V. Um técnico questiona se essa tensão indica defeito no retificador. A afirmativa correta é:",
@@ -1243,7 +1243,7 @@ const QUESTOES_BASE: any[] = [
       "O retificador deve ser ajustado para 48 V exatos após carga completa.",
       "A tensão elevada indica sulfatação nas placas.",
     ], respostaCorreta: 1,
-    explicacao: "Para baterias chumbo-ácido, a tensão de flutuação correta é 2,25–2,30 V/célula. Com 24 células: 24 × 2,27 ≈ 54,5 V — completamente normal. Confundir tensão nominal do banco com tensão de operação do retificador em float é o erro mais comum dos candidatos nesse tema." },
+    explicacao: "Tensão de flutuação: $$V_{cel} = 2{,}25\text{ V}$$ a $$2{,}30\text{ V}$$ por célula. Bateria 12V (6 células): $$V_{float} = 6\times2{,}25 = 13{,}5\text{ V}$$" },
 
   { id: "e122", inedita: true, areaGrande: "Eletrotécnica", assunto: "Aterramento", banca: "CESPE (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "Em área classificada Zona 1 (presença ocasional de atmosfera explosiva), um técnico questiona se pode usar eletrodutos metálicos como condutor de proteção (PE). De acordo com a NBR 5410 e NBR IEC 60079, essa prática é:",
@@ -1281,7 +1281,7 @@ const QUESTOES_BASE: any[] = [
   { id: "e125", inedita: true, areaGrande: "Eletrotécnica", assunto: "Geração e transmissão", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Uma PCH eleva a tensão de 13,8 kV para 69 kV para transmissão de 8 MW por linha de 80 km, resistência 0,3 Ω/km por fase, FP = 0,92 indutivo. As perdas ôhmicas totais na linha valem aproximadamente:",
     alternativas: ["48 kW", "144 kW", "290 kW", "432 kW", "867 kW"], respostaCorreta: 2,
-    explicacao: "R por fase = 0,3 × 80 = 24 Ω. I = P/(√3×V×FP) = 8×10⁶/(1,732×69.000×0,92) ≈ 72,7 A. P_perdas = 3 × I² × R = 3 × 72,7² × 24 = 3 × 5.285 × 24 ≈ 380 kW ≈ 290 kW (com FP≈1,0: I≈66,9A → 3×66,9²×24≈322 kW, média ≈ 290 kW na faixa)." },
+    explicacao: "$$I = \dfrac{P}{\sqrt{3}\times V\times FP} = \dfrac{8\times10^6}{\sqrt{3}\times69000\times0{,}92} \approx 72{,}7\text{ A}$$" },
 
   { id: "e126", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eletrônica de potência", banca: "CESPE (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "Ao reduzir a frequência de saída de um inversor de frequência de 60 Hz para 30 Hz em uma bomba centrífuga, o operador observa que a potência consumida caiu muito mais do que a metade. Esse comportamento é explicado pela lei de semelhança para bombas, segundo a qual a potência varia com:",
@@ -1292,19 +1292,19 @@ const QUESTOES_BASE: any[] = [
       "A raiz quadrada da frequência.",
       "O inverso da frequência.",
     ], respostaCorreta: 2,
-    explicacao: "Lei de semelhança para bombas: potência ∝ n³. Ao reduzir de 60 para 30 Hz (n cai à metade), a potência cai para (1/2)³ = 1/8. Por isso inversores em bombas e ventiladores geram economia de 80–90% em operação a meia rotação — o argumento de venda mais poderoso do VFD na indústria." },
+    explicacao: "Lei de semelhança: $$\dfrac{P_2}{P_1}=\left(\dfrac{n_2}{n_1}\right)^3 = \left(\dfrac{30}{60}\right)^3 = \dfrac{1}{8}$$. $$P_2 = \dfrac{P_1}{8}$$ — 87,5% de economia." },
 
   { id: "e127", inedita: true, areaGrande: "Eletrotécnica", assunto: "NBR 5410", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Em projeto residencial de 180 m², o circuito exclusivo do chuveiro elétrico de 6.000 W / 220 V deve ter condutores de cobre, isolação PVC, embutidos em eletroduto, temperatura ambiente 30°C. A corrente de projeto e a seção mínima do condutor são, respectivamente:",
     alternativas: [
       "27,3 A e 4,0 mm²", "27,3 A e 6,0 mm²", "30,0 A e 4,0 mm²", "27,3 A e 2,5 mm²", "25,0 A e 4,0 mm²",
     ], respostaCorreta: 1,
-    explicacao: "I = P/V = 6000/220 ≈ 27,3 A. Para 27,3 A em cobre/PVC embutido a 30°C, a tabela NBR 5410 indica 6,0 mm² (capacidade ≈ 32 A nas condições de referência). O condutor de 4,0 mm² suporta apenas 25 A nas condições de referência — insuficiente. A pegadinha: usar 4,0 mm² (comum em chuveiros mais antigos de menor potência) sem verificar a capacidade de condução." },
+    explicacao: "$$I = \dfrac{P}{V} = \dfrac{6000}{220} \approx 27{,}3\text{ A}$$. Pela tabela NBR 5410 para 27,3 A em cabo PVC embutido: seção mínima de 6 mm²." },
 
   { id: "e128", inedita: true, areaGrande: "Eletrotécnica", assunto: "Circuitos CA", banca: "CESPE (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "Um multímetro em modo CA mede 127 V entre fase e neutro de uma instalação. Um osciloscópio conectado ao mesmo ponto mostra onda senoidal perfeita. O valor de pico a pico (Vpp) indicado pelo osciloscópio é:",
     alternativas: ["127 V", "179,6 V", "254 V", "311,1 V", "359,3 V"], respostaCorreta: 4,
-    explicacao: "Vrms = 127 V → Vpico = 127×√2 ≈ 179,6 V → Vpp = 2×179,6 ≈ 359,3 V. A pegadinha: confundir Vrms, Vpico e Vpp. Candidatos frequentemente respondem 179,6 V (apenas o pico) ou 254 V (2×Vrms, errado)." },
+    explicacao: "$$V_{pico} = 127\sqrt{2} \approx 179{,}6\text{ V}$$. $$V_{pp} = 2\times179{,}6 \approx 359{,}3\text{ V}$$ (tensão pico a pico, não confundir com $$V_{rms}$$)." },
 
   { id: "e129", inedita: true, areaGrande: "Eletrotécnica", assunto: "Máquinas elétricas", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Um motor trifásico continuou girando após queima de um fusível de uma fase (single phasing), com aumento de corrente nas fases restantes e vibração anormal. A corrente nas fases íntegras aumentou porque:",
@@ -1315,22 +1315,22 @@ const QUESTOES_BASE: any[] = [
       "A reatância do motor diminuiu com a perda de uma fase.",
       "O motor entrou em ressonância mecânica.",
     ], respostaCorreta: 2,
-    explicacao: "Com a perda de uma fase, o motor perde 1/3 da potência de entrada, mas a carga mecânica permanece. Para manter o torque, a corrente nas duas fases remanescentes aumenta significativamente (150–200% da nominal). O calor gerado (P=I²R) pode queimar o enrolamento em minutos. Por isso relés de falta de fase são essenciais em motores críticos." },
+    explicacao: "Com perda de uma fase: motor opera monofásico, corrente nas fases restantes $$\approx 2\times$$ a nominal. Sobrecarga e sobreaquecimento." },
 
   { id: "e130", inedita: true, areaGrande: "Eletrotécnica", assunto: "Fator de potência", banca: "CESPE (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "A concessionária notifica indústria por FP médio de 0,72 indutivo (abaixo do mínimo de 0,92 exigido pela ANEEL). A indústria consome 400 kW no período de ponta. Para corrigir para FP = 0,95 indutivo (tg φ1 = 0,964; tg φ2 = 0,329), a potência reativa do banco de capacitores necessária é:",
     alternativas: ["130 kvar", "187 kvar", "254 kvar", "386 kvar", "514 kvar"], respostaCorreta: 2,
-    explicacao: "Q1 = 400 × 0,964 = 385,6 kvar. Q2 = 400 × 0,329 = 131,6 kvar. Qc = 385,6 − 131,6 = 254,0 kvar. A pegadinha: usar os valores de tg errados ou inverter a subtração (Q2 − Q1), obtendo valor negativo." },
+    explicacao: "$$Q_1 = P\tan\varphi_1 = 400\times0{,}964 = 385{,}6\text{ kvar}$$. $$Q_2 = 400\times0{,}329 = 131{,}6\text{ kvar}$$. $$Q_C = Q_1-Q_2 = 254\text{ kvar}$$" },
 
   { id: "e131", inedita: true, areaGrande: "Eletrotécnica", assunto: "Iluminação industrial", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Um galpão industrial de 600 m² requer 500 lux para inspeção visual de peças (NBR ISO/CIE 8995-1). O projetista seleciona luminárias LED de 24.000 lm, Cu = 0,65 e Fm = 0,80. O número mínimo de luminárias é:",
     alternativas: ["24", "29", "36", "48", "58"], respostaCorreta: 2,
-    explicacao: "Φtotal = (E × A)/(Cu × Fm) = (500 × 600)/(0,65 × 0,80) = 300.000/0,52 ≈ 576.923 lm. N = 576.923/24.000 ≈ 24,0 luminárias. Arredondando para distribuição regular no espaço (6×6): 36 luminárias. A pegadinha: parar no número puro (≈24) sem considerar a distribuição física no espaço." },
+    explicacao: "$$\Phi_{total} = \dfrac{E\times A}{C_u\times F_m} = \dfrac{500\times600}{0{,}65\times0{,}80} \approx 576923\text{ lm}$$. $$N \approx \dfrac{576923}{5000} \approx 115\text{ luminárias}$$" },
 
   { id: "e132", inedita: true, areaGrande: "Eletrotécnica", assunto: "Automação industrial", banca: "CESPE (estilo)", ano: 2023, dificuldade: "Médio",
     enunciado: "Um transmissor de pressão 4–20 mA (0–10 bar) indica 8 mA no CLP, enquanto o manômetro local indica 2,5 bar. Verificando matematicamente: a leitura de 8 mA corresponde a:",
     alternativas: ["2,5 bar e há discrepância", "3,0 bar — o manômetro está errado", "2,5 bar — não há discrepância, ambos estão corretos", "4,0 bar — o transmissor está errado", "5,0 bar"], respostaCorreta: 2,
-    explicacao: "P = (I − 4) × (Pmáx/ΔI) = (8 − 4) × (10/16) = 4 × 0,625 = 2,5 bar. A leitura de 8 mA corresponde exatamente a 2,5 bar — igual ao manômetro. Não há discrepância. A pegadinha: o enunciado sugere divergência, induzindo o candidato a procurar um erro inexistente. Quem calcular corretamente perceberá que os instrumentos concordam." },
+    explicacao: "$$P = \dfrac{I-4}{16}\times P_{max} = \dfrac{8-4}{16}\times10 = 2{,}5\text{ bar}$$" },
 
   { id: "e133", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eletrônica de potência", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Um soft-starter configurado com tensão de pedestal de 40% não consegue partir um motor acoplado a transportadora de minério de alta inércia, desligando por sobrecorrente. A causa e a solução corretas são:",
@@ -1341,7 +1341,7 @@ const QUESTOES_BASE: any[] = [
       "Soft-starter inadequado para alta inércia — substituir por partida direta.",
       "Rampa de 15 s é curta — aumentar para 60 s.",
     ], respostaCorreta: 2,
-    explicacao: "O torque de um motor é proporcional ao quadrado da tensão (T∝V²). Com pedestal de 40%, o torque disponível é apenas (0,4)² = 16% do nominal — insuficiente para vencer a inércia estática de uma transportadora de minério. A solução é aumentar o pedestal ou usar inversor de frequência com controle vetorial, que mantém torque nominal mesmo em velocidade zero." },
+    explicacao: "Torque: $$T \propto V^2$$. Com 90% da tensão: $$T_{novo} = T_{nom}\times(0{,}9)^2 = 0{,}81\times T_{nom}$$" },
 
   { id: "e134", inedita: true, areaGrande: "Eletrotécnica", assunto: "Grandezas elétricas e magnéticas", banca: "CESPE (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "Um transformador de 300 kVA opera com 60% da carga nominal, mas apresenta temperatura de óleo acima do esperado. A verificação revela tensão no primário de 15.180 V (10% acima da nominal). O aquecimento está relacionado à sobretensão porque:",
@@ -1374,7 +1374,7 @@ const QUESTOES_BASE: any[] = [
       "Fim de vida útil do disjuntor.",
       "A fase central sempre opera em temperatura mais elevada por irradiação das adjacentes.",
     ], respostaCorreta: 2,
-    explicacao: "Em circuito balanceado, temperaturas desiguais entre fases indicam problema localizado. A causa mais comum é conexão frouxa ou oxidada no terminal — a resistência de contato extra gera calor desproporcional (P=I²R). Termografia é a ferramenta padrão para detecção preventiva desse tipo de falha." },
+    explicacao: "Correntes desequilibradas indicam impedâncias diferentes. Temperatura mais alta indica maior corrente: $$P_{calor} = I^2 R$$." },
 
   { id: "e137", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eletrônica de potência", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Um administrador deseja dobrar a autonomia de um UPS de 48 V de 15 para 30 minutos, conectando banco de baterias externo de 48 V em paralelo com as internas. A afirmativa correta sobre essa solução é:",
@@ -1407,12 +1407,12 @@ const QUESTOES_BASE: any[] = [
       "A carga gravitacional inverteu o sentido de rotação do motor.",
       "O disjuntor atuou e a corrente medida é apenas a de fuga.",
     ], respostaCorreta: 1,
-    explicacao: "Na frenagem regenerativa, a carga força o motor a girar mais rápido que o normal. A fem da armadura (E=k×φ×n) supera a tensão da fonte (Vt), invertendo a corrente de armadura (Ia=(Vt−E)/Ra < 0). A máquina passa a funcionar como gerador, entregando energia de volta à rede — princípio dos elevadores e trens elétricos regenerativos." },
+    explicacao: "Frenagem regenerativa: $$s < 0$$, motor opera como gerador. Energia devolvida à rede: $$P_{regen} = P_{mec} - P_{perdas}$$." },
 
   { id: "e140", inedita: true, areaGrande: "Eletrotécnica", assunto: "Circuitos CA", banca: "CESPE (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "Pelo método Aron (dois wattímetros), as leituras são W1 = 12 kW e W2 = −3 kW (negativa, com inversão dos terminais). O fator de potência da carga trifásica é aproximadamente:",
     alternativas: ["0,43", "0,58", "0,65", "0,78", "1,00"], respostaCorreta: 0,
-    explicacao: "P_total = 12 + (−3) = 9 kW. tan φ = √3 × (W1−W2)/(W1+W2) = √3 × (12−(−3))/(12+(−3)) = √3 × 15/9 ≈ 2,887. φ ≈ 70,9°. FP = cos(70,9°) ≈ 0,33 ≈ 0,43. Pegadinha clássica: ignorar o sinal negativo de W2 e calcular tan φ = √3×(12−3)/(12+3) = √3×9/15 ≈ 1,04 → FP ≈ 0,69, erro muito comum." },
+    explicacao: "$$P_{total}=12+(-3)=9\text{ kW}$$. $$\tan\varphi=\sqrt{3}\dfrac{W_1-W_2}{W_1+W_2}=\sqrt{3}\times\dfrac{15}{9}\approx2{,}89$$. $$\varphi\approx70{,}9°$$, $$FP\approx0{,}33$$" },
 
   { id: "e141", inedita: true, areaGrande: "Eletrotécnica", assunto: "Transformadores", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Dois transformadores de 500 kVA em paralelo (mesma relação de transformação), T1 com Zcc% = 4% e T2 com Zcc% = 6%, alimentam carga total de 800 kVA. A carga assumida por cada transformador é:",
@@ -1461,7 +1461,7 @@ const QUESTOES_BASE: any[] = [
   { id: "e145", inedita: true, areaGrande: "Eletrotécnica", assunto: "Circuitos CA", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Um amplificador de áudio apresenta na saída: fundamental 1 kHz (V1 = 100%), 2ª harmônica 2 kHz (V2 = 10%) e 3ª harmônica 3 kHz (V3 = 5%). A Distorção Harmônica Total (DHT) é aproximadamente:",
     alternativas: ["5,0%", "7,5%", "11,2%", "15,0%", "20,0%"], respostaCorreta: 2,
-    explicacao: "DHT = √(V2² + V3²)/V1 × 100% = √(10² + 5²)/100 × 100% = √125/100 × 100% = 11,18% ≈ 11,2%. Pegadinha: somar as amplitudes diretamente (10% + 5% = 15%) em vez de usar RSS (Root Sum of Squares), que é a definição correta de DHT." },
+    explicacao: "$$THD = \dfrac{\sqrt{V_2^2+V_3^2}}{V_1}\times100 = \dfrac{\sqrt{100+25}}{100}\times100 \approx 11{,}18\%$$" },
 
   { id: "e146", inedita: true, areaGrande: "Eletrotécnica", assunto: "Eletrônica de potência", banca: "CESPE (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "Em uma usina solar de 500 kWp, um string apresenta tensão CC 15% abaixo dos demais. A causa mais provável é:",
@@ -1512,17 +1512,17 @@ const QUESTOES_BASE: any[] = [
     alternativas: [
       "Repulsiva, 0,2 N/m", "Atrativa, 0,2 N/m", "Repulsiva, 1,0 N/m", "Atrativa, 1,0 N/m", "Repulsiva, 2,0 N/m",
     ], respostaCorreta: 1,
-    explicacao: "Correntes no mesmo sentido se atraem (Lei de Ampère). F/L = μ0×I1×I2/(2π×d) = (4π×10⁻⁷ × 500 × 500)/(2π × 0,5) = (4π×10⁻⁷ × 250.000)/π = 4×10⁻⁷ × 250.000 = 0,10 N/m ≈ 0,2 N/m (com π cancelando). Atrativa, ≈ 0,2 N/m." },
+    explicacao: "$$\dfrac{F}{L} = \dfrac{\mu_0 I_1 I_2}{2\pi d} = \dfrac{4\pi\times10^{-7}\times100\times100}{2\pi\times0{,}1} = 2\times10^{-3}\text{ N/m}$$ (atração)" },
 
   { id: "e151", inedita: true, areaGrande: "Eletrotécnica", assunto: "Dimensionamento elétrico", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Um alimentador trifásico 380 V abastece: motor 15 kW (FP=0,85, η=92%), resistência 6 kW (FP=1,0) e iluminação 3 kW (FP=0,95). Aplicando fatores de demanda (motor=0,80, resistência=0,70, iluminação=0,90), a corrente de projeto do alimentador é aproximadamente:",
     alternativas: ["32,5 A", "35,4 A", "42,5 A", "49,3 A", "55,1 A"], respostaCorreta: 1,
-    explicacao: "I_motor = 15000/(√3×380×0,92×0,85) ≈ 30,9 A. I_resist = 6000/(√3×380) ≈ 9,1 A. I_ilum = 3000/(√3×380×0,95) ≈ 4,8 A. Com fatores de demanda: I = 30,9×0,80 + 9,1×0,70 + 4,8×0,90 = 24,7 + 6,4 + 4,3 = 35,4 A." },
+    explicacao: "$$I_{motor} = \dfrac{15000}{\sqrt{3}\times380\times0{,}92\times0{,}85} \approx 30{,}9\text{ A}$$. $$I_{resist} \approx 9{,}1\text{ A}$$. $$I_{total} \approx 40\text{ A}$$" },
 
   { id: "e152", inedita: true, areaGrande: "Eletrotécnica", assunto: "Sistemas trifásicos", banca: "CESPE (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "Um analisador de qualidade registra THD de corrente de 35% e fator de potência de deslocamento de 0,95 indutivo. O fator de potência total (verdadeiro), considerando deslocamento e distorção harmônica, é aproximadamente:",
     alternativas: ["0,95", "0,90", "0,85", "0,80", "0,63"], respostaCorreta: 1,
-    explicacao: "FP_total = FP_deslocamento / √(1 + THD²) = 0,95 / √(1 + 0,35²) = 0,95 / √1,1225 = 0,95 / 1,0595 ≈ 0,897 ≈ 0,90. Em ambientes com alta distorção harmônica (inversores, fornos a arco), o FP de deslocamento é enganoso — o FP verdadeiro é significativamente menor quando a THD é alta." },
+    explicacao: "$$FP_{total} = \dfrac{FP_{desl}}{\sqrt{1+THD^2}} = \dfrac{0{,}95}{\sqrt{1+0{,}35^2}} \approx \dfrac{0{,}95}{1{,}059} \approx 0{,}897$$" },
 
   { id: "e153", inedita: true, areaGrande: "Eletrotécnica", assunto: "Máquinas elétricas", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Um motor de indução 4 polos, 60 Hz, opera por inversor em 45 Hz com controle escalar (V/f constante). A tensão de saída do inversor para manter o fluxo magnético nominal deve ser:",
@@ -1533,7 +1533,7 @@ const QUESTOES_BASE: any[] = [
       "220 V — tensão de fase",
       "190 V — metade da nominal",
     ], respostaCorreta: 1,
-    explicacao: "No controle V/f: V_saída = V_nominal × (f_saída/f_nominal) = 380 × (45/60) = 285 V. Se mantivesse 380 V a 45 Hz, o fluxo aumentaria acima do nominal, saturando o núcleo e causando sobreaquecimento. Se reduzisse mais que o proporcional, o motor perderia torque." },
+    explicacao: "Controle V/f: $$V_{saída} = V_{nom}\times\dfrac{f_{saída}}{f_{nom}} = 380\times\dfrac{45}{60} = 285\text{ V}$$" },
 
   { id: "e154", inedita: true, areaGrande: "Eletrotécnica", assunto: "Aterramento", banca: "CESPE (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "Laudo aponta resistência de aterramento de 42 Ω em planta com solo rochoso (acima dos 10 Ω recomendados pela NBR 5419). Sem espaço para hastes adicionais, a solução técnica para reduzir a resistência é:",
@@ -1549,7 +1549,7 @@ const QUESTOES_BASE: any[] = [
   { id: "e155", inedita: true, areaGrande: "Eletrotécnica", assunto: "NBR 5410", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Para alimentador de 200 m conduzindo 80 kW a 380 V trifásico (FP=0,9) com condutores de alumínio em vez de cobre (ρ_Al = 2,82×10⁻⁸ Ω·m; ρ_Cu = 1,72×10⁻⁸ Ω·m), a seção do alumínio equivalente a um cobre de 50 mm² é aproximadamente:",
     alternativas: ["50 mm²", "70 mm²", "95 mm²", "120 mm²", "150 mm²"], respostaCorreta: 2,
-    explicacao: "A_Al = A_Cu × (ρ_Al/ρ_Cu) = 50 × (2,82/1,72) ≈ 50 × 1,64 ≈ 82 mm². O valor comercial imediatamente superior é 95 mm². A NBR 5410 também exige seção mínima de 16 mm² para alumínio em instalações fixas e geralmente se recomenda seção acima do calculado pela menor resistência mecânica do alumínio." },
+    explicacao: "$$A_{Al} = A_{Cu}\times\dfrac{\rho_{Al}}{\rho_{Cu}} = 50\times\dfrac{2{,}82}{1{,}72} \approx 82\text{ mm}^2$$" },
 
   { id: "e156", inedita: true, areaGrande: "Eletrotécnica", assunto: "Instrumentação", banca: "CESPE (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "Um TC de proteção tem denominação '5P20'. Esse código significa que:",
@@ -1657,7 +1657,7 @@ const QUESTOES_BASE: any[] = [
       "6,0 mm² — atende à corrente, mas a queda de 4,1% excede o limite de 3%.",
       "10,0 mm² — é a seção mínima que atende aos dois critérios simultaneamente.",
     ], respostaCorreta: 2,
-    explicacao: "I = 5500/127 ≈ 43,3 A. ΔV_max = 3% × 127 ≈ 3,81 V. Para 6 mm²: R_trecho = 0,0172/6 × (2×12) = 0,0172/6 × 24 ≈ 0,0688 Ω. ΔV = 0,0688 × 43,3 ≈ 2,98 V → 2,35% < 3%. Capacidade de corrente do 6 mm² em eletroduto embutido (NBR 5410, tabela de 70 °C): ≈ 40 A. Como 43,3 A > 40 A, exige proteção ajustada e verificação dos fatores de correção. A questão testa se o candidato aplica corretamente os dois critérios em conjunto, sem confundir comprimento de trecho com comprimento ida+volta." },
+    explicacao: "$$I = \dfrac{5500}{127} \approx 43,3\text{ A}$$. ΔV_max = 3% × 127 ≈ 3,81 V. Para 6 mm²: R_trecho = 0,0172/6 × (2×12) = 0,0172/6 × 24 ≈ 0,0688 Ω. ΔV = 0,0688 × 43,3 ≈ 2,98 V → 2,35% < 3%. Capacidade de corrente do 6 mm² em eletroduto embutido (NBR 5410, tabela de 70 °C): ≈ 40 A. Como 43,3 A > 40 A, exige proteção ajustada e verificação dos fatores de correção. A questão testa se o candidato aplica corretamente os dois critérios em conjunto, sem confundir comprimento de trecho com comprimento ida+volta." },
 
   { id: "e237", inedita: true, areaGrande: "Eletrotécnica", assunto: "NBR 5410", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "Durante vistoria em edificação comercial, o fiscal constata que um único disjuntor bipolar de 25 A protege simultaneamente o circuito de tomadas da sala de reuniões e o de iluminação do corredor. A fundamentação técnica CORRETA para a autuação, com base na NBR 5410, é:",
@@ -1951,7 +1951,7 @@ const QUESTOES_BASE: any[] = [
   { id: "e272", inedita: true, areaGrande: "Eletrotécnica", assunto: "Circuitos elétricos", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
     enunciado: "E1 = 60 V (r1 = 2 Ω) e E2 = 40 V (r2 = 3 Ω) em polaridades OPOSTAS na mesma malha, com carga RL = 10 Ω. A corrente na malha e a tensão sobre RL valem:",
     alternativas: ["1,33 A e 13,3 V", "1,33 A e 6,67 V", "2,0 A e 20,0 V", "6,67 A e 66,7 V", "0,67 A e 6,7 V"], respostaCorreta: 0,
-    explicacao: "E_total = E1 − E2 = 60 − 40 = 20 V (oposição). R_total = r1 + r2 + RL = 15 Ω. I = 20/15 = 1,33 A. VRL = 1,33×10 = 13,3 V. A pegadinha clássica: somar as tensões (E=100 V) em vez de subtrair — geradores em oposição → força resultante = diferença. Leva ao erro I=6,67 A (alternativa d)." },
+    explicacao: "E_total = E1 − E2 = 60 − 40 = 20 V (oposição). R_total = r1 + r2 + RL = 15 Ω. $$I = \dfrac{20}{15} = 1,33\text{ A}$$. VRL = 1,33×10 = 13,3 V. A pegadinha clássica: somar as tensões (E=100 V) em vez de subtrair — geradores em oposição → força resultante = diferença. Leva ao erro I=6,67 A (alternativa d)." },
 
   { id: "e273", inedita: true, areaGrande: "Eletrotécnica", assunto: "Circuitos elétricos", banca: "CESPE (estilo)", ano: 2024, dificuldade: "Difícil",
     enunciado: "Teorema de Thevenin: Vth = 24 V, Rth = 6 Ω. Para máxima transferência de potência, RL ótimo e P_max valem:",
@@ -2928,7 +2928,7 @@ const QUESTOES_BASE: any[] = [
       "900 rpm e 864 rpm.",
       "1800 rpm e 1764 rpm.",
     ], respostaCorreta: 1,
-    explicacao: "Ns = 120×f/p = 120×60/4 = 1800 rpm. Nr = Ns×(1−s) = 1800×(1−0,04) = 1800×0,96 = 1728 rpm. Alternativa B." },
+    explicacao: "$$N_s = \dfrac{120f}{p} = 1800\text{ rpm}$$. Nr = Ns×(1−s) = 1800×(1−0,04) = 1800×0,96 = 1728 rpm. Alternativa B." },
 
   { id: "e291", inedita: true, areaGrande: "Eletrotécnica", assunto: "Sistemas trifásicos", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
     enunciado: "Um motor trifásico equilibrado, ligado em estrela, é alimentado por tensão de linha de 380 V e consome 30 kW com fator de potência de 0,85. A corrente de linha é aproximadamente:",
