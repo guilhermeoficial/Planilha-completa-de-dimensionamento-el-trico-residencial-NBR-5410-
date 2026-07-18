@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import {
   ArrowLeft, Check, X, Filter, RotateCcw, ImageOff, Bomb, Flag, BarChart3, Target,
-  GraduationCap, BookMarked, NotebookPen, Sparkles,
+  GraduationCap, BookMarked, NotebookPen, Sparkles, Wrench,
 } from "lucide-react";
 import Explosao from "@/components/explosao";
 import CircuitoQuestao from "@/components/circuito-questao";
@@ -372,6 +372,38 @@ export default function QuestoesPage() {
                 {a} <span className="opacity-60">{taxa}%</span>
               </span>
             ))}
+          </div>
+        </div>
+      )}
+
+      {/* ── Banner de Ferramentas ── */}
+      {(areaGrande === "Eletrotécnica" || areaGrande === "Todas") && (
+        <div className="mb-4 rounded-lg border border-accent/20 bg-accent/5 p-4">
+          <div className="flex items-start justify-between gap-4">
+            <div className="flex items-start gap-3">
+              <Wrench size={18} className="mt-0.5 shrink-0 text-accent" />
+              <div>
+                <p className="text-sm font-semibold text-accent">Ferramentas de cálculo</p>
+                <p className="mt-0.5 text-xs text-muted leading-relaxed">
+                  Resolva circuitos mais rápido com nossas calculadoras — conversão estrela-triângulo,
+                  queda de tensão, dimensionamento de cabos e mais.
+                </p>
+              </div>
+            </div>
+            <div className="flex shrink-0 flex-col gap-1.5">
+              <Link
+                href="/dashboard/ferramentas"
+                className="rounded-lg bg-accent px-3 py-1.5 text-xs font-medium text-bg hover:opacity-90 transition-opacity text-center"
+              >
+                Abrir ferramentas
+              </Link>
+              <Link
+                href="/assinar"
+                className="rounded-lg border border-accent/40 px-3 py-1.5 text-xs text-accent hover:bg-accent/10 transition-colors text-center"
+              >
+                Ver planos
+              </Link>
+            </div>
           </div>
         </div>
       )}

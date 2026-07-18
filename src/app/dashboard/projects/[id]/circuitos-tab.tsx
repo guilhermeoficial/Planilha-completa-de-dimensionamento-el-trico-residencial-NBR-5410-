@@ -35,6 +35,8 @@ export default function CircuitosTab({ projectId, tensaoV, circuitos, ambientes,
   const [balanceando, setBalanceando] = useState(false);
   const [selecionados, setSelecionados] = useState<Set<string>>(new Set());
   const [busca, setBusca] = useState("");
+  const [pagina, setPagina] = useState(1);
+  const POR_PAGINA = 10;
 
   function alternarSelecao(id: string) {
     setSelecionados((prev) => {
@@ -118,6 +120,10 @@ export default function CircuitosTab({ projectId, tensaoV, circuitos, ambientes,
         String(c.numero).includes(termo)
     );
   }, [calculados, busca]);
+
+  const totalPaginas = Math.max(1, Math.ceil(filtrados.length / POR_PAGINA));
+  const paginaAtual = Math.min(pagina, totalPaginas);
+  const circuitosPagina = filtrados.slice((paginaAtual - 1) * POR_PAGINA, paginaAtual * POR_PAGINA);
 
   async function atualizar(id: string, patch: Partial<CircuitoRow>) {
     await supabase.from("circuitos").update(patch).eq("id", id);
@@ -256,12 +262,15 @@ export default function CircuitosTab({ projectId, tensaoV, circuitos, ambientes,
         <Search size={15} className="text-muted" />
         <input
           value={busca}
-          onChange={(e) => setBusca(e.target.value)}
+          onChange={(e) => { setBusca(e.target.value); setPagina(1); }}
           placeholder="Buscar por descrição, tipo, fase ou número..."
           className="w-full max-w-sm rounded-md border border-panel-border bg-panel px-3 py-1.5 text-sm"
         />
         {busca && (
           <span className="text-xs text-muted">{filtrados.length} de {circuitos.length} circuito(s)</span>
+        )}
+        {!busca && circuitos.length > POR_PAGINA && (
+          <span className="text-xs text-muted">{(paginaAtual - 1) * POR_PAGINA + 1}–{Math.min(paginaAtual * POR_PAGINA, filtrados.length)} de {circuitos.length}</span>
         )}
       </div>
 
@@ -286,7 +295,7 @@ export default function CircuitosTab({ projectId, tensaoV, circuitos, ambientes,
             </tr>
           </thead>
           <tbody>
-            {filtrados.map((c) => {
+            {circuitosPagina.map((c) => {
               const original = circuitos.find((o) => o.id === c.id)!;
               return (
                 <tr key={c.id} className="border-t border-panel-border">
@@ -402,6 +411,47 @@ export default function CircuitosTab({ projectId, tensaoV, circuitos, ambientes,
           </tbody>
         </table>
       </div>
+
+      {/* Paginação */}
+      {totalPaginas > 1 && (
+        <div className="mt-3 flex items-center justify-between text-xs text-muted">
+          <span>{filtrados.length} circuito(s) — página {paginaAtual} de {totalPaginas}</span>
+          <div className="flex items-center gap-1">
+            <button
+              onClick={() => setPagina(1)}
+              disabled={paginaAtual === 1}
+              className="rounded px-2 py-1 hover:bg-panel-border disabled:opacity-30"
+            >«</button>
+            <button
+              onClick={() => setPagina(p => Math.max(1, p - 1))}
+              disabled={paginaAtual === 1}
+              className="rounded px-2 py-1 hover:bg-panel-border disabled:opacity-30"
+            >‹ Anterior</button>
+            {Array.from({ length: totalPaginas }, (_, i) => i + 1)
+              .filter(p => p === 1 || p === totalPaginas || Math.abs(p - paginaAtual) <= 1)
+              .map((p, idx, arr) => (
+                <>
+                  {idx > 0 && arr[idx - 1] !== p - 1 && <span key={`gap-${p}`} className="px-1">…</span>}
+                  <button
+                    key={p}
+                    onClick={() => setPagina(p)}
+                    className={`rounded px-2 py-1 ${p === paginaAtual ? "bg-accent text-bg font-bold" : "hover:bg-panel-border"}`}
+                  >{p}</button>
+                </>
+              ))}
+            <button
+              onClick={() => setPagina(p => Math.min(totalPaginas, p + 1))}
+              disabled={paginaAtual === totalPaginas}
+              className="rounded px-2 py-1 hover:bg-panel-border disabled:opacity-30"
+            >Próxima ›</button>
+            <button
+              onClick={() => setPagina(totalPaginas)}
+              disabled={paginaAtual === totalPaginas}
+              className="rounded px-2 py-1 hover:bg-panel-border disabled:opacity-30"
+            >»</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
