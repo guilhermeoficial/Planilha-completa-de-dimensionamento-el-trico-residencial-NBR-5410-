@@ -228,6 +228,37 @@ export default function QuestoesPage() {
   const percentualAcerto = totalRespondidas > 0 ? (totalAcertos / totalRespondidas) * 100 : 0;
   const totalIneditas = useMemo(() => QUESTOES.filter((q) => q.inedita).length, []);
 
+  // ── Pontos fracos e fortes por assunto ────────────────────────────────────
+  const desempenhoAssunto = useMemo(() => {
+    const mapa: Record<string, { total: number; acertos: number }> = {};
+    QUESTOES.forEach((q) => {
+      const resp = respostas[q.id];
+      if (!resp) return;
+      if (!mapa[q.assunto]) mapa[q.assunto] = { total: 0, acertos: 0 };
+      mapa[q.assunto].total += 1;
+      if (resp.correta) mapa[q.assunto].acertos += 1;
+    });
+    return mapa;
+  }, [respostas]);
+
+  const pontosFracos = useMemo(() =>
+    Object.entries(desempenhoAssunto)
+      .filter(([, v]) => v.total >= 3 && v.acertos / v.total < 0.5)
+      .sort((a, b) => (a[1].acertos / a[1].total) - (b[1].acertos / b[1].total))
+      .slice(0, 5)
+      .map(([assunto, v]) => ({ assunto, taxa: Math.round((v.acertos / v.total) * 100), total: v.total })),
+    [desempenhoAssunto]
+  );
+
+  const pontosFortes = useMemo(() =>
+    Object.entries(desempenhoAssunto)
+      .filter(([, v]) => v.total >= 3 && v.acertos / v.total >= 0.8)
+      .sort((a, b) => (b[1].acertos / b[1].total) - (a[1].acertos / a[1].total))
+      .slice(0, 3)
+      .map(([assunto, v]) => ({ assunto, taxa: Math.round((v.acertos / v.total) * 100), total: v.total })),
+    [desempenhoAssunto]
+  );
+
   return (
     <div className="mx-auto max-w-5xl px-6 py-10">
       <Link href="/dashboard/cursos" className="mb-4 inline-flex items-center gap-1.5 text-sm text-muted hover:text-text">
@@ -294,6 +325,55 @@ export default function QuestoesPage() {
           <Sparkles size={13} className="text-accent" />
           {totalIneditas} dessas questões são exclusivas do Voltis — escritas internamente, você não encontra em nenhuma outra plataforma.
         </p>
+      )}
+
+      {/* ── Banner de Pontos Fracos ── */}
+      {pontosFracos.length > 0 && (
+        <div className="mb-4 rounded-lg border border-danger/30 bg-danger/5 p-4">
+          <div className="mb-2 flex items-center justify-between">
+            <p className="flex items-center gap-1.5 text-sm font-semibold text-danger">
+              ⚠️ Seus pontos fracos
+            </p>
+            <button
+              onClick={() => {
+                const primeiro = pontosFracos[0].assunto;
+                setAssunto(primeiro);
+                setPagina(1);
+              }}
+              className="rounded-lg border border-danger/40 px-3 py-1 text-xs text-danger hover:bg-danger/10 transition-colors"
+            >
+              Estudar esses temas
+            </button>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {pontosFracos.map(({ assunto: a, taxa, total }) => (
+              <button
+                key={a}
+                onClick={() => { setAssunto(a); setPagina(1); }}
+                className="flex items-center gap-1.5 rounded-full border border-danger/30 bg-danger/10 px-3 py-1 text-xs text-danger hover:bg-danger/20 transition-colors"
+              >
+                <span className="font-medium">{a}</span>
+                <span className="opacity-70">{taxa}% ({total} q.)</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* ── Banner de Pontos Fortes ── */}
+      {pontosFortes.length > 0 && (
+        <div className="mb-4 rounded-lg border border-ok/20 bg-ok/5 p-3">
+          <p className="mb-2 flex items-center gap-1.5 text-xs font-semibold text-ok">
+            ✅ Você vai bem em
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {pontosFortes.map(({ assunto: a, taxa }) => (
+              <span key={a} className="flex items-center gap-1 rounded-full border border-ok/20 px-2.5 py-0.5 text-xs text-ok">
+                {a} <span className="opacity-60">{taxa}%</span>
+              </span>
+            ))}
+          </div>
+        </div>
       )}
 
       <div className="mb-6 rounded-lg border border-panel-border bg-panel p-4">

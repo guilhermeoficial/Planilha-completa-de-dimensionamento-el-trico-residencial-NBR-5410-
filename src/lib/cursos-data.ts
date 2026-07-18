@@ -2450,10 +2450,317 @@ export const AREAS: Area[] = [
       },
     ],
   },
-];
 
+  // ══════════════════════════════════════════════════════════════════════════
+  // CURSO 3: TÉCNICO JUDICIÁRIO — TECNOLOGIA DA INFORMAÇÃO (TRT/TST)
+  // Editais TRT-SP 2025 e TRT-1 2025 — Banca: FCC/CESPE
+  // ══════════════════════════════════════════════════════════════════════════
+  {
+    slug: "tecnico-ti-trt-tst",
+    nome: "Técnico Judiciário — TI (TRT/TST)",
+    nivel: "Técnico",
+    descricao: "Preparação para Técnico Judiciário — Área TI nos TRTs e TST. Baseado nos editais TRT-SP 2025 e TRT-1 2025 (FCC/CESPE). Cobre Windows, Office, Google Workspace, Redes, Segurança, Banco de Dados e Legislação.",
+    modulos: [
+      {
+        slug: "ti-sistemas-operacionais",
+        titulo: "Sistemas Operacionais — Windows 10 e 11",
+        descricao: "Conceitos de SO, gerenciamento de arquivos, configurações e atalhos cobrados nos editais TRT/TST.",
+        bloco: "Bloco I",
+        paginas: [
+          {
+            titulo: "1.1 — Conceitos Fundamentais de Sistema Operacional",
+            conteudo: [
+              "O sistema operacional (SO) é o software responsável por gerenciar os recursos de hardware (processador, memória, disco, dispositivos) e fornecer interface entre usuário e máquina. Sem o SO, os programas não conseguem acessar o hardware diretamente.",
+              "Kernel é o núcleo do sistema operacional — parte que roda em modo privilegiado e gerencia diretamente o hardware. Programas comuns rodam em modo usuário e acessam o hardware apenas via chamadas de sistema (system calls).",
+              "Tipos de interface: GUI (Graphical User Interface) — interface gráfica com janelas, ícones e menus; CLI (Command Line Interface) — linha de comando (Prompt de Comando, PowerShell). Sistemas operacionais multitarefa executam vários programas simultaneamente.",
+              "SO mais cobrados nos concursos TRT/TST: Windows 10 e Windows 11. O Windows 11 tem requisitos mais rígidos de hardware (TPM 2.0, UEFI, Secure Boot, processador de 8ª geração Intel ou Ryzen 2000+) mas interface familiar ao Windows 10.",
+            ],
+          },
+          {
+            titulo: "1.2 — Gerenciamento de Arquivos no Windows",
+            conteudo: [
+              "O Explorador de Arquivos (File Explorer) é a ferramenta padrão para navegar pastas e gerenciar arquivos. Atalho: Win+E. No Windows 11 o layout foi redesenhado com barra de comandos simplificada.",
+              "Estrutura de pastas padrão: C:\\Users\\[usuário]\\Documents (Documentos), Downloads, Desktop (Área de Trabalho), Pictures, Videos. A pasta C:\\Windows contém os arquivos do sistema e não deve ser modificada sem conhecimento técnico.",
+              "Atributos de arquivo: Somente Leitura (impede alteração); Oculto (não aparece na visualização padrão — exibir em Exibir > Mostrar > Itens ocultos); Sistema (arquivo essencial do SO).",
+              "Atalhos essenciais: Ctrl+C (copiar), Ctrl+X (recortar), Ctrl+V (colar), Ctrl+Z (desfazer), Del (excluir para lixeira), Shift+Del (excluir permanente), Alt+F4 (fechar), Win+D (área de trabalho), Win+L (bloquear sessão), Win+R (executar).",
+              "Sistemas de arquivos: NTFS (padrão Windows — suporta arquivos > 4GB, permissões, compressão, criptografia EFS); FAT32 (compatível com mais dispositivos, limite de 4GB por arquivo); exFAT (ideal para pen drives — sem limite prático de tamanho).",
+            ],
+          },
+          {
+            titulo: "1.3 — Gerenciador de Tarefas e Configurações",
+            conteudo: [
+              "Gerenciador de Tarefas: Ctrl+Shift+Esc (ou Ctrl+Alt+Del > Gerenciador de Tarefas). Monitora processos, uso de CPU/memória/disco/rede, permite encerrar programas travados. Aba Inicializar controla programas que iniciam com o Windows.",
+              "Painel de Controle vs. Configurações: Windows 10 mantém ambos; Windows 11 migrou a maioria para Configurações (Win+I). Contas de usuário: Administrador (acesso total ao sistema) vs. Usuário Padrão (não instala softwares nem altera configurações do sistema).",
+              "Virtualização com Hyper-V: recurso nativo do Windows Pro/Enterprise para criar máquinas virtuais. Permite executar múltiplos SOs em um único hardware físico.",
+              "Windows Update: fundamental para segurança — corrige vulnerabilidades exploradas por malwares. Configurar para baixar atualizações automaticamente. Atualizações de segurança devem ser aplicadas com prioridade.",
+            ],
+          },
+        ],
+      },
+      {
+        slug: "ti-office-workspace",
+        titulo: "Microsoft Office e Google Workspace",
+        descricao: "Word, Excel, PowerPoint, Google Drive e ferramentas de colaboração — cobrados nos editais TRT/TST 2025.",
+        bloco: "Bloco I",
+        paginas: [
+          {
+            titulo: "2.1 — Microsoft Word: Formatação e Recursos",
+            conteudo: [
+              "Microsoft Word: processador de textos mais cobrado em concursos. Interface em Ribbon (faixa de opções) com abas: Página Inicial, Inserir, Layout, Referências, Correspondências, Revisão, Exibir.",
+              "Formatação essencial: negrito (Ctrl+N), itálico (Ctrl+I), sublinhado (Ctrl+U), alinhar à esquerda (Ctrl+Q), centralizar (Ctrl+E), alinhar à direita (Ctrl+G), justificar (Ctrl+J). Limpar formatação: Ctrl+Barra de Espaço.",
+              "Estilos e Sumário automático: aplicar Título 1, Título 2 etc. Referências > Sumário gera o índice automaticamente baseado nos estilos de título. Atualizar sumário com F9 ou clique direito > Atualizar Campo.",
+              "Mala Direta (Correspondências): cria documentos personalizados em massa combinando modelo com lista de destinatários (planilha Excel, banco de dados). Muito usado no Judiciário para intimações e notificações em massa.",
+              "Controlar Alterações (Revisão > Controlar Alterações, Ctrl+Shift+E): registra todas as modificações com autor e data. Fundamental para revisões colaborativas. Aceitar ou rejeitar alterações individualmente ou todas de uma vez.",
+            ],
+          },
+          {
+            titulo: "2.2 — Microsoft Excel: Fórmulas e Funções",
+            conteudo: [
+              "Excel: planilha eletrônica. Células identificadas por coluna (letra) + linha (número): A1, B3, C10. Toda fórmula começa com = (igual). Operadores: + - * / ^ (potência) % (porcentagem).",
+              "Funções essenciais: =SOMA(A1:A10), =MÉDIA(A1:A10), =MÁXIMO(A1:A10), =MÍNIMO(A1:A10), =CONT.VALORES(A1:A10), =CONT.SE(A1:A10;critério), =SOMASE(intervalo;critério;soma).",
+              "=SE(condição; valor_verdadeiro; valor_falso): função lógica mais cobrada. Pode ser aninhada: =SE(B2>=9;\"Ótimo\";SE(B2>=7;\"Bom\";\"Regular\")). Funções lógicas: =E(), =OU(), =NÃO().",
+              "=PROCV(valor_procurado; tabela; coluna; 0): busca valor na 1ª coluna e retorna valor de outra coluna. O 0 (falso) = correspondência exata. =ÍNDICE() e =CORRESP() são alternativas mais flexíveis.",
+              "Referências: A1 (relativa — muda ao copiar), $A$1 (absoluta — não muda), $A1 (coluna fixa), A$1 (linha fixa). F4 alterna entre tipos. Tabela Dinâmica (PivotTable): Inserir > Tabela Dinâmica — resume dados por categorias.",
+            ],
+          },
+          {
+            titulo: "2.3 — Google Workspace: Drive, Docs e Colaboração",
+            conteudo: [
+              "Google Workspace (ex G Suite): suite de produtividade Google. Gmail, Drive, Docs, Planilhas (Sheets), Apresentações (Slides), Meet, Forms, Calendar. Muito cobrado nos editais TRT 2025.",
+              "Google Drive: 15 GB gratuitos. Compartilhamento com 3 níveis: Leitor (só visualiza), Comentarista (adiciona comentários), Editor (pode alterar). Gerar link público permite acesso sem conta Google.",
+              "Google Docs: edição colaborativa em tempo real — múltiplos usuários editam simultaneamente, com cursor colorido identificando cada editor. Histórico de versões: Arquivo > Histórico de versões > Ver histórico. Comentários com @menção notificam colaboradores.",
+              "Google Planilhas vs. Excel: funções equivalentes mas com diferenças. No Sheets: =IMPORTRANGE() importa dados de outra planilha; =QUERY() usa linguagem SQL-like; integração nativa com outros apps Google. Não suporta macros VBA (usa Google Apps Script).",
+            ],
+          },
+        ],
+      },
+      {
+        slug: "ti-redes-computadores",
+        titulo: "Redes de Computadores e Internet",
+        descricao: "Fundamentos de redes, protocolos, Internet, navegadores — cobrados nos editais TRT área TI.",
+        bloco: "Bloco II",
+        paginas: [
+          {
+            titulo: "3.1 — Fundamentos de Redes",
+            conteudo: [
+              "Redes por abrangência: LAN (Local Area Network — escritório/prédio), MAN (Metropolitan — cidade), WAN (Wide — longa distância, ex: Internet). WLAN é a LAN sem fio (Wi-Fi).",
+              "Modelo OSI (7 camadas): Física, Enlace, Rede, Transporte, Sessão, Apresentação, Aplicação. Modelo TCP/IP (4 camadas): Acesso à Rede, Internet, Transporte, Aplicação. Mais prático que o OSI — é o usado na Internet real.",
+              "Equipamentos: Hub (retransmite para todas as portas — obsoleto, camada 1); Switch (retransmite só para porta destino — camada 2, usa MAC); Roteador (conecta redes diferentes, decide caminho — camada 3, usa IP); Access Point (cria rede Wi-Fi).",
+              "IP e sub-redes: IPv4 = 32 bits (ex: 192.168.1.1); IPv6 = 128 bits. IPs privados: 10.x.x.x, 172.16-31.x.x, 192.168.x.x — não roteados na Internet. NAT converte IPs privados para público ao sair para a Internet.",
+            ],
+          },
+          {
+            titulo: "3.2 — Protocolos e Serviços",
+            conteudo: [
+              "Protocolos e portas: HTTP (80), HTTPS (443), FTP (21), SSH (22), DNS (53), SMTP (25/587), POP3 (110), IMAP (143), RDP (3389), DHCP (67/68).",
+              "DNS: converte nomes (www.trt.jus.br) em IPs. DHCP: atribui IPs automaticamente aos dispositivos da rede. Gateway padrão: IP do roteador — porta de saída para a Internet.",
+              "VPN (Virtual Private Network): túnel criptografado sobre a Internet para acesso seguro à Intranet. Essencial para servidores do Judiciário em home office.",
+              "Diferença HTTP vs. HTTPS: HTTPS usa TLS para criptografar os dados. O cadeado no navegador indica HTTPS com certificado válido. O certificado é emitido por uma CA (Autoridade Certificadora) confiável.",
+            ],
+          },
+          {
+            titulo: "3.3 — Navegadores e Ferramentas de Busca",
+            conteudo: [
+              "Navegadores cobrados: Google Chrome (motor Blink), Mozilla Firefox (Gecko), Microsoft Edge (Blink — substituiu o IE em 2020). Internet Explorer foi descontinuado em 2022.",
+              "Modo Anônimo/Privativo: não salva histórico, cookies nem dados de formulários no dispositivo — mas o provedor e os sites visitados ainda registram o acesso. Ctrl+Shift+N (Chrome/Edge) ou Ctrl+Shift+P (Firefox).",
+              "Cookies: arquivos salvos pelo site no navegador para manter sessão, preferências e rastreamento. A LGPD exige consentimento para cookies não essenciais. Limpar cookies: Ctrl+Shift+Del.",
+              "Operadores de busca Google: \"termo\" (busca exata), site:dominio.com (busca no site), -palavra (exclui), filetype:pdf (tipo de arquivo), before:2024 / after:2023 (por data).",
+            ],
+          },
+        ],
+      },
+      {
+        slug: "ti-seguranca-informacao",
+        titulo: "Segurança da Informação",
+        descricao: "Malwares, ataques, criptografia, backup e LGPD — amplamente cobrados nos editais TRT área TI.",
+        bloco: "Bloco II",
+        paginas: [
+          {
+            titulo: "4.1 — Malwares e Tipos de Ataques",
+            conteudo: [
+              "Vírus: replica-se ao se anexar a arquivos, precisa de ação do usuário para se propagar. Worm: propaga-se automaticamente pela rede explorando vulnerabilidades — não precisa de ação do usuário. Trojan: disfarça-se de software legítimo para abrir backdoors.",
+              "Ransomware: criptografa os arquivos e exige resgate. Mais devastador atualmente — afetou prefeituras, hospitais e empresas. Prevenção: backups offline + atualizações + treinamento de usuários.",
+              "Spyware: monitora e envia informações sem consentimento. Keylogger: registra tudo que é digitado. Adware: exibe propagandas. Rootkit: esconde a presença de malwares no sistema.",
+              "Phishing: e-mail/site falso imitando empresa/banco/governo para roubar dados. Spear phishing: direcionado a pessoa/organização específica. Smishing: por SMS. Vishing: por voz/telefone.",
+              "DoS e DDoS: sobrecarregam servidor com requisições. SQL Injection: insere código SQL malicioso em formulários. XSS (Cross-Site Scripting): injeta scripts maliciosos em páginas web. Man-in-the-Middle: intercepta comunicação entre duas partes.",
+            ],
+          },
+          {
+            titulo: "4.2 — Criptografia, LGPD e Boas Práticas",
+            conteudo: [
+              "Criptografia simétrica: mesma chave para cifrar e decifrar (AES, DES). Rápida, usada para grandes volumes de dados. Problema: como compartilhar a chave com segurança?",
+              "Criptografia assimétrica: par de chaves pública/privada (RSA, ECC). O que é cifrado com a pública só é decifrado com a privada. Usada para troca de chaves e assinaturas digitais. Mais lenta que a simétrica.",
+              "Certificado Digital ICP-Brasil: vincula chave pública a pessoa/organização. Emitido por Autoridade Certificadora (AC). Garante autenticidade e não-repúdio. Obrigatório para assinar documentos judiciais eletronicamente (ex: petições no PJe).",
+              "LGPD (Lei 13.709/2018): regula tratamento de dados pessoais. Bases legais incluem consentimento, obrigação legal e legítimo interesse. ANPD é a autoridade fiscalizadora. Sanções: multa até 2% do faturamento, limitada a R$50 milhões por infração.",
+              "Backup 3-2-1: 3 cópias, em 2 mídias diferentes, sendo 1 off-site. Backup offline protege contra ransomware. MFA (Multi-Factor Authentication): segundo fator além da senha — app autenticador, SMS, biometria. Senhas fortes: mínimo 12 caracteres, letras+números+símbolos, única por serviço.",
+            ],
+          },
+        ],
+      },
+      {
+        slug: "ti-banco-de-dados",
+        titulo: "Banco de Dados e SQL",
+        descricao: "Modelo relacional, SQL básico e intermediário — cobrados nos editais TRT área TI.",
+        bloco: "Bloco III",
+        paginas: [
+          {
+            titulo: "5.1 — Modelo Relacional e SQL",
+            conteudo: [
+              "Banco de dados relacional: dados organizados em tabelas com colunas (atributos) e linhas (registros/tuplas). SGBDs principais: MySQL, PostgreSQL, Oracle, SQL Server, SQLite.",
+              "Chave Primária (PK): identifica unicamente cada registro — não pode ser nula nem duplicada. Chave Estrangeira (FK): referencia a PK de outra tabela — cria relacionamentos entre tabelas.",
+              "Normalização: 1FN (eliminar grupos repetidos), 2FN (eliminar dependências parciais da PK), 3FN (eliminar dependências transitivas). ACID: Atomicidade, Consistência, Isolamento, Durabilidade.",
+              "DDL: CREATE TABLE, ALTER TABLE, DROP TABLE. DML: SELECT, INSERT, UPDATE, DELETE. DCL: GRANT (concede permissões), REVOKE (revoga permissões).",
+              "SELECT col1, col2 FROM tabela WHERE condição ORDER BY col ASC/DESC; JOIN: INNER (só correspondências em ambas), LEFT (todos da esquerda + correspondências), RIGHT, FULL. Funções de agregação: COUNT, SUM, AVG, MAX, MIN — usadas com GROUP BY.",
+            ],
+          },
+        ],
+      },
+      {
+        slug: "ti-legislacao-ti",
+        titulo: "Marco Civil e LGPD",
+        descricao: "Legislação de TI cobrada nos editais TRT/TST — Marco Civil da Internet e LGPD.",
+        bloco: "Bloco III",
+        paginas: [
+          {
+            titulo: "6.1 — Marco Civil da Internet e LGPD",
+            conteudo: [
+              "Marco Civil da Internet (Lei 12.965/2014): princípios, garantias e deveres para uso da Internet no Brasil. Princípios: neutralidade da rede, liberdade de expressão, proteção da privacidade, proteção dos dados pessoais.",
+              "Neutralidade de rede: provedores não podem discriminar tráfego por conteúdo, origem, destino, serviço ou aplicação. Guarda de registros: provedores de aplicação guardam por 6 meses; de conexão por 1 ano. Entrega só com ordem judicial.",
+              "LGPD (Lei 13.709/2018): regula tratamento de dados pessoais por pessoas físicas e jurídicas de direito público e privado. Dados pessoais = qualquer informação que identifique ou possa identificar uma pessoa (nome, CPF, IP, localização etc.).",
+              "Dados sensíveis (proteção reforçada): origem racial, convicção religiosa, opinião política, saúde, vida sexual, biometria, dado genético. Requerem consentimento específico e destacado — ou outra base legal explícita.",
+              "Direitos do titular: acesso, correção, portabilidade, eliminação, revogação do consentimento, informação sobre compartilhamento. ANPD fiscaliza e aplica sanções. Lei Anticorrupção digital: Lei 12.737/2012 (Lei Carolina Dieckmann) tipifica crimes digitais como invasão de dispositivo e obtenção de dados sem autorização.",
+            ],
+          },
+        ],
+      },
+    ],
+  },
 
-export function buscarArea(slug: string): Area | undefined {
+  // ══════════════════════════════════════════════════════════════════════════
+  // CURSO 4: TÉCNICO DO SEGURO SOCIAL — INFORMÁTICA (INSS 2026)
+  // Baseado no edital INSS 2022 (CEBRASPE) — Previsão 8.500+ vagas 2026
+  // ══════════════════════════════════════════════════════════════════════════
+  {
+    slug: "tecnico-inss-informatica",
+    nome: "Técnico do Seguro Social — Informática (INSS)",
+    nivel: "Técnico",
+    descricao: "Preparação para o módulo de Informática do concurso INSS 2026 (Técnico do Seguro Social, nível médio). Baseado no edital INSS 2022 (CEBRASPE). Previsão de 8.500+ vagas. Questões no estilo Certo/Errado.",
+    modulos: [
+      {
+        slug: "inss-windows-office",
+        titulo: "Windows e Microsoft Office (INSS)",
+        descricao: "Windows 10/11 e pacote Office no estilo CEBRASPE — questões Certo/Errado com detalhes que pegam.",
+        bloco: "Bloco I",
+        paginas: [
+          {
+            titulo: "1.1 — Windows 10 e 11 para o INSS (CEBRASPE)",
+            conteudo: [
+              "O CEBRASPE usa questões Certo/Errado com afirmações sutilmente erradas. Atenção a detalhes! Exemplo de questão típica: 'O Windows 10 permite a criação de áreas de trabalho virtuais para organizar janelas abertas' — CERTO (Win+Tab ou Win+Ctrl+D).",
+              "Área de trabalho: ícones de atalhos + Barra de Tarefas (botão Iniciar, ícones fixados, relógio/notificações). No Windows 11 o botão Iniciar e os ícones da barra ficam centralizados por padrão (pode ser revertido para a esquerda).",
+              "Atalhos mais cobrados pelo CEBRASPE no INSS: Win+L (bloquear sessão), Win+D (mostrar área de trabalho), Win+E (abrir Explorer), Win+R (Executar), Ctrl+Shift+Esc (Gerenciador de Tarefas), Prt Scr (captura de tela inteira), Alt+Prt Scr (só a janela ativa), Win+Shift+S (recorte personalizado).",
+              "Lixeira: guarda arquivos excluídos (Del) temporariamente. Esvaziar = exclusão permanente. ATENÇÃO: arquivos excluídos de pen drives ou cartões de memória NÃO vão para a lixeira — são excluídos imediatamente!",
+              "NTFS vs. FAT32: NTFS suporta arquivos maiores que 4 GB, permissões de acesso, criptografia (EFS) e compressão — FAT32 não. FAT32 é compatível com mais dispositivos. exFAT combina compatibilidade ampla com suporte a arquivos grandes.",
+            ],
+          },
+          {
+            titulo: "1.2 — Microsoft Word para o INSS (CEBRASPE)",
+            conteudo: [
+              "Questão típica CEBRASPE: 'No Word, ao pressionar Ctrl+S pela primeira vez em um documento novo, será aberta a caixa de diálogo Salvar Como' — CERTO. 'O atalho F12 abre a janela Localizar' — ERRADO (F12 abre Salvar Como; Ctrl+L localiza).",
+              "Formatos de arquivo Word: .docx (padrão Office 2007+), .doc (Word 97-2003), .odt (formato aberto — LibreOffice). Exportar como PDF: Arquivo > Exportar > Criar PDF/XPS (não salva em .docx).",
+              "Localizar (Ctrl+L) vs. Substituir (Ctrl+U): Localizar procura texto; Substituir encontra e troca. 'Substituir Tudo' altera todas as ocorrências de uma vez. Suporte a caracteres especiais e curingas (modo avançado).",
+              "Revisão: Ortografia e Gramática (F7 — revisa todo o documento); Dicionário de sinônimos (Shift+F7); Controlar Alterações (Ctrl+Shift+E — registra todas as mudanças com autor); Comparar documentos (compara duas versões e mostra diferenças).",
+              "Seções e Quebras: Quebra de Página (Ctrl+Enter) — força nova página. Quebra de Seção — permite formatações diferentes em partes do mesmo documento (orientação diferente, cabeçalhos diferentes etc.).",
+            ],
+          },
+          {
+            titulo: "1.3 — Microsoft Excel para o INSS (CEBRASPE)",
+            conteudo: [
+              "Questão CEBRASPE típica: 'Na fórmula =A1+B1, se a célula A1 contiver o texto \"5\" e B1 o número 3, o resultado será 8' — ERRADO (resultaria em erro #VALOR! pois \"5\" é texto, não número).",
+              "Referências: A1 (relativa), $A$1 (absoluta), $A1 ou A$1 (mista). Ao copiar =A1+B1 da célula C1 para C2, torna-se =A2+B2 (referências relativas se ajustam). Para fixar: pressionar F4.",
+              "=SE(): 'A função SE pode ter no máximo 7 níveis de aninhamento no Excel 2007' — CERTO (Excel 2019/365 permite até 64). Conhecer a versão importa nas questões!",
+              "Formatos de número: Geral (padrão), Número, Moeda, Contábil, Data, Hora, Porcentagem, Científico, Texto. Células formatadas como Texto não executam fórmulas — um número formatado como texto não é somado pelo =SOMA().",
+              "Nomes de intervalos: é possível nomear um intervalo (selecionar > caixa de Nome > digitar). =SOMA(Vendas) é equivalente a =SOMA(B2:B20) se 'Vendas' for o nome do intervalo. Aumenta legibilidade das fórmulas.",
+            ],
+          },
+        ],
+      },
+      {
+        slug: "inss-internet-email",
+        titulo: "Internet, Intranet e E-mail (INSS)",
+        descricao: "Conceitos de Internet, navegadores, e-mail e ferramentas digitais no estilo CEBRASPE.",
+        bloco: "Bloco I",
+        paginas: [
+          {
+            titulo: "2.1 — Internet e Intranet (INSS — CEBRASPE)",
+            conteudo: [
+              "Questão CEBRASPE: 'A World Wide Web e a Internet são sinônimos' — ERRADO. A WWW é apenas um dos serviços da Internet (páginas web via HTTP/HTTPS). Outros serviços: e-mail, FTP, streaming, VoIP, SSH.",
+              "Domínios cobrados no INSS: .gov.br (governo federal e estadual), .jus.br (Judiciário), .edu.br (educação), .org.br (organizações sem fins lucrativos), .com.br (empresas), .net.br (provedores). O INSS usa www.gov.br/inss.",
+              "URL: protocolo://domínio:porta/caminho?parâmetros. A porta 80 é padrão para HTTP e a 443 para HTTPS — quando não indicada, o navegador usa a padrão. Quando a URL começa com HTTPS, a comunicação é criptografada.",
+              "Modo Anônimo: NÃO protege contra monitoramento do provedor ou do empregador — apenas não salva histórico localmente. Questão CEBRASPE: 'O modo anônimo impede que os sites identifiquem o usuário' — ERRADO (o IP ainda é visível).",
+              "Cookies: 'Ao limpar os cookies, o usuário será desconectado de sites onde estava logado' — CERTO (os cookies de sessão mantêm o login ativo). 'Cookies são vírus que infectam o computador' — ERRADO (são arquivos de texto inofensivos por si mesmos).",
+            ],
+          },
+          {
+            titulo: "2.2 — Correio Eletrônico para o INSS",
+            conteudo: [
+              "Campos do e-mail — muito cobrado: Para (destinatário principal); CC (Cópia Carbono — todos os destinatários veem quem está em CC); CCO/BCC (Cópia Carbono Oculta — destinatários em CCO não veem uns aos outros nem aparecem para os do campo Para e CC).",
+              "SMTP envia e-mail; POP3 recebe e por padrão apaga do servidor após download (offline); IMAP sincroniza com o servidor mantendo mensagens lá — permite acesso de múltiplos dispositivos. Questão: 'Com POP3, as mensagens permanecem no servidor após serem baixadas' — ERRADO (por padrão são removidas).",
+              "Spam: 'Marcar uma mensagem como spam move para a pasta de lixo eletrônico e treina o filtro' — CERTO. 'Responder a um spam para pedir remoção confirma para o remetente que o e-mail é válido e pode aumentar o volume de spam recebido' — CERTO.",
+              "Assinatura digital em e-mail: garante autenticidade (quem assinou) e integridade (não foi alterado no trajeto). Usa certificado digital. Diferente da assinatura visual no rodapé (apenas texto/imagem — sem validade jurídica).",
+              "Webmail: acesso ao e-mail pelo navegador, sem instalar cliente de e-mail. Gmail, Outlook.com, Yahoo Mail. Dados ficam no servidor — qualquer dispositivo com acesso à Internet pode acessar as mensagens.",
+            ],
+          },
+        ],
+      },
+      {
+        slug: "inss-seguranca",
+        titulo: "Segurança da Informação (INSS — CEBRASPE)",
+        descricao: "Malwares, antivírus, firewall e boas práticas no estilo de questões Certo/Errado do CEBRASPE.",
+        bloco: "Bloco II",
+        paginas: [
+          {
+            titulo: "3.1 — Malwares: O que o CEBRASPE Cobra",
+            conteudo: [
+              "Questão CEBRASPE: 'Um worm, diferentemente de um vírus, é capaz de se propagar automaticamente pelas redes, explorando vulnerabilidades dos sistemas ou falhas na configuração de softwares instalados' — CERTO.",
+              "'Um vírus é um programa que se instala no computador sem o conhecimento do usuário e envia informações confidenciais para terceiros' — ERRADO (essa é a definição de spyware, não de vírus).",
+              "'O ransomware cifra os arquivos do usuário e exige pagamento para fornecer a chave de descriptografia' — CERTO. 'O pagamento do resgate garante a recuperação dos arquivos' — ERRADO (não há garantia alguma).",
+              "'Um trojan horse se propaga pela rede automaticamente assim que infecta um sistema' — ERRADO (trojans não se propagam sozinhos — essa é característica do worm).",
+              "'O rootkit é um tipo de malware que tem como objetivo esconder a existência de outros softwares maliciosos instalados no sistema' — CERTO.",
+            ],
+          },
+          {
+            titulo: "3.2 — Proteção e Boas Práticas (INSS)",
+            conteudo: [
+              "Antivírus vs. Firewall — questão frequente: 'O firewall é capaz de detectar e remover vírus do computador' — ERRADO. O firewall controla tráfego de rede; quem detecta e remove malwares é o antivírus.",
+              "'O antivírus baseado em assinaturas é eficaz contra malwares completamente novos e desconhecidos (zero-day)' — ERRADO. Assinaturas só detectam malwares conhecidos. A análise heurística busca comportamentos suspeitos de malwares desconhecidos.",
+              "Backup: 'Para se proteger contra ransomware, é suficiente manter cópias de backup armazenadas no mesmo computador infectado' — ERRADO. O ransomware criptografará também os backups locais. Backups off-site (nuvem ou mídia desconectada) são essenciais.",
+              "'Ao usar rede Wi-Fi pública e acessar um site HTTPS, os dados transmitidos estão protegidos por criptografia' — CERTO (TLS criptografa o canal). 'A rede Wi-Fi pública sem senha é segura para uso corporativo' — ERRADO.",
+              "'A autenticação de dois fatores (2FA) protege a conta mesmo que a senha seja comprometida, pois exige um segundo fator de verificação' — CERTO.",
+            ],
+          },
+        ],
+      },
+      {
+        slug: "inss-redes-basico",
+        titulo: "Noções de Redes e Nuvem (INSS)",
+        descricao: "Conceitos básicos de redes, Wi-Fi e computação em nuvem cobrados no INSS.",
+        bloco: "Bloco II",
+        paginas: [
+          {
+            titulo: "4.1 — Redes e Cloud para o INSS",
+            conteudo: [
+              "Para o cargo de Técnico do Seguro Social do INSS, o nível de redes exigido é básico — diferente do TRT área TI. Foco em conceitos gerais e uso prático.",
+              "Wi-Fi: rede sem fio baseada em IEEE 802.11. Frequências: 2,4 GHz (maior alcance, mais interferência) e 5 GHz (menor alcance, mais velocidade e menos congestionamento). WPA3 é o protocolo de segurança mais recente; WEP é obsoleto e inseguro — questão: 'O protocolo WEP oferece proteção adequada para redes Wi-Fi corporativas' — ERRADO.",
+              "Computação em nuvem (Cloud Computing): SaaS (Software as a Service — ex: Office 365, Gmail, Salesforce — usuário usa o software pela Internet); PaaS (Platform — ex: Google App Engine — desenvolvedor implanta aplicações); IaaS (Infrastructure — ex: AWS EC2, Azure VMs — aluga servidores/rede/armazenamento).",
+              "'Em um modelo SaaS, o cliente é responsável pela instalação e manutenção do software nos servidores' — ERRADO. No SaaS, o provedor gerencia tudo (hardware, SO, aplicação) — o cliente apenas usa o software via navegador.",
+              "Gov.br e serviços digitais do governo: o INSS usa o portal Meu INSS (acesso por Gov.br) para agendamentos, consultas de benefícios e serviços digitais. O acesso é feito com conta Gov.br — conta verificada com reconhecimento facial ou banco cadastrado.",
+            ],
+          },
+        ],
+      },
+    ],
+  },
+];(slug: string): Area | undefined {
   return AREAS.find((a) => a.slug === slug);
 }
 
