@@ -135,8 +135,20 @@ export default function CircuitosTab({ projectId, tensaoV, circuitos, ambientes,
     onChange();
   }
 
-  async function adicionarCircuito() {
+  async function adicionarCircuito(template?: "iluminacao" | "tug-seco" | "tug-molhado" | "tue") {
     const proximoNumero = circuitos.length ? Math.max(...circuitos.map((c) => c.numero)) + 1 : 1;
+    const fasesCiclo: Fase[] = ["R", "S", "T"];
+    const fase = fasesCiclo[circuitos.length % 3];
+
+    const templates: Record<string, Partial<Omit<CircuitoRow, "id">>> = {
+      "iluminacao":    { descricao: "Iluminação",        tipo: "Iluminação", fp: 0.92, potencia_va: 600,  qtd_pontos: 4,  comprimento_m: 20 },
+      "tug-seco":     { descricao: "TUG — Áreas Secas", tipo: "TUG",        fp: 0.92, potencia_va: 1800, qtd_pontos: 6,  comprimento_m: 20 },
+      "tug-molhado":  { descricao: "TUG — Áreas Molhadas", tipo: "TUG",     fp: 0.92, potencia_va: 2000, qtd_pontos: 5,  comprimento_m: 20 },
+      "tue":          { descricao: "Equipamento específico", tipo: "TUE",    fp: 0.95, potencia_va: 2000, qtd_pontos: 1,  comprimento_m: 15 },
+    };
+
+    const base = template ? templates[template] : {};
+
     await supabase.from("circuitos").insert({
       project_id: projectId,
       numero: proximoNumero,
@@ -144,11 +156,13 @@ export default function CircuitosTab({ projectId, tensaoV, circuitos, ambientes,
       tipo: "TUG",
       tensao_v: tensaoV,
       fp: 0.92,
-      fase: "R",
+      fase,
       potencia_va: 1000,
       comprimento_m: 15,
       isolacao: "PVC",
       qtd_pontos: 1,
+      bloqueado: false,
+      ...base,
     });
     onChange();
   }
@@ -174,8 +188,8 @@ export default function CircuitosTab({ projectId, tensaoV, circuitos, ambientes,
     const bloqueados = circuitos.filter((c) => c.bloqueado);
     let numero = bloqueados.length ? Math.max(...bloqueados.map((c) => c.numero)) + 1 : 1;
 
-    // Tipos de ambiente molhado (NBR 5410)
-    const tiposMolhados = ["Banheiro", "Serviço/Cozinha"];
+    // Tipos de ambiente molhado (NBR 5410) — varanda/externo também exige proteção extra
+    const tiposMolhados = ["Banheiro", "Serviço/Cozinha", "Varanda/Externo"];
 
     // Equipamentos que realmente exigem circuito TUE exclusivo (fixos, alta potência)
     function ehTUEverdadeiro(nome: string, potenciaW: number): boolean {
@@ -347,6 +361,27 @@ export default function CircuitosTab({ projectId, tensaoV, circuitos, ambientes,
           >
             <Plus size={15} /> Circuito manual
           </button>
+
+          {/* Atalhos rápidos */}
+          <div className="flex items-center gap-1 rounded-md border border-panel-border px-2 py-1">
+            <span className="text-xs text-muted mr-1">Adicionar:</span>
+            <button onClick={() => adicionarCircuito("iluminacao")}
+              className="rounded px-2 py-1 text-xs hover:bg-panel-border transition-colors" title="Iluminação Geral">
+              💡 Iluminação
+            </button>
+            <button onClick={() => adicionarCircuito("tug-seco")}
+              className="rounded px-2 py-1 text-xs hover:bg-panel-border transition-colors" title="TUG Áreas Secas">
+              🔌 TUG Seco
+            </button>
+            <button onClick={() => adicionarCircuito("tug-molhado")}
+              className="rounded px-2 py-1 text-xs hover:bg-panel-border transition-colors" title="TUG Áreas Molhadas">
+              💧 TUG Molhado
+            </button>
+            <button onClick={() => adicionarCircuito("tue")}
+              className="rounded px-2 py-1 text-xs hover:bg-panel-border transition-colors" title="Equipamento específico">
+              ⚡ TUE
+            </button>
+          </div>
           <button
             onClick={agruparSelecionados}
             disabled={selecionados.size < 2}
@@ -397,6 +432,7 @@ export default function CircuitosTab({ projectId, tensaoV, circuitos, ambientes,
               <th className="px-3 py-2.5">Isolação</th>
               <th className="px-3 py-2.5">Ib (A)</th>
               <th className="px-3 py-2.5">Cabo (mm²)</th>
+              <th className="px-3 py-2.5 text-ok">Iz (A)</th>
               <th className="px-3 py-2.5">Queda (%)</th>
               <th className="px-3 py-2.5">Disjuntor (A)</th>
               <th className="px-3 py-2.5" />
@@ -489,6 +525,7 @@ export default function CircuitosTab({ projectId, tensaoV, circuitos, ambientes,
                   </td>
                   <td className="tabular px-3 py-2 text-muted">{c.ibA.toFixed(2)}</td>
                   <td className="tabular px-3 py-2">{c.secaoFinalMm2}</td>
+                  <td className="tabular px-3 py-2 font-medium text-ok">{c.ampacidadeFinalA?.toFixed(0) ?? "—"} A</td>
                   <td className={`tabular px-3 py-2 ${c.quedaPercent > 4 ? "text-danger" : "text-muted"}`}>{c.quedaPercent.toFixed(2)}</td>
                   <td className="tabular px-3 py-2 font-medium">{c.disjuntorA}</td>
                   <td className="px-3 py-2 text-right">
