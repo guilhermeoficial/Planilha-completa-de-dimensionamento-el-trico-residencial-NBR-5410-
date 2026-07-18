@@ -6,8 +6,10 @@ import { createClient } from "@/lib/supabase/client";
 import {
   calcularPrevisaoCarga,
   BANCO_TUES_PADRAO,
+  TIPOS_LAMPADA,
   type Ambiente,
   type TipoAmbiente,
+  type TipoLampada,
 } from "@/lib/nbr5410";
 import type { AmbienteRow, AmbienteTueRow } from "@/lib/types";
 import ImportarPlanilha from "./importar-planilha";
@@ -182,6 +184,16 @@ export default function AmbientesTab({ projectId, ambientes, tuesPorAmbiente, on
                         }}
                         className="tabular w-12 rounded border border-transparent bg-transparent px-1 py-0.5 hover:border-panel-border focus:border-accent focus:outline-none"
                       />
+                      <select
+                        defaultValue={(a as {tipo_lampada?: string}).tipo_lampada ?? "led-12w"}
+                        title="Tipo de lâmpada"
+                        onChange={(e) => atualizar(a.id, { tipo_lampada: e.target.value } as never)}
+                        className="ml-1 rounded border border-transparent bg-transparent px-1 py-0.5 text-xs text-muted hover:border-panel-border focus:border-accent focus:outline-none"
+                      >
+                        {TIPOS_LAMPADA.map(l => (
+                          <option key={l.id} value={l.id}>{l.nome}</option>
+                        ))}
+                      </select>
                     </td>
                     <td className="tabular px-4 py-2.5">{previsao.potIluminacaoVA}</td>
                     <td className="tabular px-4 py-2.5">{previsao.potTugVA}</td>

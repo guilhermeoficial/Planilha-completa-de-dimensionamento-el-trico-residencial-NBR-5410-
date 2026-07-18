@@ -95,8 +95,40 @@ export function potenciaAparente(potenciaW: number, fp: number): number {
 // Previsão de cargas por cômodo — NBR 5410 item 9.5
 // ---------------------------------------------------------------------------
 
-/** Potência de iluminação (VA) pela regra dos 100VA/6m² + 60VA por 4m² adicionais (arredondado p/ baixo) */
-export function calcPotenciaIluminacao(areaM2: number): number {
+/** Tipos de lâmpada com potência típica em W */
+export const TIPOS_LAMPADA = [
+  { id: "led-9w",   nome: "LED 9W",          potenciaW: 9  },
+  { id: "led-12w",  nome: "LED 12W",         potenciaW: 12 },
+  { id: "led-15w",  nome: "LED 15W",         potenciaW: 15 },
+  { id: "led-20w",  nome: "LED 20W (spot/downlight)", potenciaW: 20 },
+  { id: "led-40w",  nome: "LED 40W (linear/fita)", potenciaW: 40 },
+  { id: "fluo-15w", nome: "Fluorescente 15W", potenciaW: 15 },
+  { id: "fluo-20w", nome: "Fluorescente 20W", potenciaW: 20 },
+  { id: "fluo-40w", nome: "Fluorescente 40W", potenciaW: 40 },
+] as const;
+
+export type TipoLampada = typeof TIPOS_LAMPADA[number]["id"];
+
+/**
+ * Potência de iluminação (VA) baseada na lâmpada escolhida e nº de pontos.
+ * Se nenhuma lâmpada/pontos informados, usa a fórmula prescritiva da NBR 5410
+ * (100VA + 60VA por 4m² adicionais) como valor de segurança mínimo.
+ */
+export function calcPotenciaIluminacao(
+  areaM2: number,
+  pontosLuz?: number,
+  tipoLampada?: TipoLampada
+): number {
+  // Se o projetista informou pontos e tipo de lâmpada, usa valores reais
+  if (pontosLuz && pontosLuz > 0 && tipoLampada) {
+    const lampada = TIPOS_LAMPADA.find(l => l.id === tipoLampada);
+    if (lampada) {
+      const potenciaW = pontosLuz * lampada.potenciaW;
+      const fp = 0.92;
+      return Math.ceil(potenciaW / fp); // VA
+    }
+  }
+  // Fallback: fórmula prescritiva NBR 5410 (conservadora, era das incandescentes)
   if (areaM2 <= 6) return 100;
   const adicionais = Math.floor((areaM2 - 6) / 4);
   return 100 + adicionais * 60;
@@ -145,6 +177,7 @@ export interface Ambiente {
   areaM2: number;
   perimetroM: number;
   pontosLuzManual?: number | null;
+  tipoLampada?: TipoLampada | null;
   tuesVinculados: { tueNome: string; potenciaW: number; fp: number; quantidade: number }[];
 }
 
@@ -165,7 +198,11 @@ export function calcularPrevisaoCarga(ambiente: Ambiente): PrevisaoCarga {
   return {
     ambienteId: ambiente.id,
     pontosLuzMin: calcPontosLuz(ambiente.areaM2, ambiente.pontosLuzManual),
-    potIluminacaoVA: calcPotenciaIluminacao(ambiente.areaM2),
+    potIluminacaoVA: calcPotenciaIluminacao(
+      ambiente.areaM2,
+      ambiente.pontosLuzManual ?? undefined,
+      ambiente.tipoLampada ?? undefined
+    ),
     tugMin: tug.quantidade,
     potTugVA: tug.potenciaVA,
     qtdTue,

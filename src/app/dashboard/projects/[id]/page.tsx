@@ -242,6 +242,7 @@ export default function ProjectPage() {
         <CircuitosTab
           projectId={project.id}
           tensaoV={project.tensao_v}
+          tipoEntrada={project.tipo_entrada ?? "Monofásico"}
           circuitos={circuitos}
           ambientes={ambientes}
           tuesPorAmbiente={tuesPorAmbiente}

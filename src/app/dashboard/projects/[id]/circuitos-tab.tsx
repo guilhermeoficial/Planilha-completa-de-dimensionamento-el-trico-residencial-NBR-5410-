@@ -20,6 +20,7 @@ import BalancoCard from "./balanco-card";
 interface Props {
   projectId: string;
   tensaoV: number;
+  tipoEntrada: string;
   circuitos: CircuitoRow[];
   ambientes: AmbienteRow[];
   tuesPorAmbiente: Record<string, AmbienteTueRow[]>;
@@ -29,7 +30,7 @@ interface Props {
 const TIPOS: TipoCircuito[] = ["Iluminação", "TUG", "TUE"];
 const FASES: Fase[] = ["R", "S", "T"];
 
-export default function CircuitosTab({ projectId, tensaoV, circuitos, ambientes, tuesPorAmbiente, onChange }: Props) {
+export default function CircuitosTab({ projectId, tensaoV, tipoEntrada, circuitos, ambientes, tuesPorAmbiente, onChange }: Props) {
   const supabase = createClient();
   const [gerando, setGerando] = useState(false);
   const [balanceando, setBalanceando] = useState(false);
@@ -398,7 +399,13 @@ export default function CircuitosTab({ projectId, tensaoV, circuitos, ambientes,
             <Zap size={15} /> {balanceando ? "Balanceando..." : "Balancear fases automaticamente"}
           </button>
         </div>
-        <BalancoCard balanco={balanco} />
+        {tipoEntrada === "Trifásico" ? (
+          <BalancoCard balanco={balanco} />
+        ) : (
+          <div className="rounded-lg border border-panel-border bg-panel p-4 text-xs text-muted flex items-center justify-center text-center">
+            Balanço de fases disponível<br/>somente para entrada trifásica.
+          </div>
+        )}
       </div>
 
       <div className="mb-3 flex items-center gap-2">

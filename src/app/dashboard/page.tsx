@@ -15,6 +15,9 @@ export default function DashboardPage() {
   const [mostrarForm, setMostrarForm] = useState(false);
   const [nome, setNome] = useState("");
   const [cliente, setCliente] = useState("");
+  const [tensao, setTensao] = useState<127 | 220>(220);
+  const [tipoEntrada, setTipoEntrada] = useState<"Monofásico" | "Bifásico" | "Trifásico">("Monofásico");
+  const [concessionaria, setConcessionaria] = useState("COSERN");
   const [salvando, setSalvando] = useState(false);
   const [duplicando, setDuplicando] = useState<string | null>(null);
   const [nomeUsuario, setNomeUsuario] = useState("");
@@ -52,7 +55,12 @@ export default function DashboardPage() {
     setSalvando(true);
     const { data: userData } = await supabase.auth.getUser();
     if (!userData.user) return;
-    const { error } = await supabase.from("projects").insert({ nome, cliente, owner_id: userData.user.id });
+    const { error } = await supabase.from("projects").insert({
+      nome, cliente, owner_id: userData.user.id,
+      tensao_v: tensao,
+      tipo_entrada: tipoEntrada,
+      concessionaria: concessionaria,
+    });
     if (!error) { setNome(""); setCliente(""); setMostrarForm(false); carregar(); }
     setSalvando(false);
   }
@@ -252,6 +260,61 @@ export default function DashboardPage() {
                 <form onSubmit={criarProjeto} className="mb-3 flex flex-col gap-2">
                   <input required placeholder="Nome do projeto" value={nome} onChange={e => setNome(e.target.value)} className="rounded-lg border border-panel-border bg-bg px-3 py-2 text-xs" />
                   <input placeholder="Cliente (opcional)" value={cliente} onChange={e => setCliente(e.target.value)} className="rounded-lg border border-panel-border bg-bg px-3 py-2 text-xs" />
+                  <div className="grid grid-cols-2 gap-2">
+                    <div>
+                      <label className="mb-1 block text-xs text-muted">Tensão</label>
+                      <select value={tensao} onChange={e => setTensao(Number(e.target.value) as 127 | 220)} className="w-full rounded-lg border border-panel-border bg-bg px-3 py-2 text-xs">
+                        <option value={127}>127 V</option>
+                        <option value={220}>220 V</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="mb-1 block text-xs text-muted">Tipo de entrada</label>
+                      <select value={tipoEntrada} onChange={e => setTipoEntrada(e.target.value as "Monofásico" | "Bifásico" | "Trifásico")} className="w-full rounded-lg border border-panel-border bg-bg px-3 py-2 text-xs">
+                        <option value="Monofásico">Monofásico</option>
+                        <option value="Bifásico">Bifásico</option>
+                        <option value="Trifásico">Trifásico</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div>
+                    <label className="mb-1 block text-xs text-muted">Concessionária</label>
+                    <select value={concessionaria} onChange={e => setConcessionaria(e.target.value)} className="w-full rounded-lg border border-panel-border bg-bg px-3 py-2 text-xs">
+                      <optgroup label="Nordeste">
+                        <option value="COSERN">COSERN — Rio Grande do Norte</option>
+                        <option value="CELPE">CELPE — Pernambuco</option>
+                        <option value="COELBA">COELBA — Bahia</option>
+                        <option value="CEAL">CEAL — Alagoas</option>
+                        <option value="ENERGISA-PB">ENERGISA — Paraíba</option>
+                        <option value="ENERGISA-SE">ENERGISA — Sergipe</option>
+                        <option value="CEMAR">CEMAR — Maranhão</option>
+                        <option value="CEPISA">CEPISA — Piauí</option>
+                        <option value="COELCE">COELCE — Ceará</option>
+                      </optgroup>
+                      <optgroup label="Sudeste">
+                        <option value="CEMIG">CEMIG — Minas Gerais</option>
+                        <option value="LIGHT">LIGHT — Rio de Janeiro (capital)</option>
+                        <option value="ENEL-RJ">ENEL — Rio de Janeiro (interior)</option>
+                        <option value="ENEL-SP">ENEL — São Paulo</option>
+                        <option value="CPFL">CPFL — São Paulo (interior)</option>
+                        <option value="ESCELSA">ESCELSA — Espírito Santo</option>
+                      </optgroup>
+                      <optgroup label="Sul">
+                        <option value="COPEL">COPEL — Paraná</option>
+                        <option value="CELESC">CELESC — Santa Catarina</option>
+                        <option value="RGE">RGE/CPFL — Rio Grande do Sul</option>
+                        <option value="AES-SUL">AES Sul — Rio Grande do Sul</option>
+                      </optgroup>
+                      <optgroup label="Centro-Oeste / Norte">
+                        <option value="CEB">CEB — Distrito Federal</option>
+                        <option value="CELG">CELG — Goiás</option>
+                        <option value="ENERGISA-MT">ENERGISA — Mato Grosso</option>
+                        <option value="ENERSUL">ENERSUL — Mato Grosso do Sul</option>
+                        <option value="CELPA">CELPA — Pará</option>
+                        <option value="AMAZONAS-E">AMAZONAS ENERGIA — Amazonas</option>
+                      </optgroup>
+                    </select>
+                  </div>
                   <button disabled={salvando} className="rounded-lg bg-phase-s px-3 py-2 text-xs font-medium text-bg hover:opacity-90 disabled:opacity-50">
                     {salvando ? "Criando..." : "Criar projeto"}
                   </button>
