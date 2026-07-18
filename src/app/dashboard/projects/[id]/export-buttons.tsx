@@ -9,20 +9,42 @@ import type { ItemOrcamento } from "@/lib/comercial";
 import type { AmbienteRow, ProjectRow, CircuitoRow, MotorRow } from "@/lib/types";
 import type { BalancoFases } from "@/lib/nbr5410";
 
+// Paleta profissional — azul institucional + cinzas
+const AZUL      = [30, 64, 105]  as [number, number, number];
+const AZUL_CLARO = [220, 230, 242] as [number, number, number];
+const CINZA_LINHA = [245, 246, 248] as [number, number, number];
+const CINZA_BORDA = [180, 185, 195] as [number, number, number];
+
 const tableStyle = {
-  styles: { fontSize: 8, cellPadding: 4 },
-  headStyles: { fillColor: [242, 163, 61] as [number, number, number], textColor: 20, fontStyle: "bold" as const },
-  alternateRowStyles: { fillColor: [247, 247, 247] as [number, number, number] },
+  styles: { fontSize: 8, cellPadding: 3.5, lineColor: CINZA_BORDA, lineWidth: 0.3 },
+  headStyles: { fillColor: AZUL, textColor: 255, fontStyle: "bold" as const, fontSize: 8 },
+  alternateRowStyles: { fillColor: CINZA_LINHA },
+  columnStyles: {},
 };
 
 function secao(doc: jsPDF, titulo: string, y: number, margem: number): number {
+  // Fundo azul claro para o título da seção
+  doc.setFillColor(...AZUL_CLARO);
+  doc.rect(margem, y - 10, 515, 16, "F");
   doc.setFont("helvetica", "bold");
-  doc.setFontSize(11);
+  doc.setFontSize(9.5);
+  doc.setTextColor(...AZUL);
+  doc.text(titulo.toUpperCase(), margem + 6, y);
   doc.setTextColor(0);
-  doc.text(titulo, margem, y);
-  doc.setDrawColor(20);
-  doc.line(margem, y + 4, 555, y + 4);
-  return y + 18;
+  return y + 14;
+}
+
+function rodape(doc: jsPDF, paginaAtual: number, totalPaginas: number, projeto: string) {
+  const pageWidth = doc.internal.pageSize.getWidth();
+  const y = doc.internal.pageSize.getHeight() - 20;
+  doc.setFillColor(...AZUL);
+  doc.rect(0, y - 4, pageWidth, 18, "F");
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(7.5);
+  doc.setTextColor(255);
+  doc.text(`${projeto} — Memorial Elétrico Residencial — NBR 5410`, 40, y + 6);
+  doc.text(`Página ${paginaAtual} de ${totalPaginas}`, pageWidth - 60, y + 6);
+  doc.setTextColor(0);
 }
 
 interface Props {
@@ -116,33 +138,54 @@ export default function ExportButtons({
   function exportarPDF() {
     const doc = new jsPDF({ unit: "pt", format: "a4" });
     const margem = 40;
-    let y = 50;
+    const pageWidth = doc.internal.pageSize.getWidth();
+    let y = 0;
     const dataHoje = new Date().toLocaleDateString("pt-BR");
 
+    // ── Cabeçalho da capa ──────────────────────────────────────────────────
+    // Faixa azul superior
+    doc.setFillColor(...AZUL);
+    doc.rect(0, 0, pageWidth, 72, "F");
+
+    // Título principal
     doc.setFont("helvetica", "bold");
     doc.setFontSize(16);
-    doc.text("Memorial Descritivo — Instalação Elétrica Residencial", margem, y);
-    y += 22;
-
+    doc.setTextColor(255);
+    doc.text("MEMORIAL DESCRITIVO", margem, 30);
+    doc.setFontSize(11);
     doc.setFont("helvetica", "normal");
+    doc.text("Instalação Elétrica Residencial — NBR 5410", margem, 48);
+
+    // Data no canto superior direito
+    doc.setFontSize(8);
+    doc.text(dataHoje, pageWidth - margem, 30, { align: "right" });
+    doc.text("Voltis — Dimensionamento Elétrico", pageWidth - margem, 42, { align: "right" });
+
+    y = 88;
+
+    // ── Identificação do projeto ───────────────────────────────────────────
+    doc.setFillColor(...AZUL_CLARO);
+    doc.rect(margem, y, pageWidth - 2 * margem, project.responsavel_tecnico ? 42 : 28, "F");
+    doc.setFont("helvetica", "bold");
     doc.setFontSize(9);
-    doc.setTextColor(90);
-    doc.text(
-      `Projeto: ${project.nome}${project.cliente ? `  ·  Cliente: ${project.cliente}` : ""}  ·  Tensão: ${project.tensao_v}V  ·  Entrada: ${project.tipo_entrada}  ·  Emitido em ${dataHoje}`,
-      margem,
-      y
-    );
-    y += 14;
-    if (project.responsavel_tecnico || project.numero_art) {
+    doc.setTextColor(...AZUL);
+    doc.text("IDENTIFICAÇÃO DO PROJETO", margem + 8, y + 12);
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(8.5);
+    doc.setTextColor(30, 30, 30);
+    doc.text(`Projeto: ${project.nome}`, margem + 8, y + 24);
+    const col2 = margem + 200;
+    if (project.cliente) doc.text(`Cliente: ${project.cliente}`, col2, y + 24);
+    doc.text(`Tensão: ${project.tensao_v} V`, col2 + 130, y + 24);
+    doc.text(`Entrada: ${project.tipo_entrada}`, col2 + 190, y + 24);
+    if (project.responsavel_tecnico) {
       doc.text(
-        `Responsável técnico: ${project.responsavel_tecnico ?? "—"}${project.registro_profissional ? `  ·  ${project.registro_profissional}` : ""}${project.numero_art ? `  ·  ART/RRT nº ${project.numero_art}` : ""}`,
-        margem,
-        y
+        `Resp. Técnico: ${project.responsavel_tecnico}${project.registro_profissional ? "  ·  " + project.registro_profissional : ""}${project.numero_art ? "  ·  ART/RRT nº " + project.numero_art : ""}`,
+        margem + 8, y + 37
       );
-      y += 14;
     }
+    y += (project.responsavel_tecnico ? 42 : 28) + 18;
     doc.setTextColor(0);
-    y += 6;
 
     y = secao(doc, "0. Resumo de demanda geral", y, margem);
     autoTable(doc, {
@@ -156,7 +199,7 @@ export default function ExportButtons({
       ]],
       ...tableStyle,
     });
-    y = (doc as unknown as { lastAutoTable: { finalY: number } }).lastAutoTable.finalY + 22;
+    y = (doc as unknown as { lastAutoTable: { finalY: number } }).lastAutoTable.finalY + 18;
 
     y = secao(doc, "1. Ambientes e previsão de carga", y, margem);
     autoTable(doc, {
@@ -166,18 +209,18 @@ export default function ExportButtons({
       body: ambientes.map((a) => [a.nome, a.tipo, Number(a.area_m2).toFixed(1), Number(a.perimetro_m).toFixed(1)]),
       ...tableStyle,
     });
-    y = (doc as unknown as { lastAutoTable: { finalY: number } }).lastAutoTable.finalY + 22;
+    y = (doc as unknown as { lastAutoTable: { finalY: number } }).lastAutoTable.finalY + 18;
 
     y = secao(doc, "2. Memorial de circuitos", y, margem);
     autoTable(doc, {
       startY: y,
       margin: { left: margem, right: margem },
-      head: [["Nº", "Descrição", "Tipo", "Pontos", "Fase", "VA", "Comp.(m)", "Isol.", "Ib(A)", "Cabo(mm²)", "Queda(%)", "Disj.(A)"]],
+      head: [["Nº", "Descrição", "Tipo", "Pts", "Fase", "VA", "m", "Isol.", "Ib(A)", "Cabo(mm²)", "Iz(A)", "ΔV(%)", "Disj.(A)"]],
       body: circuitosCalculados.map((c) => {
         const original = circuitosOriginais.find((o) => o.id === c.id);
         return [
           c.numero, c.descricao, c.tipo, original?.qtd_pontos ?? 1, c.fase, c.potenciaVA, c.comprimentoM, c.isolacao,
-          c.ibA.toFixed(2), c.secaoFinalMm2, c.quedaPercent.toFixed(2), c.disjuntorA,
+          c.ibA.toFixed(2), c.secaoFinalMm2, c.ampacidadeFinalA?.toFixed(0) ?? "—", c.quedaPercent.toFixed(2), c.disjuntorA,
         ];
       }),
       styles: { ...tableStyle.styles, fontSize: 7.5 },
@@ -240,6 +283,13 @@ export default function ExportButtons({
       margem,
       Math.min(y + 10, 800)
     );
+
+    // Rodapé em todas as páginas
+    const totalPaginas = doc.getNumberOfPages();
+    for (let p = 1; p <= totalPaginas; p++) {
+      doc.setPage(p);
+      rodape(doc, p, totalPaginas, project.nome);
+    }
 
     doc.save(`${slug(project.nome)}-memorial-eletrico.pdf`);
   }

@@ -198,6 +198,7 @@ export interface CircuitoCalculado extends Circuito {
   quedaPercent: number;
   secaoFinalMm2: number;
   disjuntorA: number;
+  ampacidadeFinalA: number; // capacidade de condução do cabo final (A)
 }
 
 function ampacidade(linha: LinhaCabo, isolacao: Isolacao): number {
@@ -250,7 +251,10 @@ export function calcularCircuito(c: Circuito): CircuitoCalculado {
     queda = quedaTensao(linha, c.comprimentoM, ibCorrigidaA, c.tensaoV);
   }
 
-  const secaoFinalMm2 = Math.max(secaoCaboMm2, 1.5);
+  const secaoFinalMm2 = Math.max(secaoCaboMm2, c.tipo === "TUG" ? 2.5 : 1.5);
+  // Recalcular linha final para a seção definitiva (após aplicar mínimo)
+  const linhaFinal = TABELA_CABOS.find((l) => l.bitola === secaoFinalMm2) ?? linha;
+  const ampacidadeFinalA = ampacidade(linhaFinal, c.isolacao);
   const disjuntorA = escolherDisjuntor(ibCorrigidaA, ampacidade(linha, c.isolacao));
 
   return {
@@ -262,6 +266,7 @@ export function calcularCircuito(c: Circuito): CircuitoCalculado {
     quedaPercent: queda * 100,
     secaoFinalMm2,
     disjuntorA,
+    ampacidadeFinalA,
   };
 }
 
