@@ -177,6 +177,20 @@ export default function CircuitosTab({ projectId, tensaoV, circuitos, ambientes,
     // Tipos de ambiente molhado (NBR 5410)
     const tiposMolhados = ["Banheiro", "Serviço/Cozinha"];
 
+    // Equipamentos que realmente exigem circuito TUE exclusivo (fixos, alta potência)
+    function ehTUEverdadeiro(nome: string, potenciaW: number): boolean {
+      const n = nome.toLowerCase();
+      return (
+        n.includes("ar condicionado") || n.includes("split") || n.includes(" ac ") ||
+        n.includes("chuveiro") || n.includes("aquecedor") || n.includes("ducha") ||
+        n.includes("cooktop") || n.includes("indução") || n.includes("cook") ||
+        n.includes("forno embutir") || n.includes("forno elétrico embutir") ||
+        n.includes("sauna") || n.includes("jacuzzi") || n.includes("hidro") ||
+        n.includes("bomba") || n.includes("piscina") || n.includes("elevador") ||
+        potenciaW >= 4000  // equipamentos acima de 4kW sempre TUE
+      );
+    }
+
     // Acumular potências por categoria
     let potIlumTotal = 0;
     let pontosIlumTotal = 0;
@@ -215,14 +229,28 @@ export default function CircuitosTab({ projectId, tensaoV, circuitos, ambientes,
         }
       }
 
-      // TUEs — cada um individual
+      // TUEs — separar verdadeiros TUEs dos que vão para TUG
       for (const t of tues) {
-        tuesIndividuais.push({
-          nome: `${t.nome}`,
-          potenciaVA: Number(t.potencia_w) / (Number(t.fp) || 1) * t.quantidade,
-          fp: Number(t.fp),
-          qtd: t.quantidade,
-        });
+        const potW = Number(t.potencia_w) * t.quantidade;
+        if (ehTUEverdadeiro(t.nome, potW)) {
+          // TUE real → circuito individual
+          tuesIndividuais.push({
+            nome: t.nome,
+            potenciaVA: potW / (Number(t.fp) || 1),
+            fp: Number(t.fp),
+            qtd: t.quantidade,
+          });
+        } else {
+          // Vai para TUG do ambiente correspondente
+          const potVA = potW / (Number(t.fp) || 1);
+          if (eMolhado) {
+            potTugMolhadoTotal += potVA;
+            pontossTugMolhado += t.quantidade;
+          } else {
+            potTugSecoTotal += potVA;
+            pontosTugSeco += t.quantidade;
+          }
+        }
       }
     }
 
