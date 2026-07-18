@@ -155,11 +155,25 @@ export default function CircuitosTab({ projectId, tensaoV, circuitos, ambientes,
 
   /** Gera os circuitos automaticamente a partir da previsão de carga dos ambientes cadastrados */
   async function gerarCircuitosDosAmbientes() {
+    // Verificar se já há circuitos — pedir confirmação para não duplicar
+    if (circuitos.length > 0) {
+      const confirmar = window.confirm(
+        `Já existem ${circuitos.length} circuito(s) neste projeto.\n\nDeseja SUBSTITUIR todos os circuitos não-bloqueados pelos gerados automaticamente?\n\nCircuitos bloqueados serão mantidos.`
+      );
+      if (!confirmar) return;
+      // Remover circuitos não-bloqueados antes de gerar novos
+      const naoBloquedados = circuitos.filter((c) => !c.bloqueado).map((c) => c.id);
+      if (naoBloquedados.length > 0) {
+        await supabase.from("circuitos").delete().in("id", naoBloquedados);
+      }
+    }
+
     setGerando(true);
     const fasesCiclo: Fase[] = ["R", "S", "T"];
     let faseIdx = 0;
     const novos: Omit<CircuitoRow, "id">[] = [];
-    let numero = circuitos.length ? Math.max(...circuitos.map((c) => c.numero)) + 1 : 1;
+    const bloqueados = circuitos.filter((c) => c.bloqueado);
+    let numero = bloqueados.length ? Math.max(...bloqueados.map((c) => c.numero)) + 1 : 1;
 
     for (const a of ambientes) {
       const tues = tuesPorAmbiente[a.id] ?? [];

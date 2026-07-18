@@ -65,6 +65,7 @@ export default function QuestoesPage() {
   const [respostas, setRespostas] = useState<Record<string, RegistroResposta>>({});
   const [carregandoRespostas, setCarregandoRespostas] = useState(true);
   const [usuarioId, setUsuarioId] = useState<string | null>(null);
+  const [temFerramentas, setTemFerramentas] = useState(false);
 
   const [selecaoAtual, setSelecaoAtual] = useState<Record<string, number>>({});
   const [confiancaAtual, setConfiancaAtual] = useState<Record<string, Confianca>>({});
@@ -96,6 +97,13 @@ export default function QuestoesPage() {
         return;
       }
       setUsuarioId(userData.user.id);
+      // Verificar se o plano inclui ferramentas
+      const { data: perfil } = await supabase
+        .from("users")
+        .select("plano")
+        .eq("id", userData.user.id)
+        .single();
+      setTemFerramentas(perfil?.plano === "combo" || perfil?.plano === "ferramentas" || perfil?.plano === "questoes" || perfil?.plano === "ensino");
       const { data } = await supabase
         .from("respostas_questoes")
         .select("questao_id, alternativa_index, correta, confianca")
@@ -259,6 +267,14 @@ export default function QuestoesPage() {
     [desempenhoAssunto]
   );
 
+  function ferramentaParaAssunto(assunto: string): string {
+    const a = assunto.toLowerCase();
+    if (a.includes("trifásico") || a.includes("estrela") || a.includes("triângulo")) return "/dashboard/ferramentas/conversao-estrela-triangulo";
+    if (a.includes("queda") || a.includes("cabo") || a.includes("condutor") || a.includes("dimensionamento")) return "/dashboard/ferramentas/queda-de-tensao";
+    if (a.includes("joule") || a.includes("perda") || a.includes("aquecimento")) return "/dashboard/ferramentas/perda-joule";
+    return "/dashboard/ferramentas";
+  }
+
   return (
     <div className="mx-auto max-w-5xl px-6 py-10">
       <Link href="/dashboard/cursos" className="mb-4 inline-flex items-center gap-1.5 text-sm text-muted hover:text-text">
@@ -376,38 +392,6 @@ export default function QuestoesPage() {
         </div>
       )}
 
-      {/* ── Banner de Ferramentas ── */}
-      {(areaGrande === "Eletrotécnica" || areaGrande === "Todas") && (
-        <div className="mb-4 rounded-lg border border-accent/20 bg-accent/5 p-4">
-          <div className="flex items-start justify-between gap-4">
-            <div className="flex items-start gap-3">
-              <Wrench size={18} className="mt-0.5 shrink-0 text-accent" />
-              <div>
-                <p className="text-sm font-semibold text-accent">Ferramentas de cálculo</p>
-                <p className="mt-0.5 text-xs text-muted leading-relaxed">
-                  Resolva circuitos mais rápido com nossas calculadoras — conversão estrela-triângulo,
-                  queda de tensão, dimensionamento de cabos e mais.
-                </p>
-              </div>
-            </div>
-            <div className="flex shrink-0 flex-col gap-1.5">
-              <Link
-                href="/dashboard/ferramentas"
-                className="rounded-lg bg-accent px-3 py-1.5 text-xs font-medium text-bg hover:opacity-90 transition-opacity text-center"
-              >
-                Abrir ferramentas
-              </Link>
-              <Link
-                href="/assinar"
-                className="rounded-lg border border-accent/40 px-3 py-1.5 text-xs text-accent hover:bg-accent/10 transition-colors text-center"
-              >
-                Ver planos
-              </Link>
-            </div>
-          </div>
-        </div>
-      )}
-
       <div className="mb-6 rounded-lg border border-panel-border bg-panel p-4">
         <div className="mb-3 flex items-center justify-between">
           <p className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-muted">
@@ -465,7 +449,7 @@ export default function QuestoesPage() {
 
           return (
             <div key={q.id} className="overflow-hidden rounded-lg border border-panel-border bg-panel">
-              <div className="flex items-center gap-2 border-b border-panel-border bg-bg-elevated px-4 py-2.5 font-mono text-xs text-muted">
+              <div className="group flex items-center gap-2 border-b border-panel-border bg-bg-elevated px-4 py-2.5 font-mono text-xs text-muted">
                 <span className="rounded bg-panel px-1.5 py-0.5 font-semibold text-text">{idx + 1}</span>
                 <span className="rounded bg-panel px-1.5 py-0.5">{q.id.toUpperCase()}</span>
                 <span>{q.areaGrande} › {q.assunto}</span>
@@ -474,8 +458,32 @@ export default function QuestoesPage() {
                     <Sparkles size={11} /> Inédita
                   </span>
                 )}
+                {/* Ícone calculadora — aparece no hover */}
+                {q.areaGrande === "Eletrotécnica" && (
+                  <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity">
+                    {temFerramentas ? (
+                      <Link
+                        href={ferramentaParaAssunto(q.assunto)}
+                        title="Abrir calculadora para este assunto"
+                        className="flex items-center gap-1 rounded-md border border-accent/30 bg-accent/10 px-2 py-0.5 text-accent hover:bg-accent/20 transition-colors font-sans"
+                      >
+                        <Wrench size={11} />
+                        <span>Calculadora</span>
+                      </Link>
+                    ) : (
+                      <Link
+                        href="/assinar"
+                        title="Assine para acessar as calculadoras"
+                        className="flex items-center gap-1 rounded-md border border-muted/30 bg-panel px-2 py-0.5 text-muted hover:text-accent hover:border-accent/30 transition-colors font-sans"
+                      >
+                        <Wrench size={11} />
+                        <span>Calculadora</span>
+                      </Link>
+                    )}
+                  </div>
+                )}
                 <span
-                  className={`ml-auto rounded px-1.5 py-0.5 ${
+                  className={`rounded px-1.5 py-0.5 ${
                     q.dificuldade === "Fácil" ? "bg-ok/15 text-ok" : q.dificuldade === "Médio" ? "bg-warn/15 text-warn" : "bg-danger/15 text-danger"
                   }`}
                 >
