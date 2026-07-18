@@ -10,12 +10,13 @@ import { calcularMemorial, calcularBalanco, calcularResumoDemanda, type Circuito
 import { calcularOrcamento, PRECOS_PADRAO, type PrecosReferencia } from "@/lib/comercial";
 import AmbientesTab from "./ambientes-tab";
 import CircuitosTab from "./circuitos-tab";
+import MemorialCalculoTab from "./memorial-calculo-tab";
 import OrcamentoCard from "./orcamento-card";
 import MotoresTab from "./motores-tab";
 import ExportButtons from "./export-buttons";
 import ResumoTab from "./resumo-tab";
 
-type Tab = "resumo" | "ambientes" | "circuitos" | "orcamento" | "industrial";
+type Tab = "resumo" | "ambientes" | "circuitos" | "memorial" | "orcamento" | "industrial";
 
 export default function ProjectPage() {
   const params = useParams<{ id: string }>();
@@ -213,6 +214,7 @@ export default function ProjectPage() {
           ["resumo", "Resumo"],
           ["ambientes", "Ambientes & cargas"],
           ["circuitos", "Circuitos & memorial"],
+          ["memorial", "Memorial de cálculo"],
           ["orcamento", "Orçamento"],
           ["industrial", "Industrial / Extra"],
         ] as [Tab, string][]).map(([key, label]) => (
@@ -247,6 +249,16 @@ export default function ProjectPage() {
           ambientes={ambientes}
           tuesPorAmbiente={tuesPorAmbiente}
           onChange={carregar}
+        />
+      )}
+      {tab === "memorial" && (
+        <MemorialCalculoTab
+          project={project}
+          ambientes={ambientes}
+          circuitosCalculados={circuitosCalculados}
+          circuitosOriginais={circuitos}
+          resumoDemanda={resumoDemanda}
+          balanco={balanco}
         />
       )}
       {tab === "orcamento" && (

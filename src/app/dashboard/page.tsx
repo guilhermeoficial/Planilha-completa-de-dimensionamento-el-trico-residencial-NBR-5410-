@@ -15,7 +15,7 @@ export default function DashboardPage() {
   const [mostrarForm, setMostrarForm] = useState(false);
   const [nome, setNome] = useState("");
   const [cliente, setCliente] = useState("");
-  const [tensao, setTensao] = useState<127 | 220>(220);
+  const [tensao, setTensao] = useState<110 | 127 | 220>(220);
   const [tipoEntrada, setTipoEntrada] = useState<"Monofásico" | "Bifásico" | "Trifásico">("Monofásico");
   const [concessionaria, setConcessionaria] = useState("COSERN");
   const [salvando, setSalvando] = useState(false);
@@ -263,7 +263,8 @@ export default function DashboardPage() {
                   <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="mb-1 block text-xs text-muted">Tensão</label>
-                      <select value={tensao} onChange={e => setTensao(Number(e.target.value) as 127 | 220)} className="w-full rounded-lg border border-panel-border bg-bg px-3 py-2 text-xs">
+                      <select value={tensao} onChange={e => setTensao(Number(e.target.value) as 110 | 127 | 220)} className="w-full rounded-lg border border-panel-border bg-bg px-3 py-2 text-xs">
+                        <option value={110}>110 V</option>
                         <option value={127}>127 V</option>
                         <option value={220}>220 V</option>
                       </select>
