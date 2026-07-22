@@ -172,35 +172,35 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Causa", "Concessão", "Conclusão", "Condição"], respostaCorreta: 1,
 
-    explicacao: "Questao de **interpretacao de texto**: identificar ideia principal, distinguir fatos de opiniao, reconhecer tema central, inferir sentidos implicitos. Nas provas CEBRASPE/FCC, a alternativa correta parafraseia fielmente o texto, sem distorcoes ou adicao de informacoes que nao constam no original.",
+    explicacao: "Questao de **interpretacao de texto**: identificar ideia principal, distinguir fatos de opiniao, reconhecer tema central, inferir sentidos implicitos. Nas provas CEBRASPE/FCC, a alternativa correta parafraseia fielmente o texto, sem distorcoes ou adicao de informacoes que nao constam no original." },
   { id: "p2", areaGrande: "Português", assunto: "Concordância verbal", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
 
     enunciado: "Assinale a alternativa em que a concordância verbal está correta:",
 
     alternativas: ["Fazem dois anos que ele trabalha na planta.", "Faz dois anos que ele trabalha na planta.", "Faziam dois anos que ele trabalhava.", "Fazem dois ano que ele trabalha."], respostaCorreta: 1,
 
-    explicacao: "Em expressoes de **tempo transcorrido**, o verbo 'fazer' e **impessoal** (3a pessoa do singular, sem sujeito): 'Faz dois anos que nao te vejo.' Mesmo com sujeito plural: 'Faz tres dias que os documentos chegaram' (correto). Erro comum: 'Fazem dois anos...' — incorreto, pois 'fazer' impessoal nao tem plural.",
+    explicacao: "Em expressoes de **tempo transcorrido**, o verbo 'fazer' e **impessoal** (3a pessoa do singular, sem sujeito): 'Faz dois anos que nao te vejo.' Mesmo com sujeito plural: 'Faz tres dias que os documentos chegaram' (correto). Erro comum: 'Fazem dois anos...' — incorreto, pois 'fazer' impessoal nao tem plural." },
   { id: "p3", areaGrande: "Português", assunto: "Crase", banca: "CESGRANRIO (estilo)", ano: 2022, dificuldade: "Médio",
 
     enunciado: "Assinale a frase com o emprego correto da crase:",
 
     alternativas: ["Entreguei o relatório à diretoria.", "Entreguei o relatório a diretoria.", "Cheguei a hora prevista.", "Refiro-me à ele com respeito."], respostaCorreta: 0,
 
-    explicacao: "O sinal de **crase** indica a fusao da preposicao 'a' com o artigo feminino 'a(s)'. Usa-se antes de substantivos femininos determinados: 'Fui **a** diretoria.' Nao se usa crase antes de: nomes masculinos, verbos, pronomes pessoais, nomes proprios masculinos, nem diante de palavras no plural sem artigo.",
+    explicacao: "O sinal de **crase** indica a fusao da preposicao 'a' com o artigo feminino 'a(s)'. Usa-se antes de substantivos femininos determinados: 'Fui **a** diretoria.' Nao se usa crase antes de: nomes masculinos, verbos, pronomes pessoais, nomes proprios masculinos, nem diante de palavras no plural sem artigo." },
   { id: "p4", areaGrande: "Português", assunto: "Regência verbal", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Médio",
 
     enunciado: "Assinale a alternativa em que a regência verbal está de acordo com a norma-padrão:",
 
     alternativas: ["Assisti o filme ontem.", "Assisti ao filme ontem.", "Obedeço o regulamento.", "Aspiro o cargo de supervisor (no sentido de desejar)."], respostaCorreta: 1,
 
-    explicacao: "O verbo 'assistir' no sentido de **ver/presenciar** e **transitivo indireto**, exigindo a preposicao 'a': 'Assistiu **ao** acidente.' No sentido de ajudar: tambem transitivo indireto. No sentido de caber/pertencer: 'Assiste **ao** reu o direito de defesa.' Em todos os sentidos tecnicos, exige preposicao 'a'.",
+    explicacao: "O verbo 'assistir' no sentido de **ver/presenciar** e **transitivo indireto**, exigindo a preposicao 'a': 'Assistiu **ao** acidente.' No sentido de ajudar: tambem transitivo indireto. No sentido de caber/pertencer: 'Assiste **ao** reu o direito de defesa.' Em todos os sentidos tecnicos, exige preposicao 'a'." },
   { id: "p5", areaGrande: "Português", assunto: "Pontuação", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Fácil",
 
     enunciado: "Assinale a frase corretamente pontuada:",
 
     alternativas: ["O técnico, responsável pela manutenção, chegou atrasado.", "O técnico responsável, pela manutenção chegou atrasado.", "O técnico responsável pela manutenção, chegou, atrasado.", "O técnico, responsável, pela manutenção chegou, atrasado."], respostaCorreta: 0,
 
-    explicacao: "**Aposto explicativo**: separado por virgulas, entre virgulas ou entre travessoes. Pode ser retirado sem alterar o sentido essencial. 'O engenheiro, **responsavel pela manutencao**, revisou o painel.' **Aposto restritivo**: identifica/delimita um subconjunto — sem virgulas: 'O tecnico **Joao** revisou o painel.'",
+    explicacao: "**Aposto explicativo**: separado por virgulas, entre virgulas ou entre travessoes. Pode ser retirado sem alterar o sentido essencial. 'O engenheiro, **responsavel pela manutencao**, revisou o painel.' **Aposto restritivo**: identifica/delimita um subconjunto — sem virgulas: 'O tecnico **Joao** revisou o painel.'" },
   { id: "p6", areaGrande: "Português", assunto: "Tipologia textual", banca: "CESGRANRIO (estilo)", ano: 2021, dificuldade: "Fácil",
 
     enunciado: "Um manual de instruções de operação de um equipamento é predominantemente do tipo textual:",
@@ -286,14 +286,14 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["A soma dos valores de A1 até A10", "A média dos valores de A1 e A10", "A contagem de células preenchidas entre A1 e A10", "A multiplicação de A1 por A10"], respostaCorreta: 0,
 
-    explicacao: "=SOMA(A1:A10) realiza a **soma** de todos os valores numericos no intervalo de A1 ate A10. Operador : (dois pontos) define um intervalo contiguo. NAO confundir: =MEDIA() calcula media; =CONT.VALORES() conta celulas nao vazias; =PRODUTO() multiplica. Todas as formulas Excel comecam com = (sinal de igual).",
+    explicacao: "=SOMA(A1:A10) realiza a **soma** de todos os valores numericos no intervalo de A1 ate A10. Operador : (dois pontos) define um intervalo contiguo. NAO confundir: =MEDIA() calcula media; =CONT.VALORES() conta celulas nao vazias; =PRODUTO() multiplica. Todas as formulas Excel comecam com = (sinal de igual)." },
   { id: "ic3", areaGrande: "Informática", assunto: "Segurança da informação", banca: "CESGRANRIO (estilo)", ano: 2022, dificuldade: "Médio",
 
     enunciado: "Um e-mail suspeito solicitando dados bancários, fingindo ser de uma instituição confiável, caracteriza um ataque de:",
 
     alternativas: ["Phishing", "Ransomware", "Brute force", "Spoofing de IP"], respostaCorreta: 0,
 
-    explicacao: "**Phishing** e engenharia social via mensagem eletronica: o atacante se passa por entidade confiavel (banco, governo) para roubar credenciais ou dados financeiros. Sinais: remetente com dominio suspeito, urgencia artificial, links com erros no dominio. Nunca clicar em links suspeitos.",
+    explicacao: "**Phishing** e engenharia social via mensagem eletronica: o atacante se passa por entidade confiavel (banco, governo) para roubar credenciais ou dados financeiros. Sinais: remetente com dominio suspeito, urgencia artificial, links com erros no dominio. Nunca clicar em links suspeitos." },
   { id: "ic4", areaGrande: "Informática", assunto: "Redes de computadores", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
 
     enunciado: "O protocolo responsável por traduzir nomes de domínio (como exemplo.com.br) em endereços IP é o:",
@@ -395,7 +395,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Lei de Ampère / Oersted", "Lei de Coulomb", "Lei de Ohm", "Efeito Joule"], respostaCorreta: 0,
 
-    explicacao: "O eletromagnetismo foi descoberto por Oersted (1820): fio com corrente deflecte agulha magnetica. A Lei de Ampere: $$\oint \vec{H} \cdot d\vec{l} = \sum I_{enc}$$. Base do funcionamento de transformadores, motores e geradores.",
+    explicacao: "O eletromagnetismo foi descoberto por Oersted (1820): fio com corrente deflecte agulha magnetica. A Lei de Ampere: $$\oint \vec{H} \cdot d\vec{l} = \sum I_{enc}$$. Base do funcionamento de transformadores, motores e geradores." },
 
   { id: "e11", areaGrande: "Eletrotécnica", assunto: "Indução eletromagnética", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
 
@@ -474,7 +474,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["DR (dispositivo residual / interruptor diferencial)", "Disjuntor termomagnético comum", "Fusível NH", "Contator"], respostaCorreta: 0,
 
-    explicacao: "IDR compara $$I_{fase}$$ e $$I_{neutro}$$. Se $$|I_{fase} - I_{neutro}| \geq \Delta I_{limiar}$$, o dispositivo desarma em menos de 30 ms. Sensibilidade de 30 mA e o limiar de seguranca — abaixo disso, risco de fibrilacao ventricular e reduzido.",
+    explicacao: "IDR compara $$I_{fase}$$ e $$I_{neutro}$$. Se $$|I_{fase} - I_{neutro}| \geq \Delta I_{limiar}$$, o dispositivo desarma em menos de 30 ms. Sensibilidade de 30 mA e o limiar de seguranca — abaixo disso, risco de fibrilacao ventricular e reduzido." },
 
   { id: "e19", areaGrande: "Eletrotécnica", assunto: "Aterramento", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
 
@@ -498,7 +498,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Constatação da ausência de tensão", "Instalação de sinalização de impedimento de reenergização", "Seccionamento", "Proteção dos elementos energizados existentes na zona controlada"], respostaCorreta: 0,
 
-    explicacao: "NR-10 §10.1 — Sequencia SIVAP: (1) Seccionamento, (2) Impedimento de reenergizacao, (3) Verificacao de ausencia de tensao (com detector de tensao adequado), (4) Aterramento temporario com equipotencializacao, (5) Protecao de pontos vizinhos energizados. Todas obrigatorias nessa ordem.",
+    explicacao: "NR-10 §10.1 — Sequencia SIVAP: (1) Seccionamento, (2) Impedimento de reenergizacao, (3) Verificacao de ausencia de tensao (com detector de tensao adequado), (4) Aterramento temporario com equipotencializacao, (5) Protecao de pontos vizinhos energizados. Todas obrigatorias nessa ordem." },
 
   { id: "e21", areaGrande: "Eletrotécnica", assunto: "NR10", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Fácil",
 
@@ -506,7 +506,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Qualificados, capacitados ou autorizados, conforme o caso", "Apenas engenheiros eletricistas", "Qualquer colaborador da empresa", "Apenas com mais de 5 anos de experiência"], respostaCorreta: 0,
 
-    explicacao: "NR-10 classifica: Qualificado (curso de 40h em eletricidade), Capacitado (treinamento pratico pelo empregador), Habilitado (qualificado + registro CREA/CFT). Tensao acima de 1 kV exige profissional **habilitado**. O curso NR-10 SEP (Sistema Eletrico de Potencia) e adicional para trabalhos em alta tensao.",
+    explicacao: "NR-10 classifica: Qualificado (curso de 40h em eletricidade), Capacitado (treinamento pratico pelo empregador), Habilitado (qualificado + registro CREA/CFT). Tensao acima de 1 kV exige profissional **habilitado**. O curso NR-10 SEP (Sistema Eletrico de Potencia) e adicional para trabalhos em alta tensao." },
 
   { id: "e22", areaGrande: "Eletrotécnica", assunto: "EPI/EPC", banca: "CESGRANRIO (estilo)", ano: 2022, dificuldade: "Fácil",
 
@@ -530,7 +530,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Em série com o circuito", "Em paralelo com o circuito", "Em qualquer configuração, desde que próximo à fonte", "Diretamente nos terminais da bateria, isolado do circuito"], respostaCorreta: 0,
 
-    explicacao: "Amperímetro: $$R_{int} \approx 0\,\Omega$$ — ligado em SERIE no circuito. Voltímetro: $$R_{int} \to \infty$$ — ligado em PARALELO. Erro de ligacao: amperímetro em paralelo = curto-circuito; voltímetro em serie = circuito praticamente aberto. Esses erros podem danificar irreversivelmente os instrumentos.",
+    explicacao: "Amperímetro: $$R_{int} \approx 0\,\Omega$$ — ligado em SERIE no circuito. Voltímetro: $$R_{int} \to \infty$$ — ligado em PARALELO. Erro de ligacao: amperímetro em paralelo = curto-circuito; voltímetro em serie = circuito praticamente aberto. Esses erros podem danificar irreversivelmente os instrumentos." },
 
   { id: "e24", areaGrande: "Eletrotécnica", assunto: "Instrumentação", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
 
@@ -538,7 +538,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Muito alta (tendendo ao infinito)", "Muito baixa (tendendo a zero)", "Igual à resistência do circuito medido", "Indiferente ao valor"], respostaCorreta: 0,
 
-    explicacao: "Voltímetro com $$R_{int} \to \infty$$: corrente desviada $$I_v = V/R_{int} \to 0$$. Nao perturba o circuito. Voltímetros digitais modernos: $$R_{int} = 10\,M\Omega$$. Analogicos: $$R_{int} = sensibilidade \times \text{fundo de escala}$$, tipicamente $$20\,k\Omega/V$$. Quanto maior a sensibilidade, mais precisa a medicao em circuitos de alta impedancia.",
+    explicacao: "Voltímetro com $$R_{int} \to \infty$$: corrente desviada $$I_v = V/R_{int} \to 0$$. Nao perturba o circuito. Voltímetros digitais modernos: $$R_{int} = 10\,M\Omega$$. Analogicos: $$R_{int} = sensibilidade \times \text{fundo de escala}$$, tipicamente $$20\,k\Omega/V$$. Quanto maior a sensibilidade, mais precisa a medicao em circuitos de alta impedancia." },
 
   { id: "e25", areaGrande: "Eletrotécnica", assunto: "Instrumentação", banca: "CESGRANRIO (estilo)", ano: 2022, dificuldade: "Difícil",
 
@@ -562,7 +562,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Diodo", "Resistor", "Capacitor", "Indutor"], respostaCorreta: 0,
 
-    explicacao: "Diodo de silicio: conduz quando $$V_{AK} \geq 0{,}6\,V$$. Equacao de Shockley: $$I = I_S(e^{V/V_T} - 1)$$ onde $$V_T = 26\,mV$$ a 25 graus C. Polarizacao reversa: $$I \approx I_S$$ (microamperes) ate a tensao de ruptura $$V_{BR}$$. Zener opera intencionalmente na regiao de ruptura reversa para regulacao de tensao.",
+    explicacao: "Diodo de silicio: conduz quando $$V_{AK} \geq 0{,}6\,V$$. Equacao de Shockley: $$I = I_S(e^{V/V_T} - 1)$$ onde $$V_T = 26\,mV$$ a 25 graus C. Polarizacao reversa: $$I \approx I_S$$ (microamperes) ate a tensao de ruptura $$V_{BR}$$. Zener opera intencionalmente na regiao de ruptura reversa para regulacao de tensao." },
 
   { id: "e27", areaGrande: "Eletrotécnica", assunto: "Eletrônica básica", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
 
@@ -594,7 +594,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Uma bobina eletromagnética que fecha os contatos de força", "Diretamente pela tensão de força do motor", "Apenas por botoeira mecânica sem energia elétrica", "Pressão hidráulica"], respostaCorreta: 0,
 
-    explicacao: "Contator: bobina (bobina de comando, tipicamente 24 V ou 220 V CA) energizada cria campo magnetico → atrai o nucleo movel → fecha contatos principais (3P para trifasico) e auxiliares (NA e NF para circuito de comando). Ao desenergizar: mola retorna os contatos. Contatos principais dimensionados para correntes de carga (motores).",
+    explicacao: "Contator: bobina (bobina de comando, tipicamente 24 V ou 220 V CA) energizada cria campo magnetico → atrai o nucleo movel → fecha contatos principais (3P para trifasico) e auxiliares (NA e NF para circuito de comando). Ao desenergizar: mola retorna os contatos. Contatos principais dimensionados para correntes de carga (motores)." },
 
   { id: "e30", areaGrande: "Eletrotécnica", assunto: "Comandos elétricos", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
 
@@ -602,7 +602,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Proteger o motor contra sobrecargas térmicas", "Aumentar a velocidade do motor", "Inverter o sentido de rotação", "Reduzir a tensão de partida"], respostaCorreta: 0,
 
-    explicacao: "Rele termico: bimetalico aquece com $$I^2 R$$ → entorta progressivamente → aciona mecanismo de desarme → abre contato NF no circuito de comando → a bobina do contator e desenergizada → motor para. Calibrar em $$I_{ajuste} = I_{nom}$$. Reset: manual (mais seguro) ou automatico. Rele termico NAO protege contra curto-circuito.",
+    explicacao: "Rele termico: bimetalico aquece com $$I^2 R$$ → entorta progressivamente → aciona mecanismo de desarme → abre contato NF no circuito de comando → a bobina do contator e desenergizada → motor para. Calibrar em $$I_{ajuste} = I_{nom}$$. Reset: manual (mais seguro) ou automatico. Rele termico NAO protege contra curto-circuito." },
 
   { id: "e31", areaGrande: "Eletrotécnica", assunto: "Comandos elétricos", banca: "CESGRANRIO (estilo)", ano: 2022, dificuldade: "Difícil",
 
@@ -634,7 +634,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Turbina a vapor acoplada a um gerador síncrono", "Painéis fotovoltaicos", "Células a combustível diretamente", "Baterias de íon-lítio"], respostaCorreta: 0,
 
-    explicacao: "Termeletrica: combustivel → calor → vapor → turbina → gerador. Ciclo Rankine: eficiencia 35-40%. Ciclo combinado (CCGT): turbina a gas (Brayton) + recuperacao de calor + turbina a vapor (Rankine): eficiencia total ate 60%. Termonuclear: calor nuclear em vez de combustao, mesmo ciclo termodinamico depois.",
+    explicacao: "Termeletrica: combustivel → calor → vapor → turbina → gerador. Ciclo Rankine: eficiencia 35-40%. Ciclo combinado (CCGT): turbina a gas (Brayton) + recuperacao de calor + turbina a vapor (Rankine): eficiencia total ate 60%. Termonuclear: calor nuclear em vez de combustao, mesmo ciclo termodinamico depois." },
 
   { id: "e34", areaGrande: "Eletrotécnica", assunto: "Qualidade de energia", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
 
@@ -1140,7 +1140,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["I, II, III, IV, V", "IV, II, III, I, V", "II, IV, III, I, V", "IV, III, II, I, V", "II, III, IV, I, V"], respostaCorreta: 1,
 
-    explicacao: "Ensaio de curto-circuito do transformador: (1) CC o secundario; (2) Elevar tensao no primario ate $$I_{n}$$; (3) Medir $$V_{cc}$$ e $$P_{cc}$$. Resultados: $$Z_{cc}\% = (V_{cc}/V_n) \times 100$$; $$R_{cc}\% = (P_{cc}/S_n) \times 100$$ (perdas no cobre); $$X_{cc}\% = \sqrt{Z_{cc}^2 - R_{cc}^2}$$. Ensaio a baixa tensao — potencia dissipada e pequena.",
+    explicacao: "Ensaio de curto-circuito do transformador: (1) CC o secundario; (2) Elevar tensao no primario ate $$I_{n}$$; (3) Medir $$V_{cc}$$ e $$P_{cc}$$. Resultados: $$Z_{cc}\% = (V_{cc}/V_n) \times 100$$; $$R_{cc}\% = (P_{cc}/S_n) \times 100$$ (perdas no cobre); $$X_{cc}\% = \sqrt{Z_{cc}^2 - R_{cc}^2}$$. Ensaio a baixa tensao — potencia dissipada e pequena." },
 
 
 
@@ -1172,7 +1172,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 4,
 
-    explicacao: "Sincronismo de geradores em paralelo: (1) Tensoes iguais; (2) Frequencias iguais; (3) Tensoes em fase; (4) Mesma sequencia de fases. Verificado pelo sincronoscopo: fechar o disjuntor com o ponteiro exatamente em zero. Fechar fora de fase causa corrente de choque altissima e pode danificar o gerador mecanicamente (torque de sincronizacao abrupto).",
+    explicacao: "Sincronismo de geradores em paralelo: (1) Tensoes iguais; (2) Frequencias iguais; (3) Tensoes em fase; (4) Mesma sequencia de fases. Verificado pelo sincronoscopo: fechar o disjuntor com o ponteiro exatamente em zero. Fechar fora de fase causa corrente de choque altissima e pode danificar o gerador mecanicamente (torque de sincronizacao abrupto)." },
 
 
 
@@ -1194,7 +1194,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "TP: reduz tensao para instrumentos (115 V ou 57,7 V). Nunca curto-circuitar o secundario (sobrecorrente grave). TC: reduz corrente para 5 A ou 1 A. Nunca abrir o secundario com TC energizado (alta tensao perigosa induzida). Ambos promovem isolacao galvanica entre o sistema de alta tensao e os instrumentos/reles de protecao.",
+    explicacao: "TP: reduz tensao para instrumentos (115 V ou 57,7 V). Nunca curto-circuitar o secundario (sobrecorrente grave). TC: reduz corrente para 5 A ou 1 A. Nunca abrir o secundario com TC energizado (alta tensao perigosa induzida). Ambos promovem isolacao galvanica entre o sistema de alta tensao e os instrumentos/reles de protecao." },
 
 
 
@@ -1224,7 +1224,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Escorregamento", "Comutação", "Partida", "Excitação composta", "Sincronismo"], respostaCorreta: 2,
 
-    explicacao: "Motor monofasico: campo resultante e pulsante (nao girante) → sem torque de partida. Solucoes: (1) Enrolamento auxiliar com capacitor — defasagem de 90 graus entre enrolamentos → campo girante. (2) Shaded pole (anel de cobre no polo) — defasagem local. (3) Motor universal (corrente continua e alternada) — tem escovas e comutador.",
+    explicacao: "Motor monofasico: campo resultante e pulsante (nao girante) → sem torque de partida. Solucoes: (1) Enrolamento auxiliar com capacitor — defasagem de 90 graus entre enrolamentos → campo girante. (2) Shaded pole (anel de cobre no polo) — defasagem local. (3) Motor universal (corrente continua e alternada) — tem escovas e comutador." },
 
 
 
@@ -1256,7 +1256,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Em derivação (shunt)", "Composto cumulativo", "Série", "De imãs permanentes sem excitação", "Composto diferencial"], respostaCorreta: 2,
 
-    explicacao: "Motor CC serie: $$\Phi \propto I_a$$ → $$T = k\Phi I_a \propto I_a^2$$ (altissimo torque na partida). Velocidade: $$n \propto 1/I_a$$ → varia muito com a carga. NUNCA operar em vazio: sem carga, $$I_a \to 0$$, $$\Phi \to 0$$, $$n \to \infty$$ → destruicao mecanica (fugada). Aplicacoes: tracao eletrica, guinchos pesados (alto torque inicial necessario).",
+    explicacao: "Motor CC serie: $$\Phi \propto I_a$$ → $$T = k\Phi I_a \propto I_a^2$$ (altissimo torque na partida). Velocidade: $$n \propto 1/I_a$$ → varia muito com a carga. NUNCA operar em vazio: sem carga, $$I_a \to 0$$, $$\Phi \to 0$$, $$n \to \infty$$ → destruicao mecanica (fugada). Aplicacoes: tracao eletrica, guinchos pesados (alto torque inicial necessario)." },
 
 
 
@@ -1328,7 +1328,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "Disjuntor termomagnético — bimetalico: $$1{,}1 \leq I/I_n \leq 6$$ → atuacao temporizada inversamente proporcional a $$I^2$$. Eletromagneto: $$I > 6\text{ a }20 \times I_n$$ → atuacao instantanea ($<$30 ms). Curvas de disparo: B (3-5× In, uso residencial), C (5-10× In, uso geral), D (10-20× In, cargas com alta corrente de partida como motores e transformadores).",
+    explicacao: "Disjuntor termomagnético — bimetalico: $$1{,}1 \leq I/I_n \leq 6$$ → atuacao temporizada inversamente proporcional a $$I^2$$. Eletromagneto: $$I > 6\text{ a }20 \times I_n$$ → atuacao instantanea ($<$30 ms). Curvas de disparo: B (3-5× In, uso residencial), C (5-10× In, uso geral), D (10-20× In, cargas com alta corrente de partida como motores e transformadores)." },
 
 
 
@@ -1356,7 +1356,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Metáfora e hipérbole", "Comparação e metonímia", "Prosopopeia (personificação) e comparação", "Sinestesia e ironia", "Hipérbole e prosopopeia"], respostaCorreta: 2,
 
-    explicacao: "**Coerencia**: unidade de sentido — ideias se encadeiam logicamente sem contradicoes. **Coesao**: mecanismos linguisticos de ligacao entre partes do texto (pronomes, conjuncoes, sinonimos, elipses). Um texto pode ser coeso e incoerente, mas nao o contrario. Ambos sao essenciais para um texto bem construido.",
+    explicacao: "**Coerencia**: unidade de sentido — ideias se encadeiam logicamente sem contradicoes. **Coesao**: mecanismos linguisticos de ligacao entre partes do texto (pronomes, conjuncoes, sinonimos, elipses). Um texto pode ser coeso e incoerente, mas nao o contrario. Ambos sao essenciais para um texto bem construido." },
 
 
   { id: "p8", inedita: true, areaGrande: "Português", assunto: "Tempo verbal", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
@@ -1365,7 +1365,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Pretérito perfeito do indicativo", "Pretérito imperfeito do indicativo", "Pretérito mais-que-perfeito do indicativo", "Futuro do pretérito do indicativo", "Presente do subjuntivo"], respostaCorreta: 1,
 
-    explicacao: "Voz passiva analitica: verbo ser (auxiliar) + participio passado. 'O relatorio **foi elaborado** pela equipe.' Conversao: sujeito ativo → agente da passiva (com 'por'); objeto direto → sujeito. Voz passiva pronominal: pronome 'se' = 'Elaborou-se o relatorio.' Ambas sao equivalentes em sentido.",
+    explicacao: "Voz passiva analitica: verbo ser (auxiliar) + participio passado. 'O relatorio **foi elaborado** pela equipe.' Conversao: sujeito ativo → agente da passiva (com 'por'); objeto direto → sujeito. Voz passiva pronominal: pronome 'se' = 'Elaborou-se o relatorio.' Ambas sao equivalentes em sentido." },
 
 
   { id: "p9", inedita: true, areaGrande: "Português", assunto: "Pronome relativo", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
@@ -1374,7 +1374,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Sujeito", "Objeto direto", "Objeto indireto", "Adjunto adverbial", "Complemento nominal"], respostaCorreta: 0,
 
-    explicacao: "**Subordinacao**: oracoes dependentes (subordinadas) exercem funcao sintatica na principal (sujeito, objeto, adjunto). **Coordenacao**: oracoes independentes ligadas por conjuncoes coordenativas (e, mas, ou, porem, contudo, entretanto). Periodos compostos por subordinacao tem oracoes que nao fazem sentido sozinhas.",
+    explicacao: "**Subordinacao**: oracoes dependentes (subordinadas) exercem funcao sintatica na principal (sujeito, objeto, adjunto). **Coordenacao**: oracoes independentes ligadas por conjuncoes coordenativas (e, mas, ou, porem, contudo, entretanto). Periodos compostos por subordinacao tem oracoes que nao fazem sentido sozinhas." },
 
 
   { id: "p10", inedita: true, areaGrande: "Português", assunto: "Regência verbal", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
@@ -1395,7 +1395,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "'Assistir' no sentido de ver/presenciar = **transitivo indireto** (pede preposicao 'a'). 'Assistiu **ao** jogo.' No sentido de ajudar: 'A lei assiste **ao** trabalhador.' No sentido de caber/pertencer: 'Assiste **ao** reu o direito de defesa.' Em todos os sentidos tecnicos do verbo, a preposicao 'a' e obrigatoria.",
+    explicacao: "'Assistir' no sentido de ver/presenciar = **transitivo indireto** (pede preposicao 'a'). 'Assistiu **ao** jogo.' No sentido de ajudar: 'A lei assiste **ao** trabalhador.' No sentido de caber/pertencer: 'Assiste **ao** reu o direito de defesa.' Em todos os sentidos tecnicos do verbo, a preposicao 'a' e obrigatoria." },
 
 
   { id: "p11", inedita: true, areaGrande: "Português", assunto: "Pontuação", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Fácil",
@@ -1416,7 +1416,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 0,
 
-    explicacao: "**Adjetiva explicativa**: descreve uma caracteristica do antecedente sem restringi-lo — separada por virgulas. 'Os servidores, que trabalham arduamente, merecem reconhecimento.' **Adjetiva restritiva**: restringe um subconjunto — sem virgulas. 'Os servidores que trabalham arduamente merecem reconhecimento.' (apenas alguns).",
+    explicacao: "**Adjetiva explicativa**: descreve uma caracteristica do antecedente sem restringi-lo — separada por virgulas. 'Os servidores, que trabalham arduamente, merecem reconhecimento.' **Adjetiva restritiva**: restringe um subconjunto — sem virgulas. 'Os servidores que trabalham arduamente merecem reconhecimento.' (apenas alguns)." },
 
 
   { id: "p12", inedita: true, areaGrande: "Português", assunto: "Antonímia e sinonímia", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Fácil",
@@ -1456,7 +1456,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 3,
 
-    explicacao: "Deveres do servidor publico (Lei 8.112/1990, Art. 116): lealdade as instituicoes, urbanidade, assiduidade, pontualidade, observancia das normas legais, sigilosidade, manutencao do comportamento compativel com a moralidade administrativa. O dever de **lealdade** inclui agir dentro da lei mesmo contrario a interesses pessoais.",
+    explicacao: "Deveres do servidor publico (Lei 8.112/1990, Art. 116): lealdade as instituicoes, urbanidade, assiduidade, pontualidade, observancia das normas legais, sigilosidade, manutencao do comportamento compativel com a moralidade administrativa. O dever de **lealdade** inclui agir dentro da lei mesmo contrario a interesses pessoais." },
 
 
   { id: "leg2", inedita: true, areaGrande: "Legislação", assunto: "Regime Jurídico Único", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
@@ -1477,7 +1477,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "Lei 8.112/1990 garante isonomia de vencimentos entre cargos de atribuicoes iguais. **Remuneracao** = vencimento do cargo + vantagens pecuniarias permanentes. **Vencimento** = retribuicao pelo efetivo exercicio do cargo. **Subsidio** = parcela unica, vedada a combinacao com vantagens remuneratorias (exclusivo de algumas carreiras).",
+    explicacao: "Lei 8.112/1990 garante isonomia de vencimentos entre cargos de atribuicoes iguais. **Remuneracao** = vencimento do cargo + vantagens pecuniarias permanentes. **Vencimento** = retribuicao pelo efetivo exercicio do cargo. **Subsidio** = parcela unica, vedada a combinacao com vantagens remuneratorias (exclusivo de algumas carreiras)." },
 
 
   { id: "leg3", inedita: true, areaGrande: "Legislação", assunto: "Ética no Serviço Público", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Médio",
@@ -1498,7 +1498,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "Decreto 1.171/1994 (Codigo de Etica) — virtudes do servidor: **probidade** (retidao de conduta e carater), **lealdade** (fidelidade aos principios constitucionais), **decoro** (respeito a dignidade do cargo), **eficiencia** (dever de bem servir com qualidade). A improbidade e o oposto e pode gerar demissao e inelegibilidade.",
+    explicacao: "Decreto 1.171/1994 (Codigo de Etica) — virtudes do servidor: **probidade** (retidao de conduta e carater), **lealdade** (fidelidade aos principios constitucionais), **decoro** (respeito a dignidade do cargo), **eficiencia** (dever de bem servir com qualidade). A improbidade e o oposto e pode gerar demissao e inelegibilidade." },
 
 
   { id: "leg4", inedita: true, areaGrande: "Legislação", assunto: "Processo Administrativo", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
@@ -1519,7 +1519,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "Lei 9.784/1999, Art. 8 — O **litisconsorcio** (pedido de multiplos interessados) e permitido quando o objeto for o mesmo. Principios do PA Federal: **LIMPE** — Legalidade, Impessoalidade, Moralidade, Publicidade, Eficiencia + Finalidade, Motivacao, Razoabilidade, Proporcionalidade, Ampla Defesa, Contraditorio e Seguranca Juridica.",
+    explicacao: "Lei 9.784/1999, Art. 8 — O **litisconsorcio** (pedido de multiplos interessados) e permitido quando o objeto for o mesmo. Principios do PA Federal: **LIMPE** — Legalidade, Impessoalidade, Moralidade, Publicidade, Eficiencia + Finalidade, Motivacao, Razoabilidade, Proporcionalidade, Ampla Defesa, Contraditorio e Seguranca Juridica." },
 
 
   { id: "leg5", inedita: true, areaGrande: "Legislação", assunto: "Direitos Fundamentais", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Médio",
@@ -1540,7 +1540,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "CF/1988, Art. 5o, XVIII — Criacao de **associacoes** e **cooperativas** independe de autorizacao estatal; a interferencia estatal e vedada. Art. 5o, XVII: liberdade de associacao para fins licitos, vedada a de carater paramilitar. Dissolucao forcada: apenas por decisao judicial transitada em julgado.",
+    explicacao: "CF/1988, Art. 5o, XVIII — Criacao de **associacoes** e **cooperativas** independe de autorizacao estatal; a interferencia estatal e vedada. Art. 5o, XVII: liberdade de associacao para fins licitos, vedada a de carater paramilitar. Dissolucao forcada: apenas por decisao judicial transitada em julgado." },
 
 
   { id: "leg6", inedita: true, areaGrande: "Legislação", assunto: "Direitos Sociais", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
@@ -1576,7 +1576,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Microsoft Word", "Microsoft Windows", "Adobe Photoshop", "Um programa antivírus", "Um navegador de internet"], respostaCorreta: 3,
 
-    explicacao: "**Software Basico** (de sistema): sistema operacional, compiladores, interpretadores, drivers. **Software de Aplicacao**: programas para o usuario final — editores, navegadores, planilhas, **antivirus**. O antivirus e software de aplicacao, nao software basico.",
+    explicacao: "**Software Basico** (de sistema): sistema operacional, compiladores, interpretadores, drivers. **Software de Aplicacao**: programas para o usuario final — editores, navegadores, planilhas, **antivirus**. O antivirus e software de aplicacao, nao software basico." },
 
 
   { id: "ic6", inedita: true, areaGrande: "Informática", assunto: "Planilhas eletrônicas", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
@@ -1585,7 +1585,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["50", "30", "Maior", "Menor", "Um erro de fórmula"], respostaCorreta: 2,
 
-    explicacao: "HTTPS = HTTP + TLS (Transport Layer Security). O TLS usa criptografia hibrida: assimetrica (RSA/ECDHE) para trocar a chave de sessao, e simetrica (AES-256) para criptografar os dados. O certificado TLS e emitido por uma CA (Autoridade Certificadora) confiavel e verificado pelo navegador.",
+    explicacao: "HTTPS = HTTP + TLS (Transport Layer Security). O TLS usa criptografia hibrida: assimetrica (RSA/ECDHE) para trocar a chave de sessao, e simetrica (AES-256) para criptografar os dados. O certificado TLS e emitido por uma CA (Autoridade Certificadora) confiavel e verificado pelo navegador." },
 
 
   { id: "ic7", inedita: true, areaGrande: "Informática", assunto: "Segurança da informação", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Médio",
@@ -1606,7 +1606,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**Phishing** caracteriza-se por simular comunicacao legitima (banco, governo, empresa) para roubar dados. Metodo: email/SMS com link falso para pagina identica a original. Diferente de: Ransomware (sequestra dados), Virus (infecta arquivos), Spam (propaganda indesejada nao-maliciosa).",
+    explicacao: "**Phishing** caracteriza-se por simular comunicacao legitima (banco, governo, empresa) para roubar dados. Metodo: email/SMS com link falso para pagina identica a original. Diferente de: Ransomware (sequestra dados), Virus (infecta arquivos), Spam (propaganda indesejada nao-maliciosa)." },
 
 
   { id: "ic8", inedita: true, areaGrande: "Informática", assunto: "Conceitos básicos", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Fácil",
@@ -1627,7 +1627,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "Ctrl+Shift+Seta Direita no Word seleciona uma **palavra inteira** para a direita a cada pressao. Outros atalhos: Shift+Seta (1 caractere), Shift+End (ate o fim da linha), Shift+Ctrl+End (ate o fim do documento). Duplo clique do mouse tambem seleciona a palavra.",
+    explicacao: "Ctrl+Shift+Seta Direita no Word seleciona uma **palavra inteira** para a direita a cada pressao. Outros atalhos: Shift+Seta (1 caractere), Shift+End (ate o fim da linha), Shift+Ctrl+End (ate o fim do documento). Duplo clique do mouse tambem seleciona a palavra." },
 
 
   { id: "ic9", inedita: true, areaGrande: "Informática", assunto: "Redes de computadores", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Médio",
@@ -1636,7 +1636,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["DHCP", "DNS", "FTP", "SMTP", "HTTP"], respostaCorreta: 1,
 
-    explicacao: "Quando o usuario digita uma URL, o primeiro servico consultado e o **DNS**: converte nome do dominio em IP. Processo: cache local → servidor DNS do provedor → DNS raiz → servidor DNS autoritativo → obtem o IP → conexao TCP com o servidor web.",
+    explicacao: "Quando o usuario digita uma URL, o primeiro servico consultado e o **DNS**: converte nome do dominio em IP. Processo: cache local → servidor DNS do provedor → DNS raiz → servidor DNS autoritativo → obtem o IP → conexao TCP com o servidor web." },
 
 
   { id: "ic10", inedita: true, areaGrande: "Informática", assunto: "Segurança da informação", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
@@ -1786,7 +1786,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "SCR: tiristor PNPN. Triggado por pulso de gate (gate do tipo tensao positiva), conduz mesmo apos remover o sinal. Interrompe apenas quando $$I_A < I_{hold}$$. CA: interrompido naturalmente a cada passagem por zero da tensao. CC: precisa de comutacao forcada (circuito de extincao). Aplicacoes: retificadores controlados, controladores de potencia.",
+    explicacao: "SCR: tiristor PNPN. Triggado por pulso de gate (gate do tipo tensao positiva), conduz mesmo apos remover o sinal. Interrompe apenas quando $$I_A < I_{hold}$$. CA: interrompido naturalmente a cada passagem por zero da tensao. CC: precisa de comutacao forcada (circuito de extincao). Aplicacoes: retificadores controlados, controladores de potencia." },
 
 
 
@@ -1808,7 +1808,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "IGBT (Insulated Gate Bipolar Transistor): gate isolado (MOSFET) + juncao de saida bipolar (BJT). Resultado: controle por tensao (sem corrente de gate) + baixa queda de saturacao (1,5 V vs 4 V do MOSFET de potencia). Frequencia: 1-100 kHz. Amplamente usado em: inversores de frequencia para motores, UPS, carregadores de VE.",
+    explicacao: "IGBT (Insulated Gate Bipolar Transistor): gate isolado (MOSFET) + juncao de saida bipolar (BJT). Resultado: controle por tensao (sem corrente de gate) + baixa queda de saturacao (1,5 V vs 4 V do MOSFET de potencia). Frequencia: 1-100 kHz. Amplamente usado em: inversores de frequencia para motores, UPS, carregadores de VE." },
 
 
 
@@ -1860,7 +1860,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["3%", "4%", "5%", "7%", "10%"], respostaCorreta: 3,
 
-    explicacao: "NBR 5410:2004 §6.2.7 — Queda maxima nos circuitos terminais: $$\Delta V \leq 4\%$$ de $$V_n$$. Limite total origem-ponto mais desfavoravel: 7%. Formula: $$\Delta V\% = \dfrac{2\rho L I_b}{A V_n} \times 100$$. Para cobre: $$\rho = 1{,}72 \times 10^{-8}\,\Omega \cdot m$$.",
+    explicacao: "NBR 5410:2004 §6.2.7 — Queda maxima nos circuitos terminais: $$\Delta V \leq 4\%$$ de $$V_n$$. Limite total origem-ponto mais desfavoravel: 7%. Formula: $$\Delta V\% = \dfrac{2\rho L I_b}{A V_n} \times 100$$. Para cobre: $$\rho = 1{,}72 \times 10^{-8}\,\Omega \cdot m$$." },
 
 
 
@@ -1870,7 +1870,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Disjuntor termomagnético", "Fusível de alto rompimento", "Dispositivo DR 30 mA", "Dispositivo DR 300 mA", "DPS (Dispositivo de Proteção contra Surtos)"], respostaCorreta: 2,
 
-    explicacao: "NBR 5410 — IDR 30 mA: obrigatorio em banheiros, chuveiros, areas externas, piscinas e TUG de cozinha/servico. IDR 300 mA: protecao geral contra incendio. 30 mA e o limiar fisiologico de seguranca — acima disso ha risco clinico de fibrilacao ventricular. Tempo de atuacao: $<$30 ms (antes de acumular energia critica no coracao).",
+    explicacao: "NBR 5410 — IDR 30 mA: obrigatorio em banheiros, chuveiros, areas externas, piscinas e TUG de cozinha/servico. IDR 300 mA: protecao geral contra incendio. 30 mA e o limiar fisiologico de seguranca — acima disso ha risco clinico de fibrilacao ventricular. Tempo de atuacao: $<$30 ms (antes de acumular energia critica no coracao)." },
 
 
 
@@ -1968,7 +1968,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "TN-S: PE e N separados em toda a extensao → correntes de falta e harmonicas de 3a ordem nao fluem no PE → menor interferencia. TN-C: PEN economiza fio mas as correntes de 3a harmonica (que se somam no neutro trifasico equilibrado) circulam pelo PEN, podendo causar interferencia e sobreaquecimento em instalacoes com muitas cargas nao-lineares.",
+    explicacao: "TN-S: PE e N separados em toda a extensao → correntes de falta e harmonicas de 3a ordem nao fluem no PE → menor interferencia. TN-C: PEN economiza fio mas as correntes de 3a harmonica (que se somam no neutro trifasico equilibrado) circulam pelo PEN, podendo causar interferencia e sobreaquecimento em instalacoes com muitas cargas nao-lineares." },
 
 
 
@@ -5338,7 +5338,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 0,
 
-    explicacao: "Enderecos IP **privados** (RFC 1918): 10.0.0.0/8, 172.16.0.0/12 e **192.168.0.0/16**. O 192.168.1.100 pertence ao bloco 192.168.0.0/16 → privado, nao roteavelna Internet publica. Para acessar a Internet, o roteador faz NAT (Network Address Translation).",
+    explicacao: "Enderecos IP **privados** (RFC 1918): 10.0.0.0/8, 172.16.0.0/12 e **192.168.0.0/16**. O 192.168.1.100 pertence ao bloco 192.168.0.0/16 → privado, nao roteavelna Internet publica. Para acessar a Internet, o roteador faz NAT (Network Address Translation)." },
 
 
   { id: "ic12", inedita: true, areaGrande: "Informática", assunto: "Planilhas eletrônicas", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
@@ -5359,7 +5359,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "Google Drive — tres niveis de permissao: **Leitor** (so visualiza, pode baixar salvo restricao); **Comentarista** (adiciona comentarios mas nao edita); **Editor** (edita, reorganiza e exclui). Compartilhamento 'qualquer pessoa com o link': nao e necessario ter conta Google para visualizar.",
+    explicacao: "Google Drive — tres niveis de permissao: **Leitor** (so visualiza, pode baixar salvo restricao); **Comentarista** (adiciona comentarios mas nao edita); **Editor** (edita, reorganiza e exclui). Compartilhamento 'qualquer pessoa com o link': nao e necessario ter conta Google para visualizar." },
 
 
   { id: "ic13", inedita: true, areaGrande: "Informática", assunto: "Processador de texto", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Fácil",
@@ -5380,7 +5380,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "Word 2016: **Inserir > grupo Cabecalho e Rodape > Numero de Pagina**. Permite escolher posicao (margem superior, inferior, lateral) e formato (1,2,3 / i,ii,iii / A,B,C). Apos inserir, o Word ativa automaticamente o modo de edicao de cabecalho/rodape.",
+    explicacao: "Word 2016: **Inserir > grupo Cabecalho e Rodape > Numero de Pagina**. Permite escolher posicao (margem superior, inferior, lateral) e formato (1,2,3 / i,ii,iii / A,B,C). Apos inserir, o Word ativa automaticamente o modo de edicao de cabecalho/rodape." },
 
 
   { id: "ic14", inedita: true, areaGrande: "Informática", assunto: "Segurança da informação", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
@@ -5401,7 +5401,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "Email falso fingindo ser do banco = **Phishing**. Sinais: remetente com dominio diferente do banco oficial, urgencia ('sua conta sera bloqueada'), link para dominio diferente (verificar ao passar o mouse sem clicar). Nunca inserir credenciais em links recebidos por email.",
+    explicacao: "Email falso fingindo ser do banco = **Phishing**. Sinais: remetente com dominio diferente do banco oficial, urgencia ('sua conta sera bloqueada'), link para dominio diferente (verificar ao passar o mouse sem clicar). Nunca inserir credenciais em links recebidos por email." },
 
 
   { id: "ic15", inedita: true, areaGrande: "Informática", assunto: "Sistema operacional", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Fácil",
@@ -5422,7 +5422,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "O atalho para **copiar** e **Ctrl+C** (nao Ctrl+Z). Atalhos essenciais: Ctrl+X = Recortar, Ctrl+V = Colar, Ctrl+Z = **Desfazer**, Ctrl+Y = Refazer, Ctrl+S = Salvar. Mnemônico: C de Copy (copiar), X de Cut (recortar), V de paste (colar).",
+    explicacao: "O atalho para **copiar** e **Ctrl+C** (nao Ctrl+Z). Atalhos essenciais: Ctrl+X = Recortar, Ctrl+V = Colar, Ctrl+Z = **Desfazer**, Ctrl+Y = Refazer, Ctrl+S = Salvar. Mnemônico: C de Copy (copiar), X de Cut (recortar), V de paste (colar)." },
 
 
   { id: "ic16", inedita: true, areaGrande: "Informática", assunto: "Planilhas eletrônicas", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Difícil",
@@ -5443,7 +5443,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "PROCV retorna o valor na coluna especificada da **linha onde encontrou** o valor procurado, e esse valor vai para a celula onde a formula esta digitada. PROCV(valor; tabela; coluna; FALSO): FALSO = correspondencia exata. Se nao encontrar, retorna #N/D.",
+    explicacao: "PROCV retorna o valor na coluna especificada da **linha onde encontrou** o valor procurado, e esse valor vai para a celula onde a formula esta digitada. PROCV(valor; tabela; coluna; FALSO): FALSO = correspondencia exata. Se nao encontrar, retorna #N/D." },
 
 
   { id: "ic17", inedita: true, areaGrande: "Informática", assunto: "Redes de computadores", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
@@ -5464,7 +5464,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**SSH** (Secure Shell, porta 22): acesso remoto a linha de comando com criptografia. Substitui o Telnet (inseguro). Para acesso grafico remoto no Windows: RDP (porta 3389). Para transferencia de arquivos segura: SFTP ou SCP. SSH e o protocolo padrao para administracao remota de servidores Linux.",
+    explicacao: "**SSH** (Secure Shell, porta 22): acesso remoto a linha de comando com criptografia. Substitui o Telnet (inseguro). Para acesso grafico remoto no Windows: RDP (porta 3389). Para transferencia de arquivos segura: SFTP ou SCP. SSH e o protocolo padrao para administracao remota de servidores Linux." },
 
 
   { id: "ic18", inedita: true, areaGrande: "Informática", assunto: "Processador de texto", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
@@ -5485,7 +5485,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "Afirmativa correta: **II apenas**. No Word 2016: Ctrl+L = **Localizar** (NAO salvar); Ctrl+S = Salvar. No Word em portugues do Brasil, negrito = Ctrl+N (NAO Ctrl+B). A afirmativa sobre Ctrl+L = salvar esta errada. Verificar as afirmativas I e III como falsas conforme o gabarito oficial.",
+    explicacao: "Afirmativa correta: **II apenas**. No Word 2016: Ctrl+L = **Localizar** (NAO salvar); Ctrl+S = Salvar. No Word em portugues do Brasil, negrito = Ctrl+N (NAO Ctrl+B). A afirmativa sobre Ctrl+L = salvar esta errada. Verificar as afirmativas I e III como falsas conforme o gabarito oficial." },
 
 
   { id: "ic19", inedita: true, areaGrande: "Informática", assunto: "Segurança da informação", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
@@ -5506,7 +5506,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**Ransomware** criptografa arquivos com algoritmo forte (AES-256) e exige resgate em criptomoeda para fornecer a chave. Processo tipico: infeccao (phishing/vulnerabilidade) → comunicacao C&C → criptografia → nota de resgate. Prevencao: backup offline + atualizacoes + conscientizacao. Pagar nao garante recuperacao.",
+    explicacao: "**Ransomware** criptografa arquivos com algoritmo forte (AES-256) e exige resgate em criptomoeda para fornecer a chave. Processo tipico: infeccao (phishing/vulnerabilidade) → comunicacao C&C → criptografia → nota de resgate. Prevencao: backup offline + atualizacoes + conscientizacao. Pagar nao garante recuperacao." },
 
 
   { id: "ic20", inedita: true, areaGrande: "Informática", assunto: "Conceitos básicos", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Fácil",
@@ -5552,7 +5552,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "Lei 8.429/1992 — Atos de improbidade por **enriquecimento ilicito** (Art. 9): sancoes — suspensao dos direitos politicos por 8-10 anos; multa civil de ate 3x o valor do acrescimo patrimonial; ressarcimento integral; perda dos bens adquiridos ilicitamente; proibicao de contratar com o Poder Publico por ate 10 anos.",
+    explicacao: "Lei 8.429/1992 — Atos de improbidade por **enriquecimento ilicito** (Art. 9): sancoes — suspensao dos direitos politicos por 8-10 anos; multa civil de ate 3x o valor do acrescimo patrimonial; ressarcimento integral; perda dos bens adquiridos ilicitamente; proibicao de contratar com o Poder Publico por ate 10 anos." },
 
 
   { id: "leg8", inedita: true, areaGrande: "Legislação", assunto: "NR-10", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
@@ -5573,7 +5573,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "CF/1988, Art. 37, II — **Concurso publico** obrigatorio para cargos/empregos efetivos da AP direta e indireta. Excecoes: cargos em comissao (livre nomeacao e exoneracao), funcoes de confianca (exclusivas para efetivos), cargos isolados de livre provimento por lei especifica.",
+    explicacao: "CF/1988, Art. 37, II — **Concurso publico** obrigatorio para cargos/empregos efetivos da AP direta e indireta. Excecoes: cargos em comissao (livre nomeacao e exoneracao), funcoes de confianca (exclusivas para efetivos), cargos isolados de livre provimento por lei especifica." },
 
 
   { id: "leg9", inedita: true, areaGrande: "Legislação", assunto: "NR-10", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
@@ -5594,7 +5594,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 3,
 
-    explicacao: "Lei 8.112/1990, Art. 117 — Proibicoes ao servidor: ausentar-se do pais sem autorizacao; receber propina, comissao ou vantagem de qualquer especie; praticar usura; proceder deslealmente; atuar como procurador perante a propria reparticao que serve; receber valores pagos pelo erario para pagamento a terceiros.",
+    explicacao: "Lei 8.112/1990, Art. 117 — Proibicoes ao servidor: ausentar-se do pais sem autorizacao; receber propina, comissao ou vantagem de qualquer especie; praticar usura; proceder deslealmente; atuar como procurador perante a propria reparticao que serve; receber valores pagos pelo erario para pagamento a terceiros." },
 
 
   { id: "leg10", inedita: true, areaGrande: "Legislação", assunto: "NBR 5410", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
@@ -5615,7 +5615,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**Responsabilidade civil** do servidor e apurada independentemente da penal e da administrativa. O Estado responde **objetivamente** pelos danos de seus agentes (CF/1988, Art. 37, §6o). O servidor responde **regressivamente** ao Estado em caso de dolo ou culpa — o Estado paga ao lesado e requer do servidor posteriormente.",
+    explicacao: "**Responsabilidade civil** do servidor e apurada independentemente da penal e da administrativa. O Estado responde **objetivamente** pelos danos de seus agentes (CF/1988, Art. 37, §6o). O servidor responde **regressivamente** ao Estado em caso de dolo ou culpa — o Estado paga ao lesado e requer do servidor posteriormente." },
 
 
   { id: "leg11", inedita: true, areaGrande: "Legislação", assunto: "NR-6", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
@@ -5636,7 +5636,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "Lei 9.784/1999, Art. 2o — O PA federal observa: **legalidade** (agir conforme a lei), **finalidade** (atender ao interesse publico), **motivacao** (expor os fundamentos da decisao), **razoabilidade** (proporcionalidade dos meios ao fim), **moralidade** (boa-fe), **ampla defesa e contraditorio** (direito de defesa e de impugnar provas).",
+    explicacao: "Lei 9.784/1999, Art. 2o — O PA federal observa: **legalidade** (agir conforme a lei), **finalidade** (atender ao interesse publico), **motivacao** (expor os fundamentos da decisao), **razoabilidade** (proporcionalidade dos meios ao fim), **moralidade** (boa-fe), **ampla defesa e contraditorio** (direito de defesa e de impugnar provas)." },
 
 
   { id: "leg12", inedita: true, areaGrande: "Legislação", assunto: "NR-10", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Difícil",
@@ -5657,7 +5657,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 3,
 
-    explicacao: "CF/1988, Art. 5o, LV — Em processo judicial ou administrativo, sao assegurados **contraditorio** (direito de resposta, de contrariar o que foi alegado contra si) e **ampla defesa** (usar todos os meios legais disponiveis para defender-se). Inclui: producao de provas, defesa tecnica por advogado, recursos.",
+    explicacao: "CF/1988, Art. 5o, LV — Em processo judicial ou administrativo, sao assegurados **contraditorio** (direito de resposta, de contrariar o que foi alegado contra si) e **ampla defesa** (usar todos os meios legais disponiveis para defender-se). Inclui: producao de provas, defesa tecnica por advogado, recursos." },
 
 
   { id: "leg13", inedita: true, areaGrande: "Legislação", assunto: "NBR 5419", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
@@ -5678,7 +5678,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "Estabilidade do servidor publico (CF/1988, Art. 41 + Lei 8.112/1990): adquirida apos **3 anos** de efetivo exercicio + **avaliacao de desempenho**. Servidor estavel pode ser demitido por: sentenca judicial transitada em julgado, PAD com ampla defesa, ou avaliacao periodica de desempenho insatisfatoria.",
+    explicacao: "Estabilidade do servidor publico (CF/1988, Art. 41 + Lei 8.112/1990): adquirida apos **3 anos** de efetivo exercicio + **avaliacao de desempenho**. Servidor estavel pode ser demitido por: sentenca judicial transitada em julgado, PAD com ampla defesa, ou avaliacao periodica de desempenho insatisfatoria." },
 
 
   { id: "leg14", inedita: true, areaGrande: "Legislação", assunto: "NR-10", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Difícil",
@@ -6700,7 +6700,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 1,
 
-    explicacao: "Dominio **.jus.br** reservado ao **Poder Judiciario**: STF, STJ, TRT, TRE, TRF, TJ estaduais, CNJ. Exemplos: www.stf.jus.br, www.trt1.jus.br. Outros dominios reservados: .gov.br (Executivo), .leg.br (Legislativo), .mp.br (Ministerio Publico), .edu.br (educacao), .mil.br (Forcas Armadas), .org.br (sem fins lucrativos).",
+    explicacao: "Dominio **.jus.br** reservado ao **Poder Judiciario**: STF, STJ, TRT, TRE, TRF, TJ estaduais, CNJ. Exemplos: www.stf.jus.br, www.trt1.jus.br. Outros dominios reservados: .gov.br (Executivo), .leg.br (Legislativo), .mp.br (Ministerio Publico), .edu.br (educacao), .mil.br (Forcas Armadas), .org.br (sem fins lucrativos)." },
 
 
   { id: "i14", inedita: true, areaGrande: "Informática", assunto: "Segurança da informação", banca: "FCC / TRT-8", ano: 2024, dificuldade: "Médio",
@@ -6807,7 +6807,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 1,
 
-    explicacao: "UAC exibe dialogo quando processo tenta **privilegio elevado de administrador**. Para conta Administrador: caixa simples de confirmacao. Para Usuario Padrao: exige usuario e senha de administrador. Configura-se em: Painel de Controle > Contas de Usuario > Alterar configuracoes de Controle de Conta de Usuario.",
+    explicacao: "UAC exibe dialogo quando processo tenta **privilegio elevado de administrador**. Para conta Administrador: caixa simples de confirmacao. Para Usuario Padrao: exige usuario e senha de administrador. Configura-se em: Painel de Controle > Contas de Usuario > Alterar configuracoes de Controle de Conta de Usuario." },
 
 
   { id: "i23", inedita: true, areaGrande: "Informática", assunto: "Redes de computadores", banca: "CEBRASPE / TRT-16", ano: 2024, dificuldade: "Médio",
@@ -6878,7 +6878,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 2,
 
-    explicacao: "Afirmativa **INCORRETA**: C. Para visualizar documento Google compartilhado como 'qualquer pessoa com o link', **nao e necessario ter conta Google**. Qualquer pessoa com o link abre no navegador sem login. Conta Google necessaria apenas para editar, comentar ou criar documentos no Google Docs.",
+    explicacao: "Afirmativa **INCORRETA**: C. Para visualizar documento Google compartilhado como 'qualquer pessoa com o link', **nao e necessario ter conta Google**. Qualquer pessoa com o link abre no navegador sem login. Conta Google necessaria apenas para editar, comentar ou criar documentos no Google Docs." },
 
 
   { id: "i29", inedita: true, areaGrande: "Informática", assunto: "LGPD", banca: "CEBRASPE / INSS", ano: 2024, dificuldade: "Médio",
@@ -6889,7 +6889,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 1,
 
-    explicacao: "Marco Civil da Internet (Lei 12.965/2014), Art. 9o — **Neutralidade de rede**: provedores devem tratar todos os pacotes igualmente, sem discriminar por conteudo, origem, destino, servico ou aplicacao. Excecoes: requisitos tecnicos indispensaveis e emergencias. Proibida cobranca diferenciada por tipo de conteudo.",
+    explicacao: "Marco Civil da Internet (Lei 12.965/2014), Art. 9o — **Neutralidade de rede**: provedores devem tratar todos os pacotes igualmente, sem discriminar por conteudo, origem, destino, servico ou aplicacao. Excecoes: requisitos tecnicos indispensaveis e emergencias. Proibida cobranca diferenciada por tipo de conteudo." },
 
 
   { id: "i30", inedita: true, areaGrande: "Informática", assunto: "Redes de computadores", banca: "FCC / TRT-19", ano: 2024, dificuldade: "Médio",
