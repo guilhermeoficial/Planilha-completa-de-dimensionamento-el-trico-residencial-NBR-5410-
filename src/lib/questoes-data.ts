@@ -207,7 +207,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Narrativo", "Descritivo", "Injuntivo (instrucional)", "Dissertativo-argumentativo"], respostaCorreta: 2,
 
-    explicacao: "Texto **injuntivo** (instrucional/prescritivo): orienta, instrui, prescreve acoes. Caracteristicas: verbos no imperativo ou infinitivo, linguagem direta e objetiva, sequencia logica de passos. Exemplos: manuais, receitas, bulas, regulamentos. Diferente do dissertativo (argumenta) ou narrativo (conta fatos)." }
+    explicacao: "Texto **injuntivo** (instrucional/prescritivo): orienta, instrui, prescreve acoes. Caracteristicas: verbos no imperativo ou infinitivo, linguagem direta e objetiva, sequencia logica de passos. Exemplos: manuais, receitas, bulas, regulamentos. Diferente do dissertativo (argumenta) ou narrativo (conta fatos)." },
 
 
   // ---------------------------------------------------------------------
@@ -300,7 +300,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["DHCP", "DNS", "FTP", "SMTP"], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes de dominio legiveis (www.exemplo.com.br) em enderecos IP numericos. Funciona como a lista telefonica da Internet. Sem DNS, seria necessario memorizar IPs para cada site. DNS opera na porta 53 UDP/TCP." }
+    explicacao: "**DNS** (Domain Name System) converte nomes de dominio legiveis (www.exemplo.com.br) em enderecos IP numericos. Funciona como a lista telefonica da Internet. Sem DNS, seria necessario memorizar IPs para cada site. DNS opera na porta 53 UDP/TCP." },
 
 
   // ---------------------------------------------------------------------
@@ -443,7 +443,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ['Perdas no ferro (ou perdas em vazio)', 'Perdas no cobre', 'Perdas por efeito Joule no enrolamento', 'Perdas por atrito'], respostaCorreta: 0,
 
-    explicacao: "Perdas no ferro (nucleo): (1) Histerese: $$P_h = k_h f B_{max}^{1{,}6}$$ — reorientacao dos dominios magneticos. (2) Correntes parasitas (Foucault): $$P_e = k_e f^2 B_{max}^2$$ — correntes induzidas nas laminas. Por isso nucleos sao laminados (aco-silicio). Sao constantes e independem da carga — dependem da tensao aplicada." }
+    explicacao: "Perdas no ferro (nucleo): (1) Histerese: $$P_h = k_h f B_{max}^{1{,}6}$$ — reorientacao dos dominios magneticos. (2) Correntes parasitas (Foucault): $$P_e = k_e f^2 B_{max}^2$$ — correntes induzidas nas laminas. Por isso nucleos sao laminados (aco-silicio). Sao constantes e independem da carga — dependem da tensao aplicada." },
 
 
   // ---------------------------------------------------------------------
@@ -482,7 +482,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Condutores de neutro (N) e proteção (PE) são distintos em toda a instalação.", "Não existe aterramento da fonte.", "O neutro e o terra são unidos apenas no ponto de consumo.", "Utiliza-se apenas um condutor PEN combinado."], respostaCorreta: 0,
 
-    explicacao: "TN-S (Separated): PE e N sao condutores separados em toda a instalacao. TN-C: PEN unico (economico). TN-C-S: PEN na distribuicao, separados apos o QG. O TN-S e o mais seguro — correntes de falta retornam pelo PE sem contaminar o neutro." }
+    explicacao: "TN-S (Separated): PE e N sao condutores separados em toda a instalacao. TN-C: PEN unico (economico). TN-C-S: PEN na distribuicao, separados apos o QG. O TN-S e o mais seguro — correntes de falta retornam pelo PE sem contaminar o neutro." },
 
 
 
@@ -514,7 +514,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Luvas isolantes e cinto de segurança tipo paraquedista", "Apenas o disjuntor de proteção", "Sinalização de área", "Aterramento temporário"], respostaCorreta: 0,
 
-    explicacao: "EPI (individual): luvas isolantes de borracha (classe adequada a tensao), capacete com viseira facial, oculos de seguranca, calcados dieletricos, uniforme antichama. EPC (coletivo): barreiras, tapetes isolantes, aterramento temporario, sinalizacao de seguranca. Hierarquia da NR-10: EPCs primeiro; EPIs complementam." }
+    explicacao: "EPI (individual): luvas isolantes de borracha (classe adequada a tensao), capacete com viseira facial, oculos de seguranca, calcados dieletricos, uniforme antichama. EPC (coletivo): barreiras, tapetes isolantes, aterramento temporario, sinalizacao de seguranca. Hierarquia da NR-10: EPCs primeiro; EPIs complementam." },
 
 
 
@@ -546,7 +546,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Efeito Seebeck (geração de tensão por diferença de temperatura entre metais distintos)", "Efeito Joule", "Efeito Hall", "Lei de Ohm"], respostaCorreta: 0,
 
-    explicacao: "Termopar (efeito Seebeck): juncao de dois metais A e B gera FEM $$V = \alpha_{AB}(T_1 - T_2)$$. Juncao quente = ponto de medicao; juncao fria = referencia (tipicamente 0 graus C com gelo ou compensada eletronicamente). Sem alimentacao externa. Tipos comuns: K (mais usado, -200 a +1350 graus C), J, T, R, S." }
+    explicacao: "Termopar (efeito Seebeck): juncao de dois metais A e B gera FEM $$V = \alpha_{AB}(T_1 - T_2)$$. Juncao quente = ponto de medicao; juncao fria = referencia (tipicamente 0 graus C com gelo ou compensada eletronicamente). Sem alimentacao externa. Tipos comuns: K (mais usado, -200 a +1350 graus C), J, T, R, S." },
 
 
 
@@ -578,7 +578,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Campo elétrico", "Campo magnético", "Energia térmica", "Energia mecânica"], respostaCorreta: 0,
 
-    explicacao: "Capacitor: $$Q = CV$$, $$E = CV^2/2$$, $$i = C dV/dt$$. Em CC permanente: $$i = 0$$ (circuito aberto). Em CA: $$I = V \omega C = V/X_C$$. Transistorio em $$t = 0^+$$: age como curto-circuito (tensao no capacitor nao muda instantaneamente). Reatancia: $$X_C = 1/(\omega C)$$ — diminui com aumento da frequencia." }
+    explicacao: "Capacitor: $$Q = CV$$, $$E = CV^2/2$$, $$i = C dV/dt$$. Em CC permanente: $$i = 0$$ (circuito aberto). Em CA: $$I = V \omega C = V/X_C$$. Transistorio em $$t = 0^+$$: age como curto-circuito (tensao no capacitor nao muda instantaneamente). Reatancia: $$X_C = 1/(\omega C)$$ — diminui com aumento da frequencia." },
 
 
 
@@ -610,7 +610,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Impedir o acionamento simultâneo de dois contatores que causariam curto-circuito de fases", "Aumentar o torque de partida", "Reduzir o consumo de energia em repouso", "Eliminar a necessidade de fusíveis"], respostaCorreta: 0,
 
-    explicacao: "Intertravamento eletrico em inversao de marcha: contato NF do contator horario (KM1) em serie com bobina do anti-horario (KM2) e vice-versa. Se KM1 energizado, seu NF abre — impossivel energizar KM2 simultaneamente. Isso evita curto trifasico entre fases. Recomendado tambem o intertravamento mecanico para dupla protecao." }
+    explicacao: "Intertravamento eletrico em inversao de marcha: contato NF do contator horario (KM1) em serie com bobina do anti-horario (KM2) e vice-versa. Se KM1 energizado, seu NF abre — impossivel energizar KM2 simultaneamente. Isso evita curto trifasico entre fases. Recomendado tambem o intertravamento mecanico para dupla protecao." },
 
 
 
@@ -642,7 +642,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["THD (Taxa de Distorção Harmônica)", "Fator de potência apenas", "Queda de tensão", "Escorregamento"], respostaCorreta: 0,
 
-    explicacao: "THD: $$THD_V = (\sqrt{V_2^2 + V_3^2 + \cdots})/V_1 \times 100\%$$. Causas: inversores, retificadores, fontes chaveadas, lampadas LED sem filtro. Efeitos: aquecimento extra em cabos e transformadores (perdas por harmonicas), interferencia em equipamentos sensiveis, reducao da vida util de bancos de capacitores." }
+    explicacao: "THD: $$THD_V = (\sqrt{V_2^2 + V_3^2 + \cdots})/V_1 \times 100\%$$. Causas: inversores, retificadores, fontes chaveadas, lampadas LED sem filtro. Efeitos: aquecimento extra em cabos e transformadores (perdas por harmonicas), interferencia em equipamentos sensiveis, reducao da vida util de bancos de capacitores." },
 
 
 
@@ -1338,7 +1338,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Nulo, pois os campos se cancelam no ponto médio", "Igual ao campo de um único condutor", "O dobro do campo de um único condutor", "A metade do campo de um único condutor", "Indeterminado sem o valor da corrente"], respostaCorreta: 0,
 
-    explicacao: "Forcas entre condutores paralelos: correntes no **mesmo sentido** → campos magneticos se opõem entre os fios → forca de **atracao**. Sentidos opostos → campos se somam entre os fios → forca de **repulsao**. Formula: $$F/L = \mu_0 I_1 I_2/(2\pi d)$$. Esta formula era a base da definicao de Ampere no sistema SI ate 2019." }
+    explicacao: "Forcas entre condutores paralelos: correntes no **mesmo sentido** → campos magneticos se opõem entre os fios → forca de **atracao**. Sentidos opostos → campos se somam entre os fios → forca de **repulsao**. Formula: $$F/L = \mu_0 I_1 I_2/(2\pi d)$$. Esta formula era a base da definicao de Ampere no sistema SI ate 2019." },
 
 
 
@@ -1425,7 +1425,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Restaurado, renovado", "Silencioso, calado", "Cansaço, fadiga", "Descanso, labor", "Curioso, indagador"], respostaCorreta: 3,
 
-    explicacao: "Paronimos: palavras de grafia/som semelhante mas significados diferentes. Exemplos classicos: **eminente** (importante, elevado) vs **iminente** (prestes a acontecer); **infligir** (aplicar pena) vs **infringir** (violar norma); **descriminar** (inocentar) vs **discriminar** (diferenciar/distinguir)." }
+    explicacao: "Paronimos: palavras de grafia/som semelhante mas significados diferentes. Exemplos classicos: **eminente** (importante, elevado) vs **iminente** (prestes a acontecer); **infligir** (aplicar pena) vs **infringir** (violar norma); **descriminar** (inocentar) vs **discriminar** (diferenciar/distinguir)." },
 
 
   // ---------------------------------------------------------------------
@@ -1561,7 +1561,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 0,
 
-    explicacao: "CF/1988, Art. 37 — Principios da AP Federal: **LIMPE** — Legalidade (agir conforme a lei), Impessoalidade (sem favorecimento pessoal), Moralidade (boa-fe e etica), Publicidade (transparencia), Eficiencia (qualidade e economicidade). A impessoalidade impede usar o cargo para beneficios/prejuizos por razoes pessoais." }
+    explicacao: "CF/1988, Art. 37 — Principios da AP Federal: **LIMPE** — Legalidade (agir conforme a lei), Impessoalidade (sem favorecimento pessoal), Moralidade (boa-fe e etica), Publicidade (transparencia), Eficiencia (qualidade e economicidade). A impessoalidade impede usar o cargo para beneficios/prejuizos por razoes pessoais." },
 
 
   // ---------------------------------------------------------------------
@@ -1645,7 +1645,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Worm", "Keylogger", "Trojan horse genérico", "Adware", "Rootkit"], respostaCorreta: 1,
 
-    explicacao: "**Keylogger** e um tipo de spyware que registra todas as teclas pressionadas e envia ao atacante, capturando senhas, dados bancarios e qualquer texto digitado. Pode ser software (oculto no sistema) ou hardware (dispositivo fisico entre teclado e PC). Detectavel por antivirus atualizado." }
+    explicacao: "**Keylogger** e um tipo de spyware que registra todas as teclas pressionadas e envia ao atacante, capturando senhas, dados bancarios e qualquer texto digitado. Pode ser software (oculto no sistema) ou hardware (dispositivo fisico entre teclado e PC). Detectavel por antivirus atualizado." },
 
 
   // ── 50 QUESTÕES ORIGINAIS DE ALTO NÍVEL — Eletrotécnica (e60–e109) ──
@@ -1944,13 +1944,13 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "Seletividade total: somente o dispositivo mais proximo da falta atua. Metodos: cronometrico (retardo intencional a montante), amperimetrico (patamares de corrente escalonados), energetico (disjuntores limitadores cortam antes do pico de corrente), por zona (diferencial de impedancia, nenhum retardo de tempo)." }
+    explicacao: "Seletividade total: somente o dispositivo mais proximo da falta atua. Metodos: cronometrico (retardo intencional a montante), amperimetrico (patamares de corrente escalonados), energetico (disjuntores limitadores cortam antes do pico de corrente), por zona (diferencial de impedancia, nenhum retardo de tempo)." },
 
 
 
   // Aterramento e DPS
 
-  { id: "e85", inedita: true, areaGrande: "Eletrotécnica", assunto: "Aterramento", banca: "Voltis Original", ano: 2023, dificuldade: "Médio",
+  {{ id: "e85", inedita: true, areaGrande: "Eletrotécnica", assunto: "Aterramento", banca: "Voltis Original", ano: 2023, dificuldade: "Médio",
 
     enunciado: "Em um sistema de aterramento TN-S, a característica fundamental é:",
 
@@ -5527,14 +5527,14 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "Afirmativas corretas **I, II e IV**: (I) SSD mais rapido que HDD; (II) Pen drives usam memoria flash NAND; (IV) HDDs podem ser afetados por campos magneticos. Afirmativa **III incorreta**: RAM e memoria **volatil** — perde conteudo sem energia eletrica. Armazenamento permanente e em disco (HDD/SSD/Flash)." }
+    explicacao: "Afirmativas corretas **I, II e IV**: (I) SSD mais rapido que HDD; (II) Pen drives usam memoria flash NAND; (IV) HDDs podem ser afetados por campos magneticos. Afirmativa **III incorreta**: RAM e memoria **volatil** — perde conteudo sem energia eletrica. Armazenamento permanente e em disco (HDD/SSD/Flash)." },
 
 
   // ── LEGISLAÇÃO / NORMAS ─────────────────────────────────────────────────
 
 
 
-  { id: "leg7", inedita: true, areaGrande: "Legislação", assunto: "NR-10", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
+  {{ id: "leg7", inedita: true, areaGrande: "Legislação", assunto: "NR-10", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
 
     enunciado: "De acordo com a NR-10, a tensão máxima que define o limite superior da classificação Extra Baixa Tensão (EBT) para corrente alternada é:",
 
@@ -5699,14 +5699,14 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "CF/1988, Art. 40 — RPPS (Regime Proprio de Previdencia Social) para servidores efetivos. EC 103/2019 (Reforma da Previdencia): **mulheres: 62 anos** de idade + 25 anos de contribuicao; **homens: 65 anos** + 25 anos de contribuicao. Regras de transicao para quem ja estava no servico antes de 13/11/2019." }
+    explicacao: "CF/1988, Art. 40 — RPPS (Regime Proprio de Previdencia Social) para servidores efetivos. EC 103/2019 (Reforma da Previdencia): **mulheres: 62 anos** de idade + 25 anos de contribuicao; **homens: 65 anos** + 25 anos de contribuicao. Regras de transicao para quem ja estava no servico antes de 13/11/2019." },
 
 
   // ── CONHECIMENTOS ESPECÍFICOS — ELETROTÉCNICA ───────────────────────────
 
 
 
-  { id: "e286", inedita: true, temImagem: true, areaGrande: "Eletrotécnica", assunto: "Circuitos CC", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
+  {{ id: "e286", inedita: true, temImagem: true, areaGrande: "Eletrotécnica", assunto: "Circuitos CC", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
 
     enunciado: "A figura representa um circuito de corrente contínua com uma fonte de 120 V e três resistores: R1 = 20Ω em série com o paralelo de R2 = 30Ω e R3 = 60Ω.\n\nO circuito equivalente de Thévenin visto pelos terminais A-B (após R1) é formado por:",
 
