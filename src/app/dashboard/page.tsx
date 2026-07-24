@@ -156,6 +156,7 @@ export default function DashboardPage() {
       ],
       cta: "Abrir ByteVolt",
     },
+  ];
 
   return (
     <div className="min-h-screen blueprint-grid">
