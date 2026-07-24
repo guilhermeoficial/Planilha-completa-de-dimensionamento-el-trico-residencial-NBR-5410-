@@ -222,7 +222,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["R$ 6.800,00", "R$ 6.200,00", "R$ 7.200,00", "R$ 6.000,00"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "m2", areaGrande: "Matemática/Raciocínio Lógico", assunto: "Regra de três", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Fácil",
 
@@ -230,7 +230,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["10 dias", "14 dias", "12 dias", "15 dias"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "m3", areaGrande: "Matemática/Raciocínio Lógico", assunto: "Análise combinatória", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Médio",
 
@@ -238,7 +238,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["21", "35", "42", "210"], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "m4", areaGrande: "Matemática/Raciocínio Lógico", assunto: "Lógica proposicional", banca: "CESGRANRIO (estilo)", ano: 2022, dificuldade: "Médio",
 
@@ -246,7 +246,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["O disjuntor não está desarmado e não há sobrecarga.", "O disjuntor está desarmado e não há sobrecarga.", "Se há sobrecarga, o disjuntor está desarmado.", "O disjuntor não está desarmado ou há sobrecarga."], respostaCorreta: 1,
 
-    explicacao: "Negacao da condicional: $$\neg(P \Rightarrow Q) \equiv P \land \neg Q$$. A implicacao e falsa **somente** quando o antecedente P e verdadeiro e o consequente Q e falso. Negar "Se o disjuntor esta armado (P) entao ha sobrecarga (Q)": resulta em "Disjuntor esta armado E nao ha sobrecarga" — P verdadeiro com Q falso.",
+    explicacao: "Negacao da condicional: $$\neg(P \Rightarrow Q) \equiv P \land \neg Q$$. A implicacao e falsa **somente** quando o antecedente P e verdadeiro e o consequente Q e falso. Negar 'Se o disjuntor esta armado (P) entao ha sobrecarga (Q)': resulta em 'Disjuntor esta armado E nao ha sobrecarga' — P verdadeiro com Q falso." },
 
   { id: "m5", areaGrande: "Matemática/Raciocínio Lógico", assunto: "Juros simples", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
 
@@ -254,7 +254,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["R$ 4.400,00", "R$ 4.200,00", "R$ 4.420,00", "R$ 4.040,00"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "m6", areaGrande: "Matemática/Raciocínio Lógico", assunto: "Conversão de unidades", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Fácil",
 
@@ -262,7 +262,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["2,35 m", "23,5 m", "0,235 m", "235 m"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -278,7 +278,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["1.000 MB", "1.024 MB", "1.000.000 KB", "100 MB"], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "ic2", areaGrande: "Informática", assunto: "Planilhas eletrônicas", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Médio",
 
@@ -315,7 +315,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["60 V", "3,75 V", "19 V", "11 V"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "e2", areaGrande: "Eletrotécnica", assunto: "Associação de resistores", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
 
@@ -331,7 +331,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ['25 A', '12,5 A', '50 A', '2,5 A'], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "e4", areaGrande: "Eletrotécnica", assunto: "Energia elétrica", banca: "CESGRANRIO (estilo)", ano: 2022, dificuldade: "Médio",
 
@@ -339,7 +339,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["180 kWh", "60 kWh", "90 kWh", "360 kWh"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "e5", areaGrande: "Eletrotécnica", assunto: "Leis de Kirchhoff", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
 
@@ -347,7 +347,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["A soma das correntes que entram é igual à soma das que saem.", "A soma das tensões é sempre zero.", "A corrente é proporcional à resistência.", "A potência dissipada é constante."], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "e6", areaGrande: "Eletrotécnica", assunto: "Corrente alternada", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Médio",
 
@@ -355,7 +355,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["60 ciclos completos", "60 picos de tensão", "30 ciclos completos", "120 inversões de polaridade por minuto"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "e7", areaGrande: "Eletrotécnica", assunto: "Fator de potência", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
 
@@ -363,7 +363,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["A corrente está atrasada em relação à tensão.", "A corrente está adiantada em relação à tensão.", "Não há defasagem entre tensão e corrente.", "A potência reativa é nula."], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "e8", areaGrande: "Eletrotécnica", assunto: "Potência em CA", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
 
@@ -371,7 +371,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["S² = P² + Q²", "S = P + Q", "P = S + Q", "Q² = P + S"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "e9", areaGrande: "Eletrotécnica", assunto: "Sistemas trifásicos", banca: "CESGRANRIO (estilo)", ano: 2022, dificuldade: "Médio",
 
@@ -379,7 +379,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["VL = √3 × VF", "VL = VF", "VL = 3 × VF", "VL = VF/√3"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -403,7 +403,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["À taxa de variação do fluxo magnético.", "À resistência do circuito.", "À temperatura do condutor.", "Ao comprimento do condutor apenas."], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -419,7 +419,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Reduzir a corrente de partida.", "Aumentar o torque de partida.", "Eliminar a necessidade de proteção térmica.", "Aumentar a velocidade nominal do motor."], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "e13", areaGrande: "Eletrotécnica", assunto: "Motores elétricos", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
 
@@ -427,7 +427,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["A diferença relativa entre a velocidade síncrona e a velocidade do rotor.", "A relação entre tensão e corrente nominal.", "A diferença entre potência ativa e reativa.", "A razão entre o número de polos e a frequência."], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "e14", areaGrande: "Eletrotécnica", assunto: "Transformadores", banca: "CESGRANRIO (estilo)", ano: 2022, dificuldade: "Médio",
 
@@ -458,7 +458,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["1,5 mm²", "0,5 mm²", "2,5 mm²", "4 mm²"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "e17", areaGrande: "Eletrotécnica", assunto: "NBR 5410", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
 
@@ -466,7 +466,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["4%", "1%", "10%", "0,5%"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "e18", areaGrande: "Eletrotécnica", assunto: "Proteção de circuitos", banca: "CESGRANRIO (estilo)", ano: 2022, dificuldade: "Médio",
 
@@ -570,7 +570,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Tensão coletor-emissor próxima de zero, com corrente máxima conduzida", "Corrente de coletor nula", "Comportamento linear de amplificação", "Resistência infinita entre coletor e emissor"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "e28", areaGrande: "Eletrotécnica", assunto: "Eletrônica básica", banca: "CESGRANRIO (estilo)", ano: 2022, dificuldade: "Fácil",
 
@@ -626,7 +626,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Reduzir as perdas por efeito Joule, já que a corrente diminui para a mesma potência", "Aumentar a frequência da rede", "Reduzir o custo dos transformadores", "Eliminar a necessidade de aterramento"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "e33", areaGrande: "Eletrotécnica", assunto: "Geração e transmissão", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
 
@@ -662,7 +662,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Certo", "Errado"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "ce2", areaGrande: "Eletrotécnica", assunto: "Circuitos CC", banca: "CESGRANRIO (estilo, Certo/Errado)", ano: 2024, dificuldade: "Difícil",
 
@@ -670,7 +670,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Certo", "Errado"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "ce3", areaGrande: "Eletrotécnica", assunto: "Circuitos CC", banca: "CESGRANRIO (estilo, Certo/Errado)", ano: 2023, dificuldade: "Médio",
 
@@ -686,7 +686,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ['Certo', 'Errado'], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "ce5", areaGrande: "Eletrotécnica", assunto: "Circuitos CA", banca: "CESGRANRIO (estilo, Certo/Errado)", ano: 2024, dificuldade: "Difícil",
 
@@ -694,7 +694,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Certo", "Errado"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "ce6", areaGrande: "Eletrotécnica", assunto: "Circuitos CA", banca: "CESGRANRIO (estilo, Certo/Errado)", ano: 2023, dificuldade: "Médio",
 
@@ -702,7 +702,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Certo", "Errado"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "ce7", areaGrande: "Eletrotécnica", assunto: "Fator de potência", banca: "CESGRANRIO (estilo, Certo/Errado)", ano: 2024, dificuldade: "Difícil",
 
@@ -710,7 +710,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Certo", "Errado"], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "ce8", areaGrande: "Eletrotécnica", assunto: "Sistemas trifásicos", banca: "CESGRANRIO (estilo, Certo/Errado)", ano: 2023, dificuldade: "Médio",
 
@@ -726,7 +726,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ['Certo', 'Errado'], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "ce10", areaGrande: "Eletrotécnica", assunto: "Instrumentação", banca: "CESGRANRIO (estilo, Certo/Errado)", ano: 2023, dificuldade: "Difícil",
 
@@ -734,7 +734,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Certo", "Errado"], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "ce11", areaGrande: "Eletrotécnica", assunto: "Instrumentação", banca: "CESGRANRIO (estilo, Certo/Errado)", ano: 2022, dificuldade: "Médio",
 
@@ -742,7 +742,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Certo", "Errado"], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "ce12", areaGrande: "Eletrotécnica", assunto: "NBR 5410", banca: "CESGRANRIO (estilo, Certo/Errado)", ano: 2024, dificuldade: "Médio",
 
@@ -750,7 +750,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Certo", "Errado"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "ce13", areaGrande: "Eletrotécnica", assunto: "NBR 5410", banca: "CESGRANRIO (estilo, Certo/Errado)", ano: 2023, dificuldade: "Difícil",
 
@@ -758,7 +758,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Certo", "Errado"], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "ce14", areaGrande: "Eletrotécnica", assunto: "Proteção de circuitos", banca: "CESGRANRIO (estilo, Certo/Errado)", ano: 2024, dificuldade: "Médio",
 
@@ -766,7 +766,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Certo", "Errado"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "ce15", areaGrande: "Eletrotécnica", assunto: "Aterramento", banca: "CESGRANRIO (estilo, Certo/Errado)", ano: 2023, dificuldade: "Difícil",
 
@@ -774,7 +774,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Certo", "Errado"], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "ce16", areaGrande: "Eletrotécnica", assunto: "Aterramento", banca: "CESGRANRIO (estilo, Certo/Errado)", ano: 2024, dificuldade: "Médio",
 
@@ -782,7 +782,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Certo", "Errado"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "ce17", areaGrande: "Eletrotécnica", assunto: "SPDA", banca: "CESGRANRIO (estilo, Certo/Errado)", ano: 2022, dificuldade: "Médio",
 
@@ -790,7 +790,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Certo", "Errado"], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "ce18", areaGrande: "Eletrotécnica", assunto: "Transformadores", banca: "CESGRANRIO (estilo, Certo/Errado)", ano: 2024, dificuldade: "Difícil",
 
@@ -806,7 +806,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ['Certo', 'Errado'], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "ce20", areaGrande: "Eletrotécnica", assunto: "Máquinas elétricas", banca: "CESGRANRIO (estilo, Certo/Errado)", ano: 2024, dificuldade: "Difícil",
 
@@ -814,7 +814,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Certo", "Errado"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "ce21", areaGrande: "Eletrotécnica", assunto: "Máquinas elétricas", banca: "CESGRANRIO (estilo, Certo/Errado)", ano: 2023, dificuldade: "Difícil",
 
@@ -822,7 +822,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Certo", "Errado"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "ce22", areaGrande: "Eletrotécnica", assunto: "Motores elétricos", banca: "CESGRANRIO (estilo, Certo/Errado)", ano: 2024, dificuldade: "Médio",
 
@@ -830,7 +830,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Certo", "Errado"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "ce23", areaGrande: "Eletrotécnica", assunto: "NR10", banca: "CESGRANRIO (estilo, Certo/Errado)", ano: 2024, dificuldade: "Médio",
 
@@ -838,7 +838,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Certo", "Errado"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "ce24", areaGrande: "Eletrotécnica", assunto: "NR10", banca: "CESGRANRIO (estilo, Certo/Errado)", ano: 2023, dificuldade: "Médio",
 
@@ -846,7 +846,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Certo", "Errado"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "ce25", areaGrande: "Eletrotécnica", assunto: "Eletrônica digital", banca: "CESGRANRIO (estilo, Certo/Errado)", ano: 2024, dificuldade: "Médio",
 
@@ -854,7 +854,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Certo", "Errado"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "ce26", areaGrande: "Eletrotécnica", assunto: "Eletrônica digital", banca: "CESGRANRIO (estilo, Certo/Errado)", ano: 2023, dificuldade: "Médio",
 
@@ -862,7 +862,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Certo", "Errado"], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -888,7 +888,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ['Certo', 'Errado'], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "n3", areaGrande: "Eletrotécnica", assunto: "Thévenin e Norton (CA)", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
 
@@ -896,7 +896,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Certo", "Errado"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "n4", areaGrande: "Eletrotécnica", assunto: "Partida estrela-triângulo", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
 
@@ -920,7 +920,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ['Certo', 'Errado'], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "n7", areaGrande: "Eletrotécnica", assunto: "NBR 14039 (média tensão)", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
 
@@ -928,7 +928,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Certo", "Errado"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "n8", areaGrande: "Eletrotécnica", assunto: "NBR 14039 (média tensão)", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
 
@@ -936,7 +936,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Certo", "Errado"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "n9", areaGrande: "Eletrotécnica", assunto: "SPDA", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
 
@@ -944,7 +944,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Certo", "Errado"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "n10", areaGrande: "Eletrotécnica", assunto: "Comandos elétricos / CLP", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Médio",
 
@@ -952,7 +952,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Certo", "Errado"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "n11", areaGrande: "Eletrotécnica", assunto: "Comandos elétricos / CLP", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
 
@@ -960,7 +960,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Certo", "Errado"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "n12", areaGrande: "Eletrotécnica", assunto: "Motores elétricos", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Médio",
 
@@ -968,7 +968,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Certo", "Errado"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "n13", areaGrande: "Eletrotécnica", assunto: "Instrumentação", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Difícil",
 
@@ -976,7 +976,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Certo", "Errado"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "n14", areaGrande: "Eletrotécnica", assunto: "Disjuntores e seletividade", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Difícil",
 
@@ -992,7 +992,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ['Certo', 'Errado'], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "n16", areaGrande: "Eletrotécnica", assunto: "Manutenção elétrica", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Médio",
 
@@ -1000,7 +1000,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Certo", "Errado"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "n17", areaGrande: "Eletrotécnica", assunto: "Eletrônica de potência", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Médio",
 
@@ -1008,7 +1008,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Certo", "Errado"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "n18", areaGrande: "Eletrotécnica", assunto: "Nobreaks e baterias", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
 
@@ -1016,7 +1016,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Certo", "Errado"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "n19", areaGrande: "Eletrotécnica", assunto: "Aterramento", banca: "CESGRANRIO (estilo)", ano: 2024, dificuldade: "Médio",
 
@@ -1024,7 +1024,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Certo", "Errado"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
   { id: "n20", areaGrande: "Eletrotécnica", assunto: "Iluminação industrial", banca: "CESGRANRIO (estilo)", ano: 2023, dificuldade: "Médio",
 
@@ -1032,7 +1032,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Certo", "Errado"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -1050,7 +1050,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["0,17 mWb", "0,67 mWb", "1,20 mWb", "2,68 mWb", "6,70 mWb"], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -1060,7 +1060,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["72 V", "120 V", "144 V", "208 V", "360 V"], respostaCorreta: 3,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -1070,7 +1070,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["1,67 kVA", "5,00 kVA", "8,33 kVA", "10,00 kVA", "11,67 kVA"], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -1080,7 +1080,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["60 A e 4,2 V", "60 A e 5,6 V", "64 A e 4,48 V", "64 A e 4,8 V", "66 A e 4,62 V"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -1090,7 +1090,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["7,7%", "8,3%", "9,1%", "10,9%", "12,0%"], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -1100,7 +1100,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["7,96 Hz", "15,9 Hz", "79,6 Hz", "159 Hz", "796 Hz"], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -1110,7 +1110,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["0,5 Hz", "1,0 Hz", "1,5 Hz", "2,5 Hz", "3,0 Hz"], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -1120,7 +1120,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["0 A", "2 A", "4 A", "6 A", "12 A"], respostaCorreta: 3,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -1130,7 +1130,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["31,4 rad/s", "52,4 rad/s", "62,8 rad/s", "78,5 rad/s", "104,7 rad/s"], respostaCorreta: 3,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -1150,7 +1150,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["34,5 kvar", "55,0 kvar", "72,6 kvar", "92,1 kvar", "107,1 kvar"], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -1204,7 +1204,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["kg·m²·s⁻³·A⁻²", "kg⁻¹·m⁻²·s⁴·A²", "kg⁻¹·m⁻²·s³·A²", "kg·m⁻²·s⁻³·A", "kg·m²·s⁻²·A⁻²"], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -1214,7 +1214,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["3", "4", "5", "6", "8"], respostaCorreta: 3,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -1246,7 +1246,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -1266,7 +1266,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["1,5 A", "3,0 A", "6,0 A", "12,0 A", "96,0 A"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -1276,7 +1276,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["10,0 V", "12,0 V", "14,4 V", "16,0 V", "18,0 V"], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -1286,7 +1286,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["12,6 A", "125,6 A", "251,2 A", "502,5 A", "628,0 A"], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -1296,7 +1296,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["96,9% e 97,4%", "97,8% e 98,1%", "98,7% e 98,9%", "99,1% e 99,3%", "99,5% e 99,7%"], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -1306,7 +1306,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["1,0 A", "2,0 A", "4,0 A", "5,0 A", "8,0 A"], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -1660,7 +1660,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["10,0 + j0,0 Ω", "10,0 + j5,6 Ω", "10,0 − j5,6 Ω", "10,0 + j18,8 Ω", "10,0 − j18,8 Ω"], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -1670,7 +1670,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["10,6 A e 0,87 indutivo", "10,6 A e 0,87 capacitivo", "12,0 A e 1,00", "10,6 A e 0,74 indutivo", "8,5 A e 0,87 indutivo"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -1680,7 +1680,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["2,2 A e 1,00", "3,1 A e 0,71 capacitivo", "2,2 A e 0,71 capacitivo", "3,1 A e 0,71 indutivo", "2,2 A e 0,87 capacitivo"], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -1690,7 +1690,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["1,59 kHz", "6,28 kHz", "15,9 kHz", "31,8 kHz", "159 kHz"], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -1700,7 +1700,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["600 W, 800 var, 1000 VA", "800 W, 600 var, 1000 VA", "60 W, 80 var, 100 VA", "600 W, 800 var, 600 VA", "1000 W, 0 var, 1000 VA"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -1710,7 +1710,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["157,8 kvar", "242,0 kvar", "399,8 kvar", "158,0 kvar", "484,0 kvar"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -1722,7 +1722,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["580,8 W", "968,0 W", "1742,4 W", "2904 W", "5808 W"], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -1732,7 +1732,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["21,97 A e 15.800 VA", "21,97 A e 25.312 VA", "38,0 A e 25.312 VA", "21,97 A e 14.473 VA", "12,7 A e 8.380 VA"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -1742,7 +1742,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["0 A", "3,6 A", "6,35 A", "8,7 A", "12,7 A"], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -1754,7 +1754,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["90 V e 1,8 A", "114 V e 2,28 A", "127 V e 2,54 A", "180 V e 3,6 A", "57 V e 1,14 A"], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -1764,7 +1764,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["187 V", "257 V", "297 V", "324 V", "360 V"], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -1818,7 +1818,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["282,8 V", "311,1 V", "380,0 V", "400,0 V", "565,7 V"], respostaCorreta: 3,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -1830,7 +1830,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["0,5 mm²", "1,0 mm²", "1,5 mm²", "2,5 mm²", "4,0 mm²"], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -1840,7 +1840,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["6 mm²", "10 mm²", "16 mm²", "25 mm²", "50% da seção de fase"], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -1850,7 +1850,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["1 circuito", "2 circuitos", "3 circuitos", "4 circuitos", "5 circuitos"], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -1880,7 +1880,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["19,6 A", "28,0 A", "33,6 A", "40,0 A", "56,0 A"], respostaCorreta: 3,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -1892,7 +1892,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["23,8 A", "26,9 A", "29,3 A", "33,8 A", "38,1 A"], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -1902,7 +1902,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["29,3 A exatamente", "Entre 100% e 115% de In (29,3 a 33,7 A)", "Entre 115% e 125% de In", "200% de In", "125% de In como valor fixo"], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -1912,7 +1912,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["1.200 A", "1.583 A", "2.200 A", "2.741 A", "4.400 A"], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -1922,7 +1922,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["7.070 A", "14.142 A", "21.213 A", "35.350 A", "50.050 A"], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -1950,7 +1950,7 @@ const QUESTOES_BASE: any[] = [
 
   // Aterramento e DPS
 
-  {{ id: "e85", inedita: true, areaGrande: "Eletrotécnica", assunto: "Aterramento", banca: "Voltis Original", ano: 2023, dificuldade: "Médio",
+  { id: "e85", inedita: true, areaGrande: "Eletrotécnica", assunto: "Aterramento", banca: "Voltis Original", ano: 2023, dificuldade: "Médio",
 
     enunciado: "Em um sistema de aterramento TN-S, a característica fundamental é:",
 
@@ -1978,7 +1978,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["8,5 Ω", "17,3 Ω", "25,8 Ω", "34,6 Ω", "51,9 Ω"], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2000,7 +2000,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2012,7 +2012,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["2.200 W", "1.905 W", "1.100 W", "693 W", "380 W"], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2022,7 +2022,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["12 kW e 0,73", "4 kW e 0,50", "12 kW e 0,87", "8 kW e 1,00", "12 kW e 0,96"], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2032,7 +2032,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["15 V e 1000 Hz", "10,6 V e 500 Hz", "15 V e 500 Hz", "10,6 V e 1000 Hz", "21,2 V e 500 Hz"], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2042,7 +2042,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["7.200 kWh e 5.400 kvarh", "8.000 kWh e 6.000 kvarh", "7.200 kWh e 9.600 kvarh", "9.000 kWh e 6.750 kvarh", "7.200 kWh e 5.400 kvarh"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2054,7 +2054,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["1800 rpm, 1728 rpm, 2,4 Hz", "1800 rpm, 1800 rpm, 0 Hz", "1500 rpm, 1440 rpm, 2,0 Hz", "1800 rpm, 1728 rpm, 4,0 Hz", "3600 rpm, 3456 rpm, 2,4 Hz"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2064,7 +2064,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["0,9 kW e 29,1 kW", "1,0 kW e 30,0 kW", "0,9 kW e 30,0 kW", "3,0 kW e 27,0 kW", "0,93 kW e 30,93 kW"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2074,7 +2074,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["3.980 V", "4.250 V", "4.580 V", "4.900 V", "5.230 V"], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2084,7 +2084,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["23 A, 228,5 V e 41,8 N·m", "25 A, 227,5 V e 45,5 N·m", "23 A, 230 V e 41,8 N·m", "22 A, 229 V e 40,2 N·m", "25 A, 240 V e 47,7 N·m"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2094,7 +2094,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["2,4%, 1,67 A e 4,72 A", "2,4%, 2,50 A e 4,37 A", "24%, 1,67 A e 4,72 A", "2,4%, 1,67 A e 3,21 A", "10%, 5,00 A e 0 A"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2106,7 +2106,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Bobina de saída (contato normalmente fechado)", "Contato normalmente aberto (NA)", "Contato normalmente fechado (NF)", "Bobina de saída (solenóide)", "Temporizador com retardo na energização"], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2116,7 +2116,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["100°C", "150°C", "200°C", "250°C", "300°C"], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2126,7 +2126,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["1.350 rpm", "1.440 rpm", "1.500 rpm", "1.800 rpm", "2.700 rpm"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2148,7 +2148,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2172,7 +2172,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2182,7 +2182,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["0,52%", "0,87%", "1,01%", "4,17%", "5,83%"], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2192,7 +2192,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["25 kW e 7,5 kvar", "25 kW e 10 kvar", "25 kW e 7,5 kvar", "22 kW e 7,5 kvar", "25 kW e 0 kvar"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2202,7 +2202,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["1728 rpm e 2,4 Hz", "1800 rpm e 0 Hz", "1872 rpm e 2,4 Hz", "1872 rpm e 4,0 Hz", "1800 rpm e 2,4 Hz"], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2212,7 +2212,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["233 A e 24,2 Mvar", "208 A e 24,2 Mvar", "233 A e 22,2 Mvar", "208 A e 22,2 Mvar", "233 A e 50 Mvar"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2222,7 +2222,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["15 V", "24 V", "30 V", "36 V", "48 V"], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2232,7 +2232,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["7,2 V", "20 V", "30 V", "48 V", "60 V"], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2242,7 +2242,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["1,7%", "2,7%", "3,4%", "4,3%", "5,4%"], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2264,7 +2264,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2274,7 +2274,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["26,5 V", "53,0 V", "74,5 V", "106,2 V", "133,0 V"], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2284,7 +2284,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["1/√3 e 1/3", "1/√3 e 1/√3", "1/2 e 1/4", "1/3 e 1/3", "1/√3 e 2/3"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2306,7 +2306,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2316,7 +2316,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["9 kW e 40,9 A", "10 kW e 45,5 A", "9 kW e 45,5 A", "10 kW e 40,9 A", "9 kW e 50,0 A"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2326,7 +2326,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["418 A", "836 A", "1.045 A", "10.450 A", "20.900 A"], respostaCorreta: 3,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2348,7 +2348,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },,
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },,
 
 
 
@@ -2374,7 +2374,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2384,7 +2384,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["50 A", "63 A", "80 A", "100 A", "125 A"], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2394,7 +2394,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["100 kvar", "75 kvar", "50 kvar", "33 kvar", "0 kvar"], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2416,7 +2416,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2438,7 +2438,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2460,7 +2460,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2482,7 +2482,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2504,7 +2504,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2536,7 +2536,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["48 kW", "144 kW", "290 kW", "432 kW", "867 kW"], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2558,7 +2558,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2572,7 +2572,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2582,7 +2582,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["127 V", "179,6 V", "254 V", "311,1 V", "359,3 V"], respostaCorreta: 4,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2604,7 +2604,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2614,7 +2614,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["130 kvar", "187 kvar", "254 kvar", "386 kvar", "514 kvar"], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2624,7 +2624,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["24", "29", "36", "48", "58"], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2634,7 +2634,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["2,5 bar e há discrepância", "3,0 bar — o manômetro está errado", "2,5 bar — não há discrepância, ambos estão corretos", "4,0 bar — o transmissor está errado", "5,0 bar"], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2656,7 +2656,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2678,7 +2678,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2700,7 +2700,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2722,7 +2722,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2744,7 +2744,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2766,7 +2766,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2788,7 +2788,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2798,7 +2798,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["0,43", "0,58", "0,65", "0,78", "1,00"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2820,7 +2820,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2842,7 +2842,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2864,7 +2864,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2886,7 +2886,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2896,7 +2896,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["5,0%", "7,5%", "11,2%", "15,0%", "20,0%"], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2918,7 +2918,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2940,7 +2940,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2962,7 +2962,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2984,7 +2984,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -2998,7 +2998,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3008,7 +3008,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["32,5 A", "35,4 A", "42,5 A", "49,3 A", "55,1 A"], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3018,7 +3018,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["0,95", "0,90", "0,85", "0,80", "0,63"], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3040,7 +3040,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3062,7 +3062,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3072,7 +3072,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["50 mm²", "70 mm²", "95 mm²", "120 mm²", "150 mm²"], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3094,7 +3094,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3104,7 +3104,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["420 kWh", "385 kWh", "350 kWh", "310 kWh", "275 kWh"], respostaCorreta: 3,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3118,7 +3118,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3140,7 +3140,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3162,7 +3162,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3184,7 +3184,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3194,7 +3194,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["R$ 2.700", "R$ 5.400", "R$ 8.100", "R$ 10.800", "R$ 16.200"], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3216,7 +3216,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3238,7 +3238,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3260,7 +3260,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },,
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },,
 
 
 
@@ -3288,7 +3288,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3310,7 +3310,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3332,7 +3332,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3342,7 +3342,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["29,4 A", "42,0 A", "52,5 A", "60,0 A", "86,5 A"], respostaCorreta: 3,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3364,7 +3364,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3386,7 +3386,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3408,7 +3408,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3418,7 +3418,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Vo = +5 V e Av = −10", "Vo = −5 V e Av = +10", "Vo = +5 V e Av = +10", "Vo = −5 V e Av = −10", "Vo = +0,05 V e Av = −0,1"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3440,7 +3440,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3462,7 +3462,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3472,7 +3472,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["1101 e 3 pulsos", "1100 e 4 pulsos", "1101 e 2 pulsos", "0111 e 3 pulsos", "1011 e 5 pulsos"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3482,7 +3482,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["2", "3", "4", "5", "6"], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3504,7 +3504,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 3,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3514,7 +3514,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["|Γ|=0,316, VSWR=1,92 e 9 kW", "|Γ|=0,1, VSWR=1,22 e 9 kW", "|Γ|=0,316, VSWR=1,92 e 10 kW", "|Γ|=0,316, VSWR=2,50 e 9 kW", "|Γ|=0,1, VSWR=1,22 e 10 kW"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3524,7 +3524,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["−42,4 dBW", "−52,4 dBW", "−62,4 dBW", "−72,4 dBW", "−82,4 dBW"], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3546,7 +3546,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3556,7 +3556,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["melhor que −18,2 dBm", "melhor que −21,2 dBm", "melhor que −24,2 dBm", "melhor que −27,2 dBm", "melhor que −30,2 dBm"], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3578,7 +3578,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3600,7 +3600,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3622,7 +3622,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3644,7 +3644,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3654,7 +3654,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["M = 0,25 e relé não atua", "M = 2,5 e relé atua lentamente", "M = 5,0 e relé atua em ≈ 5 s (curva NI)", "M = 10 e relé atua em < 1 s", "M = 50 e atuação instantânea"], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3676,7 +3676,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3708,7 +3708,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["1 °C, 2 °C e 3 °C", "10 °C, 20 °C e 30 °C", "100 °C, 200 °C e 300 °C", "0,1 °C, 0,2 °C e 0,3 °C", "64 °C, 200 °C e 300 °C"], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3718,7 +3718,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["80 μT e 0,8 mN/m (atrativa)", "80 μT e 1,6 mN/m (atrativa)", "40 μT e 0,8 mN/m (repulsiva)", "80 μT e 0,8 mN/m (repulsiva)", "40 μT e 1,6 mN/m (atrativa)"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3728,7 +3728,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["80 V e 1,6 J", "8 V e 0,16 J", "80 V e 0,16 J", "8 V e 1,6 J", "40 V e 0,8 J"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3738,7 +3738,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["0,47 s", "1,03 s", "1,59 s", "2,38 s", "3,14 s"], respostaCorreta: 3,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3748,7 +3748,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["10 A, 5 ms e 6,32 A", "10 A, 5 ms e 3,68 A", "100 A, 0,5 ms e 86,5 A", "10 A, 0,5 ms e 6,32 A", "5 A, 5 ms e 3,16 A"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3770,7 +3770,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3792,7 +3792,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3802,7 +3802,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["0 A — cargas equilibradas não geram corrente de neutro", "15 A", "45 A", "23 A", "8 A"], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3824,7 +3824,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3846,7 +3846,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3856,7 +3856,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["D=0,5, Iin=10 A e Pin=240 W", "D=0,5, Iin=11,1 A e Pin=266,7 W", "D=0,75, Iin=10 A e Pin=240 W", "D=0,5, Iin=10 A e Pin=266,7 W", "D=0,75, Iin=11,1 A e Pin=266,7 W"], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3866,7 +3866,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["I1=2,5 A, I2=1,25 A e V4Ω=5 V", "I1=2,0 A, I2=1,0 A e V4Ω=4 V", "I1=3,0 A, I2=1,5 A e V4Ω=6 V", "I1=2,5 A, I2=1,25 A e V4Ω=4 V", "I1=2,0 A, I2=0,5 A e V4Ω=6 V"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3876,7 +3876,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["1,33 A e 13,3 V", "1,33 A e 6,67 V", "2,0 A e 20,0 V", "6,67 A e 66,7 V", "0,67 A e 6,7 V"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3886,7 +3886,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["RL=3 Ω e P_max=48 W", "RL=6 Ω e P_max=24 W", "RL=6 Ω e P_max=96 W", "RL=12 Ω e P_max=12 W", "RL=6 Ω e P_max=48 W"], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3908,7 +3908,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3918,7 +3918,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["46", "58", "82", "103", "124"], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3928,7 +3928,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["5,0 bar e 12,0 mA", "4,88 bar e 11,96 mA", "5,0 bar e 12,0 mA — exatamente meio fundo de escala", "5,12 bar e 12,03 mA", "10,0 bar e 20,0 mA"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3950,7 +3950,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3960,7 +3960,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["7,12 MHz e β ≥ 4", "7,12 MHz e β ≥ 0,25", "14,24 MHz e β ≥ 4", "3,56 MHz e β ≥ 4", "7,12 MHz e β ≥ 16"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -3970,7 +3970,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["Q=0", "Q=1", "Q indefinido", "Q oscila sem parar", "Depende do FF anterior em cascata"], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -4002,7 +4002,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["33 μF", "100 μF", "167 μF", "333 μF", "1000 μF"], respostaCorreta: 3,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -4012,7 +4012,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["159 Hz", "503 Hz", "1590 Hz", "5030 Hz", "15900 Hz"], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -4034,7 +4034,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -4080,7 +4080,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -4102,7 +4102,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -4124,7 +4124,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -4134,7 +4134,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["3,0 dB", "5,0 dB", "7,4 dB", "9,6 dB", "11,0 dB"], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -4156,7 +4156,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -4178,7 +4178,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -4200,7 +4200,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -4244,7 +4244,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 4,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -4266,7 +4266,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -4288,7 +4288,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -4310,7 +4310,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -4320,7 +4320,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["40 W", "55 W", "600 W", "1.260 W", "2.000 W"], respostaCorreta: 3,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -4342,7 +4342,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -4364,7 +4364,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -4408,7 +4408,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -4430,7 +4430,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -4440,7 +4440,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["518 GB", "1.035 GB", "2.160 GB", "6.480 GB", "12.960 GB"], respostaCorreta: 3,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -4462,7 +4462,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -4492,7 +4492,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -4514,7 +4514,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -4536,7 +4536,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -4558,7 +4558,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -4580,7 +4580,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -4602,7 +4602,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -4624,7 +4624,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -4646,7 +4646,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -4668,7 +4668,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -4690,7 +4690,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -4712,7 +4712,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -4734,7 +4734,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -4744,7 +4744,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["14", "21", "35", "42", "56"], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -4776,7 +4776,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["38,5 A e 231 A", "41,3 A e 248 A", "44,5 A e 267 A", "47,8 A e 287 A", "57,8 A e 347 A"], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -4786,7 +4786,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["167 A e 667 Ah", "190 A e 760 Ah", "167 A e 785 Ah", "222 A e 888 Ah", "190 A e 890 Ah"], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -4796,7 +4796,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["1,25 V", "2,50 V", "13,75 V", "14,75 V", "15,25 V"], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -4806,7 +4806,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["M = 6 e t ≈ 0,81 s", "M = 6 e t ≈ 0,94 s", "M = 3 e t ≈ 3,52 s", "M = 6 e t ≈ 1,14 s", "M = 4 e t ≈ 1,76 s"], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -4850,7 +4850,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -4872,7 +4872,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -4882,7 +4882,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["1.240 kWh", "1.830 kWh", "2.480 kWh", "3.126 kWh", "4.920 kWh"], respostaCorreta: 3,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -4904,7 +4904,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -4926,7 +4926,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -4936,7 +4936,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["0,35 V", "0,71 V", "1,41 V", "2,82 V", "5,64 V"], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -4958,7 +4958,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -4980,7 +4980,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -5002,7 +5002,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -5012,7 +5012,7 @@ const QUESTOES_BASE: any[] = [
 
     alternativas: ["5.928 kWh", "6.084 kWh", "7.800 kWh", "8.424 kWh", "10.140 kWh"], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -5034,7 +5034,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -5070,7 +5070,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -5534,7 +5534,7 @@ const QUESTOES_BASE: any[] = [
 
 
 
-  {{ id: "leg7", inedita: true, areaGrande: "Legislação", assunto: "NR-10", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
+  { id: "leg7", inedita: true, areaGrande: "Legislação", assunto: "NR-10", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
 
     enunciado: "De acordo com a NR-10, a tensão máxima que define o limite superior da classificação Extra Baixa Tensão (EBT) para corrente alternada é:",
 
@@ -5706,7 +5706,7 @@ const QUESTOES_BASE: any[] = [
 
 
 
-  {{ id: "e286", inedita: true, temImagem: true, areaGrande: "Eletrotécnica", assunto: "Circuitos CC", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
+  { id: "e286", inedita: true, temImagem: true, areaGrande: "Eletrotécnica", assunto: "Circuitos CC", banca: "FGV / COMPESA", ano: 2024, dificuldade: "Médio",
 
     enunciado: "A figura representa um circuito de corrente contínua com uma fonte de 120 V e três resistores: R1 = 20Ω em série com o paralelo de R2 = 30Ω e R3 = 60Ω.\n\nO circuito equivalente de Thévenin visto pelos terminais A-B (após R1) é formado por:",
 
@@ -5724,7 +5724,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 3,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -5746,7 +5746,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -5768,7 +5768,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -5790,7 +5790,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -5812,7 +5812,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -5834,7 +5834,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -5856,7 +5856,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -5878,7 +5878,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -5900,7 +5900,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 3,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -5922,7 +5922,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -5944,7 +5944,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -5966,7 +5966,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6010,7 +6010,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6032,7 +6032,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6054,7 +6054,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6076,7 +6076,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6098,7 +6098,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6120,7 +6120,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 3,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6142,7 +6142,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6168,7 +6168,7 @@ const QUESTOES_BASE: any[] = [
 
     ], respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6188,7 +6188,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6200,7 +6200,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6212,7 +6212,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6224,7 +6224,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6236,7 +6236,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6248,7 +6248,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6260,7 +6260,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6272,7 +6272,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6284,7 +6284,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6308,7 +6308,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6320,7 +6320,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 3,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6332,7 +6332,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6344,7 +6344,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6356,7 +6356,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6368,7 +6368,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6380,7 +6380,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6392,7 +6392,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6404,7 +6404,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6416,7 +6416,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6428,7 +6428,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6452,7 +6452,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6464,7 +6464,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6476,7 +6476,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 0,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6488,7 +6488,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6500,7 +6500,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6524,7 +6524,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6536,7 +6536,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6556,7 +6556,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 1,
 
-    explicacao: "No Windows 10/11, ao criar um atalho via "Enviar para > Área de trabalho", cria-se apenas um arquivo .lnk que aponta para o original. O arquivo original não é movido nem copiado. Se o original for excluído, o atalho fica quebrado. Diferente de copiar (Ctrl+C → Ctrl+V), que cria uma cópia independente." },
+    explicacao: "No Windows 10/11, ao criar um atalho via 'Enviar para > Área de trabalho', cria-se apenas um arquivo .lnk que aponta para o original. O arquivo original não é movido nem copiado. Se o original for excluído, o atalho fica quebrado. Diferente de copiar (Ctrl+C → Ctrl+V), que cria uma cópia independente." },
 
 
 
@@ -6568,7 +6568,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6580,7 +6580,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 1,
 
-    explicacao: "=CONT.SE(intervalo; critério) **conta** células que atendem ao critério. Com ">=100": conta quantas células têm valor ≥ 100. Para **somar** use =SOMASE; para **média** use =MÉDIASE. A função que a questão descreve é CONT.SE, não SOMA." },
+    explicacao: "=CONT.SE(intervalo; critério) **conta** células que atendem ao critério. Com '>=100': conta quantas células têm valor ≥ 100. Para **somar** use =SOMASE; para **média** use =MÉDIASE. A função que a questão descreve é CONT.SE, não SOMA." },
 
 
 
@@ -6592,7 +6592,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6604,7 +6604,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6616,7 +6616,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6628,7 +6628,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6640,7 +6640,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6652,7 +6652,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6664,7 +6664,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6676,7 +6676,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6688,7 +6688,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 1,
 
-    explicacao: "Permissões Google Drive: **Leitor** = só visualiza (pode baixar, salvo restrição do proprietário); **Comentarista** = visualiza + comenta; **Editor** = edita, organiza e exclui. Ao compartilhar como "qualquer pessoa com o link", define-se também o nível de acesso." },
+    explicacao: "Permissões Google Drive: **Leitor** = só visualiza (pode baixar, salvo restrição do proprietário); **Comentarista** = visualiza + comenta; **Editor** = edita, organiza e exclui. Ao compartilhar como 'qualquer pessoa com o link', define-se também o nível de acesso." },
 
 
 
@@ -6711,7 +6711,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6723,7 +6723,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6735,7 +6735,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6747,7 +6747,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6759,7 +6759,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6771,7 +6771,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6783,7 +6783,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6795,7 +6795,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6818,7 +6818,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6830,7 +6830,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6842,7 +6842,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6854,7 +6854,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6866,7 +6866,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 2,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
@@ -6900,7 +6900,7 @@ const QUESTOES_BASE: any[] = [
 
     respostaCorreta: 1,
 
-    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a "lista telefônica" da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
+    explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
 
