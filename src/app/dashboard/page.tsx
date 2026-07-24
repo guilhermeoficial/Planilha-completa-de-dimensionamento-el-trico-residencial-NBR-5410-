@@ -137,7 +137,25 @@ export default function DashboardPage() {
       ],
       cta: "Ir para os cursos",
     },
-  ];
+    {
+      id: "bytevolt",
+      href: "/bytevolt",
+      modulo: "Módulo 03",
+      titulo: "ByteVolt &\nQuiz ao Vivo",
+      descricao: "Quiz multiplayer em tempo real com PIN para turmas. Professor cria a sala, alunos entram pelo código — ranking ao vivo na tela.",
+      cor: "live",
+      corHex: "#3ecf8e",
+      corBg: "rgba(62,207,142,0.08)",
+      corBorder: "rgba(62,207,142,0.25)",
+      corGlow: "rgba(62,207,142,0.15)",
+      Icon: Zap,
+      features: [
+        { Icon: Sparkles, text: "Sincronização via PIN em tempo real" },
+        { Icon: Target,   text: "Ranking ao vivo para a turma" },
+        { Icon: BarChart3,text: "Avatares e pontuação por velocidade" },
+      ],
+      cta: "Abrir ByteVolt",
+    },
 
   return (
     <div className="min-h-screen blueprint-grid">

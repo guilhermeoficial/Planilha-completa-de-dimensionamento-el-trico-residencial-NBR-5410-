@@ -1,0 +1,2415 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>⚡💻 ByteVolt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-database-compat.js"></script>
+<style>
+  :root{
+    --bg-panel:#10141c; --bg-panel2:#161c27; --line:#2a3242;
+    --copper:#ff8a3d; --copper-dim:#c9622a; --safety:#ffcc33;
+    --live:#3ecf8e; --danger:#ef4b5f; --ink:#eef1f6; --ink-dim:#93a0b4;
+    --a:#3ea6ff; --b:#ff8a3d; --c:#3ecf8e; --d:#c88bff;
+    --chip-bg:#0d1119; --glow-a:rgba(62,166,255,0.08); --glow-b:rgba(255,138,61,0.10); --accent-soft:#1a1608;
+  }
+  :root[data-theme="light"]{
+    --bg-panel:#eef1f6; --bg-panel2:#ffffff; --line:#d8dee8;
+    --copper:#d9661c; --copper-dim:#b8500f; --safety:#c98e00;
+    --live:#1f9d67; --danger:#d63451; --ink:#14181f; --ink-dim:#5b6472;
+    --a:#1c6fc9; --b:#d9661c; --c:#1f9d67; --d:#7a4cc0;
+    --chip-bg:#eef1f5; --glow-a:rgba(28,111,201,0.06); --glow-b:rgba(217,102,28,0.07); --accent-soft:#fff3d6;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    min-height:100vh;
+    background:
+      radial-gradient(circle at 15% 10%, var(--glow-a), transparent 40%),
+      radial-gradient(circle at 85% 90%, var(--glow-b), transparent 45%),
+      var(--bg-panel);
+    background-attachment:fixed;
+    font-family:'Manrope',sans-serif;
+    color:var(--ink);
+    overflow-x:hidden;
+    transition:background-color .25s, color .25s;
+  }
+  #app{min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:24px 16px 48px;}
+  .circuit-bg{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0.35;}
+  .wrap{position:relative;z-index:1;width:100%;max-width:820px;}
+  .wrap.wide{max-width:960px;}
+
+  h1.brand{font-family:'Archivo Black',sans-serif;font-size:clamp(28px,5vw,44px);letter-spacing:0.5px;text-align:center;margin:8px 0 4px;color:var(--ink);}
+  h1.brand span{color:var(--safety);}
+  .tagline{text-align:center;color:var(--ink-dim);font-size:14px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:28px;font-weight:700;}
+
+  .card{background:linear-gradient(180deg, var(--bg-panel2), var(--bg-panel));border:1px solid var(--line);border-radius:18px;padding:28px;box-shadow:0 20px 40px -20px rgba(0,0,0,0.35);}
+
+  .theme-toggle{position:fixed;top:16px;right:16px;z-index:200;width:44px;height:44px;border-radius:50%;border:2px solid var(--line);background:var(--bg-panel2);color:var(--ink);font-size:19px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(0,0,0,0.25);transition:transform .15s, border-color .15s;}
+  .theme-toggle:hover{transform:scale(1.08);border-color:var(--copper-dim);}
+
+  input.nick, input.pinput{width:100%;padding:14px 16px;border-radius:12px;border:2px solid var(--line);background:var(--chip-bg);color:var(--ink);font-size:16px;font-family:'Manrope';outline:none;transition:border-color .2s;}
+  input.pinput{font-family:'Space Mono',monospace;letter-spacing:10px;text-align:center;font-size:26px;font-weight:700;}
+  input.nick:focus, input.pinput:focus{border-color:var(--copper);}
+  label.field-label{display:block;font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:var(--ink-dim);font-weight:800;margin-bottom:8px;}
+  .field-gap{margin-top:18px;}
+
+  .avatar-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:10px;}
+  @media(max-width:560px){.avatar-grid{grid-template-columns:repeat(2,1fr);}}
+  .avatar-card{background:var(--chip-bg);border:2px solid var(--line);border-radius:14px;padding:14px 8px;text-align:center;cursor:pointer;transition:transform .15s, border-color .15s, background .15s;position:relative;}
+  .avatar-card:hover{transform:translateY(-3px);border-color:var(--copper-dim);}
+  .avatar-card.selected{border-color:var(--safety);background:var(--accent-soft);box-shadow:0 0 0 3px rgba(255,204,51,0.15);}
+  .avatar-emoji{font-size:34px;line-height:1;margin-bottom:8px;}
+  .avatar-name{font-size:12px;font-weight:800;color:var(--ink);}
+  .avatar-badge{position:absolute;top:6px;right:8px;font-size:14px;opacity:0.85;}
+
+  /* Character customizer */
+  .avatar-chip{display:inline-flex;width:40px;height:40px;flex-shrink:0;vertical-align:middle;}
+  .avatar-chip svg{width:100%;height:100%;display:block;overflow:visible;}
+  .avatar-chip.lg{width:96px;height:96px;}
+  .avatar-chip.xl{width:150px;height:150px;}
+  .avatar-svg .avatar-bob{animation:avatarBob 2.6s ease-in-out infinite;}
+  @keyframes avatarBob{0%,100%{transform:translateY(0);}50%{transform:translateY(-5px);}}
+  .avatar-eyelid{animation:avatarBlink 4.4s ease-in-out infinite;}
+  @keyframes avatarBlink{0%,90%,100%{opacity:0;}94%{opacity:1;}97%{opacity:0;}}
+  .swatch-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px;}
+  .swatch{width:36px;height:36px;border-radius:50%;cursor:pointer;border:3px solid transparent;transition:transform .15s, border-color .15s;}
+  .swatch:hover{transform:scale(1.08);}
+  .swatch.selected{border-color:var(--safety);box-shadow:0 0 0 3px rgba(255,204,51,0.18);}
+  .chip-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;}
+  .face-chip{background:var(--chip-bg);border:2px solid var(--line);border-radius:10px;padding:8px 12px;font-size:13px;font-weight:700;cursor:pointer;transition:border-color .15s, transform .15s;color:var(--ink);}
+  .face-chip:hover{transform:translateY(-2px);border-color:var(--copper-dim);}
+  .face-chip.selected{border-color:var(--safety);background:var(--accent-soft);}
+
+  /* Speech / thought bubbles */
+  .speech-wrap{position:relative;display:inline-flex;}
+  .speech-bubble{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);margin-bottom:12px;background:#f5f5f0;color:#14181f;padding:7px 12px;border-radius:14px;font-size:12px;font-weight:700;max-width:170px;min-width:60px;text-align:center;box-shadow:0 6px 16px rgba(0,0,0,0.35);z-index:5;line-height:1.35;font-family:'Manrope',sans-serif;}
+  .speech-bubble.fala:after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:7px solid transparent;border-top-color:#f5f5f0;}
+  .speech-bubble.pensamento{border-radius:50%/60%;}
+  .speech-bubble.pensamento:after{content:'';position:absolute;top:100%;left:36%;width:11px;height:11px;border-radius:50%;background:#f5f5f0;}
+  .speech-bubble.pensamento:before{content:'';position:absolute;top:calc(100% + 9px);left:28%;width:6px;height:6px;border-radius:50%;background:#f5f5f0;}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 22px;border-radius:12px;border:none;cursor:pointer;font-family:'Manrope';font-weight:800;font-size:15px;letter-spacing:0.3px;transition:transform .12s, filter .12s;user-select:none;}
+  .btn:active{transform:scale(0.97);}
+  .btn:disabled{opacity:0.4;cursor:not-allowed;}
+  .btn-primary{background:var(--safety);color:#1a1608;}
+  .btn-primary:hover:not(:disabled){filter:brightness(1.08);}
+  .btn-ghost{background:transparent;border:2px solid var(--line);color:var(--ink);}
+  .btn-ghost:hover{border-color:var(--copper-dim);}
+  .btn-block{width:100%;}
+  .btn-row{display:flex;justify-content:center;margin-top:24px;gap:12px;flex-wrap:wrap;}
+
+  .menu-options{display:flex;flex-direction:column;gap:14px;margin-top:8px;}
+  .menu-opt{display:flex;align-items:center;gap:16px;background:var(--chip-bg);border:2px solid var(--line);border-radius:14px;padding:18px 20px;cursor:pointer;transition:border-color .15s, transform .15s;text-align:left;}
+  .menu-opt:hover{border-color:var(--copper-dim);transform:translateY(-2px);}
+  .menu-opt .ic{font-size:28px;}
+  .menu-opt .tt{font-weight:800;font-size:15.5px;color:var(--ink);}
+  .menu-opt .ds{font-size:12.5px;color:var(--ink-dim);margin-top:2px;}
+
+  .hud{display:flex;justify-content:space-between;align-items:center;width:100%;margin-bottom:16px;font-family:'Space Mono',monospace;}
+  .hud-item{background:var(--chip-bg);border:1px solid var(--line);border-radius:10px;padding:8px 14px;font-size:13px;color:var(--ink-dim);display:flex;align-items:center;gap:6px;}
+  .hud-item b{color:var(--safety);font-size:15px;}
+  .qcounter{font-family:'Space Mono',monospace;color:var(--ink-dim);font-size:13px;}
+
+  .wire-track{position:relative;width:100%;height:14px;border-radius:10px;background:var(--chip-bg);border:1px solid var(--line);overflow:hidden;margin-bottom:22px;}
+  .wire-fill{position:absolute;top:0;left:0;height:100%;background:linear-gradient(90deg, var(--live), var(--safety));border-radius:10px;transition:width 0.25s linear, background 0.4s linear;}
+  .wire-spark{position:absolute;top:50%;width:10px;height:10px;border-radius:50%;background:#fff;box-shadow:0 0 12px 4px rgba(255,255,255,0.9);transform:translate(-50%,-50%);transition:left 0.25s linear;}
+
+  .question-box{text-align:center;padding:6px 4px 22px;}
+  .code-block{
+    text-align:left;background:var(--chip-bg);border:1px solid var(--line);border-radius:12px;
+    padding:16px 18px;margin:16px auto 4px;max-width:520px;overflow-x:auto;
+    font-family:'Space Mono',monospace;font-size:14px;line-height:1.6;color:var(--live);
+    white-space:pre;
+  }
+  .qnum{font-family:'Space Mono',monospace;color:var(--copper);font-size:13px;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;font-weight:700;}
+  .qtext{font-family:'Archivo Black',sans-serif;font-size:clamp(19px,3.2vw,26px);line-height:1.35;color:var(--ink);}
+
+  .options-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px;}
+  @media(max-width:560px){.options-grid{grid-template-columns:1fr;}}
+  .opt{display:flex;align-items:center;gap:12px;padding:18px 16px;border-radius:14px;border:none;cursor:pointer;font-family:'Manrope';font-weight:700;font-size:15.5px;text-align:left;color:#14181f;transition:transform .1s, filter .1s, opacity .2s;}
+  .opt:hover:not(:disabled){filter:brightness(1.07);transform:translateY(-2px);}
+  .opt:disabled{cursor:default;}
+  .opt-icon{font-size:20px;flex-shrink:0;}
+  .opt-a{background:var(--a);} .opt-b{background:var(--b);} .opt-c{background:var(--c);} .opt-d{background:var(--d);}
+  .opt.correct{outline:4px solid var(--live);box-shadow:0 0 24px rgba(62,207,142,0.55);}
+  .opt.wrong{outline:4px solid var(--danger);box-shadow:0 0 24px rgba(239,75,95,0.5);opacity:0.75;}
+  .opt.dim{opacity:0.35;}
+
+  .feedback{margin-top:18px;padding:14px 16px;border-radius:12px;font-size:14px;background:var(--chip-bg);border:1px solid var(--line);color:var(--ink-dim);text-align:left;line-height:1.5;}
+  .feedback b{color:var(--ink);}
+  .feedback.ok{border-color:rgba(62,207,142,0.4);}
+  .feedback.bad{border-color:rgba(239,75,95,0.4);}
+
+  .streak-pop{position:fixed;top:18px;left:50%;transform:translateX(-50%);background:var(--safety);color:#1a1608;font-weight:800;font-family:'Space Mono',monospace;padding:8px 18px;border-radius:30px;font-size:14px;z-index:50;animation:popIn .35s ease, popOut .3s ease 1.4s forwards;box-shadow:0 8px 20px rgba(0,0,0,0.4);}
+  @keyframes popIn{from{opacity:0;transform:translate(-50%,-10px) scale(0.8);}to{opacity:1;transform:translate(-50%,0) scale(1);}}
+  @keyframes popOut{to{opacity:0;transform:translate(-50%,-10px) scale(0.8);}}
+  .particles{position:fixed;inset:0;pointer-events:none;z-index:40;}
+  .particle{position:absolute;font-size:22px;animation:rise 1s ease-out forwards;}
+  @keyframes rise{0%{opacity:1;transform:translateY(0) rotate(0deg);}100%{opacity:0;transform:translateY(-140px) rotate(30deg);}}
+  .shake{animation:shakeAnim .4s;}
+  @keyframes shakeAnim{10%,90%{transform:translateX(-2px);}20%,80%{transform:translateX(4px);}30%,50%,70%{transform:translateX(-8px);}40%,60%{transform:translateX(8px);}}
+
+  /* Podium celebration: confetti rain */
+  .confetti-layer{position:fixed;inset:0;pointer-events:none;z-index:70;overflow:hidden;}
+  .confetti-piece{position:absolute;top:-24px;opacity:0.95;animation:confettiFall linear forwards;border-radius:2px;}
+  @keyframes confettiFall{
+    0%{transform:translateY(0) rotate(0deg);opacity:1;}
+    100%{transform:translateY(112vh) rotate(760deg);opacity:0.85;}
+  }
+  /* Podium celebration: firework bursts */
+  .firework{position:fixed;pointer-events:none;z-index:71;width:0;height:0;}
+  .spark{position:absolute;top:0;left:0;width:7px;height:7px;border-radius:50%;animation:sparkFly 0.9s ease-out forwards;}
+  @keyframes sparkFly{
+    0%{transform:translate(0,0) scale(1);opacity:1;}
+    100%{transform:translate(var(--dx),var(--dy)) scale(0.25);opacity:0;}
+  }
+  /* Podium celebration: jumping avatars */
+  @keyframes avatarJump{
+    0%,100%{transform:translateY(0) scale(1,1);}
+    28%{transform:translateY(-16px) scale(1.06,0.94);}
+    52%{transform:translateY(0) scale(0.94,1.06);}
+    75%{transform:translateY(-7px) scale(1.02,0.98);}
+  }
+  .avatar-chip.jump .avatar-bob{animation:avatarJump 0.75s ease-in-out infinite; animation-delay:var(--jd,0s);}
+
+  .result-emoji{font-size:64px;text-align:center;margin-bottom:6px;}
+  .result-title{font-family:'Archivo Black';font-size:24px;text-align:center;color:var(--safety);}
+  .result-sub{text-align:center;color:var(--ink-dim);margin-top:4px;font-size:14px;}
+  .stat-row{display:flex;justify-content:center;gap:14px;margin:22px 0;flex-wrap:wrap;}
+  .stat-box{background:var(--chip-bg);border:1px solid var(--line);border-radius:14px;padding:14px 20px;text-align:center;min-width:100px;}
+  .stat-box .num{font-family:'Space Mono';font-size:22px;color:var(--copper);font-weight:700;}
+  .stat-box .lab{font-size:11px;color:var(--ink-dim);text-transform:uppercase;letter-spacing:1px;margin-top:2px;}
+
+  .leaderboard{margin-top:8px;}
+  .lb-row{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:10px;background:var(--chip-bg);border:1px solid var(--line);margin-bottom:8px;font-family:'Space Mono',monospace;font-size:13.5px;}
+  .lb-rank{width:26px;color:var(--ink-dim);font-weight:700;}
+  .lb-name{flex:1;color:var(--ink);font-weight:700;font-family:'Manrope';display:flex;align-items:center;gap:8px;}
+  .lb-score{color:var(--safety);font-weight:700;}
+  .lb-you{border-color:var(--safety);background:var(--accent-soft);}
+
+  .footnote{text-align:center;color:var(--ink-dim);font-size:11.5px;margin-top:18px;line-height:1.5;}
+  .loading-note{text-align:center;color:var(--ink-dim);font-size:12px;margin-top:14px;}
+
+  /* PIN display */
+  .pin-box{text-align:center;padding:18px 0 6px;}
+  .pin-label{font-size:12px;text-transform:uppercase;letter-spacing:2px;color:var(--ink-dim);font-weight:800;margin-bottom:10px;}
+  .pin-value{font-family:'Space Mono',monospace;font-size:clamp(44px,10vw,72px);font-weight:700;letter-spacing:10px;color:var(--safety);text-shadow:0 0 30px rgba(255,204,51,0.35);}
+  .pin-hint{color:var(--ink-dim);font-size:13px;margin-top:6px;}
+
+  .roster-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:10px;margin-top:18px;}
+  .roster-card{background:var(--chip-bg);border:1px solid var(--line);border-radius:12px;padding:10px 6px;text-align:center;animation:popIn .3s ease;}
+  .roster-emoji{font-size:24px;}
+  .roster-name{font-size:11px;font-weight:700;margin-top:4px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .roster-count{text-align:center;font-family:'Space Mono';color:var(--copper);font-weight:700;margin-top:14px;font-size:14px;}
+
+  .bar-row{margin-bottom:12px;}
+  .bar-label{display:flex;justify-content:space-between;font-size:13px;font-weight:700;color:var(--ink);margin-bottom:5px;}
+  .bar-track{height:22px;border-radius:8px;background:var(--chip-bg);border:1px solid var(--line);overflow:hidden;}
+  .bar-fill{height:100%;border-radius:8px;transition:width .5s ease;}
+
+  .waiting-pulse{text-align:center;padding:30px 0;}
+  .waiting-pulse .em{font-size:48px;animation:pulse 1.4s infinite;}
+  @keyframes pulse{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.12);opacity:0.7;}}
+
+  .podium{display:flex;align-items:flex-end;justify-content:center;gap:10px;margin:26px 0 10px;flex-wrap:nowrap;}
+  .pod-col{text-align:center;}
+  .pod-block{background:linear-gradient(180deg,#1c2432,#0d1119);border:1px solid var(--line);border-radius:10px 10px 0 0;display:flex;align-items:flex-start;justify-content:center;padding-top:10px;font-family:'Space Mono';font-weight:700;color:var(--safety);}
+  .pod-1 .pod-block{height:120px;width:88px;border-color:var(--safety);}
+  .pod-2 .pod-block{height:88px;width:78px;border-color:#c9c9c9;}
+  .pod-3 .pod-block{height:64px;width:78px;border-color:#d9661c;}
+  .pod-4 .pod-block{height:44px;width:64px;}
+  .pod-5 .pod-block{height:34px;width:64px;}
+  .pod-medal{font-size:18px;margin-bottom:2px;}
+  .pod-name{font-size:11.5px;font-weight:800;margin-top:8px;max-width:88px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .pod-em{font-size:26px;}
+  @media(max-width:560px){
+    .podium{gap:5px;}
+    .pod-1 .pod-block{width:64px;} .pod-2 .pod-block{width:56px;} .pod-3 .pod-block{width:56px;}
+    .pod-4 .pod-block{width:46px;} .pod-5 .pod-block{width:46px;}
+    .pod-name{font-size:9.5px;max-width:60px;}
+    .pod-em .avatar-chip{width:32px;height:32px;}
+  }
+</style>
+</head>
+<body>
+<svg class="circuit-bg" viewBox="0 0 800 800" preserveAspectRatio="xMidYMid slice">
+  <g stroke="#3ea6ff" stroke-width="2" fill="none" opacity="0.5">
+    <path d="M0 120 H180 V260 H420"/>
+    <path d="M800 60 H600 V220 H380"/>
+    <path d="M0 700 H220 V560 H500"/>
+    <path d="M800 760 H560 V600 H320"/>
+  </g>
+  <g fill="#ff8a3d" opacity="0.6">
+    <circle cx="180" cy="120" r="5"/><circle cx="420" cy="260" r="5"/>
+    <circle cx="600" cy="60" r="5"/><circle cx="380" cy="220" r="5"/>
+    <circle cx="220" cy="700" r="5"/><circle cx="500" cy="560" r="5"/>
+    <circle cx="560" cy="760" r="5"/><circle cx="320" cy="600" r="5"/>
+  </g>
+</svg>
+<div id="app"></div>
+
+<script>
+(function(){
+  "use strict";
+
+  // ---------------- Data ----------------
+  const CREATURES = [
+    {id:'voltz', name:'Voltz', color:'#ffcc33'},
+    {id:'bitinho', name:'Bitinho', color:'#20242c'},
+    {id:'pilhax', name:'Pilhax', color:'#ffcc33'},
+    {id:'resistorzinho', name:'Resistorzinho', color:'#e8d9c4'},
+    {id:'waifi', name:'Wai-Fi', color:'#3ea6ff'},
+    {id:'magnetojr', name:'Magneto Jr.', color:'#c9c9c9'},
+    {id:'bytezao', name:'Bytezão', color:'#3ecf8e'},
+    {id:'firewall', name:'Firewall', color:'#ef4b5f'},
+    {id:'plugao', name:'Plugão', color:'#3a4254'},
+    {id:'antena', name:'Antena', color:'#8a5fd1'},
+    {id:'codezin', name:'Codezin', color:'#2a3242'},
+    {id:'pixelon', name:'Pixelon', color:'#8a5fd1'},
+    {id:'cabinho', name:'Cabinho', color:'#20242c'},
+    {id:'ledinho', name:'Ledinho', color:'#3ecf8e'},
+    {id:'nuvem', name:'Nuvem', color:'#eaf4ff'},
+    {id:'chipzera', name:'Chipzera', color:'#20242c'},
+    {id:'mouseinho', name:'Mouseinho', color:'#c88bff'},
+    {id:'tecladinho', name:'Tecladinho', color:'#3a4254'},
+  ];
+
+  const ACCESSORIES = [
+    {id:'nenhum', label:'Nenhum', hint:'🚫'},
+    {id:'chapeu', label:'Chapéu', hint:'🎩'},
+    {id:'oculos', label:'Óculos', hint:'🕶️'},
+    {id:'laco', label:'Laço', hint:'🎀'},
+    {id:'coroa', label:'Coroa', hint:'👑'},
+    {id:'bandana', label:'Bandana', hint:'🧣'},
+    {id:'capacete', label:'Capacete', hint:'⛑️'},
+    {id:'formatura', label:'Formatura', hint:'🎓'},
+    {id:'fone', label:'Fone de ouvido', hint:'🎧'},
+    {id:'gravata', label:'Gravata', hint:'👔'},
+    {id:'cachecol', label:'Cachecol', hint:'🎗️'},
+    {id:'chifres', label:'Chifrinhos', hint:'😈'},
+    {id:'mochila', label:'Mochila', hint:'🎒'},
+    {id:'estrela', label:'Estrela', hint:'⭐'},
+  ];
+
+  const OUTLINE = 'rgba(15,18,24,0.22)';
+  function shine(cx, cy, rx, ry){ return `<ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="${ry}" fill="#fff" opacity="0.3"/>`; }
+
+  function defaultAvatarCfg(){ return {creature:'voltz', accessory:'nenhum', bubble:{type:'nenhum', text:''}}; }
+  function randomAvatarCfg(){
+    return {
+      creature: CREATURES[Math.floor(Math.random()*CREATURES.length)].id,
+      accessory: ACCESSORIES[Math.floor(Math.random()*ACCESSORIES.length)].id,
+    };
+  }
+
+  // Shared cute face (eyes + shine + smile + blush + blink eyelid) reused across every creature species.
+  function cuteFace(cx, cy, spread, eyeR, bodyColor){
+    const lx = cx-spread, rx = cx+spread;
+    return `
+      <circle cx="${lx}" cy="${cy}" r="${eyeR}" fill="#20242c"/>
+      <circle cx="${rx}" cy="${cy}" r="${eyeR}" fill="#20242c"/>
+      <circle cx="${lx-eyeR*0.3}" cy="${cy-eyeR*0.3}" r="${eyeR*0.32}" fill="#fff"/>
+      <circle cx="${rx-eyeR*0.3}" cy="${cy-eyeR*0.3}" r="${eyeR*0.32}" fill="#fff"/>
+      <path d="M${cx-9},${cy+eyeR+5} Q${cx},${cy+eyeR+12} ${cx+9},${cy+eyeR+5}" stroke="#20242c" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <ellipse cx="${lx-eyeR-4}" cy="${cy+eyeR+3}" rx="6.5" ry="4.5" fill="#ff8a9d" opacity="0.45"/>
+      <ellipse cx="${rx+eyeR+4}" cy="${cy+eyeR+3}" rx="6.5" ry="4.5" fill="#ff8a9d" opacity="0.45"/>
+      <rect class="avatar-eyelid" x="${lx-eyeR-3}" y="${cy-eyeR-2}" width="${(rx-lx)+2*eyeR+6}" height="${eyeR*2+3}" fill="${bodyColor}"/>
+    `;
+  }
+
+  function creatureSVG(id){
+    switch(id){
+      case 'voltz':
+        return `
+          <path d="M50,95 L38,70 L52,72 L44,50 L68,80 L54,80 Z" fill="#ffb300" stroke="${OUTLINE}" stroke-width="2"/>
+          <path d="M110,95 L122,70 L108,72 L116,50 L92,80 L106,80 Z" fill="#ffb300" stroke="${OUTLINE}" stroke-width="2"/>
+          <ellipse cx="80" cy="128" rx="44" ry="42" fill="#ffcc33" stroke="${OUTLINE}" stroke-width="2.5"/>
+          <ellipse cx="80" cy="148" rx="22" ry="18" fill="#ff8a3d" opacity="0.85"/>
+          <ellipse cx="58" cy="182" rx="12" ry="7" fill="#ffcc33" stroke="${OUTLINE}" stroke-width="2"/>
+          <ellipse cx="102" cy="182" rx="12" ry="7" fill="#ffcc33" stroke="${OUTLINE}" stroke-width="2"/>
+          ${shine(62,102,13,9)}
+          ${cuteFace(80,116,15,7,'#ffcc33')}
+        `;
+      case 'bitinho':
+        return `
+          <rect x="54" y="158" width="14" height="22" rx="5" fill="#2a3242" stroke="${OUTLINE}" stroke-width="2"/>
+          <rect x="92" y="158" width="14" height="22" rx="5" fill="#2a3242" stroke="${OUTLINE}" stroke-width="2"/>
+          <rect x="28" y="102" width="16" height="32" rx="7" fill="#2a3242" stroke="${OUTLINE}" stroke-width="2"/>
+          <rect x="116" y="102" width="16" height="32" rx="7" fill="#2a3242" stroke="${OUTLINE}" stroke-width="2"/>
+          <rect x="42" y="66" width="76" height="94" rx="18" fill="#20242c" stroke="${OUTLINE}" stroke-width="2.5"/>
+          <rect x="76" y="46" width="8" height="20" fill="#20242c"/>
+          <circle cx="80" cy="42" r="7" fill="#ef4b5f" stroke="${OUTLINE}" stroke-width="1.5"/>
+          <rect x="54" y="78" width="52" height="26" rx="4" fill="#0d1119"/>
+          <text x="66" y="98" font-size="15" fill="#3ea6ff" font-family="'Space Mono',monospace" text-anchor="middle">1</text>
+          <text x="94" y="98" font-size="15" fill="#3ecf8e" font-family="'Space Mono',monospace" text-anchor="middle">0</text>
+          ${shine(58,80,10,7)}
+          ${cuteFace(80,132,15,7,'#20242c')}
+        `;
+      case 'pilhax':
+        return `
+          <rect x="60" y="176" width="10" height="10" rx="2" fill="#3a4254"/>
+          <rect x="90" y="176" width="10" height="10" rx="2" fill="#3a4254"/>
+          <rect x="50" y="70" width="60" height="106" rx="14" fill="#ffcc33" stroke="${OUTLINE}" stroke-width="2.5"/>
+          <rect x="64" y="52" width="32" height="16" rx="3" fill="#3a4254" stroke="${OUTLINE}" stroke-width="1.5"/>
+          <rect x="74" y="44" width="12" height="10" rx="2" fill="#3a4254"/>
+          <rect x="70" y="78" width="8" height="18" fill="#20242c" opacity="0.75"/>
+          <rect x="66" y="86" width="16" height="6" fill="#20242c" opacity="0.75"/>
+          ${shine(60,100,10,20)}
+          ${cuteFace(80,140,15,7,'#ffcc33')}
+        `;
+      case 'resistorzinho':
+        return `
+          <path d="M50,108 Q30,90 34,58" stroke="#c9c9c9" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <path d="M110,108 Q130,90 126,58" stroke="#c9c9c9" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <ellipse cx="80" cy="132" rx="40" ry="38" fill="#e8d9c4" stroke="${OUTLINE}" stroke-width="2.5"/>
+          <rect x="60" y="148" width="8" height="34" fill="#8d5524"/>
+          <rect x="76" y="148" width="8" height="34" fill="#ef4b5f"/>
+          <rect x="92" y="148" width="8" height="34" fill="#ffcc33"/>
+          ${shine(62,105,11,8)}
+          ${cuteFace(80,112,15,7,'#e8d9c4')}
+        `;
+      case 'waifi':
+        return `
+          <path d="M40,100 A56,56 0 0 1 120,100" stroke="#fff" stroke-width="6" fill="none" opacity="0.55" stroke-linecap="round"/>
+          <path d="M52,112 A38,38 0 0 1 108,112" stroke="#fff" stroke-width="6" fill="none" opacity="0.75" stroke-linecap="round"/>
+          <circle cx="80" cy="128" r="8" fill="#fff"/>
+          <circle cx="80" cy="150" r="42" fill="#3ea6ff" stroke="${OUTLINE}" stroke-width="2.5"/>
+          ${shine(62,132,11,8)}
+          ${cuteFace(80,148,15,7,'#3ea6ff')}
+        `;
+      case 'magnetojr':
+        return `
+          <path d="M55,68 L55,138 Q55,168 80,168 Q105,168 105,138 L105,68 L90,68 L90,138 Q90,153 80,153 Q70,153 70,138 L70,68 Z" fill="#c9c9c9" stroke="${OUTLINE}" stroke-width="2.5"/>
+          <rect x="50" y="56" width="20" height="18" rx="4" fill="#ef4b5f" stroke="${OUTLINE}" stroke-width="1.5"/>
+          <rect x="90" y="56" width="20" height="18" rx="4" fill="#3ea6ff" stroke="${OUTLINE}" stroke-width="1.5"/>
+          <ellipse cx="72" cy="150" rx="9" ry="14" fill="#fff" opacity="0.25"/>
+          ${cuteFace(80,150,13,6,'#c9c9c9')}
+        `;
+      case 'bytezao':
+        return `
+          <ellipse cx="80" cy="132" rx="42" ry="44" fill="#3ecf8e" stroke="${OUTLINE}" stroke-width="2.5"/>
+          <path d="M42,120 H62 V104 H82" stroke="#eafff5" stroke-width="3" fill="none" opacity="0.8"/>
+          <path d="M118,140 H98 V158 H78" stroke="#eafff5" stroke-width="3" fill="none" opacity="0.8"/>
+          <rect x="66" y="150" width="28" height="20" rx="3" fill="#177249"/>
+          <rect x="70" y="146" width="4" height="6" fill="#177249"/>
+          <rect x="86" y="146" width="4" height="6" fill="#177249"/>
+          ${shine(60,102,12,9)}
+          ${cuteFace(80,110,15,7,'#3ecf8e')}
+        `;
+      case 'firewall':
+        return `
+          <path d="M80,48 L120,66 V118 Q120,163 80,183 Q40,163 40,118 V66 Z" fill="#ef4b5f" stroke="${OUTLINE}" stroke-width="2.5"/>
+          <path d="M80,50 Q71,64 80,74 Q89,64 80,50 Z" fill="#ff8a3d"/>
+          ${shine(62,92,10,14)}
+          ${cuteFace(80,118,14,7,'#ef4b5f')}
+        `;
+      case 'plugao':
+        return `
+          <rect x="64" y="155" width="10" height="30" rx="3" fill="#c9c9c9"/>
+          <rect x="86" y="155" width="10" height="30" rx="3" fill="#c9c9c9"/>
+          <circle cx="80" cy="120" r="42" fill="#3a4254" stroke="${OUTLINE}" stroke-width="2.5"/>
+          ${shine(62,100,12,9)}
+          ${cuteFace(80,116,15,7,'#3a4254')}
+        `;
+      case 'antena':
+        return `
+          <line x1="80" y1="40" x2="80" y2="60" stroke="#c9c9c9" stroke-width="3"/>
+          <circle cx="80" cy="38" r="5" fill="#ef4b5f"/>
+          <path d="M50,90 Q80,60 110,90 Q80,100 50,90 Z" fill="#c9c9c9" stroke="${OUTLINE}" stroke-width="1.5"/>
+          <rect x="76" y="90" width="8" height="14" fill="#c9c9c9"/>
+          <circle cx="80" cy="138" r="38" fill="#8a5fd1" stroke="${OUTLINE}" stroke-width="2.5"/>
+          ${shine(64,122,10,8)}
+          ${cuteFace(80,136,15,7,'#8a5fd1')}
+        `;
+      case 'codezin':
+        return `
+          <ellipse cx="80" cy="130" rx="40" ry="42" fill="#2a3242" stroke="${OUTLINE}" stroke-width="2.5"/>
+          <text x="34" y="146" font-size="46" fill="#3ecf8e" font-family="'Space Mono',monospace" text-anchor="middle">{</text>
+          <text x="126" y="146" font-size="46" fill="#3ecf8e" font-family="'Space Mono',monospace" text-anchor="middle">}</text>
+          ${shine(63,100,11,8)}
+          ${cuteFace(80,120,15,7,'#2a3242')}
+        `;
+      case 'pixelon':
+        return `
+          <rect x="42" y="72" width="16" height="16" fill="#c88bff" stroke="${OUTLINE}" stroke-width="1.5"/>
+          <rect x="102" y="72" width="16" height="16" fill="#3ea6ff" stroke="${OUTLINE}" stroke-width="1.5"/>
+          <rect x="42" y="162" width="16" height="16" fill="#ff8a3d" stroke="${OUTLINE}" stroke-width="1.5"/>
+          <rect x="102" y="162" width="16" height="16" fill="#3ecf8e" stroke="${OUTLINE}" stroke-width="1.5"/>
+          <rect x="50" y="80" width="60" height="90" rx="8" fill="#8a5fd1" stroke="${OUTLINE}" stroke-width="2.5"/>
+          ${shine(64,100,10,8)}
+          ${cuteFace(80,116,15,7,'#8a5fd1')}
+        `;
+      case 'cabinho':
+        return `
+          <ellipse cx="80" cy="132" rx="38" ry="40" fill="#20242c" stroke="${OUTLINE}" stroke-width="2.5"/>
+          <path d="M46,110 Q80,98 114,110" stroke="#d9661c" stroke-width="7" fill="none" stroke-linecap="round"/>
+          <path d="M44,140 Q80,128 116,140" stroke="#d9661c" stroke-width="7" fill="none" stroke-linecap="round"/>
+          <path d="M48,168 Q80,158 112,168" stroke="#d9661c" stroke-width="7" fill="none" stroke-linecap="round"/>
+          <circle cx="62" cy="184" r="6" fill="#d9661c" stroke="${OUTLINE}" stroke-width="1.5"/>
+          <circle cx="98" cy="184" r="6" fill="#d9661c" stroke="${OUTLINE}" stroke-width="1.5"/>
+          ${shine(60,98,10,8)}
+          ${cuteFace(80,100,15,7,'#20242c')}
+        `;
+      case 'ledinho':
+        return `
+          <ellipse cx="80" cy="122" rx="52" ry="52" fill="#3ecf8e" opacity="0.22"/>
+          <path d="M50,130 Q50,72 80,58 Q110,72 110,130 L108,150 Q80,162 52,150 Z" fill="#3ecf8e" stroke="${OUTLINE}" stroke-width="2.5"/>
+          <rect x="62" y="150" width="36" height="10" fill="#8d99ad"/>
+          <rect x="62" y="162" width="36" height="10" fill="#6b7686"/>
+          <rect x="66" y="174" width="28" height="8" rx="2" fill="#3a4254"/>
+          ${shine(63,92,11,14)}
+          ${cuteFace(80,112,15,7,'#3ecf8e')}
+        `;
+      case 'nuvem':
+        return `
+          <ellipse cx="52" cy="128" rx="26" ry="24" fill="#eaf4ff" stroke="${OUTLINE}" stroke-width="2"/>
+          <ellipse cx="108" cy="128" rx="26" ry="24" fill="#eaf4ff" stroke="${OUTLINE}" stroke-width="2"/>
+          <ellipse cx="80" cy="112" rx="34" ry="32" fill="#eaf4ff" stroke="${OUTLINE}" stroke-width="2.5"/>
+          <rect x="46" y="126" width="68" height="34" rx="17" fill="#eaf4ff" stroke="${OUTLINE}" stroke-width="2"/>
+          <path d="M76,150 L64,168 L74,168 L70,184 L88,162 L78,162 Z" fill="#ffcc33" stroke="${OUTLINE}" stroke-width="1.5"/>
+          ${shine(64,98,11,8)}
+          ${cuteFace(80,118,15,7,'#eaf4ff')}
+        `;
+      case 'chipzera':
+        return `
+          <rect x="30" y="94" width="14" height="6" fill="#c9c9c9"/><rect x="30" y="112" width="14" height="6" fill="#c9c9c9"/><rect x="30" y="130" width="14" height="6" fill="#c9c9c9"/>
+          <rect x="116" y="94" width="14" height="6" fill="#c9c9c9"/><rect x="116" y="112" width="14" height="6" fill="#c9c9c9"/><rect x="116" y="130" width="14" height="6" fill="#c9c9c9"/>
+          <rect x="66" y="66" width="6" height="14" fill="#c9c9c9"/><rect x="88" y="66" width="6" height="14" fill="#c9c9c9"/>
+          <rect x="66" y="160" width="6" height="14" fill="#c9c9c9"/><rect x="88" y="160" width="6" height="14" fill="#c9c9c9"/>
+          <path d="M44,78 h60 a8,8 0 0 1 8,8 v60 a8,8 0 0 1 -8,8 h-60 a8,8 0 0 1 -8,-8 v-60 a8,8 0 0 1 8,-8 Z" fill="#20242c" stroke="${OUTLINE}" stroke-width="2.5"/>
+          <path d="M44,78 a8,8 0 0 0 -8,8 v12 h14 v-20 Z" fill="#0d1119"/>
+          ${shine(58,96,10,8)}
+          ${cuteFace(80,116,15,7,'#20242c')}
+        `;
+      case 'mouseinho':
+        return `
+          <path d="M50,150 Q46,90 80,72 Q114,90 110,150 Q110,178 80,180 Q50,178 50,150 Z" fill="#c88bff" stroke="${OUTLINE}" stroke-width="2.5"/>
+          <path d="M80,74 L80,120" stroke="#7a4cc0" stroke-width="3"/>
+          <rect x="74" y="82" width="12" height="22" rx="6" fill="#7a4cc0"/>
+          <path d="M40,140 Q30,150 34,168" stroke="#8d99ad" stroke-width="4" fill="none" stroke-linecap="round"/>
+          ${shine(62,110,11,10)}
+          ${cuteFace(80,140,15,7,'#c88bff')}
+        `;
+      case 'tecladinho':
+        return `
+          <rect x="46" y="150" width="14" height="20" rx="4" fill="#20242c"/>
+          <rect x="48" y="74" width="64" height="64" rx="10" fill="#3a4254" stroke="${OUTLINE}" stroke-width="2.5"/>
+          <rect x="56" y="82" width="48" height="48" rx="6" fill="#4a5568"/>
+          <text x="80" y="102" font-size="16" fill="#eef1f6" font-family="'Space Mono',monospace" text-anchor="middle">⏎</text>
+          ${shine(62,92,10,7)}
+          ${cuteFace(80,118,14,7,'#4a5568')}
+        `;
+      default:
+        return creatureSVG('voltz');
+    }
+  }
+
+  // Per-creature anchor points so accessories land in the right spot on every species:
+  // top = resting point for hats/crowns/etc, eye = eye row (matches cuteFace cy), neck = below the chin, body = shoulder/strap height, spread = eye spread (matches cuteFace).
+  const CREATURE_ANCHORS = {
+    voltz:         {top:80, eye:116, neck:136, body:154, spread:15},
+    bitinho:       {top:34, eye:132, neck:150, body:166, spread:15},
+    pilhax:        {top:40, eye:140, neck:158, body:172, spread:15},
+    resistorzinho: {top:90, eye:112, neck:132, body:150, spread:15},
+    waifi:         {top:40, eye:148, neck:166, body:182, spread:15},
+    magnetojr:     {top:50, eye:150, neck:166, body:180, spread:13},
+    bytezao:       {top:84, eye:110, neck:130, body:148, spread:15},
+    firewall:      {top:40, eye:118, neck:138, body:156, spread:14},
+    plugao:        {top:72, eye:116, neck:136, body:154, spread:15},
+    antena:        {top:26, eye:136, neck:156, body:172, spread:15},
+    codezin:       {top:84, eye:120, neck:140, body:158, spread:15},
+    pixelon:       {top:68, eye:116, neck:136, body:154, spread:15},
+    cabinho:       {top:88, eye:100, neck:120, body:140, spread:15},
+    ledinho:       {top:50, eye:112, neck:132, body:150, spread:15},
+    nuvem:         {top:76, eye:118, neck:138, body:156, spread:15},
+    chipzera:      {top:58, eye:116, neck:136, body:154, spread:15},
+    mouseinho:     {top:64, eye:140, neck:158, body:174, spread:15},
+    tecladinho:    {top:66, eye:118, neck:138, body:156, spread:14},
+  };
+
+  function accessorySVG(id, creatureId){
+    if(!id || id === 'nenhum') return '';
+    const a = CREATURE_ANCHORS[creatureId] || CREATURE_ANCHORS.voltz;
+    switch(id){
+      case 'chapeu':
+        return `<g transform="translate(80,${a.top+2})"><ellipse cx="0" cy="10" rx="26" ry="6" fill="#2a3242"/><path d="M-16,10 Q-16,-22 0,-22 Q16,-22 16,10 Z" fill="#3a4254"/></g>`;
+      case 'oculos':
+        return `<g transform="translate(80,${a.eye})"><rect x="-28" y="-8" width="22" height="14" rx="6" fill="#20242c" opacity="0.9"/><rect x="6" y="-8" width="22" height="14" rx="6" fill="#20242c" opacity="0.9"/><rect x="-6" y="-4" width="12" height="4" fill="#20242c"/></g>`;
+      case 'laco':
+        return `<g transform="translate(80,${a.top+4})"><path d="M0,0 L-18,-12 L-18,12 Z" fill="#ef4b5f"/><path d="M0,0 L18,-12 L18,12 Z" fill="#ef4b5f"/><circle cx="0" cy="0" r="6" fill="#c72e42"/></g>`;
+      case 'coroa':
+        return `<g transform="translate(80,${a.top-4})"><path d="M-22,10 L-22,-6 L-11,4 L0,-14 L11,4 L22,-6 L22,10 Z" fill="#ffcc33" stroke="#d9a90f" stroke-width="2"/></g>`;
+      case 'bandana':
+        return `<g transform="translate(80,${a.top+8})"><path d="M-30,-6 Q0,-20 30,-6 L24,8 Q0,-2 -24,8 Z" fill="#ef4b5f"/><path d="M22,6 L34,16 L20,18 Z" fill="#c72e42"/></g>`;
+      case 'capacete':
+        return `<g transform="translate(80,${a.top+8})"><path d="M-30,10 Q-30,-20 0,-20 Q30,-20 30,10 Z" fill="#ffcc33" stroke="rgba(15,18,24,0.22)" stroke-width="2"/><rect x="-34" y="6" width="68" height="10" rx="5" fill="#d9a90f"/><circle cx="0" cy="-4" r="4" fill="#fff8d6" stroke="#d9a90f" stroke-width="1.5"/></g>`;
+      case 'formatura':
+        return `<g transform="translate(80,${a.top-2})"><path d="M-30,2 L0,-14 L30,2 L0,18 Z" fill="#20242c"/><rect x="-26" y="0" width="52" height="7" fill="#3a4254"/><line x1="20" y1="0" x2="26" y2="20" stroke="#ffcc33" stroke-width="2"/><circle cx="26" cy="20" r="3.5" fill="#ffcc33"/></g>`;
+      case 'fone':
+        return `<g transform="translate(80,${a.eye-18})"><path d="M-34,4 Q-34,-36 0,-36 Q34,-36 34,4" stroke="#20242c" stroke-width="5" fill="none"/><rect x="-42" y="-4" width="15" height="24" rx="7" fill="#20242c"/><rect x="27" y="-4" width="15" height="24" rx="7" fill="#20242c"/><rect x="-38" y="0" width="7" height="12" rx="3" fill="#3ea6ff"/><rect x="31" y="0" width="7" height="12" rx="3" fill="#3ea6ff"/></g>`;
+      case 'gravata':
+        return `<g transform="translate(80,${a.neck})"><path d="M-7,-6 L7,-6 L4,6 L0,2 L-4,6 Z" fill="#c72e42"/><path d="M-9,16 L9,16 L5,44 L0,52 L-5,44 Z" fill="#ef4b5f"/></g>`;
+      case 'cachecol':
+        return `<g transform="translate(80,${a.neck-2})"><path d="M-32,-4 Q0,10 32,-4 L28,8 Q0,20 -28,8 Z" fill="#3ecf8e" stroke="rgba(15,18,24,0.2)" stroke-width="1.5"/><rect x="14" y="6" width="11" height="28" rx="3" fill="#22a86b"/></g>`;
+      case 'chifres':
+        return `<g transform="translate(80,${a.top+7})"><path d="M-22,10 Q-30,-10 -13,-16 Q-18,0 -8,9 Z" fill="#ef4b5f" stroke="rgba(15,18,24,0.22)" stroke-width="1.5"/><path d="M22,10 Q30,-10 13,-16 Q18,0 8,9 Z" fill="#ef4b5f" stroke="rgba(15,18,24,0.22)" stroke-width="1.5"/></g>`;
+      case 'mochila':
+        return `<g transform="translate(80,${a.body})"><rect x="-46" y="-12" width="12" height="42" rx="5" fill="#3a4254"/><rect x="34" y="-12" width="12" height="42" rx="5" fill="#3a4254"/><rect x="-42" y="-18" width="11" height="9" rx="3" fill="#2a3242"/><rect x="31" y="-18" width="11" height="9" rx="3" fill="#2a3242"/></g>`;
+      case 'estrela':
+        return `<g transform="translate(${80+a.spread+17},${a.eye-8})"><path d="M0,-11 L3.2,-3.4 L11,-3.4 L4.9,1.6 L7.2,9.8 L0,4.9 L-7.2,9.8 L-4.9,1.6 L-11,-3.4 L-3.2,-3.4 Z" fill="#ffcc33" stroke="rgba(15,18,24,0.22)" stroke-width="1"/></g>`;
+      default:
+        return '';
+    }
+  }
+
+  function buildAvatarSVG(cfg){
+    cfg = cfg && typeof cfg === 'object' ? cfg : defaultAvatarCfg();
+    const creatureId = CREATURES.some(c=>c.id===cfg.creature) ? cfg.creature : CREATURES[0].id;
+    return `<svg viewBox="0 0 160 200" xmlns="http://www.w3.org/2000/svg" class="avatar-svg">
+      <g class="avatar-bob">
+        <ellipse cx="80" cy="192" rx="46" ry="7" fill="#000" opacity="0.18"/>
+        ${creatureSVG(creatureId)}
+        ${accessorySVG(cfg.accessory, creatureId)}
+      </g>
+    </svg>`;
+  }
+
+  function avatarChipHTML(cfg, size, jumpDelay){
+    const cls = size ? ' '+size : '';
+    const style = jumpDelay!==undefined ? ` style="--jd:${jumpDelay}s;"` : '';
+    return `<span class="avatar-chip${cls}"${style}>${buildAvatarSVG(cfg)}</span>`;
+  }
+
+  const BUBBLE_TYPES = [
+    {id:'nenhum', label:'Nenhum', hint:'🚫'},
+    {id:'fala', label:'Fala', hint:'💬'},
+    {id:'pensamento', label:'Pensamento', hint:'💭'},
+  ];
+
+  // Wraps an avatar chip with its speech/thought bubble (if the player set one).
+  function avatarBubbleHTML(cfg, size){
+    const chip = avatarChipHTML(cfg, size);
+    const bubble = cfg && typeof cfg === 'object' ? cfg.bubble : null;
+    if(!bubble || bubble.type==='nenhum' || !bubble.text || !bubble.text.trim()){
+      return `<span class="speech-wrap">${chip}</span>`;
+    }
+    const cls = bubble.type==='pensamento' ? 'pensamento' : 'fala';
+    return `<span class="speech-wrap"><span class="speech-bubble ${cls}">${escapeHtml(bubble.text)}</span>${chip}</span>`;
+  }
+
+  // Renders the creature picker (live SVG preview + species grid + accessory + bubble) into `container`.
+  // Returns getCfg() -> current avatar config object.
+  function renderAvatarCustomizer(container, initialCfg){
+    let cfg = Object.assign({}, defaultAvatarCfg(), initialCfg||{});
+    cfg.bubble = Object.assign({type:'nenhum', text:''}, cfg.bubble||{});
+    const box = el(`
+      <div>
+        <div style="display:flex;justify-content:center;margin:4px 0 18px;" id="avPreviewSlot"></div>
+        <label class="field-label">Escolha sua criatura</label>
+        <div class="avatar-grid" id="creatureGrid" style="grid-template-columns:repeat(3,1fr);"></div>
+        <label class="field-label field-gap">Acessório</label>
+        <div class="chip-row" id="accessoryRow"></div>
+        <label class="field-label field-gap">Balão de fala ou pensamento</label>
+        <div class="chip-row" id="bubbleTypeRow"></div>
+        <input class="nick field-gap" id="bubbleTextInput" maxlength="40" placeholder="Escreva uma frase (opcional)"/>
+        <div class="btn-row" style="margin-top:6px;">
+          <button type="button" class="btn btn-ghost" id="randomBtn">🎲 Sortear criatura</button>
+        </div>
+      </div>
+    `);
+    container.appendChild(box);
+    const previewSlot = box.querySelector('#avPreviewSlot');
+    function repaint(){ previewSlot.innerHTML = avatarBubbleHTML(cfg, 'xl'); }
+
+    function paintCreatureGrid(rowEl){
+      rowEl.innerHTML='';
+      CREATURES.forEach(cr=>{
+        const card = el(`
+          <div class="avatar-card ${cfg.creature===cr.id?'selected':''}" data-creature="${cr.id}" style="padding:10px 6px;">
+            <div class="avatar-chip" style="margin:0 auto 6px;">${buildAvatarSVG({creature:cr.id, accessory:'nenhum'})}</div>
+            <div class="avatar-name">${cr.name}</div>
+          </div>
+        `);
+        card.addEventListener('click', ()=>{ cfg.creature=cr.id; paintCreatureGrid(rowEl); repaint(); });
+        rowEl.appendChild(card);
+      });
+    }
+    function paintChips(rowEl, list, key){
+      rowEl.innerHTML='';
+      list.forEach(item=>{
+        const chip = el(`<div class="face-chip ${cfg[key]===item.id?'selected':''}">${item.hint} ${item.label}</div>`);
+        chip.addEventListener('click', ()=>{ cfg[key]=item.id; paintChips(rowEl,list,key); repaint(); });
+        rowEl.appendChild(chip);
+      });
+    }
+    function paintBubbleTypes(rowEl){
+      rowEl.innerHTML='';
+      BUBBLE_TYPES.forEach(item=>{
+        const chip = el(`<div class="face-chip ${cfg.bubble.type===item.id?'selected':''}">${item.hint} ${item.label}</div>`);
+        chip.addEventListener('click', ()=>{ cfg.bubble.type=item.id; paintBubbleTypes(rowEl); repaint(); });
+        rowEl.appendChild(chip);
+      });
+    }
+
+    const creatureGrid=box.querySelector('#creatureGrid'), accessoryRow=box.querySelector('#accessoryRow'), bubbleTypeRow=box.querySelector('#bubbleTypeRow');
+    const bubbleTextInput = box.querySelector('#bubbleTextInput');
+    paintCreatureGrid(creatureGrid);
+    paintChips(accessoryRow, ACCESSORIES, 'accessory');
+    paintBubbleTypes(bubbleTypeRow);
+    bubbleTextInput.value = cfg.bubble.text || '';
+    bubbleTextInput.addEventListener('input', ()=>{ cfg.bubble.text = bubbleTextInput.value; repaint(); });
+    repaint();
+
+    box.querySelector('#randomBtn').addEventListener('click', ()=>{
+      const keepBubble = cfg.bubble;
+      cfg = randomAvatarCfg();
+      cfg.bubble = keepBubble;
+      paintCreatureGrid(creatureGrid);
+      paintChips(accessoryRow, ACCESSORIES, 'accessory');
+      repaint();
+    });
+
+    return function getCfg(){ return Object.assign({}, cfg, {bubble: Object.assign({}, cfg.bubble)}); };
+  }
+
+  const AREAS = [
+    {id:'eletrica', label:'Elétrica', emoji:'⚡'},
+    {id:'informatica', label:'Informática', emoji:'💻'},
+  ];
+
+  const CATEGORIES = [
+    {id:'fundamentos', area:'eletrica', label:'Fundamentos', emoji:'📐'},
+    {id:'circuitos', area:'eletrica', label:'Circuitos', emoji:'🔀'},
+    {id:'seguranca', area:'eletrica', label:'Segurança', emoji:'🦺'},
+    {id:'ferramentas', area:'eletrica', label:'Ferramentas', emoji:'🧰'},
+    {id:'programacao', area:'informatica', label:'Programação', emoji:'💻'},
+    {id:'hardware', area:'informatica', label:'Hardware', emoji:'🖥️'},
+    {id:'redes', area:'informatica', label:'Redes', emoji:'🌐'},
+    {id:'seguranca_info', area:'informatica', label:'Segurança da Info.', emoji:'🔐'},
+  ];
+
+  const DIFFICULTIES = [
+    {id:'padrao', label:'Padrão', emoji:'📗'},
+    {id:'avancado', label:'Avançado', emoji:'📙'},
+    {id:'expert', label:'Especialista', emoji:'📕'},
+  ];
+
+  const QUESTIONS = [
+    {cat:'fundamentos', q:"Qual é a unidade de medida da corrente elétrica?",
+     opts:["Volt","Ampère","Watt","Ohm"], correct:1,
+     exp:"A corrente elétrica é medida em ampères (A), que indica a quantidade de carga elétrica que passa por um ponto do circuito por segundo."},
+    {cat:'fundamentos', q:"A Lei de Ohm é expressa pela fórmula:",
+     opts:["P = V × I","V = R × I","I = P × V","R = P × I"], correct:1,
+     exp:"A Lei de Ohm diz que a tensão (V) é igual à resistência (R) multiplicada pela corrente (I): V = R × I."},
+    {cat:'fundamentos', q:"Qual símbolo representa a resistência elétrica?",
+     opts:["Ω","A","V","W"], correct:0,
+     exp:"O símbolo Ω (ômega) representa a unidade Ohm, usada para medir resistência elétrica."},
+    {cat:'circuitos', q:"Em um circuito em série, a corrente elétrica é:",
+     opts:["Diferente em cada componente","A mesma em todos os componentes","Sempre igual a zero","Depende da cor do fio"], correct:1,
+     exp:"Em série, existe apenas um caminho para a corrente, então ela é a mesma em todos os pontos do circuito."},
+    {cat:'circuitos', q:"Em um circuito em paralelo, a tensão em cada ramo é:",
+     opts:["Diferente em cada ramo","A mesma em todos os ramos","Sempre zero","Igual à corrente total"], correct:1,
+     exp:"Em paralelo, todos os ramos estão ligados aos mesmos dois pontos, então a tensão é igual em cada um deles."},
+    {cat:'ferramentas', q:"Qual equipamento mede tensão, corrente e resistência?",
+     opts:["Osciloscópio","Multímetro","Paquímetro","Termômetro"], correct:1,
+     exp:"O multímetro é o instrumento mais usado por eletricistas para medir tensão, corrente e resistência."},
+    {cat:'seguranca', q:"Qual é a função de um disjuntor?",
+     opts:["Aumentar a tensão da rede","Proteger o circuito contra sobrecarga e curto-circuito","Substituir a lâmpada","Gerar energia elétrica"], correct:1,
+     exp:"O disjuntor interrompe automaticamente a corrente quando detecta sobrecarga ou curto-circuito, protegendo o circuito."},
+    {cat:'fundamentos', q:"Qual é a unidade de potência elétrica?",
+     opts:["Volt","Watt","Ampère","Ohm"], correct:1,
+     exp:"A potência elétrica é medida em Watts (W), representando a energia consumida ou gerada por segundo."},
+    {cat:'seguranca', q:"Qual é a principal função do fio terra (aterramento)?",
+     opts:["Aumentar a voltagem da instalação","Proteger pessoas e equipamentos contra choques elétricos","Reduzir a conta de energia","Gerar energia extra"], correct:1,
+     exp:"O aterramento desvia correntes de fuga para a terra, evitando choques elétricos em pessoas e danos a equipamentos."},
+    {cat:'seguranca', q:"Segundo a norma brasileira, qual cor é usada no fio neutro?",
+     opts:["Vermelho","Azul-claro","Verde-amarelo","Preto"], correct:1,
+     exp:"A NBR 5410 padroniza o azul-claro para identificar o condutor neutro nas instalações elétricas."},
+    {cat:'seguranca', q:"Segundo a norma brasileira, qual cor é usada no fio de proteção (terra)?",
+     opts:["Vermelho","Azul-claro","Verde-amarelo","Branco"], correct:2,
+     exp:"O condutor de proteção (terra) é identificado pela combinação verde-amarelo, conforme a NBR 5410."},
+    {cat:'seguranca', q:"Qual EPI é essencial em trabalhos com instalações elétricas energizadas?",
+     opts:["Luvas isolantes","Óculos de sol","Boné","Tênis comum"], correct:0,
+     exp:"Luvas isolantes específicas protegem as mãos do eletricista contra choques ao manusear partes energizadas."},
+    {cat:'fundamentos', q:"A fórmula correta da potência elétrica é:",
+     opts:["P = V ÷ I","P = V × I","P = I ÷ V","P = V + I"], correct:1,
+     exp:"A potência elétrica é o produto da tensão pela corrente: P = V × I."},
+    {cat:'circuitos', q:"Um curto-circuito ocorre quando:",
+     opts:["A corrente encontra um caminho de baixa resistência não previsto","A tensão diminui gradualmente até zero","A resistência do circuito aumenta infinitamente","O circuito fica sempre aberto"], correct:0,
+     exp:"No curto-circuito, a corrente passa por um caminho de resistência muito baixa, causando um pico de corrente perigoso."},
+    {cat:'seguranca', q:"O que estabelece a Norma Regulamentadora NR-10?",
+     opts:["Padrões de qualidade de energia","Segurança em instalações e serviços em eletricidade","Regras de reciclagem de fios","Normas de redes de internet"], correct:1,
+     exp:"A NR-10 trata da segurança no trabalho com eletricidade, incluindo riscos, EPIs e procedimentos."},
+    {cat:'fundamentos', q:"Qual dos materiais abaixo é um bom condutor elétrico?",
+     opts:["Borracha","Cobre","Vidro","Plástico"], correct:1,
+     exp:"O cobre é amplamente usado em fios elétricos por ser um excelente condutor de eletricidade."},
+    {cat:'fundamentos', q:"Qual dos materiais abaixo é um bom isolante elétrico?",
+     opts:["Cobre","Alumínio","Borracha","Prata"], correct:2,
+     exp:"A borracha não conduz eletricidade com facilidade, por isso é usada para revestir fios e cabos."},
+    {cat:'seguranca', q:"Qual dispositivo detecta fuga de corrente e desliga o circuito para evitar choques?",
+     opts:["Disjuntor termomagnético comum","DR (Dispositivo Diferencial Residual)","Fusível","Contator"], correct:1,
+     exp:"O DR compara a corrente de entrada e saída do circuito; se detectar diferença (fuga), desliga o circuito rapidamente."},
+    {cat:'fundamentos', q:"Quantos watts equivalem a 1 kW (quilowatt)?",
+     opts:["10 W","100 W","1.000 W","10.000 W"], correct:2,
+     exp:"O prefixo 'quilo' significa mil, então 1 kW equivale a 1.000 W."},
+    {cat:'circuitos', q:"Como se calcula a resistência total de resistores em série?",
+     opts:["Rt = R1 + R2 + ...","1/Rt = 1/R1 + 1/R2 + ...","Rt = R1 × R2","Rt = R1 ÷ R2"], correct:0,
+     exp:"Em série, as resistências se somam diretamente: Rt = R1 + R2 + R3 + ..."},
+    {cat:'circuitos', q:"Ao adicionar mais resistores em paralelo a um circuito, a resistência total:",
+     opts:["Aumenta","Diminui","Permanece igual","Vira zero imediatamente"], correct:1,
+     exp:"Em paralelo, cada resistor adicional cria mais um caminho para a corrente, reduzindo a resistência total do circuito."},
+    {cat:'circuitos', q:"Em um circuito resistivo, se a resistência aumenta e a tensão permanece constante, a corrente:",
+     opts:["Aumenta","Diminui","Não se altera","Vira negativa"], correct:1,
+     exp:"Pela Lei de Ohm (I = V/R), se a tensão é constante e a resistência aumenta, a corrente diminui."},
+    {cat:'ferramentas', q:"Qual ferramenta mede corrente elétrica sem precisar interromper o circuito?",
+     opts:["Multímetro comum","Alicate amperímetro","Paquímetro","Nível de bolha"], correct:1,
+     exp:"O alicate amperímetro envolve o condutor e mede a corrente pelo campo magnético gerado, sem precisar cortar o circuito."},
+    {cat:'ferramentas', q:"Qual ferramenta o eletricista usa para verificar rapidamente se um fio está energizado?",
+     opts:["Chave teste de tensão (busca-polo)","Trena","Alicate de corte","Martelo"], correct:0,
+     exp:"A chave teste de tensão (busca-polo) acende quando detecta tensão, indicando rapidamente se o condutor está energizado."},
+    {cat:'ferramentas', q:"Ferramentas manuais usadas em instalações elétricas, como alicates e chaves de fenda, devem ter cabo:",
+     opts:["Metálico","Isolante","De madeira sem revestimento","Não importa o material"], correct:1,
+     exp:"Ferramentas com cabo isolante (borracha ou plástico certificado) protegem o eletricista contra choques elétricos."},
+    {cat:'ferramentas', q:"Qual instrumento é usado para medir a resistência de isolamento de cabos e detectar fugas?",
+     opts:["Multímetro","Megômetro","Osciloscópio","Voltímetro comum"], correct:1,
+     exp:"O megômetro (megôhmetro) aplica alta tensão para medir a resistência de isolamento e detectar possíveis falhas de isolação."},
+
+    // --- Fundamentos extra ---
+    {cat:'fundamentos', q:"Qual é a unidade de medida da carga elétrica?",
+     opts:["Coulomb","Joule","Watt","Farad"], correct:0,
+     exp:"A carga elétrica é medida em coulombs (C), unidade que representa a quantidade de elétrons em movimento."},
+    {cat:'fundamentos', q:"Qual é a frequência padrão da rede elétrica no Brasil?",
+     opts:["50 Hz","60 Hz","100 Hz","120 Hz"], correct:1,
+     exp:"No Brasil, a frequência da rede elétrica é de 60 Hz, ou seja, a corrente alternada muda de sentido 60 vezes por segundo."},
+    {cat:'fundamentos', q:"Qual é a unidade de capacitância elétrica?",
+     opts:["Farad","Henry","Weber","Tesla"], correct:0,
+     exp:"A capacitância é medida em farads (F), unidade que indica a capacidade de um capacitor de armazenar carga elétrica."},
+    {cat:'fundamentos', q:"Qual é a unidade de indutância elétrica?",
+     opts:["Farad","Henry","Ohm","Siemens"], correct:1,
+     exp:"A indutância é medida em henries (H), unidade associada à capacidade de um indutor de se opor a variações de corrente."},
+    {cat:'fundamentos', q:"Qual grandeza elétrica é medida em Hertz (Hz)?",
+     opts:["Tensão","Frequência","Potência","Resistência"], correct:1,
+     exp:"O hertz (Hz) é a unidade de frequência, indicando quantos ciclos ocorrem por segundo em um sinal elétrico."},
+    {cat:'fundamentos', q:"Na corrente contínua (CC), o fluxo de elétrons:",
+     opts:["Muda de sentido periodicamente","Mantém sempre o mesmo sentido","É sempre igual a zero","Só existe em corrente alternada"], correct:1,
+     exp:"Na corrente contínua, os elétrons fluem sempre no mesmo sentido, como ocorre em baterias e pilhas."},
+    {cat:'fundamentos', q:"Na corrente alternada (CA), a corrente elétrica:",
+     opts:["Muda de sentido periodicamente","Nunca muda de sentido","É sempre igual a zero","Só existe em corrente contínua"], correct:0,
+     exp:"Na corrente alternada, o sentido da corrente se inverte periodicamente, como na rede elétrica residencial."},
+    {cat:'fundamentos', q:"Qual das opções abaixo é uma fonte de corrente contínua (CC)?",
+     opts:["Bateria","Tomada residencial comum","Gerador de usina CA","Rede de distribuição pública"], correct:0,
+     exp:"Baterias e pilhas fornecem corrente contínua, mantendo sempre a mesma polaridade."},
+    {cat:'fundamentos', q:"A potência aparente em um circuito elétrico é medida em:",
+     opts:["Watt (W)","Volt-Ampère (VA)","Ohm (Ω)","Ampère (A)"], correct:1,
+     exp:"A potência aparente é medida em volt-ampères (VA), combinando os efeitos da potência ativa e reativa do circuito."},
+    {cat:'fundamentos', q:"Qual é o valor ideal (mais eficiente) do fator de potência em uma instalação elétrica?",
+     opts:["0","0,5","1","2"], correct:2,
+     exp:"Um fator de potência igual a 1 indica que toda a energia fornecida está sendo efetivamente utilizada, sem perdas reativas."},
+
+    // --- Circuitos extra ---
+    {cat:'circuitos', q:"Para calcular a resistência total de um circuito misto (série e paralelo), deve-se:",
+     opts:["Somar todas as resistências diretamente, ignorando a configuração","Resolver cada trecho conforme sua configuração (série ou paralelo) e depois combinar os resultados","Multiplicar todas as resistências entre si","Ignorar a configuração e usar apenas a maior resistência"], correct:1,
+     exp:"Em circuitos mistos, cada trecho deve ser calculado de acordo com sua configuração (série ou paralelo) antes de combinar os resultados para achar a resistência total."},
+    {cat:'circuitos', q:"O que caracteriza um circuito aberto?",
+     opts:["Um circuito sem nenhuma interrupção","Uma interrupção que impede a passagem de corrente elétrica","Um curto-circuito entre dois condutores","Um circuito trifásico balanceado"], correct:1,
+     exp:"Um circuito aberto tem uma interrupção no caminho condutor, o que impede a passagem da corrente elétrica."},
+    {cat:'circuitos', q:"Em um circuito em paralelo, se um dos ramos for interrompido, os demais ramos:",
+     opts:["Também deixam de funcionar","Continuam funcionando normalmente","Recebem o dobro da tensão original","Entram em curto-circuito automaticamente"], correct:1,
+     exp:"Como cada ramo em paralelo tem seu próprio caminho, a interrupção de um ramo não afeta o funcionamento dos demais."},
+    {cat:'circuitos', q:"Em um circuito em série, se um dos componentes queimar (abrir o circuito), o restante do circuito:",
+     opts:["Continua funcionando normalmente","Deixa de funcionar, pois o único caminho da corrente é interrompido","Passa a receber tensão maior","Não sofre nenhuma alteração"], correct:1,
+     exp:"Como em série existe apenas um caminho para a corrente, a interrupção de qualquer componente interrompe todo o circuito."},
+    {cat:'circuitos', q:"A Lei de Kirchhoff das tensões afirma que:",
+     opts:["A soma das correntes em um nó é sempre zero","A soma das tensões em uma malha fechada é sempre zero","A resistência total é sempre constante","A potência de um circuito é sempre positiva"], correct:1,
+     exp:"A Lei de Kirchhoff das tensões (LKT) estabelece que a soma algébrica das tensões em qualquer malha fechada de um circuito é igual a zero."},
+    {cat:'circuitos', q:"A Lei de Kirchhoff das correntes afirma que:",
+     opts:["A soma das correntes que entram em um nó é igual à soma das que saem","A tensão em um nó é sempre constante","A resistência em um nó é sempre zero","Não existe conservação de energia em circuitos elétricos"], correct:0,
+     exp:"A Lei de Kirchhoff das correntes (LKC) diz que a soma das correntes que entram em um nó é igual à soma das correntes que saem dele."},
+    {cat:'circuitos', q:"Qual é a fórmula da resistência total de dois resistores em paralelo?",
+     opts:["Rt = R1 + R2","Rt = (R1 × R2) / (R1 + R2)","Rt = R1 − R2","Rt = R1 × R2"], correct:1,
+     exp:"Para dois resistores em paralelo, a resistência total é dada pelo produto dividido pela soma: Rt = (R1 × R2) / (R1 + R2)."},
+    {cat:'circuitos', q:"Quantas fases compõem uma instalação elétrica trifásica?",
+     opts:["1","2","3","4"], correct:2,
+     exp:"Uma instalação trifásica é composta por três fases, geralmente defasadas 120° entre si."},
+    {cat:'circuitos', q:"Em uma instalação trifásica, a tensão de linha é medida:",
+     opts:["Entre duas fases","Entre uma fase e o neutro","Entre o neutro e o terra","Sempre é igual a zero"], correct:0,
+     exp:"A tensão de linha é a tensão medida entre duas fases de um sistema trifásico, geralmente maior que a tensão de fase."},
+    {cat:'circuitos', q:"Em uma instalação trifásica, a tensão de fase é medida:",
+     opts:["Entre duas fases","Entre uma fase e o neutro","Entre dois condutores neutros","Sempre é 380 V"], correct:1,
+     exp:"A tensão de fase é medida entre uma fase e o neutro do sistema."},
+    {cat:'circuitos', q:"Um capacitor totalmente carregado em um circuito de corrente contínua se comporta como:",
+     opts:["Um curto-circuito","Um circuito aberto, pois não passa mais corrente por ele","Uma resistência negativa","Uma fonte de tensão adicional"], correct:1,
+     exp:"Depois de totalmente carregado, o capacitor bloqueia a passagem de corrente contínua, comportando-se como um circuito aberto."},
+    {cat:'circuitos', q:"Um indutor se opõe principalmente a:",
+     opts:["Mudanças bruscas na tensão da rede","Mudanças bruscas na corrente elétrica","Mudanças na cor do condutor","Nada, ele é totalmente neutro no circuito"], correct:1,
+     exp:"O indutor armazena energia em um campo magnético e se opõe a variações rápidas na corrente que passa por ele."},
+
+    // --- Segurança extra ---
+    {cat:'seguranca', q:"O que significa a sigla EPI?",
+     opts:["Equipamento de Proteção Individual","Equipamento de Produção Interna","Estrutura de Proteção Industrial","Energia Portátil Individual"], correct:0,
+     exp:"EPI significa Equipamento de Proteção Individual, usado para proteger o trabalhador contra riscos à saúde e à segurança."},
+    {cat:'seguranca', q:"Antes de iniciar um trabalho em uma instalação elétrica, o procedimento correto é:",
+     opts:["Trabalhar com o circuito energizado para agilizar o serviço","Desenergizar o circuito, sinalizar e verificar a ausência de tensão","Usar apenas luvas de tecido comum","Ignorar o bloqueio e a etiquetagem do equipamento"], correct:1,
+     exp:"O procedimento seguro exige desenergizar o circuito, sinalizar a área e confirmar com um instrumento a ausência de tensão antes de iniciar o trabalho."},
+    {cat:'seguranca', q:"O que é o procedimento de bloqueio e etiquetagem (lockout/tagout)?",
+     opts:["Travar e sinalizar um equipamento para impedir sua energização acidental durante a manutenção","Uma técnica para aumentar a tensão do circuito","Um método de economia de energia elétrica","Um tipo específico de fusível"], correct:0,
+     exp:"O bloqueio e etiquetagem impede que um equipamento seja energizado acidentalmente enquanto está em manutenção, protegendo quem está trabalhando nele."},
+    {cat:'seguranca', q:"Qual é uma das principais causas de acidentes fatais em instalações elétricas?",
+     opts:["Contato direto ou indireto com partes energizadas","Excesso de iluminação no ambiente","Uso correto do multímetro","Uso de capacete de segurança"], correct:0,
+     exp:"O contato direto ou indireto com partes energizadas é uma das principais causas de acidentes graves e fatais na área elétrica."},
+    {cat:'seguranca', q:"Em caso de choque elétrico em uma vítima, qual é a primeira ação segura a se tomar?",
+     opts:["Tocar a vítima imediatamente para afastá-la","Desligar a energia antes de qualquer contato com a vítima","Jogar água na vítima","Ignorar a situação e continuar o trabalho"], correct:1,
+     exp:"Antes de socorrer a vítima, é essencial desligar a fonte de energia para evitar que o socorrista também sofra um choque elétrico."},
+    {cat:'seguranca', q:"O capacete de segurança usado por eletricistas deve ser, preferencialmente, de qual classe?",
+     opts:["Classe B (isolante elétrico)","Metálico","Qualquer material disponível","Sem necessidade de certificação"], correct:0,
+     exp:"Capacetes Classe B são certificados como isolantes elétricos, oferecendo proteção contra choques na cabeça."},
+    {cat:'seguranca', q:"Segundo a NR-10, trabalhos em instalações elétricas energizadas devem ser realizados por:",
+     opts:["Qualquer pessoa disponível no momento","Profissionais autorizados e capacitados especificamente para essa função","Estagiários sem treinamento","Apenas durante a noite"], correct:1,
+     exp:"A NR-10 exige que apenas profissionais autorizados e devidamente capacitados realizem trabalhos em instalações elétricas energizadas."},
+    {cat:'seguranca', q:"O que é a chamada 'zona de risco' em uma instalação elétrica?",
+     opts:["Uma área totalmente livre de perigo","A área ao redor de partes energizadas onde existe risco de choque elétrico","Uma sala de armazenamento de ferramentas","Uma área de descanso dos funcionários"], correct:1,
+     exp:"A zona de risco é a região próxima a partes energizadas onde há risco real de choque elétrico, exigindo cuidados especiais de segurança."},
+    {cat:'seguranca', q:"Antes de tocar em uma superfície metálica próxima a instalações elétricas, o procedimento correto é:",
+     opts:["Testar se está energizada com um instrumento apropriado","Tocar diretamente sem nenhum cuidado","Ignorar completamente o risco","Tocar apenas com a mão molhada"], correct:0,
+     exp:"Testar a superfície com um instrumento apropriado, como uma chave teste de tensão, evita choques ao identificar se ela está energizada."},
+    {cat:'seguranca', q:"Qual é a função de uma viseira facial usada em trabalhos elétricos de maior risco?",
+     opts:["Proteger o rosto contra arco elétrico e respingos","Servir apenas como item decorativo","Melhorar a audição do trabalhador","Aumentar a temperatura corporal"], correct:0,
+     exp:"A viseira facial protege o rosto e os olhos contra queimaduras e respingos causados por um possível arco elétrico."},
+    {cat:'seguranca', q:"O arco elétrico (arco voltaico) é perigoso principalmente porque pode causar:",
+     opts:["Apenas um pequeno choque leve e sem consequências","Queimaduras graves, explosões e ferimentos sérios","Nenhum risco real ao trabalhador","Apenas um clarão de luz sem efeitos"], correct:1,
+     exp:"O arco elétrico libera grande quantidade de energia em forma de calor e luz, podendo causar queimaduras graves, explosões e até a morte."},
+    {cat:'seguranca', q:"O calçado de segurança usado por eletricistas deve ter solado:",
+     opts:["Isolante elétrico e sem partes metálicas expostas","Com ponteira de aço exposta ao ambiente","De qualquer material disponível","Feito de material condutor"], correct:0,
+     exp:"Calçados com solado isolante e sem partes metálicas expostas reduzem o risco de choque elétrico pelos pés."},
+    {cat:'seguranca', q:"Antes de reenergizar um circuito após uma manutenção, o procedimento correto é:",
+     opts:["Reenergizar imediatamente, sem qualquer verificação","Verificar se todas as ferramentas foram retiradas e a área está segura","Deixar ferramentas esquecidas dentro do painel","Ignorar a etiquetagem de bloqueio"], correct:1,
+     exp:"Antes de reenergizar, é fundamental garantir que ferramentas foram retiradas e a área está segura, evitando acidentes e curtos-circuitos."},
+
+    // --- Ferramentas extra ---
+    {cat:'ferramentas', q:"Qual ferramenta é usada para remover a capa isolante de um fio elétrico?",
+     opts:["Alicate de crimpar","Alicate desencapador","Chave de fenda","Trena"], correct:1,
+     exp:"O alicate desencapador é projetado especificamente para remover a capa isolante dos fios sem danificar o condutor interno."},
+    {cat:'ferramentas', q:"Para unir dois fios elétricos de forma segura e isolada, o eletricista geralmente usa:",
+     opts:["Apenas fita adesiva comum","Conectores apropriados e fita isolante elétrica","Cola quente","Nenhuma proteção adicional"], correct:1,
+     exp:"Conectores apropriados junto com fita isolante elétrica garantem uma conexão segura e evitam curtos-circuitos ou choques."},
+    {cat:'ferramentas', q:"Qual ferramenta é usada para prender terminais em conectores elétricos?",
+     opts:["Alicate de crimpar","Martelo","Serrote","Nível de bolha"], correct:0,
+     exp:"O alicate de crimpar comprime o terminal sobre o fio, garantindo uma conexão elétrica firme e segura."},
+    {cat:'ferramentas', q:"O que é um voltímetro?",
+     opts:["Um instrumento que mede tensão elétrica","Um instrumento que mede apenas temperatura","Uma ferramenta de corte de fios","Uma ferramenta de fixação de parafusos"], correct:0,
+     exp:"O voltímetro é o instrumento utilizado especificamente para medir a tensão elétrica entre dois pontos de um circuito."},
+    {cat:'ferramentas', q:"O que é um amperímetro?",
+     opts:["Um instrumento que mede a corrente elétrica","Um instrumento que mede apenas comprimento","Uma ferramenta de furar paredes","Uma ferramenta de solda"], correct:0,
+     exp:"O amperímetro é utilizado para medir a intensidade da corrente elétrica que circula em um circuito."},
+    {cat:'ferramentas', q:"Qual ferramenta é usada para fazer furos em paredes na passagem de fiação elétrica?",
+     opts:["Furadeira","Alicate de corte","Multímetro","Nível de bolha"], correct:0,
+     exp:"A furadeira é usada para abrir furos em paredes e estruturas, facilitando a passagem de eletrodutos e fiação."},
+    {cat:'ferramentas', q:"Para que serve um osciloscópio?",
+     opts:["Para visualizar a forma de onda de sinais elétricos ao longo do tempo","Para medir apenas a cor dos fios","Para medir a temperatura ambiente","Para pesar componentes eletrônicos"], correct:0,
+     exp:"O osciloscópio exibe graficamente como um sinal elétrico varia ao longo do tempo, sendo essencial para análises mais avançadas."},
+    {cat:'ferramentas', q:"Qual ferramenta é utilizada para identificar a sequência de fases em sistemas trifásicos?",
+     opts:["Sequencímetro (indicador de sequência de fases)","Trena","Martelo","Nível de bolha"], correct:0,
+     exp:"O sequencímetro indica a ordem correta das fases em um sistema trifásico, essencial para o funcionamento correto de motores, por exemplo."},
+    {cat:'ferramentas', q:"Para verificar se um fio está rompido internamente (perda de continuidade), o eletricista usa o multímetro na função:",
+     opts:["Continuidade/teste de diodo","Medição de temperatura","Cronômetro","Bússola"], correct:0,
+     exp:"A função de continuidade do multímetro emite um sinal sonoro quando há caminho contínuo, ajudando a identificar fios rompidos."},
+    {cat:'ferramentas', q:"Qual EPI complementa o uso de ferramentas manuais isoladas ao trabalhar perto de partes energizadas?",
+     opts:["Luvas isolantes de borracha certificadas","Luvas finas de látex para uso doméstico","Nenhum EPI é necessário nesse caso","Luvas de tecido comum"], correct:0,
+     exp:"Luvas isolantes de borracha certificadas complementam a proteção das ferramentas isoladas, reduzindo o risco de choque elétrico."},
+
+    // --- Nível avançado (com cálculos) ---
+    {cat:'fundamentos', diff:'avancado', q:"Um circuito tem tensão de 12 V e resistência de 4 Ω. Qual é a corrente que passa por ele?",
+     opts:["2 A","3 A","4 A","48 A"], correct:1,
+     exp:"Pela Lei de Ohm, I = V/R = 12/4 = 3 A."},
+    {cat:'fundamentos', diff:'avancado', q:"Uma lâmpada de 60 W é ligada em uma tensão de 120 V. Qual é a corrente que ela consome?",
+     opts:["0,5 A","2 A","0,2 A","5 A"], correct:0,
+     exp:"Como P = V × I, temos I = P/V = 60/120 = 0,5 A."},
+    {cat:'fundamentos', diff:'avancado', q:"Um resistor de 100 Ω é percorrido por uma corrente de 0,5 A. Qual é a tensão sobre ele?",
+     opts:["25 V","50 V","100 V","200 V"], correct:1,
+     exp:"Pela Lei de Ohm, V = R × I = 100 × 0,5 = 50 V."},
+    {cat:'fundamentos', diff:'avancado', q:"Um chuveiro elétrico de 5.500 W opera em 220 V. Qual é, aproximadamente, a corrente consumida?",
+     opts:["10 A","25 A","55 A","2,5 A"], correct:1,
+     exp:"I = P/V = 5500/220 ≈ 25 A."},
+    {cat:'fundamentos', diff:'avancado', q:"Um motor elétrico consome 2.200 W em 220 V, com fator de potência igual a 1. Qual é a corrente aproximada?",
+     opts:["5 A","10 A","20 A","100 A"], correct:1,
+     exp:"Com fator de potência 1, I = P/V = 2200/220 = 10 A."},
+    {cat:'circuitos', diff:'avancado', q:"Dois resistores de 6 Ω e 3 Ω estão ligados em paralelo. Qual é a resistência equivalente?",
+     opts:["2 Ω","4,5 Ω","9 Ω","18 Ω"], correct:0,
+     exp:"Rt = (R1×R2)/(R1+R2) = (6×3)/(6+3) = 18/9 = 2 Ω."},
+    {cat:'circuitos', diff:'avancado', q:"Três resistores de 10 Ω cada estão ligados em série. Qual é a resistência total?",
+     opts:["3,33 Ω","10 Ω","20 Ω","30 Ω"], correct:3,
+     exp:"Em série, as resistências se somam: Rt = 10+10+10 = 30 Ω."},
+    {cat:'circuitos', diff:'avancado', q:"Em um circuito com tensão de 24 V e resistência total de 6 Ω, qual é a potência dissipada?",
+     opts:["4 W","24 W","96 W","144 W"], correct:2,
+     exp:"A corrente é I = V/R = 24/6 = 4 A. A potência é P = V × I = 24 × 4 = 96 W."},
+    {cat:'circuitos', diff:'avancado', q:"Um capacitor de 10 µF é carregado com uma tensão de 100 V. Qual é, aproximadamente, a energia armazenada nele?",
+     opts:["0,05 J (50 mJ)","5 J","500 J","0,5 J"], correct:0,
+     exp:"A energia armazenada é E = ½ × C × V² = 0,5 × 10×10⁻⁶ × 100² = 0,05 J."},
+    {cat:'circuitos', diff:'avancado', q:"Em um sistema trifásico equilibrado com tensão de fase de 220 V, qual é, aproximadamente, a tensão de linha (Vlinha = Vfase × √3)?",
+     opts:["220 V","380 V","440 V","660 V"], correct:1,
+     exp:"Vlinha = Vfase × √3 = 220 × 1,73 ≈ 380 V, valor típico das redes trifásicas brasileiras."},
+    {cat:'circuitos', diff:'avancado', q:"Um sistema trifásico tem tensão de linha de 380 V. Qual é, aproximadamente, a tensão de fase (Vfase = Vlinha / √3)?",
+     opts:["110 V","220 V","380 V","660 V"], correct:1,
+     exp:"Vfase = Vlinha / √3 = 380 / 1,73 ≈ 220 V."},
+    {cat:'seguranca', diff:'avancado', q:"Uma corrente elétrica da ordem de 10 mA já pode causar contração muscular involuntária que impede a vítima de soltar o condutor. Essa faixa é chamada de:",
+     opts:["Corrente de largar (let-go current)","Corrente de fuga nula","Corrente de disparo do DR apenas","Corrente totalmente segura"], correct:0,
+     exp:"A 'corrente de largar' é o limiar em que a contração muscular involuntária impede que a vítima solte o condutor energizado, tornando o choque mais perigoso."},
+    {cat:'seguranca', diff:'avancado', q:"Um DR (Dispositivo Diferencial Residual) de alta sensibilidade, usado em áreas molhadas, geralmente possui corrente de disparo de:",
+     opts:["30 mA","30 A","300 mA","3 A"], correct:0,
+     exp:"DRs de alta sensibilidade, indicados para áreas molhadas, normalmente disparam com correntes de fuga a partir de 30 mA."},
+    {cat:'seguranca', diff:'avancado', q:"Para um circuito de tomadas residenciais com condutores de 2,5 mm², a NBR 5410 costuma indicar um disjuntor termomagnético na faixa de:",
+     opts:["10 A","16 A","25 A","40 A"], correct:1,
+     exp:"Para condutores de 2,5 mm², a NBR 5410 costuma indicar disjuntores na faixa de 16 A, considerando o método de instalação padrão (o valor exato pode variar conforme as condições de instalação)."},
+    {cat:'ferramentas', diff:'avancado', q:"Ao usar um multímetro para medir a corrente em um circuito, ele deve ser conectado:",
+     opts:["Em paralelo com o componente","Em série no circuito","Sempre desconectado do circuito","Apenas diretamente na tomada"], correct:1,
+     exp:"Para medir corrente, o multímetro (como amperímetro) deve ser inserido em série no circuito, formando parte do próprio caminho da corrente."},
+    {cat:'ferramentas', diff:'avancado', q:"Ao usar um multímetro para medir a tensão em um componente, ele deve ser conectado:",
+     opts:["Em série no circuito","Em paralelo com o componente","Sempre sem energia no circuito","Diretamente no disjuntor"], correct:1,
+     exp:"Para medir tensão, o multímetro (como voltímetro) deve ser conectado em paralelo com o componente, sem interromper o circuito."},
+    {cat:'ferramentas', diff:'avancado', q:"Um alicate amperímetro mede 15 A em um condutor de um circuito monofásico de 220 V. Qual é, aproximadamente, a potência ativa consumida (fator de potência ≈ 1)?",
+     opts:["1.500 W","2.200 W","3.300 W","4.400 W"], correct:2,
+     exp:"P = V × I = 220 × 15 = 3.300 W, considerando fator de potência próximo de 1."},
+    {cat:'ferramentas', diff:'avancado', q:"Um técnico mede, com um megômetro, uma resistência de isolamento de 0,5 MΩ em um cabo. Esse valor geralmente é considerado:",
+     opts:["Excelente, muito acima do mínimo exigido","Baixo, podendo indicar um problema de isolação a ser investigado","Impossível de medir na prática","Irrelevante para a segurança da instalação"], correct:1,
+     exp:"Boas práticas costumam recomendar resistência de isolamento bem acima de 1 MΩ; um valor de 0,5 MΩ é considerado baixo e merece investigação."},
+
+    // --- Nível especialista (transformadores, trifásico avançado, potência reativa, seletividade) ---
+    {cat:'fundamentos', diff:'expert', q:"Um transformador tem 200 espiras no primário e 50 espiras no secundário. Se a tensão no primário é 220 V, qual é a tensão no secundário?",
+     opts:["55 V","880 V","110 V","220 V"], correct:0,
+     exp:"A relação de transformação é Vsec/Vprim = Nsec/Nprim = 50/200 = 1/4, então Vsec = 220/4 = 55 V."},
+    {cat:'fundamentos', diff:'expert', q:"Em um transformador ideal, se a tensão é reduzida (abaixadora), a corrente no secundário, em relação ao primário:",
+     opts:["Também diminui na mesma proporção","Aumenta na mesma proporção em que a tensão diminui","Permanece igual à do primário","Fica sempre igual a zero"], correct:1,
+     exp:"Em um transformador ideal a potência se conserva (Vp×Ip = Vs×Is); se a tensão diminui, a corrente aumenta na mesma proporção."},
+    {cat:'fundamentos', diff:'expert', q:"No triângulo de potências, a potência reativa é medida em:",
+     opts:["Watt (W)","Volt-Ampère-Reativo (VAr)","Volt-Ampère (VA)","Ohm (Ω)"], correct:1,
+     exp:"A potência reativa, associada a cargas indutivas ou capacitivas, é medida em volt-ampère-reativo (VAr)."},
+    {cat:'fundamentos', diff:'expert', q:"Em um circuito com potência ativa de 8 kW e potência reativa de 6 kVAr, qual é, aproximadamente, a potência aparente?",
+     opts:["2 kVA","8 kVA","10 kVA","14 kVA"], correct:2,
+     exp:"A potência aparente é S = √(P² + Q²) = √(8² + 6²) = √100 = 10 kVA."},
+    {cat:'fundamentos', diff:'expert', q:"Para corrigir um baixo fator de potência em uma instalação industrial, o método mais comum é:",
+     opts:["Instalar bancos de capacitores","Aumentar a resistência dos condutores","Reduzir a tensão da rede","Desligar o aterramento"], correct:0,
+     exp:"Bancos de capacitores compensam a energia reativa da instalação, elevando o fator de potência e reduzindo perdas e possíveis multas por baixo fator de potência."},
+    {cat:'fundamentos', diff:'expert', q:"Em um sistema trifásico equilibrado, a soma vetorial das três correntes de linha, em condições ideais, é:",
+     opts:["Sempre igual à corrente de uma única fase","Aproximadamente zero","Sempre igual à tensão de linha","Impossível de calcular"], correct:1,
+     exp:"Em um sistema trifásico equilibrado, a soma vetorial das correntes de linha tende a zero, pois estão defasadas 120° entre si com mesma amplitude."},
+    {cat:'circuitos', diff:'expert', q:"A potência ativa em um sistema trifásico equilibrado é dada por P = √3 × VL × IL × cos φ. Se VL = 380 V, IL = 10 A e cos φ = 0,8, qual é a potência ativa aproximada?",
+     opts:["3,04 kW","4,22 kW","5,27 kW","6,08 kW"], correct:2,
+     exp:"P = √3 × VL × IL × cosφ = 1,73 × 380 × 10 × 0,8 ≈ 5.270 W ≈ 5,27 kW."},
+    {cat:'circuitos', diff:'expert', q:"Em um motor de indução trifásico, a corrente de partida (rotor bloqueado) costuma ser, em relação à corrente nominal, aproximadamente:",
+     opts:["Igual à corrente nominal","De 1,2 a 1,5 vezes a nominal","De 5 a 8 vezes a nominal","Cerca de 100 vezes a nominal"], correct:2,
+     exp:"É comum que motores de indução trifásicos tenham corrente de partida entre 5 e 8 vezes a corrente nominal, o que costuma exigir métodos de partida como estrela-triângulo."},
+    {cat:'circuitos', diff:'expert', q:"Na partida estrela-triângulo de motores, a finalidade principal é:",
+     opts:["Aumentar o torque de partida ao máximo","Reduzir a corrente de partida do motor","Aumentar a tensão aplicada ao motor","Eliminar completamente a necessidade de proteção"], correct:1,
+     exp:"A partida estrela-triângulo aplica inicialmente uma tensão menor por fase, reduzindo a corrente de partida, e depois comuta para triângulo em regime permanente."},
+    {cat:'circuitos', diff:'expert', q:"Em uma ligação em estrela (Y) equilibrada, a relação entre tensão de linha e tensão de fase é:",
+     opts:["VL = Vfase","VL = Vfase × √3","VL = Vfase / √3","VL = Vfase × 3"], correct:1,
+     exp:"Na ligação em estrela, a tensão de linha é √3 vezes maior que a tensão de fase: VL = Vfase × √3."},
+    {cat:'circuitos', diff:'expert', q:"Em uma ligação em triângulo (delta) equilibrada, a relação entre corrente de linha e corrente de fase é:",
+     opts:["IL = Ifase","IL = Ifase × √3","IL = Ifase / √3","IL = Ifase × 3"], correct:1,
+     exp:"Na ligação em triângulo, a corrente de linha é √3 vezes maior que a corrente de fase: IL = Ifase × √3."},
+    {cat:'circuitos', diff:'expert', q:"Um alimentador de 50 metros apresenta queda de tensão acima do limite permitido pela NBR 5410. Uma solução técnica adequada é:",
+     opts:["Reduzir a bitola (seção) do condutor","Aumentar a bitola (seção) do condutor","Aumentar o comprimento do circuito","Reduzir a tensão da fonte"], correct:1,
+     exp:"Aumentar a seção (bitola) do condutor reduz sua resistência e, consequentemente, a queda de tensão ao longo do alimentador."},
+    {cat:'seguranca', diff:'expert', q:"Em um curto-circuito franco, a corrente de curto-circuito é limitada principalmente por:",
+     opts:["A resistência e a impedância do circuito até o ponto de falta","A cor do condutor","O tipo de tomada usada","A marca do disjuntor"], correct:0,
+     exp:"A corrente de curto-circuito é determinada pela impedância total do circuito (fonte, condutores, transformador) até o ponto da falta."},
+    {cat:'seguranca', diff:'expert', q:"O 'poder de corte' (capacidade de interrupção) de um disjuntor indica:",
+     opts:["A tensão máxima que ele consegue medir","A maior corrente de curto-circuito que ele consegue interromper com segurança","A quantidade de fases que ele suporta","O tempo que ele demora para ligar"], correct:1,
+     exp:"O poder de corte indica a máxima corrente de curto-circuito que o disjuntor é capaz de interromper com segurança, sem se danificar ou gerar risco."},
+    {cat:'seguranca', diff:'expert', q:"O tempo de atuação de um disjuntor diante de uma corrente de curto-circuito, em geral, deve ser:",
+     opts:["O mais lento possível, para evitar desgaste do disjuntor","Rápido o suficiente para minimizar danos térmicos e mecânicos","Sempre de vários minutos","Irrelevante para a segurança da instalação"], correct:1,
+     exp:"Quanto mais rápido o disjuntor atuar diante de uma falta, menores serão os danos térmicos e mecânicos ao sistema e o risco à segurança."},
+    {cat:'seguranca', diff:'expert', q:"A seletividade entre disjuntores em uma instalação elétrica tem como objetivo:",
+     opts:["Fazer com que todos os disjuntores desarmem ao mesmo tempo","Garantir que apenas o disjuntor mais próximo da falta desarme, mantendo o restante da instalação energizada","Aumentar a corrente de curto-circuito","Eliminar a necessidade de disjuntores"], correct:1,
+     exp:"A seletividade garante que, em uma falta, apenas o dispositivo de proteção mais próximo do problema desarme, evitando que toda a instalação fique sem energia."},
+    {cat:'ferramentas', diff:'expert', q:"Para medir a potência ativa, reativa e o fator de potência simultaneamente em uma instalação trifásica, o instrumento mais indicado é:",
+     opts:["Um multímetro comum","Um analisador de energia (analisador de qualidade de energia)","Um paquímetro digital","Um termômetro infravermelho"], correct:1,
+     exp:"O analisador de energia mede simultaneamente grandezas como potência ativa, reativa, aparente e fator de potência em sistemas monofásicos ou trifásicos."},
+    {cat:'ferramentas', diff:'expert', q:"Uma câmera termográfica (termovisor) é usada em manutenção elétrica preditiva principalmente para:",
+     opts:["Medir a cor exata dos condutores","Detectar pontos de aquecimento anormal em conexões e componentes","Substituir totalmente o uso do multímetro","Medir a frequência da rede"], correct:1,
+     exp:"A termografia identifica pontos de aquecimento anormal (causados por mau contato, sobrecarga, etc.), permitindo antecipar falhas antes que ocorram."},
+    {cat:'ferramentas', diff:'expert', q:"Um multímetro True RMS é especialmente indicado para medições em circuitos com:",
+     opts:["Formas de onda senoidais puras apenas","Formas de onda distorcidas (não senoidais), comuns em cargas eletrônicas","Apenas corrente contínua","Nenhuma aplicação prática real"], correct:1,
+     exp:"Multímetros True RMS calculam corretamente o valor eficaz mesmo em sinais com formas de onda distorcidas, comuns em cargas com componentes eletrônicos."},
+    {cat:'ferramentas', diff:'expert', q:"Um registrador de energia (data logger) instalado em um quadro elétrico serve principalmente para:",
+     opts:["Registrar variações de tensão, corrente e outros parâmetros ao longo do tempo","Substituir completamente o disjuntor","Aumentar a tensão da rede","Servir apenas como elemento decorativo"], correct:0,
+     exp:"O data logger registra continuamente parâmetros elétricos ao longo do tempo, permitindo identificar padrões, picos e problemas intermitentes."},
+
+    // ============ INFORMÁTICA ============
+    // --- Programação (30) ---
+    {cat:'programacao', q:"O que é um algoritmo?",
+     opts:["Uma sequência lógica e finita de passos para resolver um problema","Um tipo de linguagem de programação","Um erro no código","Um tipo de hardware"], correct:0,
+     exp:"Um algoritmo é uma sequência finita e lógica de passos (instruções) que resolve um problema ou realiza uma tarefa."},
+    {cat:'programacao', q:"Em lógica de programação, o que é uma variável?",
+     opts:["Um espaço de memória usado para armazenar um valor que pode mudar","Um tipo de impressora","Uma parte física do computador","Um erro de sintaxe"], correct:0,
+     exp:"Uma variável é um espaço na memória identificado por um nome, usado para armazenar valores que podem ser alterados durante a execução do programa."},
+    {cat:'programacao', q:"Qual estrutura de controle é usada para repetir um bloco de código várias vezes?",
+     opts:["Condicional (if)","Laço de repetição (loop)","Variável","Função"], correct:1,
+     exp:"Laços de repetição, como for e while, permitem executar um bloco de código múltiplas vezes."},
+    {cat:'programacao', q:"O que faz uma estrutura condicional (if/else)?",
+     opts:["Repete um bloco de código indefinidamente","Toma decisões, executando diferentes blocos de código conforme uma condição","Armazena dados na memória","Declara uma função"], correct:1,
+     exp:"Estruturas condicionais permitem que o programa tome decisões, executando um caminho ou outro dependendo se uma condição é verdadeira ou falsa."},
+    {cat:'programacao', q:"Em muitas linguagens de programação, qual operador é usado para verificar igualdade (comparação), e não atribuição?",
+     opts:["=","==","+",";"], correct:1,
+     exp:"Em linguagens como C, Java, Python e JavaScript, '==' é usado para comparar valores, enquanto '=' é usado para atribuição."},
+    {cat:'programacao', q:"O que é um 'array' (vetor)?",
+     opts:["Uma estrutura que armazena uma coleção ordenada de valores","Um tipo de erro de execução","Uma função matemática","Um tipo de laço de repetição"], correct:0,
+     exp:"Um array (ou vetor) é uma estrutura de dados que armazena múltiplos valores organizados em posições (índices) sequenciais."},
+    {cat:'programacao', q:"Em muitas linguagens, qual é o índice do primeiro elemento de um array?",
+     opts:["1","0","-1","Depende sempre do usuário"], correct:1,
+     exp:"Na maioria das linguagens (como Python, Java, C e JavaScript), a indexação de arrays começa em 0."},
+    {cat:'programacao', q:"O que é uma função (ou procedimento) em programação?",
+     opts:["Um bloco de código reutilizável que executa uma tarefa específica","Um tipo de variável","Um erro de compilação","Um tipo de hardware"], correct:0,
+     exp:"Uma função é um bloco de código nomeado e reutilizável que executa uma tarefa específica, podendo receber parâmetros e retornar valores."},
+    {cat:'programacao', q:"O que significa o termo 'bug' em programação?",
+     opts:["Um recurso novo do sistema","Um erro ou falha no código que causa comportamento inesperado","Um tipo de variável","Uma linguagem de programação"], correct:1,
+     exp:"'Bug' é o termo usado para designar um erro ou falha em um programa que causa um comportamento inesperado ou incorreto."},
+    {cat:'programacao', q:"O que é 'debugar' um programa?",
+     opts:["Escrever um programa do zero","Encontrar e corrigir erros (bugs) no código","Apagar todo o código","Compilar o programa pela primeira vez"], correct:1,
+     exp:"Debugar é o processo de encontrar e corrigir erros (bugs) em um programa."},
+    {cat:'programacao', q:"Qual destas é considerada uma linguagem de programação?",
+     opts:["HTML","Python","CSS","Word"], correct:1,
+     exp:"Python é uma linguagem de programação de propósito geral. HTML e CSS são linguagens de marcação/estilo, não de programação no sentido tradicional."},
+    {cat:'programacao', q:"O que é um comentário no código-fonte?",
+     opts:["Uma instrução executada pelo computador","Um texto explicativo ignorado pelo compilador/interpretador, usado para documentação","Um tipo de variável","Um erro de sintaxe"], correct:1,
+     exp:"Comentários são trechos de texto no código que não são executados, usados para explicar ou documentar o que o código faz."},
+    {cat:'programacao', q:"O que é um 'loop infinito'?",
+     opts:["Um laço de repetição que nunca termina, geralmente por erro de lógica","Uma função que sempre retorna o mesmo valor","Um tipo de variável constante","Um comentário no código"], correct:0,
+     exp:"Um loop infinito é um erro de lógica em que a condição de parada do laço nunca é satisfeita, fazendo o programa repetir indefinidamente."},
+    {cat:'programacao', q:"Em programação orientada a objetos (POO), o que é uma 'classe'?",
+     opts:["Um modelo (molde) que define atributos e comportamentos de um objeto","Um tipo de erro de execução","Um comentário no código","Um tipo de variável primitiva"], correct:0,
+     exp:"Uma classe é um modelo (molde) que define os atributos (dados) e métodos (comportamentos) que os objetos criados a partir dela terão."},
+    {cat:'programacao', q:"Em POO, o que é um 'objeto'?",
+     opts:["Uma instância criada a partir de uma classe","Um tipo de erro de sintaxe","Um comentário no código","Um laço de repetição"], correct:0,
+     exp:"Um objeto é uma instância concreta de uma classe, contendo valores específicos para seus atributos."},
+    {cat:'programacao', q:"O que é 'herança' em programação orientada a objetos?",
+     opts:["A capacidade de uma classe herdar atributos e métodos de outra classe","Um tipo de erro comum em laços","A conversão de tipos de dados","Um tipo específico de variável"], correct:0,
+     exp:"Herança permite que uma classe (subclasse) reutilize atributos e métodos de outra classe (superclasse), promovendo reuso de código."},
+    {cat:'programacao', q:"Qual é a saída lógica esperada do pseudocódigo 'Se (idade >= 18) então imprimir Maior de idade, senão imprimir Menor de idade' quando idade = 20?",
+     opts:["Menor de idade","Maior de idade","Erro de execução","Nada é impresso"], correct:1,
+     exp:"Como 20 é maior ou igual a 18, a condição é verdadeira e o programa imprime 'Maior de idade'."},
+    {cat:'programacao', diff:'avancado', q:"Em um algoritmo de busca, o que faz uma 'busca binária'?",
+     opts:["Percorre todos os elementos um a um, do início ao fim","Divide repetidamente o espaço de busca pela metade, exigindo que os dados estejam ordenados","Ordena a lista antes de buscar, sempre do maior para o menor","Busca apenas em listas com um único elemento"], correct:1,
+     exp:"A busca binária divide repetidamente o intervalo de busca pela metade, o que exige que os dados estejam ordenados, tornando a busca muito mais rápida que a busca linear."},
+    {cat:'programacao', diff:'avancado', q:"O que é 'complexidade de tempo' de um algoritmo?",
+     opts:["O tempo que o programador levou para escrever o código","Uma medida de como o tempo de execução cresce em relação ao tamanho da entrada","O tempo de vida útil do computador","O tempo gasto para compilar o programa"], correct:1,
+     exp:"A complexidade de tempo mede como o tempo de execução de um algoritmo cresce conforme o tamanho da entrada aumenta, geralmente expressa em notação Big O."},
+    {cat:'programacao', diff:'avancado', q:"O que representa a notação O(n) (Big O) em um algoritmo?",
+     opts:["O algoritmo sempre leva um tempo constante, independente da entrada","O tempo de execução cresce proporcionalmente ao tamanho da entrada","O algoritmo nunca termina","O algoritmo usa apenas variáveis globais"], correct:1,
+     exp:"O(n) indica que o tempo de execução do algoritmo cresce linearmente (proporcionalmente) em relação ao tamanho da entrada n."},
+    {cat:'programacao', q:"O que é um sistema de controle de versão, como o Git?",
+     opts:["Uma ferramenta que registra e gerencia as alterações no código-fonte ao longo do tempo","Um tipo de linguagem de programação","Um antivírus para código","Um compilador de programas"], correct:0,
+     exp:"Sistemas de controle de versão, como o Git, registram o histórico de alterações em arquivos de código, permitindo colaboração e reversão de mudanças."},
+    {cat:'programacao', q:"O que é uma 'IDE' (Ambiente de Desenvolvimento Integrado)?",
+     opts:["Um programa que ajuda a escrever, testar e depurar código, geralmente com editor, compilador e depurador integrados","Um tipo de banco de dados","Um protocolo de rede","Um tipo de vírus de computador"], correct:0,
+     exp:"Uma IDE reúne em um só programa ferramentas como editor de código, compilador/interpretador e depurador, facilitando o desenvolvimento de software."},
+    {cat:'programacao', q:"O que significa 'HTML' no contexto do desenvolvimento web?",
+     opts:["HyperText Markup Language, usada para estruturar o conteúdo de páginas web","Uma linguagem de programação orientada a objetos","Um banco de dados relacional","Um protocolo de e-mail"], correct:0,
+     exp:"HTML (HyperText Markup Language) é a linguagem de marcação usada para estruturar o conteúdo das páginas web."},
+    {cat:'programacao', q:"O que o CSS é usado para fazer em uma página web?",
+     opts:["Definir a estrutura lógica do banco de dados","Definir a aparência e o estilo visual da página (cores, layout, fontes)","Executar cálculos matemáticos complexos no servidor","Gerenciar a segurança da rede"], correct:1,
+     exp:"CSS (Cascading Style Sheets) é usado para definir a aparência visual de uma página web, como cores, layout e fontes."},
+    {cat:'programacao', q:"Em SQL, qual comando é usado para buscar (consultar) dados em uma tabela?",
+     opts:["SELECT","DELETE","INSERT","UPDATE"], correct:0,
+     exp:"O comando SELECT em SQL é usado para consultar e retornar dados armazenados em uma ou mais tabelas de um banco de dados."},
+    {cat:'programacao', q:"Em SQL, qual comando é usado para inserir novos dados em uma tabela?",
+     opts:["SELECT","INSERT","DELETE","DROP"], correct:1,
+     exp:"O comando INSERT em SQL é usado para adicionar novos registros (linhas) a uma tabela do banco de dados."},
+    {cat:'programacao', q:"O que é um 'banco de dados relacional'?",
+     opts:["Um conjunto de dados organizados em tabelas relacionadas entre si por chaves","Um tipo de linguagem de programação","Um dispositivo de hardware para armazenar arquivos","Um protocolo de rede para envio de e-mails"], correct:0,
+     exp:"Um banco de dados relacional organiza os dados em tabelas, que podem ser relacionadas entre si por meio de chaves (como chave primária e estrangeira)."},
+    {cat:'programacao', q:"Em uma tabela de banco de dados, o que é uma 'chave primária'?",
+     opts:["Um campo que identifica de forma única cada registro da tabela","O primeiro campo criado na tabela, sem função especial","Um campo que sempre armazena texto","Um tipo de índice usado apenas em consultas SELECT"], correct:0,
+     exp:"A chave primária é um campo (ou conjunto de campos) que identifica de forma única cada registro em uma tabela."},
+    {cat:'programacao', diff:'avancado', q:"O que é 'recursão' em programação?",
+     opts:["Uma técnica em que uma função chama a si mesma para resolver um problema","Um tipo de variável que nunca muda de valor","Um erro comum de sintaxe","Um tipo de banco de dados"], correct:0,
+     exp:"Recursão é uma técnica de programação em que uma função chama a si mesma, geralmente dividindo o problema em subproblemas menores até atingir um caso base."},
+    {cat:'programacao', q:"O que é 'pseudocódigo'?",
+     opts:["Uma representação informal e legível de um algoritmo, sem seguir a sintaxe exata de uma linguagem de programação","Um código malicioso disfarçado de código legítimo","Um tipo de linguagem de marcação para páginas web","Um erro comum de compilação"], correct:0,
+     exp:"Pseudocódigo é uma forma informal de descrever um algoritmo, usando linguagem próxima ao português ou inglês, sem se preocupar com a sintaxe exata de uma linguagem de programação real."},
+
+    // --- Programação: leitura de código (20) ---
+    {cat:'programacao', q:"Qual é a saída deste código?", code:"x = 5\ny = 3\nprint(x + y)",
+     opts:["8","53","x+y","Erro"], correct:0,
+     exp:"A operação x + y soma os valores das variáveis: 5 + 3 = 8."},
+    {cat:'programacao', q:"O que este código imprime?", code:"for i in range(3):\n    print(i)",
+     opts:["0 1 2","1 2 3","0 1 2 3","3 2 1"], correct:0,
+     exp:"range(3) gera os valores 0, 1 e 2 (o 3 não é incluído), então o laço imprime 0, 1 e 2."},
+    {cat:'programacao', q:"Qual é a saída deste código?", code:"nome = \"Ana\"\nprint(\"Olá, \" + nome)",
+     opts:["Olá, Ana","Olá, nome","nome Ana","Erro de sintaxe"], correct:0,
+     exp:"O operador + concatena as strings, resultando em 'Olá, Ana'."},
+    {cat:'programacao', q:"O que este código imprime?", code:"a = 10\nb = 20\nif a > b:\n    print(\"A maior\")\nelse:\n    print(\"B maior\")",
+     opts:["A maior","B maior","10","20"], correct:1,
+     exp:"Como 10 não é maior que 20, a condição é falsa e o bloco else é executado, imprimindo 'B maior'."},
+    {cat:'programacao', q:"Qual é o valor final impresso de 'contador'?", code:"contador = 0\nwhile contador < 3:\n    contador = contador + 1\nprint(contador)",
+     opts:["0","1","2","3"], correct:3,
+     exp:"O laço soma 1 a cada repetição enquanto contador < 3. Ele para quando contador chega a 3, e esse valor é impresso."},
+    {cat:'programacao', diff:'avancado', q:"Qual é a saída deste código?", code:"def dobro(x):\n    return x * 2\n\nprint(dobro(4) + dobro(2))",
+     opts:["6","8","12","16"], correct:2,
+     exp:"dobro(4) retorna 8 e dobro(2) retorna 4. A soma 8 + 4 resulta em 12."},
+    {cat:'programacao', q:"O que este código imprime?", code:"lista = [1, 2, 3, 4]\nprint(lista[1])",
+     opts:["1","2","3","Erro, índice inválido"], correct:1,
+     exp:"Os índices começam em 0, então lista[1] acessa o segundo elemento, que é 2."},
+    {cat:'programacao', q:"Qual é o valor final de 'soma'?", code:"lista = [10, 20, 30]\nsoma = 0\nfor n in lista:\n    soma = soma + n\nprint(soma)",
+     opts:["10","30","60","100"], correct:2,
+     exp:"O laço soma todos os elementos da lista: 10 + 20 + 30 = 60."},
+    {cat:'programacao', diff:'avancado', q:"Qual é a saída deste código recursivo?", code:"def fatorial(n):\n    if n <= 1:\n        return 1\n    return n * fatorial(n - 1)\n\nprint(fatorial(4))",
+     opts:["4","10","24","120"], correct:2,
+     exp:"fatorial(4) calcula 4 × 3 × 2 × 1, que é igual a 24."},
+    {cat:'programacao', q:"O que há de errado com este código?", code:"def soma(a, b)\n    return a + b\n\nprint(soma(2, 3))",
+     opts:["Falta o operador de soma","Falta os dois-pontos (:) após a definição da função","O nome da função está incorreto","Nada, o código está correto"], correct:1,
+     exp:"Em Python, a definição de função precisa terminar com dois-pontos: def soma(a, b):"},
+    {cat:'programacao', q:"O que acontece ao executar este código em Python?", code:"x = \"5\"\ny = 3\nprint(x + y)",
+     opts:["Imprime 8","Imprime 53","Gera um erro, pois não é possível somar string com número diretamente","Imprime 5"], correct:2,
+     exp:"Em Python, não é possível somar diretamente uma string ('5') com um número inteiro (3) usando o operador +; isso gera um erro de tipo."},
+    {cat:'programacao', diff:'avancado', q:"Qual é a saída deste código?", code:"def par_ou_impar(n):\n    if n % 2 == 0:\n        return \"par\"\n    else:\n        return \"ímpar\"\n\nprint(par_ou_impar(7))",
+     opts:["par","ímpar","7","Erro"], correct:1,
+     exp:"O operador % retorna o resto da divisão. 7 % 2 é igual a 1 (diferente de 0), então a função retorna 'ímpar'."},
+    {cat:'programacao', q:"O que essa consulta SQL retorna?", code:"SELECT nome FROM alunos WHERE idade > 18;",
+     opts:["O nome de todos os alunos com idade maior que 18","A idade de todos os alunos","Todos os dados de alunos, de qualquer idade","Apenas o aluno mais velho"], correct:0,
+     exp:"O comando SELECT nome busca apenas a coluna 'nome', e a cláusula WHERE idade > 18 filtra somente os alunos com idade maior que 18."},
+    {cat:'programacao', q:"Como a palavra 'mundo' será exibida no navegador?", code:"<p>Olá <b>mundo</b></p>",
+     opts:["Em itálico","Em negrito","Sublinhada","Normal, sem nenhuma formatação"], correct:1,
+     exp:"A tag <b> aplica formatação em negrito ao texto que ela envolve, nesse caso a palavra 'mundo'."},
+    {cat:'programacao', diff:'expert', q:"O que essa função retorna?", code:"def misterio(lista):\n    resultado = []\n    for i in range(len(lista) - 1, -1, -1):\n        resultado.append(lista[i])\n    return resultado\n\nprint(misterio([1, 2, 3]))",
+     opts:["[1, 2, 3]","[3, 2, 1]","[1, 3, 2]","Erro"], correct:1,
+     exp:"O laço percorre os índices de trás para frente (do último ao primeiro), então a função inverte a ordem da lista: [3, 2, 1]."},
+    {cat:'programacao', diff:'expert', q:"Essa função conta quantos números entre 1 e n são múltiplos de 3 ou de 5. Qual é a saída para n=10?", code:"def conta(n):\n    total = 0\n    for i in range(1, n + 1):\n        if i % 3 == 0 or i % 5 == 0:\n            total += 1\n    return total\n\nprint(conta(10))",
+     opts:["3","4","5","6"], correct:2,
+     exp:"Os múltiplos de 3 até 10 são 3, 6 e 9; os múltiplos de 5 são 5 e 10. Não há sobreposição nesse intervalo, totalizando 5 números."},
+    {cat:'programacao', diff:'avancado', q:"O que acontece ao executar este código?", code:"lista = [10, 20, 30]\nprint(lista[3])",
+     opts:["Imprime 30","Imprime None","Gera um erro de índice (a lista só tem índices 0, 1 e 2)","Imprime a lista inteira"], correct:2,
+     exp:"A lista tem 3 elementos, com índices válidos 0, 1 e 2. O índice 3 está fora do intervalo, o que gera um erro de índice."},
+    {cat:'programacao', q:"Qual é o valor de x impresso no console?", code:"let x = 10;\nx += 5;\nconsole.log(x);",
+     opts:["10","5","15","Erro"], correct:2,
+     exp:"O operador += soma o valor à direita à variável: x = x + 5 = 10 + 5 = 15."},
+    {cat:'programacao', q:"Qual é a saída deste código?", code:"def eh_par(n):\n    return n % 2 == 0\n\nresultado = eh_par(8)\nprint(resultado)",
+     opts:["8","0","True","False"], correct:2,
+     exp:"8 % 2 é igual a 0, então a condição n % 2 == 0 é verdadeira, e a função retorna True."},
+    {cat:'programacao', diff:'expert', q:"Essa função soma os elementos de uma lista usando recursão. Qual é o resultado?", code:"def soma_lista(lista):\n    if len(lista) == 0:\n        return 0\n    return lista[0] + soma_lista(lista[1:])\n\nprint(soma_lista([1, 2, 3, 4]))",
+     opts:["4","6","10","24"], correct:2,
+     exp:"A função soma o primeiro elemento com a soma recursiva do restante da lista: 1+2+3+4 resulta em 10."},
+
+    // --- Hardware (12) ---
+    {cat:'hardware', q:"O que significa a sigla CPU?",
+     opts:["Central Processing Unit (Unidade Central de Processamento)","Computer Personal Unit","Central Power Unit","Compact Processing Utility"], correct:0,
+     exp:"CPU significa Central Processing Unit, o processador responsável por executar as instruções dos programas."},
+    {cat:'hardware', q:"Qual é a principal função da memória RAM em um computador?",
+     opts:["Armazenar dados permanentemente mesmo sem energia","Armazenar temporariamente dados e instruções que a CPU está usando no momento","Executar cálculos matemáticos no lugar da CPU","Conectar o computador à internet"], correct:1,
+     exp:"A RAM (memória de acesso aleatório) armazena temporariamente dados e instruções em uso, sendo apagada quando o computador é desligado."},
+    {cat:'hardware', q:"Qual dispositivo de armazenamento costuma ser mais rápido: HD (disco rígido) ou SSD?",
+     opts:["HD","SSD","Ambos têm exatamente a mesma velocidade","Depende apenas da cor do gabinete"], correct:1,
+     exp:"SSDs (unidades de estado sólido) costumam ser significativamente mais rápidos que HDs tradicionais, pois não possuem partes mecânicas móveis."},
+    {cat:'hardware', q:"O que é a placa-mãe (motherboard) de um computador?",
+     opts:["O componente que fornece energia elétrica para o computador","A placa principal que conecta e permite a comunicação entre todos os componentes do computador","Um tipo de memória temporária","Um periférico de entrada de dados"], correct:1,
+     exp:"A placa-mãe é o componente central que conecta processador, memória, armazenamento e outros periféricos, permitindo a comunicação entre eles."},
+    {cat:'hardware', q:"A placa de vídeo (GPU) é especializada em processar principalmente:",
+     opts:["Dados de áudio apenas","Gráficos e imagens exibidos na tela","Conexões de rede","Armazenamento permanente de arquivos"], correct:1,
+     exp:"A GPU (placa de vídeo) é especializada em processar gráficos e imagens, sendo essencial para exibição de vídeo e jogos."},
+    {cat:'hardware', q:"Qual das opções abaixo é um dispositivo de entrada (input)?",
+     opts:["Monitor","Teclado","Caixa de som","Impressora"], correct:1,
+     exp:"O teclado é um dispositivo de entrada, usado para inserir dados e comandos no computador."},
+    {cat:'hardware', q:"Qual das opções abaixo é um dispositivo de saída (output)?",
+     opts:["Mouse","Teclado","Monitor","Scanner"], correct:2,
+     exp:"O monitor é um dispositivo de saída, usado para exibir informações processadas pelo computador."},
+    {cat:'hardware', q:"O que é a fonte de alimentação (fonte ATX) de um computador?",
+     opts:["Um componente que converte energia da tomada em energia adequada para os componentes internos","Um tipo de memória RAM","Um dispositivo de armazenamento de dados","Um periférico de entrada"], correct:0,
+     exp:"A fonte de alimentação converte a energia elétrica da tomada em tensões adequadas para alimentar os componentes internos do computador."},
+    {cat:'hardware', q:"O que é o BIOS/UEFI de um computador?",
+     opts:["Um firmware que inicializa o hardware antes de carregar o sistema operacional","Um tipo de vírus de computador","Um aplicativo de edição de texto","Um protocolo de rede sem fio"], correct:0,
+     exp:"O BIOS/UEFI é um firmware responsável por inicializar e testar os componentes de hardware antes de carregar o sistema operacional."},
+    {cat:'hardware', q:"O que é o processo de 'formatar' um disco de armazenamento?",
+     opts:["Aumentar fisicamente a capacidade do disco","Preparar o disco, apagando dados e organizando o sistema de arquivos","Instalar automaticamente um antivírus","Conectar o disco à internet"], correct:1,
+     exp:"Formatar um disco prepara sua estrutura de armazenamento (sistema de arquivos), geralmente apagando os dados existentes."},
+    {cat:'hardware', q:"Qual unidade é comumente usada para medir a capacidade de armazenamento de um disco?",
+     opts:["Hertz (Hz)","Gigabyte (GB)","Watt (W)","Volt (V)"], correct:1,
+     exp:"A capacidade de armazenamento é geralmente medida em bytes e seus múltiplos, como gigabytes (GB) e terabytes (TB)."},
+    {cat:'hardware', diff:'avancado', q:"O que é 'overclocking' em hardware?",
+     opts:["Reduzir a velocidade de um componente para economizar energia","Aumentar a frequência de operação de um componente além do padrão de fábrica para obter mais desempenho","Instalar um novo sistema operacional","Formatar o disco rígido"], correct:1,
+     exp:"Overclocking é a prática de aumentar a frequência de operação de um componente (como CPU ou GPU) além do valor padrão de fábrica, buscando mais desempenho, geralmente com maior geração de calor."},
+
+    // --- Redes (12) ---
+    {cat:'redes', q:"O que significa a sigla IP no contexto de redes de computadores?",
+     opts:["Internet Protocol","Internal Process","Input Port","Internet Provider"], correct:0,
+     exp:"IP significa Internet Protocol, o protocolo responsável por endereçar e rotear pacotes de dados entre dispositivos em uma rede."},
+    {cat:'redes', q:"O que é um endereço IP?",
+     opts:["Um identificador numérico que identifica um dispositivo em uma rede","Um tipo de cabo de rede","Um vírus de computador","Um tipo de memória RAM"], correct:0,
+     exp:"Um endereço IP é um identificador numérico atribuído a um dispositivo em uma rede, permitindo que ele seja localizado e se comunique com outros dispositivos."},
+    {cat:'redes', q:"O que é um roteador (router)?",
+     opts:["Um dispositivo que encaminha pacotes de dados entre diferentes redes","Um tipo de vírus de computador","Um dispositivo de armazenamento de arquivos","Um tipo de memória RAM"], correct:0,
+     exp:"O roteador é o dispositivo responsável por encaminhar pacotes de dados entre redes diferentes, como a rede local e a internet."},
+    {cat:'redes', q:"Qual é a função de um switch em uma rede local?",
+     opts:["Conectar múltiplos dispositivos em uma mesma rede local, encaminhando dados entre eles","Fornecer energia elétrica para os dispositivos","Bloquear todo o tráfego de internet","Armazenar arquivos na nuvem"], correct:0,
+     exp:"Um switch conecta múltiplos dispositivos em uma rede local, encaminhando os dados de forma eficiente apenas para o destinatário correto."},
+    {cat:'redes', q:"O que significa a sigla Wi-Fi?",
+     opts:["Um padrão de tecnologia de rede sem fio baseado no IEEE 802.11","Um tipo de cabo de rede","Um protocolo de e-mail","Um tipo de vírus de computador"], correct:0,
+     exp:"Wi-Fi é uma tecnologia de rede sem fio baseada nos padrões IEEE 802.11, permitindo a conexão de dispositivos sem cabos físicos."},
+    {cat:'redes', q:"O que é o DNS e para que serve?",
+     opts:["Domain Name System, traduz nomes de domínio em endereços IP","Data Network Storage, um tipo de disco rígido","Digital Network Security, um tipo de firewall","Direct Network Service, um protocolo de impressão"], correct:0,
+     exp:"O DNS (Domain Name System) traduz nomes de domínio legíveis (como um site) em endereços IP que os computadores usam para se comunicar."},
+    {cat:'redes', q:"Qual protocolo é usado para transferir páginas web de forma segura, com criptografia?",
+     opts:["HTTP","HTTPS","FTP","SMTP"], correct:1,
+     exp:"HTTPS é a versão segura do HTTP, que utiliza criptografia (TLS/SSL) para proteger os dados transmitidos entre o navegador e o servidor."},
+    {cat:'redes', q:"O que é uma rede LAN (Local Area Network)?",
+     opts:["Uma rede que cobre uma área geográfica pequena, como uma casa ou escritório","Uma rede que cobre um país inteiro","Um tipo de vírus de rede","Um protocolo de e-mail"], correct:0,
+     exp:"Uma LAN (Local Area Network) é uma rede de computadores que cobre uma área geograficamente limitada, como uma casa, escritório ou escola."},
+    {cat:'redes', q:"O que é uma rede WAN (Wide Area Network)?",
+     opts:["Uma rede limitada a um único cômodo","Uma rede que cobre uma grande área geográfica, podendo interligar cidades ou países","Um tipo de vírus de computador","Um protocolo de impressão"], correct:1,
+     exp:"Uma WAN (Wide Area Network) é uma rede que cobre uma grande área geográfica, podendo interligar cidades, países ou continentes, sendo a internet o maior exemplo."},
+    {cat:'redes', q:"O que faz um firewall em uma rede?",
+     opts:["Aumenta a velocidade da internet automaticamente","Filtra e controla o tráfego de rede, bloqueando acessos não autorizados","Armazena arquivos na nuvem","Fornece energia elétrica aos servidores"], correct:1,
+     exp:"Um firewall monitora e controla o tráfego de rede, permitindo ou bloqueando conexões conforme regras de segurança definidas."},
+    {cat:'redes', diff:'avancado', q:"O que significa a sigla VPN?",
+     opts:["Virtual Private Network, uma rede privada virtual que cria uma conexão criptografada","Very Public Network, uma rede totalmente aberta","Video Processing Node, um tipo de servidor de vídeo","Virtual Printer Node, um tipo de impressora em rede"], correct:0,
+     exp:"VPN (Virtual Private Network) cria uma conexão criptografada entre o dispositivo do usuário e uma rede remota, aumentando privacidade e segurança."},
+    {cat:'redes', q:"Em uma rede, o que é a 'largura de banda' (bandwidth)?",
+     opts:["A distância física entre dois dispositivos","A quantidade máxima de dados que pode ser transmitida em um período de tempo","O nome do provedor de internet","O tipo de cabo usado na rede"], correct:1,
+     exp:"Largura de banda é a capacidade máxima de transmissão de dados de uma rede em um determinado período, geralmente medida em bits por segundo (bps)."},
+
+    // --- Segurança da Informação (12) ---
+    {cat:'seguranca_info', q:"O que é 'phishing'?",
+     opts:["Uma técnica de golpe que tenta enganar pessoas para roubar informações confidenciais, geralmente por e-mail ou mensagens falsas","Um tipo de hardware de rede","Um protocolo de transferência de arquivos seguro","Um tipo de memória RAM"], correct:0,
+     exp:"Phishing é uma técnica de engenharia social que tenta enganar pessoas, geralmente por e-mails ou mensagens falsas, para roubar senhas e dados confidenciais."},
+    {cat:'seguranca_info', q:"O que é um 'malware'?",
+     opts:["Um software malicioso projetado para causar danos ou obter acesso não autorizado a um sistema","Um tipo de hardware defeituoso","Um protocolo de rede seguro","Um tipo de backup automático"], correct:0,
+     exp:"Malware é qualquer software malicioso criado para causar danos, roubar dados ou obter acesso não autorizado a um sistema."},
+    {cat:'seguranca_info', q:"O que é um 'ransomware'?",
+     opts:["Um tipo de malware que sequestra (criptografa) arquivos e exige pagamento de resgate para liberá-los","Um antivírus gratuito","Um protocolo de backup automático","Um tipo de firewall"], correct:0,
+     exp:"Ransomware é um tipo de malware que criptografa os arquivos da vítima e exige o pagamento de um resgate para restaurar o acesso."},
+    {cat:'seguranca_info', q:"Qual é uma boa prática recomendada na criação de senhas seguras?",
+     opts:["Usar a mesma senha simples em todos os serviços","Usar senhas longas, com letras, números e símbolos, diferentes para cada serviço","Usar apenas o próprio nome como senha","Compartilhar a senha com colegas de trabalho"], correct:1,
+     exp:"Senhas seguras devem ser longas, combinar letras, números e símbolos, e ser diferentes para cada serviço, reduzindo o impacto caso uma delas seja comprometida."},
+    {cat:'seguranca_info', q:"O que é a autenticação de dois fatores (2FA)?",
+     opts:["Usar duas senhas iguais para mais segurança","Uma camada extra de segurança que exige uma segunda forma de verificação além da senha","Um tipo de vírus de computador","Um protocolo de backup de arquivos"], correct:1,
+     exp:"A autenticação de dois fatores (2FA) adiciona uma camada extra de segurança, exigindo uma segunda verificação (como um código no celular) além da senha."},
+    {cat:'seguranca_info', q:"O que é 'engenharia social' no contexto de segurança da informação?",
+     opts:["Uma técnica de programação orientada a objetos","A manipulação psicológica de pessoas para obter informações confidenciais ou acesso indevido","Um tipo de firewall avançado","Um protocolo de criptografia de dados"], correct:1,
+     exp:"Engenharia social é a manipulação psicológica de pessoas, explorando a confiança ou o desconhecimento, para obter informações confidenciais ou acesso não autorizado."},
+    {cat:'seguranca_info', q:"O que é 'criptografia'?",
+     opts:["A técnica de transformar dados em um formato ilegível para protegê-los, exigindo uma chave para decifrá-los","Um tipo de vírus de computador","Um protocolo de backup automático","Um tipo de hardware de armazenamento"], correct:0,
+     exp:"Criptografia é a técnica de transformar dados em um formato ilegível (cifrado), protegendo-os de acessos não autorizados, exigindo uma chave para decifrá-los."},
+    {cat:'seguranca_info', q:"O que é um 'backup'?",
+     opts:["Uma cópia de segurança de dados, feita para permitir recuperação em caso de perda ou dano","Um tipo de malware","Um protocolo de rede sem fio","Um tipo de firewall"], correct:0,
+     exp:"Backup é uma cópia de segurança de dados importantes, permitindo sua recuperação em caso de perda, corrupção ou ataque."},
+    {cat:'seguranca_info', q:"O que faz um firewall de aplicação, em termos simples de segurança?",
+     opts:["Uma barreira que monitora e controla o tráfego de entrada e saída de uma rede ou sistema","Um tipo de vírus avançado","Um protocolo de e-mail seguro","Um tipo de memória RAM"], correct:0,
+     exp:"Um firewall atua como uma barreira que monitora e controla o tráfego de rede, permitindo ou bloqueando conexões conforme regras de segurança."},
+    {cat:'seguranca_info', q:"Por que é importante manter softwares e sistemas operacionais atualizados?",
+     opts:["Atualizações servem apenas para mudar o visual do programa","Atualizações frequentemente corrigem vulnerabilidades de segurança conhecidas","Atualizações sempre deixam o computador mais lento e não trazem benefícios","Não há necessidade real de atualizar softwares"], correct:1,
+     exp:"Atualizações de software frequentemente corrigem vulnerabilidades de segurança conhecidas, reduzindo o risco de ataques que exploram essas falhas."},
+    {cat:'seguranca_info', diff:'avancado', q:"O que é um ataque de 'força bruta' (brute force)?",
+     opts:["Um ataque físico ao servidor","Uma tentativa de descobrir uma senha testando exaustivamente todas as combinações possíveis","Um tipo de vírus que se propaga por e-mail","Um protocolo de backup automático"], correct:1,
+     exp:"Um ataque de força bruta tenta descobrir uma senha ou chave testando sistematicamente todas as combinações possíveis até encontrar a correta."},
+    {cat:'seguranca_info', q:"O que é a LGPD (Lei Geral de Proteção de Dados) no Brasil?",
+     opts:["Uma lei que regula a coleta, o uso e a proteção de dados pessoais","Um protocolo técnico de criptografia","Um tipo de antivírus gratuito","Um padrão de cabo de rede"], correct:0,
+     exp:"A LGPD é a legislação brasileira que regula a coleta, o armazenamento, o uso e a proteção de dados pessoais por empresas e órgãos."},
+  ];
+
+  const OPT_STYLE = ['a','b','c','d'];
+  const OPT_ICON = ['▲','◆','●','■'];
+  const SOLO_TIME_DEFAULT = 15;   // seconds, solo mode
+  const ROOM_TIME_DEFAULT = 20;   // seconds, multiplayer mode (a bit more to allow for network/poll lag)
+  const TIME_CHOICES = [10,15,20,30];
+  const LOBBY_POLL = 2000;
+  const GAME_POLL = 1500;
+
+  function poolForCategories(cats, diffs){
+    // cats: array of category ids selected. diffs: array of difficulty ids selected ('padrao'|'avancado'|'expert').
+    diffs = diffs || ['padrao','avancado','expert'];
+    const idx = [];
+    QUESTIONS.forEach((q,i)=>{
+      if(!cats.includes(q.cat)) return;
+      const qd = q.diff || 'padrao';
+      if(!diffs.includes(qd)) return;
+      idx.push(i);
+    });
+    return idx;
+  }
+  function countChoicesFor(poolLen){
+    const base = [5,10,15,20];
+    let opts = base.filter(n=>n<poolLen);
+    opts.push(poolLen);
+    return [...new Set(opts)].sort((a,b)=>a-b);
+  }
+
+  // Renders category checkboxes + difficulty checkboxes + question-count select + time select into `container`.
+  // Returns a getConfig() function -> {cats:[...], diffs:[...], count:Number, time:Number(seconds)} or null if invalid.
+  function buildConfigUI(container, defaults){
+    defaults = defaults || {};
+    const selectedAreas = new Set(defaults.areas || AREAS.map(a=>a.id));
+    const selectedCats = new Set(defaults.cats || CATEGORIES.map(c=>c.id));
+    const selectedDiffs = new Set(defaults.diffs || ['padrao','avancado']);
+    const box = el(`
+      <div>
+        <label class="field-label field-gap">Área</label>
+        <div class="avatar-grid" id="areaGrid" style="grid-template-columns:repeat(2,1fr);"></div>
+        <label class="field-label field-gap">Categorias</label>
+        <div class="avatar-grid" id="catGrid" style="grid-template-columns:repeat(2,1fr);"></div>
+        <label class="field-label field-gap">Nível de dificuldade</label>
+        <div class="avatar-grid" id="diffGrid" style="grid-template-columns:repeat(3,1fr);"></div>
+        <label class="field-label field-gap">Quantidade de perguntas</label>
+        <select class="nick" id="countSelect"></select>
+        <label class="field-label field-gap">Tempo por pergunta</label>
+        <select class="nick" id="timeSelect">
+          ${TIME_CHOICES.map(t=>`<option value="${t}" ${t===(defaults.time||ROOM_TIME_DEFAULT)?'selected':''}>${t} segundos</option>`).join('')}
+        </select>
+        <div id="catWarn"></div>
+      </div>
+    `);
+    container.appendChild(box);
+    const areaGrid = box.querySelector('#areaGrid');
+    const catGrid = box.querySelector('#catGrid');
+    const diffGrid = box.querySelector('#diffGrid');
+    const countSelect = box.querySelector('#countSelect');
+    const catWarn = box.querySelector('#catWarn');
+
+    function refreshCountOptions(){
+      const pool = poolForCategories([...selectedCats], [...selectedDiffs]);
+      countSelect.innerHTML='';
+      if(pool.length===0){
+        catWarn.innerHTML = '<div class="feedback bad">Nenhuma pergunta encontrada para essa combinação de área, categoria e dificuldade. Tente ajustar as opções.</div>';
+        return;
+      }
+      catWarn.innerHTML='';
+      const choices = countChoicesFor(pool.length);
+      choices.forEach(n=>{
+        const label = n===pool.length ? `Todas (${n})` : `${n} perguntas`;
+        const opt = document.createElement('option');
+        opt.value = n; opt.textContent = label;
+        if(defaults.count && defaults.count===n) opt.selected = true;
+        countSelect.appendChild(opt);
+      });
+      if(!defaults.count) countSelect.value = choices[choices.length-1];
+    }
+
+    function refreshCategoryGrid(){
+      // Keep only categories that belong to a currently selected area.
+      [...selectedCats].forEach(id=>{
+        const cat = CATEGORIES.find(c=>c.id===id);
+        if(cat && !selectedAreas.has(cat.area)) selectedCats.delete(id);
+      });
+      catGrid.innerHTML='';
+      CATEGORIES.filter(c=>selectedAreas.has(c.area)).forEach(c=>{
+        const total = QUESTIONS.filter(q=>q.cat===c.id).length;
+        const card = el(`
+          <div class="avatar-card ${selectedCats.has(c.id)?'selected':''}" data-cat="${c.id}" style="padding:12px 8px;">
+            <div class="avatar-emoji" style="font-size:24px;">${c.emoji}</div>
+            <div class="avatar-name">${c.label}</div>
+            <div class="loading-note" style="margin-top:2px;">${total} perg.</div>
+          </div>
+        `);
+        card.addEventListener('click', ()=>{
+          if(selectedCats.has(c.id)) selectedCats.delete(c.id); else selectedCats.add(c.id);
+          card.classList.toggle('selected');
+          refreshCountOptions();
+        });
+        catGrid.appendChild(card);
+      });
+      refreshCountOptions();
+    }
+
+    AREAS.forEach(a=>{
+      const total = QUESTIONS.filter(q=>{ const cat = CATEGORIES.find(c=>c.id===q.cat); return cat && cat.area===a.id; }).length;
+      const card = el(`
+        <div class="avatar-card ${selectedAreas.has(a.id)?'selected':''}" data-area="${a.id}" style="padding:14px 8px;">
+          <div class="avatar-emoji" style="font-size:26px;">${a.emoji}</div>
+          <div class="avatar-name">${a.label}</div>
+          <div class="loading-note" style="margin-top:2px;">${total} perg.</div>
+        </div>
+      `);
+      card.addEventListener('click', ()=>{
+        if(selectedAreas.has(a.id)){
+          if(selectedAreas.size===1) return; // keep at least one area selected
+          selectedAreas.delete(a.id);
+        } else selectedAreas.add(a.id);
+        card.classList.toggle('selected');
+        refreshCategoryGrid();
+      });
+      areaGrid.appendChild(card);
+    });
+
+    DIFFICULTIES.forEach(d=>{
+      const total = QUESTIONS.filter(q=>(q.diff||'padrao')===d.id).length;
+      const card = el(`
+        <div class="avatar-card ${selectedDiffs.has(d.id)?'selected':''}" data-diff="${d.id}" style="padding:12px 6px;">
+          <div class="avatar-emoji" style="font-size:22px;">${d.emoji}</div>
+          <div class="avatar-name">${d.label}</div>
+          <div class="loading-note" style="margin-top:2px;">${total} perg.</div>
+        </div>
+      `);
+      card.addEventListener('click', ()=>{
+        if(selectedDiffs.has(d.id)) selectedDiffs.delete(d.id); else selectedDiffs.add(d.id);
+        card.classList.toggle('selected');
+        refreshCountOptions();
+      });
+      diffGrid.appendChild(card);
+    });
+
+    refreshCategoryGrid();
+
+    return function getConfig(){
+      const cats = [...selectedCats];
+      const diffs = [...selectedDiffs];
+      const areas = [...selectedAreas];
+      const pool = poolForCategories(cats, diffs);
+      if(pool.length===0) return null;
+      return { areas, cats, diffs, count: Number(countSelect.value), time: Number(box.querySelector('#timeSelect').value) };
+    };
+  }
+
+  // ---------------- Utils ----------------
+  function el(html){ const t=document.createElement('template'); t.innerHTML=html.trim(); return t.content.firstElementChild; }
+  function escapeHtml(str){ return String(str).replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+  function shuffledIndices(n){ const arr=Array.from({length:n},(_,i)=>i); for(let i=arr.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [arr[i],arr[j]]=[arr[j],arr[i]]; } return arr; }
+  function genId(){ return 'p'+Math.random().toString(36).slice(2,10)+Date.now().toString(36); }
+  function genPin(){ return String(Math.floor(100000+Math.random()*900000)); }
+
+  // ============================================================
+  // STORAGE LAYER
+  // ------------------------------------------------------------
+  // Two backends are supported automatically:
+  //  1) Claude's artifact storage (window.storage) — used when this file
+  //     runs inside a claude.ai artifact. No setup needed.
+  //  2) Firebase Realtime Database — used automatically when this file is
+  //     hosted on your own website (window.storage won't exist there).
+  //     To enable real multiplayer sync on your own site:
+  //       1. Create a free project at https://console.firebase.google.com
+  //       2. In the project, open "Build > Realtime Database" and create one.
+  //       3. Set its rules (Realtime Database > Rules) to something like:
+  //            { "rules": { "games": {".read": true, ".write": true},
+  //                         "soloLeaderboard": {".read": true, ".write": true} } }
+  //          (open read/write is fine here — this app has no sensitive data,
+  //          just nicknames, scores and quiz progress.)
+  //       4. Project settings (gear icon) > General > "Your apps" > add a
+  //          Web app > copy the config object it gives you.
+  //       5. Paste those values into FIREBASE_CONFIG below.
+  // ============================================================
+  const FIREBASE_CONFIG = {
+    apiKey: "AIzaSyBZiCGgcxJ8fS-z0CHaium_xU1VpiV9eKw",
+    authDomain: "voltis-bytevolt.firebaseapp.com",
+    databaseURL: "https://voltis-bytevolt-default-rtdb.firebaseio.com",
+    projectId: "voltis-bytevolt",
+    storageBucket: "voltis-bytevolt.firebasestorage.app",
+    messagingSenderId: "360360102616",
+    appId: "1:360360102616:web:3416faf8762437b041a5ad",
+  };
+
+  const HAS_ARTIFACT_STORAGE = (typeof window !== 'undefined') && window.storage && typeof window.storage.get === 'function';
+  let fbDb = null, fbReady = false, fbWarned = false;
+
+  function initFirebase(){
+    if(fbReady) return true;
+    if(FIREBASE_CONFIG.apiKey === 'SUBSTITUA_AQUI'){
+      if(!fbWarned){ console.warn('[ByteVolt] Firebase ainda não configurado — edite FIREBASE_CONFIG no HTML para ativar o multiplayer neste domínio.'); fbWarned = true; }
+      return false;
+    }
+    try{
+      if(typeof firebase === 'undefined'){ console.warn('[ByteVolt] SDK do Firebase não carregou (verifique a conexão/CDN).'); return false; }
+      if(!firebase.apps.length) firebase.initializeApp(FIREBASE_CONFIG);
+      fbDb = firebase.database();
+      fbReady = true;
+      return true;
+    }catch(e){ console.error('[ByteVolt] Falha ao iniciar o Firebase:', e); return false; }
+  }
+
+  // "game:123456:player:abc" -> "game/123456/player/abc" (Realtime Database uses path segments)
+  function keyToPath(key){ return key.split(':').filter(Boolean).join('/'); }
+
+  async function storeGet(key){
+    if(HAS_ARTIFACT_STORAGE){
+      try{ const r = await window.storage.get(key, true); return r ? JSON.parse(r.value) : null; }
+      catch(e){ return null; }
+    }
+    if(!initFirebase()) return null;
+    try{ const snap = await fbDb.ref(keyToPath(key)).once('value'); return snap.exists() ? snap.val() : null; }
+    catch(e){ return null; }
+  }
+  async function storeSet(key, obj){
+    if(HAS_ARTIFACT_STORAGE){
+      try{ await window.storage.set(key, JSON.stringify(obj), true); return true; }
+      catch(e){ return false; }
+    }
+    if(!initFirebase()) return false;
+    try{ await fbDb.ref(keyToPath(key)).set(obj); return true; }
+    catch(e){ return false; }
+  }
+  async function storeListKeys(prefix){
+    if(HAS_ARTIFACT_STORAGE){
+      try{ const r = await window.storage.list(prefix, true); return (r && r.keys) ? r.keys : []; }
+      catch(e){ return []; }
+    }
+    if(!initFirebase()) return [];
+    try{
+      const cleanPrefix = prefix.endsWith(':') ? prefix.slice(0,-1) : prefix;
+      const snap = await fbDb.ref(keyToPath(cleanPrefix)).once('value');
+      if(!snap.exists()) return [];
+      const val = snap.val();
+      const basePrefix = prefix.endsWith(':') ? prefix : prefix+':';
+      return Object.keys(val).map(childId => basePrefix + childId);
+    }catch(e){ return []; }
+  }
+  // Personal (non-shared) variants — used for things like the theme preference, which is per-device, not per-room.
+  // On your own site these use localStorage (a real browser, not an artifact sandbox, so it's safe here).
+  async function storeGetPersonal(key){
+    if(HAS_ARTIFACT_STORAGE){
+      try{ const r = await window.storage.get(key, false); return r ? JSON.parse(r.value) : null; }
+      catch(e){ return null; }
+    }
+    try{ const raw = localStorage.getItem('bytevolt:'+key); return raw ? JSON.parse(raw) : null; }
+    catch(e){ return null; }
+  }
+  async function storeSetPersonal(key, obj){
+    if(HAS_ARTIFACT_STORAGE){
+      try{ await window.storage.set(key, JSON.stringify(obj), false); return true; }
+      catch(e){ return false; }
+    }
+    try{ localStorage.setItem('bytevolt:'+key, JSON.stringify(obj)); return true; }
+    catch(e){ return false; }
+  }
+
+  const app = document.getElementById('app');
+
+  // ---------------- Global state ----------------
+  let state = { screen:'menu' };
+  let pollTimer = null, tickTimer = null;
+  function clearTimers(){ if(pollTimer) clearInterval(pollTimer); if(tickTimer) clearInterval(tickTimer); pollTimer=null; tickTimer=null; }
+
+  function render(){
+    clearTimers();
+    if(state.screen==='menu') renderMenu();
+    else if(state.screen==='solo-welcome') soloRenderWelcome();
+    else if(state.screen==='solo-avatar') soloRenderAvatar();
+    else if(state.screen==='solo-game') soloRenderGame();
+    else if(state.screen==='solo-result') soloRenderResult();
+    else if(state.screen==='host-create') hostRenderCreate();
+    else if(state.screen==='host-lobby') hostRenderLobby();
+    else if(state.screen==='host-question') hostRenderQuestion();
+    else if(state.screen==='host-reveal') hostRenderReveal();
+    else if(state.screen==='host-end') hostRenderEnd();
+    else if(state.screen==='join-form') joinRenderForm();
+    else if(state.screen==='player-lobby') playerRenderLobby();
+    else if(state.screen==='player-question') playerRenderQuestion();
+    else if(state.screen==='player-waiting') playerRenderWaiting();
+    else if(state.screen==='player-end') playerRenderEnd();
+  }
+
+  // ================= MENU =================
+  function renderMenu(){
+    app.innerHTML='';
+    const wrap = el(`
+      <div class="wrap">
+        <h1 class="brand">⚡ BYTE<span>VOLT</span> 💻</h1>
+        <div class="tagline">Quiz de elétrica e informática</div>
+        <div class="card">
+          <div class="menu-options">
+            <div class="menu-opt" id="mHost">
+              <div class="ic">🖥️</div>
+              <div><div class="tt">Sou o professor(a) — Criar sala</div><div class="ds">Gera um PIN para a turma entrar e joga em tempo real, no telão</div></div>
+            </div>
+            <div class="menu-opt" id="mJoin">
+              <div class="ic">🧑‍🎓</div>
+              <div><div class="tt">Entrar com um PIN</div><div class="ds">Já tenho um PIN da sala do professor(a)</div></div>
+            </div>
+            <div class="menu-opt" id="mSolo">
+              <div class="ic">🎯</div>
+              <div><div class="tt">Treino individual</div><div class="ds">Praticar sozinho, sem sala</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="footnote">Elétrica ⚡ e Informática 💻 · escolha a área, a categoria e o nível de dificuldade</div>
+      </div>
+    `);
+    app.appendChild(wrap);
+    wrap.querySelector('#mHost').addEventListener('click', ()=>{ state.screen='host-create'; render(); });
+    wrap.querySelector('#mJoin').addEventListener('click', ()=>{ state={screen:'join-form'}; render(); });
+    wrap.querySelector('#mSolo').addEventListener('click', ()=>{ state={screen:'solo-welcome', nickname:''}; render(); });
+  }
+
+  // ================= SOLO MODE =================
+  function soloRenderWelcome(){
+    app.innerHTML='';
+    const wrap = el(`
+      <div class="wrap">
+        <h1 class="brand">🎯 Treino <span>Individual</span></h1>
+        <div class="tagline">Pratique no seu ritmo</div>
+        <div class="card">
+          <label class="field-label">Como você se chama?</label>
+          <input class="nick" id="nickInput" maxlength="18" placeholder="Digite seu nome ou apelido" autocomplete="off"/>
+          <div id="configSlot"></div>
+          <div class="btn-row">
+            <button class="btn btn-ghost" id="backBtn">← Menu</button>
+            <button class="btn btn-primary" id="goAvatar">Escolher personagem →</button>
+          </div>
+        </div>
+      </div>
+    `);
+    app.appendChild(wrap);
+    const input = wrap.querySelector('#nickInput');
+    input.value = state.nickname || '';
+    input.focus();
+    const getConfig = buildConfigUI(wrap.querySelector('#configSlot'), state.quizConfig);
+    wrap.querySelector('#backBtn').addEventListener('click', ()=>{ state={screen:'menu'}; render(); });
+    wrap.querySelector('#goAvatar').addEventListener('click', ()=>{
+      const cfg = getConfig();
+      if(!cfg){ return; }
+      state.nickname = input.value.trim() || 'Eletricista';
+      state.quizConfig = cfg;
+      state.screen = 'solo-avatar';
+      render();
+    });
+    input.addEventListener('keydown', e=>{ if(e.key==='Enter') wrap.querySelector('#goAvatar').click(); });
+  }
+
+  function soloRenderAvatar(){
+    app.innerHTML='';
+    const wrap = el(`
+      <div class="wrap">
+        <h1 class="brand">Monte seu <span>personagem</span></h1>
+        <div class="tagline">Olá, ${escapeHtml(state.nickname)}! Personalize seu personagem</div>
+        <div class="card">
+          <div id="customizerSlot"></div>
+          <div class="btn-row">
+            <button class="btn btn-ghost" id="backBtn">← Voltar</button>
+            <button class="btn btn-primary" id="startBtn">Começar quiz ⚡</button>
+          </div>
+        </div>
+      </div>
+    `);
+    app.appendChild(wrap);
+    const getAvatarCfg = renderAvatarCustomizer(wrap.querySelector('#customizerSlot'), state.avatarCfg);
+    wrap.querySelector('#backBtn').addEventListener('click', ()=>{ state.screen='solo-welcome'; render(); });
+    wrap.querySelector('#startBtn').addEventListener('click', ()=>{
+      state.avatarCfg = getAvatarCfg();
+      soloStartGame();
+    });
+  }
+
+  function soloStartGame(){
+    state.qIndex=0; state.score=0; state.streak=0; state.best_streak=0; state.correctCount=0;
+    const cfg = state.quizConfig || {cats: CATEGORIES.map(c=>c.id), diffs:['padrao','avancado'], count: QUESTIONS.length, time: SOLO_TIME_DEFAULT};
+    const pool = poolForCategories(cfg.cats, cfg.diffs);
+    const shuffledPool = shuffledIndices(pool.length).map(i=>pool[i]);
+    state.order = shuffledPool.slice(0, cfg.count);
+    state.timePerQ = cfg.time;
+    state.totalQ = state.order.length;
+    state.screen='solo-game';
+    render();
+  }
+
+  function soloRenderGame(){
+    app.innerHTML='';
+    state.answered=false; state.timeLeft=state.timePerQ;
+    const q = QUESTIONS[state.order[state.qIndex]];
+    const wrap = el(`
+      <div class="wrap">
+        <div class="hud">
+          <div class="hud-item">${avatarChipHTML(state.avatarCfg)} <b>${escapeHtml(state.nickname)}</b></div>
+          <div class="qcounter">Pergunta ${state.qIndex+1} / ${state.totalQ}</div>
+          <div class="hud-item">🏆 <b id="scoreVal">${state.score}</b></div>
+        </div>
+        <div class="wire-track"><div class="wire-fill" id="wireFill" style="width:100%"></div><div class="wire-spark" id="wireSpark" style="left:100%"></div></div>
+        <div class="card">
+          <div class="question-box"><div class="qnum">⚡ PERGUNTA ${state.qIndex+1}</div><div class="qtext">${escapeHtml(q.q)}</div>${q.code ? `<pre class="code-block">${escapeHtml(q.code)}</pre>` : ''}</div>
+          <div class="options-grid" id="optsGrid"></div>
+          <div id="feedbackSlot"></div>
+        </div>
+      </div>
+    `);
+    app.appendChild(wrap);
+    const grid = wrap.querySelector('#optsGrid');
+    q.opts.forEach((opt,i)=>{
+      const b = el(`<button class="opt opt-${OPT_STYLE[i]}" data-i="${i}"><span class="opt-icon">${OPT_ICON[i]}</span><span>${escapeHtml(opt)}</span></button>`);
+      b.addEventListener('click', ()=>soloHandleAnswer(i, wrap, q));
+      grid.appendChild(b);
+    });
+    const fill = wrap.querySelector('#wireFill'), spark = wrap.querySelector('#wireSpark');
+    tickTimer = setInterval(()=>{
+      state.timeLeft -= 0.1;
+      if(state.timeLeft<=0){ state.timeLeft=0; updateWire(fill,spark,0,state.timePerQ); clearInterval(tickTimer);
+        if(!state.answered) soloHandleAnswer(-1, wrap, q); return; }
+      updateWire(fill,spark,state.timeLeft,state.timePerQ);
+    }, 100);
+  }
+
+  function updateWire(fill, spark, t, duration){
+    duration = duration || ROOM_TIME_DEFAULT;
+    const pct = Math.max(0,(t/duration)*100);
+    fill.style.width = pct+'%'; spark.style.left = pct+'%';
+    if(pct<33) fill.style.background='linear-gradient(90deg,#ef4b5f,#ff8a3d)';
+    else if(pct<66) fill.style.background='linear-gradient(90deg,#ffcc33,#ff8a3d)';
+    else fill.style.background='linear-gradient(90deg,#3ecf8e,#ffcc33)';
+  }
+
+  function soloHandleAnswer(choice, wrap, q){
+    if(state.answered) return;
+    state.answered=true; clearInterval(tickTimer);
+    const isCorrect = choice===q.correct;
+    const timeLeft = state.timeLeft;
+    let pts=0;
+    if(isCorrect){
+      pts = 500 + Math.round((timeLeft/state.timePerQ)*500) + Math.min(state.streak,5)*20;
+      state.streak+=1; state.best_streak=Math.max(state.best_streak,state.streak); state.correctCount+=1;
+    } else state.streak=0;
+    state.score += pts;
+    const buttons = wrap.querySelectorAll('.opt');
+    buttons.forEach((b,i)=>{ b.disabled=true; if(i===q.correct) b.classList.add('correct'); else if(i===choice) b.classList.add('wrong'); else b.classList.add('dim'); });
+    const scoreVal = wrap.querySelector('#scoreVal'); if(scoreVal) scoreVal.textContent=state.score;
+    const slot = wrap.querySelector('#feedbackSlot');
+    const fb = el(`<div class="feedback ${isCorrect?'ok':'bad'}"><b>${isCorrect?'✅ Certo! +'+pts+' pts':(choice===-1?'⏱️ Tempo esgotado!':'❌ Não foi dessa vez.')}</b><br/>${escapeHtml(q.exp)}</div>`);
+    slot.appendChild(fb);
+    if(isCorrect && state.streak>=3) showStreakPop(state.streak);
+    if(isCorrect) burstParticles(['✨','🎉','⭐']); else wrap.querySelector('.card').classList.add('shake');
+    const nextWrap = el(`<div class="btn-row"></div>`);
+    const isLast = state.qIndex >= state.totalQ-1;
+    const nextBtn = el(`<button class="btn btn-primary">${isLast?'Ver resultado 🏁':'Próxima pergunta →'}</button>`);
+    nextBtn.addEventListener('click', ()=>{ if(isLast){ soloFinish(); } else { state.qIndex+=1; render(); } });
+    nextWrap.appendChild(nextBtn); slot.appendChild(nextWrap);
+  }
+
+  function showStreakPop(streak){ const pop=el(`<div class="streak-pop">🔥 Sequência de ${streak}!</div>`); document.body.appendChild(pop); setTimeout(()=>pop.remove(),1700); }
+  function burstParticles(emojis){
+    const layer=document.createElement('div'); layer.className='particles'; document.body.appendChild(layer);
+    for(let i=0;i<10;i++){ const p=document.createElement('div'); p.className='particle'; p.textContent=emojis[Math.floor(Math.random()*emojis.length)];
+      p.style.left=(45+Math.random()*10)+'vw'; p.style.top=(55+Math.random()*10)+'vh'; p.style.fontSize=(16+Math.random()*16)+'px'; layer.appendChild(p); }
+    setTimeout(()=>layer.remove(),1100);
+  }
+
+  const CONFETTI_COLORS = ['#ffcc33','#3ecf8e','#ef4b5f','#3ea6ff','#ff8a3d','#c88bff'];
+
+  function confettiRain(count){
+    count = count || 70;
+    const layer = document.createElement('div');
+    layer.className = 'confetti-layer';
+    document.body.appendChild(layer);
+    for(let i=0;i<count;i++){
+      const p = document.createElement('div');
+      p.className = 'confetti-piece';
+      p.style.left = (Math.random()*100)+'vw';
+      p.style.background = CONFETTI_COLORS[Math.floor(Math.random()*CONFETTI_COLORS.length)];
+      p.style.width = (5+Math.random()*6)+'px';
+      p.style.height = (10+Math.random()*9)+'px';
+      p.style.animationDuration = (2.2+Math.random()*2.4).toFixed(2)+'s';
+      p.style.animationDelay = (Math.random()*1.1).toFixed(2)+'s';
+      layer.appendChild(p);
+    }
+    setTimeout(()=>layer.remove(), 5600);
+  }
+
+  function fireworkBurst(x, y){
+    const holder = document.createElement('div');
+    holder.className = 'firework';
+    holder.style.left = x+'px'; holder.style.top = y+'px';
+    document.body.appendChild(holder);
+    const n = 12;
+    for(let i=0;i<n;i++){
+      const angle = (i/n)*2*Math.PI + Math.random()*0.3;
+      const dist = 36+Math.random()*34;
+      const dx = Math.cos(angle)*dist, dy = Math.sin(angle)*dist;
+      const s = document.createElement('div');
+      s.className = 'spark';
+      s.style.background = CONFETTI_COLORS[Math.floor(Math.random()*CONFETTI_COLORS.length)];
+      s.style.setProperty('--dx', dx+'px');
+      s.style.setProperty('--dy', dy+'px');
+      holder.appendChild(s);
+    }
+    setTimeout(()=>holder.remove(), 950);
+  }
+
+  function fireworksShow(rounds){
+    rounds = rounds || 6;
+    for(let i=0;i<rounds;i++){
+      setTimeout(()=>{
+        const x = 40 + Math.random()*(window.innerWidth-80);
+        const y = 60 + Math.random()*(window.innerHeight*0.45);
+        fireworkBurst(x,y);
+      }, i*420 + Math.random()*220);
+    }
+  }
+
+  async function soloFinish(){
+    state.screen='solo-result'; render();
+    try{
+      const list = await storeGet('solo-leaderboard') || [];
+      const ts = Date.now(); state._myTs = ts;
+      list.push({name:state.nickname, score:state.score, avatar:state.avatarCfg, ts});
+      list.sort((a,b)=>b.score-a.score);
+      await storeSet('solo-leaderboard', list.slice(0,50));
+    }catch(e){}
+    soloRenderResult();
+  }
+
+  function ratingFor(pct){
+    if(pct>=90) return {emoji:'🏆', title:'Mestre do Conhecimento!'};
+    if(pct>=70) return {emoji:'⚡', title:'Profissional Certificado'};
+    if(pct>=50) return {emoji:'🔧', title:'Aprendiz Avançado'};
+    return {emoji:'💡', title:'Aprendiz Iniciante'};
+  }
+
+  function soloRenderResult(){
+    app.innerHTML='';
+    const pct = Math.round((state.correctCount/state.totalQ)*100);
+    const r = ratingFor(pct);
+    const wrap = el(`
+      <div class="wrap">
+        <div class="card">
+          <div style="display:flex;justify-content:center;align-items:flex-end;gap:6px;margin-bottom:6px;">
+            <div class="avatar-chip lg">${buildAvatarSVG(state.avatarCfg)}</div>
+            <div style="font-size:44px;line-height:1;">${r.emoji}</div>
+          </div>
+          <div class="result-title">${r.title}</div>
+          <div class="result-sub">${escapeHtml(state.nickname)} acertou ${state.correctCount} de ${state.totalQ} perguntas (${pct}%)</div>
+          <div class="stat-row">
+            <div class="stat-box"><div class="num">${state.score}</div><div class="lab">Pontos</div></div>
+            <div class="stat-box"><div class="num">${state.correctCount}</div><div class="lab">Acertos</div></div>
+            <div class="stat-box"><div class="num">${state.best_streak}🔥</div><div class="lab">Sequência</div></div>
+          </div>
+          <label class="field-label">🏆 Ranking do treino individual</label>
+          <div class="leaderboard" id="lbSlot"><div class="loading-note">Carregando ranking…</div></div>
+          <div class="btn-row">
+            <button class="btn btn-ghost" id="againBtn">Jogar novamente</button>
+            <button class="btn btn-primary" id="menuBtn">Menu</button>
+          </div>
+        </div>
+      </div>
+    `);
+    app.appendChild(wrap);
+    if(pct>=90){
+      confettiRain(60);
+      const myChip = wrap.querySelector('.avatar-chip.lg');
+      if(myChip){ myChip.classList.add('jump'); }
+    }
+    wrap.querySelector('#againBtn').addEventListener('click', soloStartGame);
+    wrap.querySelector('#menuBtn').addEventListener('click', ()=>{ state={screen:'menu'}; render(); });
+    storeGet('solo-leaderboard').then(list=>{
+      list = list || [];
+      const slot = wrap.querySelector('#lbSlot'); slot.innerHTML='';
+      if(!list.length){ slot.innerHTML='<div class="loading-note">Seja o primeiro no ranking!</div>'; return; }
+      list.slice(0,10).forEach((entry,i)=>{
+        const mine = entry.ts===state._myTs;
+        const row = el(`<div class="lb-row ${mine?'lb-you':''}"><div class="lb-rank">#${i+1}</div><div class="lb-name">${avatarChipHTML(entry.avatar)} ${escapeHtml(entry.name)}</div><div class="lb-score">${entry.score} pts</div></div>`);
+        slot.appendChild(row);
+      });
+    });
+  }
+
+  // ================= HOST (multiplayer room) =================
+  function hostRenderCreate(){
+    app.innerHTML='';
+    const wrap = el(`
+      <div class="wrap">
+        <h1 class="brand">🖥️ Criar <span>Sala</span></h1>
+        <div class="tagline">Modo professor(a) — jogo ao vivo com PIN</div>
+        <div class="card">
+          <p style="color:var(--ink-dim);font-size:14px;line-height:1.6;">
+            Ao criar a sala, um PIN de 6 dígitos será gerado. Peça para os alunos abrirem
+            este mesmo link em seus celulares, escolherem <b>"Entrar com um PIN"</b> e digitarem o código.
+            Você controla o ritmo das perguntas por aqui.
+          </p>
+          <div id="configSlot"></div>
+          <div class="btn-row">
+            <button class="btn btn-ghost" id="backBtn">← Menu</button>
+            <button class="btn btn-primary" id="createBtn">Gerar PIN e criar sala ⚡</button>
+          </div>
+        </div>
+      </div>
+    `);
+    app.appendChild(wrap);
+    const getConfig = buildConfigUI(wrap.querySelector('#configSlot'));
+    wrap.querySelector('#backBtn').addEventListener('click', ()=>{ state={screen:'menu'}; render(); });
+    wrap.querySelector('#createBtn').addEventListener('click', async ()=>{
+      const cfg = getConfig();
+      if(!cfg) return;
+      wrap.querySelector('#createBtn').disabled = true;
+      const pin = genPin();
+      const pool = poolForCategories(cfg.cats, cfg.diffs);
+      const shuffledPool = shuffledIndices(pool.length).map(i=>pool[i]).slice(0, cfg.count);
+      const meta = { pin, phase:'lobby', qIndex:-1, order: shuffledPool,
+        qDuration: cfg.time*1000, total: shuffledPool.length, qStartTs:null, createdAt: Date.now() };
+      const ok = await storeSet(`game:${pin}:meta`, meta);
+      if(!ok){ alert('Não foi possível criar a sala agora. Tente novamente.'); wrap.querySelector('#createBtn').disabled=false; return; }
+      state = { screen:'host-lobby', pin, meta, players:{} };
+      render();
+    });
+  }
+
+  async function hostRefreshRoster(){
+    const keys = await storeListKeys(`game:${state.pin}:player:`);
+    for(const k of keys){
+      if(!state.players[k]){
+        const doc = await storeGet(k);
+        if(doc) state.players[k] = doc;
+      }
+    }
+  }
+
+  function hostRenderLobby(){
+    app.innerHTML='';
+    const wrap = el(`
+      <div class="wrap wide">
+        <h1 class="brand">⚡ Sala <span>Aberta</span></h1>
+        <div class="card">
+          <div class="pin-box">
+            <div class="pin-label">PIN da sala</div>
+            <div class="pin-value">${state.pin}</div>
+            <div class="pin-hint">Alunos: abram o link e escolham "Entrar com um PIN"</div>
+          </div>
+          <div class="roster-count" id="rosterCount">Aguardando jogadores…</div>
+          <div class="roster-grid" id="rosterGrid"></div>
+          <div class="btn-row">
+            <button class="btn btn-ghost" id="cancelBtn">Cancelar sala</button>
+            <button class="btn btn-primary" id="startBtn" disabled>Iniciar jogo ⚡</button>
+          </div>
+        </div>
+      </div>
+    `);
+    app.appendChild(wrap);
+    wrap.querySelector('#cancelBtn').addEventListener('click', ()=>{ state={screen:'menu'}; render(); });
+    const startBtn = wrap.querySelector('#startBtn');
+    startBtn.addEventListener('click', hostStartGame);
+
+    async function refresh(){
+      await hostRefreshRoster();
+      const grid = wrap.querySelector('#rosterGrid'); if(!grid) return;
+      grid.innerHTML='';
+      const ids = Object.keys(state.players);
+      wrap.querySelector('#rosterCount').textContent = ids.length ? `${ids.length} jogador(es) na sala` : 'Aguardando jogadores…';
+      startBtn.disabled = ids.length === 0;
+      ids.forEach(id=>{
+        const p = state.players[id];
+        grid.appendChild(el(`<div class="roster-card">${avatarChipHTML(p.avatar)}<div class="roster-name">${escapeHtml(p.name)}</div></div>`));
+      });
+    }
+    refresh();
+    pollTimer = setInterval(refresh, LOBBY_POLL);
+  }
+
+  async function hostStartGame(){
+    state.meta.phase='question'; state.meta.qIndex=0; state.meta.qStartTs=Date.now();
+    await storeSet(`game:${state.pin}:meta`, state.meta);
+    state.screen='host-question';
+    render();
+  }
+
+  function hostRenderQuestion(){
+    app.innerHTML='';
+    const q = QUESTIONS[state.meta.order[state.meta.qIndex]];
+    const wrap = el(`
+      <div class="wrap wide">
+        <div class="hud">
+          <div class="hud-item">🔑 PIN <b>${state.pin}</b></div>
+          <div class="qcounter">Pergunta ${state.meta.qIndex+1} / ${state.meta.total}</div>
+          <div class="hud-item">👥 <b id="answeredCount">0</b>/${Object.keys(state.players).length}</div>
+        </div>
+        <div class="wire-track"><div class="wire-fill" id="wireFill" style="width:100%"></div><div class="wire-spark" id="wireSpark" style="left:100%"></div></div>
+        <div class="card">
+          <div class="question-box"><div class="qnum">⚡ PERGUNTA ${state.meta.qIndex+1}</div><div class="qtext">${escapeHtml(q.q)}</div>${q.code ? `<pre class="code-block">${escapeHtml(q.code)}</pre>` : ''}</div>
+          <div class="options-grid">
+            ${q.opts.map((o,i)=>`<div class="opt opt-${OPT_STYLE[i]}" style="cursor:default;"><span class="opt-icon">${OPT_ICON[i]}</span><span>${escapeHtml(o)}</span></div>`).join('')}
+          </div>
+          <div class="btn-row">
+            <button class="btn btn-ghost" id="revealBtn">Revelar agora →</button>
+          </div>
+        </div>
+      </div>
+    `);
+    app.appendChild(wrap);
+    wrap.querySelector('#revealBtn').addEventListener('click', ()=>hostGoReveal(q));
+
+    const fill = wrap.querySelector('#wireFill'), spark = wrap.querySelector('#wireSpark');
+    const startTs = state.meta.qStartTs, duration = state.meta.qDuration;
+    tickTimer = setInterval(()=>{
+      const left = duration - (Date.now()-startTs);
+      if(left<=0){ updateWire(fill,spark,0,duration); clearInterval(tickTimer); hostGoReveal(q); return; }
+      updateWire(fill,spark,left,duration);
+    }, 150);
+
+    async function refreshCount(){
+      const keys = Object.keys(state.players);
+      let answered=0;
+      for(const id of keys){
+        const doc = await storeGet(id);
+        if(doc){ state.players[id]=doc; if(doc.answered && doc.answered[state.meta.qIndex]) answered++; }
+      }
+      const c = wrap.querySelector('#answeredCount'); if(c) c.textContent = answered;
+    }
+    refreshCount();
+    pollTimer = setInterval(refreshCount, GAME_POLL);
+  }
+
+  let revealed = false;
+  async function hostGoReveal(q){
+    if(revealed) return; revealed = true;
+    clearTimers();
+    // final refresh of all player docs for this question
+    const ids = Object.keys(state.players);
+    for(const id of ids){ const doc = await storeGet(id); if(doc) state.players[id]=doc; }
+    state.meta.phase='reveal';
+    await storeSet(`game:${state.pin}:meta`, state.meta);
+    revealed = false;
+    state.screen='host-reveal';
+    render();
+  }
+
+  function hostRenderReveal(){
+    app.innerHTML='';
+    const q = QUESTIONS[state.meta.order[state.meta.qIndex]];
+    const ids = Object.keys(state.players);
+    const counts=[0,0,0,0]; let correctCount=0;
+    ids.forEach(id=>{
+      const doc = state.players[id];
+      const ans = doc.answered && doc.answered[state.meta.qIndex];
+      if(ans){ if(ans.choice>=0) counts[ans.choice]++; if(ans.correct) correctCount++; }
+    });
+    const total = ids.length || 1;
+    const colors = ['var(--a)','var(--b)','var(--c)','var(--d)'];
+    const isLast = state.meta.qIndex >= state.meta.total-1;
+
+    const sorted = ids.map(id=>state.players[id]).sort((x,y)=>y.score-x.score).slice(0,5);
+
+    const wrap = el(`
+      <div class="wrap wide">
+        <div class="card">
+          <div class="qnum" style="text-align:center;">✅ RESPOSTA CORRETA</div>
+          <div class="qtext" style="text-align:center;margin-bottom:18px;">${escapeHtml(q.opts[q.correct])}</div>
+          <div id="barsSlot"></div>
+          <div class="feedback ok" style="margin-top:10px;"><b>${correctCount} de ${ids.length} acertaram</b><br/>${escapeHtml(q.exp)}</div>
+          <label class="field-label field-gap">🏆 Top 5 no momento</label>
+          <div class="leaderboard" id="lbSlot"></div>
+          <div class="btn-row">
+            <button class="btn btn-primary" id="nextBtn">${isLast ? 'Ver resultado final 🏁' : 'Próxima pergunta →'}</button>
+          </div>
+        </div>
+      </div>
+    `);
+    app.appendChild(wrap);
+    const barsSlot = wrap.querySelector('#barsSlot');
+    q.opts.forEach((o,i)=>{
+      const pct = Math.round((counts[i]/total)*100);
+      barsSlot.appendChild(el(`
+        <div class="bar-row">
+          <div class="bar-label"><span>${OPT_ICON[i]} ${escapeHtml(o)}</span><span>${counts[i]}</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:${pct}%;background:${colors[i]};"></div></div>
+        </div>
+      `));
+    });
+    const lbSlot = wrap.querySelector('#lbSlot');
+    sorted.forEach((p,i)=>{
+      lbSlot.appendChild(el(`<div class="lb-row"><div class="lb-rank">#${i+1}</div><div class="lb-name">${avatarChipHTML(p.avatar)} ${escapeHtml(p.name)}</div><div class="lb-score">${p.score} pts</div></div>`));
+    });
+    wrap.querySelector('#nextBtn').addEventListener('click', hostNextOrEnd);
+  }
+
+  async function hostNextOrEnd(){
+    if(state.meta.qIndex >= state.meta.total-1){
+      state.meta.phase='end';
+      await storeSet(`game:${state.pin}:meta`, state.meta);
+      state.screen='host-end';
+      render();
+    } else {
+      state.meta.qIndex += 1; state.meta.qStartTs = Date.now(); state.meta.phase='question';
+      await storeSet(`game:${state.pin}:meta`, state.meta);
+      state.screen='host-question';
+      render();
+    }
+  }
+
+  function hostRenderEnd(){
+    app.innerHTML='';
+    const ids = Object.keys(state.players);
+    const sorted = ids.map(id=>state.players[id]).sort((x,y)=>y.score-x.score);
+    const podium = sorted.slice(0,5);
+    const rest = sorted.slice(5,10);
+    const wrap = el(`
+      <div class="wrap wide">
+        <h1 class="brand">🏁 Fim de <span>Jogo</span></h1>
+        <div class="card">
+          <div class="podium" id="podiumSlot"></div>
+          <label class="field-label field-gap">🏆 Classificação completa</label>
+          <div class="leaderboard" id="restSlot"></div>
+          <div class="btn-row">
+            <button class="btn btn-primary" id="menuBtn">Voltar ao menu</button>
+          </div>
+        </div>
+      </div>
+    `);
+    app.appendChild(wrap);
+    confettiRain(80);
+    fireworksShow(7);
+    // Visual order left→right: 4th, 2nd, 1st, 3rd, 5th (classic "wave" podium shape)
+    const order5 = [podium[3], podium[1], podium[0], podium[2], podium[4]];
+    const posClass = ['pod-4','pod-2','pod-1','pod-3','pod-5'];
+    const medals = ['','🥈','🥇','🥉',''];
+    const jumpDelays = [0.3, 0.15, 0, 0.1, 0.35];
+    const podSlot = wrap.querySelector('#podiumSlot');
+    order5.forEach((p,i)=>{
+      if(!p){ podSlot.appendChild(el(`<div class="pod-col ${posClass[i]}"><div class="pod-block"></div></div>`)); return; }
+      podSlot.appendChild(el(`
+        <div class="pod-col ${posClass[i]}">
+          ${medals[i] ? `<div class="pod-medal">${medals[i]}</div>` : ''}
+          <div class="pod-em">${avatarChipHTML(p.avatar, 'jump', jumpDelays[i])}</div>
+          <div class="pod-block">${p.score}</div>
+          <div class="pod-name">${escapeHtml(p.name)}</div>
+        </div>
+      `));
+    });
+    const restSlot = wrap.querySelector('#restSlot');
+    rest.forEach((p,i)=>{ restSlot.appendChild(el(`<div class="lb-row"><div class="lb-rank">#${i+6}</div><div class="lb-name">${avatarChipHTML(p.avatar)} ${escapeHtml(p.name)}</div><div class="lb-score">${p.score} pts</div></div>`)); });
+    wrap.querySelector('#menuBtn').addEventListener('click', ()=>{ state={screen:'menu'}; render(); });
+  }
+
+  // ================= PLAYER (join with PIN) =================
+  function joinRenderForm(){
+    app.innerHTML='';
+    const wrap = el(`
+      <div class="wrap">
+        <h1 class="brand">🧑‍🎓 Entrar na <span>Sala</span></h1>
+        <div class="tagline">Digite o PIN que o(a) professor(a) mostrou</div>
+        <div class="card">
+          <label class="field-label">PIN da sala</label>
+          <input class="pinput" id="pinInput" maxlength="6" inputmode="numeric" placeholder="000000"/>
+          <label class="field-label field-gap">Seu nome</label>
+          <input class="nick" id="nameInput" maxlength="18" placeholder="Digite seu nome ou apelido" autocomplete="off"/>
+          <label class="field-label field-gap">Monte seu personagem</label>
+          <div id="customizerSlot"></div>
+          <div id="errSlot"></div>
+          <div class="btn-row">
+            <button class="btn btn-ghost" id="backBtn">← Menu</button>
+            <button class="btn btn-primary" id="joinBtn" disabled>Entrar na sala ⚡</button>
+          </div>
+        </div>
+      </div>
+    `);
+    app.appendChild(wrap);
+    const getAvatarCfg = renderAvatarCustomizer(wrap.querySelector('#customizerSlot'));
+    wrap.querySelector('#backBtn').addEventListener('click', ()=>{ state={screen:'menu'}; render(); });
+    const pinInput = wrap.querySelector('#pinInput');
+    pinInput.addEventListener('input', ()=>{ pinInput.value = pinInput.value.replace(/\D/g,'').slice(0,6); });
+    const joinBtn = wrap.querySelector('#joinBtn');
+    function checkReady(){ joinBtn.disabled = !(pinInput.value.length===6 && wrap.querySelector('#nameInput').value.trim()); }
+    pinInput.addEventListener('input', checkReady);
+    wrap.querySelector('#nameInput').addEventListener('input', checkReady);
+    checkReady();
+
+    joinBtn.addEventListener('click', async ()=>{
+      joinBtn.disabled = true;
+      const errSlot = wrap.querySelector('#errSlot'); errSlot.innerHTML='';
+      const pin = pinInput.value;
+      const meta = await storeGet(`game:${pin}:meta`);
+      if(!meta){
+        errSlot.appendChild(el(`<div class="feedback bad">Sala não encontrada. Confira o PIN com o(a) professor(a).</div>`));
+        joinBtn.disabled=false; return;
+      }
+      if(meta.phase !== 'lobby'){
+        errSlot.appendChild(el(`<div class="feedback bad">Essa sala já começou. Peça ao professor(a) uma nova sala ou aguarde a próxima.</div>`));
+        joinBtn.disabled=false; return;
+      }
+      const id = genId();
+      const name = wrap.querySelector('#nameInput').value.trim() || 'Eletricista';
+      const doc = { id, name, avatar: getAvatarCfg(), score:0, streak:0, bestStreak:0, correctCount:0, answered:{} };
+      const ok = await storeSet(`game:${pin}:player:${id}`, doc);
+      if(!ok){
+        errSlot.appendChild(el(`<div class="feedback bad">Não foi possível entrar agora. Tente novamente.</div>`));
+        joinBtn.disabled=false; return;
+      }
+      state = { screen:'player-lobby', pin, meta, playerKey:`game:${pin}:player:${id}`, doc };
+      render();
+    });
+  }
+
+  function playerRenderLobby(){
+    app.innerHTML='';
+    const wrap = el(`
+      <div class="wrap">
+        <div class="card">
+          <div class="waiting-pulse">
+            <div class="em" style="animation:none;">${avatarChipHTML(state.doc.avatar, 'xl')}</div>
+            <div class="result-title" style="margin-top:10px;">Você entrou, ${escapeHtml(state.doc.name)}!</div>
+            <div class="loading-note">Aguardando o(a) professor(a) iniciar o jogo…</div>
+          </div>
+          <div class="hud-item" style="justify-content:center;">🔑 Sala <b>${state.pin}</b></div>
+        </div>
+      </div>
+    `);
+    app.appendChild(wrap);
+    async function poll(){
+      const meta = await storeGet(`game:${state.pin}:meta`);
+      if(meta && meta.phase==='question'){
+        state.meta = meta;
+        state.screen='player-question';
+        render();
+      }
+    }
+    pollTimer = setInterval(poll, GAME_POLL);
+  }
+
+  function playerRenderQuestion(){
+    app.innerHTML='';
+    const qIndex = state.meta.qIndex;
+    const q = QUESTIONS[state.meta.order[qIndex]];
+    const wrap = el(`
+      <div class="wrap">
+        <div class="hud">
+          <div class="hud-item">${avatarChipHTML(state.doc.avatar)} <b>${escapeHtml(state.doc.name)}</b></div>
+          <div class="qcounter">Pergunta ${qIndex+1} / ${state.meta.total}</div>
+          <div class="hud-item">🏆 <b>${state.doc.score}</b></div>
+        </div>
+        <div class="wire-track"><div class="wire-fill" id="wireFill" style="width:100%"></div><div class="wire-spark" id="wireSpark" style="left:100%"></div></div>
+        <div class="card">
+          <div class="question-box"><div class="qnum">⚡ PERGUNTA ${qIndex+1}</div><div class="qtext">${escapeHtml(q.q)}</div>${q.code ? `<pre class="code-block">${escapeHtml(q.code)}</pre>` : ''}</div>
+          <div class="options-grid" id="optsGrid"></div>
+        </div>
+      </div>
+    `);
+    app.appendChild(wrap);
+    const grid = wrap.querySelector('#optsGrid');
+    q.opts.forEach((opt,i)=>{
+      const b = el(`<button class="opt opt-${OPT_STYLE[i]}" data-i="${i}"><span class="opt-icon">${OPT_ICON[i]}</span><span>${escapeHtml(opt)}</span></button>`);
+      b.addEventListener('click', ()=>playerAnswer(i, q));
+      grid.appendChild(b);
+    });
+    const fill = wrap.querySelector('#wireFill'), spark = wrap.querySelector('#wireSpark');
+    const startTs = state.meta.qStartTs, duration = state.meta.qDuration;
+    let submitted = false;
+    tickTimer = setInterval(()=>{
+      const left = duration - (Date.now()-startTs);
+      if(left<=0){
+        updateWire(fill,spark,0,duration); clearInterval(tickTimer);
+        if(!submitted){ submitted=true; playerAnswer(-1, q); }
+        return;
+      }
+      updateWire(fill,spark,left,duration);
+    }, 150);
+    state._submitGuard = ()=>{ if(submitted) return true; submitted=true; return false; };
+  }
+
+  async function playerAnswer(choice, q){
+    if(state._submitGuard && state._submitGuard()===true && choice!==-1){
+      // already auto-submitted by timeout; ignore late click
+      return;
+    }
+    clearInterval(tickTimer);
+    const qIndex = state.meta.qIndex;
+    const startTs = state.meta.qStartTs, duration = state.meta.qDuration;
+    const timeLeftMs = Math.max(0, duration - (Date.now()-startTs));
+    const isCorrect = choice === q.correct;
+    let pts = 0;
+    if(isCorrect){
+      pts = 500 + Math.round((timeLeftMs/duration)*500) + Math.min(state.doc.streak,5)*20;
+      state.doc.streak += 1; state.doc.bestStreak = Math.max(state.doc.bestStreak, state.doc.streak); state.doc.correctCount += 1;
+    } else state.doc.streak = 0;
+    state.doc.score += pts;
+    state.doc.answered = state.doc.answered || {};
+    state.doc.answered[qIndex] = { choice, correct:isCorrect, timeLeftMs };
+    await storeSet(state.playerKey, state.doc);
+    state._lastAnswer = { isCorrect, pts, choice, q };
+    state.screen = 'player-waiting';
+    render();
+  }
+
+  function playerRenderWaiting(){
+    app.innerHTML='';
+    const { isCorrect, pts, choice, q } = state._lastAnswer;
+    const wrap = el(`
+      <div class="wrap">
+        <div class="card">
+          <div class="waiting-pulse">
+            <div class="em">${isCorrect ? '✅' : (choice===-1 ? '⏱️' : '❌')}</div>
+            <div class="result-title" style="margin-top:6px;">${isCorrect ? 'Certo! +'+pts+' pts' : (choice===-1?'Tempo esgotado':'Não foi dessa vez')}</div>
+          </div>
+          <div class="feedback ${isCorrect?'ok':'bad'}">${escapeHtml(q.exp)}</div>
+          <div class="stat-row">
+            <div class="stat-box"><div class="num">${state.doc.score}</div><div class="lab">Pontos</div></div>
+            <div class="stat-box"><div class="num">${state.doc.bestStreak}🔥</div><div class="lab">Sequência</div></div>
+          </div>
+          <div class="loading-note">Aguardando o(a) professor(a) avançar…</div>
+        </div>
+      </div>
+    `);
+    app.appendChild(wrap);
+    async function poll(){
+      const meta = await storeGet(`game:${state.pin}:meta`);
+      if(!meta) return;
+      if(meta.phase==='end'){ state.meta=meta; state.screen='player-end'; render(); return; }
+      if(meta.phase==='question' && meta.qIndex !== state.meta.qIndex){
+        state.meta = meta; state.screen='player-question'; render(); return;
+      }
+    }
+    pollTimer = setInterval(poll, GAME_POLL);
+  }
+
+  function playerRenderEnd(){
+    app.innerHTML='';
+    const pct = Math.round((state.doc.correctCount/state.meta.total)*100);
+    const r = ratingFor(pct);
+    const wrap = el(`
+      <div class="wrap">
+        <div class="card">
+          <div style="display:flex;justify-content:center;align-items:flex-end;gap:6px;margin-bottom:6px;">
+            <div class="avatar-chip lg">${buildAvatarSVG(state.doc.avatar)}</div>
+            <div style="font-size:44px;line-height:1;">${r.emoji}</div>
+          </div>
+          <div class="result-title">${r.title}</div>
+          <div class="result-sub">${escapeHtml(state.doc.name)} acertou ${state.doc.correctCount} de ${state.meta.total} perguntas (${pct}%)</div>
+          <div class="stat-row">
+            <div class="stat-box"><div class="num">${state.doc.score}</div><div class="lab">Pontos</div></div>
+            <div class="stat-box"><div class="num">${state.doc.correctCount}</div><div class="lab">Acertos</div></div>
+            <div class="stat-box"><div class="num">${state.doc.bestStreak}🔥</div><div class="lab">Sequência</div></div>
+          </div>
+          <label class="field-label">🏆 Classificação da sala</label>
+          <div class="leaderboard" id="lbSlot"><div class="loading-note">Carregando classificação…</div></div>
+          <div class="btn-row"><button class="btn btn-primary" id="menuBtn">Voltar ao menu</button></div>
+        </div>
+      </div>
+    `);
+    app.appendChild(wrap);
+    wrap.querySelector('#menuBtn').addEventListener('click', ()=>{ state={screen:'menu'}; render(); });
+    (async ()=>{
+      const keys = await storeListKeys(`game:${state.pin}:player:`);
+      const docs = [];
+      for(const k of keys){ const d = await storeGet(k); if(d) docs.push(d); }
+      docs.sort((a,b)=>b.score-a.score);
+      const slot = wrap.querySelector('#lbSlot'); slot.innerHTML='';
+      docs.slice(0,10).forEach((p,i)=>{
+        const mine = p.id === state.doc.id;
+        slot.appendChild(el(`<div class="lb-row ${mine?'lb-you':''}"><div class="lb-rank">#${i+1}</div><div class="lb-name">${avatarChipHTML(p.avatar)} ${escapeHtml(p.name)}</div><div class="lb-score">${p.score} pts</div></div>`));
+      });
+      if(docs.length && docs[0].id===state.doc.id){
+        burstParticles(['🏆','⚡','✨']);
+        confettiRain(60);
+        const myChip = wrap.querySelector('.avatar-chip.lg');
+        if(myChip){ myChip.classList.add('jump'); }
+      }
+    })();
+  }
+
+  // ---------------- Theme (light/dark) ----------------
+  const themeBtn = document.createElement('button');
+  themeBtn.className = 'theme-toggle';
+  themeBtn.type = 'button';
+  themeBtn.title = 'Alternar tema claro/escuro';
+  document.body.appendChild(themeBtn);
+
+  function applyTheme(theme){
+    document.documentElement.setAttribute('data-theme', theme);
+    themeBtn.textContent = theme === 'light' ? '🌙' : '☀️';
+  }
+  applyTheme('dark');
+  themeBtn.addEventListener('click', ()=>{
+    const current = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+    const next = current === 'light' ? 'dark' : 'light';
+    applyTheme(next);
+    storeSetPersonal('theme-pref', {theme: next});
+  });
+  storeGetPersonal('theme-pref').then(pref=>{
+    if(pref && (pref.theme==='light' || pref.theme==='dark')) applyTheme(pref.theme);
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
