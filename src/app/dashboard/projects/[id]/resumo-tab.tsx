@@ -83,7 +83,6 @@ export default function ResumoTab({ project, circuitosCalculados, balanco, onPro
             Estimativa com margem de segurança de 15%. Critérios aplicados: {criterio.nome}.
           </p>
         </div>
-        </div>
 
         <BalancoCard balanco={balanco} />
       </div>
