@@ -412,7 +412,7 @@ export function aplicarCriterioConcessionaria(
 ): {
   tipoEntradaFinal: TipoEntrada;
   secaoRamalMm2: number;
-  alertas: string[];
+  alertasConcessionaria: string[];
 } {
   const c = CRITERIOS_CONCESSIONARIAS[concessionaria] ?? CRITERIOS_CONCESSIONARIAS["COSERN"];
   const cargaKW = cargaW / 1000;
