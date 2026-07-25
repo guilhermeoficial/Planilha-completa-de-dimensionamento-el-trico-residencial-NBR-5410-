@@ -430,7 +430,7 @@ export function aplicarCriterioConcessionaria(
   return {
     tipoEntradaFinal,
     secaoRamalMm2: c.secaoMinRamalMm2,
-    alertas,
+    alertasConcessionaria: alertas,
   };
 }
 
