@@ -185,7 +185,17 @@
   .stat-box .lab{font-size:11px;color:var(--ink-dim);text-transform:uppercase;letter-spacing:1px;margin-top:2px;}
 
   .leaderboard{margin-top:8px;}
-  .lb-row{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:10px;background:var(--chip-bg);border:1px solid var(--line);margin-bottom:8px;font-family:'Space Mono',monospace;font-size:13.5px;}
+  .lb-row{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:10px;background:var(--chip-bg);border:1px solid var(--line);margin-bottom:8px;font-family:'Space Mono',monospace;font-size:13.5px;transition:transform 0.5s cubic-bezier(.34,1.56,.64,1), opacity 0.4s ease;position:relative;}
+  .lb-row.lb-enter{animation:lbSlideIn 0.5s cubic-bezier(.34,1.56,.64,1) both;}
+  .lb-row.lb-up{animation:lbMoveUp 0.6s cubic-bezier(.34,1.56,.64,1) both;}
+  .lb-row.lb-down{animation:lbMoveDown 0.5s ease both;}
+  @keyframes lbSlideIn{from{transform:translateX(-30px);opacity:0;}to{transform:translateX(0);opacity:1;}}
+  @keyframes lbMoveUp{0%{transform:translateY(20px) scale(0.97);opacity:0.6;}60%{transform:translateY(-4px) scale(1.02);}100%{transform:translateY(0) scale(1);opacity:1;}}
+  @keyframes lbMoveDown{0%{transform:translateY(-10px);opacity:0.7;}100%{transform:translateY(0);opacity:1;}}
+  .lb-delta{font-size:11px;font-weight:800;margin-left:4px;padding:2px 6px;border-radius:20px;}
+  .lb-delta.up{background:rgba(62,207,142,0.2);color:var(--live);}
+  .lb-delta.down{background:rgba(239,75,95,0.15);color:var(--danger);}
+  .lb-delta.same{background:rgba(255,204,51,0.15);color:var(--safety);}
   .lb-rank{width:26px;color:var(--ink-dim);font-weight:700;}
   .lb-name{flex:1;color:var(--ink);font-weight:700;font-family:'Manrope';display:flex;align-items:center;gap:8px;}
   .lb-score{color:var(--safety);font-weight:700;}
@@ -201,7 +211,13 @@
   .pin-hint{color:var(--ink-dim);font-size:13px;margin-top:6px;}
 
   .roster-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:10px;margin-top:18px;}
-  .roster-card{background:var(--chip-bg);border:1px solid var(--line);border-radius:12px;padding:10px 6px;text-align:center;animation:popIn .3s ease;}
+  .roster-card{background:var(--chip-bg);border:1px solid var(--line);border-radius:12px;padding:10px 6px;text-align:center;animation:popIn .3s ease;overflow:hidden;}
+  .roster-card .avatar-chip{overflow:hidden;}
+  /* Animação de espera: balança levemente sem sair do card */
+  @keyframes rosterBob{0%,100%{transform:translateY(0) rotate(-1deg);}50%{transform:translateY(-3px) rotate(1deg);}}
+  @keyframes rosterWave{0%,100%{transform:rotate(0deg);}25%{transform:rotate(8deg);}75%{transform:rotate(-8deg);}}
+  .roster-card .avatar-bob{animation:rosterBob 1.8s ease-in-out infinite;}
+  .roster-card .avatar-chip{display:block;margin:0 auto;}
   .roster-emoji{font-size:24px;}
   .roster-name{font-size:11px;font-weight:700;margin-top:4px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
   .roster-count{text-align:center;font-family:'Space Mono';color:var(--copper);font-weight:700;margin-top:14px;font-size:14px;}
@@ -2097,9 +2113,30 @@
       `));
     });
     const lbSlot = wrap.querySelector('#lbSlot');
-    sorted.forEach((p,i)=>{
-      lbSlot.appendChild(el(`<div class="lb-row"><div class="lb-rank">#${i+1}</div><div class="lb-name">${avatarChipHTML(p.avatar)} ${escapeHtml(p.name)}</div><div class="lb-score">${p.score} pts</div></div>`));
+    // Animação estilo Kahoot: aparecem um a um com delay escalonado + delta de pontos
+    const prevScores = state._prevScores || {};
+    sorted.forEach((p, i) => {
+      const prev = prevScores[p.id];
+      const pts = state.meta.qIndex > 0 && prev !== undefined
+        ? p.score - prev : null;
+      const deltaClass = pts === null ? '' : pts > 0 ? 'up' : pts < 0 ? 'down' : 'same';
+      const deltaIcon = pts === null ? '' : pts > 0 ? '▲' : pts < 0 ? '▼' : '—';
+      const deltaHTML = pts !== null
+        ? `<span class="lb-delta ${deltaClass}">${deltaIcon} ${Math.abs(pts)}</span>` : '';
+      const row = el(`
+        <div class="lb-row lb-enter" style="animation-delay:${i*0.12}s">
+          <div class="lb-rank" style="color:${i===0?'var(--safety)':i===1?'#c0c0c0':i===2?'#cd7f32':'var(--ink-dim)'}">
+            ${i===0?'🥇':i===1?'🥈':i===2?'🥉':'#'+(i+1)}
+          </div>
+          <div class="lb-name">${avatarChipHTML(p.avatar)} ${escapeHtml(p.name)}${deltaHTML}</div>
+          <div class="lb-score">${p.score} pts</div>
+        </div>
+      `);
+      lbSlot.appendChild(row);
     });
+    // Salvar scores para calcular delta na próxima rodada
+    state._prevScores = {};
+    sorted.forEach(p => { state._prevScores[p.id] = p.score; });
     wrap.querySelector('#nextBtn').addEventListener('click', hostNextOrEnd);
   }
 
