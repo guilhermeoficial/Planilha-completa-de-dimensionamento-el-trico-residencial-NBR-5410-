@@ -141,6 +141,7 @@ export default function DashboardPage() {
       id: "bytevolt",
       href: "/bytevolt",
       modulo: "Módulo 03",
+      gratuito: true,
       titulo: "ByteVolt &\nQuiz ao Vivo",
       descricao: "Quiz multiplayer em tempo real com PIN para turmas. Professor cria a sala, alunos entram pelo código — ranking ao vivo na tela.",
       cor: "live",
@@ -226,8 +227,15 @@ export default function DashboardPage() {
               </div>
 
               {/* CTA */}
-              <div className="mt-auto pt-10 flex items-center gap-2 text-sm font-semibold transition-all duration-200 group-hover:gap-3" style={{ color: card.corHex }}>
-                {card.cta} <ArrowRight size={16} />
+              <div className="mt-auto pt-10 flex items-center justify-between">
+                <div className="flex items-center gap-2 text-sm font-semibold transition-all duration-200 group-hover:gap-3" style={{ color: card.corHex }}>
+                  {card.cta} <ArrowRight size={16} />
+                </div>
+                {(card as { gratuito?: boolean }).gratuito ? (
+                  <span className="rounded-full bg-ok/20 px-2.5 py-0.5 text-xs font-bold text-ok">✓ GRÁTIS</span>
+                ) : (
+                  <span className="rounded-full bg-accent/15 px-2.5 py-0.5 text-xs font-bold text-accent">PRO</span>
+                )}
               </div>
             </div>
           </Link>
