@@ -114,8 +114,13 @@ export default function ProjectPage() {
   );
 
   const resumoDemanda = useMemo(
-    () => calcularResumoDemanda(circuitosCalculados, project?.tensao_v ?? 220, project?.tipo_entrada ?? "Monofásico"),
-    [circuitosCalculados, project?.tensao_v, project?.tipo_entrada]
+    () => calcularResumoDemanda(
+      circuitosCalculados,
+      project?.tensao_v ?? 220,
+      project?.tipo_entrada ?? "Monofásico",
+      (project as { concessionaria?: string })?.concessionaria ?? "COSERN"
+    ),
+    [circuitosCalculados, project?.tensao_v, project?.tipo_entrada, (project as { concessionaria?: string })?.concessionaria]
   );
 
   const orcamento = useMemo(

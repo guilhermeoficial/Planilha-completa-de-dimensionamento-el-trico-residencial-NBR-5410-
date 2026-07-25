@@ -61,4 +61,5 @@ export interface CircuitoRow {
   isolacao: "PVC" | "EPR";
   bloqueado: boolean;
   qtd_pontos: number;
+  grupo_id?: string | null; // agrupamento visual de circuitos
 }

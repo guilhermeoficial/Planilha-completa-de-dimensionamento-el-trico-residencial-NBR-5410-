@@ -49,23 +49,23 @@ export default function CircuitosTab({ projectId, tensaoV, tipoEntrada, circuito
   }
 
   /** Junta os circuitos selecionados em um único circuito (soma a potência, mantém o maior comprimento) */
+  /** Agrupa circuitos selecionados visualmente (mesmo grupo_id, sem deletar) */
   async function agruparSelecionados() {
     const itens = circuitos.filter((c) => selecionados.has(c.id));
     if (itens.length < 2) return;
-    const principal = itens[0];
-    const restantes = itens.slice(1);
-    const potenciaTotal = itens.reduce((s, c) => s + Number(c.potencia_va), 0);
-    const maiorComprimento = Math.max(...itens.map((c) => Number(c.comprimento_m)));
-    const descricaoUnida = itens.map((c) => c.descricao).join(" + ");
-
-    await supabase.from("circuitos").update({
-      descricao: descricaoUnida,
-      potencia_va: potenciaTotal,
-      comprimento_m: maiorComprimento,
-    }).eq("id", principal.id);
-
-    await supabase.from("circuitos").delete().in("id", restantes.map((c) => c.id));
+    // Gerar ID de grupo único baseado nos IDs dos circuitos
+    const grupoId = itens.map((c) => c.id).sort().join("-").slice(0, 40);
+    // Atualizar todos com o mesmo grupo_id
+    for (const c of itens) {
+      await supabase.from("circuitos").update({ grupo_id: grupoId }).eq("id", c.id);
+    }
     setSelecionados(new Set());
+    onChange();
+  }
+
+  /** Desagrupa um circuito (remove do grupo) */
+  async function desagrupar(id: string) {
+    await supabase.from("circuitos").update({ grupo_id: null }).eq("id", id);
     onChange();
   }
 
@@ -448,8 +448,15 @@ export default function CircuitosTab({ projectId, tensaoV, tipoEntrada, circuito
           <tbody>
             {circuitosPagina.map((c) => {
               const original = circuitos.find((o) => o.id === c.id)!;
+              const grupo = original.grupo_id;
+              // Cores cíclicas por grupo para distinguir visualmente
+              const grupoIdx = grupo
+                ? [...new Set(circuitos.filter((x) => x.grupo_id).map((x) => x.grupo_id))].indexOf(grupo)
+                : -1;
+              const coresGrupo = ["border-l-accent", "border-l-phase-s", "border-l-phase-t", "border-l-ok", "border-l-warn", "border-l-danger"];
+              const corGrupo = grupoIdx >= 0 ? coresGrupo[grupoIdx % coresGrupo.length] : "";
               return (
-                <tr key={c.id} className="border-t border-panel-border">
+                <tr key={c.id} className={`border-t border-panel-border ${grupo ? `border-l-4 ${corGrupo} bg-accent/[0.02]` : ""}`}>
                   <td className="px-3 py-2">
                     <input
                       type="checkbox"
@@ -460,11 +467,22 @@ export default function CircuitosTab({ projectId, tensaoV, tipoEntrada, circuito
                   </td>
                   <td className="tabular px-3 py-2 text-muted">{c.numero}</td>
                   <td className="px-3 py-2">
-                    <input
-                      defaultValue={c.descricao}
-                      onBlur={(e) => e.target.value !== c.descricao && atualizar(c.id, { descricao: e.target.value })}
-                      className="w-44 rounded border border-transparent bg-transparent px-1 py-0.5 hover:border-panel-border focus:border-accent focus:outline-none"
-                    />
+                    <div className="flex items-center gap-1.5">
+                      <input
+                        defaultValue={c.descricao}
+                        onBlur={(e) => e.target.value !== c.descricao && atualizar(c.id, { descricao: e.target.value })}
+                        className="w-44 rounded border border-transparent bg-transparent px-1 py-0.5 hover:border-panel-border focus:border-accent focus:outline-none"
+                      />
+                      {grupo && (
+                        <button
+                          onClick={() => desagrupar(original.id)}
+                          title="Remover do grupo"
+                          className="flex items-center gap-0.5 rounded px-1.5 py-0.5 text-[10px] font-bold text-accent bg-accent/10 hover:bg-accent/20 transition-colors"
+                        >
+                          <Combine size={9} /> G
+                        </button>
+                      )}
+                    </div>
                   </td>
                   <td className="px-3 py-2">
                     <select

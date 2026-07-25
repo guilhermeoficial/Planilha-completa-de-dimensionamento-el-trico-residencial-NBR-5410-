@@ -316,11 +316,131 @@ export function calcularMemorial(circuitos: Circuito[]): CircuitoCalculado[] {
 // ---------------------------------------------------------------------------
 export type TipoEntrada = "Monofásico" | "Bifásico" | "Trifásico";
 
+// ---------------------------------------------------------------------------
+// CRITÉRIOS DE CONCESSIONÁRIAS — padrões de entrada e exigências específicas
+// ---------------------------------------------------------------------------
+export interface CriterioConcessionaria {
+  nome: string;
+  /** Carga máxima para entrada monofásica (kW) */
+  maxMonofasicoKW: number;
+  /** Carga máxima para entrada bifásica (kW) */
+  maxBifasicoKW: number;
+  /** Seção mínima do ramal de entrada (mm²) — condutor de fase */
+  secaoMinRamalMm2: number;
+  /** Disjuntor mínimo no padrão de entrada (A) */
+  disjuntorMinEntradaA: number;
+  /** Altura mínima do medidor (m) */
+  alturaMinMedidorM: number;
+  /** Observações específicas da concessionária */
+  obs: string[];
+}
+
+export const CRITERIOS_CONCESSIONARIAS: Record<string, CriterioConcessionaria> = {
+  COSERN: {
+    nome: "COSERN — RN",
+    maxMonofasicoKW: 12,
+    maxBifasicoKW: 25,
+    secaoMinRamalMm2: 10,
+    disjuntorMinEntradaA: 40,
+    alturaMinMedidorM: 1.5,
+    obs: [
+      "Ramal de entrada mínimo: 10 mm² Cu ou 16 mm² Al",
+      "Disjuntor geral mínimo: 40 A (monofásico) ou 40 A por fase (bifásico/trifásico)",
+      "Carga > 12 kW: obrigatório bifásico ou trifásico",
+      "Carga > 25 kW: obrigatório trifásico",
+      "Medidor: altura mínima 1,50 m do solo, máxima 1,80 m",
+      "Aterramento: resistência ≤ 10 Ω (COSERN NT-17/2020)",
+      "DR obrigatório em banheiros, cozinha e área de serviço (COSERN NT-03)",
+    ],
+  },
+  CELPE: {
+    nome: "CELPE — PE",
+    maxMonofasicoKW: 12,
+    maxBifasicoKW: 25,
+    secaoMinRamalMm2: 10,
+    disjuntorMinEntradaA: 40,
+    alturaMinMedidorM: 1.5,
+    obs: ["Ramal mínimo 10 mm² Cu", "Carga > 12 kW: bifásico ou trifásico"],
+  },
+  COELBA: {
+    nome: "COELBA — BA",
+    maxMonofasicoKW: 12,
+    maxBifasicoKW: 25,
+    secaoMinRamalMm2: 10,
+    disjuntorMinEntradaA: 40,
+    alturaMinMedidorM: 1.5,
+    obs: ["Ramal mínimo 10 mm² Cu", "Carga > 12 kW: bifásico ou trifásico"],
+  },
+  CEMIG: {
+    nome: "CEMIG — MG",
+    maxMonofasicoKW: 14,
+    maxBifasicoKW: 28,
+    secaoMinRamalMm2: 10,
+    disjuntorMinEntradaA: 40,
+    alturaMinMedidorM: 1.5,
+    obs: ["Ramal mínimo 10 mm² Cu (CEMIG NTC-5)", "Carga > 14 kW: bifásico ou trifásico"],
+  },
+  LIGHT: {
+    nome: "LIGHT — RJ",
+    maxMonofasicoKW: 12,
+    maxBifasicoKW: 25,
+    secaoMinRamalMm2: 10,
+    disjuntorMinEntradaA: 40,
+    alturaMinMedidorM: 1.5,
+    obs: ["Ramal mínimo 10 mm² Cu", "Carga > 12 kW: bifásico ou trifásico"],
+  },
+  COPEL: {
+    nome: "COPEL — PR",
+    maxMonofasicoKW: 14,
+    maxBifasicoKW: 28,
+    secaoMinRamalMm2: 10,
+    disjuntorMinEntradaA: 40,
+    alturaMinMedidorM: 1.5,
+    obs: ["Ramal mínimo 10 mm² Cu (COPEL NTC 904200)", "Carga > 14 kW: bifásico"],
+  },
+};
+
+/**
+ * Aplica os critérios da concessionária para ajustar o tipo de entrada
+ * e a seção mínima do ramal, além de gerar alertas quando a carga
+ * exige mudança obrigatória do padrão de entrada.
+ */
+export function aplicarCriterioConcessionaria(
+  cargaW: number,
+  tipoEntradaSolicitado: TipoEntrada,
+  concessionaria: string
+): {
+  tipoEntradaFinal: TipoEntrada;
+  secaoRamalMm2: number;
+  alertas: string[];
+} {
+  const c = CRITERIOS_CONCESSIONARIAS[concessionaria] ?? CRITERIOS_CONCESSIONARIAS["COSERN"];
+  const cargaKW = cargaW / 1000;
+  const alertas: string[] = [];
+  let tipoEntradaFinal = tipoEntradaSolicitado;
+
+  if (cargaKW > c.maxBifasicoKW && tipoEntradaFinal !== "Trifásico") {
+    tipoEntradaFinal = "Trifásico";
+    alertas.push(`⚡ ${c.nome}: carga de ${cargaKW.toFixed(1)} kW excede ${c.maxBifasicoKW} kW — entrada TRIFÁSICA obrigatória.`);
+  } else if (cargaKW > c.maxMonofasicoKW && tipoEntradaFinal === "Monofásico") {
+    tipoEntradaFinal = "Bifásico";
+    alertas.push(`⚡ ${c.nome}: carga de ${cargaKW.toFixed(1)} kW excede ${c.maxMonofasicoKW} kW — entrada BIFÁSICA ou TRIFÁSICA obrigatória.`);
+  }
+
+  return {
+    tipoEntradaFinal,
+    secaoRamalMm2: c.secaoMinRamalMm2,
+    alertas,
+  };
+}
+
 export interface ResumoDemanda {
   cargaInstaladaW: number;
   correnteEntradaA: number;
   disjuntorGeralA: number;
   tipoEntradaSugerido: TipoEntrada;
+  alertasConcessionaria?: string[];
+  secaoRamalMm2?: number;
 }
 
 /**
@@ -333,26 +453,40 @@ export interface ResumoDemanda {
 export function calcularResumoDemanda(
   circuitos: { potenciaW: number }[],
   tensaoV: number,
-  tipoEntrada: TipoEntrada
+  tipoEntrada: TipoEntrada,
+  concessionaria?: string
 ): ResumoDemanda {
   const cargaInstaladaW = circuitos.reduce((s, c) => s + c.potenciaW, 0);
 
+  // Aplicar critérios da concessionária (padrão COSERN se não informado)
+  const { tipoEntradaFinal, secaoRamalMm2, alertasConcessionaria } =
+    concessionaria
+      ? aplicarCriterioConcessionaria(cargaInstaladaW, tipoEntrada, concessionaria)
+      : { tipoEntradaFinal: tipoEntrada, secaoRamalMm2: 10, alertasConcessionaria: [] };
+
   let correnteEntradaA: number;
-  if (tipoEntrada === "Trifásico") {
+  if (tipoEntradaFinal === "Trifásico") {
     correnteEntradaA = cargaInstaladaW / (Math.sqrt(3) * tensaoV);
-  } else if (tipoEntrada === "Bifásico") {
+  } else if (tipoEntradaFinal === "Bifásico") {
     correnteEntradaA = cargaInstaladaW / (2 * tensaoV);
   } else {
     correnteEntradaA = cargaInstaladaW / tensaoV;
   }
 
-  const disjuntorGeralA = escolherDisjuntorPadrao(correnteEntradaA * 1.15); // margem de segurança de 15%
+  const disjuntorGeralA = escolherDisjuntorPadrao(correnteEntradaA * 1.15);
 
-  let tipoEntradaSugerido: TipoEntrada = "Monofásico";
+  let tipoEntradaSugerido: TipoEntrada = tipoEntradaFinal;
   if (disjuntorGeralA > 63) tipoEntradaSugerido = "Trifásico";
   else if (disjuntorGeralA > 40) tipoEntradaSugerido = "Bifásico";
 
-  return { cargaInstaladaW, correnteEntradaA, disjuntorGeralA, tipoEntradaSugerido };
+  return {
+    cargaInstaladaW,
+    correnteEntradaA,
+    disjuntorGeralA,
+    tipoEntradaSugerido,
+    alertasConcessionaria,
+    secaoRamalMm2,
+  };
 }
 
 function escolherDisjuntorPadrao(correnteA: number): number {
