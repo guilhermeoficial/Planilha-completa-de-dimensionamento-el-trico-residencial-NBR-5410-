@@ -3184,6 +3184,150 @@ export const AREAS: Area[] = [
     ],
   },
 
+,
+  // ── TRANSPETRO ──────────────────────────────────────────────────────────────
+  {
+    slug: "transpetro-manut-eletrica",
+    nome: "Técnico Manutenção Elétrica — Transpetro",
+    nivel: "Técnico",
+    descricao: "Conteúdo fiel ao edital Transpetro (CESGRANRIO): Eletrotécnica, Motores, Transformadores, NR-10, Aterramento, NBR 5410. Edital vigente 2024/2025.",
+    modulos: [
+      {
+        slug: "transpetro-eletrotecnica-basica",
+        titulo: "Eletrotécnica — Base Transpetro",
+        descricao: "Lei de Ohm, potências, CA/CC, FP e circuitos — conforme edital CESGRANRIO.",
+        bloco: "Bloco I",
+        paginas: [
+          {
+            titulo: "1.1 — Lei de Ohm, Potência e Circuitos CC",
+            conteudo: [
+              "A Lei de Ohm relaciona tensão (V), corrente (I) e resistência (R): $$V = R \\times I$$. Fundamental para qualquer cálculo de circuito — dimensionamento de condutores, proteções, painéis de controle.",
+              "Resistência de um condutor: $$R = \\dfrac{\\rho \\cdot L}{A}$$, onde ρ é a resistividade do material (Cu: 1,72×10⁻⁸ Ω·m; Al: 2,82×10⁻⁸ Ω·m), L o comprimento (m) e A a seção transversal (m²).",
+              "[DICA] Ao dobrar o comprimento do condutor, a resistência dobra. Ao dobrar a seção, a resistência cai à metade. Relação direta com L, inversa com A — muito cobrado pela CESGRANRIO.",
+              "Potência elétrica: $$P = V \\times I = R \\times I^2 = \\dfrac{V^2}{R}$$. O efeito Joule (calor gerado) é a base do fusível e do relé térmico. Energia: $$E = P \\times t$$ (kWh = 3,6 MJ).",
+              "Associação em série: $$R_{eq} = R_1 + R_2 + \\cdots$$ — mesma corrente, tensão se divide. Em paralelo: $$\\dfrac{1}{R_{eq}} = \\dfrac{1}{R_1} + \\dfrac{1}{R_2}$$ — mesma tensão, corrente se divide.",
+              "[ATENCAO] A CESGRANRIO distingue POTÊNCIA (W, taxa de consumo) de ENERGIA (kWh, trabalho total). Não confundir!",
+              "[EXEMPLO] Dois resistores de 6Ω e 3Ω em paralelo: $$R_{eq} = \\dfrac{6 \\times 3}{6+3} = 2\\,\\Omega$$.",
+            ],
+            equacoes: [
+              { latex: "V = R \\cdot I \\qquad P = V \\cdot I = R \\cdot I^2 = \\dfrac{V^2}{R}", legenda: "Lei de Ohm e Potência" },
+              { latex: "R = \\dfrac{\\rho \\cdot L}{A}", legenda: "Resistência do condutor" },
+            ],
+            questoes: [
+              {
+                enunciado: "(Transpetro/CESGRANRIO) Um condutor de cobre de 50m, seção 2,5mm², tem resistência de: (ρ=1,72×10⁻⁸ Ω·m)",
+                alternativas: ["0,26 Ω", "0,34 Ω", "0,52 Ω", "1,08 Ω"],
+                respostaCorreta: 1,
+                explicacao: "$$R = \\dfrac{1{,}72\\times10^{-8} \\times 50}{2{,}5\\times10^{-6}} = 0{,}344\\,\\Omega \\approx 0{,}34\\,\\Omega$$",
+              },
+              {
+                enunciado: "(Transpetro/CESGRANRIO) Um resistor dissipa 200W com 100V aplicados. Sua resistência vale:",
+                alternativas: ["50 Ω", "2 Ω", "100 Ω", "20 Ω"],
+                respostaCorreta: 0,
+                explicacao: "$$R = \\dfrac{V^2}{P} = \\dfrac{100^2}{200} = \\dfrac{10000}{200} = 50\\,\\Omega$$",
+              },
+            ],
+          },
+          {
+            titulo: "1.2 — Corrente Alternada e Fator de Potência",
+            conteudo: [
+              "Corrente alternada senoidal: $$v(t) = V_m \\sin(\\omega t)$$. Valor eficaz (RMS): $$V_{rms} = V_m / \\sqrt{2} \\approx 0{,}707\\,V_m$$. No Brasil: 60 Hz.",
+              "[DICA] Os 127V e 220V são valores RMS. O pico do 220V é: $$V_m = 220\\sqrt{2} \\approx 311\\text{ V}$$.",
+              "Fator de potência: $$FP = \\cos\\varphi = P/S$$. Triângulo de potências: $$S^2 = P^2 + Q^2$$ (kVA, kW, kvar). FP = 1 → resistivo; FP < 1 → indutivo (motores) ou capacitivo.",
+              "[ATENCAO] ANEEL multa consumidores com FP < 0,92 indutivo. Banco de capacitores corrige FP — obrigatório em instalações industriais.",
+              "Sistema trifásico equilibrado: $$V_{linha} = \\sqrt{3} \\times V_{fase}$$. Potência trifásica: $$P = \\sqrt{3} \\times V_L \\times I_L \\times FP$$.",
+              "[EXEMPLO] Motor 30kW, FP=0,85, 380V trifásico: $$I = \\dfrac{30000}{1{,}732 \\times 380 \\times 0{,}85} \\approx 53{,}7\\text{ A}$$.",
+            ],
+            equacoes: [
+              { latex: "FP = \\cos\\varphi = \\dfrac{P}{S} \\qquad S = \\sqrt{P^2 + Q^2}", legenda: "Fator de Potência e Triângulo" },
+            ],
+            questoes: [
+              {
+                enunciado: "(Transpetro/CESGRANRIO) Instalação com 40kW e FP=0,80. A potência aparente é:",
+                alternativas: ["50 kVA", "32 kVA", "48 kVA", "40 kVA"],
+                respostaCorreta: 0,
+                explicacao: "$$S = P/FP = 40/0{,}80 = 50\\text{ kVA}$$.",
+              },
+            ],
+          },
+          {
+            titulo: "1.3 — Motores, Transformadores e Partidas",
+            conteudo: [
+              "Motor de indução trifásico: velocidade síncrona $$N_s = 120f/p$$. Escorregamento: $$s = (N_s - N_r)/N_s \\times 100\\%$$. Valor típico: 2% a 5%.",
+              "Partidas: DOL (direta — alta corrente); Estrela-Triângulo (reduz corrente e torque a 1/3); Soft-starter (controla tensão via tiristores); Inversor de frequência/VFD (controla frequência — mais eficiente, utilizado na Transpetro para bombas e compressores).",
+              "[ATENCAO] Estrela-Triângulo reduz torque a 1/3 — inadequada para compressores e bombas de alta carga. A CESGRANRIO cobra essa limitação.",
+              "Transformadores: $$a = N_1/N_2 = V_1/V_2 = I_2/I_1$$. Ensaio em vazio → perdas no ferro (constantes). Ensaio em curto → perdas no cobre (variam com a carga).",
+              "[EXEMPLO] Motor 6 polos, 60Hz, s=4%: $$N_s = 1200\\text{ rpm}$$, $$N_r = 1200 \\times 0{,}96 = 1152\\text{ rpm}$$.",
+            ],
+            equacoes: [
+              { latex: "N_s = \\dfrac{120f}{p} \\qquad s = \\dfrac{N_s - N_r}{N_s} \\times 100\\%", legenda: "Velocidade e Escorregamento" },
+            ],
+            questoes: [
+              {
+                enunciado: "(Transpetro/CESGRANRIO) Motor 4 polos, 60Hz, s=3%. Velocidade do rotor:",
+                alternativas: ["1.746 rpm", "1.800 rpm", "1.740 rpm", "1.764 rpm"],
+                respostaCorreta: 0,
+                explicacao: "$$N_s = 120\\times60/4 = 1800\\text{ rpm}$$. $$N_r = 1800\\times(1-0{,}03) = 1746\\text{ rpm}$$.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        slug: "transpetro-nr10-protecoes",
+        titulo: "NR-10, NBR 5410 e Proteções — Transpetro",
+        descricao: "Segurança elétrica, aterramento, proteções e qualidade de energia — exigidos no edital Transpetro.",
+        bloco: "Bloco II",
+        paginas: [
+          {
+            titulo: "2.1 — NR-10: Segurança em Instalações Elétricas",
+            conteudo: [
+              "NR-10: norma obrigatória para todos que trabalham com energia elétrica. Treinamento básico: 40 horas (baixa tensão). SEP (alta tensão): +40 horas. Reciclagem: a cada 2 anos.",
+              "Sequência SIVAP — 5 etapas obrigatórias para trabalho em instalações desenergizadas: (1) Seccionamento; (2) Impedimento de reenergização; (3) Verificação de ausência de tensão; (4) Aterramento temporário com equipotencialização; (5) Proteção de pontos vizinhos.",
+              "[DICA] A CESGRANRIO frequentemente apresenta a sequência com os itens 2 e 3 trocados. O impedimento (lockout/tagout) vem ANTES da verificação de tensão.",
+              "EPIs NR-10: luvas de borracha isolante (classe conforme tensão), capacete com viseira, óculos, calçados isolantes, uniforme antichama. EPCs: tapetes isolantes, barreiras, sinalizações.",
+              "Zonas de risco (NBR 14039): Zona controlada (acesso restrito, EPI obrigatório) e Zona de risco (somente com EPI específico e autorização). Distância para 380V: controlada = 0,5m; risco = 0,1m.",
+              "[ATENCAO] Trabalho SEM seccionamento (sistema energizado) exige: supervisor presente, EPI classe adequada, ferramentas isoladas e autorização formal — conforme NR-10 §10.7.",
+              "[EXEMPLO] Questão Transpetro: um técnico inspeciona painel de 380V. Distância mínima segura para acesso sem EPI específico: 0,5m (zona controlada), mas SEMPRE com EPI básico (capacete e óculos).",
+            ],
+            questoes: [
+              {
+                enunciado: "(Transpetro/CESGRANRIO) Qual a carga horária mínima do treinamento NR-10 básico (baixa tensão)?",
+                alternativas: ["20 horas", "30 horas", "40 horas", "60 horas"],
+                respostaCorreta: 2,
+                explicacao: "NR-10 §10.8.1: mínimo de 40 horas para o módulo básico (instalações de baixa tensão). Para trabalhos em SEP (alta tensão), são necessárias mais 40 horas. Reciclagem a cada 2 anos, com carga horária mínima de 20 horas.",
+              },
+              {
+                enunciado: "(Transpetro/CESGRANRIO) Na sequência SIVAP, qual etapa vem IMEDIATAMENTE antes da verificação de ausência de tensão?",
+                alternativas: ["Seccionamento", "Aterramento temporário", "Impedimento de reenergização (lockout)", "Proteção de pontos vizinhos"],
+                respostaCorreta: 2,
+                explicacao: "Sequência SIVAP: Seccionamento → Impedimento de reenergização → Verificação de ausência de tensão → Aterramento temporário → Proteção de vizinhos. O impedimento (lockout/tagout) vem antes da verificação — erro clássico cobrado pela CESGRANRIO.",
+              },
+            ],
+          },
+          {
+            titulo: "2.2 — Aterramento, Proteções e Qualidade de Energia",
+            conteudo: [
+              "Aterramento TN-S: condutor PE e neutro N separados em toda a instalação — padrão mais seguro, recomendado pela NBR 5410 e adotado nas instalações da Transpetro.",
+              "Resistência de aterramento: NBR 5410 ≤ 10Ω. Fórmula de Dwight: $$R = \\dfrac{\\rho}{2\\pi L}\\left[\\ln\\dfrac{4L}{d} - 1\\right]$$. Medida com terrômetro. Transpetro exige ≤ 5Ω para subestações.",
+              "[DICA] A resistência do aterramento é DIRETAMENTE proporcional à resistividade do solo (ρ) e INVERSAMENTE proporcional ao comprimento (L) da haste. Solo arenoso seco: ρ ≈ 1000 Ω·m (alta resistência). Solo úmido argiloso: ρ ≈ 10-50 Ω·m (baixa resistência).",
+              "Dispositivos de proteção: Fusível (sobrecorrente — irreversível). Disjuntor termomagnético (sobrecarga + curto — reversível). IDR/DR 30mA (choques elétricos). DPS (surtos atmosféricos e de manobra).",
+              "Qualidade de energia (PRODIST — ANEEL): THD (distorção harmônica) — causada por cargas não-lineares (inversores, fontes). Dips (afundamentos de tensão) — motores de grande porte na partida. Swells (sobretensões temporárias). Flicker (oscilação perceptível de luminosidade).",
+              "[EXEMPLO] Questão Transpetro: 'O DPS protege contra quê?' → Sobretensões transitórias (raios e manobras). NÃO protege contra sobrecarga. 'O DR de 30mA protege contra quê?' → Choques elétricos por corrente de fuga ≥ 30mA.",
+            ],
+            questoes: [
+              {
+                enunciado: "(Transpetro/CESGRANRIO) O Dispositivo de Proteção contra Surtos (DPS) tem a função de proteger instalações contra:",
+                alternativas: ["Sobrecargas nos circuitos terminais", "Sobretensões transitórias de origem atmosférica (raios) e de manobra", "Correntes de fuga acima de 30mA", "Variações lentas de tensão da concessionária"],
+                respostaCorreta: 1,
+                explicacao: "O DPS (também chamado de para-raios de baixa tensão ou TVSS) absorve e deriva para terra a energia de sobretensões transitórias de alta amplitude e curta duração. Para proteção contra sobrecargas usa-se disjuntor; contra choques elétricos usa-se DR.",
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 export function buscarArea(slug: string): Area | undefined {
