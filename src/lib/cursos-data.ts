@@ -3184,7 +3184,6 @@ export const AREAS: Area[] = [
     ],
   },
 
-,
   // ── TRANSPETRO ──────────────────────────────────────────────────────────────
   {
     slug: "transpetro-manut-eletrica",
