@@ -6903,32 +6903,7 @@ const QUESTOES_BASE: any[] = [
     explicacao: "**DNS** (Domain Name System) converte nomes legíveis (www.trt.jus.br) em endereços IP numéricos (192.168.1.1). Funciona como a 'lista telefônica' da Internet. Sem DNS, precisaríamos memorizar IPs para cada site. O DNS opera principalmente na porta **53** UDP/TCP." },
 
 
-
-];
-
-
-
-
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-
-export const QUESTOES: Questao[] = (QUESTOES_BASE as any[]).filter(Boolean).map((q) => ({ ...q, bloco: bloco(q.assunto), inedita: q.inedita ?? false }));
-
-
-
-export const AREAS_GRANDES: AreaGrande[] = ["Português", "Matemática/Raciocínio Lógico", "Informática", "Eletrotécnica", "Legislação", "Eletrônica", "Telecomunicações"];
-
-
-
-export const DIFICULDADES: Dificuldade[] = ["Fácil", "Médio", "Difícil"
-
-  // ══════════════════════════════════════════════════════════════════════════
-  // PROVA REAL TRANSPETRO — TÉCNICO MANUTENÇÃO JÚNIOR ÁREA ELÉTRICA
-  // CESGRANRIO — Questões 21 a 60 (Conhecimentos Específicos)
-  // ══════════════════════════════════════════════════════════════════════════
-
-  // ── BLOCO 1 ─────────────────────────────────────────────────────────────
-
+,
   { id: "tr21", inedita: false, areaGrande: "Eletrotécnica", assunto: "Circuitos CC — Leis de Kirchhoff", banca: "CESGRANRIO / Transpetro", ano: 2012, dificuldade: "Difícil",
     enunciado: "Considere o circuito resistivo da figura, alimentado por duas fontes de tensão contínuas (30V e 10V). Com base nos valores da figura, qual a tensão, em V, no nó marcado pela letra X?",
     alternativas: ["24", "18", "14", "12", "10"],
@@ -7274,6 +7249,20 @@ export const DIFICULDADES: Dificuldade[] = ["Fácil", "Médio", "Difícil"
 ];
 
 
+
+
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+
+export const QUESTOES: Questao[] = (QUESTOES_BASE as any[]).filter(Boolean).map((q) => ({ ...q, bloco: bloco(q.assunto), inedita: q.inedita ?? false }));
+
+
+
+export const AREAS_GRANDES: AreaGrande[] = ["Português", "Matemática/Raciocínio Lógico", "Informática", "Eletrotécnica", "Legislação", "Eletrônica", "Telecomunicações"];
+
+
+
+export const DIFICULDADES: Dificuldade[] = ["Fácil", "Médio", "Difícil"];
 
 export function bancasDisponiveis(): string[] {
 
