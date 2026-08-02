@@ -1,55 +1,59 @@
 @import "tailwindcss";
 
-/* ── Tema escuro (padrão) ─────────────────────────────────────── */
+/* ── Tema escuro (institucional / azul-marinho) ──────────────────
+   #070d17 bg · #101d33 painel · #cc9a3f dourado (selo/aprovação)
+   Serifada Source Serif 4 (títulos) + Inter (texto)               */
 :root {
-  --bg: #0a0d12;
-  --bg-elevated: #11151c;
-  --panel: #131822;
-  --panel-border: #232a37;
-  --text: #e7ebf2;
-  --muted: #8a93a6;
-  --accent: #f2a33d;
-  --accent-soft: #f2a33d22;
-  --phase-r: #f2545b;
-  --phase-s: #f2c14e;
-  --phase-t: #4fb6e8;
-  --ok: #36d399;
-  --warn: #f2c14e;
-  --danger: #f2545b;
-  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --bg: #070d17;
+  --bg-elevated: #0d1729;
+  --panel: #101d33;
+  --panel-border: #22334c;
+  --text: #edf1f7;
+  --muted: #8b98b0;
+  --accent: #cc9a3f;
+  --accent-soft: #cc9a3f1f;
+  --accent-ink: #1a1305;
+  --phase-r: #dd5a5f;
+  --phase-s: #d9ab42;
+  --phase-t: #4f9bce;
+  --ok: #2fa876;
+  --warn: #d1a13a;
+  --danger: #d0524f;
+  --font-display: "Source Serif 4", ui-serif, Georgia, serif;
   --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
 }
 
-/* ── Tema claro ───────────────────────────────────────────────── */
+/* ── Tema claro (padrão corporativo) ─────────────────────────── */
 html.light {
-  --bg: #f4f6fb;
-  --bg-elevated: #eaeef5;
+  --bg: #f4f6f9;
+  --bg-elevated: #e9edf3;
   --panel: #ffffff;
-  --panel-border: #d1d9e6;
-  --text: #0f1520;
-  --muted: #5a6478;
-  --accent: #d4841e;
-  --accent-soft: #d4841e22;
-  --phase-r: #d93f45;
-  --phase-s: #c9960a;
-  --phase-t: #2b8fbf;
-  --ok: #1fa870;
-  --warn: #c9960a;
-  --danger: #d93f45;
+  --panel-border: #d7dee7;
+  --text: #101a2c;
+  --muted: #566179;
+  --accent: #8a5a12;
+  --accent-soft: #8a5a1216;
+  --accent-ink: #ffffff;
+  --phase-r: #b6383d;
+  --phase-s: #a67c0a;
+  --phase-t: #275f8a;
+  --ok: #1a7a54;
+  --warn: #a67c0a;
+  --danger: #b6383d;
 }
 
 html.light body {
   background-image:
-    linear-gradient(180deg, rgba(212, 132, 30, 0.04), transparent 40%),
-    radial-gradient(circle at 15% 0%, rgba(43, 143, 191, 0.04), transparent 35%);
+    linear-gradient(180deg, rgba(16, 26, 44, 0.035), transparent 40%),
+    radial-gradient(circle at 15% 0%, rgba(39, 95, 138, 0.05), transparent 35%);
 }
 
 html.light .blueprint-grid {
   background-image:
-    linear-gradient(rgba(0,0,0,0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,0,0,0.045) 1px, transparent 1px);
-  background-size: 24px 24px;
+    linear-gradient(rgba(16, 26, 44, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(16, 26, 44, 0.05) 1px, transparent 1px);
+  background-size: 28px 28px;
 }
 
 @theme inline {
@@ -60,6 +64,7 @@ html.light .blueprint-grid {
   --color-text: var(--text);
   --color-muted: var(--muted);
   --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
   --color-phase-r: var(--phase-r);
   --color-phase-s: var(--phase-s);
   --color-phase-t: var(--phase-t);
@@ -82,15 +87,34 @@ html, body {
 body {
   font-family: var(--font-body);
   background-image:
-    linear-gradient(180deg, rgba(242, 163, 61, 0.05), transparent 40%),
-    radial-gradient(circle at 15% 0%, rgba(79, 182, 232, 0.06), transparent 35%);
+    linear-gradient(180deg, rgba(204, 154, 63, 0.05), transparent 40%),
+    radial-gradient(circle at 15% 0%, rgba(79, 155, 206, 0.06), transparent 35%);
 }
 
 .blueprint-grid {
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-  background-size: 24px 24px;
+    linear-gradient(rgba(255, 255, 255, 0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.028) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* ── Selo institucional (elemento de assinatura visual) ──────────
+   Círculo tracejado + anel duplo, como um carimbo de aprovação.   */
+.selo {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px dashed var(--accent);
+  border-radius: 999px;
+}
+.selo::before {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  opacity: 0.55;
 }
 
 .tabular {
@@ -103,45 +127,34 @@ body {
   font-size: 1.05em;
 }
 
-/* ── Efeito de vidro trincado ─────────────────────────────────── */
+/* ── Efeito de vidro trincado (via componente SVG) ───────────── */
 .alternativa-trincada {
   position: relative;
   overflow: hidden;
-  opacity: 0.45;
+  opacity: 0.5;
 }
 
-.alternativa-trincada::after {
-  content: "";
+.crack-overlay {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background-image:
-    /* rachaduras principais */
-    linear-gradient(127deg, transparent 35%, rgba(255,255,255,0.55) 35.5%, transparent 36%),
-    linear-gradient(43deg,  transparent 45%, rgba(255,255,255,0.40) 45.5%, transparent 46%),
-    linear-gradient(95deg,  transparent 60%, rgba(255,255,255,0.50) 60.5%, transparent 61%),
-    linear-gradient(160deg, transparent 25%, rgba(255,255,255,0.35) 25.5%, transparent 26%),
-    linear-gradient(70deg,  transparent 70%, rgba(255,255,255,0.45) 70.5%, transparent 71%),
-    /* fragmentos */
-    linear-gradient(110deg, transparent 50%, rgba(255,255,255,0.20) 50.5%, transparent 60%),
-    linear-gradient(30deg,  transparent 40%, rgba(255,255,255,0.15) 40.5%, transparent 55%);
-  mix-blend-mode: overlay;
   border-radius: inherit;
-  animation: crack-in 0.18s ease-out both;
+  animation: crack-aparecer 0.25s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
 
-@keyframes crack-in {
-  from { opacity: 0; transform: scale(1.04); }
-  to   { opacity: 1; transform: scale(1); }
+@keyframes crack-aparecer {
+  0%  { opacity: 0; transform: scale(1.08) rotate(-1deg); filter: blur(2px); }
+  50% { opacity: 1; transform: scale(0.98) rotate(0.3deg); filter: blur(0); }
+  100%{ opacity: 1; transform: scale(1) rotate(0deg); filter: blur(0); }
 }
 
-.alternativa-trincada-saindo::after {
-  animation: crack-out 0.15s ease-in both;
+.crack-overlay-saindo {
+  animation: crack-sumir 0.15s ease-in both !important;
 }
 
-@keyframes crack-out {
+@keyframes crack-sumir {
   from { opacity: 1; transform: scale(1); }
-  to   { opacity: 0; transform: scale(0.97); }
+  to   { opacity: 0; transform: scale(0.95); }
 }
 
 /* ── Scrollbar ────────────────────────────────────────────────── */
