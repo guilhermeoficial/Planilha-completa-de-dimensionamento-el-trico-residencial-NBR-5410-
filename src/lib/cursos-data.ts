@@ -3569,7 +3569,7 @@ export const AREAS: Area[] = [
         slug: "transpetro-instrumentacao-automacao",
         titulo: "Instrumentação e Automação Industrial",
         descricao: "Sensores, transmissores 4-20mA, CLP e lógica ladder, redes industriais e supervisório — automação aplicada a plantas de petróleo e derivados.",
-        bloco: "Bloco IV",
+        bloco: "Bloco III",
         paginas: [
           {
             titulo: "4.1 — Sensores e Transmissores Industriais",
