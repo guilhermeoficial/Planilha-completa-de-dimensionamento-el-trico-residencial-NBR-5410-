@@ -2974,6 +2974,169 @@ export const AREAS: Area[] = [
           },
         ],
       },
+      {
+        slug: "ti-logica-programacao",
+        titulo: "Lógica de Programação e Algoritmos",
+        descricao: "Estruturas de decisão e repetição, estruturas de dados básicas e boas práticas de algoritmos — conteúdo transversal a qualquer linguagem, cobrado nos concursos de TI.",
+        bloco: "Bloco I",
+        paginas: [
+          {
+            titulo: "1.1 — Estruturas de Decisão e Repetição",
+            conteudo: [
+              "Um algoritmo é uma sequência finita e não ambígua de passos para resolver um problema. As bancas de concurso costumam cobrar lógica de programação de forma independente de linguagem, usando pseudocódigo ou fluxograma.",
+              "Estrutura sequencial: instruções executadas uma após a outra, na ordem em que aparecem — é a estrutura mais básica de qualquer algoritmo.",
+              "Estrutura de decisão (condicional): SE (condição) ENTÃO (ação) SENÃO (ação alternativa). Permite que o algoritmo tome caminhos diferentes conforme o valor de uma variável ou expressão lógica.",
+              "[DICA] Decisão encadeada (SE...SENÃO SE...SENÃO) avalia as condições em ordem, e para na PRIMEIRA que for verdadeira — mesmo que uma condição posterior também seria verdadeira, ela nunca é avaliada. Esse comportamento é frequentemente testado em questões que pedem o resultado de um trecho de pseudocódigo.",
+              "Estruturas de repetição: PARA (For — repetição com contador definido, número de iterações conhecido de antemão), ENQUANTO (While — testa a condição ANTES de cada execução, pode nunca executar o bloco) e REPITA...ATÉ (Do-While — testa a condição DEPOIS, executa o bloco pelo menos uma vez).",
+              "[ATENCAO] A diferença crucial entre ENQUANTO e REPITA...ATÉ: se a condição já for falsa (ou verdadeira, no caso do 'até') logo de início, o ENQUANTO nunca executa o corpo do laço, enquanto o REPITA...ATÉ sempre executa pelo menos uma vez antes de checar a condição de parada.",
+              "[EXEMPLO] Pseudocódigo: 'PARA i DE 1 ATÉ 5 FAÇA: SOMA ← SOMA + i'. Após o laço, SOMA valerá 1+2+3+4+5 = 15, considerando que SOMA foi inicializada em 0 antes do laço.",
+            ],
+            questoes: [
+              {
+                enunciado: "(CESPE/CEBRASPE — estilo) Em uma estrutura de repetição do tipo ENQUANTO (While), na qual a condição de repetição é testada antes de cada execução do bloco de comandos, é correto afirmar que:",
+                alternativas: ["O bloco de comandos é executado ao menos uma vez, independentemente da condição inicial", "Se a condição já for falsa antes da primeira iteração, o bloco de comandos nunca será executado", "A estrutura ENQUANTO exige obrigatoriamente um contador numérico", "É impossível implementar um laço infinito usando ENQUANTO"],
+                respostaCorreta: 1,
+                explicacao: "Na estrutura ENQUANTO, a condição é avaliada antes de cada execução do bloco. Se a condição já for falsa na primeira avaliação, o bloco de comandos nunca chega a ser executado — diferente do REPITA...ATÉ, que sempre executa ao menos uma vez.",
+              },
+              {
+                enunciado: "(CESPE/CEBRASPE — estilo) Julgue: em uma estrutura condicional encadeada (SE...SENÃO SE...SENÃO), quando a primeira condição avaliada é verdadeira, as condições subsequentes não chegam a ser avaliadas, mesmo que também sejam verdadeiras.",
+                alternativas: ["Certo", "Errado"],
+                respostaCorreta: 0,
+                explicacao: "Correto. Em uma cadeia de SE...SENÃO SE, a avaliação para assim que a primeira condição verdadeira é encontrada; as condições posteriores no encadeamento simplesmente não são testadas, independentemente de seu valor lógico.",
+              },
+            ],
+          },
+          {
+            titulo: "1.2 — Estruturas de Dados Básicas",
+            conteudo: [
+              "Vetor (array): estrutura que armazena um conjunto de elementos do MESMO tipo, em posições contíguas de memória, acessadas por um índice numérico. Em muitas linguagens (C, Java, Python), a indexação começa em 0.",
+              "Matriz: vetor de duas (ou mais) dimensões, acessado por dois índices (linha e coluna) — usada para representar tabelas, imagens, planilhas.",
+              "[DICA] Ao percorrer uma matriz quadrada N×N somando os elementos da diagonal principal, o índice de linha é sempre igual ao índice de coluna: soma dos elementos onde linha = coluna.",
+              "Pilha (Stack): estrutura LIFO (Last In, First Out) — o último elemento inserido é o primeiro a ser removido. Operações principais: PUSH (empilhar) e POP (desempilhar). Usada em desfazer (undo), chamadas de função recursivas, avaliação de expressões.",
+              "Fila (Queue): estrutura FIFO (First In, First Out) — o primeiro elemento inserido é o primeiro a ser removido. Operações principais: ENQUEUE (enfileirar) e DEQUEUE (desenfileirar). Usada em filas de impressão, filas de atendimento, processamento de tarefas na ordem de chegada.",
+              "[ATENCAO] Pilha e fila são frequentemente confundidas em prova: pilha é o modelo de uma pilha de pratos (o último colocado é o primeiro retirado); fila é o modelo de uma fila de banco (quem chega primeiro é atendido primeiro).",
+              "Lista encadeada (linked list): cada elemento (nó) contém o dado e uma referência (ponteiro) para o próximo nó. Diferente do vetor, não exige posições contíguas de memória, e permite inserção/remoção eficiente no meio da estrutura sem deslocar os demais elementos.",
+              "[EXEMPLO] Uma pilha inicialmente vazia recebe as operações PUSH(1), PUSH(2), PUSH(3), POP(), PUSH(4). O topo da pilha ao final é 4, e o elemento logo abaixo dele é 1 (pois o POP() removeu o 3, que havia sido empilhado por último).",
+            ],
+            questoes: [
+              {
+                enunciado: "(CESPE/CEBRASPE — estilo) Considerando uma fila (estrutura FIFO) que recebe, nesta ordem, os elementos A, B e C, o primeiro elemento a ser removido dessa fila será:",
+                alternativas: ["C, pois é o último a entrar", "A, pois é o primeiro a entrar", "B, por estar no meio da estrutura", "Depende da posição de memória de cada elemento"],
+                respostaCorreta: 1,
+                explicacao: "Uma fila segue o princípio FIFO (First In, First Out): o primeiro elemento a entrar é o primeiro a sair. Como A foi o primeiro a ser inserido, ele será o primeiro a ser removido — diferente de uma pilha (LIFO), onde seria removido o último inserido (C).",
+              },
+            ],
+          },
+          {
+            titulo: "1.3 — Boas Práticas e Noções de Complexidade",
+            conteudo: [
+              "Complexidade de tempo (notação Big-O): mede como o tempo de execução de um algoritmo cresce em função do tamanho da entrada (n). É uma estimativa assintótica, não um tempo exato em segundos.",
+              "$$O(1)$$ — tempo constante, independe do tamanho da entrada (ex.: acessar um elemento de vetor por índice). $$O(n)$$ — tempo linear, cresce proporcionalmente à entrada (ex.: percorrer um vetor uma vez). $$O(n^2)$$ — tempo quadrático, comum em algoritmos com laços aninhados (ex.: ordenação por bolha).",
+              "[DICA] Busca sequencial em um vetor não ordenado: $$O(n)$$, no pior caso percorre todos os elementos. Busca binária em um vetor ORDENADO: $$O(\\log n)$$, pois a cada comparação descarta metade dos elementos restantes — muito mais eficiente para vetores grandes, mas exige que os dados estejam previamente ordenados.",
+              "Modularização: dividir um programa em funções/procedimentos menores, cada um com responsabilidade única, facilita manutenção, teste e reaproveitamento de código — princípio básico de engenharia de software, cobrado em questões conceituais.",
+              "[ATENCAO] Recursividade (uma função que chama a si mesma) sempre precisa de uma condição de parada (caso base) bem definida — sem ela, a função entra em loop infinito de chamadas, esgotando a pilha de execução (stack overflow).",
+              "Teste de mesa: técnica de depuração manual em que se simula, passo a passo, os valores das variáveis conforme o algoritmo é executado — muito cobrada em questões que pedem 'qual o valor final da variável X' após um trecho de pseudocódigo.",
+              "[EXEMPLO] Uma busca binária em um vetor de 1.024 elementos ordenados encontra qualquer elemento em, no máximo, $$\\log_2(1024) = 10$$ comparações — contra até 1.024 comparações no pior caso de uma busca sequencial.",
+            ],
+            equacoes: [
+              { latex: "O(1) < O(\\log n) < O(n) < O(n\\log n) < O(n^2)", legenda: "Ordem crescente de complexidade de tempo" },
+            ],
+            questoes: [
+              {
+                enunciado: "(CESPE/CEBRASPE — estilo) A busca binária, quando aplicada a um vetor, exige como pré-requisito que:",
+                alternativas: ["O vetor tenha, no máximo, 100 elementos", "O vetor esteja ordenado", "Todos os elementos do vetor sejam números inteiros", "O vetor não contenha elementos repetidos"],
+                respostaCorreta: 1,
+                explicacao: "A busca binária funciona descartando metade dos elementos restantes a cada comparação, o que só é válido se o vetor estiver ordenado — sem ordenação, não há garantia de que o elemento buscado esteja na metade descartada, e o algoritmo (e sua complexidade O(log n)) deixa de ser válido.",
+              },
+              {
+                enunciado: "(CESPE/CEBRASPE — estilo) Julgue: uma função recursiva, mesmo sem uma condição de parada explícita, sempre termina sua execução corretamente após percorrer todos os dados de entrada.",
+                alternativas: ["Certo", "Errado"],
+                respostaCorreta: 1,
+                explicacao: "Errado. Sem uma condição de parada (caso base) bem definida, a função recursiva continua chamando a si mesma indefinidamente, o que leva ao esgotamento da pilha de execução (stack overflow) e a um erro de execução — não a uma finalização correta.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        slug: "ti-governanca-itil-cobit",
+        titulo: "Governança de TI — ITIL e COBIT",
+        descricao: "Conceitos de governança versus gestão de TI, ciclo de vida de serviço (ITIL v4) e os domínios do COBIT — cobrados em concursos de TI do Judiciário e órgãos públicos.",
+        bloco: "Bloco II",
+        paginas: [
+          {
+            titulo: "2.1 — ITIL v4: Conceitos e Valor do Serviço",
+            conteudo: [
+              "ITIL (Information Technology Infrastructure Library) é um conjunto de boas práticas para gerenciamento de serviços de TI, focado em entregar VALOR ao cliente/usuário através dos serviços prestados — não é uma norma certificável de organização, mas um framework de referência.",
+              "Sistema de Valor de Serviço (SVS) do ITIL v4: integra todos os componentes e atividades da organização que trabalham juntos para permitir a criação de valor através de serviços de TI, incluindo princípios orientadores, governança, cadeia de valor de serviço, práticas e melhoria contínua.",
+              "[DICA] Os 7 Princípios Orientadores do ITIL v4 (cobrados literalmente em prova): foco no valor; comece de onde você está; progrida iterativamente com feedback; colabore e promova visibilidade; pense e trabalhe de forma holística; mantenha simples e prático; otimize e automatize.",
+              "Cadeia de Valor de Serviço (SVC): composta por 6 atividades — Planejar, Melhorar, Engajar, Projetar e Transição, Obter/Construir e Entregar/Suportar. Essas atividades se conectam de forma flexível conforme a demanda, não seguindo uma ordem fixa e obrigatória.",
+              "[ATENCAO] Diferente das versões anteriores do ITIL (v3), que eram organizadas em 5 estágios de ciclo de vida rígidos (Estratégia, Desenho, Transição, Operação, Melhoria Contínua), o ITIL v4 adota o modelo de Cadeia de Valor de Serviço, mais flexível e adaptável a diferentes contextos organizacionais — ponto frequentemente cobrado como diferença entre as versões.",
+              "Prática de Gerenciamento de Incidente x Gerenciamento de Problema: Incidente é uma interrupção não planejada de um serviço, tratado com foco em RESTAURAR o serviço o mais rápido possível. Problema é a causa raiz (real ou potencial) de um ou mais incidentes, tratado com foco em ELIMINAR a causa e evitar recorrência.",
+              "[EXEMPLO] Um servidor de e-mail para de funcionar (incidente) e é reiniciado para restaurar o serviço rapidamente. A investigação da causa raiz (disco cheio, por exemplo) e a ação para que isso não se repita é tratada como gerenciamento de problema — processo distinto e com objetivo diferente do gerenciamento de incidente.",
+            ],
+            questoes: [
+              {
+                enunciado: "(CESPE/CEBRASPE — estilo) No ITIL v4, o gerenciamento de incidente tem como foco principal:",
+                alternativas: ["Eliminar definitivamente a causa raiz de uma falha recorrente", "Restaurar o serviço normal o mais rápido possível, minimizando o impacto ao negócio", "Planejar a capacidade futura da infraestrutura de TI", "Auditar os controles de acesso aos sistemas críticos"],
+                respostaCorreta: 1,
+                explicacao: "O gerenciamento de incidente foca em restaurar a operação normal do serviço o mais rápido possível, minimizando o impacto adverso nas operações do negócio. A investigação e eliminação da causa raiz é responsabilidade do gerenciamento de problema, um processo distinto.",
+              },
+              {
+                enunciado: "(CESPE/CEBRASPE — estilo) Julgue: o ITIL v4 organiza suas práticas em um ciclo de vida de serviço composto por cinco estágios sequenciais e obrigatórios: Estratégia, Desenho, Transição, Operação e Melhoria Contínua.",
+                alternativas: ["Certo", "Errado"],
+                respostaCorreta: 1,
+                explicacao: "Errado. Esse modelo de 5 estágios sequenciais é característico do ITIL v3. O ITIL v4 substituiu esse modelo pela Cadeia de Valor de Serviço (SVC), com 6 atividades que se conectam de forma flexível conforme a demanda, sem uma ordem fixa obrigatória.",
+              },
+            ],
+          },
+          {
+            titulo: "2.2 — COBIT: Governança versus Gestão de TI",
+            conteudo: [
+              "COBIT (Control Objectives for Information and Related Technologies) é um framework voltado à GOVERNANÇA de TI, complementar ao ITIL (mais focado em GESTÃO/operação de serviços). O COBIT ajuda a alinhar TI aos objetivos do negócio e a garantir que TI entregue valor com risco gerenciado.",
+              "[DICA] Distinção clássica cobrada em prova: GOVERNANÇA avalia necessidades das partes interessadas, direciona através de priorização e tomada de decisão, e monitora desempenho e conformidade — é responsabilidade da alta administração/conselho. GESTÃO planeja, constrói, executa e monitora atividades, alinhada com a direção definida pelo corpo de governança — é responsabilidade da diretoria executiva.",
+              "No COBIT 2019 (versão mais recente), a governança e a gestão são separadas em dois domínios distintos: EDM (Evaluate, Direct and Monitor — Avaliar, Dirigir e Monitorar), de governança, e domínios de gestão (APO — Alinhar/Planejar/Organizar; BAI — Construir/Adquirir/Implementar; DSS — Entregar/Servir/Suportar; MEA — Monitorar/Avaliar).",
+              "[ATENCAO] Um erro comum em prova é tratar 'governança' e 'gestão' como sinônimos. São conceitos distintos e complementares: a governança AVALIA, DIRECIONA e MONITORA (papel do conselho/alta administração); a gestão PLANEJA, CONSTRÓI, EXECUTA e MONITORA as atividades operacionais (papel da diretoria executiva) alinhadas à direção definida pela governança.",
+              "Princípios do COBIT 2019: atender às necessidades das partes interessadas; cobertura ponta a ponta da organização; framework único integrado; abordagem holística; modelo de governança dinâmico; distinguir governança de gestão; adaptado às necessidades da empresa.",
+              "[EXEMPLO] Questão típica de prova: 'O domínio EDM do COBIT 2019 está relacionado a qual atividade?' → Governança (Avaliar, Dirigir e Monitorar) — realizada pelo conselho/alta administração, e NÃO pela gestão operacional de TI.",
+            ],
+            questoes: [
+              {
+                enunciado: "(CESPE/CEBRASPE — estilo) De acordo com o COBIT 2019, a atividade de AVALIAR, DIRECIONAR e MONITORAR (domínio EDM) está associada a qual conceito?",
+                alternativas: ["Gestão operacional de TI, sob responsabilidade da diretoria executiva", "Governança de TI, sob responsabilidade do conselho/alta administração", "Apenas ao processo de auditoria externa de sistemas", "Exclusivamente ao gerenciamento de projetos de infraestrutura"],
+                respostaCorreta: 1,
+                explicacao: "O domínio EDM (Evaluate, Direct and Monitor) do COBIT 2019 corresponde à GOVERNANÇA de TI, tipicamente de responsabilidade do conselho/alta administração — que avalia as necessidades das partes interessadas, direciona através de priorização e decisão, e monitora desempenho e conformidade. É distinto da gestão operacional, que planeja, constrói e executa.",
+              },
+              {
+                enunciado: "(CESPE/CEBRASPE — estilo) Julgue: governança e gestão de TI, segundo o COBIT, são termos equivalentes e podem ser usados como sinônimos.",
+                alternativas: ["Certo", "Errado"],
+                respostaCorreta: 1,
+                explicacao: "Errado. O COBIT 2019 trata governança e gestão como conceitos distintos e complementares: a governança avalia, direciona e monitora (papel do conselho); a gestão planeja, constrói, executa e monitora as atividades operacionais, alinhada à direção definida pela governança.",
+              },
+            ],
+          },
+          {
+            titulo: "2.3 — Gestão de Projetos e Melhoria Contínua",
+            conteudo: [
+              "PDCA (Plan-Do-Check-Act): ciclo de melhoria contínua aplicado a processos de TI — Planejar (definir objetivos e como alcançá-los), Fazer (executar o planejado), Checar (verificar os resultados frente ao planejado) e Agir (corrigir desvios e padronizar melhorias).",
+              "[DICA] O PDCA é citado tanto no ITIL (prática de Melhoria Contínua) quanto em normas de gestão da qualidade (ISO 9001) — é um conceito transversal, não exclusivo de nenhum framework específico.",
+              "PMBOK (Project Management Body of Knowledge): guia de boas práticas em gerenciamento de projetos, organizado (nas versões clássicas) em grupos de processos — Iniciação, Planejamento, Execução, Monitoramento e Controle, e Encerramento — que se sobrepõem ao longo do ciclo de vida do projeto, não sendo estritamente sequenciais.",
+              "Tripla restrição do projeto: escopo, tempo e custo estão interligados — alterar um, tipicamente impacta os outros dois. Um quarto elemento comumente adicionado é a qualidade, formando o 'quadrilátero' de restrições do projeto.",
+              "[ATENCAO] Ampliar o escopo de um projeto sem ajustar prazo ou orçamento tende a comprometer a qualidade da entrega — é a manifestação prática da tripla restrição, frequentemente cobrada em questões conceituais sobre gestão de projetos.",
+              "Segurança da informação (visão de governança): a tríade CID (Confidencialidade, Integridade e Disponibilidade) orienta os controles de segurança adotados por qualquer política de governança de TI — proteger a informação contra acesso indevido, alteração não autorizada e indisponibilidade.",
+              "[EXEMPLO] Um ataque de ransomware que criptografa arquivos e impede o acesso aos dados compromete principalmente a DISPONIBILIDADE (usuários não conseguem acessar a informação) e, se os dados forem exfiltrados antes da criptografia, também a CONFIDENCIALIDADE.",
+            ],
+            questoes: [
+              {
+                enunciado: "(CESPE/CEBRASPE — estilo) O ciclo PDCA, aplicado à melhoria contínua de processos de TI, é composto pelas etapas:",
+                alternativas: ["Planejar, Documentar, Certificar e Auditar", "Planejar, Fazer, Checar e Agir", "Projetar, Desenvolver, Codificar e Aprovar", "Priorizar, Delegar, Comunicar e Avaliar"],
+                respostaCorreta: 1,
+                explicacao: "PDCA é a sigla para Plan-Do-Check-Act (Planejar-Fazer-Checar-Agir): planeja-se o objetivo e a forma de alcançá-lo, executa-se o planejado, verifica-se o resultado frente ao esperado, e agem-se correções e padronizações das melhorias identificadas — um ciclo contínuo.",
+              },
+            ],
+          },
+        ],
+      },
     ],
   },
 
@@ -3320,6 +3483,166 @@ export const AREAS: Area[] = [
                 alternativas: ["Sobrecargas nos circuitos terminais", "Sobretensões transitórias de origem atmosférica (raios) e de manobra", "Correntes de fuga acima de 30mA", "Variações lentas de tensão da concessionária"],
                 respostaCorreta: 1,
                 explicacao: "O DPS (também chamado de para-raios de baixa tensão ou TVSS) absorve e deriva para terra a energia de sobretensões transitórias de alta amplitude e curta duração. Para proteção contra sobrecargas usa-se disjuntor; contra choques elétricos usa-se DR.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        slug: "transpetro-instalacoes-nbr5410",
+        titulo: "Instalações Elétricas e Dimensionamento — NBR 5410",
+        descricao: "Dimensionamento de condutores, dispositivos de manobra, quadros de distribuição e subestações — conforme NBR 5410 e critérios de projeto industrial.",
+        bloco: "Bloco III",
+        paginas: [
+          {
+            titulo: "3.1 — Dimensionamento de Condutores pela NBR 5410",
+            conteudo: [
+              "A NBR 5410 estabelece três critérios independentes para o dimensionamento de um condutor, e a seção final adotada é sempre a MAIOR dentre eles: capacidade de condução de corrente, queda de tensão e curto-circuito.",
+              "Capacidade de condução: a corrente de projeto deve ser menor ou igual à capacidade nominal do condutor, ajustada por fatores de correção. $$I_p \\leq I_n \\times F_t \\times F_a$$, onde $F_t$ é o fator de temperatura ambiente e $F_a$ é o fator de agrupamento (número de circuitos na mesma eletrocalha/duto).",
+              "[DICA] Quanto mais circuitos agrupados no mesmo eletroduto ou bandeja, menor o fator de agrupamento $F_a$ — cada condutor dissipa menos calor por estar cercado de outros também aquecidos. A tabela 42 da NBR 5410 traz esses fatores.",
+              "Critério da queda de tensão: circuitos terminais ≤ 4% (instalações alimentadas diretamente por transformador de distribuição de baixa tensão) e a soma de todos os trechos (do ponto de entrega até o equipamento) não deve ultrapassar o limite estabelecido pela concessionária, tipicamente 5% a 7% no total.",
+              "[ATENCAO] Circuito de distribuição (do quadro geral até quadros terminais) tem limite de queda de tensão diferente do circuito terminal — a norma trata os trechos separadamente, e bancas gostam de cobrar a diferença entre os limites.",
+              "Método de instalação: a tabela de métodos de referência (A1, B1, C, etc.) define a capacidade de condução de acordo com a forma de instalação — condutor isolado em eletroduto embutido em parede térmica (B1), cabo unipolar ao ar livre (E), diretamente enterrado (D). Cada método tem uma tabela de ampacidade própria.",
+              "[EXEMPLO] Um circuito com corrente de projeto de 32A, instalado em eletroduto embutido junto com outros 3 circuitos ($F_a$=0,65), precisa de um condutor cuja capacidade nominal, na tabela de referência, seja: $$I_n \\geq \\dfrac{32}{0{,}65} \\approx 49{,}2\\text{ A}$$ — arredondando para cima na tabela normalizada.",
+            ],
+            equacoes: [
+              { latex: "I_p \\leq I_n \\times F_t \\times F_a", legenda: "Critério de capacidade de condução" },
+              { latex: "\\Delta V\\% = \\dfrac{V_{sem\\,carga} - V_{com\\,carga}}{V_{nominal}} \\times 100", legenda: "Queda de tensão percentual" },
+            ],
+            questoes: [
+              {
+                enunciado: "(CESGRANRIO — estilo) Segundo a NBR 5410, ao dimensionar um condutor, a seção final adotada deve ser:",
+                alternativas: ["A menor seção que atenda ao critério de queda de tensão", "A maior seção dentre os critérios de capacidade de condução, queda de tensão e curto-circuito", "Sempre a seção mínima permitida por tabela, independente da carga", "A média aritmética entre os critérios de corrente e queda de tensão"],
+                respostaCorreta: 1,
+                explicacao: "A norma exige que os três critérios sejam verificados independentemente (capacidade de condução, queda de tensão e suportabilidade a curto-circuito), e a seção final do condutor é sempre a maior entre as três — garantindo que nenhum dos limites seja violado.",
+              },
+              {
+                enunciado: "(CESGRANRIO — estilo) O fator de agrupamento numa instalação elétrica tem a função de:",
+                alternativas: ["Aumentar a capacidade de condução quando há vários circuitos juntos", "Corrigir a capacidade de condução para baixo, pois condutores agrupados dissipam calor de forma menos eficiente", "Reduzir a queda de tensão do circuito", "Determinar a bitola mínima do condutor de proteção (PE)"],
+                respostaCorreta: 1,
+                explicacao: "Quando vários circuitos estão agrupados no mesmo eletroduto, bandeja ou eletrocalha, o calor gerado por cada um dificulta a dissipação térmica dos vizinhos. Por isso a capacidade nominal tabelada precisa ser reduzida pelo fator de agrupamento ($F_a$ < 1).",
+              },
+            ],
+          },
+          {
+            titulo: "3.2 — Dispositivos de Manobra e Quadros de Distribuição",
+            conteudo: [
+              "Quadro de Distribuição (QD): concentra os dispositivos de proteção e manobra de um conjunto de circuitos. Classificação usual: QGBT (Quadro Geral de Baixa Tensão) alimenta os QDs terminais/setoriais de uma planta industrial.",
+              "Disjuntor termomagnético: atua por dois princípios — o elemento térmico (bimetálico) protege contra sobrecarga (corrente um pouco acima da nominal, por tempo prolongado) e o elemento magnético protege contra curto-circuito (corrente muito elevada, atuação quase instantânea).",
+              "[DICA] Curva de disparo do disjuntor: Curva B (2 a 3× In) — cargas resistivas, iluminação; Curva C (5 a 10× In) — motores e cargas com pico de partida moderado; Curva D (10 a 20× In) — transformadores e motores com correntes de partida elevadas.",
+              "Seccionadora: dispositivo de manobra SEM capacidade de interromper corrente de carga — só pode ser operada com o circuito já desenergizado (a jusante de um disjuntor já aberto). Usada para isolamento visível durante manutenção.",
+              "[ATENCAO] Nunca operar uma seccionadora sob carga: a ausência de câmara de extinção de arco causa a formação de um arco elétrico sustentado entre os contatos, com risco de explosão e queimaduras graves — diferente do disjuntor, que é projetado para interromper corrente.",
+              "Contator: dispositivo eletromecânico de manobra à distância, acionado por uma bobina, projetado para operar sob carga milhares de vezes — usado no acionamento de motores. Diferente do disjuntor, não tem função de proteção própria (por isso trabalha associado a um relé térmico).",
+              "[EXEMPLO] Um circuito de acionamento de motor típico tem: disjuntor motor (proteção contra curto), contator (manobra/liga-desliga) e relé de sobrecarga térmico (proteção contra sobrecarga) — os três em série no circuito de potência.",
+            ],
+            questoes: [
+              {
+                enunciado: "(CESGRANRIO — estilo) A seccionadora se diferencia do disjuntor porque:",
+                alternativas: ["Possui câmara de extinção de arco, permitindo interromper corrente de carga", "Não deve ser operada sob carga, servindo apenas para isolamento visível com o circuito já desenergizado", "É o único dispositivo capaz de proteger contra curto-circuito", "Substitui o contator em circuitos de acionamento de motores"],
+                respostaCorreta: 1,
+                explicacao: "A seccionadora não tem capacidade de interromper corrente de carga (não possui câmara de extinção de arco). Ela só deve ser manobrada com o circuito já desenergizado por outro dispositivo (disjuntor), servindo para dar isolamento visível e seguro durante manutenção.",
+              },
+            ],
+          },
+          {
+            titulo: "3.3 — Subestações e Cabines Primárias",
+            conteudo: [
+              "Subestação (SE) de consumidor: converte a energia em média tensão (13,8kV ou 34,5kV, tipicamente) recebida da concessionária para a baixa tensão (380/220V) utilizada nos equipamentos da planta, através de um ou mais transformadores.",
+              "Componentes típicos de uma cabine primária: ramal de entrada, proteção geral (disjuntor ou chave fusível de média tensão), medição (TCs e TPs), transformador(es) de força e quadro de baixa tensão (QGBT).",
+              "[DICA] Relé de proteção 50/51 (sobrecorrente instantânea/temporizada) e 87 (diferencial) são os mais cobrados: o 50/51 protege contra curtos e sobrecargas na média tensão, enquanto o 87 compara a corrente de entrada e saída do transformador, atuando quando há diferença (indicando falta interna).",
+              "Aterramento de subestação: malha de terra dedicada, interligada ao neutro do transformador e às carcaças metálicas dos equipamentos. Resistência de aterramento exigida costuma ser mais restritiva que em instalações residenciais (a Transpetro trabalha tipicamente com ≤5Ω para subestações).",
+              "[ATENCAO] A malha de terra de uma subestação de média tensão precisa suportar a corrente de curto-circuito à terra sem elevação de potencial perigosa (GPR — Ground Potential Rise) na área ao redor — por isso o dimensionamento da malha considera não só a resistência, mas também as tensões de passo e de toque.",
+              "[EXEMPLO] Questão típica: 'O relé diferencial (87) de um transformador de subestação atua quando...' → há diferença entre a corrente que entra e a que sai do transformador, indicando falta interna (curto entre espiras, por exemplo) — não atua para faltas externas ao transformador, onde a corrente de entrada e saída permanecem praticamente iguais.",
+            ],
+            questoes: [
+              {
+                enunciado: "(CESGRANRIO — estilo) A função da proteção diferencial (código ANSI 87) aplicada a um transformador de subestação é:",
+                alternativas: ["Atuar sempre que há sobrecarga prolongada no transformador", "Comparar as correntes de entrada e saída do transformador, atuando quando há diferença, típica de falta interna", "Substituir a proteção de sobrecorrente temporizada (51) em qualquer situação", "Medir apenas a tensão do secundário do transformador"],
+                respostaCorreta: 1,
+                explicacao: "A proteção diferencial compara continuamente a corrente que entra e a que sai do equipamento protegido. Em operação normal (ou falta externa) essas correntes são praticamente iguais; uma falta interna (curto entre espiras, por exemplo) rompe esse equilíbrio, e o relé atua rapidamente e de forma seletiva.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        slug: "transpetro-instrumentacao-automacao",
+        titulo: "Instrumentação e Automação Industrial",
+        descricao: "Sensores, transmissores 4-20mA, CLP e lógica ladder, redes industriais e supervisório — automação aplicada a plantas de petróleo e derivados.",
+        bloco: "Bloco IV",
+        paginas: [
+          {
+            titulo: "4.1 — Sensores e Transmissores Industriais",
+            conteudo: [
+              "Variáveis de processo mais medidas em plantas industriais: temperatura, pressão, nível e vazão. Cada uma tem tecnologias de sensoriamento próprias, mas o sinal de saída padronizado costuma ser o mesmo.",
+              "Temperatura: termopar (gera uma tensão proporcional pelo efeito Seebeck, ampla faixa, menos preciso) e RTD/Pt100 (resistência varia com a temperatura, mais precisa, faixa menor). Pt100: resistência de 100Ω a 0°C.",
+              "Pressão: transmissores piezoresistivos ou capacitivos convertem a deformação de um diafragma em sinal elétrico. Pressão manométrica (relativa à atmosfera) x pressão absoluta (relativa ao vácuo) — distinção cobrada em provas.",
+              "[DICA] Nível pode ser medido por pressão hidrostática (coluna de líquido), radar, ultrassom ou capacitância. Em tanques de derivados de petróleo (foco Transpetro), radar guiado por onda é muito utilizado por sua robustez a vapores e variações de densidade do produto.",
+              "Sinal padrão 4-20mA: convenção universal em instrumentação industrial. 4mA representa 0% da escala (e não zero absoluto de corrente!) e 20mA representa 100%. Essa escolha permite diferenciar um sinal de 0% de um cabo rompido (0mA), auxiliando o diagnóstico de falhas.",
+              "[ATENCAO] Se a malha de instrumentação estiver com corrente de 0mA, isso indica falha (cabo rompido, transmissor sem alimentação) — NUNCA representa leitura válida de 0% da variável de processo, que corresponde a 4mA.",
+              "[EXEMPLO] Um transmissor de pressão calibrado para 0-10 bar envia 12mA. A pressão correspondente é: $$P = \\dfrac{(12-4)}{(20-4)} \\times 10 = 5\\text{ bar}$$.",
+            ],
+            equacoes: [
+              { latex: "\\text{Valor} = \\dfrac{(I_{lida} - 4)}{(20-4)} \\times \\text{Faixa}", legenda: "Conversão de sinal 4-20mA para a variável de processo" },
+            ],
+            questoes: [
+              {
+                enunciado: "(CESGRANRIO — estilo) Em um sistema de instrumentação com sinal padrão 4-20mA, uma corrente de 0mA na malha normalmente indica:",
+                alternativas: ["Que a variável de processo está em seu valor mínimo (0% da escala)", "Uma condição de falha na malha, como rompimento de cabo ou falta de alimentação", "Que o transmissor está calibrado incorretamente para escala invertida", "Uma leitura negativa da variável de processo"],
+                respostaCorreta: 1,
+                explicacao: "O padrão 4-20mA reserva o valor de 4mA para representar 0% da escala, justamente para que 0mA nunca seja confundido com uma leitura válida — 0mA só ocorre em situação de falha (cabo rompido, falta de alimentação do transmissor), facilitando o diagnóstico automático de falhas pelo sistema de controle.",
+              },
+              {
+                enunciado: "(CESGRANRIO — estilo) Um transmissor de nível 4-20mA, calibrado para 0-5m, está enviando 16mA. O nível correspondente é:",
+                alternativas: ["3,0 m", "3,75 m", "4,0 m", "4,25 m"],
+                respostaCorreta: 1,
+                explicacao: "$$N = \\dfrac{16-4}{20-4}\\times 5 = \\dfrac{12}{16}\\times 5 = 3{,}75\\text{ m}$$.",
+              },
+            ],
+          },
+          {
+            titulo: "4.2 — CLP e Lógica Ladder",
+            conteudo: [
+              "O CLP (Controlador Lógico Programável) substituiu os painéis de relés eletromecânicos na automação industrial, oferecendo maior confiabilidade, flexibilidade de reprogramação e capacidade de comunicação em rede.",
+              "Estrutura básica: fonte de alimentação, CPU (processa o programa), módulos de entrada digital/analógica (recebem sinais de sensores e botoeiras) e módulos de saída digital/analógica (acionam contatores, válvulas, sinalizadores).",
+              "Ciclo de varredura (scan): o CLP lê todas as entradas, executa o programa do início ao fim, e então atualiza todas as saídas — repetindo esse ciclo continuamente, tipicamente em milissegundos.",
+              "Linguagem Ladder (diagrama de contatos): a mais usada na indústria por se assemelhar visualmente aos diagramas elétricos de relés. Contato NA (| |) representa uma entrada ou condição verdadeira; contato NF (|/|) representa uma condição negada; bobina de saída ( ) representa o resultado da lógica.",
+              "[DICA] Lógica de selo (self-holding): um contato auxiliar da própria saída, em paralelo com o botão de partida, mantém a saída energizada mesmo depois que o operador solta o botão. É a base de qualquer circuito 'liga/desliga com memória' em Ladder.",
+              "[ATENCAO] Instrução de SET (liga e mantém) e RESET (desliga e mantém) têm prioridade conforme a ordem no programa: se SET e RESET da mesma saída forem verdadeiros ao mesmo tempo, prevalece a instrução executada por último no ciclo de varredura — ponto clássico de pegadinha em provas.",
+              "[EXEMPLO] Um intertravamento típico entre dois contatores (reversão de motor) usa contatos NF de cada contator no circuito do outro: enquanto KM1 estiver energizado, seu contato NF abre o circuito de KM2, impedindo que os dois sejam acionados simultaneamente (o que causaria curto entre fases).",
+            ],
+            questoes: [
+              {
+                enunciado: "(CESGRANRIO — estilo) No ciclo de varredura (scan) de um CLP, a sequência correta de operações é:",
+                alternativas: ["Executa o programa, lê as entradas, atualiza as saídas", "Lê as entradas, executa o programa, atualiza as saídas", "Atualiza as saídas, lê as entradas, executa o programa", "Lê as entradas e as saídas simultaneamente, depois executa o programa"],
+                respostaCorreta: 1,
+                explicacao: "O ciclo de varredura do CLP segue a ordem: leitura de todas as entradas → processamento/execução do programa (com base nos valores lidos) → atualização de todas as saídas. Esse ciclo se repete continuamente enquanto o CLP está em modo RUN.",
+              },
+            ],
+          },
+          {
+            titulo: "4.3 — Redes Industriais e Sistemas Supervisórios",
+            conteudo: [
+              "Redes industriais conectam CLPs, sensores inteligentes e sistemas de supervisão, permitindo monitoramento e controle centralizado de uma planta inteira a partir de uma sala de controle.",
+              "Modbus: um dos protocolos mais utilizados na indústria por sua simplicidade e abertura (não proprietário). Modbus RTU trabalha sobre RS-485 (par trançado, meio físico serial); Modbus TCP trabalha sobre Ethernet/IP.",
+              "[DICA] Topologia mestre-escravo (ou cliente-servidor, nomenclatura mais recente): no Modbus, apenas o mestre inicia a comunicação — os escravos (CLPs, transmissores inteligentes) somente respondem quando solicitados. Isso simplifica o protocolo, mas limita a velocidade de atualização em redes com muitos dispositivos.",
+              "Sistema Supervisório (SCADA — Supervisory Control and Data Acquisition): software que coleta dados de campo (via CLPs e RTUs), apresenta telas sinóticas (mímicas do processo) para o operador, gera alarmes, históricos (tags) e permite comandos remotos.",
+              "[ATENCAO] SCADA supervisiona e permite comandos manuais do operador, mas as intertravamentos de segurança críticos (interlocks) devem residir no CLP/SIS (Sistema Instrumentado de Segurança) — nunca dependendo exclusivamente da lógica do supervisório, que pode ficar indisponível (queda de rede, travamento) sem que o processo pare de operar.",
+              "SIS (Sistema Instrumentado de Segurança): camada independente de proteção, dedicada a levar o processo a um estado seguro em caso de condição perigosa (ex.: intertravamento de shutdown de uma bomba por alta pressão) — segue a norma IEC 61511, com SIL (Safety Integrity Level) definindo o nível de confiabilidade exigido.",
+              "[EXEMPLO] Questão típica: 'Por que o intertravamento de segurança de uma bomba não deve depender apenas do supervisório?' → Porque o SCADA pode ficar indisponível (falha de rede, travamento do software) sem que isso interrompa o processo físico; a proteção crítica deve estar em uma camada independente (CLP dedicado ou SIS), que continua atuando mesmo com o supervisório fora do ar.",
+            ],
+            questoes: [
+              {
+                enunciado: "(CESGRANRIO — estilo) No protocolo Modbus, na arquitetura mestre-escravo, é correto afirmar que:",
+                alternativas: ["Qualquer escravo pode iniciar comunicação espontaneamente com o mestre", "Apenas o mestre inicia a comunicação; os escravos somente respondem quando solicitados", "O protocolo exige obrigatoriamente uma rede Ethernet física", "Não é possível usar Modbus sobre RS-485, apenas sobre TCP/IP"],
+                respostaCorreta: 1,
+                explicacao: "No modelo mestre-escravo do Modbus, a comunicação é sempre iniciada pelo mestre (que faz uma requisição); os escravos (dispositivos de campo) apenas respondem quando solicitados, nunca iniciam comunicação por conta própria. O Modbus RTU roda sobre RS-485 e o Modbus TCP sobre Ethernet.",
+              },
+              {
+                enunciado: "(CESGRANRIO — estilo) A principal razão para que intertravamentos críticos de segurança não dependam exclusivamente do sistema supervisório (SCADA) é:",
+                alternativas: ["O SCADA não é capaz de exibir alarmes ao operador", "O SCADA pode ficar indisponível sem que o processo físico pare, deixando a planta sem proteção nesse momento", "O SCADA sempre opera mais rápido que o CLP, tornando a proteção redundante", "É proibido por lei o uso de SCADA em plantas de petróleo"],
+                respostaCorreta: 1,
+                explicacao: "O SCADA é uma camada de supervisão e pode ficar indisponível por falha de rede, travamento de software, etc., sem que isso interrompa o processo físico em campo. Por isso, proteções críticas de segurança residem em uma camada independente (CLP dedicado ou Sistema Instrumentado de Segurança), que continua atuando mesmo com o supervisório fora do ar.",
               },
             ],
           },
