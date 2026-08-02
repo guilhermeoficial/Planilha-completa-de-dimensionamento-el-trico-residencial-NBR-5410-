@@ -1,17 +1,12 @@
-import { redirect } from "next/navigation";
-import { createClient } from "@/lib/supabase/server";
 import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 
 export default async function ByteVoltPage() {
-  const supabase = await createClient();
-  const { data } = await supabase.auth.getUser();
-
-  // Gratuito — só precisa estar logado, SEM exigir assinatura
-  if (!data.user) {
-    redirect("/login?next=/bytevolt");
-  }
+  // Página pública — o jogo funciona só com apelido + PIN da sala,
+  // não depende de conta/login. Isso evita que uma turma inteira
+  // tentando cadastrar ao mesmo tempo esbarre no limite de e-mails
+  // de confirmação do Supabase.
 
   return (
     <html lang="pt-BR">
