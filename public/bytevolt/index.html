@@ -2224,6 +2224,8 @@
           <div class="options-grid">
             ${q.opts.map((o,i)=>`<div class="opt opt-${OPT_STYLE[i]}" style="cursor:default;"><span class="opt-icon">${OPT_ICON[i]}</span><span>${escapeHtml(o)}</span></div>`).join('')}
           </div>
+          <label class="field-label field-gap">📊 Respostas em tempo real</label>
+          <div id="liveBarsSlot"></div>
           <div class="btn-row">
             <button class="btn btn-ghost" id="revealBtn">Revelar agora →</button>
           </div>
@@ -2232,6 +2234,22 @@
     `);
     app.appendChild(wrap);
     wrap.querySelector('#revealBtn').addEventListener('click', ()=>hostGoReveal(q));
+
+    const liveColors = ['var(--a)','var(--b)','var(--c)','var(--d)'];
+    const liveBarsSlot = wrap.querySelector('#liveBarsSlot');
+    function renderLiveBars(counts, total){
+      liveBarsSlot.innerHTML = '';
+      q.opts.forEach((o,i)=>{
+        const pct = total>0 ? Math.round((counts[i]/total)*100) : 0;
+        liveBarsSlot.appendChild(el(`
+          <div class="bar-row">
+            <div class="bar-label"><span>${OPT_ICON[i]} ${escapeHtml(o)}</span><span>${counts[i]}</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:${pct}%;background:${liveColors[i]};"></div></div>
+          </div>
+        `));
+      });
+    }
+    renderLiveBars([0,0,0,0], 0);
 
     const fill = wrap.querySelector('#wireFill'), spark = wrap.querySelector('#wireSpark');
     const startTs = state.meta.qStartTs, duration = state.meta.qDuration;
@@ -2244,11 +2262,17 @@
     async function refreshCount(){
       const keys = Object.keys(state.players);
       let answered=0;
+      const counts=[0,0,0,0];
       for(const id of keys){
         const doc = await storeGet(id);
-        if(doc){ state.players[id]=doc; if(doc.answered && doc.answered[state.meta.qIndex]) answered++; }
+        if(doc){
+          state.players[id]=doc;
+          const ans = doc.answered && doc.answered[state.meta.qIndex];
+          if(ans){ answered++; if(ans.choice>=0) counts[ans.choice]++; }
+        }
       }
       const c = wrap.querySelector('#answeredCount'); if(c) c.textContent = answered;
+      renderLiveBars(counts, answered);
     }
     refreshCount();
     pollTimer = setInterval(refreshCount, GAME_POLL);
