@@ -3344,6 +3344,109 @@ export const AREAS: Area[] = [
           },
         ],
       },
+      {
+        slug: "inss-governo-digital",
+        titulo: "Governo Digital, gov.br e Transformação Digital",
+        descricao: "Plataforma gov.br, processo eletrônico, assinatura digital e principais serviços digitais do governo federal — tema recorrente em provas recentes do CEBRASPE.",
+        bloco: "Bloco I",
+        paginas: [
+          {
+            titulo: "5.1 — Plataforma gov.br e Níveis de Confiabilidade",
+            conteudo: [
+              "O gov.br é a plataforma unificada de acesso a serviços públicos digitais do governo federal brasileiro, centralizando o login único (Single Sign-On) para acessar serviços de diferentes órgãos com uma única conta.",
+              "Níveis de confiabilidade da conta gov.br: Bronze (cadastro básico, poucos dados validados), Prata (validação adicional, como reconhecimento facial ou dados bancários) e Ouro (maior nível, validado por biometria do TSE ou certificado digital) — cada nível libera acesso a diferentes serviços conforme a sensibilidade da informação.",
+              "[DICA] Quanto mais sensível o serviço (ex.: consultar informações do INSS, assinar documentos oficiais), maior o nível de confiabilidade exigido da conta gov.br — questões de prova costumam cobrar essa relação entre nível da conta e tipo de serviço acessível.",
+              "Assinatura eletrônica no gov.br: permite assinar documentos digitalmente com validade jurídica, dispensando a assinatura física em papel para diversos processos administrativos — integrada ao Sistema Nacional de Assinatura Eletrônica (SIN).",
+              "[ATENCAO] Assinatura eletrônica simples (feita apenas com login/senha gov.br) tem validade jurídica diferente da assinatura digital com certificado ICP-Brasil — a legislação (Lei 14.063/2020) estabelece três níveis de assinatura eletrônica: simples, avançada e qualificada, cada uma com requisitos de segurança e força probatória distintos.",
+              "Meu INSS: aplicativo/portal específico do INSS integrado ao gov.br, permitindo ao cidadão consultar benefícios, agendar perícias, solicitar aposentadoria e outros serviços previdenciários sem necessidade de comparecimento presencial.",
+              "[EXEMPLO] Questão típica: 'Para acessar um serviço que exige nível Ouro na conta gov.br, o cidadão pode se cadastrar através de...' → validação por reconhecimento facial vinculado à base do TSE, ou por certificado digital ICP-Brasil — mecanismos que garantem maior confiabilidade na identificação do usuário."
+            ],
+            questoes: [
+              {
+                enunciado: "(CESPE/CEBRASPE — estilo) Julgue: os níveis de confiabilidade da conta gov.br (Bronze, Prata e Ouro) determinam quais serviços públicos digitais o cidadão pode acessar, sendo o nível Ouro o que exige maior grau de validação de identidade.",
+                alternativas: ["Certo", "Errado"],
+                respostaCorreta: 0,
+                explicacao: "Correto. Quanto maior o nível de confiabilidade da conta gov.br, maior a validação de identidade exigida, e maior o leque de serviços sensíveis que o cidadão pode acessar. O nível Ouro exige o maior grau de validação (biometria do TSE ou certificado digital).",
+              },
+            ],
+          },
+          {
+            titulo: "5.2 — Processo Eletrônico Nacional e Documentos Digitais",
+            conteudo: [
+              "O Processo Eletrônico Nacional (PEN) é uma iniciativa que busca padronizar e integrar os processos administrativos eletrônicos entre diferentes órgãos da administração pública federal, reduzindo o uso de papel e agilizando a tramitação.",
+              "SEI (Sistema Eletrônico de Informações): sistema de gestão de processos e documentos eletrônicos utilizado por diversos órgãos públicos, incluindo autarquias como o INSS, permitindo a criação, edição, assinatura e tramitação de documentos totalmente digitais.",
+              "[DICA] O SEI permite acompanhamento público de processos administrativos (quando não sigilosos) e a assinatura eletrônica de documentos por servidores, sendo um dos sistemas mais cobrados em provas de informática para órgãos públicos federais.",
+              "Digitalização de documentos: converte documentos físicos em arquivos digitais (geralmente PDF), permitindo seu armazenamento, tramitação e consulta eletrônica — reduzindo espaço físico de arquivo e agilizando o acesso à informação.",
+              "[ATENCAO] Um documento digitalizado (cópia digital de um documento físico) não tem, por si só, o mesmo valor jurídico de um documento nato-digital assinado eletronicamente — a autenticidade de uma digitalização pode depender de autenticação adicional, conforme a legislação aplicável.",
+              "Certificação digital (ICP-Brasil): infraestrutura de chaves públicas que garante autenticidade, integridade e validade jurídica a documentos e transações eletrônicas, sendo amplamente usada por servidores públicos para assinar documentos oficiais.",
+              "[EXEMPLO] Questão típica: 'O uso do SEI (Sistema Eletrônico de Informações) em um órgão público federal tem como principal objetivo...' → permitir a criação, edição, assinatura e tramitação de processos e documentos administrativos de forma totalmente digital, reduzindo o uso de papel e agilizando a gestão."
+            ],
+            questoes: [
+              {
+                enunciado: "(CESPE/CEBRASPE — estilo) O SEI (Sistema Eletrônico de Informações), utilizado por diversos órgãos da administração pública federal, tem como finalidade principal:",
+                alternativas: ["Substituir exclusivamente o correio eletrônico institucional dos servidores", "Permitir a criação, edição, assinatura e tramitação de processos e documentos administrativos de forma totalmente digital", "Servir apenas como repositório de fotos institucionais", "Gerenciar exclusivamente a folha de pagamento dos servidores"],
+                respostaCorreta: 1,
+                explicacao: "O SEI é um sistema de gestão de processos e documentos eletrônicos que permite a criação, edição, assinatura e tramitação de documentos administrativos totalmente digitais, dispensando o uso de papel e agilizando a tramitação entre setores e órgãos.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        slug: "inss-atendimento-redacao",
+        titulo: "Redação Oficial e Atendimento ao Público",
+        descricao: "Princípios da redação oficial (clareza, concisão, formalidade e impessoalidade) e boas práticas de atendimento ao cidadão — cobrados em provas de conhecimentos específicos do INSS.",
+        bloco: "Bloco II",
+        paginas: [
+          {
+            titulo: "6.1 — Princípios da Redação Oficial",
+            conteudo: [
+              "A redação oficial é a forma de comunicação escrita utilizada pela administração pública para se comunicar internamente e com o cidadão, seguindo princípios que a diferenciam da redação pessoal ou literária.",
+              "Impessoalidade: a comunicação oficial deve tratar de assuntos de interesse público, sem expressar opiniões ou impressões pessoais de quem a redige — o texto representa o órgão público, não o servidor individualmente.",
+              "[DICA] A redação oficial deve ser sempre impessoal, mesmo quando assinada por um servidor específico — o que está sendo comunicado é a posição do órgão/instituição, não uma opinião pessoal de quem redige o documento.",
+              "Clareza e concisão: o texto oficial deve ser direto, sem ambiguidades, evitando rodeios e informações desnecessárias — o objetivo é que qualquer cidadão compreenda o conteúdo sem esforço interpretativo excessivo.",
+              "Formalidade e padronização: a redação oficial segue um padrão de linguagem culta e formal, com estrutura e vocabulário adequados ao contexto institucional, evitando gírias, coloquialismos e informalidades.",
+              "[ATENCAO] Formalidade não significa usar linguagem rebuscada ou complexa — pelo contrário, o Manual de Redação da Presidência da República recomenda simplicidade e clareza, evitando o chamado 'juridiquês' desnecessário que dificulta a compreensão do cidadão comum.",
+              "Uniformidade: os documentos oficiais seguem modelos e formatos padronizados (como ofícios, memorandos e e-mails institucionais), facilitando o reconhecimento e a tramitação por qualquer servidor do órgão.",
+              "[EXEMPLO] Um ofício respondendo a um cidadão sobre seu benefício previdenciário deve ser redigido de forma impessoal (sem 'eu acho' ou opiniões pessoais do servidor), clara (sem termos técnicos desnecessários) e formal (linguagem culta, sem gírias) — seguindo o padrão institucional do INSS."
+            ],
+            questoes: [
+              {
+                enunciado: "(CESPE/CEBRASPE — estilo) Julgue: a impessoalidade na redação oficial significa que o texto deve representar a posição da instituição, e não opiniões ou impressões pessoais de quem o redige.",
+                alternativas: ["Certo", "Errado"],
+                respostaCorreta: 0,
+                explicacao: "Correto. A impessoalidade é um dos princípios centrais da redação oficial: o documento comunica a posição do órgão público, não impressões ou opiniões pessoais do servidor que o redigiu, ainda que ele seja o responsável por assiná-lo.",
+              },
+            ],
+          },
+          {
+            titulo: "6.2 — Atendimento ao Cidadão e Ética no Serviço Público",
+            conteudo: [
+              "O atendimento ao público no INSS (presencial, telefônico ou digital, via Meu INSS) deve seguir princípios de cortesia, eficiência e transparência, garantindo que o cidadão tenha acesso claro às informações sobre seus direitos e benefícios.",
+              "Princípios constitucionais da administração pública (Art. 37, CF/88): Legalidade, Impessoalidade, Moralidade, Publicidade e Eficiência (conhecidos pelo acrônimo LIMPE) — orientam toda a atuação do servidor público, incluindo o atendimento ao cidadão.",
+              "[DICA] O acrônimo LIMPE é frequentemente cobrado em provas: Legalidade (agir conforme a lei), Impessoalidade (tratar todos igualmente, sem favorecimentos), Moralidade (agir com ética), Publicidade (transparência dos atos), Eficiência (buscar os melhores resultados com os recursos disponíveis).",
+              "Sigilo e proteção de dados no atendimento: informações previdenciárias do cidadão (dados de benefício, situação de saúde para perícias, dados bancários) são sensíveis e protegidas pela LGPD, exigindo cuidado especial do servidor ao lidar com esses dados durante o atendimento.",
+              "[ATENCAO] Mesmo em um atendimento informal (por telefone, por exemplo), o servidor deve confirmar a identidade do cidadão antes de fornecer informações sensíveis sobre seu benefício — fornecer dados de terceiros sem validação de identidade fere tanto a LGPD quanto os princípios éticos do serviço público.",
+              "Carta de Serviços ao Usuário: documento que os órgãos públicos devem disponibilizar (conforme a Lei 13.460/2017), informando de forma clara os serviços oferecidos, requisitos, prazos e formas de acesso — direito do cidadão previsto no Código de Defesa do Usuário do Serviço Público.",
+              "[EXEMPLO] Questão típica: 'O princípio constitucional que exige tratamento igualitário a todos os cidadãos, sem favorecimentos pessoais, no atendimento do serviço público, é conhecido como...' → Impessoalidade — um dos cinco princípios do Art. 37 da Constituição Federal (LIMPE)."
+            ],
+            questoes: [
+              {
+                enunciado: "(CESPE/CEBRASPE — estilo) Os princípios constitucionais que regem a administração pública, conhecidos pelo acrônimo LIMPE, são:",
+                alternativas: ["Legalidade, Impessoalidade, Moralidade, Publicidade e Eficiência", "Legalidade, Integridade, Moralidade, Praticidade e Economia", "Liderança, Inovação, Meritocracia, Produtividade e Ética", "Legitimidade, Igualdade, Moralidade, Publicidade e Efetividade"],
+                respostaCorreta: 0,
+                explicacao: "O Art. 37 da Constituição Federal de 1988 estabelece cinco princípios que regem a administração pública: Legalidade, Impessoalidade, Moralidade, Publicidade e Eficiência — conhecidos pelo acrônimo LIMPE, amplamente cobrados em provas de conhecimentos gerais para cargos públicos."
+              },
+              {
+                enunciado: "(CESPE/CEBRASPE — estilo) Julgue: em razão da proteção de dados prevista na LGPD, um servidor do INSS deve confirmar a identidade do cidadão antes de fornecer informações sensíveis sobre seu benefício previdenciário, mesmo em atendimento telefônico.",
+                alternativas: ["Certo", "Errado"],
+                respostaCorreta: 0,
+                explicacao: "Correto. Dados previdenciários são informações sensíveis protegidas pela LGPD. Fornecer esses dados sem confirmar a identidade de quem solicita (ainda que por telefone) representa risco de vazamento de dados pessoais a terceiros não autorizados, ferindo tanto a lei quanto os princípios éticos do atendimento público.",
+              },
+            ],
+          },
+        ],
+      },
     ],
   },
 
@@ -3643,6 +3746,60 @@ export const AREAS: Area[] = [
                 alternativas: ["O SCADA não é capaz de exibir alarmes ao operador", "O SCADA pode ficar indisponível sem que o processo físico pare, deixando a planta sem proteção nesse momento", "O SCADA sempre opera mais rápido que o CLP, tornando a proteção redundante", "É proibido por lei o uso de SCADA em plantas de petróleo"],
                 respostaCorreta: 1,
                 explicacao: "O SCADA é uma camada de supervisão e pode ficar indisponível por falha de rede, travamento de software, etc., sem que isso interrompa o processo físico em campo. Por isso, proteções críticas de segurança residem em uma camada independente (CLP dedicado ou Sistema Instrumentado de Segurança), que continua atuando mesmo com o supervisório fora do ar.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        slug: "transpetro-maquinas-manutencao-preditiva",
+        titulo: "Máquinas Elétricas Avançadas e Manutenção Preditiva",
+        descricao: "Motores especiais, análise de vibração e termografia — técnicas de manutenção preditiva aplicadas a máquinas elétricas em plantas industriais.",
+        bloco: "Bloco III",
+        paginas: [
+          {
+            titulo: "5.1 — Motores Especiais e Acionamentos",
+            conteudo: [
+              "Motor de indução com rotor bobinado: diferente do rotor gaiola de esquilo (mais comum), permite inserir resistência externa no circuito do rotor através de anéis coletores — usado para reduzir a corrente de partida e ajustar o conjugado em cargas de partida pesada.",
+              "Motor de dupla gaiola: possui duas gaiolas concêntricas no rotor (uma externa de alta resistência, outra interna de baixa resistência), proporcionando alto conjugado de partida com corrente reduzida — sem a necessidade de resistores externos como no rotor bobinado.",
+              "[DICA] Inversor de frequência (VFD — Variable Frequency Drive): controla a velocidade de um motor de indução variando a frequência e a tensão aplicadas, mantendo a relação V/f constante para preservar o torque nominal na maior parte da faixa de velocidade — muito usado para partida suave e controle de processos com bombas e ventiladores.",
+              "Soft-starter: dispositivo eletrônico que reduz a tensão aplicada ao motor durante a partida (geralmente por controle de ângulo de disparo de tiristores), suavizando o pico de corrente e o torque de partida, sem alterar a frequência — diferente do inversor, que também controla a velocidade em regime permanente.",
+              "[ATENCAO] Diferença chave entre soft-starter e inversor de frequência: o soft-starter atua APENAS na partida (e eventualmente na parada), reduzindo tensão; o inversor controla a velocidade do motor durante toda a operação, variando a frequência — por isso o inversor é mais caro, mas oferece controle contínuo de velocidade.",
+              "Motor síncrono: gira exatamente na velocidade síncrona (definida pela frequência da rede e número de polos), sem escorregamento — usado quando é necessário controle preciso de velocidade ou correção do fator de potência da instalação (operando sobre-excitado).",
+              "[EXEMPLO] Questão típica: 'Qual dispositivo permite reduzir a corrente de partida de um motor de indução sem alterar sua velocidade nominal de operação em regime permanente?' → Soft-starter — ele atua apenas durante a partida/parada, reduzindo a tensão aplicada, sem controlar a velocidade em regime permanente (diferente do inversor de frequência)."
+            ],
+            questoes: [
+              {
+                enunciado: "(CESGRANRIO — estilo) A principal diferença entre um soft-starter e um inversor de frequência, no acionamento de motores de indução, é que:",
+                alternativas: ["Ambos controlam a velocidade do motor durante toda a operação, sendo tecnicamente idênticos", "O soft-starter atua apenas na partida/parada reduzindo a tensão, enquanto o inversor controla a velocidade do motor continuamente, variando a frequência", "O inversor de frequência só pode ser usado em motores monofásicos", "O soft-starter é sempre mais caro que o inversor de frequência"],
+                respostaCorreta: 1,
+                explicacao: "O soft-starter reduz a tensão aplicada ao motor durante a partida (e eventualmente na parada), suavizando o pico de corrente, mas não controla a velocidade em regime permanente. O inversor de frequência, por sua vez, controla continuamente a velocidade do motor variando a frequência aplicada, mantendo esse controle durante toda a operação.",
+              },
+            ],
+          },
+          {
+            titulo: "5.2 — Manutenção Preditiva: Análise de Vibração",
+            conteudo: [
+              "Manutenção preditiva: estratégia de manutenção baseada no monitoramento contínuo (ou periódico) de parâmetros do equipamento (vibração, temperatura, corrente, óleo), permitindo prever falhas antes que ocorram e planejar a intervenção no momento mais adequado — diferente da manutenção preventiva (baseada em tempo fixo) e da corretiva (após a falha).",
+              "Análise de vibração: técnica preditiva que monitora o padrão de vibração de máquinas rotativas (motores, bombas, compressores). Cada tipo de defeito (desbalanceamento, desalinhamento, folga mecânica, defeito em rolamento) gera uma 'assinatura' de vibração característica em determinadas frequências.",
+              "[DICA] Desbalanceamento do rotor gera vibração predominante na frequência de rotação (1x RPM); desalinhamento entre eixos costuma gerar vibração em 2x a frequência de rotação; defeitos em rolamentos geram frequências específicas mais altas, relacionadas à geometria do rolamento (esferas, pistas).",
+              "Espectro de frequência (FFT — Fast Fourier Transform): ferramenta matemática que decompõe o sinal de vibração (no domínio do tempo) em suas componentes de frequência, permitindo identificar qual tipo de defeito está presente pela análise de qual(is) frequência(s) apresentam maior amplitude.",
+              "[ATENCAO] Um mesmo valor global de vibração (RMS) pode ter causas completamente diferentes — só a análise espectral (por frequência) permite diagnosticar CORRETAMENTE se o problema é desbalanceamento, desalinhamento, folga ou defeito em rolamento. Julgar apenas pelo valor total da vibração, sem analisar o espectro, é insuficiente para diagnóstico preciso.",
+              "Termografia: técnica preditiva que utiliza câmeras infravermelhas para identificar pontos de aquecimento anormal em componentes elétricos (conexões, disjuntores, motores) — um ponto quente pode indicar mau contato, sobrecarga ou desequilíbrio de fase, antes que evolua para uma falha grave.",
+              "[EXEMPLO] Questão típica: 'Em uma análise de vibração, uma alta amplitude na frequência de 2x a rotação do eixo é tipicamente associada a qual tipo de defeito?' → Desalinhamento entre eixos — padrão característico identificado pela análise espectral (FFT) do sinal de vibração."
+            ],
+            questoes: [
+              {
+                enunciado: "(CESGRANRIO — estilo) A manutenção preditiva se diferencia da manutenção preventiva porque:",
+                alternativas: ["A preditiva é sempre executada em intervalos de tempo fixos, independente da condição do equipamento", "A preditiva se baseia no monitoramento contínuo de parâmetros do equipamento (vibração, temperatura, etc.), permitindo prever falhas antes que ocorram, enquanto a preventiva se baseia em intervalos de tempo pré-definidos", "A preditiva só pode ser aplicada após a ocorrência de uma falha", "Não existe diferença prática entre as duas estratégias de manutenção"],
+                respostaCorreta: 1,
+                explicacao: "A manutenção preditiva monitora continuamente (ou periodicamente) parâmetros como vibração, temperatura e corrente, permitindo identificar sinais de degradação e prever falhas antes que ocorram, planejando a intervenção no momento mais adequado. A manutenção preventiva, por sua vez, segue intervalos de tempo pré-definidos, independentemente da real condição do equipamento naquele momento.",
+              },
+              {
+                enunciado: "(CESGRANRIO — estilo) Para diagnosticar corretamente a causa de uma vibração anormal em um motor (desbalanceamento, desalinhamento, folga ou defeito em rolamento), é necessário:",
+                alternativas: ["Analisar apenas o valor global (RMS) de vibração medido", "Realizar a análise espectral (por frequência) do sinal de vibração, já que cada tipo de defeito apresenta uma assinatura característica em frequências específicas", "Substituir o motor imediatamente, sem necessidade de diagnóstico prévio", "Aumentar a velocidade de rotação do motor até a falha se manifestar"],
+                respostaCorreta: 1,
+                explicacao: "Apenas o valor global de vibração (RMS) não é suficiente para diagnóstico preciso, pois diferentes defeitos podem gerar o mesmo valor total. A análise espectral (via FFT), que decompõe o sinal em suas componentes de frequência, permite identificar qual defeito está presente pela análise de qual(is) frequência(s) concentram maior amplitude de vibração.",
               },
             ],
           },
