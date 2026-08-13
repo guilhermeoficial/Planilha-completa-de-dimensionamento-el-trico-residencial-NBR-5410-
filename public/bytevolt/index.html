@@ -1521,6 +1521,53 @@
     {cat:'ferramentas', q:"Qual é a função de uma chave de fenda/philips com cabo isolado (ferramenta isolada) em manutenção elétrica?",
      opts:["Servir apenas como identificação de cor da equipe de manutenção","Proteger o profissional contra choque elétrico ao manusear ferramentas próximas a partes energizadas, através de isolamento certificado no cabo","Aumentar o torque aplicado ao parafuso em até 10 vezes","Substituir completamente a necessidade de desenergizar o circuito"], correct:1,
      exp:"Ferramentas isoladas (com cabo certificado para uma tensão nominal específica) reduzem o risco de choque elétrico caso a ferramenta entre em contato acidental com uma parte energizada durante o trabalho — mas isso não substitui a prática recomendada de desenergizar o circuito sempre que possível."},
+    {cat:'prog_estruturada', q:"O que significa 'modularização' na programação estruturada?",
+     opts:["Dividir um programa grande em módulos/funções menores, cada um com uma responsabilidade específica","Escrever todo o código em um único bloco, sem divisões","Um sinônimo de linguagem orientada a objetos","Um tipo de banco de dados usado para armazenar módulos"], correct:0,
+     exp:"Modularização é a prática de dividir um programa em partes menores (funções/procedimentos), cada uma responsável por uma tarefa específica — facilita o entendimento, teste, manutenção e reaproveitamento do código."},
+    {cat:'prog_estruturada', q:"Em um algoritmo, o que é uma 'condição de parada' em uma estrutura de repetição?",
+     opts:["O primeiro comando executado no laço", "A expressão que, quando avaliada, determina se o laço deve continuar ou encerrar", "Um erro de sintaxe comum em laços", "Uma variável que nunca muda de valor"], correct:1,
+     exp:"A condição de parada é a expressão lógica avaliada a cada iteração (ou antes/depois dela, dependendo da estrutura) que determina se o laço deve continuar executando ou ser encerrado — sem ela corretamente definida, o laço pode nunca terminar (loop infinito)."},
+    {cat:'prog_estruturada', diff:'avancado', q:"O que é um 'vetor multidimensional' (como uma matriz) em termos de estrutura de dados?",
+     opts:["Um vetor que armazena apenas um único valor","Uma estrutura organizada em duas ou mais dimensões (como linhas e colunas), acessada por múltiplos índices","Um tipo de variável exclusivo de linguagens orientadas a objetos","Uma função que retorna múltiplos valores simultaneamente"], correct:1,
+     exp:"Um vetor multidimensional (como uma matriz bidimensional) organiza os dados em duas ou mais dimensões, sendo acessado por múltiplos índices — por exemplo, matriz[2][3] acessa o elemento na linha 2, coluna 3 de uma matriz bidimensional."},
+    {cat:'prog_estruturada', q:"O que caracteriza um algoritmo 'iterativo' em oposição a um algoritmo 'recursivo', ao resolver o mesmo problema?",
+     opts:["O iterativo usa estruturas de repetição (laços) para repetir passos, enquanto o recursivo usa uma função que chama a si mesma","Não existe diferença nenhuma entre os dois tipos de algoritmo","Um algoritmo iterativo nunca pode ser convertido em recursivo, e vice-versa","Algoritmos recursivos são sempre mais rápidos que os iterativos"], correct:0,
+     exp:"Um algoritmo iterativo resolve o problema repetindo passos através de estruturas de repetição (laços como FOR ou WHILE). Um algoritmo recursivo resolve o mesmo tipo de problema através de uma função que chama a si mesma, dividindo o problema em subproblemas menores até atingir um caso base."},
+
+    {cat:'prog_oo', q:"O que é um 'atributo' de uma classe, na programação orientada a objetos?",
+     opts:["Um tipo de erro de compilação","Uma característica/dado que descreve o estado de um objeto criado a partir dessa classe","Um método exclusivo de classes abstratas","Um comando de repetição usado dentro de métodos"], correct:1,
+     exp:"Um atributo (ou propriedade/campo) é uma variável associada à classe, que armazena um dado que descreve o estado de um objeto — por exemplo, uma classe 'Carro' pode ter atributos como cor, modelo e velocidade."},
+    {cat:'prog_oo', q:"O que é 'sobrecarga de método' (method overloading) na programação orientada a objetos?",
+     opts:["A capacidade de definir múltiplos métodos com o mesmo nome na mesma classe, desde que tenham parâmetros diferentes (quantidade ou tipo)","Um erro que ocorre quando um método é chamado repetidas vezes","A exclusão automática de métodos não utilizados","Um sinônimo exato de herança"], correct:0,
+     exp:"Sobrecarga de método (overloading) permite que uma classe tenha vários métodos com o mesmo nome, desde que a assinatura (quantidade e/ou tipo de parâmetros) seja diferente entre eles — o compilador/interpretador decide qual versão chamar com base nos argumentos passados."},
+    {cat:'prog_oo', diff:'avancado', q:"O que é 'sobrescrita de método' (method overriding), diferente de sobrecarga?",
+     opts:["Quando uma subclasse redefine a implementação de um método já existente na sua superclasse, mantendo a mesma assinatura","Quando dois métodos têm o mesmo nome mas parâmetros diferentes na mesma classe","Quando um método é executado duas vezes seguidas por engano","Um sinônimo de encapsulamento"], correct:0,
+     exp:"Sobrescrita (overriding) ocorre quando uma subclasse fornece uma nova implementação para um método que já existe na sua superclasse, mantendo a mesma assinatura (nome e parâmetros) — é a base do polimorfismo em tempo de execução, permitindo que o comportamento específico da subclasse seja usado."},
+    {cat:'prog_oo', q:"O que representa a relação de 'composição' entre classes, na orientação a objetos?",
+     opts:["Uma classe herda diretamente todos os métodos de outra classe","Um objeto de uma classe contém, como parte de sua estrutura, um ou mais objetos de outra classe, com um vínculo de ciclo de vida forte entre eles","Duas classes que nunca podem se comunicar entre si","Um método que retorna múltiplos objetos ao mesmo tempo"], correct:1,
+     exp:"Composição é um tipo de associação forte entre classes, onde um objeto (o 'todo') contém objetos de outra classe (as 'partes') como parte de sua própria estrutura — tipicamente, se o objeto todo é destruído, as partes também deixam de existir. Exemplo clássico: uma classe Carro composta por objetos da classe Motor."},
+    {cat:'prog_oo', q:"Em POO, o que significa o modificador de acesso 'privado' (private) aplicado a um atributo de uma classe?",
+     opts:["O atributo pode ser acessado livremente por qualquer código fora da classe","O atributo só pode ser acessado diretamente por código dentro da própria classe, sendo ocultado do mundo externo (parte do encapsulamento)","O atributo é automaticamente compartilhado entre todas as instâncias da classe","O atributo não pode receber nenhum valor durante a execução do programa"], correct:1,
+     exp:"O modificador 'privado' (private) restringe o acesso direto ao atributo apenas ao código dentro da própria classe — código externo não pode acessá-lo diretamente, geralmente precisando usar métodos públicos (getters/setters) para ler ou modificar seu valor. É a base prática do encapsulamento."},
+
+    {cat:'programacao', q:"O que é um 'compilador', em relação a uma linguagem de programação?",
+     opts:["Um programa que traduz o código-fonte inteiro para código de máquina antes da execução, gerando um arquivo executável", "Um programa que executa o código linha por linha, sem gerar um arquivo executável separado", "Um tipo de editor de texto simples", "Um banco de dados usado para armazenar código-fonte"], correct:0,
+     exp:"O compilador traduz todo o código-fonte de uma linguagem para código de máquina (ou código intermediário) ANTES da execução, gerando um arquivo executável separado — diferente de um interpretador, que traduz e executa o código linha por linha, sem gerar um executável prévio."},
+    {cat:'programacao', q:"Qual é a diferença fundamental entre uma linguagem compilada e uma linguagem interpretada?",
+     opts:["Não existe diferença prática entre elas","Na compilada, o código é totalmente traduzido para código de máquina antes de rodar; na interpretada, o código é traduzido e executado linha por linha, em tempo de execução, por um interpretador","Linguagens interpretadas nunca podem ser usadas para desenvolvimento web","Linguagens compiladas não podem ter erros de sintaxe"], correct:1,
+     exp:"Linguagens compiladas (como C e C++) são totalmente traduzidas para código de máquina antes da execução, gerando um executável. Linguagens interpretadas (como Python e JavaScript, tradicionalmente) são traduzidas e executadas linha por linha por um interpretador, sem gerar um executável separado previamente."},
+    {cat:'programacao', q:"O que é uma variável, em qualquer linguagem de programação?",
+     opts:["Um espaço nomeado na memória usado para armazenar um valor que pode ser alterado durante a execução do programa","Um comando exclusivo de repetição","Um tipo de erro de sintaxe","Um sinônimo de função"], correct:0,
+     exp:"Uma variável é um espaço de memória identificado por um nome, usado para armazenar um valor (número, texto, booleano, etc.) que pode ser lido e alterado durante a execução do programa."},
+    {cat:'programacao', diff:'avancado', q:"O que é 'tipagem estática' em uma linguagem de programação, em oposição à 'tipagem dinâmica'?",
+     opts:["Na tipagem estática, o tipo de cada variável é verificado em tempo de compilação e não muda; na tipagem dinâmica, o tipo é verificado em tempo de execução e pode mudar", "Tipagem estática significa que a variável nunca pode ser modificada depois de criada","Tipagem dinâmica é exclusiva de linguagens compiladas","Não existe diferença prática entre os dois conceitos"], correct:0,
+     exp:"Em linguagens de tipagem estática (como Java e C), o tipo de cada variável é definido e verificado em tempo de compilação, permanecendo fixo. Em linguagens de tipagem dinâmica (como Python e JavaScript), o tipo é verificado em tempo de execução, e uma mesma variável pode até armazenar valores de tipos diferentes ao longo do programa."},
+    {cat:'programacao', q:"O que é um 'bug' em um programa de computador?",
+     opts:["Um recurso extra adicionado intencionalmente ao programa","Um erro ou defeito no código que causa um comportamento inesperado ou incorreto do programa","Um tipo específico de linguagem de programação","Um componente físico do processador"], correct:1,
+     exp:"Um bug é um erro ou defeito no código-fonte que causa um resultado incorreto ou um comportamento inesperado do programa. O processo de encontrar e corrigir bugs é chamado de depuração (debugging)."},
+    {cat:'programacao', q:"O que é uma API (Application Programming Interface)?",
+     opts:["Um tipo de vírus de computador","Um conjunto de definições e protocolos que permite que diferentes softwares se comuniquem entre si, expondo funcionalidades sem revelar os detalhes internos da implementação","Um tipo de banco de dados NoSQL","Um dispositivo físico de armazenamento"], correct:1,
+     exp:"Uma API é um conjunto de regras, definições e protocolos que permite que diferentes sistemas de software se comuniquem entre si — expondo determinadas funcionalidades de forma padronizada, sem que o consumidor da API precise conhecer os detalhes internos de como ela foi implementada."},
   ];
 
   const OPT_STYLE = ['a','b','c','d'];
@@ -1965,7 +2012,7 @@
     const timeLeft = state.timeLeft;
     let pts=0;
     if(isCorrect){
-      pts = 500 + Math.round((timeLeft/state.timePerQ)*500) + Math.min(state.streak,5)*20;
+      pts = 700 + Math.round((timeLeft/state.timePerQ)*300) + Math.min(state.streak,3)*10;
       state.streak+=1; state.best_streak=Math.max(state.best_streak,state.streak); state.correctCount+=1;
     } else state.streak=0;
     state.score += pts;
@@ -2224,8 +2271,6 @@
           <div class="options-grid">
             ${q.opts.map((o,i)=>`<div class="opt opt-${OPT_STYLE[i]}" style="cursor:default;"><span class="opt-icon">${OPT_ICON[i]}</span><span>${escapeHtml(o)}</span></div>`).join('')}
           </div>
-          <label class="field-label field-gap">📊 Respostas em tempo real</label>
-          <div id="liveBarsSlot"></div>
           <div class="btn-row">
             <button class="btn btn-ghost" id="revealBtn">Revelar agora →</button>
           </div>
@@ -2234,22 +2279,6 @@
     `);
     app.appendChild(wrap);
     wrap.querySelector('#revealBtn').addEventListener('click', ()=>hostGoReveal(q));
-
-    const liveColors = ['var(--a)','var(--b)','var(--c)','var(--d)'];
-    const liveBarsSlot = wrap.querySelector('#liveBarsSlot');
-    function renderLiveBars(counts, total){
-      liveBarsSlot.innerHTML = '';
-      q.opts.forEach((o,i)=>{
-        const pct = total>0 ? Math.round((counts[i]/total)*100) : 0;
-        liveBarsSlot.appendChild(el(`
-          <div class="bar-row">
-            <div class="bar-label"><span>${OPT_ICON[i]} ${escapeHtml(o)}</span><span>${counts[i]}</span></div>
-            <div class="bar-track"><div class="bar-fill" style="width:${pct}%;background:${liveColors[i]};"></div></div>
-          </div>
-        `));
-      });
-    }
-    renderLiveBars([0,0,0,0], 0);
 
     const fill = wrap.querySelector('#wireFill'), spark = wrap.querySelector('#wireSpark');
     const startTs = state.meta.qStartTs, duration = state.meta.qDuration;
@@ -2262,17 +2291,11 @@
     async function refreshCount(){
       const keys = Object.keys(state.players);
       let answered=0;
-      const counts=[0,0,0,0];
       for(const id of keys){
         const doc = await storeGet(id);
-        if(doc){
-          state.players[id]=doc;
-          const ans = doc.answered && doc.answered[state.meta.qIndex];
-          if(ans){ answered++; if(ans.choice>=0) counts[ans.choice]++; }
-        }
+        if(doc){ state.players[id]=doc; if(doc.answered && doc.answered[state.meta.qIndex]) answered++; }
       }
       const c = wrap.querySelector('#answeredCount'); if(c) c.textContent = answered;
-      renderLiveBars(counts, answered);
     }
     refreshCount();
     pollTimer = setInterval(refreshCount, GAME_POLL);
@@ -2557,7 +2580,7 @@
     const isCorrect = choice === q.correct;
     let pts = 0;
     if(isCorrect){
-      pts = 500 + Math.round((timeLeftMs/duration)*500) + Math.min(state.doc.streak,5)*20;
+      pts = 700 + Math.round((timeLeftMs/duration)*300) + Math.min(state.doc.streak,3)*10;
       state.doc.streak += 1; state.doc.bestStreak = Math.max(state.doc.bestStreak, state.doc.streak); state.doc.correctCount += 1;
     } else state.doc.streak = 0;
     state.doc.score += pts;
