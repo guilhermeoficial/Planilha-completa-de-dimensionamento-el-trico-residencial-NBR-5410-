@@ -1854,6 +1854,78 @@
     {cat:'redes', q:"Na suíte de protocolos TCP/IP, em qual camada atua o protocolo Ethernet (IEEE 802.3), usado em redes cabeadas locais?",
      opts:["Camada de Aplicação","Camada de Acesso à Rede (ou Interface de Rede)","Camada de Transporte","Camada de Internet"], correct:1,
      exp:"O protocolo Ethernet (IEEE 802.3) atua na camada de Acesso à Rede (também chamada de Interface de Rede) do modelo TCP/IP, sendo responsável pela transmissão de quadros de dados dentro de uma rede local cabeada — correspondendo às camadas Física e de Enlace do modelo OSI."},
+    {cat:'redes', q:"Qual é a porta padrão utilizada pelo protocolo HTTPS (versão criptografada do HTTP)?",
+     opts:["Porta 80","Porta 21","Porta 443","Porta 110"], correct:2,
+     exp:"A porta padrão do HTTPS é a 443. A porta 80 é do HTTP (sem criptografia), a 21 é do FTP, e a 110 é do POP3."},
+    {cat:'redes', q:"Qual é a porta padrão utilizada pelo protocolo SSH (Secure Shell), usado para acesso remoto seguro a servidores?",
+     opts:["Porta 22","Porta 25","Porta 53","Porta 3389"], correct:0,
+     exp:"A porta padrão do SSH é a 22. A porta 25 é do SMTP, a 53 é do DNS, e a 3389 é do RDP (Remote Desktop Protocol, usado no Windows)."},
+    {cat:'redes', q:"Qual é a porta padrão utilizada pelo protocolo DNS (Domain Name System)?",
+     opts:["Porta 53","Porta 80","Porta 443","Porta 21"], correct:0,
+     exp:"A porta padrão do DNS é a 53, usada tanto para consultas via UDP (mais comum, para consultas simples) quanto via TCP (usado em transferências de zona ou respostas muito grandes)."},
+    {cat:'redes', diff:'avancado', q:"O que é 'controle de fluxo' (flow control), realizado pelo protocolo TCP na camada de Transporte?",
+     opts:["Um mecanismo que impede o transmissor de enviar dados mais rápido do que o receptor consegue processar, evitando que o buffer do receptor sofra overflow","Um mecanismo exclusivo para criptografar os dados transmitidos","Um sinônimo técnico de roteamento de pacotes","Uma função que só existe no protocolo UDP"], correct:0,
+     exp:"O controle de fluxo do TCP (implementado através da técnica de janela deslizante) regula a quantidade de dados que o transmissor pode enviar sem receber confirmação, ajustando-se à capacidade de processamento do receptor — evitando que o buffer do receptor seja sobrecarregado (overflow)."},
+    {cat:'redes', diff:'avancado', q:"O que é 'controle de congestionamento' no protocolo TCP, diferente do controle de fluxo?",
+     opts:["Um mecanismo que regula a taxa de envio de dados com base nas condições da REDE como um todo (não apenas do receptor), reduzindo a velocidade de transmissão quando detecta perda de pacotes ou atrasos indicativos de congestionamento na rede","Um sinônimo exato de controle de fluxo","Uma função que impede completamente a perda de qualquer pacote na rede","Uma função exclusiva de redes sem fio"], correct:0,
+     exp:"Enquanto o controle de fluxo se preocupa com a capacidade do RECEPTOR, o controle de congestionamento do TCP se preocupa com as condições da REDE como um todo — reduzindo a taxa de envio quando detecta sinais de congestionamento (como perda de pacotes ou aumento de atraso), para evitar sobrecarregar ainda mais a rede."},
+    {cat:'redes', q:"O que é 'multiplexação', na camada de Transporte, relacionada ao uso de portas?",
+     opts:["A capacidade de um único endereço IP suportar múltiplas conexões simultâneas de diferentes aplicações, cada uma identificada por uma porta distinta","Um sinônimo técnico de criptografia de dados","Uma função exclusiva da camada Física","Um protocolo usado apenas para chamadas de vídeo"], correct:0,
+     exp:"A multiplexação na camada de Transporte permite que um único endereço IP suporte múltiplas conexões simultâneas de diferentes aplicações (navegador, cliente de e-mail, aplicativo de mensagens), cada uma identificada por uma porta distinta — permitindo que os dados recebidos sejam corretamente direcionados à aplicação correta."},
+    {cat:'redes', q:"O que é 'segmentação', realizada pela camada de Transporte antes do envio dos dados?",
+     opts:["A divisão de um grande bloco de dados da aplicação em unidades menores (segmentos), mais adequadas para transmissão pela rede, sendo reagrupadas no destino","Um sinônimo de criptografia de ponta a ponta","Uma função exclusiva da camada Física","Um processo que elimina a necessidade de endereçamento IP"], correct:0,
+     exp:"A segmentação é o processo pelo qual a camada de Transporte divide um grande bloco de dados vindo da aplicação em unidades menores (segmentos TCP ou datagramas UDP), mais adequadas para serem transmitidas pela rede — no destino, esses segmentos são reagrupados na ordem correta antes de serem entregues à aplicação."},
+    {cat:'redes', q:"O que é o checksum (soma de verificação) usado tanto no TCP quanto no UDP?",
+     opts:["Um valor calculado a partir dos dados do segmento, usado pelo receptor para verificar se os dados foram corrompidos durante a transmissão","Um número que identifica exclusivamente o remetente da mensagem","Um sinônimo técnico de endereço IP de origem","Uma senha de acesso à rede"], correct:0,
+     exp:"O checksum é um valor calculado matematicamente a partir dos dados de um segmento/datagrama antes do envio. O receptor recalcula esse valor ao receber os dados e compara com o checksum recebido — se forem diferentes, isso indica que os dados foram corrompidos durante a transmissão."},
+    {cat:'redes', q:"O que é o protocolo ARP (Address Resolution Protocol)?",
+     opts:["Um protocolo usado para traduzir nomes de domínio em endereços IP","Um protocolo usado para descobrir o endereço MAC de um dispositivo a partir do seu endereço IP conhecido, dentro de uma rede local","Um protocolo exclusivo de criptografia de senhas","Um sinônimo técnico de DHCP"], correct:1,
+     exp:"O ARP (Address Resolution Protocol) é usado para descobrir o endereço MAC (físico) de um dispositivo dentro da rede local, a partir de seu endereço IP já conhecido — essencial para que os dispositivos consigam se comunicar na camada de Enlace, já que a entrega final dos quadros depende do endereço MAC, não apenas do IP."},
+    {cat:'redes', q:"O que é o protocolo ICMP (Internet Control Message Protocol), utilizado pelo comando 'ping'?",
+     opts:["Um protocolo usado para transferência de arquivos grandes","Um protocolo usado para o envio de mensagens de controle e diagnóstico entre dispositivos de rede, como a verificação de conectividade e alcançabilidade de um host","Um sinônimo técnico do protocolo HTTP","Um protocolo exclusivo para redes Wi-Fi"], correct:1,
+     exp:"O ICMP é usado para o envio de mensagens de controle e diagnóstico entre dispositivos de rede — o comando 'ping', por exemplo, utiliza mensagens ICMP Echo Request/Reply para verificar se um host está acessível e medir o tempo de resposta (latência) da comunicação."},
+    {cat:'redes', q:"O que faz o comando 'traceroute' (ou 'tracert' no Windows)?",
+     opts:["Apaga o histórico de navegação do usuário","Mostra o caminho (a sequência de roteadores) percorrido pelos pacotes de dados desde a origem até um destino específico na rede","Instala automaticamente drivers de rede","Mede exclusivamente a velocidade de download da conexão"], correct:1,
+     exp:"O comando traceroute (tracert) exibe a sequência de roteadores (saltos/hops) percorridos pelos pacotes de dados desde o dispositivo de origem até um destino específico na rede, sendo útil para diagnosticar problemas de conectividade e identificar em qual ponto do caminho ocorrem atrasos ou falhas."},
+    {cat:'redes', q:"O que é uma VLAN (Virtual Local Area Network)?",
+     opts:["Um tipo de cabo de fibra óptica de longa distância","Uma técnica que permite segmentar logicamente uma rede física em múltiplas redes locais virtuais independentes, mesmo que os dispositivos estejam conectados ao mesmo switch físico","Um sinônimo técnico de VPN","Um protocolo exclusivo para redes sem fio"], correct:1,
+     exp:"A VLAN permite segmentar logicamente uma rede física (mesmo switch) em múltiplas redes locais virtuais independentes — dispositivos em VLANs diferentes ficam isolados entre si (como se estivessem em redes físicas separadas), mesmo compartilhando o mesmo hardware de rede, aumentando segurança e organização."},
+    {cat:'redes', diff:'avancado', q:"O que é QoS (Quality of Service), aplicado em redes de computadores?",
+     opts:["Um protocolo exclusivo de criptografia de dados","Um conjunto de técnicas que prioriza determinados tipos de tráfego de rede (como voz e vídeo em tempo real) em detrimento de outros (como downloads), garantindo melhor desempenho para aplicações sensíveis a atraso","Um sinônimo técnico de endereço IP","Uma função exclusiva de redes cabeadas"], correct:1,
+     exp:"QoS (Quality of Service) é um conjunto de técnicas que permite priorizar determinados tipos de tráfego de rede — como chamadas de voz (VoIP) e videoconferência, sensíveis a atraso e perda de pacotes — em detrimento de tráfego menos sensível ao tempo, como downloads de arquivos, garantindo melhor experiência para as aplicações críticas."},
+    {cat:'redes', q:"O que é 'unicast', em termos de comunicação de rede?",
+     opts:["O envio de dados de um único transmissor para um único receptor específico","O envio de dados de um transmissor para TODOS os dispositivos da rede simultaneamente","O envio de dados para um grupo específico e pré-definido de receptores","Um sinônimo técnico de VPN"], correct:0,
+     exp:"Unicast é o modo de comunicação em que os dados são enviados de um único transmissor para um único receptor específico — é o modo mais comum de comunicação na internet, como quando você acessa um site específico."},
+    {cat:'redes', q:"O que é 'broadcast', em termos de comunicação de rede?",
+     opts:["O envio de dados de um transmissor para um único receptor específico","O envio de dados de um transmissor para TODOS os dispositivos de uma rede/segmento simultaneamente","Um protocolo de criptografia de ponta a ponta","Um sinônimo técnico de unicast"], correct:1,
+     exp:"Broadcast é o modo de comunicação em que os dados são enviados de um transmissor para TODOS os dispositivos conectados a um determinado segmento de rede simultaneamente — usado, por exemplo, pelo protocolo DHCP quando um dispositivo procura um servidor para obter um endereço IP."},
+    {cat:'redes', q:"O que é 'multicast', em termos de comunicação de rede, diferente de unicast e broadcast?",
+     opts:["O envio de dados para todos os dispositivos da internet, sem exceção","O envio de dados de um transmissor para um grupo específico e pré-definido de receptores interessados, sem alcançar todos os dispositivos da rede","Um sinônimo técnico de unicast","Uma função exclusiva de redes locais sem fio"], correct:1,
+     exp:"Multicast é o modo de comunicação em que os dados são enviados de um transmissor para um grupo específico de receptores que manifestaram interesse em recebê-los — diferente do broadcast (que alcança todos os dispositivos) e do unicast (que alcança apenas um). É usado, por exemplo, em transmissões de streaming de vídeo para múltiplos assinantes simultâneos."},
+    {cat:'redes', diff:'avancado', q:"O que é CIDR (Classless Inter-Domain Routing), notação usada para representar faixas de endereços IP (como 192.168.1.0/24)?",
+     opts:["Um protocolo de criptografia de senhas de rede","Uma notação que representa um endereço IP junto com o número de bits usados para identificar a porção de rede do endereço, permitindo uma divisão mais flexível de sub-redes do que o sistema antigo baseado em classes (A, B, C)","Um sinônimo técnico de DHCP","Um protocolo exclusivo para redes sem fio"], correct:1,
+     exp:"O CIDR (Classless Inter-Domain Routing) usa a notação de barra (como /24) para indicar quantos bits do endereço IP identificam a porção de REDE, permitindo uma divisão de sub-redes muito mais flexível e eficiente do que o antigo sistema de classes fixas (A, B, C) — em 192.168.1.0/24, por exemplo, os primeiros 24 bits identificam a rede, e os 8 bits restantes identificam os hosts."},
+    {cat:'redes', q:"O que é o 'gateway padrão' (default gateway) em uma configuração de rede?",
+     opts:["Um sinônimo técnico de endereço MAC","O endereço IP do dispositivo (geralmente um roteador) para onde um host envia o tráfego destinado a redes fora da sua rede local, como a internet","Um protocolo exclusivo de criptografia de e-mails","Um tipo de cabo de rede de alta velocidade"], correct:1,
+     exp:"O gateway padrão é o endereço IP do dispositivo (tipicamente um roteador) para onde um host encaminha o tráfego destinado a qualquer rede fora da sua própria rede local — é o 'portão de saída' que permite que um dispositivo na rede interna acesse a internet ou outras redes externas."},
+    {cat:'redes', diff:'avancado', q:"Qual é a diferença fundamental entre roteamento estático e roteamento dinâmico?",
+     opts:["Não existe diferença prática entre os dois tipos de roteamento","No roteamento estático, as rotas são configuradas manualmente pelo administrador e não se adaptam automaticamente a mudanças na rede; no roteamento dinâmico, os roteadores trocam informações entre si (via protocolos como RIP, OSPF ou BGP) e ajustam as rotas automaticamente conforme a topologia da rede muda","O roteamento dinâmico só pode ser usado em redes domésticas pequenas","O roteamento estático é sempre mais rápido de configurar em redes muito grandes"], correct:1,
+     exp:"No roteamento estático, o administrador configura manualmente cada rota no roteador, e essas rotas não se ajustam automaticamente caso a topologia da rede mude (um link caia, por exemplo). No roteamento dinâmico, os roteadores trocam informações entre si através de protocolos de roteamento (como RIP, OSPF ou BGP) e recalculam automaticamente as melhores rotas conforme a rede muda."},
+    {cat:'redes', q:"O que é a máscara de sub-rede /30 (ou 255.255.255.252) tipicamente usada para, em projetos de rede?",
+     opts:["Para redes com milhares de hosts, como uma rede corporativa inteira","Para links ponto a ponto entre dois roteadores, já que oferece apenas 2 endereços utilizáveis para hosts — exatamente o necessário para conectar dois dispositivos diretamente","Para redes Wi-Fi residenciais com muitos dispositivos","Para servidores DNS públicos"], correct:1,
+     exp:"Uma máscara /30 (255.255.255.252) reserva apenas 2 bits para hosts, oferecendo exatamente 2 endereços utilizáveis (os demais são reservados para rede e broadcast) — sendo ideal para links ponto a ponto entre dois roteadores, onde apenas dois dispositivos precisam de endereço IP."},
+    {cat:'redes', q:"O que caracteriza uma rede 'peer-to-peer' (P2P), diferente do modelo cliente-servidor?",
+     opts:["Um único servidor central controla toda a comunicação da rede","Os dispositivos (peers) se comunicam diretamente entre si, cada um podendo atuar tanto como cliente quanto como servidor, sem depender de um servidor central dedicado","P2P é um sinônimo técnico de VPN","P2P só pode ser usado em redes cabeadas"], correct:1,
+     exp:"Em uma rede peer-to-peer (P2P), os dispositivos (peers) se comunicam diretamente entre si, cada um podendo atuar tanto como cliente (solicitando recursos) quanto como servidor (fornecendo recursos), sem depender de um servidor central dedicado — diferente do modelo cliente-servidor tradicional, onde um servidor central atende às solicitações dos clientes."},
+    {cat:'redes', q:"O que é 'latência' de rede, e como ela afeta uma videochamada ou jogo online?",
+     opts:["A capacidade máxima de transferência de dados de um canal, medida em Mbps","O tempo que um pacote de dados leva para viajar da origem até o destino (e, muitas vezes, de volta); alta latência causa atraso perceptível em aplicações em tempo real, como videochamadas e jogos online","Um sinônimo técnico de largura de banda","O número de dispositivos conectados simultaneamente à rede"], correct:1,
+     exp:"Latência é o tempo que um pacote de dados leva para viajar da origem até o destino (muitas vezes medido como o tempo de ida e volta, ou RTT — Round-Trip Time). Diferente da largura de banda (que mede quantidade de dados), a latência afeta diretamente aplicações sensíveis ao tempo, como videochamadas e jogos online, onde alta latência causa atrasos perceptíveis e prejudica a experiência."},
+    {cat:'redes', q:"O que é um firewall, em uma rede de computadores?",
+     opts:["Um dispositivo que aumenta a velocidade da conexão à internet","Um sistema (hardware, software, ou ambos) que monitora e controla o tráfego de rede, permitindo ou bloqueando pacotes com base em um conjunto de regras de segurança pré-definidas","Um sinônimo técnico de roteador Wi-Fi","Um protocolo exclusivo de transferência de arquivos"], correct:1,
+     exp:"Um firewall é um sistema de segurança (implementado em hardware, software, ou ambos) que monitora e controla o tráfego de rede que entra e sai, permitindo ou bloqueando pacotes de dados com base em um conjunto de regras de segurança pré-definidas — sendo uma das principais defesas contra acessos não autorizados a uma rede."},
+    {cat:'redes', q:"Na suíte de protocolos TCP/IP, qual é a diferença de propósito entre o protocolo TCP e o protocolo UDP em termos de aplicações típicas?",
+     opts:["Ambos são usados exatamente para os mesmos tipos de aplicação, sem distinção prática","O TCP é preferido para aplicações que exigem entrega confiável e ordenada (como navegação web e transferência de arquivos); o UDP é preferido para aplicações que priorizam velocidade e toleram alguma perda de dados (como streaming ao vivo e jogos online)","O UDP é usado exclusivamente para e-mails","O TCP nunca pode ser usado para transferência de arquivos"], correct:1,
+     exp:"O TCP é preferido quando a confiabilidade e a ordem dos dados são essenciais — como no carregamento de uma página web ou no download de um arquivo, onde a perda de um pacote comprometeria o resultado. O UDP é preferido quando a velocidade é mais importante do que a garantia total de entrega — como em streaming de vídeo ao vivo ou jogos online, onde um pequeno atraso é pior do que perder um pacote ocasional."},
   ];
 
   const OPT_STYLE = ['a','b','c','d'];
@@ -2012,6 +2084,30 @@
   function el(html){ const t=document.createElement('template'); t.innerHTML=html.trim(); return t.content.firstElementChild; }
   function escapeHtml(str){ return String(str).replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
   function shuffledIndices(n){ const arr=Array.from({length:n},(_,i)=>i); for(let i=arr.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [arr[i],arr[j]]=[arr[j],arr[i]]; } return arr; }
+
+  // Embaralha as alternativas de uma questão de forma determinística (mesma
+  // seed => mesma ordem sempre), para que host e jogadores exibam as
+  // alternativas na MESMA ordem sem precisar sincronizar nada pela rede —
+  // e para que a posição/tamanho da resposta certa não siga nenhum padrão fixo.
+  function seededRng(seedStr){
+    let h = 1779033703 ^ seedStr.length;
+    for(let i=0;i<seedStr.length;i++){
+      h = Math.imul(h ^ seedStr.charCodeAt(i), 3432918353);
+      h = (h << 13) | (h >>> 19);
+    }
+    return function(){
+      h = Math.imul(h ^ (h >>> 16), 2246822519);
+      h = Math.imul(h ^ (h >>> 13), 3266489917);
+      h ^= h >>> 16;
+      return (h >>> 0) / 4294967296;
+    };
+  }
+  function shuffledQuestion(q, seedStr){
+    const rng = seededRng(String(seedStr));
+    const idxs = q.opts.map((_,i)=>i);
+    for(let i=idxs.length-1;i>0;i--){ const j=Math.floor(rng()*(i+1)); [idxs[i],idxs[j]]=[idxs[j],idxs[i]]; }
+    return { ...q, opts: idxs.map(i=>q.opts[i]), correct: idxs.indexOf(q.correct) };
+  }
   function genId(){ return 'p'+Math.random().toString(36).slice(2,10)+Date.now().toString(36); }
   function genPin(){ return String(Math.floor(100000+Math.random()*900000)); }
 
@@ -2237,6 +2333,7 @@
 
   function soloStartGame(){
     state.qIndex=0; state.score=0; state.streak=0; state.best_streak=0; state.correctCount=0;
+    state.seed = Date.now()+'_'+Math.floor(Math.random()*1e9);
     const cfg = state.quizConfig || {cats: CATEGORIES.map(c=>c.id), diffs:['padrao','avancado'], count: QUESTIONS.length, time: SOLO_TIME_DEFAULT};
     const pool = poolForCategories(cfg.cats, cfg.diffs);
     const shuffledPool = shuffledIndices(pool.length).map(i=>pool[i]);
@@ -2250,7 +2347,7 @@
   function soloRenderGame(){
     app.innerHTML='';
     state.answered=false; state.timeLeft=state.timePerQ;
-    const q = QUESTIONS[state.order[state.qIndex]];
+    const q = shuffledQuestion(QUESTIONS[state.order[state.qIndex]], state.seed+'_'+state.qIndex);
     const wrap = el(`
       <div class="wrap">
         <div class="hud">
@@ -2543,7 +2640,7 @@
 
   function hostRenderQuestion(){
     app.innerHTML='';
-    const q = QUESTIONS[state.meta.order[state.meta.qIndex]];
+    const q = shuffledQuestion(QUESTIONS[state.meta.order[state.meta.qIndex]], state.pin+'_'+state.meta.qIndex);
     const wrap = el(`
       <div class="wrap wide">
         <div class="hud">
@@ -2603,7 +2700,7 @@
 
   function hostRenderReveal(){
     app.innerHTML='';
-    const q = QUESTIONS[state.meta.order[state.meta.qIndex]];
+    const q = shuffledQuestion(QUESTIONS[state.meta.order[state.meta.qIndex]], state.pin+'_'+state.meta.qIndex);
     const ids = Object.keys(state.players);
     const counts=[0,0,0,0]; let correctCount=0;
     ids.forEach(id=>{
@@ -2817,7 +2914,7 @@
   function playerRenderQuestion(){
     app.innerHTML='';
     const qIndex = state.meta.qIndex;
-    const q = QUESTIONS[state.meta.order[qIndex]];
+    const q = shuffledQuestion(QUESTIONS[state.meta.order[qIndex]], state.pin+'_'+qIndex);
     const wrap = el(`
       <div class="wrap">
         <div class="hud">
