@@ -11,6 +11,7 @@ export interface ProjectRow {
   registro_profissional: string | null;
   numero_art: string | null;
   tipo_entrada: "Monofásico" | "Bifásico" | "Trifásico";
+  dossie_json?: DossieJson | null;
   created_at: string;
   updated_at: string;
 }
@@ -62,4 +63,20 @@ export interface CircuitoRow {
   bloqueado: boolean;
   qtd_pontos: number;
   grupo_id?: string | null; // agrupamento visual de circuitos
+}
+
+export interface DossieKpi { rotulo: string; valor: string; nota?: string }
+export type DossieSecao = { titulo: string; descricao?: string } & (
+  | { tipo: "tabela"; colunas: string[]; linhas: (string | number)[][]; alinharDireita?: number[]; destacarUltima?: boolean }
+  | { tipo: "lista"; itens: { tag?: string; texto: string; detalhe?: string }[] }
+  | { tipo: "kv"; itens: { k: string; v: string }[] }
+);
+export interface DossieJson {
+  titulo: string;
+  subtitulo?: string;
+  documento?: string;
+  revisao?: string;
+  data?: string;
+  kpis: DossieKpi[];
+  secoes: DossieSecao[];
 }

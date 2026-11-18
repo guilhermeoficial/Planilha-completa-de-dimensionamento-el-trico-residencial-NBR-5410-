@@ -15,8 +15,10 @@ import OrcamentoCard from "./orcamento-card";
 import MotoresTab from "./motores-tab";
 import ExportButtons from "./export-buttons";
 import ResumoTab from "./resumo-tab";
+import DossieTab from "./dossie-tab";
+import DocumentosTab from "./documentos-tab";
 
-type Tab = "resumo" | "ambientes" | "circuitos" | "memorial" | "orcamento" | "industrial";
+type Tab = "resumo" | "dossie" | "documentos" | "ambientes" | "circuitos" | "memorial" | "orcamento" | "industrial";
 
 export default function ProjectPage() {
   const params = useParams<{ id: string }>();
@@ -217,6 +219,7 @@ export default function ProjectPage() {
       <div className="mb-6 flex gap-1 border-b border-panel-border overflow-x-auto">
         {([
           ["resumo", "Resumo"],
+          ...(project.dossie_json ? ([["dossie", "Dossiê"], ["documentos", "Documentos"]] as [Tab, string][]) : []),
           ["ambientes", "Ambientes & cargas"],
           ["circuitos", "Circuitos & memorial"],
           ["memorial", "Memorial de cálculo"],
@@ -242,6 +245,8 @@ export default function ProjectPage() {
           onProjectChange={(patch) => setProject({ ...project, ...patch })}
         />
       )}
+      {tab === "dossie" && project.dossie_json && <DossieTab dossie={project.dossie_json} />}
+      {tab === "documentos" && project.dossie_json && <DocumentosTab projectId={project.id} />}
       {tab === "ambientes" && (
         <AmbientesTab projectId={project.id} ambientes={ambientes} tuesPorAmbiente={tuesPorAmbiente} onChange={carregar} />
       )}
