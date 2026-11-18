@@ -65,11 +65,22 @@ export default function RedefinirSenhaPage() {
     }
 
     setCarregando(true);
-    const { error } = await supabase.auth.updateUser({ password: senha });
+    let error: { message: string } | null = null;
+    try {
+      ({ error } = await supabase.auth.updateUser({ password: senha }));
+    } catch (e) {
+      error = { message: e instanceof Error ? e.message : String(e) };
+    }
     setCarregando(false);
 
     if (error) {
-      setErro(error.message);
+      setErro(
+        error.message.toLowerCase().includes("failed to fetch")
+          ? "Não foi possível falar com o servidor. Verifique sua internet e tente de novo."
+          : error.message.includes("different from the old password")
+          ? "A nova senha precisa ser diferente da anterior."
+          : error.message
+      );
     } else {
       setAviso("Senha atualizada! Redirecionando...");
       setTimeout(() => router.push("/dashboard"), 1200);

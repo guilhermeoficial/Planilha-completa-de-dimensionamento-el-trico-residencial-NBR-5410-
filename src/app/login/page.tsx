@@ -16,6 +16,25 @@ export default function LoginPage() {
   const [erro, setErro] = useState<string | null>(null);
   const [carregando, setCarregando] = useState(false);
   const [aviso, setAviso] = useState<string | null>(null);
+  const [mostrarSenha, setMostrarSenha] = useState(false);
+
+  async function reenviarConfirmacao() {
+    setErro(null);
+    setAviso(null);
+    if (!email) {
+      setErro("Digite seu e-mail acima para reenviar a confirmação.");
+      return;
+    }
+    setCarregando(true);
+    try {
+      const { error } = await supabase.auth.resend({ type: "signup", email });
+      if (error) setErro(traduzErro(error.message));
+      else setAviso("Reenviamos o e-mail de confirmação. Veja também a caixa de spam.");
+    } catch (e) {
+      setErro(traduzErro(e instanceof Error ? e.message : String(e)));
+    }
+    setCarregando(false);
+  }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -23,6 +42,7 @@ export default function LoginPage() {
     setAviso(null);
     setCarregando(true);
 
+    try {
     if (mode === "login") {
       const { error } = await supabase.auth.signInWithPassword({ email, password: senha });
       if (error) setErro(traduzErro(error.message));
@@ -43,7 +63,10 @@ export default function LoginPage() {
         redirectTo: `${window.location.origin}/redefinir-senha`,
       });
       if (error) setErro(traduzErro(error.message));
-      else setAviso("Enviamos um link para o seu e-mail. Clique nele para criar uma nova senha.");
+      else setAviso("Enviamos um link para o seu e-mail. Clique nele para criar uma nova senha. Veja também a caixa de spam.");
+    }
+    } catch (e) {
+      setErro(traduzErro(e instanceof Error ? e.message : String(e)));
     }
     setCarregando(false);
   }
@@ -152,15 +175,25 @@ export default function LoginPage() {
             </Field>
             {mode !== "esqueci" && (
               <Field label="Senha">
-                <input
-                  type="password"
-                  value={senha}
-                  onChange={(e) => setSenha(e.target.value)}
-                  required
-                  minLength={6}
-                  className="input"
-                  placeholder="••••••••"
-                />
+                <div className="relative">
+                  <input
+                    type={mostrarSenha ? "text" : "password"}
+                    value={senha}
+                    onChange={(e) => setSenha(e.target.value)}
+                    required
+                    minLength={6}
+                    className="input pr-16"
+                    placeholder="••••••••"
+                    autoComplete={mode === "login" ? "current-password" : "new-password"}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setMostrarSenha((v) => !v)}
+                    className="absolute inset-y-0 right-2 text-xs text-muted hover:text-accent"
+                  >
+                    {mostrarSenha ? "Ocultar" : "Mostrar"}
+                  </button>
+                </div>
               </Field>
             )}
 
@@ -179,6 +212,11 @@ export default function LoginPage() {
             )}
 
             {erro && <p className="text-sm text-danger">{erro}</p>}
+            {erro && erro.includes("não foi confirmado") && (
+              <button type="button" onClick={reenviarConfirmacao} className="text-xs text-accent hover:underline">
+                Reenviar e-mail de confirmação
+              </button>
+            )}
             {aviso && <p className="text-sm text-ok">{aviso}</p>}
 
             <button
@@ -241,8 +279,14 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 }
 
 function traduzErro(msg: string): string {
-  if (msg.includes("Invalid login credentials")) return "E-mail ou senha incorretos.";
-  if (msg.includes("User already registered")) return "Já existe uma conta com esse e-mail.";
-  if (msg.includes("Password should be")) return "A senha deve ter pelo menos 6 caracteres.";
+  const m = msg.toLowerCase();
+  if (m.includes("failed to fetch") || m.includes("networkerror") || m.includes("load failed"))
+    return "Não foi possível falar com o servidor. Verifique sua internet e tente de novo em instantes. Se continuar, avise o suporte.";
+  if (m.includes("invalid login credentials")) return "E-mail ou senha incorretos. Se esqueceu a senha, use \"Esqueci minha senha\".";
+  if (m.includes("email not confirmed")) return "Seu e-mail ainda não foi confirmado. Abra o e-mail de confirmação ou peça o reenvio abaixo.";
+  if (m.includes("user already registered")) return "Já existe uma conta com esse e-mail. Use \"Entrar\" ou \"Esqueci minha senha\".";
+  if (m.includes("password should be")) return "A senha deve ter pelo menos 6 caracteres.";
+  if (m.includes("rate limit") || m.includes("too many") || m.includes("security purposes"))
+    return "Muitas tentativas em pouco tempo. Aguarde alguns minutos e tente novamente.";
   return msg;
 }
