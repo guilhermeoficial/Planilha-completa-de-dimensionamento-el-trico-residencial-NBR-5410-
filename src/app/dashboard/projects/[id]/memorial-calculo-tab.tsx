@@ -197,106 +197,171 @@ export default function MemorialCalculoTab({ project, ambientes, circuitosCalcul
   // ── Exportar Memorial PDF ────────────────────────────────────────────────
   function exportarMemorialPDF() {
     const doc = new jsPDF({ unit: "pt", format: "a4" });
-    const M = 40; const W = doc.internal.pageSize.getWidth();
+    const M = 40;
+    const W = doc.internal.pageSize.getWidth();
+    const PH = doc.internal.pageSize.getHeight();
+    const CW = W - 2 * M;
+    const BOTTOM = PH - 36;
+    const TOP = 40;
     let y = 0;
 
-    // Capa
-    doc.setFillColor(...AZUL); doc.rect(0, 0, W, 75, "F");
-    doc.setTextColor(255); doc.setFont("helvetica", "bold"); doc.setFontSize(16);
-    doc.text("MEMORIAL DE CÁLCULO", M, 30);
-    doc.setFont("helvetica", "normal"); doc.setFontSize(10);
-    doc.text("Instalação Elétrica Residencial — ABNT NBR 5410:2004", M, 48);
-    doc.setFontSize(8); doc.text(dataHoje, W - M, 30, { align: "right" });
-    doc.text("Voltis — Dimensionamento Elétrico Profissional", W - M, 42, { align: "right" });
-    doc.setTextColor(0); y = 90;
+    const novaPagina = () => { doc.addPage(); y = TOP; };
+    const garantir = (h: number) => { if (y + h > BOTTOM) novaPagina(); };
 
-    // Identificação
-    doc.setFillColor(...AZUL_CLARO); doc.rect(M, y, W - 2*M, 52, "F");
-    doc.setFont("helvetica", "bold"); doc.setFontSize(8); doc.setTextColor(...AZUL);
-    doc.text("IDENTIFICAÇÃO DO PROJETO", M + 6, y + 11);
-    doc.setFont("helvetica", "normal"); doc.setFontSize(8); doc.setTextColor(30,30,30);
-    doc.text(`Projeto: ${project.nome}`, M + 6, y + 23);
-    doc.text(`Cliente: ${project.cliente ?? "—"}`, M + 200, y + 23);
-    doc.text(`Tensão: ${Vn} V`, M + 370, y + 23);
-    doc.text(`Entrada: ${project.tipo_entrada ?? "Monofásico"}`, M + 6, y + 36);
-    doc.text(`Concessionária: ${concessionaria}`, M + 150, y + 36);
-    if (project.responsavel_tecnico) doc.text(`Resp. Técnico: ${project.responsavel_tecnico}${project.numero_art ? "  ·  ART/RRT nº " + project.numero_art : ""}`, M + 6, y + 49);
-    y += 62; doc.setTextColor(0);
-
-    const addSecao = (titulo: string) => {
-      if (y > 720) { doc.addPage(); y = 40; }
-      doc.setFillColor(...AZUL_CLARO); doc.rect(M, y, W - 2*M, 16, "F");
-      doc.setFont("helvetica", "bold"); doc.setFontSize(8.5); doc.setTextColor(...AZUL);
-      doc.text(titulo, M + 6, y + 11); y += 22; doc.setTextColor(0);
-      doc.setFont("helvetica", "normal"); doc.setFontSize(8.5);
+    // Texto com quebra automática. Retorna a altura usada.
+    const texto = (txt: string, o: { x?: number; w?: number; size?: number; bold?: boolean; cor?: [number, number, number]; lh?: number; draw?: boolean } = {}) => {
+      const size = o.size ?? 9; const lh = o.lh ?? size * 1.45;
+      const x = o.x ?? M; const w = o.w ?? CW - (x - M);
+      doc.setFont("helvetica", o.bold ? "bold" : "normal"); doc.setFontSize(size);
+      const linhas = doc.splitTextToSize(txt, w) as string[];
+      if (o.draw !== false) {
+        doc.setTextColor(...(o.cor ?? [30, 30, 30]));
+        linhas.forEach((l, i) => doc.text(l, x, y + size + i * lh - size * 0.15));
+      }
+      return linhas.length * lh;
+    };
+    const linha = (txt: string, indent = 0, o: { bold?: boolean; size?: number; cor?: [number, number, number] } = {}) => {
+      const h = texto(txt, { ...o, x: M + 4 + indent, draw: false });
+      garantir(h);
+      texto(txt, { ...o, x: M + 4 + indent });
+      y += h + 1;
+    };
+    const secao = (titulo: string) => {
+      garantir(18 + 8 + 30);
+      doc.setFillColor(...AZUL_CLARO); doc.rect(M, y, CW, 18, "F");
+      doc.setFillColor(...AZUL); doc.rect(M, y, 3, 18, "F");
+      doc.setFont("helvetica", "bold"); doc.setFontSize(9); doc.setTextColor(...AZUL);
+      doc.text(titulo, M + 10, y + 12.5);
+      y += 18 + 8;
     };
 
-    const addLinha = (txt: string) => { if (y > 750) { doc.addPage(); y = 40; } doc.text(txt, M + 4, y); y += 12; };
+    // ── Capa
+    doc.setFillColor(...AZUL); doc.rect(0, 0, W, 72, "F");
+    doc.setTextColor(255); doc.setFont("helvetica", "bold"); doc.setFontSize(17);
+    doc.text("MEMORIAL DE CÁLCULO", M, 32);
+    doc.setFont("helvetica", "normal"); doc.setFontSize(10);
+    doc.text("Instalação elétrica de baixa tensão · ABNT NBR 5410:2004", M, 50);
+    doc.setFontSize(8.5);
+    doc.text(dataHoje, W - M, 32, { align: "right" });
+    doc.text("Voltis · Dimensionamento Elétrico", W - M, 46, { align: "right" });
+    y = 72 + 18;
 
-    // Seção 1 — Referências
-    addSecao("1. REFERÊNCIAS NORMATIVAS");
-    addLinha("• ABNT NBR 5410:2004 — Instalações elétricas de baixa tensão");
-    addLinha("• ABNT NBR 5444:1989 — Símbolos gráficos para instalações prediais");
-    addLinha(`• Normas de fornecimento da ${concessionaria}`);
-    addLinha("• NR-10 (MTE) — Segurança em instalações e serviços em eletricidade");
-    y += 6;
+    // ── Identificação (grade de 2 colunas, cada campo com quebra própria)
+    const campos: [string, string][] = [
+      ["PROJETO", project.nome],
+      ["CLIENTE", project.cliente ?? "-"],
+      ["TENSÃO", `${Vn} V`],
+      ["ENTRADA", project.tipo_entrada ?? "Monofásico"],
+      ["CONCESSIONÁRIA", concessionaria],
+      ["EMISSÃO", dataHoje],
+    ];
+    if (project.responsavel_tecnico) campos.push(["RESPONSÁVEL TÉCNICO", project.responsavel_tecnico]);
+    if (project.registro_profissional) campos.push(["REGISTRO", project.registro_profissional]);
+    if (project.numero_art) campos.push(["ART/RRT Nº", project.numero_art]);
+    const colW = (CW - 36) / 2;
+    const linhasId: { esq: [string, string]; dir?: [string, string]; h: number }[] = [];
+    for (let i = 0; i < campos.length; i += 2) {
+      const esq = campos[i]; const dir = campos[i + 1];
+      const hE = texto(esq[1], { w: colW, size: 9.5, draw: false });
+      const hD = dir ? texto(dir[1], { w: colW, size: 9.5, draw: false }) : 0;
+      linhasId.push({ esq, dir, h: 11 + Math.max(hE, hD) + 7 });
+    }
+    const hBox = 12 + linhasId.reduce((a, l) => a + l.h, 0) + 4;
+    garantir(hBox);
+    doc.setFillColor(...AZUL_CLARO); doc.rect(M, y, CW, hBox, "F");
+    doc.setFillColor(...AZUL); doc.rect(M, y, 3, hBox, "F");
+    let yy = y + 12;
+    for (const l of linhasId) {
+      const pares: [[string, string], number][] = [[l.esq, M + 14]];
+      if (l.dir) pares.push([l.dir, M + 14 + colW + 18]);
+      for (const [[rot, val], x] of pares) {
+        doc.setFont("helvetica", "bold"); doc.setFontSize(7); doc.setTextColor(...AZUL);
+        doc.text(rot, x, yy + 5);
+        const save = y; y = yy + 11;
+        texto(val, { x, w: colW, size: 9.5 });
+        y = save;
+      }
+      yy += l.h;
+    }
+    y += hBox + 16;
 
-    // Seção 2 — Dados do sistema
-    addSecao("2. DADOS DO SISTEMA ELÉTRICO");
-    addLinha(`Tensão nominal: ${Vn} V  ·  Frequência: 60 Hz  ·  Tipo de entrada: ${project.tipo_entrada ?? "Monofásico"}`);
-    addLinha(`Sistema de distribuição: TN-S  ·  Condutor PE separado do N em todo o circuito`);
-    addLinha(`Número de ambientes: ${ambientes.length}  ·  Número de circuitos: ${circuitosCalculados.length}`);
-    y += 6;
+    // ── 1. Referências
+    secao("1. REFERÊNCIAS NORMATIVAS");
+    linha("ABNT NBR 5410:2004 · Instalações elétricas de baixa tensão", 6);
+    linha("ABNT NBR 5444:1989 · Símbolos gráficos para instalações elétricas prediais", 6);
+    linha(`Normas de fornecimento da ${concessionaria}`, 6);
+    linha("NR-10 (MTE) · Segurança em instalações e serviços em eletricidade", 6);
+    y += 10;
 
-    // Seção 3 — Fator de demanda
-    addSecao("3. FATOR DE DEMANDA — NBR 5410 TABELA 10.3");
-    addLinha(`Carga instalada total: ΣP = ${Math.round(potTotal).toLocaleString("pt-BR")} W`);
-    addLinha(`Fator de demanda adotado (FD): ${(fatorDemanda * 100).toFixed(0)}%`);
-    addLinha(`Potência de demanda: Pd = ${Math.round(potTotal)} × ${fatorDemanda} = ${Math.round(potDemandaW).toLocaleString("pt-BR")} W`);
-    y += 6;
+    // ── 2. Sistema
+    secao("2. DADOS DO SISTEMA ELÉTRICO");
+    linha(`Tensão nominal: ${Vn} V  ·  Frequência: 60 Hz  ·  Tipo de entrada: ${project.tipo_entrada ?? "Monofásico"}`, 6);
+    linha("Sistema de distribuição: TN-S, com condutor PE separado do neutro em todo o circuito", 6);
+    linha(`Ambientes: ${ambientes.length}  ·  Circuitos: ${circuitosCalculados.length}`, 6);
+    y += 10;
 
-    // Seção 4 — Corrente de entrada
-    addSecao("4. CORRENTE DE ENTRADA E RAMAL");
-    if (trifasico) addLinha(`Ib = Pd / (√3 × Vn × FP) = ${Math.round(potDemandaW)} / (1,732 × ${Vn} × 0,92) = ${ibEntrada.toFixed(1)} A`);
-    else addLinha(`Ib = Pd / (Vn × FP) = ${Math.round(potDemandaW)} / (${Vn} × 0,92) = ${ibEntrada.toFixed(1)} A`);
-    addLinha(`Seção mínima do ramal de entrada: ${secaoRamal} mm²`);
-    addLinha(`Disjuntor geral: ${resumoDemanda.disjuntorGeralA} A`);
-    y += 6;
+    // ── 3. Demanda
+    secao("3. CARGA INSTALADA E DEMANDA");
+    linha(`Carga instalada total: ${Math.round(potTotal).toLocaleString("pt-BR")} W`, 6);
+    linha(`Fator de demanda adotado (FD): ${(fatorDemanda * 100).toFixed(0)}%`, 6);
+    linha(`Demanda: Pd = ${Math.round(potTotal).toLocaleString("pt-BR")} x ${fatorDemanda} = ${Math.round(potDemandaW).toLocaleString("pt-BR")} W`, 6);
+    y += 10;
 
-    // Seção 5 — Circuitos
-    addSecao("5. MEMORIAL DE DIMENSIONAMENTO DOS CIRCUITOS");
+    // ── 4. Entrada
+    secao("4. CORRENTE DE ENTRADA E RAMAL");
+    if (trifasico) linha(`Ib = Pd / (raiz(3) x Vn x FP) = ${Math.round(potDemandaW)} / (1,732 x ${Vn} x 0,92) = ${ibEntrada.toFixed(1)} A`, 6);
+    else linha(`Ib = Pd / (Vn x FP) = ${Math.round(potDemandaW)} / (${Vn} x 0,92) = ${ibEntrada.toFixed(1)} A`, 6);
+    linha(`Seção mínima do ramal de entrada: ${secaoRamal} mm²`, 6);
+    linha(`Disjuntor geral: ${resumoDemanda.disjuntorGeralA} A`, 6);
+    y += 10;
+
+    // ── 5. Circuitos
+    secao("5. DIMENSIONAMENTO DOS CIRCUITOS");
     for (const c of circuitosCalculados) {
-      if (y > 700) { doc.addPage(); y = 40; }
       const amp = (c as Amp).ampacidadeFinalA;
-      doc.setFont("helvetica", "bold");
-      addLinha(`C${c.numero} — ${c.descricao} (${c.tipo} · Fase ${c.fase} · ${c.isolacao} · L=${c.comprimentoM}m)`);
-      doc.setFont("helvetica", "normal");
-      addLinha(`  a) Potência: P = ${c.potenciaVA} VA × FP(${c.fp}) = ${Math.round(c.potenciaW)} W`);
-      addLinha(`  b) Corrente: Ib = ${Math.round(c.potenciaW)} / ${c.tensaoV} = ${c.ibA.toFixed(2)} A`);
-      addLinha(`  c) Cabo: ${c.secaoFinalMm2} mm² — Iz = ${amp ? amp.toFixed(0) : "—"} A${c.tipo === "TUG" ? " (mín. 2,5mm² por NBR 5410)" : ""}`);
-      addLinha(`  d) Queda de tensão: ΔV = ${c.quedaPercent.toFixed(2)}% ${c.quedaPercent <= 4 ? "✓ OK (≤ 4%)" : "⚠ EXCEDE 4% — ampliar seção"}`);
-      addLinha(`  e) Disjuntor: Ib(${c.ibA.toFixed(1)}A) ≤ In(${c.disjuntorA}A) ≤ Iz(${amp ? amp.toFixed(0) : "—"}A) ✓`);
-      y += 4;
+      const ampTxt = amp ? amp.toFixed(0) : "-";
+      const titulo = `C${String(c.numero).padStart(2, "0")}   ${c.descricao}`;
+      const meta = `${c.tipo}  ·  Fase ${c.fase}  ·  ${c.isolacao}  ·  L = ${c.comprimentoM} m`;
+      const calc: string[] = [
+        `a) Potência: P = ${c.potenciaVA} VA x FP ${c.fp} = ${Math.round(c.potenciaW)} W`,
+        `b) Corrente: Ib = ${Math.round(c.potenciaW)} / ${c.tensaoV} = ${c.ibA.toFixed(2)} A`,
+        `c) Condutor: ${c.secaoFinalMm2} mm², Iz = ${ampTxt} A${c.tipo === "TUG" ? " (mín. 2,5 mm²)" : ""}`,
+        `d) Queda de tensão: ${c.quedaPercent.toFixed(2)}%  ${c.quedaPercent <= 4 ? "OK (limite 4%)" : "EXCEDE 4%: ampliar seção"}`,
+        `e) Proteção: Ib ${c.ibA.toFixed(1)} A <= In ${c.disjuntorA} A <= Iz ${ampTxt} A`,
+      ];
+      for (let i = 0; i < calc.length; i++) calc[i] = calc[i].replace(/(\d)\.(\d)/g, "$1,$2");
+      const hT = texto(titulo, { x: M + 10, w: CW - 20, size: 9.5, bold: true, draw: false });
+      const hCalc = calc.reduce((a, t) => a + texto(t, { x: M + 14, w: CW - 24, size: 8.5, draw: false }) + 1, 0);
+      const hTotal = 6 + hT + 12 + 4 + hCalc + 10;
+      garantir(hTotal);
+      doc.setFillColor(...CINZA); doc.rect(M, y, CW, 6 + hT + 12 + 4, "F");
+      doc.setFillColor(...AZUL); doc.rect(M, y, 3, 6 + hT + 12 + 4, "F");
+      y += 6;
+      texto(titulo, { x: M + 10, w: CW - 20, size: 9.5, bold: true, cor: AZUL });
+      y += hT;
+      texto(meta, { x: M + 10, size: 8, cor: [90, 100, 115] });
+      y += 12 + 4 + 3;
+      for (const t of calc) { const h = texto(t, { x: M + 14, w: CW - 24, size: 8.5 }); y += h + 1; }
+      y += 10;
     }
 
-    // Seção 6 — Balanço
+    // ── 6. Balanço
     if (trifasico) {
-      addSecao("6. BALANÇO DE FASES");
-      addLinha(`Fase R: ${Math.round(balanco.R)} W  ·  Fase S: ${Math.round(balanco.S)} W  ·  Fase T: ${Math.round(balanco.T)} W`);
-      addLinha(`Desbalanceamento: ${balanco.desbalanceamentoPercent.toFixed(1)}% ${balanco.desbalanceamentoPercent <= 10 ? "✓ OK" : "⚠ VERIFICAR (máx. 10%)"}`);
+      secao("6. BALANÇO DE FASES");
+      linha(`Fase R: ${Math.round(balanco.R)} W  ·  Fase S: ${Math.round(balanco.S)} W  ·  Fase T: ${Math.round(balanco.T)} W`, 6);
+      linha(`Desbalanceamento: ${balanco.desbalanceamentoPercent.toFixed(1)}%  ${balanco.desbalanceamentoPercent <= 10 ? "OK (limite 10%)" : "VERIFICAR (limite 10%)"}`, 6);
     }
 
-    // Rodapé
+    // ── Rodapé
     const totalPg = doc.getNumberOfPages();
     for (let p = 1; p <= totalPg; p++) {
       doc.setPage(p);
-      const ph = doc.internal.pageSize.getHeight();
-      doc.setFillColor(...AZUL); doc.rect(0, ph - 18, W, 18, "F");
-      doc.setTextColor(255); doc.setFontSize(7.5);
-      doc.text(`${project.nome} — Memorial de Cálculo — NBR 5410:2004`, M, ph - 6);
-      doc.text(`Página ${p} de ${totalPg}`, W - M, ph - 6, { align: "right" });
+      doc.setFillColor(...AZUL); doc.rect(0, PH - 20, W, 20, "F");
+      doc.setTextColor(255); doc.setFont("helvetica", "normal"); doc.setFontSize(7.5);
+      doc.text(`${project.nome} · Memorial de Cálculo · NBR 5410:2004`, M, PH - 7);
+      doc.text(`Página ${p} de ${totalPg}`, W - M, PH - 7, { align: "right" });
     }
-    doc.save(`${project.nome.toLowerCase().replace(/\s+/g,"-")}-memorial-calculo.pdf`);
+    doc.save(`${project.nome.toLowerCase().replace(/\s+/g, "-")}-memorial-calculo.pdf`);
   }
 
   // ── Exportar Tabela PDF ────────────────────────────────────────────────
@@ -314,7 +379,7 @@ export default function MemorialCalculoTab({ project, ambientes, circuitosCalcul
       styles: { fontSize: 7.5, cellPadding: 3, lineColor: [200,205,210], lineWidth: 0.2 },
       headStyles: { fillColor: AZUL, textColor: 255, fontStyle: "bold" },
       alternateRowStyles: { fillColor: CINZA },
-      head: [["Nº","Descrição","Tipo","Pts","Fase","VA","W","L(m)","Isol.","Ib(A)","Cabo(mm²)","Iz(A)","ΔV(%)","Disj.(A)","OK?"]],
+      head: [["Nº","Descrição","Tipo","Pts","Fase","VA","W","L(m)","Isol.","Ib(A)","Cabo(mm²)","Iz(A)","dV(%)","Disj.(A)","OK?"]],
       body: circuitosCalculados.map(c => {
         const orig = circuitosOriginais.find(o => o.id === c.id);
         const amp = (c as Amp).ampacidadeFinalA;
@@ -323,7 +388,7 @@ export default function MemorialCalculoTab({ project, ambientes, circuitosCalcul
           c.potenciaVA, Math.round(c.potenciaW), c.comprimentoM, c.isolacao,
           c.ibA.toFixed(2), c.secaoFinalMm2, amp ? amp.toFixed(0) : "—",
           c.quedaPercent.toFixed(2), c.disjuntorA,
-          c.quedaPercent <= 4 && c.ibA <= c.disjuntorA ? "✓" : "✗",
+          c.quedaPercent <= 4 && c.ibA <= c.disjuntorA ? "OK" : "X",
         ];
       }),
     });
