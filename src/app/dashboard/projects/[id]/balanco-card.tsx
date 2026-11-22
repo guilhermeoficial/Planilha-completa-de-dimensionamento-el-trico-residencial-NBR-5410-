@@ -32,10 +32,10 @@ export default function BalancoCard({ balanco }: { balanco: BalancoFases }) {
   return (
     <div className="rounded-lg border border-panel-border bg-panel p-5">
       <div className="mb-4 flex items-center justify-between">
-        <div className="flex items-center gap-2 font-display text-sm font-semibold">
+        <div className="flex items-center gap-2 whitespace-nowrap font-display text-sm font-semibold">
           <BarChart3 size={16} className="text-accent" /> Balanceamento de fases
         </div>
-        <span className={`font-mono text-xs ${STATUS_COLOR[balanco.status]}`}>
+        <span className={`whitespace-nowrap font-mono text-xs ${STATUS_COLOR[balanco.status]}`}>
           {STATUS_LABEL[balanco.status]} · {balanco.desbalanceamentoPercent.toFixed(1)}%
         </span>
       </div>
@@ -51,7 +51,7 @@ export default function BalancoCard({ balanco }: { balanco: BalancoFases }) {
                 style={{ width: `${(b.valor / max) * 100}%`, background: PHASE_COLOR[b.fase] }}
               />
             </div>
-            <span className="tabular w-20 text-right text-sm text-muted">{b.valor.toLocaleString("pt-BR")} W</span>
+            <span className="tabular w-24 whitespace-nowrap text-right text-sm text-muted">{Math.round(b.valor).toLocaleString("pt-BR")} W</span>
           </div>
         ))}
       </div>

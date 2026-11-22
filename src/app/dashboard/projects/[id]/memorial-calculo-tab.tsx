@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Printer, FileText, Table2, CheckCircle2, XCircle, AlertTriangle, ChevronDown, ChevronsUpDown } from "lucide-react";
+import type { CSSProperties } from "react";
 import Formula from "@/app/dashboard/cursos/formula";
 import type { CircuitoCalculado, ResumoDemanda, BalancoFases } from "@/lib/nbr5410";
 import type { AmbienteRow, ProjectRow, CircuitoRow } from "@/lib/types";
@@ -24,13 +25,20 @@ const CINZA: [number,number,number] = [245, 246, 248];
 type Amp = CircuitoCalculado & { ampacidadeFinalA?: number };
 
 // ── Componentes visuais ──────────────────────────────────────────────────────
-function Secao({ num, titulo, children, cor = "accent" }: { num: string; titulo: string; children: React.ReactNode; cor?: string }) {
+// Variáveis de tema "papel": a folha do memorial é sempre clara, como o documento impresso/PDF.
+const PAPEL = {
+  "--bg": "#ffffff", "--bg-elevated": "#eef1f6", "--panel": "#f6f8fb", "--panel-border": "#d8dfea",
+  "--text": "#14213d", "--muted": "#5b667a", "--accent": "#1b2a7b", "--accent-soft": "#1b2a7b14", "--accent-ink": "#ffffff",
+  "--ok": "#16774f", "--warn": "#a8741a", "--danger": "#b6383d",
+  "--phase-r": "#b6383d", "--phase-s": "#a67c0a", "--phase-t": "#275f8a",
+} as CSSProperties;
+
+function Secao({ num, titulo, children }: { num: string; titulo: string; children: React.ReactNode }) {
   return (
-    <section id={`sec-${num}`} className="mb-10 scroll-mt-24 print:break-before-auto">
-      <div className="mb-4 flex items-center gap-3">
-        <span className={`flex h-7 w-7 shrink-0 items-center justify-center rounded bg-${cor} font-mono text-xs font-bold text-bg`}>{num}</span>
-        <h2 className={`text-sm font-bold uppercase tracking-widest text-${cor}`}>{titulo}</h2>
-        <div className="flex-1 border-t border-panel-border" />
+    <section id={`sec-${num}`} className="mb-10 scroll-mt-6">
+      <div className="mb-4 flex items-baseline gap-3 border-b-2 border-accent pb-1.5">
+        <span className="font-mono text-sm font-bold text-warn">{num.padStart(2, "0")}</span>
+        <h2 className="font-display text-lg font-semibold tracking-tight text-text">{titulo}</h2>
       </div>
       {children}
     </section>
@@ -40,18 +48,18 @@ function Secao({ num, titulo, children, cor = "accent" }: { num: string; titulo:
 function Kpi({ label, valor, sub, cor }: { label: string; valor: string; sub?: string; cor?: "ok" | "danger" | "warn" }) {
   const c = cor === "danger" ? "text-danger" : cor === "warn" ? "text-warn" : cor === "ok" ? "text-ok" : "text-accent";
   return (
-    <div className="rounded-xl border border-panel-border bg-panel p-4 print:break-inside-avoid">
-      <p className="text-[11px] font-semibold uppercase tracking-wider text-muted">{label}</p>
-      <p className={`mt-1 font-mono text-xl font-bold ${c}`}>{valor}</p>
-      {sub && <p className="mt-0.5 text-xs text-muted">{sub}</p>}
+    <div className="px-4 py-3 print:break-inside-avoid">
+      <p className="text-[10px] font-semibold uppercase tracking-wider text-muted">{label}</p>
+      <p className={`mt-0.5 font-display text-2xl font-semibold leading-tight ${c}`}>{valor}</p>
+      {sub && <p className="text-[11px] text-muted">{sub}</p>}
     </div>
   );
 }
 
 function Bloco({ titulo, children }: { titulo?: string; children: React.ReactNode }) {
   return (
-    <div className="mb-4 rounded-xl border border-panel-border bg-panel p-5">
-      {titulo && <p className="mb-3 text-xs font-bold uppercase tracking-wider text-muted">{titulo}</p>}
+    <div className="mb-4 rounded-lg border border-panel-border bg-panel p-4">
+      {titulo && <p className="mb-2 text-[11px] font-bold uppercase tracking-wider text-accent">{titulo}</p>}
       {children}
     </div>
   );
@@ -59,14 +67,12 @@ function Bloco({ titulo, children }: { titulo?: string; children: React.ReactNod
 
 function Eq({ label, latex, resultado, unidade, obs, cor }: { label: string; latex: string; resultado: string | number; unidade?: string; obs?: string; cor?: "ok" | "danger" | "warn" }) {
   return (
-    <div className="mb-5 rounded-lg border border-panel-border bg-bg-elevated p-4">
-      <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted">{label}</p>
-      <div className="overflow-x-auto">
-        <Formula latex={latex} block />
-      </div>
-      <div className="mt-3 flex flex-wrap items-center gap-2 border-t border-panel-border pt-2">
-        <span className="text-xs text-muted">Resultado:</span>
-        <span className={`rounded px-2.5 py-0.5 font-mono text-sm font-bold ${cor === "danger" ? "bg-danger/15 text-danger" : cor === "warn" ? "bg-warn/15 text-warn" : "bg-accent/15 text-accent"}`}>
+    <div className="mb-4 rounded-lg border border-panel-border bg-bg p-4 print:break-inside-avoid">
+      <p className="mb-1 text-[11px] font-bold uppercase tracking-wider text-muted">{label}</p>
+      <div className="overflow-x-auto text-[15px]"><Formula latex={latex} block /></div>
+      <div className="mt-2 flex flex-wrap items-center gap-2">
+        <span className="text-xs text-muted">Resultado</span>
+        <span className={`rounded px-2.5 py-0.5 font-mono text-sm font-bold ${cor === "danger" ? "bg-danger/15 text-danger" : cor === "warn" ? "bg-warn/15 text-warn" : "bg-accent/10 text-accent"}`}>
           {resultado}{unidade ? ` ${unidade}` : ""}
         </span>
         {obs && <span className={`text-xs font-medium ${cor === "danger" ? "text-danger" : cor === "ok" ? "text-ok" : "text-muted"}`}>{obs}</span>}
@@ -75,18 +81,34 @@ function Eq({ label, latex, resultado, unidade, obs, cor }: { label: string; lat
   );
 }
 
+/** Versão compacta para a memória de cada circuito: rótulo + resultado numa linha e a fórmula logo abaixo. */
+function EqLinha({ label, latex, resultado, obs, cor, className = "" }: { label: string; latex: string; resultado: string; obs?: string; cor?: "ok" | "danger" | "warn"; className?: string }) {
+  return (
+    <div className={`rounded-md border border-panel-border bg-bg px-3 py-2 print:break-inside-avoid ${className}`}>
+      <div className="mb-0.5 flex flex-wrap items-center justify-between gap-2">
+        <p className="text-[11px] font-bold uppercase tracking-wide text-muted">{label}</p>
+        <div className="flex items-center gap-2">
+          {obs && <span className={`text-[11px] font-medium ${cor === "danger" ? "text-danger" : cor === "ok" ? "text-ok" : "text-muted"}`}>{obs}</span>}
+          <span className={`rounded px-2 py-0.5 font-mono text-xs font-bold ${cor === "danger" ? "bg-danger/15 text-danger" : cor === "warn" ? "bg-warn/15 text-warn" : "bg-accent/10 text-accent"}`}>{resultado}</span>
+        </div>
+      </div>
+      <div className="overflow-x-auto text-[13px]"><Formula latex={latex} /></div>
+    </div>
+  );
+}
+
 function Linha({ label, valor, destaque = false }: { label: string; valor: string | number; destaque?: boolean }) {
   return (
-    <div className={`flex items-center justify-between border-b border-panel-border py-2 last:border-0 ${destaque ? "font-semibold" : ""}`}>
-      <span className="text-sm text-muted">{label}</span>
-      <span className={`text-sm ${destaque ? "text-accent" : "text-text"}`}>{valor}</span>
+    <div className={`flex items-center justify-between gap-4 border-b border-panel-border/70 py-1.5 last:border-0 ${destaque ? "font-semibold" : ""}`}>
+      <span className="text-[13px] text-muted">{label}</span>
+      <span className={`text-right text-[13px] ${destaque ? "text-accent" : "text-text"}`}>{valor}</span>
     </div>
   );
 }
 
 function Conformidade({ item, criterio, ok }: { item: string; criterio: string; ok: boolean }) {
   return (
-    <div className={`flex items-start justify-between rounded-lg border p-3.5 ${ok ? "border-ok/30 bg-ok/5" : "border-danger/30 bg-danger/5"}`}>
+    <div className={`flex items-start justify-between gap-3 rounded-lg border p-3 print:break-inside-avoid ${ok ? "border-ok/30 bg-ok/5" : "border-danger/30 bg-danger/5"}`}>
       <div className="flex items-start gap-2">
         {ok ? <CheckCircle2 size={15} className="mt-0.5 shrink-0 text-ok" /> : <XCircle size={15} className="mt-0.5 shrink-0 text-danger" />}
         <div>
@@ -320,46 +342,69 @@ export default function MemorialCalculoTab({ project, ambientes, circuitosCalcul
     doc.save(`${project.nome.toLowerCase().replace(/\s+/g,"-")}-circuitos.pdf`);
   }
 
+  const [ativo, setAtivo] = useState("1");
+  useEffect(() => {
+    const els = Array.from(document.querySelectorAll<HTMLElement>("section[id^='sec-']"));
+    if (!els.length || typeof IntersectionObserver === "undefined") return;
+    const obs = new IntersectionObserver(
+      (entries) => { const v = entries.filter((e) => e.isIntersecting).sort((x, y) => x.boundingClientRect.top - y.boundingClientRect.top)[0]; if (v) setAtivo(v.target.id.replace("sec-", "")); },
+      { rootMargin: "-10% 0px -70% 0px" }
+    );
+    els.forEach((el) => obs.observe(el));
+    return () => obs.disconnect();
+  }, [circuitosCalculados.length, trifasico]);
+
   return (
-    <div>
-      {/* Barra de exportação */}
-      <div className="mb-4 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-panel-border bg-panel p-5 print:hidden">
-        <div>
-          <h1 className="text-lg font-bold">Memorial de Cálculo</h1>
-          <p className="text-xs text-muted">Instalação Elétrica de Baixa Tensão · ABNT NBR 5410:2004 · {concessionaria}</p>
-        </div>
-        <div className="flex flex-wrap gap-2">
-          <button onClick={() => { setAbertos(true); setTimeout(() => window.print(), 150); }}
-            className="flex items-center gap-1.5 rounded-lg border border-panel-border px-4 py-2 text-sm hover:border-accent hover:text-accent transition-colors">
+    <div className="grid gap-6 lg:grid-cols-[210px_minmax(0,1fr)] print:block">
+      {/* Menu lateral */}
+      <aside className="print:hidden lg:sticky lg:top-4 lg:self-start">
+        <div className="flex flex-col gap-2">
+          <button onClick={exportarMemorialPDF} className="flex items-center justify-center gap-1.5 rounded-lg bg-accent px-3 py-2.5 text-sm font-medium text-bg transition-opacity hover:opacity-90">
+            <FileText size={15} /> Memorial (PDF)
+          </button>
+          <button onClick={exportarTabelaPDF} className="flex items-center justify-center gap-1.5 rounded-lg border border-panel-border px-3 py-2 text-sm transition-colors hover:border-accent hover:text-accent">
+            <Table2 size={15} /> Tabela de circuitos (PDF)
+          </button>
+          <button onClick={() => { setAbertos(true); setTimeout(() => window.print(), 150); }} className="flex items-center justify-center gap-1.5 rounded-lg border border-panel-border px-3 py-2 text-sm transition-colors hover:border-accent hover:text-accent">
             <Printer size={15} /> Imprimir
           </button>
-          <button onClick={exportarMemorialPDF}
-            className="flex items-center gap-1.5 rounded-lg bg-accent px-4 py-2 text-sm font-medium text-bg hover:opacity-90 transition-opacity">
-            <FileText size={15} /> Memorial de Cálculo (PDF)
-          </button>
-          <button onClick={exportarTabelaPDF}
-            className="flex items-center gap-1.5 rounded-lg border border-panel-border px-4 py-2 text-sm hover:border-accent hover:text-accent transition-colors">
-            <Table2 size={15} /> Tabela de Circuitos (PDF)
-          </button>
         </div>
-      </div>
+        <nav className="mt-4 rounded-xl border border-panel-border bg-panel p-2">
+          <p className="px-2 pb-1.5 pt-1 text-[10px] font-bold uppercase tracking-widest text-muted">Neste documento</p>
+          {indice.map(([n, nome]) => (
+            <a key={n} href={`#sec-${n}`} className={`flex items-center gap-2 rounded-md px-2 py-1.5 text-[13px] transition-colors ${ativo === n ? "bg-accent/15 font-semibold text-accent" : "text-muted hover:bg-panel-border/60 hover:text-text"}`}>
+              <span className="w-5 font-mono text-[11px] font-bold text-accent">{n.padStart(2, "0")}</span>{nome}
+            </a>
+          ))}
+        </nav>
+      </aside>
 
-      {/* Resumo executivo */}
-      <div className="mb-4 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6 print:grid-cols-6">
-        <Kpi label="Carga instalada" valor={`${(potTotal / 1000).toFixed(1)} kW`} sub={`${circuitosCalculados.length} circuitos`} />
-        <Kpi label="Demanda" valor={`${(potDemandaW / 1000).toFixed(1)} kW`} sub={`FD ${(fatorDemanda * 100).toFixed(0)}%`} />
-        <Kpi label="Corrente de entrada" valor={`${ibEntrada.toFixed(1)} A`} sub={`Ramal ${secaoRamal} mm²`} />
-        <Kpi label="Disjuntor geral" valor={`${resumoDemanda.disjuntorGeralA} A`} sub={project.tipo_entrada ?? "Monofásico"} />
-        <Kpi label="Circuitos com alerta" valor={String(circuitosComAlerta)} sub={trifasico ? `Desbalanço ${balanco.desbalanceamentoPercent.toFixed(1)}%` : "Queda ≤ 4% e Ib ≤ In"} cor={circuitosComAlerta ? "danger" : "ok"} />
-        <Kpi label="Conformidade" valor={`${conformes}/${verificacoes.length}`} sub="Itens da NBR 5410" cor={conformes === verificacoes.length ? "ok" : "warn"} />
-      </div>
-      <nav className="sticky top-0 z-20 -mx-1 mb-8 flex flex-wrap gap-1.5 rounded-xl border border-panel-border bg-bg/90 p-2 backdrop-blur print:hidden">
-        {indice.map(([n, nome]) => (
-          <a key={n} href={`#sec-${n}`} className="rounded-md px-2.5 py-1 text-xs text-muted transition-colors hover:bg-panel-border hover:text-text">
-            <span className="mr-1 font-mono font-bold text-accent">{n}</span>{nome}
-          </a>
-        ))}
-      </nav>
+      {/* Folha do memorial */}
+      <article style={PAPEL} className="min-w-0 rounded-xl bg-white p-6 text-text shadow-2xl ring-1 ring-black/10 md:p-10 print:rounded-none print:p-0 print:shadow-none print:ring-0">
+        <header className="mb-8 border-b-4 border-double border-accent pb-6">
+          <p className="font-mono text-[11px] font-bold uppercase tracking-[0.22em] text-warn">Memorial de Cálculo · Instalações Elétricas de Baixa Tensão</p>
+          <h1 className="mt-2 font-display text-3xl font-semibold leading-tight text-text md:text-4xl">{project.nome}</h1>
+          <p className="mt-1 text-sm text-muted">ABNT NBR 5410:2004 · {concessionaria} · {dataHoje}</p>
+          <div className="mt-5 grid grid-cols-2 gap-x-8 gap-y-3 text-sm md:grid-cols-4">
+            {[
+              ["Cliente", project.cliente ?? "—"],
+              ["Endereço", (project as { endereco?: string }).endereco ?? "—"],
+              ["Responsável técnico", project.responsavel_tecnico ?? "—"],
+              ["Registro", project.registro_profissional ?? "—"],
+            ].map(([k, v]) => (
+              <div key={k}><p className="text-[10px] font-semibold uppercase tracking-wider text-muted">{k}</p><p className="font-medium text-text">{v}</p></div>
+            ))}
+          </div>
+        </header>
+
+        <div className="mb-10 grid grid-cols-2 divide-x divide-y divide-panel-border overflow-hidden rounded-lg border border-panel-border bg-panel md:grid-cols-3 lg:grid-cols-6 lg:divide-y-0 print:grid-cols-6 print:divide-y-0">
+          <Kpi label="Carga instalada" valor={`${(potTotal / 1000).toFixed(1)} kW`} sub={`${circuitosCalculados.length} circuitos`} />
+          <Kpi label="Demanda" valor={`${(potDemandaW / 1000).toFixed(1)} kW`} sub={`FD ${(fatorDemanda * 100).toFixed(0)}%`} />
+          <Kpi label="Corrente de entrada" valor={`${ibEntrada.toFixed(1)} A`} sub={`Ramal ${secaoRamal} mm²`} />
+          <Kpi label="Disjuntor geral" valor={`${resumoDemanda.disjuntorGeralA} A`} sub={project.tipo_entrada ?? "Monofásico"} />
+          <Kpi label="Circuitos com alerta" valor={String(circuitosComAlerta)} sub={trifasico ? `Desbalanço ${balanco.desbalanceamentoPercent.toFixed(1)}%` : "ΔV ≤ 4% e Ib ≤ In"} cor={circuitosComAlerta ? "danger" : "ok"} />
+          <Kpi label="Conformidade" valor={`${conformes}/${verificacoes.length}`} sub="Itens da NBR 5410" cor={conformes === verificacoes.length ? "ok" : "warn"} />
+        </div>
 
       {/* 1. Identificação */}
       <Secao num="1" titulo="Identificação do Projeto">
@@ -527,59 +572,28 @@ export default function MemorialCalculoTab({ project, ambientes, circuitosCalcul
             <ChevronsUpDown size={13} /> {abertos ? "Recolher todos" : "Expandir todos"}
           </button>
         </div>
-        <div className="space-y-4">
+        <div className="space-y-2.5">
           {circuitosCalculados.map(c => {
             const amp = (c as Amp).ampacidadeFinalA;
             const quedaOk = c.quedaPercent <= 4;
             const selOk   = c.ibA <= c.disjuntorA && c.disjuntorA <= (amp ?? 999);
             return (
-              <details key={`${c.id}-${abertos}`} id={`circ-${c.id}`} open={abertos} className={`group scroll-mt-24 rounded-2xl border p-5 print:break-inside-avoid ${!quedaOk ? "border-danger/40 bg-danger/5" : "border-panel-border bg-panel"}`}>
-                {/* Header do circuito */}
-                <summary className="flex cursor-pointer list-none flex-wrap items-center gap-2 [&::-webkit-details-marker]:hidden">
-                  <ChevronDown size={16} className="shrink-0 text-muted transition-transform group-open:rotate-180 print:hidden" />
-                  <span className="rounded-lg bg-accent/15 px-3 py-1 font-mono font-bold text-accent">C{c.numero}</span>
-                  <span className="text-base font-bold">{c.descricao}</span>
-                  <span className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${c.tipo === "Iluminação" ? "bg-warn/15 text-warn" : c.tipo === "TUG" ? "bg-ok/15 text-ok" : "bg-accent/15 text-accent"}`}>{c.tipo}</span>
-                  <div className="ml-auto flex gap-2 text-xs text-muted">
-                    <span>Fase {c.fase}</span>·<span>{c.isolacao}</span>·<span>{c.comprimentoM} m</span>·<span>{circuitosOriginais.find(o=>o.id===c.id)?.qtd_pontos ?? "—"} pontos</span>
-                  </div>
+              <details key={`${c.id}-${abertos}`} id={`circ-${c.id}`} open={abertos}
+                style={{ borderLeftColor: `var(--phase-${c.fase.toLowerCase()})` }}
+                className={`group scroll-mt-6 rounded-lg border border-l-4 p-3 print:break-inside-avoid ${!quedaOk ? "border-danger/40 bg-danger/5" : "border-panel-border bg-panel"}`}>
+                <summary className="flex cursor-pointer list-none flex-wrap items-center gap-x-3 gap-y-1 [&::-webkit-details-marker]:hidden">
+                  <ChevronDown size={15} className="shrink-0 text-muted transition-transform group-open:rotate-180 print:hidden" />
+                  <span className="rounded bg-accent px-2 py-0.5 font-mono text-xs font-bold text-bg">C{String(c.numero).padStart(2, "0")}</span>
+                  <span className="min-w-0 flex-1 text-sm font-semibold leading-snug">{c.descricao}</span>
+                  <span className={`rounded-full px-2 py-0.5 text-[11px] font-medium ${c.tipo === "Iluminação" ? "bg-warn/15 text-warn" : c.tipo === "TUG" ? "bg-ok/15 text-ok" : "bg-accent/10 text-accent"}`}>{c.tipo}</span>
+                  <span className="font-mono text-[11px] text-muted">Fase {c.fase} · {c.comprimentoM} m · {circuitosOriginais.find(o=>o.id===c.id)?.qtd_pontos ?? "—"} pts · {c.isolacao}</span>
                 </summary>
-                <div className="mt-5 grid gap-4 md:grid-cols-2">
-                  {/* Coluna esquerda — correntes */}
-                  <div>
-                    <Eq
-                      label="a) Potência ativa"
-                      latex={`P = S \\times FP = ${c.potenciaVA}\\text{ VA} \\times ${c.fp} = ${Math.round(c.potenciaW)}\\text{ W}`}
-                      resultado={`${Math.round(c.potenciaW)} W`}
-                    />
-                    <Eq
-                      label="b) Corrente de projeto (Ib)"
-                      latex={`I_b = \\dfrac{P}{V_n} = \\dfrac{${Math.round(c.potenciaW)}}{${c.tensaoV}} = ${c.ibA.toFixed(2)}\\text{ A}`}
-                      resultado={`${c.ibA.toFixed(2)} A`}
-                    />
-                  </div>
-                  {/* Coluna direita — cabo e disjuntor */}
-                  <div>
-                    <Eq
-                      label={`c) Seção do cabo${c.tipo === "TUG" ? " (mín. 2,5mm² — TUG)" : c.tipo === "Iluminação" ? " (mín. 1,5mm²)" : " (mín. 2,5mm² — TUE)"}`}
-                      latex={`I_b \\leq I_z \\;\\Rightarrow\\; ${c.ibA.toFixed(1)} \\leq ${amp ? amp.toFixed(0) : "—"}\\text{ A} \\;\\Rightarrow\\; \\boxed{${c.secaoFinalMm2}\\text{ mm}^2\\text{ Cu ${c.isolacao}}}`}
-                      resultado={`${c.secaoFinalMm2} mm² · Iz = ${amp ? amp.toFixed(0) : "—"} A`}
-                    />
-                    <Eq
-                      label="d) Queda de tensão"
-                      latex={`\\Delta V = \\dfrac{2 \\cdot \\rho \\cdot L \\cdot I_b}{A \\cdot V_n} \\times 100 = \\dfrac{2 \\times 1{,}72\\times10^{-8} \\times ${c.comprimentoM} \\times ${c.ibA.toFixed(2)}}{${c.secaoFinalMm2}\\times10^{-6} \\times ${c.tensaoV}} \\times 100 = ${c.quedaPercent.toFixed(2)}\\%`}
-                      resultado={`${c.quedaPercent.toFixed(2)} %`}
-                      obs={quedaOk ? "✓ ≤ 4%" : "⚠ Excede 4% — ampliar seção"}
-                      cor={quedaOk ? undefined : "danger"}
-                    />
-                    <Eq
-                      label="e) Disjuntor — verificação de seletividade"
-                      latex={`I_b \\leq I_n \\leq I_z \\;\\Rightarrow\\; ${c.ibA.toFixed(1)} \\leq \\underbrace{${c.disjuntorA}}_{\\text{In adotado}} \\leq ${amp ? amp.toFixed(0) : "—"}\\text{ A}`}
-                      resultado={`${c.disjuntorA} A`}
-                      obs={selOk ? "✓ Condição satisfeita" : "⚠ Verificar"}
-                      cor={selOk ? "ok" : "danger"}
-                    />
-                  </div>
+                <div className="mt-3 grid gap-2 md:grid-cols-2">
+                  <EqLinha label="a) Potência ativa" latex={`P = S \\times FP = ${c.potenciaVA}\\text{ VA} \\times ${c.fp} = ${Math.round(c.potenciaW)}\\text{ W}`} resultado={`${Math.round(c.potenciaW)} W`} />
+                  <EqLinha label="b) Corrente de projeto (Ib)" latex={`I_b = \\dfrac{P}{V_n} = \\dfrac{${Math.round(c.potenciaW)}}{${c.tensaoV}} = ${c.ibA.toFixed(2)}\\text{ A}`} resultado={`${c.ibA.toFixed(2)} A`} />
+                  <EqLinha label={`c) Seção do cabo (mín. ${c.tipo === "Iluminação" ? "1,5" : "2,5"} mm²)`} latex={`I_b \\leq I_z \\Rightarrow ${c.ibA.toFixed(1)} \\leq ${amp ? amp.toFixed(0) : "—"}\\text{ A} \\Rightarrow \\boxed{${c.secaoFinalMm2}\\text{ mm}^2}`} resultado={`${c.secaoFinalMm2} mm² · Iz ${amp ? amp.toFixed(0) : "—"} A`} />
+                  <EqLinha label="d) Disjuntor (seletividade)" latex={`I_b \\leq I_n \\leq I_z \\Rightarrow ${c.ibA.toFixed(1)} \\leq ${c.disjuntorA} \\leq ${amp ? amp.toFixed(0) : "—"}\\text{ A}`} resultado={`${c.disjuntorA} A`} obs={selOk ? "✓ condição satisfeita" : "⚠ verificar"} cor={selOk ? "ok" : "danger"} />
+                  <EqLinha className="md:col-span-2" label="e) Queda de tensão" latex={`\\Delta V = \\dfrac{2 \\cdot \\rho \\cdot L \\cdot I_b}{A \\cdot V_n} \\times 100 = \\dfrac{2 \\times 1{,}72\\times10^{-8} \\times ${c.comprimentoM} \\times ${c.ibA.toFixed(2)}}{${c.secaoFinalMm2}\\times10^{-6} \\times ${c.tensaoV}} \\times 100 = ${c.quedaPercent.toFixed(2)}\\%`} resultado={`${c.quedaPercent.toFixed(2)} %`} obs={quedaOk ? "✓ ≤ 4%" : "⚠ excede 4%: ampliar a seção"} cor={quedaOk ? "ok" : "danger"} />
                 </div>
               </details>
             );
@@ -682,7 +696,7 @@ export default function MemorialCalculoTab({ project, ambientes, circuitosCalcul
 
       {/* 10. Verificação de conformidade */}
       <Secao num={trifasico ? "10" : "9"} titulo="Verificação de Conformidade — NBR 5410:2004">
-        <div className="space-y-2">
+        <div className="grid gap-2 md:grid-cols-2">
           {verificacoes.map(([item, ref, ok]) => (
             <Conformidade key={item} item={item} criterio={ref} ok={ok} />
           ))}
@@ -705,6 +719,7 @@ export default function MemorialCalculoTab({ project, ambientes, circuitosCalcul
           </div>
         </div>
       </div>
+      </article>
     </div>
   );
 }
