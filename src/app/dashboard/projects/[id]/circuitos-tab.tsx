@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Plus, Trash2, Wand2, Lock, Unlock, Zap, Combine, Copy, Search } from "lucide-react";
+import { Plus, Trash2, Wand2, Lock, Unlock, Zap, Combine, Copy, Search, CheckCircle2, AlertTriangle } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import {
   calcularMemorial,
@@ -37,7 +37,8 @@ export default function CircuitosTab({ projectId, tensaoV, tipoEntrada, circuito
   const [selecionados, setSelecionados] = useState<Set<string>>(new Set());
   const [busca, setBusca] = useState("");
   const [pagina, setPagina] = useState(1);
-  const POR_PAGINA = 10;
+  const [porPagina, setPorPagina] = useState(25);
+  const POR_PAGINA = porPagina;
 
   function alternarSelecao(id: string) {
     setSelecionados((prev) => {
@@ -424,9 +425,35 @@ export default function CircuitosTab({ projectId, tensaoV, tipoEntrada, circuito
         )}
       </div>
 
-      <div className="overflow-x-auto rounded-lg border border-panel-border">
-        <table className="w-full text-sm">
-          <thead className="bg-bg-elevated text-left text-xs uppercase tracking-wide text-muted">
+      <div className="mb-3 flex flex-wrap items-center gap-2 text-xs">
+        <span className="rounded-full border border-panel-border bg-panel px-2.5 py-1">
+          <b className="text-text">{calculados.length}</b> <span className="text-muted">circuitos</span>
+        </span>
+        <span className="rounded-full bg-warn/15 px-2.5 py-1 text-warn"><b>{calculados.filter((c) => c.tipo === "Iluminação").length}</b> iluminação</span>
+        <span className="rounded-full bg-ok/15 px-2.5 py-1 text-ok"><b>{calculados.filter((c) => c.tipo === "TUG").length}</b> TUG</span>
+        <span className="rounded-full bg-accent/15 px-2.5 py-1 text-accent"><b>{calculados.filter((c) => c.tipo === "TUE").length}</b> TUE</span>
+        {calculados.some((c) => c.quedaPercent > 4 || c.ibA > c.disjuntorA) ? (
+          <span className="flex items-center gap-1 rounded-full bg-danger/15 px-2.5 py-1 text-danger">
+            <AlertTriangle size={12} /> <b>{calculados.filter((c) => c.quedaPercent > 4 || c.ibA > c.disjuntorA).length}</b> com alerta
+          </span>
+        ) : calculados.length > 0 ? (
+          <span className="flex items-center gap-1 rounded-full bg-ok/15 px-2.5 py-1 text-ok"><CheckCircle2 size={12} /> todos conformes</span>
+        ) : null}
+        <label className="ml-auto flex items-center gap-1.5 text-muted">
+          Linhas por página
+          <select
+            value={porPagina}
+            onChange={(e) => { setPorPagina(Number(e.target.value)); setPagina(1); }}
+            className="rounded border border-panel-border bg-panel px-1.5 py-1 text-text"
+          >
+            {[10, 25, 50, 100].map((n) => <option key={n} value={n}>{n}</option>)}
+          </select>
+        </label>
+      </div>
+
+      <div className="max-h-[70vh] overflow-auto rounded-lg border border-panel-border">
+        <table className="w-full whitespace-nowrap text-sm">
+          <thead className="sticky top-0 z-10 bg-bg-elevated text-left text-xs uppercase tracking-wide text-muted shadow-[0_1px_0_0_var(--panel-border)]">
             <tr>
               <th className="px-3 py-2.5" />
               <th className="px-3 py-2.5">Nº</th>
@@ -442,6 +469,7 @@ export default function CircuitosTab({ projectId, tensaoV, tipoEntrada, circuito
               <th className="px-3 py-2.5 text-ok">Iz (A)</th>
               <th className="px-3 py-2.5">Queda (%)</th>
               <th className="px-3 py-2.5">Disjuntor (A)</th>
+              <th className="px-3 py-2.5 text-center">Status</th>
               <th className="px-3 py-2.5" />
             </tr>
           </thead>
@@ -456,7 +484,7 @@ export default function CircuitosTab({ projectId, tensaoV, tipoEntrada, circuito
               const coresGrupo = ["border-l-accent", "border-l-phase-s", "border-l-phase-t", "border-l-ok", "border-l-warn", "border-l-danger"];
               const corGrupo = grupoIdx >= 0 ? coresGrupo[grupoIdx % coresGrupo.length] : "";
               return (
-                <tr key={c.id} className={`border-t border-panel-border ${grupo ? `border-l-4 ${corGrupo} bg-accent/[0.02]` : ""}`}>
+                <tr key={c.id} className={`border-t border-panel-border transition-colors hover:bg-panel/70 ${grupo ? `border-l-4 ${corGrupo} bg-accent/[0.02]` : ""} ${c.quedaPercent > 4 || c.ibA > c.disjuntorA ? "bg-danger/[0.05]" : ""}`}>
                   <td className="px-3 py-2">
                     <input
                       type="checkbox"
@@ -471,7 +499,7 @@ export default function CircuitosTab({ projectId, tensaoV, tipoEntrada, circuito
                       <input
                         defaultValue={c.descricao}
                         onBlur={(e) => e.target.value !== c.descricao && atualizar(c.id, { descricao: e.target.value })}
-                        className="w-44 rounded border border-transparent bg-transparent px-1 py-0.5 hover:border-panel-border focus:border-accent focus:outline-none"
+                        className="w-56 rounded border border-transparent bg-transparent px-1 py-0.5 hover:border-panel-border focus:border-accent focus:outline-none"
                       />
                       {grupo && (
                         <button
@@ -488,7 +516,7 @@ export default function CircuitosTab({ projectId, tensaoV, tipoEntrada, circuito
                     <select
                       value={c.tipo}
                       onChange={(e) => atualizar(c.id, { tipo: e.target.value as TipoCircuito })}
-                      className="rounded border border-transparent bg-transparent px-1 py-0.5 hover:border-panel-border focus:border-accent focus:outline-none"
+                      className={`rounded border border-transparent bg-transparent px-1 py-0.5 font-medium hover:border-panel-border focus:border-accent focus:outline-none ${c.tipo === "Iluminação" ? "text-warn" : c.tipo === "TUG" ? "text-ok" : "text-accent"}`}
                     >
                       {TIPOS.map((t) => <option key={t} value={t}>{t}</option>)}
                     </select>
@@ -553,6 +581,13 @@ export default function CircuitosTab({ projectId, tensaoV, tipoEntrada, circuito
                   <td className="tabular px-3 py-2 font-medium text-ok">{c.ampacidadeFinalA?.toFixed(0) ?? "—"} A</td>
                   <td className={`tabular px-3 py-2 ${c.quedaPercent > 4 ? "text-danger" : "text-muted"}`}>{c.quedaPercent.toFixed(2)}</td>
                   <td className="tabular px-3 py-2 font-medium">{c.disjuntorA}</td>
+                  <td className="px-3 py-2 text-center">
+                    {c.quedaPercent > 4 || c.ibA > c.disjuntorA ? (
+                      <span title={c.quedaPercent > 4 ? "Queda de tensão acima de 4%" : "Ib maior que o disjuntor"} className="inline-flex items-center gap-1 rounded-full bg-danger/15 px-2 py-0.5 text-[11px] font-bold text-danger"><AlertTriangle size={11} /> Verificar</span>
+                    ) : (
+                      <span className="inline-flex items-center gap-1 rounded-full bg-ok/15 px-2 py-0.5 text-[11px] font-bold text-ok"><CheckCircle2 size={11} /> OK</span>
+                    )}
+                  </td>
                   <td className="px-3 py-2 text-right">
                     <button onClick={() => duplicarCircuito(original)} title="Duplicar (dividir carga em outro disjuntor)" className="mr-2 text-muted hover:text-text">
                       <Copy size={15} />
@@ -566,19 +601,30 @@ export default function CircuitosTab({ projectId, tensaoV, tipoEntrada, circuito
             })}
             {circuitos.length === 0 && (
               <tr>
-                <td colSpan={14} className="px-4 py-8 text-center text-muted">
+                <td colSpan={16} className="px-4 py-8 text-center text-muted">
                   Nenhum circuito ainda. Cadastre os ambientes e clique em "Gerar circuitos a partir dos ambientes".
                 </td>
               </tr>
             )}
             {circuitos.length > 0 && filtrados.length === 0 && (
               <tr>
-                <td colSpan={14} className="px-4 py-8 text-center text-muted">
+                <td colSpan={16} className="px-4 py-8 text-center text-muted">
                   Nenhum circuito encontrado para "{busca}".
                 </td>
               </tr>
             )}
           </tbody>
+          {calculados.length > 0 && (
+            <tfoot className="sticky bottom-0 bg-bg-elevated text-xs font-semibold shadow-[0_-1px_0_0_var(--panel-border)]">
+              <tr>
+                <td className="px-3 py-2" colSpan={4}>Total ({calculados.length} circuitos)</td>
+                <td className="tabular px-3 py-2">{circuitos.reduce((a, o) => a + (o.qtd_pontos ?? 0), 0)}</td>
+                <td className="px-3 py-2" />
+                <td className="tabular px-3 py-2">{Math.round(calculados.reduce((a, c) => a + c.potenciaVA, 0)).toLocaleString("pt-BR")}</td>
+                <td className="px-3 py-2" colSpan={9} />
+              </tr>
+            </tfoot>
+          )}
         </table>
       </div>
 

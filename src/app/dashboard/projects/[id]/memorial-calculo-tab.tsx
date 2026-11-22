@@ -1,6 +1,7 @@
 "use client";
 
-import { Printer, FileText, Table2, CheckCircle2, XCircle, AlertTriangle } from "lucide-react";
+import { useState } from "react";
+import { Printer, FileText, Table2, CheckCircle2, XCircle, AlertTriangle, ChevronDown, ChevronsUpDown } from "lucide-react";
 import Formula from "@/app/dashboard/cursos/formula";
 import type { CircuitoCalculado, ResumoDemanda, BalancoFases } from "@/lib/nbr5410";
 import type { AmbienteRow, ProjectRow, CircuitoRow } from "@/lib/types";
@@ -25,7 +26,7 @@ type Amp = CircuitoCalculado & { ampacidadeFinalA?: number };
 // ── Componentes visuais ──────────────────────────────────────────────────────
 function Secao({ num, titulo, children, cor = "accent" }: { num: string; titulo: string; children: React.ReactNode; cor?: string }) {
   return (
-    <section className="mb-10 print:break-before-auto">
+    <section id={`sec-${num}`} className="mb-10 scroll-mt-24 print:break-before-auto">
       <div className="mb-4 flex items-center gap-3">
         <span className={`flex h-7 w-7 shrink-0 items-center justify-center rounded bg-${cor} font-mono text-xs font-bold text-bg`}>{num}</span>
         <h2 className={`text-sm font-bold uppercase tracking-widest text-${cor}`}>{titulo}</h2>
@@ -33,6 +34,17 @@ function Secao({ num, titulo, children, cor = "accent" }: { num: string; titulo:
       </div>
       {children}
     </section>
+  );
+}
+
+function Kpi({ label, valor, sub, cor }: { label: string; valor: string; sub?: string; cor?: "ok" | "danger" | "warn" }) {
+  const c = cor === "danger" ? "text-danger" : cor === "warn" ? "text-warn" : cor === "ok" ? "text-ok" : "text-accent";
+  return (
+    <div className="rounded-xl border border-panel-border bg-panel p-4 print:break-inside-avoid">
+      <p className="text-[11px] font-semibold uppercase tracking-wider text-muted">{label}</p>
+      <p className={`mt-1 font-mono text-xl font-bold ${c}`}>{valor}</p>
+      {sub && <p className="mt-0.5 text-xs text-muted">{sub}</p>}
+    </div>
   );
 }
 
@@ -89,7 +101,13 @@ function Conformidade({ item, criterio, ok }: { item: string; criterio: string; 
   );
 }
 
+// Ambientes considerados molhados (NBR 5410) e palavras que indicam, na descrição do circuito, que ele atende áreas molhadas.
+const TIPOS_AMBIENTE_MOLHADO = ["Banheiro", "Serviço/Cozinha", "Varanda/Externo"];
+const REGEX_AREA_MOLHADA = /molhad|cozinha|copa|banheiro|bwc|lavagem|lavanderia|servi[cç]o|dml|externo|varanda|purificador|gel[aá]gua/i;
+
 export default function MemorialCalculoTab({ project, ambientes, circuitosCalculados, circuitosOriginais, resumoDemanda, balanco }: Props) {
+  const [abertos, setAbertos] = useState(true);
+  const temAreaMolhada = ambientes.some((a) => TIPOS_AMBIENTE_MOLHADO.includes(a.tipo));
   const dataHoje = new Date().toLocaleDateString("pt-BR");
   const trifasico = project.tipo_entrada === "Trifásico";
   const bifasico  = project.tipo_entrada === "Bifásico";
@@ -117,6 +135,28 @@ export default function MemorialCalculoTab({ project, ambientes, circuitosCalcul
 
   // Seção do ramal de entrada (cabo)
   const secaoRamal = ibEntrada <= 25 ? 6 : ibEntrada <= 35 ? 10 : ibEntrada <= 50 ? 16 : ibEntrada <= 70 ? 25 : ibEntrada <= 95 ? 35 : 50;
+
+  // Verificação de conformidade (usada no resumo do topo e na seção final)
+  const verificacoes: [string, string, boolean][] = [
+    ["Seção mínima TUG ≥ 2,5mm²", "NBR 5410 §6.2.3.1", circuitosCalculados.filter(c=>c.tipo==="TUG").every(c=>c.secaoFinalMm2>=2.5)],
+    ["Seção mínima Iluminação ≥ 1,5mm²", "NBR 5410 §6.2.3.1", circuitosCalculados.filter(c=>c.tipo==="Iluminação").every(c=>c.secaoFinalMm2>=1.5)],
+    ["Queda de tensão ≤ 4% em todos os circuitos", "NBR 5410 §6.2.7", circuitosCalculados.every(c=>c.quedaPercent<=4)],
+    ["Seletividade: Ib ≤ In ≤ Iz em todos os circuitos", "NBR 5410 §6.3.6", circuitosCalculados.every(c=>c.ibA<=c.disjuntorA)],
+    ["Circuito exclusivo de iluminação presente", "NBR 5410 §9.2.1", circuitosCalculados.some(c=>c.tipo==="Iluminação")],
+    ["TUG áreas molhadas em circuito separado", temAreaMolhada ? "NBR 5410 §9.5.2" : "NBR 5410 §9.5.2 · não aplicável: nenhum ambiente molhado cadastrado", !temAreaMolhada || circuitosCalculados.some(c=>c.tipo==="TUG" && REGEX_AREA_MOLHADA.test(c.descricao))],
+    ["Número de circuitos satisfatório (≥ 3)", "NBR 5410 §9.2", circuitosCalculados.length>=3],
+    ...(trifasico ? [["Desbalanceamento de fases ≤ 10%", "Prática recomendada", balanco.desbalanceamentoPercent<=10] as [string,string,boolean]] : []),
+  ];
+  const conformes = verificacoes.filter((v) => v[2]).length;
+  const circuitosComAlerta = circuitosCalculados.filter((c) => c.quedaPercent > 4 || c.ibA > c.disjuntorA).length;
+  const numAterramento = trifasico ? "8" : "7";
+  const numChoques = trifasico ? "9" : "8";
+  const numConformidade = trifasico ? "10" : "9";
+  const indice: [string, string][] = [
+    ["1", "Identificação"], ["2", "Normas"], ["3", "Sistema"], ["4", "Demanda"], ["5", "Entrada"], ["6", "Circuitos"],
+    ...(trifasico ? [["7", "Fases"] as [string, string]] : []),
+    [numAterramento, "Aterramento"], [numChoques, "DR"], [numConformidade, "Conformidade"],
+  ];
 
   // Dados de identificação
   const dadosIdent = [
@@ -283,13 +323,13 @@ export default function MemorialCalculoTab({ project, ambientes, circuitosCalcul
   return (
     <div>
       {/* Barra de exportação */}
-      <div className="mb-8 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-panel-border bg-panel p-5">
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-panel-border bg-panel p-5 print:hidden">
         <div>
           <h1 className="text-lg font-bold">Memorial de Cálculo</h1>
-          <p className="text-xs text-muted">Instalação Elétrica Residencial · ABNT NBR 5410:2004 · {concessionaria}</p>
+          <p className="text-xs text-muted">Instalação Elétrica de Baixa Tensão · ABNT NBR 5410:2004 · {concessionaria}</p>
         </div>
         <div className="flex flex-wrap gap-2">
-          <button onClick={() => window.print()}
+          <button onClick={() => { setAbertos(true); setTimeout(() => window.print(), 150); }}
             className="flex items-center gap-1.5 rounded-lg border border-panel-border px-4 py-2 text-sm hover:border-accent hover:text-accent transition-colors">
             <Printer size={15} /> Imprimir
           </button>
@@ -303,6 +343,23 @@ export default function MemorialCalculoTab({ project, ambientes, circuitosCalcul
           </button>
         </div>
       </div>
+
+      {/* Resumo executivo */}
+      <div className="mb-4 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6 print:grid-cols-6">
+        <Kpi label="Carga instalada" valor={`${(potTotal / 1000).toFixed(1)} kW`} sub={`${circuitosCalculados.length} circuitos`} />
+        <Kpi label="Demanda" valor={`${(potDemandaW / 1000).toFixed(1)} kW`} sub={`FD ${(fatorDemanda * 100).toFixed(0)}%`} />
+        <Kpi label="Corrente de entrada" valor={`${ibEntrada.toFixed(1)} A`} sub={`Ramal ${secaoRamal} mm²`} />
+        <Kpi label="Disjuntor geral" valor={`${resumoDemanda.disjuntorGeralA} A`} sub={project.tipo_entrada ?? "Monofásico"} />
+        <Kpi label="Circuitos com alerta" valor={String(circuitosComAlerta)} sub={trifasico ? `Desbalanço ${balanco.desbalanceamentoPercent.toFixed(1)}%` : "Queda ≤ 4% e Ib ≤ In"} cor={circuitosComAlerta ? "danger" : "ok"} />
+        <Kpi label="Conformidade" valor={`${conformes}/${verificacoes.length}`} sub="Itens da NBR 5410" cor={conformes === verificacoes.length ? "ok" : "warn"} />
+      </div>
+      <nav className="sticky top-0 z-20 -mx-1 mb-8 flex flex-wrap gap-1.5 rounded-xl border border-panel-border bg-bg/90 p-2 backdrop-blur print:hidden">
+        {indice.map(([n, nome]) => (
+          <a key={n} href={`#sec-${n}`} className="rounded-md px-2.5 py-1 text-xs text-muted transition-colors hover:bg-panel-border hover:text-text">
+            <span className="mr-1 font-mono font-bold text-accent">{n}</span>{nome}
+          </a>
+        ))}
+      </nav>
 
       {/* 1. Identificação */}
       <Secao num="1" titulo="Identificação do Projeto">
@@ -433,23 +490,61 @@ export default function MemorialCalculoTab({ project, ambientes, circuitosCalcul
           <AlertTriangle size={14} className="mt-0.5 shrink-0" />
           <span>Critérios: Seção mínima TUG ≥ 2,5mm² · Iluminação ≥ 1,5mm² · TUE ≥ 2,5mm² · Queda de tensão máx. 4% · Temperatura ambiente 30°C · Instalação embutida em conduto</span>
         </div>
-        <div className="space-y-8">
+        <div className="mb-6 overflow-x-auto rounded-xl border border-panel-border">
+          <table className="w-full whitespace-nowrap text-sm">
+            <thead className="bg-bg-elevated text-left text-xs uppercase text-muted">
+              <tr>
+                <th className="px-3 py-2.5">Nº</th><th className="px-3 py-2.5">Descrição</th><th className="px-3 py-2.5">Tipo</th>
+                <th className="px-3 py-2.5">Fase</th><th className="px-3 py-2.5 text-right">VA</th><th className="px-3 py-2.5 text-right">Ib (A)</th>
+                <th className="px-3 py-2.5 text-right">Cabo (mm²)</th><th className="px-3 py-2.5 text-right">ΔV (%)</th>
+                <th className="px-3 py-2.5 text-right">Disj. (A)</th><th className="px-3 py-2.5 text-center">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {circuitosCalculados.map((c) => {
+                const ok = c.quedaPercent <= 4 && c.ibA <= c.disjuntorA;
+                return (
+                  <tr key={c.id} className={`border-t border-panel-border ${ok ? "" : "bg-danger/[0.05]"}`}>
+                    <td className="px-3 py-1.5 font-mono"><a href={`#circ-${c.id}`} onClick={() => setAbertos(true)} className="font-bold text-accent hover:underline">C{c.numero}</a></td>
+                    <td className="max-w-[22rem] truncate px-3 py-1.5" title={c.descricao}>{c.descricao}</td>
+                    <td className="px-3 py-1.5"><span className={`rounded-full px-2 py-0.5 text-[11px] font-medium ${c.tipo === "Iluminação" ? "bg-warn/15 text-warn" : c.tipo === "TUG" ? "bg-ok/15 text-ok" : "bg-accent/15 text-accent"}`}>{c.tipo}</span></td>
+                    <td className="px-3 py-1.5 font-mono">{c.fase}</td>
+                    <td className="tabular px-3 py-1.5 text-right">{Math.round(c.potenciaVA).toLocaleString("pt-BR")}</td>
+                    <td className="tabular px-3 py-1.5 text-right">{c.ibA.toFixed(2)}</td>
+                    <td className="tabular px-3 py-1.5 text-right">{c.secaoFinalMm2}</td>
+                    <td className={`tabular px-3 py-1.5 text-right ${c.quedaPercent > 4 ? "font-bold text-danger" : ""}`}>{c.quedaPercent.toFixed(2)}</td>
+                    <td className="tabular px-3 py-1.5 text-right font-medium">{c.disjuntorA}</td>
+                    <td className="px-3 py-1.5 text-center">{ok ? <CheckCircle2 size={14} className="inline text-ok" /> : <XCircle size={14} className="inline text-danger" />}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+        <div className="mb-4 flex items-center justify-between print:hidden">
+          <p className="text-xs font-bold uppercase tracking-wider text-muted">Memória de cálculo de cada circuito</p>
+          <button onClick={() => setAbertos((v) => !v)} className="flex items-center gap-1.5 rounded-lg border border-panel-border px-3 py-1.5 text-xs hover:border-accent hover:text-accent transition-colors">
+            <ChevronsUpDown size={13} /> {abertos ? "Recolher todos" : "Expandir todos"}
+          </button>
+        </div>
+        <div className="space-y-4">
           {circuitosCalculados.map(c => {
             const amp = (c as Amp).ampacidadeFinalA;
             const quedaOk = c.quedaPercent <= 4;
             const selOk   = c.ibA <= c.disjuntorA && c.disjuntorA <= (amp ?? 999);
             return (
-              <div key={c.id} className={`rounded-2xl border p-6 ${!quedaOk ? "border-danger/40 bg-danger/5" : "border-panel-border bg-panel"}`}>
+              <details key={`${c.id}-${abertos}`} id={`circ-${c.id}`} open={abertos} className={`group scroll-mt-24 rounded-2xl border p-5 print:break-inside-avoid ${!quedaOk ? "border-danger/40 bg-danger/5" : "border-panel-border bg-panel"}`}>
                 {/* Header do circuito */}
-                <div className="mb-5 flex flex-wrap items-center gap-2">
+                <summary className="flex cursor-pointer list-none flex-wrap items-center gap-2 [&::-webkit-details-marker]:hidden">
+                  <ChevronDown size={16} className="shrink-0 text-muted transition-transform group-open:rotate-180 print:hidden" />
                   <span className="rounded-lg bg-accent/15 px-3 py-1 font-mono font-bold text-accent">C{c.numero}</span>
                   <span className="text-base font-bold">{c.descricao}</span>
                   <span className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${c.tipo === "Iluminação" ? "bg-warn/15 text-warn" : c.tipo === "TUG" ? "bg-ok/15 text-ok" : "bg-accent/15 text-accent"}`}>{c.tipo}</span>
                   <div className="ml-auto flex gap-2 text-xs text-muted">
                     <span>Fase {c.fase}</span>·<span>{c.isolacao}</span>·<span>{c.comprimentoM} m</span>·<span>{circuitosOriginais.find(o=>o.id===c.id)?.qtd_pontos ?? "—"} pontos</span>
                   </div>
-                </div>
-                <div className="grid gap-4 md:grid-cols-2">
+                </summary>
+                <div className="mt-5 grid gap-4 md:grid-cols-2">
                   {/* Coluna esquerda — correntes */}
                   <div>
                     <Eq
@@ -486,7 +581,7 @@ export default function MemorialCalculoTab({ project, ambientes, circuitosCalcul
                     />
                   </div>
                 </div>
-              </div>
+              </details>
             );
           })}
         </div>
@@ -588,16 +683,7 @@ export default function MemorialCalculoTab({ project, ambientes, circuitosCalcul
       {/* 10. Verificação de conformidade */}
       <Secao num={trifasico ? "10" : "9"} titulo="Verificação de Conformidade — NBR 5410:2004">
         <div className="space-y-2">
-          {([
-            ["Seção mínima TUG ≥ 2,5mm²", "NBR 5410 §6.2.3.1", circuitosCalculados.filter(c=>c.tipo==="TUG").every(c=>c.secaoFinalMm2>=2.5)],
-            ["Seção mínima Iluminação ≥ 1,5mm²", "NBR 5410 §6.2.3.1", circuitosCalculados.filter(c=>c.tipo==="Iluminação").every(c=>c.secaoFinalMm2>=1.5)],
-            ["Queda de tensão ≤ 4% em todos os circuitos", "NBR 5410 §6.2.7", circuitosCalculados.every(c=>c.quedaPercent<=4)],
-            ["Seletividade: Ib ≤ In ≤ Iz em todos os circuitos", "NBR 5410 §6.3.6", circuitosCalculados.every(c=>c.ibA<=c.disjuntorA)],
-            ["Circuito exclusivo de iluminação presente", "NBR 5410 §9.2.1", circuitosCalculados.some(c=>c.tipo==="Iluminação")],
-            ["TUG áreas molhadas em circuito separado", "NBR 5410 §9.5.2", circuitosCalculados.some(c=>c.descricao.toLowerCase().includes("molhad"))],
-            ["Número de circuitos satisfatório (≥ 3)", "NBR 5410 §9.2", circuitosCalculados.length>=3],
-            ...(trifasico ? [["Desbalanceamento de fases ≤ 10%", "Prática recomendada", balanco.desbalanceamentoPercent<=10] as [string,string,boolean]] : []),
-          ] as [string,string,boolean][]).map(([item, ref, ok]) => (
+          {verificacoes.map(([item, ref, ok]) => (
             <Conformidade key={item} item={item} criterio={ref} ok={ok} />
           ))}
         </div>
