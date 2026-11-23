@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { Gauge, FileSignature, AlertTriangle, CheckCircle2, Zap } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
-import { calcularResumoDemanda, CRITERIOS_CONCESSIONARIAS, type TipoEntrada, type CircuitoCalculado, type BalancoFases } from "@/lib/nbr5410";
+import { resumoDoProjeto } from "@/lib/projeto-calc";
+import { CRITERIOS_CONCESSIONARIAS, type TipoEntrada, type CircuitoCalculado, type BalancoFases } from "@/lib/nbr5410";
 import type { ProjectRow } from "@/lib/types";
 import BalancoCard from "./balanco-card";
 
@@ -21,12 +22,7 @@ export default function ResumoTab({ project, circuitosCalculados, balanco, onPro
   const [salvando, setSalvando] = useState(false);
   const concessionaria = (project as { concessionaria?: string }).concessionaria ?? "COSERN";
 
-  const resumo = calcularResumoDemanda(
-    circuitosCalculados,
-    project.tensao_v,
-    project.tipo_entrada,
-    concessionaria
-  );
+  const resumo = resumoDoProjeto(circuitosCalculados, project, concessionaria);
 
   const criterio = CRITERIOS_CONCESSIONARIAS[concessionaria] ?? CRITERIOS_CONCESSIONARIAS["COSERN"];
 
@@ -71,16 +67,19 @@ export default function ResumoTab({ project, circuitosCalculados, balanco, onPro
 
           <dl className="space-y-2.5 text-sm">
             <Linha label="Carga instalada total" valor={`${Math.round(resumo.cargaInstaladaW).toLocaleString("pt-BR")} W`} />
+            {resumo.metodo === "dis-nor-030" && resumo.demandaKVA != null && (
+              <Linha label="Demanda (DIS-NOR-030)" valor={`${resumo.demandaKVA.toFixed(2).replace(".", ",")} kVA${resumo.categoria ? ` · categoria ${resumo.categoria.id}` : ""}`} destaque />
+            )}
             <Linha label="Corrente de entrada estimada" valor={`${resumo.correnteEntradaA.toFixed(1)} A`} />
             <Linha label="Disjuntor geral recomendado" valor={`${resumo.disjuntorGeralA} A`} destaque />
             <Linha label="Tipo de entrada sugerido" valor={resumo.tipoEntradaSugerido} />
             {resumo.secaoRamalMm2 && (
-              <Linha label={`Ramal mínimo (${criterio.nome})`} valor={`${resumo.secaoRamalMm2} mm² Cu`} destaque />
+              <Linha label={resumo.metodo === "dis-nor-030" ? `Ramal de entrada (categoria ${resumo.categoria?.id ?? "?"})` : `Ramal mínimo (${criterio.nome})`} valor={`${resumo.secaoRamalMm2} mm² Cu`} destaque />
             )}
           </dl>
 
           <p className="mt-4 text-xs text-muted">
-            Estimativa com margem de segurança de 15%. Critérios aplicados: {criterio.nome}.
+            {resumo.metodo === "dis-nor-030" ? "Demanda pelo método da DIS-NOR-030 (fatores por tipo de carga); disjuntor e ramal da categoria da concessionária. Conferir a revisão vigente da norma." : `Estimativa com margem de segurança de 15%. Critérios aplicados: ${criterio.nome}.`}
           </p>
         </div>
 

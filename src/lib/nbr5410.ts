@@ -4,6 +4,8 @@
 export type TipoAmbiente = "Social/Quarto" | "Serviço/Cozinha" | "Banheiro" | "Varanda/Externo";
 export type TipoCircuito = "Iluminação" | "TUG" | "TUE";
 export type Fase = "R" | "S" | "T";
+/** Fase de um circuito: monofásico em R, S ou T; "RST" = circuito trifásico (3F). */
+export type FaseCircuito = Fase | "RST";
 export type Isolacao = "PVC" | "EPR";
 
 // ---------------------------------------------------------------------------
@@ -220,11 +222,22 @@ export interface Circuito {
   tipo: TipoCircuito;
   tensaoV: number; // 220 monofásico (padrão deste motor)
   fp: number;
-  fase: Fase;
+  fase: FaseCircuito;
   potenciaVA: number;
   comprimentoM: number;
   isolacao: Isolacao;
   circuitosAgrupados?: number;
+  /** Fator de correção por agrupamento deste circuito (substitui o do projeto). */
+  fca?: number | null;
+  /** Disjuntor definido em projeto (A); se vazio, o motor escolhe. */
+  disjuntorFixoA?: number | null;
+  /** Proteção por DR de alta sensibilidade (30 mA). */
+  dr30ma?: boolean;
+}
+
+export interface OpcoesCalculo {
+  /** Fator de correção por agrupamento padrão do projeto (ex.: 0,70 para 3 circuitos por eletroduto). */
+  fca?: number;
 }
 
 export interface CircuitoCalculado extends Circuito {
@@ -235,23 +248,27 @@ export interface CircuitoCalculado extends Circuito {
   quedaPercent: number;
   secaoFinalMm2: number;
   disjuntorA: number;
-  ampacidadeFinalA: number; // capacidade de condução do cabo final (A)
+  ampacidadeFinalA: number; // Iz: capacidade do cabo final já com o fator de agrupamento (A)
+  fcaAplicado: number;
+  trifasico: boolean;
 }
 
-function ampacidade(linha: LinhaCabo, isolacao: Isolacao): number {
+function ampacidade(linha: LinhaCabo, isolacao: Isolacao, trifasico = false): number {
+  if (trifasico) return isolacao === "EPR" ? linha.epr3 : linha.pvc3;
   return isolacao === "EPR" ? linha.epr2 : linha.pvc2;
 }
 
-function escolherSecaoPorAmpacidade(ibA: number, isolacao: Isolacao): LinhaCabo {
+function escolherSecaoPorAmpacidade(ibA: number, isolacao: Isolacao, trifasico: boolean): LinhaCabo {
   for (const linha of TABELA_CABOS) {
-    if (ampacidade(linha, isolacao) >= ibA) return linha;
+    if (ampacidade(linha, isolacao, trifasico) >= ibA) return linha;
   }
   return TABELA_CABOS[TABELA_CABOS.length - 1];
 }
 
-function quedaTensao(linha: LinhaCabo, comprimentoM: number, ibA: number, tensaoV: number): number {
-  // ΔV (fração) = 2 * R(Ω/km) * L(km) * I / V   — circuito monofásico (ida e volta)
-  return (2 * linha.r * (comprimentoM / 1000) * ibA) / tensaoV;
+function quedaTensao(linha: LinhaCabo, comprimentoM: number, ibA: number, tensaoV: number, trifasico: boolean): number {
+  // Monofásico (ida e volta): ΔV = 2·R·L·I / V. Trifásico: ΔV = √3·R·L·I / V (V de linha).
+  const k = trifasico ? Math.sqrt(3) : 2;
+  return (k * linha.r * (comprimentoM / 1000) * ibA) / tensaoV;
 }
 
 function escolherDisjuntor(ibCorrigidaA: number, ampacidadeCaboA: number): number {
@@ -267,48 +284,52 @@ function escolherDisjuntor(ibCorrigidaA: number, ampacidadeCaboA: number): numbe
 
 /**
  * Dimensiona um circuito: corrente de projeto, seção do cabo, queda de tensão e disjuntor.
- * Ib é calculado a partir da potência ativa (W), reproduzindo a convenção da planilha original.
+ * Ib = S / V (monofásico) ou S / (√3·V) (trifásico), com S = P/FP. A seção sai da capacidade de
+ * condução com o fator de agrupamento (Iz = Itab × FCA ≥ Ib), do limite de queda de tensão (calculada
+ * com o Ib real) e do mínimo da NBR 5410 (1,5 mm² iluminação; 2,5 mm² força, incluindo TUE).
  */
-export function calcularCircuito(c: Circuito): CircuitoCalculado {
+export function calcularCircuito(c: Circuito, op: OpcoesCalculo = {}): CircuitoCalculado {
+  const trifasico = c.fase === "RST";
+  const fca = c.fca && c.fca > 0 ? c.fca : op.fca && op.fca > 0 ? op.fca : 1;
   const potenciaW = c.potenciaVA * c.fp;
-  const ibA = potenciaW / c.tensaoV;
-  const fatorAgrupamento = 1; // reservado para futura derating por agrupamento
-  const ibCorrigidaA = ibA / fatorAgrupamento;
+  const ibA = trifasico ? c.potenciaVA / (Math.sqrt(3) * c.tensaoV) : c.potenciaVA / c.tensaoV;
+  const ibCorrigidaA = ibA / fca;
 
-  let linha = escolherSecaoPorAmpacidade(ibCorrigidaA, c.isolacao);
-  let secaoCaboMm2 = linha.bitola;
+  let linha = escolherSecaoPorAmpacidade(ibCorrigidaA, c.isolacao, trifasico);
+  let idx = TABELA_CABOS.findIndex((l) => l.bitola === linha.bitola);
+  const secaoMin = c.tipo === "Iluminação" ? 1.5 : 2.5;
+  while (TABELA_CABOS[idx].bitola < secaoMin && idx < TABELA_CABOS.length - 1) idx += 1;
+  linha = TABELA_CABOS[idx];
 
-  // garante limite de queda de tensão, subindo a seção se necessário
-  let queda = quedaTensao(linha, c.comprimentoM, ibCorrigidaA, c.tensaoV);
-  let idx = TABELA_CABOS.findIndex((l) => l.bitola === secaoCaboMm2);
+  // sobe a seção até respeitar o limite de queda de tensão
+  let queda = quedaTensao(linha, c.comprimentoM, ibA, c.tensaoV, trifasico);
   while (queda * 100 > QUEDA_MAX_PERCENT && idx < TABELA_CABOS.length - 1) {
     idx += 1;
     linha = TABELA_CABOS[idx];
-    secaoCaboMm2 = linha.bitola;
-    queda = quedaTensao(linha, c.comprimentoM, ibCorrigidaA, c.tensaoV);
+    queda = quedaTensao(linha, c.comprimentoM, ibA, c.tensaoV, trifasico);
   }
 
-  const secaoFinalMm2 = Math.max(secaoCaboMm2, c.tipo === "TUG" ? 2.5 : 1.5);
-  // Recalcular linha final para a seção definitiva (após aplicar mínimo)
-  const linhaFinal = TABELA_CABOS.find((l) => l.bitola === secaoFinalMm2) ?? linha;
-  const ampacidadeFinalA = ampacidade(linhaFinal, c.isolacao);
-  const disjuntorA = escolherDisjuntor(ibCorrigidaA, ampacidade(linha, c.isolacao));
+  const secaoFinalMm2 = linha.bitola;
+  const ampacidadeFinalA = ampacidade(linha, c.isolacao, trifasico) * fca;
+  const disjuntorA = c.disjuntorFixoA && c.disjuntorFixoA > 0 ? c.disjuntorFixoA : escolherDisjuntor(ibA, ampacidadeFinalA);
 
   return {
     ...c,
     potenciaW,
     ibA,
     ibCorrigidaA,
-    secaoCaboMm2,
+    secaoCaboMm2: secaoFinalMm2,
     quedaPercent: queda * 100,
     secaoFinalMm2,
     disjuntorA,
     ampacidadeFinalA,
+    fcaAplicado: fca,
+    trifasico,
   };
 }
 
-export function calcularMemorial(circuitos: Circuito[]): CircuitoCalculado[] {
-  return circuitos.map(calcularCircuito);
+export function calcularMemorial(circuitos: Circuito[], op: OpcoesCalculo = {}): CircuitoCalculado[] {
+  return circuitos.map((c) => calcularCircuito(c, op));
 }
 
 // ---------------------------------------------------------------------------
@@ -441,6 +462,117 @@ export interface ResumoDemanda {
   tipoEntradaSugerido: TipoEntrada;
   alertasConcessionaria?: string[];
   secaoRamalMm2?: number;
+  /** "dis-nor-030" quando a demanda sai do método da concessionária (unidade comercial). */
+  metodo?: "simplificado" | "dis-nor-030";
+  demandaKVA?: number;
+  categoria?: CategoriaConcessionaria | null;
+  parcelas?: ParcelaDemanda[];
+  tensaoLinhaV?: number;
+}
+
+// ---------------------------------------------------------------------------
+// Demanda pelo método da DIS-NOR-030 (Neoenergia) para unidade comercial
+// ---------------------------------------------------------------------------
+export type GrupoDemanda = "iluminacao" | "tomadas" | "microondas" | "arcondicionado" | "motor" | "especial";
+
+export interface CargaDemanda {
+  grupo: GrupoDemanda;
+  descricao: string;
+  potenciaW: number; // potência ativa unitária
+  fp: number;
+  quantidade?: number;
+}
+
+export interface ParcelaDemanda {
+  id: string;
+  descricao: string;
+  base: string; // como a parcela foi obtida
+  kva: number;
+}
+
+/** Faixas de demanda por categoria. Tabela PARCIAL: só T10 e T11 foram conferidas no projeto da Ctécnica (R02). */
+export interface CategoriaConcessionaria {
+  id: string;
+  demandaMinKVA: number;
+  demandaMaxKVA: number;
+  disjuntorA: number;
+  ramalMm2: number;
+  ramalDescricao: string;
+}
+
+export const CATEGORIAS_COSERN: CategoriaConcessionaria[] = [
+  { id: "T10", demandaMinKVA: 40.1, demandaMaxKVA: 52, disjuntorA: 80, ramalMm2: 25, ramalDescricao: "3 x 25 + N 25 mm² (tabela T10)" },
+  { id: "T11", demandaMinKVA: 52.1, demandaMaxKVA: 66, disjuntorA: 100, ramalMm2: 35, ramalDescricao: "3 x 35 + N 35 + PE 16 mm² Cu HEPR (tabela T11)" },
+];
+
+export function categoriaPorDemanda(demandaKVA: number): CategoriaConcessionaria | null {
+  return CATEGORIAS_COSERN.find((c) => demandaKVA >= c.demandaMinKVA && demandaKVA <= c.demandaMaxKVA) ?? null;
+}
+
+/**
+ * D = a + d + f + g + h (kVA).
+ *  a: iluminação (FD 1, em kVA pelo FP) + tomadas (FD 1 até completar 12 kW somados à iluminação; 0,50 no excedente);
+ *  d: micro-ondas; f: ar-condicionado (FD adotado 1,00); g: motores (maior 100%, demais 50%); h: equipamentos especiais.
+ * Fatores conforme o R02 (escolas, Tabelas 12, 14 e 22 da DIS-NOR-030 REV 04; conferir a revisão vigente).
+ */
+export function calcularDemandaDisNor030(cargas: CargaDemanda[]): { parcelas: ParcelaDemanda[]; demandaKVA: number; cargaInstaladaW: number } {
+  const dos = (g: GrupoDemanda) => cargas.filter((c) => c.grupo === g);
+  const pot = (c: CargaDemanda) => c.potenciaW * (c.quantidade ?? 1);
+  const va = (c: CargaDemanda) => pot(c) / (c.fp || 1);
+
+  const pIlum = dos("iluminacao").reduce((t, c) => t + pot(c), 0);
+  const vaIlum = dos("iluminacao").reduce((t, c) => t + va(c), 0);
+  const pTom = dos("tomadas").reduce((t, c) => t + pot(c), 0);
+  const faixa1 = Math.max(0, Math.min(pTom, 12000 - pIlum));
+  const a = vaIlum + faixa1 * 1.0 + (pTom - faixa1) * 0.5;
+  const d = dos("microondas").reduce((t, c) => t + va(c), 0);
+  const f = dos("arcondicionado").reduce((t, c) => t + va(c), 0) * 1.0;
+
+  const unidadesMotor: number[] = [];
+  for (const m of dos("motor")) for (let i = 0; i < (m.quantidade ?? 1); i++) unidadesMotor.push(m.potenciaW / (m.fp || 1));
+  unidadesMotor.sort((x, y) => y - x);
+  const g = unidadesMotor.reduce((t, v, i) => t + (i === 0 ? v : v * 0.5), 0);
+  const h = dos("especial").reduce((t, c) => t + va(c), 0);
+
+  const parcelas: ParcelaDemanda[] = [
+    { id: "a", descricao: "Iluminação e tomadas", base: `${Math.round(pIlum)} W de iluminação (FP) + tomadas ${Math.round(pTom)} W: FD 1,00 até 12 kW e 0,50 no excedente`, kva: a / 1000 },
+    { id: "d", descricao: "Micro-ondas", base: "FD 1,00", kva: d / 1000 },
+    { id: "f", descricao: "Ar-condicionado", base: "FD 1,00 adotado a favor da segurança", kva: f / 1000 },
+    { id: "g", descricao: "Motores e máquinas de bancada", base: "maior unidade 100%, demais 50%", kva: g / 1000 },
+    { id: "h", descricao: "Equipamentos especiais (laboratório)", base: "FD 1,00", kva: h / 1000 },
+  ];
+  const cargaInstaladaW = cargas.reduce((t, c) => t + pot(c), 0);
+  return { parcelas, demandaKVA: parcelas.reduce((t, p) => t + p.kva, 0), cargaInstaladaW };
+}
+
+export function calcularResumoDemandaDisNor030(
+  circuitos: { potenciaW: number }[],
+  cargas: CargaDemanda[],
+  tensaoLinhaV: number
+): ResumoDemanda {
+  const cargaInstaladaW = circuitos.reduce((t, c) => t + c.potenciaW, 0);
+  const dem = calcularDemandaDisNor030(cargas);
+  const categoria = categoriaPorDemanda(dem.demandaKVA);
+  const correnteEntradaA = (dem.demandaKVA * 1000) / (Math.sqrt(3) * tensaoLinhaV);
+  const alertas: string[] = [];
+  if (Math.abs(dem.cargaInstaladaW - cargaInstaladaW) > 1) {
+    alertas.push(`As cargas usadas na demanda somam ${Math.round(dem.cargaInstaladaW)} W e os circuitos somam ${Math.round(cargaInstaladaW)} W: conferir.`);
+  }
+  if (!categoria) alertas.push(`Demanda de ${dem.demandaKVA.toFixed(2)} kVA fora das categorias T10 e T11 cadastradas: conferir a tabela da Cosern.`);
+  if (cargaInstaladaW > 75000) alertas.push("Carga instalada acima de 75 kW: atendimento em baixa tensão não é permitido (ANEEL REN 1000/2021).");
+  return {
+    cargaInstaladaW,
+    correnteEntradaA,
+    disjuntorGeralA: categoria?.disjuntorA ?? escolherDisjuntorPadrao(correnteEntradaA * 1.15),
+    tipoEntradaSugerido: "Trifásico",
+    alertasConcessionaria: alertas,
+    secaoRamalMm2: categoria?.ramalMm2,
+    metodo: "dis-nor-030",
+    demandaKVA: dem.demandaKVA,
+    categoria,
+    parcelas: dem.parcelas,
+    tensaoLinhaV,
+  };
 }
 
 /**
@@ -507,9 +639,19 @@ export interface BalancoFases {
   status: "ok" | "atencao" | "critico";
 }
 
-export function calcularBalanco(circuitos: { fase: Fase; potenciaW: number }[]): BalancoFases {
+/** Soma por fase (R, S, T). Circuitos "RST" dividem a carga igualmente entre as três fases. */
+function somarPorFase(circuitos: { fase: FaseCircuito; potenciaW: number }[]): Record<Fase, number> {
   const totals: Record<Fase, number> = { R: 0, S: 0, T: 0 };
-  for (const c of circuitos) totals[c.fase] += c.potenciaW;
+  for (const c of circuitos) {
+    if (c.fase === "RST") { totals.R += c.potenciaW / 3; totals.S += c.potenciaW / 3; totals.T += c.potenciaW / 3; }
+    else totals[c.fase] += c.potenciaW;
+  }
+  return totals;
+}
+
+/** O campo potenciaW recebe a carga a equilibrar; use VA (carga aparente) para equilibrar correntes. */
+export function calcularBalanco(circuitos: { fase: FaseCircuito; potenciaW: number }[]): BalancoFases {
+  const totals = somarPorFase(circuitos);
   const max = Math.max(totals.R, totals.S, totals.T);
   const min = Math.min(totals.R, totals.S, totals.T);
   const media = (totals.R + totals.S + totals.T) / 3;
@@ -524,15 +666,14 @@ export function calcularBalanco(circuitos: { fase: Fase; potenciaW: number }[]):
  * menor consumo e atribui cada um, em sequência, à fase que estiver com menor carga acumulada.
  * Circuitos de um mesmo "grupo" (ex.: já fixados por projeto) podem ser excluídos via `bloqueados`.
  */
-export function balancearFases<T extends { id: string; potenciaW: number; fase: Fase }>(
+export function balancearFases<T extends { id: string; potenciaW: number; fase: FaseCircuito }>(
   circuitos: T[],
   bloqueados: Set<string> = new Set()
 ): T[] {
-  const fixos = circuitos.filter((c) => bloqueados.has(c.id));
-  const moveis = circuitos.filter((c) => !bloqueados.has(c.id)).sort((a, b) => b.potenciaW - a.potenciaW);
+  const fixos = circuitos.filter((c) => bloqueados.has(c.id) || c.fase === "RST");
+  const moveis = circuitos.filter((c) => !bloqueados.has(c.id) && c.fase !== "RST").sort((a, b) => b.potenciaW - a.potenciaW);
 
-  const totals: Record<Fase, number> = { R: 0, S: 0, T: 0 };
-  for (const c of fixos) totals[c.fase] += c.potenciaW;
+  const totals = somarPorFase(fixos);
 
   const resultado: T[] = [...fixos];
   for (const c of moveis) {

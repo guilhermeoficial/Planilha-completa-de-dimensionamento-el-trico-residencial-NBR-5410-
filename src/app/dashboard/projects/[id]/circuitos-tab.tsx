@@ -4,23 +4,24 @@ import { Fragment, useMemo, useState } from "react";
 import { Plus, Trash2, Wand2, Lock, Unlock, Zap, Combine, Copy, Search, CheckCircle2, AlertTriangle, Pencil, Check, ChevronDown } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import {
-  calcularMemorial,
-  calcularBalanco,
   balancearFases,
   calcularPrevisaoCarga,
   type Circuito,
   type TipoCircuito,
   type Fase,
+  type FaseCircuito,
   type Isolacao,
   type Ambiente,
 } from "@/lib/nbr5410";
-import type { AmbienteRow, AmbienteTueRow, CircuitoRow } from "@/lib/types";
+import type { AmbienteRow, AmbienteTueRow, CircuitoRow, ConfigProjeto } from "@/lib/types";
+import { calcularCircuitosDoProjeto, balancoPorVA } from "@/lib/projeto-calc";
 import BalancoCard from "./balanco-card";
 
 interface Props {
   projectId: string;
   tensaoV: number;
   tipoEntrada: string;
+  config: ConfigProjeto;
   circuitos: CircuitoRow[];
   ambientes: AmbienteRow[];
   tuesPorAmbiente: Record<string, AmbienteTueRow[]>;
@@ -28,9 +29,9 @@ interface Props {
 }
 
 const TIPOS: TipoCircuito[] = ["Iluminação", "TUG", "TUE"];
-const FASES: Fase[] = ["R", "S", "T"];
+const FASES: FaseCircuito[] = ["R", "S", "T", "RST"];
 
-export default function CircuitosTab({ projectId, tensaoV, tipoEntrada, circuitos, ambientes, tuesPorAmbiente, onChange }: Props) {
+export default function CircuitosTab({ projectId, tensaoV, tipoEntrada, config, circuitos, ambientes, tuesPorAmbiente, onChange }: Props) {
   const supabase = createClient();
   const [gerando, setGerando] = useState(false);
   const [balanceando, setBalanceando] = useState(false);
@@ -42,7 +43,7 @@ export default function CircuitosTab({ projectId, tensaoV, tipoEntrada, circuito
   const [editandoId, setEditandoId] = useState<string | null>(null);
   const [menuAdd, setMenuAdd] = useState(false);
   const [filtroTipo, setFiltroTipo] = useState<"todos" | TipoCircuito>("todos");
-  const [filtroFase, setFiltroFase] = useState<"todas" | Fase>("todas");
+  const [filtroFase, setFiltroFase] = useState<"todas" | FaseCircuito>("todas");
   const POR_PAGINA = porPagina;
 
   function alternarSelecao(id: string) {
@@ -91,30 +92,16 @@ export default function CircuitosTab({ projectId, tensaoV, tipoEntrada, circuito
       isolacao: c.isolacao,
       bloqueado: c.bloqueado,
       qtd_pontos: c.qtd_pontos,
+      dr_30ma: c.dr_30ma ?? false,
+      fca: c.fca ?? null,
+      disjuntor_a: c.disjuntor_a ?? null,
     });
     onChange();
   }
 
-  const calculados = useMemo(() => {
-    const entrada: Circuito[] = circuitos.map((c) => ({
-      id: c.id,
-      numero: c.numero,
-      descricao: c.descricao,
-      tipo: c.tipo,
-      tensaoV: c.tensao_v,
-      fp: Number(c.fp),
-      fase: c.fase,
-      potenciaVA: Number(c.potencia_va),
-      comprimentoM: Number(c.comprimento_m),
-      isolacao: c.isolacao,
-    }));
-    return calcularMemorial(entrada);
-  }, [circuitos]);
+  const calculados = useMemo(() => calcularCircuitosDoProjeto(circuitos, config), [circuitos, config]);
 
-  const balanco = useMemo(
-    () => calcularBalanco(calculados.map((c) => ({ fase: c.fase, potenciaW: c.potenciaW }))),
-    [calculados]
-  );
+  const balanco = useMemo(() => balancoPorVA(calculados), [calculados]);
 
   const filtrados = useMemo(() => {
     const termo = busca.trim().toLowerCase();
@@ -356,7 +343,8 @@ export default function CircuitosTab({ projectId, tensaoV, tipoEntrada, circuito
   }
 
   const fmt = (n: number, d = 0) => n.toLocaleString("pt-BR", { minimumFractionDigits: d, maximumFractionDigits: d });
-  const COR_FASE: Record<Fase, string> = { R: "var(--phase-r)", S: "var(--phase-s)", T: "var(--phase-t)" };
+  const COR_FASE: Record<FaseCircuito, string> = { R: "var(--phase-r)", S: "var(--phase-s)", T: "var(--phase-t)", RST: "var(--accent)" };
+  const ROTULO_FASE = (f: FaseCircuito) => (f === "RST" ? "3F" : f);
   const CHIP_TIPO: Record<TipoCircuito, string> = { "Iluminação": "bg-warn/15 text-warn", TUG: "bg-ok/15 text-ok", TUE: "bg-accent/15 text-accent" };
   const coresGrupo = ["border-l-accent", "border-l-phase-s", "border-l-phase-t", "border-l-ok", "border-l-warn", "border-l-danger"];
   const gruposIds = [...new Set(circuitos.filter((x) => x.grupo_id).map((x) => x.grupo_id))];
@@ -448,11 +436,11 @@ export default function CircuitosTab({ projectId, tensaoV, tipoEntrada, circuito
           ))}
         </div>
         <div className="flex items-center gap-1 rounded-lg border border-panel-border bg-panel p-1 text-xs">
-          {(["todas", "R", "S", "T"] as const).map((f) => (
+          {(["todas", "R", "S", "T", "RST"] as const).filter((f) => f !== "RST" || calculados.some((c) => c.fase === "RST")).map((f) => (
             <button key={f} onClick={() => { setFiltroFase(f); setPagina(1); }}
               className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 font-medium transition-colors ${filtroFase === f ? "bg-bg-elevated text-text ring-1 ring-panel-border" : "text-muted hover:text-text"}`}>
               {f !== "todas" && <span className="h-2 w-2 rounded-full" style={{ background: COR_FASE[f] }} />}
-              {f === "todas" ? "Todas as fases" : `Fase ${f}`}
+              {f === "todas" ? "Todas as fases" : f === "RST" ? "Trifásico" : `Fase ${f}`}
             </button>
           ))}
         </div>
@@ -489,7 +477,7 @@ export default function CircuitosTab({ projectId, tensaoV, tipoEntrada, circuito
               const grupoIdx = grupo ? gruposIds.indexOf(grupo) : -1;
               const corGrupo = grupoIdx >= 0 ? coresGrupo[grupoIdx % coresGrupo.length] : "";
               const edit = modoEdicao || editandoId === c.id;
-              const alerta = c.quedaPercent > 4 || c.ibA > c.disjuntorA;
+              const alerta = c.quedaPercent > 4 || c.ibA > c.disjuntorA || c.disjuntorA > c.ampacidadeFinalA + 1e-9;
               const uso = Math.min(100, (c.ibA / Math.max(c.disjuntorA, 1)) * 100);
               const queda = Math.min(100, (c.quedaPercent / 4) * 100);
               return (
@@ -517,6 +505,15 @@ export default function CircuitosTab({ projectId, tensaoV, tipoEntrada, circuito
                           <select value={c.isolacao} onChange={(e) => atualizar(c.id, { isolacao: e.target.value as Isolacao })} className={inputCls}>
                             <option value="PVC">PVC</option><option value="EPR">EPR</option>
                           </select>
+                          <label className="flex items-center gap-1" title="Vazio: o motor escolhe">disj. (A)
+                            <input type="number" min={0} placeholder="auto" defaultValue={original.disjuntor_a ?? ""} onBlur={(e) => { const v = e.target.value === "" ? null : Number(e.target.value); if (v !== (original.disjuntor_a ?? null)) atualizar(c.id, { disjuntor_a: v }); }} className={`${inputCls} tabular w-16`} />
+                          </label>
+                          <label className="flex items-center gap-1" title="Fator de agrupamento próprio; vazio usa o do projeto">FCA
+                            <input type="number" step="0.05" min={0} max={1} placeholder="proj." defaultValue={original.fca ?? ""} onBlur={(e) => { const v = e.target.value === "" ? null : Number(e.target.value); if (v !== (original.fca ?? null)) atualizar(c.id, { fca: v }); }} className={`${inputCls} tabular w-16`} />
+                          </label>
+                          <label className="flex items-center gap-1">
+                            <input type="checkbox" checked={!!original.dr_30ma} onChange={(e) => atualizar(c.id, { dr_30ma: e.target.checked })} className="accent-accent" /> DR 30 mA
+                          </label>
                         </div>
                       </div>
                     ) : (
@@ -525,6 +522,8 @@ export default function CircuitosTab({ projectId, tensaoV, tipoEntrada, circuito
                         <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] text-muted">
                           <span className={`rounded-full px-2 py-0.5 font-semibold ${CHIP_TIPO[c.tipo]}`}>{c.tipo}</span>
                           <span>{original.qtd_pontos} {original.qtd_pontos === 1 ? "ponto" : "pontos"}</span>·<span>{fmt(c.comprimentoM)} m</span>·<span>{c.isolacao}</span>
+                          {original.dr_30ma && <span title="Protegido por DR de alta sensibilidade (30 mA)" className="rounded-full bg-accent/15 px-2 py-0.5 font-semibold text-accent">DR 30 mA</span>}
+                          {c.fcaAplicado < 1 && <span title="Fator de correção por agrupamento">FCA {fmt(c.fcaAplicado, 2)}</span>}
                           {grupo && (
                             <button onClick={() => desagrupar(original.id)} title="Remover do grupo" className="flex items-center gap-0.5 rounded bg-accent/10 px-1.5 py-0.5 font-bold text-accent hover:bg-accent/20">
                               <Combine size={9} /> grupo
@@ -537,11 +536,11 @@ export default function CircuitosTab({ projectId, tensaoV, tipoEntrada, circuito
                   <td className="px-2 py-2.5">
                     <div className="flex items-center justify-center gap-1.5">
                       {edit ? (
-                        <select value={c.fase} onChange={(e) => atualizar(c.id, { fase: e.target.value as Fase })} className={`${inputCls} font-mono font-bold`} style={{ color: COR_FASE[c.fase] }}>
-                          {FASES.map((f) => <option key={f} value={f}>{f}</option>)}
+                        <select value={c.fase} onChange={(e) => atualizar(c.id, { fase: e.target.value as FaseCircuito })} className={`${inputCls} font-mono font-bold`} style={{ color: COR_FASE[c.fase] }}>
+                          {FASES.map((f) => <option key={f} value={f}>{ROTULO_FASE(f)}</option>)}
                         </select>
                       ) : (
-                        <span className="flex h-7 w-7 items-center justify-center rounded-full font-mono text-xs font-bold text-bg" style={{ background: COR_FASE[c.fase] }}>{c.fase}</span>
+                        <span className="flex h-7 min-w-7 items-center justify-center rounded-full px-1.5 font-mono text-xs font-bold text-bg" style={{ background: COR_FASE[c.fase] }} title={c.fase === "RST" ? "Circuito trifásico (as três fases)" : `Fase ${c.fase}`}>{ROTULO_FASE(c.fase)}</span>
                       )}
                       <button title={original.bloqueado ? "Fase fixa: não muda no balanceamento" : "Fase livre: pode mudar no balanceamento"}
                         onClick={() => atualizar(c.id, { bloqueado: !original.bloqueado })} className="text-muted hover:text-text">
@@ -561,7 +560,7 @@ export default function CircuitosTab({ projectId, tensaoV, tipoEntrada, circuito
                   </td>
                   <td className="tabular px-3 py-2.5 text-right text-muted">{fmt(c.ibA, 2)}</td>
                   <td className="tabular px-3 py-2.5 text-right font-medium">{fmt(c.secaoFinalMm2, 1)} <span className="text-[11px] font-normal text-muted">mm²</span></td>
-                  <td className="tabular px-3 py-2.5 text-right font-medium text-ok">{c.ampacidadeFinalA ? fmt(c.ampacidadeFinalA) : "—"}</td>
+                  <td className="tabular px-3 py-2.5 text-right font-medium text-ok">{c.ampacidadeFinalA ? fmt(c.ampacidadeFinalA, c.fcaAplicado < 1 ? 1 : 0) : "—"}</td>
                   <td className="px-3 py-2.5">
                     <p className={`tabular font-medium ${c.quedaPercent > 4 ? "text-danger" : ""}`}>{fmt(c.quedaPercent, 2)}</p>
                     <div className="mt-1 h-1 w-24 overflow-hidden rounded-full bg-bg-elevated"><div className={`h-full rounded-full ${c.quedaPercent > 4 ? "bg-danger" : c.quedaPercent > 3 ? "bg-warn" : "bg-ok"}`} style={{ width: `${queda}%` }} /></div>
@@ -572,7 +571,7 @@ export default function CircuitosTab({ projectId, tensaoV, tipoEntrada, circuito
                   </td>
                   <td className="px-3 py-2.5 text-center">
                     {alerta ? (
-                      <span title={c.quedaPercent > 4 ? "Queda de tensão acima de 4%" : "Ib maior que o disjuntor"} className="inline-flex items-center gap-1 rounded-full bg-danger/15 px-2.5 py-1 text-[11px] font-bold text-danger"><AlertTriangle size={11} /> Verificar</span>
+                      <span title={c.quedaPercent > 4 ? "Queda de tensão acima de 4%" : c.ibA > c.disjuntorA ? "Ib maior que o disjuntor" : "Disjuntor maior que a capacidade do cabo (Iz)"} className="inline-flex items-center gap-1 rounded-full bg-danger/15 px-2.5 py-1 text-[11px] font-bold text-danger"><AlertTriangle size={11} /> Verificar</span>
                     ) : (
                       <span className="inline-flex items-center gap-1 rounded-full bg-ok/15 px-2.5 py-1 text-[11px] font-bold text-ok"><CheckCircle2 size={11} /> OK</span>
                     )}

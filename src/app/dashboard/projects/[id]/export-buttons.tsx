@@ -102,10 +102,10 @@ export default function ExportButtons({
     XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(abaCircuitos), "Circuitos");
 
     const abaBalanco = [
-      { Fase: "R", "Potência (W)": Math.round(balanco.R) },
-      { Fase: "S", "Potência (W)": Math.round(balanco.S) },
-      { Fase: "T", "Potência (W)": Math.round(balanco.T) },
-      { Fase: "Desbalanceamento (%)", "Potência (W)": Number(balanco.desbalanceamentoPercent.toFixed(1)) },
+      { Fase: "R", "Carga (VA)": Math.round(balanco.R) },
+      { Fase: "S", "Carga (VA)": Math.round(balanco.S) },
+      { Fase: "T", "Carga (VA)": Math.round(balanco.T) },
+      { Fase: "Desbalanceamento (%)", "Carga (VA)": Number(balanco.desbalanceamentoPercent.toFixed(1)) },
     ];
     XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(abaBalanco), "Balanço de Fases");
 
@@ -233,7 +233,7 @@ export default function ExportButtons({
     autoTable(doc, {
       startY: y,
       margin: { left: margem, right: margem },
-      head: [["Fase", "Potência total (W)"]],
+      head: [["Fase", "Carga aparente (VA)"]],
       body: [
         ["R", Math.round(balanco.R).toLocaleString("pt-BR")],
         ["S", Math.round(balanco.S).toLocaleString("pt-BR")],

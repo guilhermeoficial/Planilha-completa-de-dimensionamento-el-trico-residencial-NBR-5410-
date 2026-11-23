@@ -51,10 +51,14 @@ export default function BalancoCard({ balanco }: { balanco: BalancoFases }) {
                 style={{ width: `${(b.valor / max) * 100}%`, background: PHASE_COLOR[b.fase] }}
               />
             </div>
-            <span className="tabular w-24 whitespace-nowrap text-right text-sm text-muted">{Math.round(b.valor).toLocaleString("pt-BR")} W</span>
+            <span className="tabular w-24 whitespace-nowrap text-right text-sm text-muted">{Math.round(b.valor).toLocaleString("pt-BR")} VA</span>
           </div>
         ))}
       </div>
+      <p className="mt-3 text-[11px] text-muted">
+        Carga aparente por fase (circuitos trifásicos divididos por três). Corrente com tudo ligado:{" "}
+        {bars.map((b) => `${b.fase} ${(b.valor / 220).toFixed(1).replace(".", ",")} A`).join(" · ")}.
+      </p>
     </div>
   );
 }

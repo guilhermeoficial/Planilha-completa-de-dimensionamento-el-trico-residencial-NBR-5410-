@@ -6,7 +6,7 @@ import Link from "next/link";
 import { ArrowLeft, Pencil, Check, X } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import type { ProjectRow, AmbienteRow, AmbienteTueRow, CircuitoRow, MotorRow } from "@/lib/types";
-import { calcularMemorial, calcularBalanco, calcularResumoDemanda, type Circuito } from "@/lib/nbr5410";
+import { calcularCircuitosDoProjeto, balancoPorVA, resumoDoProjeto, configDoProjeto } from "@/lib/projeto-calc";
 import { calcularOrcamento, PRECOS_PADRAO, type PrecosReferencia } from "@/lib/comercial";
 import AmbientesTab from "./ambientes-tab";
 import CircuitosTab from "./circuitos-tab";
@@ -94,35 +94,18 @@ export default function ProjectPage() {
     carregar();
   }, [carregar]);
 
-  const circuitosCalculados = useMemo(() => {
-    const entrada: Circuito[] = circuitos.map((c) => ({
-      id: c.id,
-      numero: c.numero,
-      descricao: c.descricao,
-      tipo: c.tipo,
-      tensaoV: c.tensao_v,
-      fp: Number(c.fp),
-      fase: c.fase,
-      potenciaVA: Number(c.potencia_va),
-      comprimentoM: Number(c.comprimento_m),
-      isolacao: c.isolacao,
-    }));
-    return calcularMemorial(entrada);
-  }, [circuitos]);
-
-  const balanco = useMemo(
-    () => calcularBalanco(circuitosCalculados.map((c) => ({ fase: c.fase, potenciaW: c.potenciaW }))),
-    [circuitosCalculados]
+  const circuitosCalculados = useMemo(
+    () => calcularCircuitosDoProjeto(circuitos, configDoProjeto(project)),
+    [circuitos, project]
   );
 
+  const balanco = useMemo(() => balancoPorVA(circuitosCalculados), [circuitosCalculados]);
+
   const resumoDemanda = useMemo(
-    () => calcularResumoDemanda(
-      circuitosCalculados,
-      project?.tensao_v ?? 220,
-      project?.tipo_entrada ?? "Monofásico",
-      (project as { concessionaria?: string })?.concessionaria ?? "COSERN"
-    ),
-    [circuitosCalculados, project?.tensao_v, project?.tipo_entrada, (project as { concessionaria?: string })?.concessionaria]
+    () => (project
+      ? resumoDoProjeto(circuitosCalculados, project, (project as { concessionaria?: string }).concessionaria ?? "COSERN")
+      : resumoDoProjeto(circuitosCalculados, { tensao_v: 220, tipo_entrada: "Monofásico", config_json: null })),
+    [circuitosCalculados, project]
   );
 
   const orcamento = useMemo(
@@ -255,6 +238,7 @@ export default function ProjectPage() {
           projectId={project.id}
           tensaoV={project.tensao_v}
           tipoEntrada={project.tipo_entrada ?? "Monofásico"}
+          config={configDoProjeto(project)}
           circuitos={circuitos}
           ambientes={ambientes}
           tuesPorAmbiente={tuesPorAmbiente}

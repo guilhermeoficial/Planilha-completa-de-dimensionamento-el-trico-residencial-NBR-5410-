@@ -12,6 +12,7 @@ export interface ProjectRow {
   numero_art: string | null;
   tipo_entrada: "Monofásico" | "Bifásico" | "Trifásico";
   dossie_json?: DossieJson | null;
+  config_json?: ConfigProjeto | null;
   created_at: string;
   updated_at: string;
 }
@@ -56,13 +57,25 @@ export interface CircuitoRow {
   tipo: "Iluminação" | "TUG" | "TUE";
   tensao_v: number;
   fp: number;
-  fase: "R" | "S" | "T";
+  fase: "R" | "S" | "T" | "RST";
   potencia_va: number;
   comprimento_m: number;
   isolacao: "PVC" | "EPR";
   bloqueado: boolean;
   qtd_pontos: number;
   grupo_id?: string | null; // agrupamento visual de circuitos
+  dr_30ma?: boolean | null;
+  fca?: number | null; // fator de agrupamento próprio do circuito
+  disjuntor_a?: number | null; // disjuntor definido em projeto
+}
+
+/** Opções de cálculo do projeto (coluna projects.config_json). */
+export interface ConfigProjeto {
+  /** "dis-nor-030": demanda pelo método da concessionária (unidade comercial). */
+  metodo_demanda?: "simplificado" | "dis-nor-030";
+  /** Fator de correção por agrupamento padrão (ex.: 0,70 para 3 circuitos por eletroduto). */
+  fca?: number;
+  cargas_demanda?: { grupo: string; descricao: string; potenciaW: number; fp: number; quantidade?: number }[];
 }
 
 export interface DossieKpi { rotulo: string; valor: string; nota?: string }

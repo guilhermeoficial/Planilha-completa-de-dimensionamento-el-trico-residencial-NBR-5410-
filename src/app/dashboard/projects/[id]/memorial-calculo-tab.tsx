@@ -145,32 +145,46 @@ export default function MemorialCalculoTab({ project, ambientes, circuitosCalcul
   else if (potTotal <= 10000) fatorDemanda = 0.65;
   else if (potTotal <= 15000) fatorDemanda = 0.55;
   else fatorDemanda = 0.50;
-  const potDemandaW = potTotal * fatorDemanda;
+  const disNor = resumoDemanda.metodo === "dis-nor-030";
+  const potDemandaW = disNor ? (resumoDemanda.demandaKVA ?? 0) * 1000 : potTotal * fatorDemanda;
+  if (disNor) fatorDemanda = potTotal > 0 ? potDemandaW / potTotal : 1;
+  const cfg = (project as ProjectRow).config_json ?? {};
+  const VL_PARA_VF: Record<number, number> = { 380: 220, 220: 127, 440: 254 };
+  const tensaoTxt = trifasico ? `${Vn} V entre fases / ${VL_PARA_VF[Vn] ?? Math.round(Vn / 1.732)} V fase-neutro` : `${Vn} V`;
+  const esquemaTxt = disNor ? "TN-C-S" : "TN-S";
+  const peTxt = disNor ? "Separado do neutro a partir do padrão de entrada" : "Separado do N em todo o circuito";
+  const hasteTxt = disNor ? "Aço-cobreada Ø 13 mm x 2,40 m (NBR 13571)" : "Copperweld Ø 3/4″";
+  const dHaste = disNor ? 0.013 : 0.019;
 
   // Corrente de entrada
   const sqrt3 = 1.7320508;
-  const ibEntrada = trifasico
+  const ibEntrada = disNor
+    ? resumoDemanda.correnteEntradaA
+    : trifasico
     ? potDemandaW / (sqrt3 * Vn * 0.92)
     : bifasico
     ? potDemandaW / (2 * Vn * 0.92)
     : potDemandaW / (Vn * 0.92);
 
   // Seção do ramal de entrada (cabo)
-  const secaoRamal = ibEntrada <= 25 ? 6 : ibEntrada <= 35 ? 10 : ibEntrada <= 50 ? 16 : ibEntrada <= 70 ? 25 : ibEntrada <= 95 ? 35 : 50;
+  const secaoRamal = disNor ? (resumoDemanda.secaoRamalMm2 ?? 0) : ibEntrada <= 25 ? 6 : ibEntrada <= 35 ? 10 : ibEntrada <= 50 ? 16 : ibEntrada <= 70 ? 25 : ibEntrada <= 95 ? 35 : 50;
 
   // Verificação de conformidade (usada no resumo do topo e na seção final)
+  const forca = circuitosCalculados.filter((c) => c.tipo !== "Iluminação");
+  const origem = (id: string) => circuitosOriginais.find((o) => o.id === id);
+  const tugMolhados = circuitosCalculados.filter((c) => c.tipo === "TUG" && REGEX_AREA_MOLHADA.test(c.descricao));
   const verificacoes: [string, string, boolean][] = [
-    ["Seção mínima TUG ≥ 2,5mm²", "NBR 5410 §6.2.3.1", circuitosCalculados.filter(c=>c.tipo==="TUG").every(c=>c.secaoFinalMm2>=2.5)],
-    ["Seção mínima Iluminação ≥ 1,5mm²", "NBR 5410 §6.2.3.1", circuitosCalculados.filter(c=>c.tipo==="Iluminação").every(c=>c.secaoFinalMm2>=1.5)],
-    ["Queda de tensão ≤ 4% em todos os circuitos", "NBR 5410 §6.2.7", circuitosCalculados.every(c=>c.quedaPercent<=4)],
-    ["Seletividade: Ib ≤ In ≤ Iz em todos os circuitos", "NBR 5410 §6.3.6", circuitosCalculados.every(c=>c.ibA<=c.disjuntorA)],
-    ["Circuito exclusivo de iluminação presente", "NBR 5410 §9.2.1", circuitosCalculados.some(c=>c.tipo==="Iluminação")],
-    ["TUG áreas molhadas em circuito separado", temAreaMolhada ? "NBR 5410 §9.5.2" : "NBR 5410 §9.5.2 · não aplicável: nenhum ambiente molhado cadastrado", !temAreaMolhada || circuitosCalculados.some(c=>c.tipo==="TUG" && REGEX_AREA_MOLHADA.test(c.descricao))],
-    ["Número de circuitos satisfatório (≥ 3)", "NBR 5410 §9.2", circuitosCalculados.length>=3],
-    ...(trifasico ? [["Desbalanceamento de fases ≤ 10%", "Prática recomendada", balanco.desbalanceamentoPercent<=10] as [string,string,boolean]] : []),
+    ["Seção mínima de força (TUG e TUE) ≥ 2,5 mm²", "NBR 5410, Tabela 47", forca.every((c) => c.secaoFinalMm2 >= 2.5)],
+    ["Seção mínima de iluminação ≥ 1,5 mm²", "NBR 5410, Tabela 47", circuitosCalculados.filter((c) => c.tipo === "Iluminação").every((c) => c.secaoFinalMm2 >= 1.5)],
+    ["Queda de tensão ≤ 4% em todos os circuitos", "NBR 5410 §6.2.7", circuitosCalculados.every((c) => c.quedaPercent <= 4)],
+    ["Proteção: Ib ≤ In ≤ Iz em todos os circuitos", "NBR 5410 §5.3.4.1", circuitosCalculados.every((c) => c.ibA <= c.disjuntorA && c.disjuntorA <= c.ampacidadeFinalA + 1e-9)],
+    ["Circuito exclusivo de iluminação presente", "NBR 5410 §9.2.1", circuitosCalculados.some((c) => c.tipo === "Iluminação")],
+    ["Tomadas de áreas molhadas com DR de 30 mA", temAreaMolhada ? "NBR 5410 §5.1.3.2.2" : "NBR 5410 §5.1.3.2.2 · não aplicável: nenhum ambiente molhado cadastrado", !temAreaMolhada || tugMolhados.every((c) => !!origem(c.id)?.dr_30ma)],
+    ["Número de circuitos satisfatório (≥ 3)", "NBR 5410 §9.2", circuitosCalculados.length >= 3],
+    ...(trifasico ? [["Desbalanceamento de fases ≤ 10%", "Prática recomendada", balanco.desbalanceamentoPercent <= 10] as [string, string, boolean]] : []),
   ];
   const conformes = verificacoes.filter((v) => v[2]).length;
-  const circuitosComAlerta = circuitosCalculados.filter((c) => c.quedaPercent > 4 || c.ibA > c.disjuntorA).length;
+  const circuitosComAlerta = circuitosCalculados.filter((c) => c.quedaPercent > 4 || c.ibA > c.disjuntorA || c.disjuntorA > c.ampacidadeFinalA + 1e-9).length;
   const numAterramento = trifasico ? "8" : "7";
   const numChoques = trifasico ? "9" : "8";
   const numConformidade = trifasico ? "10" : "9";
@@ -295,23 +309,33 @@ export default function MemorialCalculoTab({ project, ambientes, circuitosCalcul
 
     // ── 2. Sistema
     secao("2. DADOS DO SISTEMA ELÉTRICO");
-    linha(`Tensão nominal: ${Vn} V  ·  Frequência: 60 Hz  ·  Tipo de entrada: ${project.tipo_entrada ?? "Monofásico"}`, 6);
-    linha("Sistema de distribuição: TN-S, com condutor PE separado do neutro em todo o circuito", 6);
+    linha(`Tensão nominal: ${tensaoTxt}  ·  Frequência: 60 Hz  ·  Tipo de entrada: ${project.tipo_entrada ?? "Monofásico"}`, 6);
+    linha(`Sistema de distribuição: ${esquemaTxt}. ${peTxt}.`, 6);
     linha(`Ambientes: ${ambientes.length}  ·  Circuitos: ${circuitosCalculados.length}`, 6);
     y += 10;
 
     // ── 3. Demanda
-    secao("3. CARGA INSTALADA E DEMANDA");
-    linha(`Carga instalada total: ${Math.round(potTotal).toLocaleString("pt-BR")} W`, 6);
-    linha(`Fator de demanda adotado (FD): ${(fatorDemanda * 100).toFixed(0)}%`, 6);
-    linha(`Demanda: Pd = ${Math.round(potTotal).toLocaleString("pt-BR")} x ${fatorDemanda} = ${Math.round(potDemandaW).toLocaleString("pt-BR")} W`, 6);
+    const kva = (n: number) => n.toFixed(2).replace(".", ",");
+    if (disNor) {
+      secao("3. DEMANDA: MÉTODO DA DIS-NOR-030");
+      linha(`Carga instalada total: ${Math.round(potTotal).toLocaleString("pt-BR")} W`, 6);
+      for (const pa of resumoDemanda.parcelas ?? []) linha(`Parcela ${pa.id} (${pa.descricao}): ${kva(pa.kva)} kVA`, 6);
+      linha(`Demanda total: D = ${kva(potDemandaW / 1000)} kVA`, 6, { bold: true });
+      linha(`Categoria Cosern ${resumoDemanda.categoria?.id ?? "(conferir)"}: disjuntor geral ${resumoDemanda.disjuntorGeralA} A`, 6);
+    } else {
+      secao("3. CARGA INSTALADA E DEMANDA");
+      linha(`Carga instalada total: ${Math.round(potTotal).toLocaleString("pt-BR")} W`, 6);
+      linha(`Fator de demanda adotado (FD): ${(fatorDemanda * 100).toFixed(0)}%`, 6);
+      linha(`Demanda: Pd = ${Math.round(potTotal).toLocaleString("pt-BR")} x ${fatorDemanda} = ${Math.round(potDemandaW).toLocaleString("pt-BR")} W`, 6);
+    }
     y += 10;
 
     // ── 4. Entrada
     secao("4. CORRENTE DE ENTRADA E RAMAL");
-    if (trifasico) linha(`Ib = Pd / (raiz(3) x Vn x FP) = ${Math.round(potDemandaW)} / (1,732 x ${Vn} x 0,92) = ${ibEntrada.toFixed(1)} A`, 6);
+    if (disNor) linha(`Ib = D / (raiz(3) x VL) = ${Math.round(potDemandaW)} / (1,732 x ${Vn}) = ${ibEntrada.toFixed(1).replace(".", ",")} A`, 6);
+    else if (trifasico) linha(`Ib = Pd / (raiz(3) x Vn x FP) = ${Math.round(potDemandaW)} / (1,732 x ${Vn} x 0,92) = ${ibEntrada.toFixed(1)} A`, 6);
     else linha(`Ib = Pd / (Vn x FP) = ${Math.round(potDemandaW)} / (${Vn} x 0,92) = ${ibEntrada.toFixed(1)} A`, 6);
-    linha(`Seção mínima do ramal de entrada: ${secaoRamal} mm²`, 6);
+    linha(disNor ? `Ramal de entrada: ${resumoDemanda.categoria?.ramalDescricao ?? secaoRamal + " mm²"}` : `Seção mínima do ramal de entrada: ${secaoRamal} mm²`, 6);
     linha(`Disjuntor geral: ${resumoDemanda.disjuntorGeralA} A`, 6);
     y += 10;
 
@@ -319,13 +343,15 @@ export default function MemorialCalculoTab({ project, ambientes, circuitosCalcul
     secao("5. DIMENSIONAMENTO DOS CIRCUITOS");
     for (const c of circuitosCalculados) {
       const amp = (c as Amp).ampacidadeFinalA;
-      const ampTxt = amp ? amp.toFixed(0) : "-";
+      const ampTxt = amp ? amp.toFixed(1) : "-";
       const titulo = `C${String(c.numero).padStart(2, "0")}   ${c.descricao}`;
-      const meta = `${c.tipo}  ·  Fase ${c.fase}  ·  ${c.isolacao}  ·  L = ${c.comprimentoM} m`;
+      const meta = `${c.tipo}  ·  ${c.fase === "RST" ? "Trifásico (3F)" : "Fase " + c.fase}${circuitosOriginais.find((o) => o.id === c.id)?.dr_30ma ? "  ·  DR 30 mA" : ""}  ·  ${c.isolacao}  ·  L = ${c.comprimentoM} m`;
       const calc: string[] = [
-        `a) Potência: P = ${c.potenciaVA} VA x FP ${c.fp} = ${Math.round(c.potenciaW)} W`,
-        `b) Corrente: Ib = ${Math.round(c.potenciaW)} / ${c.tensaoV} = ${c.ibA.toFixed(2)} A`,
-        `c) Condutor: ${c.secaoFinalMm2} mm², Iz = ${ampTxt} A${c.tipo === "TUG" ? " (mín. 2,5 mm²)" : ""}`,
+        `a) Potência: P = ${(Math.round(c.potenciaVA * 100) / 100)} VA x FP ${Number(c.fp.toFixed(3))} = ${Math.round(c.potenciaW)} W`,
+        c.trifasico
+          ? `b) Corrente: Ib = S / (raiz(3) x VL) = ${Math.round(c.potenciaVA)} / (1,732 x ${c.tensaoV}) = ${c.ibA.toFixed(2)} A`
+          : `b) Corrente: Ib = S / V = ${Math.round(c.potenciaVA)} / ${c.tensaoV} = ${c.ibA.toFixed(2)} A`,
+        `c) Condutor: ${c.secaoFinalMm2} mm², Iz = ${ampTxt} A${c.fcaAplicado < 1 ? ` (FCA ${String(c.fcaAplicado).replace(".", ",")})` : ""}${c.tipo !== "Iluminação" ? " (mín. 2,5 mm²)" : ""}`,
         `d) Queda de tensão: ${c.quedaPercent.toFixed(2)}%  ${c.quedaPercent <= 4 ? "OK (limite 4%)" : "EXCEDE 4%: ampliar seção"}`,
         `e) Proteção: Ib ${c.ibA.toFixed(1)} A <= In ${c.disjuntorA} A <= Iz ${ampTxt} A`,
       ];
@@ -348,7 +374,7 @@ export default function MemorialCalculoTab({ project, ambientes, circuitosCalcul
     // ── 6. Balanço
     if (trifasico) {
       secao("6. BALANÇO DE FASES");
-      linha(`Fase R: ${Math.round(balanco.R)} W  ·  Fase S: ${Math.round(balanco.S)} W  ·  Fase T: ${Math.round(balanco.T)} W`, 6);
+      linha(`Fase R: ${Math.round(balanco.R)} VA (${(balanco.R / 220).toFixed(1).replace(".", ",")} A)  ·  Fase S: ${Math.round(balanco.S)} VA (${(balanco.S / 220).toFixed(1).replace(".", ",")} A)  ·  Fase T: ${Math.round(balanco.T)} VA (${(balanco.T / 220).toFixed(1).replace(".", ",")} A)`, 6);
       linha(`Desbalanceamento: ${balanco.desbalanceamentoPercent.toFixed(1)}%  ${balanco.desbalanceamentoPercent <= 10 ? "OK (limite 10%)" : "VERIFICAR (limite 10%)"}`, 6);
     }
 
@@ -386,7 +412,7 @@ export default function MemorialCalculoTab({ project, ambientes, circuitosCalcul
         return [
           c.numero, c.descricao, c.tipo, orig?.qtd_pontos ?? 1, c.fase,
           c.potenciaVA, Math.round(c.potenciaW), c.comprimentoM, c.isolacao,
-          c.ibA.toFixed(2), c.secaoFinalMm2, amp ? amp.toFixed(0) : "—",
+          c.ibA.toFixed(2), c.secaoFinalMm2, amp ? amp.toFixed(1) : "—",
           c.quedaPercent.toFixed(2), c.disjuntorA,
           c.quedaPercent <= 4 && c.ibA <= c.disjuntorA ? "OK" : "X",
         ];
@@ -464,7 +490,7 @@ export default function MemorialCalculoTab({ project, ambientes, circuitosCalcul
 
         <div className="mb-10 grid grid-cols-2 divide-x divide-y divide-panel-border overflow-hidden rounded-lg border border-panel-border bg-panel md:grid-cols-3 lg:grid-cols-6 lg:divide-y-0 print:grid-cols-6 print:divide-y-0">
           <Kpi label="Carga instalada" valor={`${(potTotal / 1000).toFixed(1)} kW`} sub={`${circuitosCalculados.length} circuitos`} />
-          <Kpi label="Demanda" valor={`${(potDemandaW / 1000).toFixed(1)} kW`} sub={`FD ${(fatorDemanda * 100).toFixed(0)}%`} />
+          <Kpi label="Demanda" valor={disNor ? `${(potDemandaW / 1000).toFixed(2).replace(".", ",")} kVA` : `${(potDemandaW / 1000).toFixed(1)} kW`} sub={disNor ? `DIS-NOR-030${resumoDemanda.categoria ? ` · ${resumoDemanda.categoria.id}` : ""}` : `FD ${(fatorDemanda * 100).toFixed(0)}%`} />
           <Kpi label="Corrente de entrada" valor={`${ibEntrada.toFixed(1)} A`} sub={`Ramal ${secaoRamal} mm²`} />
           <Kpi label="Disjuntor geral" valor={`${resumoDemanda.disjuntorGeralA} A`} sub={project.tipo_entrada ?? "Monofásico"} />
           <Kpi label="Circuitos com alerta" valor={String(circuitosComAlerta)} sub={trifasico ? `Desbalanço ${balanco.desbalanceamentoPercent.toFixed(1)}%` : "ΔV ≤ 4% e Ib ≤ In"} cor={circuitosComAlerta ? "danger" : "ok"} />
@@ -505,13 +531,13 @@ export default function MemorialCalculoTab({ project, ambientes, circuitosCalcul
       <Secao num="3" titulo="Dados do Sistema Elétrico">
         <div className="grid gap-4 md:grid-cols-3">
           <Bloco titulo="Alimentação">
-            <Linha label="Tensão nominal" valor={`${Vn} V`} />
+            <Linha label="Tensão nominal" valor={tensaoTxt} />
             <Linha label="Frequência" valor="60 Hz" />
             <Linha label="Tipo de entrada" valor={project.tipo_entrada ?? "Monofásico"} />
           </Bloco>
           <Bloco titulo="Sistema de aterramento">
-            <Linha label="Esquema adotado" valor="TN-S" />
-            <Linha label="Condutor PE" valor="Separado do N" />
+            <Linha label="Esquema adotado" valor={esquemaTxt} />
+            <Linha label="Condutor PE" valor={peTxt} />
             <Linha label="Haste de aterramento" valor="≥ 1 haste 2,4 m" />
           </Bloco>
           <Bloco titulo="Proteção diferencial">
@@ -522,49 +548,91 @@ export default function MemorialCalculoTab({ project, ambientes, circuitosCalcul
         </div>
       </Secao>
 
-      {/* 4. Fator de demanda */}
-      <Secao num="4" titulo="Fator de Demanda — NBR 5410 Tabela 10.3">
-        <div className="grid gap-4 md:grid-cols-2">
-          <div>
-            <div className="mb-4 overflow-hidden rounded-xl border border-panel-border">
+      {/* 4. Demanda */}
+      <Secao num="4" titulo={disNor ? "Demanda: método da DIS-NOR-030 (Neoenergia)" : "Fator de Demanda (estimativa simplificada)"}>
+        {disNor ? (
+          <div className="space-y-4">
+            <div className="overflow-x-auto rounded-xl border border-panel-border">
               <table className="w-full text-sm">
                 <thead className="bg-bg-elevated text-left text-xs uppercase text-muted">
-                  <tr>
-                    <th className="px-4 py-2.5">Carga instalada</th>
-                    <th className="px-4 py-2.5 text-right">Fator (FD)</th>
-                  </tr>
+                  <tr><th className="px-4 py-2.5">Parcela</th><th className="px-4 py-2.5">Descrição</th><th className="px-4 py-2.5">Base de cálculo</th><th className="px-4 py-2.5 text-right">kVA</th></tr>
                 </thead>
                 <tbody>
-                  {[
-                    ["≤ 3.000 W",   "100%", potTotal <= 3000],
-                    ["3.001 – 6.000 W", "80%", potTotal > 3000 && potTotal <= 6000],
-                    ["6.001 – 10.000 W","65%", potTotal > 6000 && potTotal <= 10000],
-                    ["10.001 – 15.000 W","55%", potTotal > 10000 && potTotal <= 15000],
-                    ["> 15.000 W",  "50%", potTotal > 15000],
-                  ].map(([faixa, fd, ativo]) => (
-                    <tr key={String(faixa)} className={`border-t border-panel-border ${ativo ? "bg-accent/10 font-semibold text-accent" : ""}`}>
-                      <td className="px-4 py-2">{faixa}</td>
-                      <td className="px-4 py-2 text-right">{fd}</td>
+                  {(resumoDemanda.parcelas ?? []).map((p) => (
+                    <tr key={p.id} className="border-t border-panel-border">
+                      <td className="px-4 py-2 font-mono font-bold text-accent">{p.id}</td>
+                      <td className="px-4 py-2 font-medium">{p.descricao}</td>
+                      <td className="px-4 py-2 text-xs text-muted">{p.base}</td>
+                      <td className="tabular px-4 py-2 text-right">{p.kva.toFixed(2).replace(".", ",")}</td>
                     </tr>
                   ))}
+                  <tr className="border-t-2 border-panel-border bg-accent/10 font-semibold text-accent">
+                    <td className="px-4 py-2.5" colSpan={3}>Demanda total D = a + d + f + g + h</td>
+                    <td className="tabular px-4 py-2.5 text-right">{(potDemandaW / 1000).toFixed(2).replace(".", ",")}</td>
+                  </tr>
                 </tbody>
               </table>
             </div>
+            <div className="grid gap-4 md:grid-cols-2">
+              <Bloco titulo="Cargas consideradas na demanda">
+                {(cfg.cargas_demanda ?? []).map((c, i) => (
+                  <Linha key={i} label={c.descricao} valor={`${Math.round(c.potenciaW * (c.quantidade ?? 1)).toLocaleString("pt-BR")} W · FP ${String(c.fp).replace(".", ",")}`} />
+                ))}
+                <Linha label="Carga instalada (soma dos circuitos)" valor={`${Math.round(potTotal).toLocaleString("pt-BR")} W`} destaque />
+              </Bloco>
+              <Bloco titulo={`Categoria Cosern ${resumoDemanda.categoria?.id ?? "(conferir)"}`}>
+                <Linha label="Faixa de demanda" valor={resumoDemanda.categoria ? `${String(resumoDemanda.categoria.demandaMinKVA).replace(".", ",")} a ${resumoDemanda.categoria.demandaMaxKVA} kVA` : "fora das categorias cadastradas"} />
+                <Linha label="Demanda do projeto" valor={`${(potDemandaW / 1000).toFixed(2).replace(".", ",")} kVA`} />
+                <Linha label="Disjuntor geral" valor={`${resumoDemanda.disjuntorGeralA} A`} destaque />
+                <Linha label="Ramal de entrada" valor={resumoDemanda.categoria?.ramalDescricao ?? "-"} />
+                <Linha label="Carga instalada máx. (baixa tensão)" valor="75 kW (ANEEL REN 1000/2021)" />
+              </Bloco>
+            </div>
+            <p className="text-xs text-muted">Fatores das Tabelas 12, 14 e 22 da DIS-NOR-030 (revisão 04) para escolas; conferir a revisão vigente antes de protocolar. O fator de demanda do ar-condicionado foi adotado em 1,00 a favor da segurança.</p>
           </div>
-          <div>
-            <Eq
-              label="Carga instalada total"
-              latex={`P_{inst} = \\sum_{i=1}^{${circuitosCalculados.length}} P_i = ${Math.round(potTotal).toLocaleString("pt-BR")}\\text{ W}`}
-              resultado={`${Math.round(potTotal).toLocaleString("pt-BR")} W`}
-            />
-            <Eq
-              label="Potência de demanda"
-              latex={`P_d = P_{inst} \\times FD = ${Math.round(potTotal).toLocaleString("pt-BR")} \\times ${fatorDemanda} = ${Math.round(potDemandaW).toLocaleString("pt-BR")}\\text{ W}`}
-              resultado={`${Math.round(potDemandaW).toLocaleString("pt-BR")} W`}
-              obs={`FD = ${(fatorDemanda*100).toFixed(0)}%`}
-            />
+        ) : (
+          <div className="grid gap-4 md:grid-cols-2">
+            <div>
+              <div className="mb-4 overflow-hidden rounded-xl border border-panel-border">
+                <table className="w-full text-sm">
+                  <thead className="bg-bg-elevated text-left text-xs uppercase text-muted">
+                    <tr>
+                      <th className="px-4 py-2.5">Carga instalada</th>
+                      <th className="px-4 py-2.5 text-right">Fator (FD)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {[
+                      ["≤ 3.000 W",   "100%", potTotal <= 3000],
+                      ["3.001 – 6.000 W", "80%", potTotal > 3000 && potTotal <= 6000],
+                      ["6.001 – 10.000 W","65%", potTotal > 6000 && potTotal <= 10000],
+                      ["10.001 – 15.000 W","55%", potTotal > 10000 && potTotal <= 15000],
+                      ["> 15.000 W",  "50%", potTotal > 15000],
+                    ].map(([faixa, fd, ativo]) => (
+                      <tr key={String(faixa)} className={`border-t border-panel-border ${ativo ? "bg-accent/10 font-semibold text-accent" : ""}`}>
+                        <td className="px-4 py-2">{faixa}</td>
+                        <td className="px-4 py-2 text-right">{fd}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div>
+              <Eq
+                label="Carga instalada total"
+                latex={`P_{inst} = \\sum_{i=1}^{${circuitosCalculados.length}} P_i = ${Math.round(potTotal).toLocaleString("pt-BR")}\\text{ W}`}
+                resultado={`${Math.round(potTotal).toLocaleString("pt-BR")} W`}
+              />
+              <Eq
+                label="Potência de demanda"
+                latex={`P_d = P_{inst} \\times FD = ${Math.round(potTotal).toLocaleString("pt-BR")} \\times ${fatorDemanda} = ${Math.round(potDemandaW).toLocaleString("pt-BR")}\\text{ W}`}
+                resultado={`${Math.round(potDemandaW).toLocaleString("pt-BR")} W`}
+                obs={`FD = ${(fatorDemanda*100).toFixed(0)}%`}
+              />
+            </div>
           </div>
-        </div>
+        )}
       </Secao>
 
       {/* 5. Corrente de entrada e ramal */}
@@ -574,7 +642,9 @@ export default function MemorialCalculoTab({ project, ambientes, circuitosCalcul
             <Eq
               label={trifasico ? "Corrente de entrada (trifásico)" : bifasico ? "Corrente de entrada (bifásico)" : "Corrente de entrada (monofásico)"}
               latex={
-                trifasico
+                disNor
+                  ? `I_b = \\dfrac{S_D}{\\sqrt{3}\\cdot V_L} = \\dfrac{${Math.round(potDemandaW)}}{1{,}732 \\times ${Vn}} = ${ibEntrada.toFixed(1)}\\text{ A}`
+                  : trifasico
                   ? `I_b = \\dfrac{P_d}{\\sqrt{3}\\cdot V_n \\cdot FP} = \\dfrac{${Math.round(potDemandaW)}}{1{,}732 \\times ${Vn} \\times 0{,}92} = ${ibEntrada.toFixed(1)}\\text{ A}`
                   : bifasico
                   ? `I_b = \\dfrac{P_d}{2 \\cdot V_n \\cdot FP} = \\dfrac{${Math.round(potDemandaW)}}{2 \\times ${Vn} \\times 0{,}92} = ${ibEntrada.toFixed(1)}\\text{ A}`
@@ -588,7 +658,7 @@ export default function MemorialCalculoTab({ project, ambientes, circuitosCalcul
               <Linha label="Corrente de projeto (Ib)" valor={`${ibEntrada.toFixed(1)} A`} />
               <Linha label="Seção do ramal (cabo Cu)" valor={`${secaoRamal} mm²`} destaque />
               <Linha label="Disjuntor geral" valor={`${resumoDemanda.disjuntorGeralA} A`} destaque />
-              <Linha label="Critério" valor={`${concessionaria} + NBR 5410 §6.3`} />
+              <Linha label="Critério" valor={disNor ? `${concessionaria}: categoria ${resumoDemanda.categoria?.id ?? "?"} + NBR 5410` : `${concessionaria} + NBR 5410 §6.3`} />
             </Bloco>
           </div>
         </div>
@@ -598,7 +668,7 @@ export default function MemorialCalculoTab({ project, ambientes, circuitosCalcul
       <Secao num="6" titulo="Dimensionamento Individual dos Circuitos">
         <div className="mb-4 rounded-lg border border-warn/30 bg-warn/5 p-3 text-xs text-warn flex items-start gap-2">
           <AlertTriangle size={14} className="mt-0.5 shrink-0" />
-          <span>Critérios: Seção mínima TUG ≥ 2,5mm² · Iluminação ≥ 1,5mm² · TUE ≥ 2,5mm² · Queda de tensão máx. 4% · Temperatura ambiente 30°C · Instalação embutida em conduto</span>
+          <span>Critérios: Seção mínima iluminação 1,5 mm² · força (TUG e TUE) 2,5 mm² · Queda de tensão máx. 4% · 30 °C · Embutido em eletroduto{cfg.fca ? ` · FCA ${String(cfg.fca).replace(".", ",")} (circuitos agrupados)` : ""}</span>
         </div>
         <div className="mb-6 overflow-x-auto rounded-xl border border-panel-border">
           <table className="w-full whitespace-nowrap text-sm">
@@ -618,7 +688,7 @@ export default function MemorialCalculoTab({ project, ambientes, circuitosCalcul
                     <td className="px-3 py-1.5 font-mono"><a href={`#circ-${c.id}`} onClick={() => setAbertos(true)} className="font-bold text-accent hover:underline">C{c.numero}</a></td>
                     <td className="max-w-[22rem] truncate px-3 py-1.5" title={c.descricao}>{c.descricao}</td>
                     <td className="px-3 py-1.5"><span className={`rounded-full px-2 py-0.5 text-[11px] font-medium ${c.tipo === "Iluminação" ? "bg-warn/15 text-warn" : c.tipo === "TUG" ? "bg-ok/15 text-ok" : "bg-accent/15 text-accent"}`}>{c.tipo}</span></td>
-                    <td className="px-3 py-1.5 font-mono">{c.fase}</td>
+                    <td className="px-3 py-1.5 font-mono">{c.fase === "RST" ? "3F" : c.fase}</td>
                     <td className="tabular px-3 py-1.5 text-right">{Math.round(c.potenciaVA).toLocaleString("pt-BR")}</td>
                     <td className="tabular px-3 py-1.5 text-right">{c.ibA.toFixed(2)}</td>
                     <td className="tabular px-3 py-1.5 text-right">{c.secaoFinalMm2}</td>
@@ -644,21 +714,21 @@ export default function MemorialCalculoTab({ project, ambientes, circuitosCalcul
             const selOk   = c.ibA <= c.disjuntorA && c.disjuntorA <= (amp ?? 999);
             return (
               <details key={`${c.id}-${abertos}`} id={`circ-${c.id}`} open={abertos}
-                style={{ borderLeftColor: `var(--phase-${c.fase.toLowerCase()})` }}
+                style={{ borderLeftColor: c.fase === "RST" ? "var(--accent)" : `var(--phase-${c.fase.toLowerCase()})` }}
                 className={`group scroll-mt-6 rounded-lg border border-l-4 p-3 print:break-inside-avoid ${!quedaOk ? "border-danger/40 bg-danger/5" : "border-panel-border bg-panel"}`}>
                 <summary className="flex cursor-pointer list-none flex-wrap items-center gap-x-3 gap-y-1 [&::-webkit-details-marker]:hidden">
                   <ChevronDown size={15} className="shrink-0 text-muted transition-transform group-open:rotate-180 print:hidden" />
                   <span className="rounded bg-accent px-2 py-0.5 font-mono text-xs font-bold text-bg">C{String(c.numero).padStart(2, "0")}</span>
                   <span className="min-w-0 flex-1 text-sm font-semibold leading-snug">{c.descricao}</span>
                   <span className={`rounded-full px-2 py-0.5 text-[11px] font-medium ${c.tipo === "Iluminação" ? "bg-warn/15 text-warn" : c.tipo === "TUG" ? "bg-ok/15 text-ok" : "bg-accent/10 text-accent"}`}>{c.tipo}</span>
-                  <span className="font-mono text-[11px] text-muted">Fase {c.fase} · {c.comprimentoM} m · {circuitosOriginais.find(o=>o.id===c.id)?.qtd_pontos ?? "—"} pts · {c.isolacao}</span>
+                  <span className="font-mono text-[11px] text-muted">{c.fase === "RST" ? "Trifásico 3F" : `Fase ${c.fase}`}{circuitosOriginais.find(o=>o.id===c.id)?.dr_30ma ? " · DR 30 mA" : ""} · {c.comprimentoM} m · {circuitosOriginais.find(o=>o.id===c.id)?.qtd_pontos ?? "—"} pts · {c.isolacao}</span>
                 </summary>
                 <div className="mt-3 grid gap-2 md:grid-cols-2">
-                  <EqLinha label="a) Potência ativa" latex={`P = S \\times FP = ${c.potenciaVA}\\text{ VA} \\times ${c.fp} = ${Math.round(c.potenciaW)}\\text{ W}`} resultado={`${Math.round(c.potenciaW)} W`} />
-                  <EqLinha label="b) Corrente de projeto (Ib)" latex={`I_b = \\dfrac{P}{V_n} = \\dfrac{${Math.round(c.potenciaW)}}{${c.tensaoV}} = ${c.ibA.toFixed(2)}\\text{ A}`} resultado={`${c.ibA.toFixed(2)} A`} />
-                  <EqLinha label={`c) Seção do cabo (mín. ${c.tipo === "Iluminação" ? "1,5" : "2,5"} mm²)`} latex={`I_b \\leq I_z \\Rightarrow ${c.ibA.toFixed(1)} \\leq ${amp ? amp.toFixed(0) : "—"}\\text{ A} \\Rightarrow \\boxed{${c.secaoFinalMm2}\\text{ mm}^2}`} resultado={`${c.secaoFinalMm2} mm² · Iz ${amp ? amp.toFixed(0) : "—"} A`} />
-                  <EqLinha label="d) Disjuntor (seletividade)" latex={`I_b \\leq I_n \\leq I_z \\Rightarrow ${c.ibA.toFixed(1)} \\leq ${c.disjuntorA} \\leq ${amp ? amp.toFixed(0) : "—"}\\text{ A}`} resultado={`${c.disjuntorA} A`} obs={selOk ? "✓ condição satisfeita" : "⚠ verificar"} cor={selOk ? "ok" : "danger"} />
-                  <EqLinha className="md:col-span-2" label="e) Queda de tensão" latex={`\\Delta V = \\dfrac{2 \\cdot \\rho \\cdot L \\cdot I_b}{A \\cdot V_n} \\times 100 = \\dfrac{2 \\times 1{,}72\\times10^{-8} \\times ${c.comprimentoM} \\times ${c.ibA.toFixed(2)}}{${c.secaoFinalMm2}\\times10^{-6} \\times ${c.tensaoV}} \\times 100 = ${c.quedaPercent.toFixed(2)}\\%`} resultado={`${c.quedaPercent.toFixed(2)} %`} obs={quedaOk ? "✓ ≤ 4%" : "⚠ excede 4%: ampliar a seção"} cor={quedaOk ? "ok" : "danger"} />
+                  <EqLinha label="a) Potência ativa" latex={`P = S \\times FP = ${Math.round(c.potenciaVA * 100) / 100}\\text{ VA} \\times ${Number(c.fp.toFixed(3))} = ${Math.round(c.potenciaW)}\\text{ W}`} resultado={`${Math.round(c.potenciaW)} W`} />
+                  <EqLinha label="b) Corrente de projeto (Ib)" latex={c.trifasico ? `I_b = \\dfrac{S}{\\sqrt{3}\\cdot V_L} = \\dfrac{${Math.round(c.potenciaVA)}}{1{,}732 \\times ${c.tensaoV}} = ${c.ibA.toFixed(2)}\\text{ A}` : `I_b = \\dfrac{S}{V_n} = \\dfrac{${Math.round(c.potenciaVA)}}{${c.tensaoV}} = ${c.ibA.toFixed(2)}\\text{ A}`} resultado={`${c.ibA.toFixed(2)} A`} />
+                  <EqLinha label={`c) Seção do cabo (mín. ${c.tipo === "Iluminação" ? "1,5" : "2,5"} mm²${c.fcaAplicado < 1 ? ` · FCA ${String(c.fcaAplicado).replace(".", ",")}` : ""})`} latex={`I_b \\leq I_z \\Rightarrow ${c.ibA.toFixed(1)} \\leq ${amp ? amp.toFixed(1) : "—"}\\text{ A} \\Rightarrow \\boxed{${c.secaoFinalMm2}\\text{ mm}^2}`} resultado={`${c.secaoFinalMm2} mm² · Iz ${amp ? amp.toFixed(1) : "—"} A`} />
+                  <EqLinha label="d) Disjuntor (seletividade)" latex={`I_b \\leq I_n \\leq I_z \\Rightarrow ${c.ibA.toFixed(1)} \\leq ${c.disjuntorA} \\leq ${amp ? amp.toFixed(1) : "—"}\\text{ A}`} resultado={`${c.disjuntorA} A`} obs={selOk ? "✓ condição satisfeita" : "⚠ verificar"} cor={selOk ? "ok" : "danger"} />
+                  <EqLinha className="md:col-span-2" label="e) Queda de tensão" latex={`\\Delta V = \\dfrac{${c.trifasico ? "\\sqrt{3}" : "2"} \\cdot \\rho \\cdot L \\cdot I_b}{A \\cdot V_n} \\times 100 = \\dfrac{${c.trifasico ? "1{,}732" : "2"} \\times 1{,}72\\times10^{-8} \\times ${c.comprimentoM} \\times ${c.ibA.toFixed(2)}}{${c.secaoFinalMm2}\\times10^{-6} \\times ${c.tensaoV}} \\times 100 = ${c.quedaPercent.toFixed(2)}\\%`} resultado={`${c.quedaPercent.toFixed(2)} %`} obs={quedaOk ? "✓ ≤ 4%" : "⚠ excede 4%: ampliar a seção"} cor={quedaOk ? "ok" : "danger"} />
                 </div>
               </details>
             );
@@ -670,7 +740,7 @@ export default function MemorialCalculoTab({ project, ambientes, circuitosCalcul
       {trifasico && (
         <Secao num="7" titulo="Balanço de Fases — Sistema Trifásico">
           <div className="grid gap-4 md:grid-cols-2">
-            <Bloco titulo="Cargas por fase (W)">
+            <Bloco titulo="Carga aparente por fase (VA)">
               {[["R", balanco.R], ["S", balanco.S], ["T", balanco.T]].map(([fase, val]) => (
                 <div key={String(fase)} className="flex items-center gap-3 border-b border-panel-border py-2 last:border-0">
                   <span className={`flex h-6 w-6 items-center justify-center rounded font-mono text-xs font-bold text-bg ${fase === "R" ? "bg-phase-r" : fase === "S" ? "bg-phase-s" : "bg-phase-t"}`}>{fase}</span>
@@ -678,14 +748,14 @@ export default function MemorialCalculoTab({ project, ambientes, circuitosCalcul
                     <div className={`h-2 rounded-full ${fase === "R" ? "bg-phase-r" : fase === "S" ? "bg-phase-s" : "bg-phase-t"}`}
                       style={{ width: `${(Number(val) / Math.max(balanco.R, balanco.S, balanco.T)) * 100}%` }} />
                   </div>
-                  <span className="w-24 text-right font-mono text-sm">{Math.round(Number(val)).toLocaleString("pt-BR")} W</span>
+                  <span className="w-40 text-right font-mono text-sm">{Math.round(Number(val)).toLocaleString("pt-BR")} VA · {(Number(val) / 220).toFixed(1).replace(".", ",")} A</span>
                 </div>
               ))}
             </Bloco>
             <div>
               <Eq
                 label="Desbalanceamento percentual"
-                latex={`\\delta = \\dfrac{P_{max} - P_{min}}{P_{med}} \\times 100 = \\dfrac{${Math.round(Math.max(balanco.R,balanco.S,balanco.T))} - ${Math.round(Math.min(balanco.R,balanco.S,balanco.T))}}{${Math.round((balanco.R+balanco.S+balanco.T)/3)}} \\times 100 = ${balanco.desbalanceamentoPercent.toFixed(1)}\\%`}
+                latex={`\\delta = \\dfrac{S_{max} - S_{min}}{S_{med}} \\times 100 = \\dfrac{${Math.round(Math.max(balanco.R,balanco.S,balanco.T))} - ${Math.round(Math.min(balanco.R,balanco.S,balanco.T))}}{${Math.round((balanco.R+balanco.S+balanco.T)/3)}} \\times 100 = ${balanco.desbalanceamentoPercent.toFixed(1)}\\%`}
                 resultado={`${balanco.desbalanceamentoPercent.toFixed(1)} %`}
                 obs={balanco.desbalanceamentoPercent <= 10 ? "✓ OK (≤ 10%)" : "⚠ Redistribuir circuitos"}
                 cor={balanco.desbalanceamentoPercent <= 10 ? "ok" : "danger"}
@@ -696,18 +766,18 @@ export default function MemorialCalculoTab({ project, ambientes, circuitosCalcul
       )}
 
       {/* 8. Aterramento */}
-      <Secao num={trifasico ? "8" : "7"} titulo="Sistema de Aterramento — TN-S">
+      <Secao num={trifasico ? "8" : "7"} titulo={`Sistema de Aterramento: ${esquemaTxt}`}>
         <div className="grid gap-4 md:grid-cols-2">
           <Bloco titulo="Critérios NBR 5410 §5.4">
-            <Linha label="Esquema de aterramento" valor="TN-S" />
-            <Linha label="Condutor PE" valor="Separado do neutro (N)" />
+            <Linha label="Esquema de aterramento" valor={esquemaTxt} />
+            <Linha label="Condutor PE" valor={peTxt} />
             <Linha label="Seção mínima PE (≤ 16mm²)" valor="Igual ao condutor de fase" />
             <Linha label="Seção mínima PE (16–35mm²)" valor="16 mm²" />
             <Linha label="Seção mínima PE (> 35mm²)" valor="Metade da fase" />
             <Linha label="Resistência do aterramento" valor="≤ 10 Ω" destaque />
           </Bloco>
           <Bloco titulo="Haste de aterramento (NBR 7117)">
-            <Linha label="Tipo de haste" valor="Copperweld Ø 3/4″" />
+            <Linha label="Tipo de haste" valor={hasteTxt} />
             <Linha label="Comprimento mínimo" valor="2,40 m" />
             <Linha label="Profundidade de enterramento" valor="≥ 2,40 m vertical" />
             <Linha label="Resistividade típica (RN)" valor="ρ ≈ 100 Ω·m (areia fina)" />
@@ -716,8 +786,8 @@ export default function MemorialCalculoTab({ project, ambientes, circuitosCalcul
         </div>
         <Eq
           label="Resistência de aterramento — haste vertical (Norma NBR 7117)"
-          latex={`R = \\dfrac{\\rho}{2\\pi L}\\left[\\ln\\dfrac{4L}{d} - 1\\right] \\approx \\dfrac{100}{2\\pi \\times 2{,}4}\\left[\\ln\\dfrac{4\\times2{,}4}{0{,}019} - 1\\right] \\approx ${((100/(2*Math.PI*2.4))*(Math.log(4*2.4/0.019)-1)).toFixed(1)}\\text{ }\\Omega`}
-          resultado={`${((100/(2*Math.PI*2.4))*(Math.log(4*2.4/0.019)-1)).toFixed(1)} Ω (estimado)`}
+          latex={`R = \\dfrac{\\rho}{2\\pi L}\\left[\\ln\\dfrac{4L}{d} - 1\\right] \\approx \\dfrac{100}{2\\pi \\times 2{,}4}\\left[\\ln\\dfrac{4\\times2{,}4}{${String(dHaste).replace(".", "{,}")}} - 1\\right] \\approx ${((100/(2*Math.PI*2.4))*(Math.log(4*2.4/dHaste)-1)).toFixed(1)}\\text{ }\\Omega`}
+          resultado={`${((100/(2*Math.PI*2.4))*(Math.log(4*2.4/dHaste)-1)).toFixed(1)} Ω (estimado)`}
           obs="Medir com terrômetro após instalação"
         />
       </Secao>
